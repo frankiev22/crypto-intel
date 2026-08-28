@@ -7,7 +7,7 @@ Deliberately excluded:
   Jupiter   - DNS blocked in the sandbox, may work from Frank's machine
   Reservoir - same
 """
-import json, os, time, urllib.request, urllib.error
+import json, os, time, datetime as dt, urllib.request, urllib.error
 
 UA = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
 
@@ -51,6 +51,43 @@ def _post(url, payload, timeout=20):
                                  data=json.dumps(payload).encode(), method="POST")
     return json.loads(urllib.request.urlopen(req, timeout=timeout).read().decode())
 
+
+# --------------------------------------------------------------------------
+# Discovery coverage.
+#
+# new_pools is a WINDOW, not a feed. Measured 2026-08-28: 40 pools spanned 37
+# seconds of Solana launches, and pagination dies at page 10 (page 11 returns
+# 429), so one pass reaches ~5 minutes back at absolute best. Run hourly, that
+# observes roughly 1% of the stream at pages=2 and ~9% at pages=10.
+#
+# That is why real CYBERLEEK (pool created 2026-08-27 23:47:09Z) never entered
+# the journal. It was ~18 minutes deep by the next pass. Not a scoring failure
+# and not a DEX gap - the feed does return pumpswap pools. The funnel is simply
+# 1% wide.
+#
+# LAST_WINDOW records what each pass actually saw so coverage stops being a
+# one-off finding and becomes a number that accumulates.
+# --------------------------------------------------------------------------
+LAST_WINDOW = {"pools": 0, "oldest": None, "newest": None, "span_s": None}
+
+
+def _window(pools):
+    ts = []
+    for p in pools:
+        c = (p.get("attributes") or {}).get("pool_created_at")
+        if c:
+            try:
+                ts.append(dt.datetime.fromisoformat(c.replace("Z", "+00:00")))
+            except ValueError:
+                pass
+    if not ts:
+        LAST_WINDOW.update(pools=len(pools), oldest=None, newest=None, span_s=None)
+        return LAST_WINDOW
+    lo, hi = min(ts), max(ts)
+    LAST_WINDOW.update(pools=len(pools), oldest=lo.isoformat(), newest=hi.isoformat(),
+                       span_s=round((hi - lo).total_seconds(), 1))
+    return LAST_WINDOW
+
 # ---------- new-pair discovery ----------
 def new_pools(network="solana", pages=2):
     """Newest pools on a chain. This is the front line for catching launches."""
@@ -58,7 +95,11 @@ def new_pools(network="solana", pages=2):
     for p in range(1, pages + 1):
         d = _get(f"https://api.geckoterminal.com/api/v2/networks/{network}/new_pools?page={p}")
         out += d.get("data", [])
-        time.sleep(2.2)            # GeckoTerminal is ~30 calls/min unauthenticated
+        # Measured 2026-08-28: 429s appear at 20 calls/min from a residential
+        # IP, so the "~30/min" in the old comment was optimistic. Keep the gap
+        # wide; a 429 costs the whole page.
+        time.sleep(2.2)
+    _window(out)
     return out
 
 def trending_pools(network="solana"):

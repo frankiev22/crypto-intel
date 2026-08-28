@@ -16,7 +16,7 @@ append-only so a duplicate scan just adds another time-series point.
     python collect.py solana loop  keep going every 15 minutes
 """
 import sys, time, traceback, datetime as dt
-import scanner, journal, track, notify, macro
+import scanner, journal, track, notify, macro, sources
 
 PASS_SCORE = 70
 
@@ -31,6 +31,13 @@ def one_pass(networks=("solana",), verbose=True):
             continue
         n = journal.record(rows, net, pass_score=PASS_SCORE)
         passed = [r for r in rows if r["score"] >= PASS_SCORE]
+        # What the discovery window actually covered. Recorded every pass,
+        # because it cannot be reconstructed afterwards.
+        cov = journal.record_coverage(net, sources.LAST_WINDOW, n,
+                                      PASS_SCORE, len(passed))
+        if verbose and cov.get("span_s") is not None:
+            print(f"  [{net}] discovery window {cov['span_s']:.0f}s of launch "
+                  f"stream from {cov['pools_returned']} pools")
         total_seen += n
         total_passed += len(passed)
         if verbose:

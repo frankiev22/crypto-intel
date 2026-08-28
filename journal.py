@@ -60,6 +60,50 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 OBS  = os.path.join(BASE, "data", "observations")
 OUT  = os.path.join(BASE, "data", "outcomes")
 
+COV  = os.path.join(BASE, "data", "coverage")
+
+
+def record_coverage(network, window, scanned, pass_score=70, passed=0):
+    """One row per pass: how wide the discovery window actually was.
+
+    Coverage is the honest health metric for this system - of everything that
+    launched, what fraction did we even look at. It is not derivable after the
+    fact, because the window a pass saw is gone the moment the pass ends. So it
+    is recorded here, per pass, from the start.
+
+    span_s is the seconds of launch stream the pass observed. Divided by the
+    interval between passes, that is the coverage rate.
+    """
+    now = int(time.time())
+    obj = {"ts": now, "network": network, "kind": "discovery_window",
+           "pools_returned": window.get("pools"),
+           "oldest": window.get("oldest"), "newest": window.get("newest"),
+           "span_s": window.get("span_s"),
+           "scanned": scanned, "passed": passed, "pass_score": pass_score}
+    _append(COV, obj)
+    return obj
+
+
+def coverage(days=None):
+    """Discovery-window rows. Local only; there is no Supabase table for these
+    yet, and inventing one from here would need a schema change we cannot make
+    without a DDL credential."""
+    files = sorted(glob.glob(os.path.join(COV, "*.jsonl")))
+    if days:
+        files = files[-days:]
+    out = []
+    for fp in files:
+        for line in open(fp, encoding="utf-8"):
+            line = line.strip()
+            if line:
+                try:
+                    out.append(json.loads(line))
+                except json.JSONDecodeError:
+                    continue
+    return out
+
+
+
 
 def _path(root):
     os.makedirs(root, exist_ok=True)

@@ -1,3 +1,13 @@
+> **SUPERSEDED 2026-08-28. Read `COVERAGE.md` first.**
+>
+> Everything below is measured on a universe that contains none of the winners.
+> The scanner observes ~1-2% of the Solana launch stream, and not one token it
+> scored 100 shares a contract address with the real coin of that name. These
+> numbers are not weak results; they are results about the wrong population.
+> Do not tune weights on them. The method here (realizable gates the win, not
+> the sample; full denominator; Wilson intervals; temporal split) is sound and
+> should be reused once the funnel contains winners.
+
 # What the scoring data actually supports
 
 Run of 2026-08-28. 4,906 observations, 10,698 closed outcomes, 179h covered.
