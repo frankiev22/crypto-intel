@@ -79,6 +79,7 @@ def record_coverage(network, window, scanned, pass_score=70, passed=0):
            "pools_returned": window.get("pools"),
            "oldest": window.get("oldest"), "newest": window.get("newest"),
            "span_s": window.get("span_s"),
+           "pages_lost": window.get("pages_lost", 0),
            "scanned": scanned, "passed": passed, "pass_score": pass_score}
     _append(COV, obj)
     return obj

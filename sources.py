@@ -89,17 +89,46 @@ def _window(pools):
     return LAST_WINDOW
 
 # ---------- new-pair discovery ----------
-def new_pools(network="solana", pages=2):
-    """Newest pools on a chain. This is the front line for catching launches."""
-    out = []
+PAGES = int(os.environ.get("CRYPTO_NEW_POOL_PAGES", "5"))
+
+
+def new_pools(network="solana", pages=None):
+    """Newest pools on a chain. This is the front line for catching launches.
+
+    pages is the coverage dial. Each page is 20 pools and roughly 20 seconds of
+    stream, and page 10 is the hard ceiling - page 11 returns 429. Default 5 is
+    a deliberate middle: it quadruples the window over the old pages=2 without
+    sitting on the rate limit, which matters because a 429 costs a whole page
+    and the pass has no way to get those launches back.
+
+    A failed page is SKIPPED, not fatal. Losing one page of a five-page sweep
+    costs 20 pools; raising would cost all 100 and the outcome scoring behind
+    it. That trade only got worse as pages went up.
+    """
+    pages = PAGES if pages is None else pages
+    out, lost, seen = [], 0, set()
     for p in range(1, pages + 1):
-        d = _get(f"https://api.geckoterminal.com/api/v2/networks/{network}/new_pools?page={p}")
-        out += d.get("data", [])
+        try:
+            d = _get(f"https://api.geckoterminal.com/api/v2/networks/{network}/new_pools?page={p}")
+            # Pagination is NOT stable. Measured 2026-08-28: five pages returned
+            # 100 rows containing 67 distinct pools, and page 5 was a complete
+            # duplicate of page 1. New pools keep arriving during the ~15s a
+            # sweep takes, so the feed re-sorts underneath it. Dedupe here or a
+            # third of the enrichment budget is spent re-fetching known pools.
+            for r in d.get("data", []):
+                a = (r.get("attributes") or {}).get("address")
+                if a and a not in seen:
+                    seen.add(a)
+                    out.append(r)
+        except Exception as e:
+            lost += 1
+            print(f"  [new_pools] page {p} lost: {type(e).__name__} {str(e)[:60]}")
         # Measured 2026-08-28: 429s appear at 20 calls/min from a residential
         # IP, so the "~30/min" in the old comment was optimistic. Keep the gap
-        # wide; a 429 costs the whole page.
+        # wide.
         time.sleep(2.2)
     _window(out)
+    LAST_WINDOW["pages_lost"] = lost
     return out
 
 def trending_pools(network="solana"):

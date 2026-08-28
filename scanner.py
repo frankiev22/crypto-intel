@@ -103,7 +103,9 @@ def score(pair):
 
     return min(pts, 100), reasons, flags, gates, WVER
 
-def scan(network="solana", pages=2, verbose=True):
+def scan(network="solana", pages=None, verbose=True):
+    # pages=None defers to sources.PAGES, the CRYPTO_NEW_POOL_PAGES dial.
+    # Hard-coding it here is what kept the funnel at 2 pages.
     pools = S.new_pools(network, pages=pages)
     if verbose: print(f"pulled {len(pools)} new pools on {network}")
     rows = []

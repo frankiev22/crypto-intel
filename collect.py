@@ -25,7 +25,7 @@ def one_pass(networks=("solana",), verbose=True):
     total_seen = total_passed = 0
     for net in networks:
         try:
-            rows = scanner.scan(net, pages=2, verbose=verbose)
+            rows = scanner.scan(net, verbose=verbose)
         except Exception as e:
             print(f"  [{net}] scan failed: {e}")
             continue

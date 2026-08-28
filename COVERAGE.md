@@ -81,3 +81,31 @@ This is the stub of the dashboard's headline number. The honest version needs
 the other half: of all tokens that crossed $1M today, what fraction did we
 observe before they crossed. That needs the missed-winner ledger, which needs a
 1M-crossing feed, which is P2.
+
+## Pagination does not scale the window either
+
+Measured across 5 pages fetched at 3s spacing:
+
+| page | pools | new (not already seen) | created span |
+|---|---:|---:|---|
+| 1 | 20 | 20 | 15:52:15 → 15:52:50 |
+| 2 | 20 | 20 | 15:53:41 → 15:53:57 |
+| 3 | 20 | 20 | 15:53:02 → 15:53:27 |
+| 4 | 20 | 7 | 15:52:26 → 15:53:00 |
+| 5 | 20 | **0** | 15:52:15 → 15:52:50 |
+
+**100 rows fetched, 67 distinct pools.** Page 5 was a complete duplicate of
+page 1, and page ordering is not monotonic in creation time. New pools keep
+arriving during the ~15s a sweep takes, so the feed re-sorts underneath it.
+
+Two consequences, both now handled:
+- `new_pools` **dedupes by address across pages**, or a third of the enrichment
+  budget goes on re-fetching pools already scored.
+- A failed page is **skipped, not fatal**. On the first live run at `pages=5`,
+  pages 3 and 4 returned 429 and the pass still completed with 52 distinct
+  pools covering 128 seconds. Before this change a single 429 would have
+  aborted the whole pass, losing the outcome scoring behind it too.
+
+Net: `CRYPTO_NEW_POOL_PAGES` now defaults to 5, taking the window from ~40-67s
+to ~128s — roughly 1.5% to 3.6% of an hour. Better, and still nowhere near
+enough. The ceiling on this approach is about 9%.
