@@ -1,0 +1,101 @@
+{
+ "ts": "2026-08-22T15:24:33+00:00",
+ "version": "0.0.1",
+ "window_s": 3600,
+ "errors": {},
+ "macro": {
+  "ts": "2026-08-22T15:24:34+00:00",
+  "fear_greed": 71,
+  "fear_greed_label": "Greed",
+  "btc_dominance": 58.927065606224005,
+  "eth_dominance": 11.088923727769991,
+  "mcap_change_24h": -2.4913959177888234,
+  "total_mcap_usd": 2613569516323.6694,
+  "btc": 76915,
+  "btc_24h": -0.9360751969668399,
+  "eth": 2406.63,
+  "eth_24h": 0.2217605672472249,
+  "sol": 92.94,
+  "sol_24h": 1.3331594475964785,
+  "eth_tvl": 48687014254.53483,
+  "sol_tvl": 5529324703.340835,
+  "stablecoin_supply": 309450918449.7924,
+  "stablecoin_chg_24h": 0.3168637130929728
+ },
+ "news": [
+  {
+   "title": "Crypto exchange BitMart weighs partial restart and creditor payouts weeks after announcing shutdown",
+   "url": "https://www.coindesk.com/business/2026/08/22/crypto-exchange-bitmart-weighs-partial-restart-and-creditor-payouts-weeks-after-announcing-shutdown",
+   "outlet": "CoinDesk",
+   "published_at": "2026-08-22T15:16:41+00:00",
+   "alert_reason": null,
+   "also_in": []
+  },
+  {
+   "title": "Web3 gaming network Sandbox stops Base and BNB chain bridging after exploit",
+   "url": "https://www.coindesk.com/web3/2026/08/22/web3-gaming-network-sandbox-stops-base-and-bnb-chain-bridging-after-exploit",
+   "outlet": "CoinDesk",
+   "published_at": "2026-08-22T14:10:17+00:00",
+   "alert_reason": "Security incident",
+   "also_in": []
+  },
+  {
+   "title": "Tokenized stocks risk repeating Wall Street\u2019s 1960s \u2018paper crisis,\u2019 Fairmint CEO says",
+   "url": "https://www.coindesk.com/tech/2026/08/22/tokenized-stocks-risk-repeating-wall-street-s-1960s-paper-crisis-fairmint-ceo-says",
+   "outlet": "CoinDesk",
+   "published_at": "2026-08-22T14:00:00+00:00",
+   "alert_reason": null,
+   "also_in": []
+  },
+  {
+   "title": "A Third of the Post-ChatGPT Web Is AI-Written, Pew Finds",
+   "url": "https://decrypt.co/376271/chatgpt-web-ai-written-pew",
+   "outlet": "Decrypt",
+   "published_at": "2026-08-22T13:31:03+00:00",
+   "alert_reason": null,
+   "also_in": []
+  },
+  {
+   "title": "Kalshi off-limits in multiple states as prediction markets, CFTC team up for battle",
+   "url": "https://www.coindesk.com/news-analysis/2026/08/21/kalshi-off-limits-in-multiple-states-as-prediction-markets-cftc-team-up-for-battle",
+   "outlet": "CoinDesk",
+   "published_at": "2026-08-22T13:30:00+00:00",
+   "alert_reason": "Regulatory",
+   "also_in": []
+  },
+  {
+   "title": "MiCA is coming for DeFi vaults, but regulation will be difficult",
+   "url": "https://cointelegraph.com/magazine/mica-is-coming-for-defi-vaults-but-regulation-will-be-difficult?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound",
+   "outlet": "Cointelegraph",
+   "published_at": "2026-08-22T13:30:00+00:00",
+   "alert_reason": "Regulatory",
+   "also_in": []
+  }
+ ],
+ "news_status": "6 from Supabase",
+ "sentiment": {
+  "score": null,
+  "n": 0,
+  "readings": [
+   {
+    "source": "cryptopanic",
+    "ok": false,
+    "score": null,
+    "n": 0,
+    "detail": "no CRYPTOPANIC_API_TOKEN - news axis off"
+   }
+  ]
+ },
+ "watchlist_n": 4,
+ "watchlist_mode": "early on >=2 of 6 trending tokens",
+ "whales": [],
+ "whales_small": 2,
+ "whale_stats": {
+  "bystander": 5,
+  "undecoded": 13,
+  "wallets": 4
+ },
+ "alerts": [
+  "Stables +0.32% 24h - inflow"
+ ]
+}

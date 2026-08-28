@@ -1,0 +1,52 @@
+{
+ "ts": "2026-08-22T13:01:08+00:00",
+ "version": "0.0.1",
+ "window_s": 3600,
+ "errors": {},
+ "macro": {
+  "ts": "2026-08-22T13:01:09+00:00",
+  "fear_greed": 71,
+  "fear_greed_label": "Greed",
+  "btc_dominance": 58.794772520128404,
+  "eth_dominance": 11.109577833652835,
+  "mcap_change_24h": -0.8197794834212031,
+  "total_mcap_usd": 2630195029609.246,
+  "btc": 77302,
+  "btc_24h": 0.1765934759653306,
+  "eth": 2428.41,
+  "eth_24h": 1.7784608866439942,
+  "sol": 93.9,
+  "sol_24h": 3.444485745783781,
+  "eth_tvl": 48566015545.28204,
+  "sol_tvl": 5528823049.002907,
+  "stablecoin_supply": 309482239837.21155,
+  "stablecoin_chg_24h": 0.32487338407106336
+ },
+ "news": [],
+ "news_status": "no CRYPTOPANIC_API_TOKEN - news axis off",
+ "sentiment": {
+  "score": null,
+  "n": 0,
+  "readings": [
+   {
+    "source": "cryptopanic",
+    "ok": false,
+    "score": null,
+    "n": 0,
+    "detail": "no CRYPTOPANIC_API_TOKEN - news axis off"
+   }
+  ]
+ },
+ "watchlist_n": 4,
+ "watchlist_mode": "early on >=2 of 6 trending tokens",
+ "whales": [],
+ "whales_small": 2,
+ "whale_stats": {
+  "bystander": 5,
+  "undecoded": 13,
+  "wallets": 4
+ },
+ "alerts": [
+  "Stables +0.32% 24h - inflow"
+ ]
+}

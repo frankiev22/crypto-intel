@@ -1,0 +1,75 @@
+{
+ "ts": "2026-08-23T23:40:07+00:00",
+ "version": "0.0.1",
+ "window_s": 3600,
+ "errors": {},
+ "macro": {
+  "ts": "2026-08-23T23:40:08+00:00",
+  "fear_greed": 66,
+  "fear_greed_label": "Greed",
+  "btc_dominance": 59.14357463436913,
+  "eth_dominance": 11.272653075798349,
+  "mcap_change_24h": -1.4527406973848398,
+  "total_mcap_usd": 2622279800218.7173,
+  "btc": 77604,
+  "btc_24h": 0.8593137976296678,
+  "eth": 2458.7,
+  "eth_24h": 1.676259728403031,
+  "sol": 95.44,
+  "sol_24h": 2.0548490998615185,
+  "eth_tvl": 48902521302.97356,
+  "sol_tvl": 5590651719.607967,
+  "stablecoin_supply": 309173702680.4355,
+  "stablecoin_chg_24h": 0.09026909147737763
+ },
+ "news": [
+  {
+   "title": "Crypto card spending tops $1 billion as stablecoins move into everyday purchases",
+   "url": "https://www.coindesk.com/business/2026/08/23/crypto-card-spending-tops-usd1-billion-as-stablecoins-move-into-everyday-purchases",
+   "outlet": "CoinDesk",
+   "published_at": "2026-08-23T15:00:00+00:00",
+   "alert_reason": null,
+   "also_in": []
+  },
+  {
+   "title": "Robot Brains Could Have Their \u2018ChatGPT Moment\u2019 by 2027, ACE Robotics Chairman Says",
+   "url": "https://decrypt.co/376265/robot-brains-chatgpt-moment-ace-robotics",
+   "outlet": "Decrypt",
+   "published_at": "2026-08-23T14:31:04+00:00",
+   "alert_reason": null,
+   "also_in": []
+  },
+  {
+   "title": "Crypto\u2019s next billion users might be AI agents, and they\u2019re paying with stablecoins",
+   "url": "https://www.coindesk.com/business/2026/08/23/crypto-s-next-billion-users-might-be-ai-agents-and-they-re-paying-with-stablecoins",
+   "outlet": "CoinDesk",
+   "published_at": "2026-08-23T13:00:00+00:00",
+   "alert_reason": null,
+   "also_in": []
+  }
+ ],
+ "news_status": "3 from Supabase",
+ "sentiment": {
+  "score": null,
+  "n": 0,
+  "readings": [
+   {
+    "source": "cryptopanic",
+    "ok": false,
+    "score": null,
+    "n": 0,
+    "detail": "no CRYPTOPANIC_API_TOKEN - news axis off"
+   }
+  ]
+ },
+ "watchlist_n": 4,
+ "watchlist_mode": "early on >=2 of 6 trending tokens",
+ "whales": [],
+ "whales_small": 1,
+ "whale_stats": {
+  "bystander": 5,
+  "undecoded": 14,
+  "wallets": 4
+ },
+ "alerts": []
+}

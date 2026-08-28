@@ -1,0 +1,7 @@
+# The journal is append-only and is written by two different operating systems:
+# Frank's Windows machine and the Ubuntu runner. Pin the data files to LF in
+# both the repo and the working tree, or a Windows checkout rewrites every line
+# ending and each hourly commit shows the entire file as changed.
+*.jsonl text eol=lf
+*.py    text eol=lf
+*.yml   text eol=lf

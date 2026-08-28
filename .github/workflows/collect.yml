@@ -1,0 +1,103 @@
+# The hourly collector.
+#
+# This replaced a Claude desktop scheduled task that spawned a fresh model
+# session every hour. That task did no reasoning - it fetched JSON, scored it
+# arithmetically and appended rows - but it consumed roughly 24 of ~29 daily
+# Claude sessions and starved every other scheduled job on the machine. Seven
+# cron fires were lost in the week of 2026-08-25 alone, including a full day of
+# the memory writer.
+#
+# Nothing here needs a model. It is a stdlib-only Python script on a timer.
+#
+# STATE: data/ is committed back after every run. The runner is stateless and
+# journal.pending()/scored_pairs() must see the whole history to know what is
+# due and what is already scored. The Supabase mirror cannot serve that role -
+# crypto_observations and crypto_outcomes are write-only to the anon key
+# (secret-gated RPC in, no SELECT grant out), so git is the state store.
+name: collect
+
+on:
+  schedule:
+    # Hourly, UTC. GitHub schedules are best-effort and can run late or, rarely,
+    # be skipped under load. That is tolerable here: journal.pending() looks
+    # back over a 6h window, so a late or missed hour is picked up by the next
+    # run rather than lost.
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+# Never let two passes write the journal at once. Queue, do not cancel: a
+# cancelled run would drop rows it had already fetched.
+concurrency:
+  group: collect
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      # No setup-python and no pip install: the collector is pure stdlib
+      # (config.py falls back to its own .env parser when dotenv is absent),
+      # and ubuntu-latest ships Python 3. Asserting the version keeps a runner
+      # image change loud instead of silent.
+      - name: Python
+        run: python3 -VV
+
+      - name: Collect
+        id: collect
+        continue-on-error: true
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+          CRYPTO_JOURNAL_SECRET: ${{ secrets.CRYPTO_JOURNAL_SECRET }}
+          CRYPTO_DISCORD_WEBHOOK: ${{ secrets.CRYPTO_DISCORD_WEBHOOK }}
+          # The request itself costs ~0.2s, so this still sits near 240 req/min
+          # against Dexscreener's 300/min. It is what keeps a run inside one
+          # billable minute on a private repo.
+          CRYPTO_HTTP_PACE_S: '0.05'
+        run: python3 collect.py solana | tee run.log
+
+      # Commit BEFORE deciding whether the job failed. A pass that died halfway
+      # has still written real rows, and throwing them away would recreate the
+      # exact data loss this workflow exists to stop.
+      - name: Commit the journal
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data/
+          if git diff --cached --quiet; then
+            echo "no new rows" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git commit -q -m "collect: $(date -u '+%Y-%m-%d %H:%M') UTC"
+          for i in 1 2 3; do
+            git push -q && break
+            echo "push rejected, rebasing (attempt $i)"
+            git pull --rebase -q origin "${GITHUB_REF_NAME}"
+          done
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo '### collect'
+            echo '```'
+            tail -n 20 run.log 2>/dev/null || echo '(no output)'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # Fail last, so the rows are already safe in git. A red run is the alert:
+      # GitHub emails the repo owner on scheduled-workflow failure, which is the
+      # only notification path that still works while Frank is away.
+      - name: Fail if the pass did not succeed
+        if: steps.collect.outcome != 'success'
+        run: |
+          echo "collect.py exited non-zero - see the log above"
+          exit 1

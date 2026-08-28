@@ -1,0 +1,18 @@
+{
+ "wallets": {
+  "FireuLYd4yjJBhXQyBs3Mq6ZpNEjyHPNPG2eqhTP9RHV": 2,
+  "AjkDC1KdkgPaFRtrCbeSh6B6dhVX2JM4o2XhPSs2qu4b": 3,
+  "8TPWakvWw4xQbk7uAYdNjZiDKKHgv9GE5GebzsbtUaHr": 2,
+  "sighWH8KaiT7QhtV4w29ReVF8kG6D5yG3EQP1KYyGVF": 2
+ },
+ "mode": "early on >=2 of 6 trending tokens",
+ "tokens": [
+  "CATE / SOL",
+  "PENGU / USDC",
+  "LGE / SOL",
+  "BULLBALLS / SOL",
+  "PANTS / SOL",
+  "ANSEM / SOL"
+ ],
+ "built": "2026-08-22T02:43:30Z"
+}

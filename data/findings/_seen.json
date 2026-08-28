@@ -1,0 +1,787 @@
+{
+ "reporting-path:sendusermessage": {
+  "first_seen": "2026-08-23T23:35:23+00:00",
+  "count": 2,
+  "example": "reporting-path: SendUserMessage",
+  "last_seen": "2026-08-23T23:35:24+00:00"
+ },
+ "scanner-hit:xiaopang": {
+  "first_seen": "2026-08-24T01:08:05+00:00",
+  "count": 1,
+  "example": "scanner-hit: XiaoPang"
+ },
+ "scanner-hit:gtavi": {
+  "first_seen": "2026-08-24T01:08:06+00:00",
+  "count": 2,
+  "example": "scanner-hit: GTAVI",
+  "last_seen": "2026-08-24T09:09:12+00:00"
+ },
+ "scanner-hit:friend": {
+  "first_seen": "2026-08-24T01:08:06+00:00",
+  "count": 1,
+  "example": "scanner-hit: FRIEND"
+ },
+ "outcome-x:acat": {
+  "first_seen": "2026-08-24T01:08:07+00:00",
+  "count": 2,
+  "example": "outcome-3x: ACAT",
+  "last_seen": "2026-08-24T07:09:52+00:00"
+ },
+ "scanner-hit:meow": {
+  "first_seen": "2026-08-24T02:07:11+00:00",
+  "count": 1,
+  "example": "scanner-hit: MEOW"
+ },
+ "scanner-hit:crypt": {
+  "first_seen": "2026-08-24T02:07:11+00:00",
+  "count": 1,
+  "example": "scanner-hit: CRYPT"
+ },
+ "scanner-hit:larry": {
+  "first_seen": "2026-08-24T03:07:37+00:00",
+  "count": 1,
+  "example": "scanner-hit: LARRY"
+ },
+ "scanner-hit:tesla-ai": {
+  "first_seen": "2026-08-24T03:07:37+00:00",
+  "count": 2,
+  "example": "scanner-hit: Tesla AI",
+  "last_seen": "2026-08-24T05:07:50+00:00"
+ },
+ "outcome-x:fishnu": {
+  "first_seen": "2026-08-24T04:06:58+00:00",
+  "count": 1,
+  "example": "outcome-3x: FISHNU"
+ },
+ "scanner-hit:normie": {
+  "first_seen": "2026-08-24T05:07:49+00:00",
+  "count": 1,
+  "example": "scanner-hit: Normie"
+ },
+ "scanner-hit:inf": {
+  "first_seen": "2026-08-24T05:07:50+00:00",
+  "count": 1,
+  "example": "scanner-hit: inf"
+ },
+ "scanner-hit:joshua": {
+  "first_seen": "2026-08-24T07:09:34+00:00",
+  "count": 1,
+  "example": "scanner-hit: joshua"
+ },
+ "scanner-hit:niu": {
+  "first_seen": "2026-08-24T07:09:35+00:00",
+  "count": 1,
+  "example": "scanner-hit: Niu"
+ },
+ "scanner-hit:horse": {
+  "first_seen": "2026-08-24T07:09:36+00:00",
+  "count": 1,
+  "example": "scanner-hit: HORSE"
+ },
+ "scanner-hit:unknown": {
+  "first_seen": "2026-08-24T07:09:37+00:00",
+  "count": 9,
+  "example": "scanner-hit: \u725b\u6765",
+  "last_seen": "2026-08-28T10:07:40+00:00"
+ },
+ "scanner-hit:giggle": {
+  "first_seen": "2026-08-24T07:09:37+00:00",
+  "count": 1,
+  "example": "scanner-hit: Giggle"
+ },
+ "outcome-x:gtaleak": {
+  "first_seen": "2026-08-24T07:09:52+00:00",
+  "count": 1,
+  "example": "outcome-3x: GTALEAK"
+ },
+ "scanner-hit:starecat": {
+  "first_seen": "2026-08-24T08:08:21+00:00",
+  "count": 1,
+  "example": "scanner-hit: STARECAT"
+ },
+ "scanner-hit:skyzip": {
+  "first_seen": "2026-08-24T08:08:22+00:00",
+  "count": 1,
+  "example": "scanner-hit: SKYZIP"
+ },
+ "scanner-hit:walmart": {
+  "first_seen": "2026-08-24T08:08:22+00:00",
+  "count": 1,
+  "example": "scanner-hit: Walmart"
+ },
+ "outcome-x:ninjacat": {
+  "first_seen": "2026-08-24T08:08:23+00:00",
+  "count": 2,
+  "example": "outcome-3x: NINJACAT",
+  "last_seen": "2026-08-25T02:08:51+00:00"
+ },
+ "scanner-hit:tmx": {
+  "first_seen": "2026-08-24T09:09:12+00:00",
+  "count": 3,
+  "example": "scanner-hit: TMX",
+  "last_seen": "2026-08-26T04:07:20+00:00"
+ },
+ "scanner-hit:starlink": {
+  "first_seen": "2026-08-24T09:09:12+00:00",
+  "count": 1,
+  "example": "scanner-hit: Starlink"
+ },
+ "scanner-hit:catcult": {
+  "first_seen": "2026-08-24T09:09:12+00:00",
+  "count": 1,
+  "example": "scanner-hit: CATCULT"
+ },
+ "scanner-hit:ansem": {
+  "first_seen": "2026-08-24T09:09:13+00:00",
+  "count": 1,
+  "example": "scanner-hit: ANSEM"
+ },
+ "scanner-hit:nvda": {
+  "first_seen": "2026-08-24T10:08:49+00:00",
+  "count": 1,
+  "example": "scanner-hit: NVDA"
+ },
+ "scanner-hit:mango": {
+  "first_seen": "2026-08-24T10:08:50+00:00",
+  "count": 1,
+  "example": "scanner-hit: Mango"
+ },
+ "scanner-hit:ridark": {
+  "first_seen": "2026-08-24T10:08:50+00:00",
+  "count": 2,
+  "example": "scanner-hit: RIDARK",
+  "last_seen": "2026-08-24T10:09:03+00:00"
+ },
+ "scanner-hit:cyberleek": {
+  "first_seen": "2026-08-24T10:08:51+00:00",
+  "count": 1,
+  "example": "scanner-hit: CYBERLEEK"
+ },
+ "outcome-x:tmx": {
+  "first_seen": "2026-08-24T10:09:03+00:00",
+  "count": 1,
+  "example": "outcome-3x: TMX"
+ },
+ "scanner-hit:martians": {
+  "first_seen": "2026-08-24T11:09:02+00:00",
+  "count": 1,
+  "example": "scanner-hit: MARTIANS"
+ },
+ "scanner-hit:tilly": {
+  "first_seen": "2026-08-24T11:09:07+00:00",
+  "count": 1,
+  "example": "scanner-hit: TILLY"
+ },
+ "collector-error:timeouterror": {
+  "first_seen": "2026-08-24T12:17:30+00:00",
+  "count": 3,
+  "example": "collector-error: TimeoutError",
+  "last_seen": "2026-08-24T14:19:02+00:00"
+ },
+ "scanner-hit:martin": {
+  "first_seen": "2026-08-24T15:08:14+00:00",
+  "count": 1,
+  "example": "scanner-hit: MARTIN"
+ },
+ "outcome-x:cyberleek": {
+  "first_seen": "2026-08-24T17:07:38+00:00",
+  "count": 2,
+  "example": "outcome-3x: CYBERLEEK",
+  "last_seen": "2026-08-25T13:09:06+00:00"
+ },
+ "outcome-x:spcx": {
+  "first_seen": "2026-08-24T17:07:47+00:00",
+  "count": 1,
+  "example": "outcome-3x: SPCX"
+ },
+ "outcome-x:gmb": {
+  "first_seen": "2026-08-24T17:07:47+00:00",
+  "count": 1,
+  "example": "outcome-3x: GMB"
+ },
+ "scanner-hit:sheila": {
+  "first_seen": "2026-08-24T20:06:18+00:00",
+  "count": 2,
+  "example": "scanner-hit: Sheila",
+  "last_seen": "2026-08-24T20:06:29+00:00"
+ },
+ "outcome-x:scamtin": {
+  "first_seen": "2026-08-24T20:06:29+00:00",
+  "count": 3,
+  "example": "outcome-3x: SCAMTIN",
+  "last_seen": "2026-08-25T19:08:56+00:00"
+ },
+ "scanner-hit:biscotti": {
+  "first_seen": "2026-08-24T21:06:23+00:00",
+  "count": 2,
+  "example": "scanner-hit: BISCOTTI",
+  "last_seen": "2026-08-26T18:08:09+00:00"
+ },
+ "scanner-hit:agents": {
+  "first_seen": "2026-08-24T21:06:23+00:00",
+  "count": 2,
+  "example": "scanner-hit: AGENTS",
+  "last_seen": "2026-08-24T21:06:24+00:00"
+ },
+ "scanner-hit:anon": {
+  "first_seen": "2026-08-24T21:06:23+00:00",
+  "count": 1,
+  "example": "scanner-hit: ANON"
+ },
+ "scanner-hit:fckstr": {
+  "first_seen": "2026-08-24T21:06:24+00:00",
+  "count": 1,
+  "example": "scanner-hit: fckstr"
+ },
+ "outcome-x:fckstr": {
+  "first_seen": "2026-08-24T22:06:50+00:00",
+  "count": 1,
+  "example": "outcome-3x: fckstr"
+ },
+ "outcome-x:alon": {
+  "first_seen": "2026-08-25T01:07:39+00:00",
+  "count": 1,
+  "example": "outcome-3x: ALON"
+ },
+ "outcome-x:virgin": {
+  "first_seen": "2026-08-25T02:08:51+00:00",
+  "count": 2,
+  "example": "outcome-3x: VIRGIN",
+  "last_seen": "2026-08-25T07:06:30+00:00"
+ },
+ "scanner-hit:baton": {
+  "first_seen": "2026-08-25T03:06:31+00:00",
+  "count": 1,
+  "example": "scanner-hit: BATON"
+ },
+ "scanner-hit:buildingcat": {
+  "first_seen": "2026-08-25T03:06:31+00:00",
+  "count": 1,
+  "example": "scanner-hit: BuildingCat"
+ },
+ "scanner-hit:solgu": {
+  "first_seen": "2026-08-25T03:06:32+00:00",
+  "count": 1,
+  "example": "scanner-hit: SOLGU"
+ },
+ "scanner-hit:nenem": {
+  "first_seen": "2026-08-25T04:08:15+00:00",
+  "count": 1,
+  "example": "scanner-hit: NENEM"
+ },
+ "scanner-hit:tiny": {
+  "first_seen": "2026-08-25T04:08:16+00:00",
+  "count": 1,
+  "example": "scanner-hit: TINY"
+ },
+ "outcome-x:kulie": {
+  "first_seen": "2026-08-25T04:08:23+00:00",
+  "count": 1,
+  "example": "outcome-3x: KULIE"
+ },
+ "scanner-hit:doge": {
+  "first_seen": "2026-08-25T05:06:07+00:00",
+  "count": 1,
+  "example": "scanner-hit: DOGE2"
+ },
+ "outcome-x:doge": {
+  "first_seen": "2026-08-25T06:07:14+00:00",
+  "count": 1,
+  "example": "outcome-3x: DOGE2"
+ },
+ "scanner-hit:vulpes": {
+  "first_seen": "2026-08-25T06:07:22+00:00",
+  "count": 1,
+  "example": "scanner-hit: VULPES"
+ },
+ "scanner-hit:ogdoge": {
+  "first_seen": "2026-08-25T06:07:22+00:00",
+  "count": 1,
+  "example": "scanner-hit: OGDOGE"
+ },
+ "scanner-hit:cgb": {
+  "first_seen": "2026-08-25T07:06:24+00:00",
+  "count": 1,
+  "example": "scanner-hit: CGB"
+ },
+ "scanner-hit:khorasan": {
+  "first_seen": "2026-08-25T07:06:24+00:00",
+  "count": 1,
+  "example": "scanner-hit: Khorasan"
+ },
+ "scanner-hit:duvet": {
+  "first_seen": "2026-08-25T07:06:24+00:00",
+  "count": 1,
+  "example": "scanner-hit: DUVET"
+ },
+ "scanner-hit:kat": {
+  "first_seen": "2026-08-25T13:09:04+00:00",
+  "count": 1,
+  "example": "scanner-hit: KAT"
+ },
+ "outcome-x:tiny": {
+  "first_seen": "2026-08-25T13:09:04+00:00",
+  "count": 1,
+  "example": "outcome-3x: TINY"
+ },
+ "outcome-x:crashout": {
+  "first_seen": "2026-08-25T13:09:05+00:00",
+  "count": 3,
+  "example": "outcome-3x: CRASHOUT",
+  "last_seen": "2026-08-26T08:07:32+00:00"
+ },
+ "scanner-hit:b": {
+  "first_seen": "2026-08-25T14:09:28+00:00",
+  "count": 3,
+  "example": "scanner-hit: B",
+  "last_seen": "2026-08-25T14:09:29+00:00"
+ },
+ "scanner-hit:debit": {
+  "first_seen": "2026-08-25T14:09:28+00:00",
+  "count": 1,
+  "example": "scanner-hit: DEBIT"
+ },
+ "outcome-x:kat": {
+  "first_seen": "2026-08-25T14:09:53+00:00",
+  "count": 1,
+  "example": "outcome-3x: KAT"
+ },
+ "outcome-x:shandi": {
+  "first_seen": "2026-08-25T14:09:53+00:00",
+  "count": 2,
+  "example": "outcome-3x: \u95ea\u8fea (SHANDI)",
+  "last_seen": "2026-08-25T19:08:56+00:00"
+ },
+ "outcome-x:kas": {
+  "first_seen": "2026-08-25T14:09:53+00:00",
+  "count": 1,
+  "example": "outcome-3x: KAS"
+ },
+ "outcome-x:cate": {
+  "first_seen": "2026-08-25T14:10:11+00:00",
+  "count": 1,
+  "example": "outcome-3x: CATE"
+ },
+ "correction:kat": {
+  "first_seen": "2026-08-25T14:10:48+00:00",
+  "count": 1,
+  "example": "correction: KAT"
+ },
+ "outcome-x:yuno": {
+  "first_seen": "2026-08-25T18:06:41+00:00",
+  "count": 2,
+  "example": "outcome-3x: Yuno",
+  "last_seen": "2026-08-26T17:07:27+00:00"
+ },
+ "scanner-hit:rst": {
+  "first_seen": "2026-08-25T19:08:33+00:00",
+  "count": 2,
+  "example": "scanner-hit: RST",
+  "last_seen": "2026-08-28T08:09:19+00:00"
+ },
+ "outcome-x:sara": {
+  "first_seen": "2026-08-25T19:08:33+00:00",
+  "count": 1,
+  "example": "outcome-3x: Sara"
+ },
+ "scanner-hit:grass": {
+  "first_seen": "2026-08-25T21:07:16+00:00",
+  "count": 1,
+  "example": "scanner-hit: GRASS"
+ },
+ "scanner-hit:ocb": {
+  "first_seen": "2026-08-25T21:07:17+00:00",
+  "count": 1,
+  "example": "scanner-hit: OCB"
+ },
+ "outcome-x:lode": {
+  "first_seen": "2026-08-25T22:07:24+00:00",
+  "count": 1,
+  "example": "outcome-3x: LODE"
+ },
+ "scanner-hit:spy": {
+  "first_seen": "2026-08-26T00:07:25+00:00",
+  "count": 1,
+  "example": "scanner-hit: SPY"
+ },
+ "scanner-hit:msft": {
+  "first_seen": "2026-08-26T00:07:30+00:00",
+  "count": 1,
+  "example": "scanner-hit: MSFT"
+ },
+ "scanner-hit:drillpig": {
+  "first_seen": "2026-08-26T02:07:35+00:00",
+  "count": 1,
+  "example": "scanner-hit: DRILLPIG"
+ },
+ "scanner-hit:berry": {
+  "first_seen": "2026-08-26T02:07:35+00:00",
+  "count": 1,
+  "example": "scanner-hit: berry"
+ },
+ "scanner-hit:source": {
+  "first_seen": "2026-08-26T02:07:36+00:00",
+  "count": 1,
+  "example": "scanner-hit: SOURCE"
+ },
+ "outcome-x:opossum": {
+  "first_seen": "2026-08-26T02:07:36+00:00",
+  "count": 1,
+  "example": "outcome-3x: OPOSSUM"
+ },
+ "collector-error:unrealizableoutcomefalsepositive": {
+  "first_seen": "2026-08-26T03:08:52+00:00",
+  "count": 5,
+  "example": "collector-error: UnrealizableOutcomeFalsePositive",
+  "last_seen": "2026-08-28T08:09:51+00:00"
+ },
+ "scanner-hit:atm": {
+  "first_seen": "2026-08-26T05:07:35+00:00",
+  "count": 1,
+  "example": "scanner-hit: ATM"
+ },
+ "scanner-hit:coin": {
+  "first_seen": "2026-08-26T06:06:18+00:00",
+  "count": 1,
+  "example": "scanner-hit: Coin"
+ },
+ "scanner-hit:xst": {
+  "first_seen": "2026-08-26T07:08:31+00:00",
+  "count": 1,
+  "example": "scanner-hit: XST"
+ },
+ "scanner-hit:npc": {
+  "first_seen": "2026-08-26T07:08:37+00:00",
+  "count": 1,
+  "example": "scanner-hit: NPC"
+ },
+ "outcome-x:ogcall": {
+  "first_seen": "2026-08-26T08:07:23+00:00",
+  "count": 2,
+  "example": "outcome-3x: OGCALL",
+  "last_seen": "2026-08-26T13:08:04+00:00"
+ },
+ "scanner-hit:srlerfd": {
+  "first_seen": "2026-08-26T09:07:28+00:00",
+  "count": 1,
+  "example": "scanner-hit: \u7ef4\u7279\u6839\u65af\u5766-8srLerfd"
+ },
+ "scanner-hit:cate": {
+  "first_seen": "2026-08-26T09:07:29+00:00",
+  "count": 1,
+  "example": "scanner-hit: CATE"
+ },
+ "scanner-hit:ymtc": {
+  "first_seen": "2026-08-26T09:07:29+00:00",
+  "count": 1,
+  "example": "scanner-hit: YMTC"
+ },
+ "scanner-hit:crocs": {
+  "first_seen": "2026-08-26T10:08:40+00:00",
+  "count": 1,
+  "example": "scanner-hit: crocs"
+ },
+ "scanner-hit:pistasol": {
+  "first_seen": "2026-08-26T10:08:48+00:00",
+  "count": 1,
+  "example": "scanner-hit: PISTASOL"
+ },
+ "outcome-x:fingers": {
+  "first_seen": "2026-08-26T10:09:01+00:00",
+  "count": 1,
+  "example": "outcome-3x: 4fingers"
+ },
+ "collector-error:duplicatepooljournalling": {
+  "first_seen": "2026-08-26T10:09:35+00:00",
+  "count": 2,
+  "example": "collector-error: DuplicatePoolJournalling",
+  "last_seen": "2026-08-27T13:09:29+00:00"
+ },
+ "scanner-hit:dmo": {
+  "first_seen": "2026-08-26T12:08:01+00:00",
+  "count": 1,
+  "example": "scanner-hit: DMO"
+ },
+ "scanner-hit:frg": {
+  "first_seen": "2026-08-26T12:08:07+00:00",
+  "count": 1,
+  "example": "scanner-hit: fr0g"
+ },
+ "scanner-hit:pistacio": {
+  "first_seen": "2026-08-26T13:07:55+00:00",
+  "count": 1,
+  "example": "scanner-hit: Pistacio"
+ },
+ "outcome-x:adapt": {
+  "first_seen": "2026-08-26T13:08:03+00:00",
+  "count": 2,
+  "example": "outcome-3x: adapt",
+  "last_seen": "2026-08-27T12:07:44+00:00"
+ },
+ "outcome-x:unknown": {
+  "first_seen": "2026-08-26T13:08:03+00:00",
+  "count": 4,
+  "example": "outcome-3x: \u95ea\u8fea",
+  "last_seen": "2026-08-28T12:07:48+00:00"
+ },
+ "scanner-hit:clanker": {
+  "first_seen": "2026-08-26T14:08:11+00:00",
+  "count": 1,
+  "example": "scanner-hit: clanker"
+ },
+ "outcome-x:debit": {
+  "first_seen": "2026-08-26T14:08:18+00:00",
+  "count": 1,
+  "example": "outcome-3x: DEBIT"
+ },
+ "outcome-x:openai": {
+  "first_seen": "2026-08-26T15:07:51+00:00",
+  "count": 1,
+  "example": "outcome-3x: OPENAI"
+ },
+ "outcome-x:fixed": {
+  "first_seen": "2026-08-26T15:08:00+00:00",
+  "count": 1,
+  "example": "outcome-3x: FIXED"
+ },
+ "outcome-x:kitwe": {
+  "first_seen": "2026-08-26T16:08:13+00:00",
+  "count": 1,
+  "example": "outcome-3x: Kitwe"
+ },
+ "outcome-x:fbi": {
+  "first_seen": "2026-08-26T17:07:26+00:00",
+  "count": 1,
+  "example": "outcome-3x: FBI"
+ },
+ "outcome-x:ant": {
+  "first_seen": "2026-08-26T19:07:18+00:00",
+  "count": 3,
+  "example": "outcome-3x: ANT",
+  "last_seen": "2026-08-27T18:22:18+00:00"
+ },
+ "outcome-x:nigachu": {
+  "first_seen": "2026-08-27T01:09:18+00:00",
+  "count": 2,
+  "example": "outcome-3x: nigachu",
+  "last_seen": "2026-08-28T00:08:42+00:00"
+ },
+ "outcome-x:ore": {
+  "first_seen": "2026-08-27T01:09:30+00:00",
+  "count": 1,
+  "example": "outcome-3x: ORE"
+ },
+ "scanner-hit:bull": {
+  "first_seen": "2026-08-27T05:08:22+00:00",
+  "count": 1,
+  "example": "scanner-hit: BULL"
+ },
+ "scanner-hit:trumpbull": {
+  "first_seen": "2026-08-27T05:08:23+00:00",
+  "count": 1,
+  "example": "scanner-hit: TRUMPBULL"
+ },
+ "outcome-x:scat": {
+  "first_seen": "2026-08-27T05:08:45+00:00",
+  "count": 2,
+  "example": "outcome-3x: SCAT",
+  "last_seen": "2026-08-27T08:08:34+00:00"
+ },
+ "scanner-hit:bimpsons": {
+  "first_seen": "2026-08-27T06:08:08+00:00",
+  "count": 1,
+  "example": "scanner-hit: Bimpsons"
+ },
+ "scanner-hit:mona": {
+  "first_seen": "2026-08-27T06:08:09+00:00",
+  "count": 1,
+  "example": "scanner-hit: MONA"
+ },
+ "scanner-hit:chicky": {
+  "first_seen": "2026-08-27T06:08:09+00:00",
+  "count": 1,
+  "example": "scanner-hit: chicky"
+ },
+ "scanner-hit:anthropic": {
+  "first_seen": "2026-08-27T06:08:10+00:00",
+  "count": 1,
+  "example": "scanner-hit: Anthropic"
+ },
+ "outcome-x:letgo": {
+  "first_seen": "2026-08-27T06:08:32+00:00",
+  "count": 1,
+  "example": "outcome-3x: letgo"
+ },
+ "outcome-x:molage": {
+  "first_seen": "2026-08-27T06:08:33+00:00",
+  "count": 1,
+  "example": "outcome-3x: MOLAGE"
+ },
+ "outcome-x:anthropic": {
+  "first_seen": "2026-08-27T08:08:34+00:00",
+  "count": 1,
+  "example": "outcome-3x: Anthropic"
+ },
+ "scanner-hit:buddy": {
+  "first_seen": "2026-08-27T09:07:58+00:00",
+  "count": 1,
+  "example": "scanner-hit: Buddy"
+ },
+ "scanner-hit:collective": {
+  "first_seen": "2026-08-27T09:07:59+00:00",
+  "count": 1,
+  "example": "scanner-hit: collective"
+ },
+ "scanner-hit:cheshire": {
+  "first_seen": "2026-08-27T12:07:43+00:00",
+  "count": 1,
+  "example": "scanner-hit: Cheshire"
+ },
+ "scanner-hit:sky": {
+  "first_seen": "2026-08-27T13:08:31+00:00",
+  "count": 1,
+  "example": "scanner-hit: Sky"
+ },
+ "scanner-hit:surfpool": {
+  "first_seen": "2026-08-27T16:08:27+00:00",
+  "count": 1,
+  "example": "scanner-hit: SURFPOOL"
+ },
+ "scanner-hit:benny": {
+  "first_seen": "2026-08-27T16:08:51+00:00",
+  "count": 1,
+  "example": "scanner-hit: Benny"
+ },
+ "scanner-hit:ikigai": {
+  "first_seen": "2026-08-27T17:08:24+00:00",
+  "count": 1,
+  "example": "scanner-hit: IKIGAI"
+ },
+ "outcome-x:surfpool": {
+  "first_seen": "2026-08-27T17:08:50+00:00",
+  "count": 1,
+  "example": "outcome-3x: SURFPOOL"
+ },
+ "scanner-hit:huggy": {
+  "first_seen": "2026-08-27T18:22:16+00:00",
+  "count": 1,
+  "example": "scanner-hit: HUGGY"
+ },
+ "scanner-hit:sol": {
+  "first_seen": "2026-08-27T18:22:17+00:00",
+  "count": 1,
+  "example": "scanner-hit: SOL"
+ },
+ "scanner-hit:pengu": {
+  "first_seen": "2026-08-27T22:07:57+00:00",
+  "count": 2,
+  "example": "scanner-hit: PENGU",
+  "last_seen": "2026-08-27T23:08:41+00:00"
+ },
+ "scanner-hit:wave": {
+  "first_seen": "2026-08-27T22:08:03+00:00",
+  "count": 1,
+  "example": "scanner-hit: WAVE"
+ },
+ "outcome-x:sol": {
+  "first_seen": "2026-08-28T00:08:24+00:00",
+  "count": 1,
+  "example": "outcome-3x: SOL"
+ },
+ "outcome-x:merp": {
+  "first_seen": "2026-08-28T00:08:42+00:00",
+  "count": 2,
+  "example": "outcome-3x: MERP",
+  "last_seen": "2026-08-28T10:07:49+00:00"
+ },
+ "scanner-hit:fone": {
+  "first_seen": "2026-08-28T01:08:45+00:00",
+  "count": 1,
+  "example": "scanner-hit: fone"
+ },
+ "scanner-hit:lucky": {
+  "first_seen": "2026-08-28T01:08:56+00:00",
+  "count": 1,
+  "example": "scanner-hit: LUCKY"
+ },
+ "outcome-x:aapl": {
+  "first_seen": "2026-08-28T01:09:10+00:00",
+  "count": 1,
+  "example": "outcome-3x: AAPL"
+ },
+ "scanner-hit:umt": {
+  "first_seen": "2026-08-28T02:08:10+00:00",
+  "count": 1,
+  "example": "scanner-hit: UMT"
+ },
+ "scanner-hit:soon": {
+  "first_seen": "2026-08-28T02:08:11+00:00",
+  "count": 1,
+  "example": "scanner-hit: SOON"
+ },
+ "scanner-hit:wojakfone": {
+  "first_seen": "2026-08-28T02:08:12+00:00",
+  "count": 1,
+  "example": "scanner-hit: wojakfone"
+ },
+ "outcome-x:fone": {
+  "first_seen": "2026-08-28T03:07:47+00:00",
+  "count": 1,
+  "example": "outcome-3x: FONE"
+ },
+ "scanner-hit:call": {
+  "first_seen": "2026-08-28T04:08:33+00:00",
+  "count": 1,
+  "example": "scanner-hit: call"
+ },
+ "scanner-hit:hemypwlo": {
+  "first_seen": "2026-08-28T04:08:46+00:00",
+  "count": 1,
+  "example": "scanner-hit: HEmYPWLo"
+ },
+ "outcome-x:pengu": {
+  "first_seen": "2026-08-28T04:08:47+00:00",
+  "count": 1,
+  "example": "outcome-3x: PENGU"
+ },
+ "scanner-hit:gold": {
+  "first_seen": "2026-08-28T05:08:34+00:00",
+  "count": 1,
+  "example": "scanner-hit: GOLD"
+ },
+ "scanner-hit:pink": {
+  "first_seen": "2026-08-28T05:08:47+00:00",
+  "count": 1,
+  "example": "scanner-hit: PINK"
+ },
+ "scanner-hit:ai": {
+  "first_seen": "2026-08-28T08:09:05+00:00",
+  "count": 1,
+  "example": "scanner-hit: AI"
+ },
+ "scanner-hit:merp": {
+  "first_seen": "2026-08-28T09:07:39+00:00",
+  "count": 1,
+  "example": "scanner-hit: MERP"
+ },
+ "scanner-hit:wofi": {
+  "first_seen": "2026-08-28T11:07:45+00:00",
+  "count": 1,
+  "example": "scanner-hit: WOFI"
+ },
+ "scanner-hit:greg": {
+  "first_seen": "2026-08-28T11:07:57+00:00",
+  "count": 1,
+  "example": "scanner-hit: GREG"
+ },
+ "outcome-x:wyman": {
+  "first_seen": "2026-08-28T11:08:13+00:00",
+  "count": 1,
+  "example": "outcome-3x: WYMAN"
+ },
+ "outcome-x:skhy": {
+  "first_seen": "2026-08-28T11:08:24+00:00",
+  "count": 1,
+  "example": "outcome-3x: SKHY"
+ }
+}

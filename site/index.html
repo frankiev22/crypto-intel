@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Crypto Intel</title>
+<meta name="description" content="Live regime, whale and alert digest.">
+<meta name="color-scheme" content="dark">
+<style>
+  :root{
+    --bg:#0b0d10; --card:#151a21; --line:#252c36;
+    --ink:#e8edf4; --muted:#9aa7b8; --dim:#6f7d90;
+    --up:#3fbf7f; --down:#f2585b; --warn:#f0a93b; --accent:#5b9dff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:17px; line-height:1.5;
+    padding:20px 16px calc(40px + env(safe-area-inset-bottom));
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:620px;margin:0 auto}
+  header{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  h1{font-size:1.6rem;font-weight:650;letter-spacing:-.02em}
+  .ver{color:var(--dim);font-size:1rem}
+  .updated{font-size:1rem;color:var(--muted);margin-bottom:22px}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle;background:var(--dim)}
+  .fresh .dot{background:var(--up)} .stale .dot{background:var(--warn)} .old .dot{background:var(--down)}
+  .stale .age{color:var(--warn)} .old .age{color:var(--down)}
+
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;margin-bottom:14px}
+  h2{font-size:1.05rem;font-weight:600;color:var(--muted);margin-bottom:12px}
+  h2 .n{color:var(--dim);font-weight:400}
+
+  .rows{display:flex;flex-direction:column;gap:10px}
+  .row{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+  .row .k{color:var(--muted);font-size:1rem}
+  .row .v{font-size:1.05rem;font-variant-numeric:tabular-nums}
+  .asset{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+         padding:9px 0;border-bottom:1px solid var(--line)}
+  .asset:last-child{border-bottom:0}
+  .asset .sym{font-size:1.05rem;font-weight:600;min-width:52px}
+  .asset .px{font-size:1.1rem;font-variant-numeric:tabular-nums;flex:1;text-align:right}
+  .asset .ch{font-size:1.05rem;font-variant-numeric:tabular-nums;min-width:78px;text-align:right}
+  .up{color:var(--up)} .down{color:var(--down)}
+
+  .alerts{background:rgba(240,169,59,.09);border-color:rgba(240,169,59,.35)}
+  .alerts h2{color:var(--warn)}
+  .alert{display:flex;gap:10px;align-items:flex-start;padding:7px 0;font-size:1.05rem}
+  .alert .mk{color:var(--warn);font-size:.85rem;line-height:1.7}
+
+  .whale{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+         padding:9px 0;border-bottom:1px solid var(--line)}
+  .whale:last-child{border-bottom:0}
+  .addr{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:1rem;color:var(--accent)}
+  .act{color:var(--muted);font-size:1rem;text-align:right;flex:1}
+  .count{color:var(--dim);font-size:1rem;min-width:30px;text-align:right}
+
+  .off{color:var(--dim);font-size:1.02rem}
+  .off strong{color:var(--muted);font-weight:600}
+  .note{color:var(--dim);font-size:1rem;margin-top:10px}
+  footer{color:var(--dim);font-size:.98rem;text-align:center;margin-top:26px;line-height:1.7}
+  .err{color:var(--down)}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><h1>Crypto Intel</h1><span class="ver" id="ver"></span></header>
+  <div class="updated" id="updated"><span class="dot"></span>Loading…</div>
+  <div id="body"><section><div class="off">Fetching the latest digest…</div></section></div>
+  <footer>
+    Collected in the cloud on a schedule. Independent of any desktop.<br>
+    Public data only. Not advice.
+  </footer>
+</div>
+
+<script>
+var SUPABASE_URL = "https://rxofejxostyqlgjlzqmk.supabase.co";
+var SUPABASE_KEY = "sb_publishable_i2C_gUarAGmkgF7DmOdvLw_WlXPnm1r";
+
+function $(id){ return document.getElementById(id); }
+
+function esc(s){
+  var map = {"&":"&amp;", "<":"&lt;", ">":"&gt;"};
+  map['"'] = "&quot;";
+  map["'"] = "&#39;";
+  return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return map[c]; });
+}
+
+// Wallet addresses are truncated for display. The full value is never rendered.
+function shortAddr(a){
+  if (!a) return "";
+  return a.length <= 12 ? a : a.slice(0,4) + "…" + a.slice(-4);
+}
+
+function num(v, d){
+  if (v == null) return null;
+  return v.toLocaleString("en-US", {minimumFractionDigits: d||0, maximumFractionDigits: d||0});
+}
+function pct(v){ return v == null ? null : (v >= 0 ? "+" : "") + v.toFixed(1) + "%"; }
+function cls(v){ return v == null ? "" : (v >= 0 ? "up" : "down"); }
+
+function money(usd){
+  if (usd == null) return null;
+  var a = Math.abs(usd);
+  if (a >= 1e6) return "$" + (usd/1e6).toFixed(1) + "M";
+  if (a >= 1e3) return "$" + (usd/1e3).toFixed(1) + "k";
+  if (a >= 1) return "$" + Math.round(usd).toLocaleString("en-US");
+  return "$" + usd.toFixed(2);
+}
+
+function ago(then){
+  var s = Math.max(0, (Date.now() - then.getTime())/1000);
+  if (s < 90) return Math.round(s) + " seconds ago";
+  if (s < 5400) return Math.round(s/60) + " minutes ago";
+  if (s < 172800) return Math.round(s/3600) + " hours ago";
+  return Math.round(s/86400) + " days ago";
+}
+
+function renderUpdated(capturedAt){
+  var d = new Date(capturedAt);
+  var mins = (Date.now() - d.getTime())/60000;
+  var state = mins < 90 ? "fresh" : (mins < 360 ? "stale" : "old");
+  var label = state === "fresh" ? ""
+            : state === "stale" ? " — the collector may not be running"
+            : " — this page is out of date";
+  $("updated").className = "updated " + state;
+  $("updated").innerHTML =
+    '<span class="dot"></span>Last updated <span class="age">' + esc(ago(d)) + '</span>' + esc(label) +
+    '<br><span style="color:var(--dim)">' + esc(d.toUTCString().replace("GMT","UTC")) + '</span>';
+}
+
+function regime(m){
+  if (!m) return '<section><h2>Regime</h2><div class="off">Not present in this digest.</div></section>';
+  function asset(sym, px, ch, dp){
+    return '<div class="asset"><span class="sym">' + sym + '</span>' +
+           '<span class="px">$' + esc(num(px, dp)) + '</span>' +
+           '<span class="ch ' + cls(ch) + '">' + esc(pct(ch)) + '</span></div>';
+  }
+  var dom = m.btc_dominance == null ? "" : m.btc_dominance.toFixed(1) + "%";
+  var mcap = m.total_mcap_usd == null ? "" : (m.total_mcap_usd/1e12).toFixed(2);
+  var stb = m.stablecoin_chg_24h == null ? "" :
+            (m.stablecoin_chg_24h >= 0 ? "+" : "") + m.stablecoin_chg_24h.toFixed(2) + "%";
+  return '<section><h2>Regime</h2>' +
+    asset("BTC", m.btc, m.btc_24h, 0) +
+    asset("ETH", m.eth, m.eth_24h, 0) +
+    asset("SOL", m.sol, m.sol_24h, 2) +
+    '<div class="rows" style="margin-top:14px">' +
+      '<div class="row"><span class="k">Fear &amp; Greed</span><span class="v">' + esc(m.fear_greed) +
+        ' <span style="color:var(--muted)">' + esc(m.fear_greed_label) + '</span></span></div>' +
+      '<div class="row"><span class="k">BTC dominance</span><span class="v">' + esc(dom) + '</span></div>' +
+      '<div class="row"><span class="k">Total market cap</span><span class="v">$' + esc(mcap) +
+        'T <span class="' + cls(m.mcap_change_24h) + '">' + esc(pct(m.mcap_change_24h)) + '</span></span></div>' +
+      '<div class="row"><span class="k">Stablecoin supply</span><span class="v">$' +
+        esc(num(m.stablecoin_supply/1e9)) + 'B <span class="' + cls(m.stablecoin_chg_24h) + '">' +
+        esc(stb) + '</span></span></div>' +
+    '</div></section>';
+}
+
+function alertsBlock(list){
+  if (!list || !list.length)
+    return '<section><h2>Alerts</h2><div class="off">Nothing crossed a threshold on this run.</div></section>';
+  var out = '<section class="alerts"><h2>Alerts <span class="n">' + list.length + '</span></h2>';
+  for (var i=0;i<list.length;i++){
+    // v0.0.2+ alerts are {key, text}; older digests stored plain strings.
+    // Handle both, or an object renders as "[object Object]".
+    var a = list[i];
+    var txt = (a && typeof a === "object") ? (a.text || a.key || "") : a;
+    out += '<div class="alert"><span class="mk">▲</span><span>' + esc(txt) + '</span></div>';
+  }
+  return out + '</section>';
+}
+
+function whalesBlock(events, d){
+  // Real rows from crypto_whale_events_public. The digest payload is only used
+  // for the "how many are we watching" context line, never for the moves
+  // themselves - that is what made this card show stale sampled data.
+  var n = d.watchlist_n || 0;
+  var st = d.whale_stats || {};
+  var h;
+
+  if (events && events.length){
+    var total = 0;
+    for (var k=0;k<events.length;k++) total += (events[k].usd || 0);
+    h = '<section><h2>Whales <span class="n">' + events.length + ' move' +
+        (events.length===1?'':'s') + ' · ' + money(total) + '</span></h2>';
+    for (var i=0;i<Math.min(6,events.length);i++){
+      var e = events[i];
+      var where = e.venue ? ' on ' + e.venue : '';
+      var link = e.signature ? 'https://solscan.io/tx/' + e.signature : null;
+      var when = ago(new Date(e.occurred_at));
+      h += '<div class="whale" style="display:block">' +
+           '<div><span class="addr">' + esc(e.wallet_short) + '</span> ' +
+           '<span style="color:var(--ink)">' + esc(e.description + where) + '</span>' +
+           (e.usd != null ? ' <span class="up">' + esc(money(e.usd)) + '</span>' : '') +
+           (e.alerted ? ' <span style="color:var(--warn)">alerted</span>' : '') + '</div>' +
+           '<div style="color:var(--dim);font-size:1rem;margin-top:3px">' + esc(when) +
+           (link ? ' · <a href="' + esc(link) + '" target="_blank" rel="noopener noreferrer nofollow">tx</a>' : '') +
+           '</div></div>';
+    }
+  } else {
+    h = '<section><h2>Whales <span class="n">' + n + ' tracked</span></h2>' +
+        '<div class="off">No decoded moves recorded yet. The webhook is live; ' +
+        'this fills in when a tracked wallet does something we can read.</div>';
+  }
+
+  var quiet = [];
+  if (n) quiet.push(n + ' wallets watched');
+  if (st.undecoded) quiet.push(st.undecoded + ' Helius could not decode');
+  if (st.bystander) quiet.push(st.bystander + ' where the wallet only appeared, did not act');
+  if (quiet.length) h += '<div class="note">' + esc(quiet.join('; ')) + '.</div>';
+  return h + '</section>';
+}
+
+function sentimentBlock(d){
+  // The cloud digest does not carry a sentiment axis: it is still CryptoPanic-only
+  // and that token is unset, so this renders an honest "off" rather than a zero.
+  var s = d.sentiment || {};
+  var h = '<section><h2>Sentiment</h2>';
+  if (s.score == null){
+    var why = [];
+    (s.readings || []).forEach(function(r){ if (r.detail) why.push(r.detail); });
+    return h + '<div class="off"><strong>Off.</strong> ' +
+           esc(why.join("; ") || "No source configured. Needs CRYPTOPANIC_API_TOKEN.") +
+           '</div></section>';
+  }
+  var label = s.score >= .5 ? "Euphoric" : s.score >= .15 ? "Positive"
+            : s.score > -.15 ? "Mixed" : s.score > -.5 ? "Negative" : "Hostile";
+  h += '<div class="row"><span class="k">' + esc(label) + '</span><span class="v ' + cls(s.score) +
+       '">' + esc((s.score >= 0 ? "+" : "") + s.score.toFixed(2)) + '</span></div>';
+  (s.readings || []).forEach(function(r){
+    h += '<div class="note">' + esc(r.source) + ': ' + esc(r.detail) + '</div>';
+  });
+  return h + '</section>';
+}
+
+function scoreboardBlock(bands, lift, hits){
+  var h = '<section><h2>Scoreboard <span class="n">what the scores actually did · 1h</span></h2>';
+  if (!bands || !bands.length)
+    return h + '<div class="off">No scored outcomes yet.</div></section>';
+
+  // Sample size sits next to every rate on purpose. A 22% win rate on n=9 is
+  // not a finding and must not be able to look like one.
+  for (var i=0;i<bands.length;i++){
+    var b = bands[i];
+    if (!b.closed) continue;
+    var thin = b.closed < 20;
+    h += '<div class="whale" style="display:block">' +
+         '<div><span style="font-weight:600">Score ' + esc(b.band) + '</span> ' +
+         '<span style="color:var(--dim)">n=' + b.closed + (thin ? ' (thin)' : '') + '</span></div>' +
+         '<div style="color:var(--muted);font-size:1rem;margin-top:2px">' +
+         (b.win_rate_2x_pct == null ? "no closed outcomes" :
+            esc(b.win_rate_2x_pct) + '% hit 2x' +
+            (b.best_mult ? ' · best ' + esc(b.best_mult) + 'x' : '') +
+            ' · ' + b.total_loss + ' went to zero') +
+         '</div></div>';
+  }
+
+  var p = null, r = null;
+  for (var j=0;j<(lift||[]).length;j++){
+    if (lift[j].cohort === 'passed filter') p = lift[j]; else r = lift[j];
+  }
+  if (p && r && r.win_rate_2x_pct > 0){
+    var mult = (p.win_rate_2x_pct / r.win_rate_2x_pct).toFixed(0);
+    h += '<div class="note"><strong style="color:var(--up)">Passed ' + esc(p.win_rate_2x_pct) +
+         '% vs rejected ' + esc(r.win_rate_2x_pct) + '% — ' + mult + 'x lift</strong> ' +
+         '(n=' + p.closed + ' vs ' + r.closed + ')</div>';
+  }
+  h += '<div class="note">Median outcome is 0x in every band: more than half of everything ' +
+       'goes to zero. Liquidity-gated, so a multiple off a drained pool is counted as the ' +
+       'total loss it was.</div>';
+
+  if (hits && hits.length){
+    h += '<div class="note" style="margin-top:14px;color:var(--muted)">Recent flags</div>';
+    for (var k=0;k<hits.length;k++){
+      var x = hits[k];
+      var leg = function(res, m){
+        if (res === 'realized') return (m != null ? m + 'x' : 'held');
+        if (res === 'total_loss') return 'zero';
+        if (res === 'illiquid') return 'stuck';
+        if (res === 'too_early') return '–';
+        return '…';
+      };
+      h += '<div class="whale" style="display:block">' +
+           '<div><span class="addr">' + esc(x.symbol || '?') + '</span> ' +
+           '<span style="color:var(--dim)">scored ' + esc(x.score) + '</span></div>' +
+           '<div style="color:var(--muted);font-size:1rem;margin-top:2px">1h ' +
+           esc(leg(x.r1, x.m1)) + ' · 6h ' + esc(leg(x.r6, x.m6)) +
+           ' · 24h ' + esc(leg(x.r24, x.m24)) + '</div></div>';
+    }
+  }
+  return h + '</section>';
+}
+
+function newsBlock(items, status){
+  var h = '<section><h2>News <span class="n">' +
+          (items && items.length ? items.length + ' recent' : '') + '</span></h2>';
+  if (!items || !items.length)
+    return h + '<div class="off"><strong>No items yet.</strong> ' + esc(status || '') + '</div></section>';
+  for (var i=0;i<Math.min(8,items.length);i++){
+    var n = items[i];
+    var when = ago(new Date(n.published_at));
+    var also = (n.also_in && n.also_in.length) ? ' + ' + n.also_in.length + ' more' : '';
+    var flag = n.alert_reason ? '<span style="color:var(--warn)">' + esc(n.alert_reason.split(' · ')[0]) + '</span> · ' : '';
+    h += '<div class="whale" style="display:block">' +
+         '<div style="font-size:1.02rem"><a href="' + esc(n.url) + '" target="_blank" rel="noopener noreferrer nofollow">' +
+         esc(n.title) + '</a></div>' +
+         '<div style="color:var(--dim);font-size:1rem;margin-top:3px">' + flag +
+         esc(n.outlet + also) + ' · ' + esc(when) + '</div></div>';
+  }
+  return h + '</section>';
+}
+
+var NEWS = { items: [], status: "loading" };
+var WHALES = [];
+var BANDS = [], LIFT = [], HITS = [];
+
+function loadScoreboard(){
+  var q = function(path){
+    return fetch(SUPABASE_URL + "/rest/v1/" + path,
+        {headers:{apikey:SUPABASE_KEY, Authorization:"Bearer " + SUPABASE_KEY}, cache:"no-store"})
+      .then(function(r){ if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); });
+  };
+  return Promise.all([
+    q("crypto_score_bands?horizon_h=eq.1&order=band_order.desc"),
+    q("crypto_scoreboard_lift?horizon_h=eq.1"),
+    q("crypto_scoreboard_hits?passed=is.true&order=observed_at.desc&limit=8")
+  ]).then(function(r){ BANDS = r[0]; LIFT = r[1]; HITS = r[2]; })
+    .catch(function(){ BANDS = []; LIFT = []; HITS = []; });
+}
+
+function loadWhales(){
+  return fetch(SUPABASE_URL +
+      "/rest/v1/crypto_whale_events_public?select=*&order=occurred_at.desc&limit=8",
+      {headers:{apikey:SUPABASE_KEY, Authorization:"Bearer " + SUPABASE_KEY}, cache:"no-store"})
+    .then(function(r){ if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .then(function(rows){ WHALES = rows; })
+    .catch(function(){ WHALES = []; });
+}
+
+function loadNews(){
+  return fetch(SUPABASE_URL +
+      "/rest/v1/crypto_news?select=title,url,outlet,published_at,alert_reason,also_in&order=published_at.desc&limit=8",
+      {headers:{apikey:SUPABASE_KEY, Authorization:"Bearer " + SUPABASE_KEY}, cache:"no-store"})
+    .then(function(r){ if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .then(function(rows){ NEWS = { items: rows, status: "ok" }; })
+    .catch(function(e){ NEWS = { items: [], status: "could not load news: " + e.message }; });
+}
+
+function load(){
+  Promise.all([loadNews(), loadWhales(), loadScoreboard()]).then(function(){
+  return fetch(SUPABASE_URL + "/rest/v1/crypto_digests?select=captured_at,version,payload&order=captured_at.desc&limit=1",
+        {headers:{apikey:SUPABASE_KEY, Authorization:"Bearer " + SUPABASE_KEY}, cache:"no-store"})
+  .then(function(r){
+    if (!r.ok) throw new Error("Supabase returned HTTP " + r.status);
+    return r.json();
+  })
+  .then(function(rows){
+    if (!rows.length){
+      $("updated").innerHTML = '<span class="dot"></span>No digest published yet.';
+      $("body").innerHTML = '<section><div class="off">The collector has not published a run yet.</div></section>';
+      return;
+    }
+    var row = rows[0], d = row.payload || {};
+    $("ver").textContent = "v" + (row.version || d.version || "");
+    renderUpdated(row.captured_at);
+    $("body").innerHTML = alertsBlock(d.alerts) + regime(d.macro) + whalesBlock(WHALES, d) +
+                          scoreboardBlock(BANDS, LIFT, HITS) + newsBlock(NEWS.items, NEWS.status) + sentimentBlock(d);
+  })
+  .catch(function(e){
+    $("updated").className = "updated old";
+    $("updated").innerHTML = '<span class="dot"></span><span class="err">Could not load: ' +
+                             esc(e.message) + '</span>';
+  });
+  });
+}
+
+load();
+setInterval(load, 60000);
+document.addEventListener("visibilitychange", function(){ if (!document.hidden) load(); });
+</script>
+</body>
+</html>

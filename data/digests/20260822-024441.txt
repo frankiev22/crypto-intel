@@ -1,0 +1,27 @@
+**CRYPTO INTEL** v0.0.1
+Sat 22 Aug 02:44 UTC
+
+**REGIME** · Fear/Greed 71 (Greed)
+BTC $78,399 · +4.9%
+ETH $2,510 · +6.5%
+SOL $95.52 · +6.5%
+BTC dom 58.7% · mcap +2.8%
+Stables $309B · +0.32%
+
+**SENTIMENT** no data
+_no CRYPTOPANIC_API_TOKEN - news axis off_
+
+**NEWS** off - no CRYPTOPANIC_API_TOKEN - news axis off
+
+**WHALES** 4 tracked · 20 moves/60m
+_early on >=2 of 6 trending tokens_
+· sigh..yGVF swap on JUPITER x5
+· Fire..9RHV activity on PUMP_AMM x5
+· AjkD..qu4b activity on METEORA x4
+· 8TPW..UaHr activity on METEORA x4
+
+**ALERTS**
+⚠ ETH +6.5% 24h
+⚠ SOL +6.5% 24h
+⚠ Stables +0.32% 24h - inflow
+⚠ 20 whale moves in 60m

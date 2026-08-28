@@ -1,0 +1,210 @@
+{
+ "ts": "2026-08-22T02:44:38+00:00",
+ "version": "0.0.1",
+ "window_s": 3600,
+ "errors": {},
+ "macro": {
+  "ts": "2026-08-22T02:44:39+00:00",
+  "fear_greed": 71,
+  "fear_greed_label": "Greed",
+  "btc_dominance": 58.692600286489835,
+  "eth_dominance": 11.2959856580997,
+  "mcap_change_24h": 2.8470086513331556,
+  "total_mcap_usd": 2677031238444.653,
+  "btc": 78399,
+  "btc_24h": 4.945835366537752,
+  "eth": 2509.67,
+  "eth_24h": 6.49374554516121,
+  "sol": 95.52,
+  "sol_24h": 6.452043294149995,
+  "eth_tvl": 49562212740.30528,
+  "sol_tvl": 5534464392.825044,
+  "stablecoin_supply": 309485027962.30707,
+  "stablecoin_chg_24h": 0.3204715094852353
+ },
+ "news": [],
+ "news_status": "no CRYPTOPANIC_API_TOKEN - news axis off",
+ "sentiment": {
+  "score": null,
+  "n": 0,
+  "readings": [
+   {
+    "source": "cryptopanic",
+    "ok": false,
+    "score": null,
+    "n": 0,
+    "detail": "no CRYPTOPANIC_API_TOKEN - news axis off"
+   }
+  ]
+ },
+ "watchlist_n": 4,
+ "watchlist_mode": "early on >=2 of 6 trending tokens",
+ "whales": [
+  {
+   "wallet": "sighWH8KaiT7QhtV4w29ReVF8kG6D5yG3EQP1KYyGVF",
+   "ts": 1787366679,
+   "type": "SWAP",
+   "source": "JUPITER",
+   "desc": "2tDQeSPQYCVKy8Eb5NMYaRQEt7iHsLLaPaXv4ToN1uM5 swapped 30.517534 ISC for 0.707065712 SOL",
+   "sig": "4TgGXctnj61zjmmq54iYsUa7jZBnDkUhicMW62iJvhsd2y13eNJ67E7LtMRWWZrtNg7Jp4dEHE4LbRLt8aPWrRaz"
+  },
+  {
+   "wallet": "sighWH8KaiT7QhtV4w29ReVF8kG6D5yG3EQP1KYyGVF",
+   "ts": 1787366679,
+   "type": "SWAP",
+   "source": "JUPITER",
+   "desc": "",
+   "sig": "QV5oiJFXyHd8F6WwthKEwGCjrAFg9zjLkKkRQnUTTsiuPenPjj7gcsYjBR6qCxbtKnmqdCwA1TsV5DtewVSWokt"
+  },
+  {
+   "wallet": "FireuLYd4yjJBhXQyBs3Mq6ZpNEjyHPNPG2eqhTP9RHV",
+   "ts": 1787366678,
+   "type": "UNKNOWN",
+   "source": "PUMP_AMM",
+   "desc": "",
+   "sig": "2vGyDB22vCvLMX1wPw7adDctJJrMMEqD2DnTNBC8o9B34teYHLRzCgB1KCAx4u8Ja85DfsMgkNFmaeNoxXWmLyrw"
+  },
+  {
+   "wallet": "FireuLYd4yjJBhXQyBs3Mq6ZpNEjyHPNPG2eqhTP9RHV",
+   "ts": 1787366678,
+   "type": "UNKNOWN",
+   "source": "PUMP_AMM",
+   "desc": "",
+   "sig": "FtPX814AQhP48URjdn14Pg9cJmCav2FttdxgvtmT8Nx5x8RWH9L2Dwwo5jK8MqJvmeED6rHmUtKBFiU5NCWkGKr"
+  },
+  {
+   "wallet": "FireuLYd4yjJBhXQyBs3Mq6ZpNEjyHPNPG2eqhTP9RHV",
+   "ts": 1787366678,
+   "type": "UNKNOWN",
+   "source": "PUMP_AMM",
+   "desc": "",
+   "sig": "32Urw2iXjUfMz6m3sVFyuykPWgfmwyR18Eg4ZqfxWnECu6LyJVcQoUmm6Bqgsa1hYf23TsLK3yfeJoM169b2Tj6W"
+  },
+  {
+   "wallet": "FireuLYd4yjJBhXQyBs3Mq6ZpNEjyHPNPG2eqhTP9RHV",
+   "ts": 1787366678,
+   "type": "UNKNOWN",
+   "source": "PUMP_AMM",
+   "desc": "",
+   "sig": "LE2F3pR9uhpcT6RA4DZBKUVw6GDZ3Fs62SXfBuCyNwYavvgHppViNLZfb42aGvcpGyUPctdK3uPDe3uukcoTXYv"
+  },
+  {
+   "wallet": "FireuLYd4yjJBhXQyBs3Mq6ZpNEjyHPNPG2eqhTP9RHV",
+   "ts": 1787366678,
+   "type": "UNKNOWN",
+   "source": "PUMP_AMM",
+   "desc": "",
+   "sig": "5TuND7P9Vj2foT4cH93qjVh14zauYpDxcF7mp5gaDjtjPrYyC1PEMgLwrNGFNBiTkhT9w99EyEZQRxvy3PohtGn9"
+  },
+  {
+   "wallet": "AjkDC1KdkgPaFRtrCbeSh6B6dhVX2JM4o2XhPSs2qu4b",
+   "ts": 1787366678,
+   "type": "TRANSFER",
+   "source": "SYSTEM_PROGRAM",
+   "desc": "AjkDC1KdkgPaFRtrCbeSh6B6dhVX2JM4o2XhPSs2qu4b transferred 0.000001999 SOL to HFqU5x63VTqvQss8hp11i4wVV8bD44PvwucfZ2bU7gRe.",
+   "sig": "XwD4BjhACwUQUd2SAFanTU9h5EmCr4yWCHUAFNCn7FpnAJBcNYdeXVaiU5Gi2a7T2dZdgBGngbSi95Sbv6eUa39"
+  },
+  {
+   "wallet": "AjkDC1KdkgPaFRtrCbeSh6B6dhVX2JM4o2XhPSs2qu4b",
+   "ts": 1787366678,
+   "type": "UNKNOWN",
+   "source": "METEORA",
+   "desc": "",
+   "sig": "41fVsuS4VUrYxtjjtFypk16aQWcgqSV3VQwV9dK2WRYcBZ6tuoUHyWms2eXDE9JbWqiW7SHtuhBPPRfe3KqAxBXk"
+  },
+  {
+   "wallet": "AjkDC1KdkgPaFRtrCbeSh6B6dhVX2JM4o2XhPSs2qu4b",
+   "ts": 1787366678,
+   "type": "UNKNOWN",
+   "source": "METEORA",
+   "desc": "",
+   "sig": "5RKFB9Xz7xYFYKXAEPYsMwgYUtFEiNp18Krf6VzNcfD8yRqitGvV2nyvyYSSpUBVveuPS81xr4WV9Vii7ZvfjQD9"
+  },
+  {
+   "wallet": "AjkDC1KdkgPaFRtrCbeSh6B6dhVX2JM4o2XhPSs2qu4b",
+   "ts": 1787366678,
+   "type": "UNKNOWN",
+   "source": "METEORA",
+   "desc": "",
+   "sig": "5Qbj61oD1a2L95NupYasRU4YPsNXC2VqodtXs9NcL2sqKQPTdxNnRmDXE9tt24fTjmwLbhMhQXBiJvjet62nhxyh"
+  },
+  {
+   "wallet": "AjkDC1KdkgPaFRtrCbeSh6B6dhVX2JM4o2XhPSs2qu4b",
+   "ts": 1787366678,
+   "type": "UNKNOWN",
+   "source": "METEORA",
+   "desc": "",
+   "sig": "4siYxUiaAoRTPBV1BgatXVMiXSLHkvDyhTB4P3y6qZKBPL4HffGXL8rcZn8vM1xdaZBV46y79JqQAbMuVDduZRqE"
+  },
+  {
+   "wallet": "8TPWakvWw4xQbk7uAYdNjZiDKKHgv9GE5GebzsbtUaHr",
+   "ts": 1787366678,
+   "type": "UNKNOWN",
+   "source": "METEORA",
+   "desc": "",
+   "sig": "4Qc9SzU9HiZWaSk6bEPVaCKFX22ctQn7iavf1H3wHHqusGApq4GJkxEZsf2bdArojDYbUR5MW2VcBLFFEGT3oMBk"
+  },
+  {
+   "wallet": "8TPWakvWw4xQbk7uAYdNjZiDKKHgv9GE5GebzsbtUaHr",
+   "ts": 1787366678,
+   "type": "TRANSFER",
+   "source": "SYSTEM_PROGRAM",
+   "desc": "8TPWakvWw4xQbk7uAYdNjZiDKKHgv9GE5GebzsbtUaHr transferred 0.000003392 SOL to Cw8CFyM9FkoMi7K7Crf6HNQqf4uEMzpKw6QNghXLvLkY.",
+   "sig": "zyaMRLPNgddi8JGj8ByFHDVZs6m51ZhZcsB81RzGo65hg5jAdRhbvppEu82bwxSANhj6eJGL8unuXBk5otszQiK"
+  },
+  {
+   "wallet": "8TPWakvWw4xQbk7uAYdNjZiDKKHgv9GE5GebzsbtUaHr",
+   "ts": 1787366678,
+   "type": "UNKNOWN",
+   "source": "METEORA",
+   "desc": "",
+   "sig": "5oSUL2ojz6zruNAGDXZrQd8m6VUb3QdQyjkrJVutxSMeuxxaLK3CPxesvLUgHqDqLoUUVw7GGqJtEJ54hTxjBjqj"
+  },
+  {
+   "wallet": "8TPWakvWw4xQbk7uAYdNjZiDKKHgv9GE5GebzsbtUaHr",
+   "ts": 1787366678,
+   "type": "UNKNOWN",
+   "source": "METEORA",
+   "desc": "",
+   "sig": "5dUFsChLmjK2c9yNWHidZuTPTB8tndPfURppGNnGv2yCFwYboVpnzKrzsxXfkoN1yapD82Y3UrfA3y9Fsz2WEhp4"
+  },
+  {
+   "wallet": "8TPWakvWw4xQbk7uAYdNjZiDKKHgv9GE5GebzsbtUaHr",
+   "ts": 1787366678,
+   "type": "UNKNOWN",
+   "source": "METEORA",
+   "desc": "",
+   "sig": "5iwokEcEEKjZma3o2YoFhuf8e4GPa9uxWsZwePS3ny4gM46stft21UXkvQsChD93RLVAP3tCNaVcL5A4xqrJPca7"
+  },
+  {
+   "wallet": "sighWH8KaiT7QhtV4w29ReVF8kG6D5yG3EQP1KYyGVF",
+   "ts": 1787366678,
+   "type": "SWAP",
+   "source": "JUPITER",
+   "desc": "2fJ7R45vJgPSpBUwDfDF6PnVdrMAzv7Pt51LuP2q6EWW swapped 67 Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump for 0.04363274 SOL",
+   "sig": "2TMyBsnsHK8eHgrStxsJVP3rDBtcyLazMAABpksa12DWt55P3JmgPBJEcLuZjsMaDKvLRZ6tL6myNFzhXfgGyCNn"
+  },
+  {
+   "wallet": "sighWH8KaiT7QhtV4w29ReVF8kG6D5yG3EQP1KYyGVF",
+   "ts": 1787366678,
+   "type": "SWAP",
+   "source": "JUPITER",
+   "desc": "AYVPTqgSAL2jepcww8sz1Lpzf13b6JedPbHaHLR28UJ6 swapped 19390.263455 LEGENDS for 0.099113763 SOL",
+   "sig": "3UVTkuK8opw6VMNUiL6cVhCHJGsqUQFtxwfrzg3qjp13XXyG7NWrQKBYsW2doeu2Uvs4hLnHiaSMiZSoqgmkGc4i"
+  },
+  {
+   "wallet": "sighWH8KaiT7QhtV4w29ReVF8kG6D5yG3EQP1KYyGVF",
+   "ts": 1787366678,
+   "type": "SWAP",
+   "source": "JUPITER",
+   "desc": "7D5ssqH3SicfQLxJfxkKU38dVt8d1Vy9csXEKWnN2FR9 swapped 7436448.98455 2mQ2VayHmRzwGBwFbjPo9izvxa7WhvVuGMr7wpXQpump for 0.00664296 cbBTC",
+   "sig": "3kWut1HVTFWuadJY5rdKbzqpnoqABnGJtEyrZumdGPyYFB3ywWrJJDWiLdtxwBBtxbWytxm6uzQgQhBaRAuubWxf"
+  }
+ ],
+ "alerts": [
+  "ETH +6.5% 24h",
+  "SOL +6.5% 24h",
+  "Stables +0.32% 24h - inflow",
+  "20 whale moves in 60m"
+ ]
+}
