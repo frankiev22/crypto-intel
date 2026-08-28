@@ -61,3 +61,40 @@ Works without all of them, on the public Solana RPC.
 2. Scanner + macro posting to Discord on a schedule
 3. pump.fun subscription instead of polling
 4. NFT module once the chain priority is decided
+
+## Scheduling
+
+The hourly collector runs as a GitHub Actions workflow
+(`.github/workflows/collect.yml`), not as a Claude scheduled task. It is
+stdlib-only Python on a timer — no model session is involved, and no reasoning
+happens in a collection pass.
+
+```
+schedule: 0 * * * *      hourly, UTC. Best-effort: GitHub may run late.
+                         journal.pending() looks back 6h, so a late or
+                         missed hour is picked up by the next run.
+```
+
+**State lives in git.** `data/` is committed back after every run.
+`journal.pending()` and `journal.scored_pairs()` need the whole history to know
+what is due and what has already been scored, and the runner is stateless. The
+Supabase mirror cannot serve that role: `crypto_observations` and
+`crypto_outcomes` are write-only to the anon key — a secret-gated RPC goes in,
+and there is no SELECT grant coming out.
+
+Secrets are repo secrets, never files:
+
+```
+gh secret set SUPABASE_URL             --repo frankiev22/crypto-intel
+gh secret set SUPABASE_PUBLISHABLE_KEY --repo frankiev22/crypto-intel
+gh secret set CRYPTO_JOURNAL_SECRET    --repo frankiev22/crypto-intel
+gh secret set CRYPTO_DISCORD_WEBHOOK   --repo frankiev22/crypto-intel   # optional
+```
+
+Discord is deliberately unset. Without it `notify.send` prints instead of
+posting, which is its documented no-op. Set it to turn alerting back on.
+
+A pass that journals zero rows exits non-zero. That is what an IP-level rate
+limit looks like from a shared runner, and it must not read as a quiet hour —
+a red run emails the repo owner, which is the alert path that works when
+nobody is at the machine.
