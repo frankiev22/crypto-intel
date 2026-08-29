@@ -98,3 +98,47 @@ A pass that journals zero rows exits non-zero. That is what an IP-level rate
 limit looks like from a shared runner, and it must not read as a quiet hour —
 a red run emails the repo owner, which is the alert path that works when
 nobody is at the machine.
+
+## Stages, and why a killed pass must not look quiet
+
+Some runners cap a single command below what a full pass needs. The dispatch
+sandbox kills one at **~178s**; a full pass takes ~5 minutes there. A killed
+pass journals nothing, prints no traceback, and returns success — the hour
+reads as a quiet market rather than a broken collector. That is the most
+dangerous failure this system can have, because coverage is the whole product.
+
+Two defences:
+
+**`--stage`** drives a pass in pieces that each fit under a cap. The journal is
+append-only and outcome scoring is idempotent, so staged runs are
+behaviour-identical to one full pass.
+
+```
+python collect.py solana --stage scan       discovery, journal, alert
+python collect.py solana --stage outcomes   all four horizons
+python collect.py solana --stage 1          one horizon
+```
+
+**A pass sentinel** that survives SIGKILL. `journal.pass_begin` writes a marker
+before any work; `journal.pass_end` clears it only on a clean finish. The next
+pass that finds a stale marker records an `aborted_pass` row into
+`data/coverage/` with `suspected_cause` and how long the dead pass ran. No
+in-process handler runs on a kill, so writing the marker first is the only way
+to detect one.
+
+`collect.py` also exits non-zero when a pass journals zero rows. That covers
+the clean-exit case; the sentinel covers the killed case.
+
+**Runner ceiling vs measured runtime** — verify this for any runner before
+migrating onto it:
+
+| | |
+|---|---|
+| full pass, CI pacing, heavy outcome tail | **56s** |
+| GitHub Actions per-command cap | none |
+| workflow `timeout-minutes` | 900s |
+| headroom | **16x** |
+
+A GitHub Actions job that does exceed its timeout is marked failed and emails
+the repo owner. It cannot truncate silently, which is the property the sandbox
+lacked.

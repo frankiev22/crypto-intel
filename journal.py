@@ -80,7 +80,60 @@ def record_coverage(network, window, scanned, pass_score=70, passed=0):
            "oldest": window.get("oldest"), "newest": window.get("newest"),
            "span_s": window.get("span_s"),
            "pages_lost": window.get("pages_lost", 0),
+           "suspected_cause": None,
            "scanned": scanned, "passed": passed, "pass_score": pass_score}
+    _append(COV, obj)
+    return obj
+
+
+# --------------------------------------------------------------------------
+# Pass sentinel.
+#
+# A pass that is KILLED cannot report its own death. collect.main's zero-row
+# guard only runs if main() reaches the end, and on 2026-08-29 03:21 the
+# dispatch sandbox killed a pass at its ~178s command cap partway through the
+# scan: nothing journalled, no traceback, no non-zero exit. The hour read as
+# quiet rather than broken.
+#
+# So the marker is written BEFORE the work and cleared AFTER it. A pass that
+# finds a stale marker knows the previous one never finished, and can say so.
+# This is the only way to detect a SIGKILL, because no in-process handler runs.
+# --------------------------------------------------------------------------
+PASS_STATE = os.path.join(BASE, "data", ".pass_state.json")
+
+
+def pass_begin(network, stage="full"):
+    """Claim the pass. Returns the previous pass's marker if it never finished."""
+    stale = None
+    try:
+        with open(PASS_STATE, encoding="utf-8") as f:
+            stale = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        pass
+    os.makedirs(os.path.dirname(PASS_STATE), exist_ok=True)
+    with open(PASS_STATE, "w", encoding="utf-8") as f:
+        json.dump({"started_ts": int(time.time()), "network": network,
+                   "stage": stage, "pid": os.getpid()}, f)
+    return stale
+
+
+def pass_end():
+    """Clear the marker. Only reached on a clean finish, which is the point."""
+    try:
+        os.replace(PASS_STATE, PASS_STATE + ".done")
+    except OSError:
+        pass
+
+
+def record_aborted(stale, cause="killed - no clean exit"):
+    """A pass that never finished. Recorded so a silent hour is visible."""
+    started = stale.get("started_ts")
+    obj = {"ts": int(time.time()), "network": stale.get("network"),
+           "kind": "aborted_pass", "stage": stale.get("stage"),
+           "started_ts": started,
+           "ran_for_s": (int(time.time()) - started) if started else None,
+           "suspected_cause": cause,
+           "pools_returned": 0, "span_s": None, "scanned": 0, "passed": 0}
     _append(COV, obj)
     return obj
 
