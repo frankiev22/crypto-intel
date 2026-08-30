@@ -230,6 +230,63 @@ def _read(root, days=None):
     return out
 
 
+# --------------------------------------------------------------------------
+# Daily heartbeat.
+#
+# Every failure path pages: a zero-observation pass pings Discord every time,
+# and a failed Actions run emails the repo owner. Nothing reports SUCCESS,
+# which is correct hourly and wrong across a week away - silence from a
+# runner that has never been seen working is indistinguishable from a runner
+# that never started.
+#
+# One message per UTC day, on the first pass of that day. Not hourly: Frank
+# rejected hourly noise and that must not creep back.
+# --------------------------------------------------------------------------
+HEARTBEAT = os.path.join(BASE, "data", ".heartbeat.json")
+
+
+def _hb_state():
+    try:
+        with open(HEARTBEAT, encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+
+def daily_summary(force=False):
+    """Yesterday's collection, in one line. Returns None if already sent today."""
+    today = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d")
+    st = _hb_state()
+    if st.get("last") == today and not force:
+        return None
+
+    day_ago = time.time() - 86400
+    obs = [o for o in observations() if o["ts"] >= day_ago]
+    hours = len({dt.datetime.fromtimestamp(o["ts"], dt.timezone.utc).strftime("%H")
+                 for o in obs})
+    cov = [c for c in coverage() if c.get("ts", 0) >= day_ago]
+    spans = [c["span_s"] for c in cov if c.get("span_s")]
+    aborted = sum(1 for c in cov if c.get("kind") == "aborted_pass")
+    window = (sum(spans) / 3600 / 24 * 100) if spans else 0.0
+    passed = sum(1 for o in obs if o.get("passed"))
+    best = max(((o.get("mult") or 0) for o in outcomes()
+                if o.get("realizable") and (o.get("checked_ts") or 0) >= day_ago),
+               default=0)
+
+    if not force:
+        st["last"] = today
+        try:
+            with open(HEARTBEAT, "w", encoding="utf-8") as f:
+                json.dump(st, f)
+        except OSError:
+            pass
+
+    return {"hours_with_data": hours, "observations": len(obs), "passed": passed,
+            "passes": len(cov), "aborted": aborted,
+            "stream_coverage_pct": round(window, 2),
+            "best_realizable_mult_24h": round(best, 2)}
+
+
 def record(rows, network, pass_score=70):
     """Write every scanned pair, passed AND rejected."""
     now = int(time.time())

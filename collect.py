@@ -169,6 +169,22 @@ def main():
             break
         time.sleep(900)
 
+    # One line a day saying the collector is alive. Failures already page; a
+    # week of silence from a runner nobody has seen working does not prove it
+    # is running.
+    try:
+        hb = journal.daily_summary()
+        if hb:
+            notify.send(content=(
+                f"**crypto-intel daily** {hb['hours_with_data']}/24 hours with data, "
+                f"{hb['observations']} observations, {hb['passed']} cleared the filter, "
+                f"{hb['stream_coverage_pct']}% of the launch stream seen"
+                + (f", {hb['aborted']} aborted passes" if hb["aborted"] else "")
+                + (f", best realizable {hb['best_realizable_mult_24h']}x"
+                   if hb["best_realizable_mult_24h"] else "")))
+    except Exception as e:
+        print(f"  heartbeat failed (non-fatal): {e}")
+
     if rc == 0:
         journal.pass_end()      # only a clean finish clears the marker
     return rc
