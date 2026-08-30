@@ -63,7 +63,20 @@ def today_path(day=None):
     return os.path.join(DIR, f"{day}.md")
 
 
-def record(kind, key, summary, detail=None, allow_discord=True):
+# Classes that must ping EVERY time, not just the first.
+#
+# Repeat suppression is right for noise and wrong for silence. On 2026-08-30
+# collector-error:timeouterror had fired SIX times since 08-24 and pinged once,
+# because the class was already in _seen.json. Every one of those was an hour
+# with zero observations. The one condition that means "we collected nothing"
+# was the one configured not to tell anyone.
+#
+# A component that cannot tell "found nothing" from "did not look" must fail
+# loudly, every time, on the channel Frank actually reads.
+ALWAYS_PING = {"collector-zero"}
+
+
+def record(kind, key, summary, detail=None, allow_discord=True, always_ping=None):
     """Append a finding. Returns (path, defect_class, pinged_bool, why)."""
     os.makedirs(DIR, exist_ok=True)
     now = dt.datetime.now(dt.timezone.utc)
@@ -89,14 +102,25 @@ def record(kind, key, summary, detail=None, allow_discord=True):
         seen[cls]["last_seen"] = now.isoformat(timespec="seconds")
     _save_seen(seen)
 
-    if not first_time:
+    if always_ping is None:
+        always_ping = kind in ALWAYS_PING
+    if not first_time and not always_ping:
         return path, cls, False, f"class already reported {seen[cls]['count']}x, file only"
     if not allow_discord:
         return path, cls, False, "discord suppressed by caller"
 
-    body = (f"**New finding: {kind}**\n{key}\n{summary}\n"
-            f"_First time this class has appeared. Repeats go to "
-            f"{os.path.basename(path)} silently._")
+    if always_ping and not first_time:
+        head = "**" + kind + "**" + chr(10) + str(key) + chr(10) + summary + chr(10)
+        body = head + ("_Occurrence %d of this class. This class always pings: "
+                       "it means the collector produced nothing._"
+                       % seen[cls].get("count", 1))
+    elif always_ping:
+        head = "**" + kind + "**" + chr(10) + str(key) + chr(10) + summary + chr(10)
+        body = head + "_This class always pings: it means the collector produced nothing._"
+    else:
+        head = "**New finding: " + kind + "**" + chr(10) + str(key) + chr(10) + summary + chr(10)
+        body = head + ("_First time this class has appeared. Repeats go to "
+                       + os.path.basename(path) + " silently._")
     ok = notify.send(content=body)
     return path, cls, bool(ok), ("pinged Discord" if ok else "Discord send failed, file written")
 

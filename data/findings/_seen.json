@@ -80,9 +80,9 @@
  },
  "scanner-hit:unknown": {
   "first_seen": "2026-08-24T07:09:37+00:00",
-  "count": 14,
+  "count": 15,
   "example": "scanner-hit: \u725b\u6765",
-  "last_seen": "2026-08-29T03:21:14+00:00"
+  "last_seen": "2026-08-29T23:08:14+00:00"
  },
  "scanner-hit:giggle": {
   "first_seen": "2026-08-24T07:09:37+00:00",
@@ -138,9 +138,9 @@
  },
  "scanner-hit:nvda": {
   "first_seen": "2026-08-24T10:08:49+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: NVDA",
-  "last_seen": "2026-08-28T23:10:13+00:00"
+  "last_seen": "2026-08-29T23:08:13+00:00"
  },
  "scanner-hit:mango": {
   "first_seen": "2026-08-24T10:08:50+00:00",
@@ -176,9 +176,9 @@
  },
  "collector-error:timeouterror": {
   "first_seen": "2026-08-24T12:17:30+00:00",
-  "count": 3,
+  "count": 6,
   "example": "collector-error: TimeoutError",
-  "last_seen": "2026-08-24T14:19:02+00:00"
+  "last_seen": "2026-08-30T03:28:07+00:00"
  },
  "scanner-hit:martin": {
   "first_seen": "2026-08-24T15:08:14+00:00",
@@ -377,9 +377,9 @@
  },
  "scanner-hit:rst": {
   "first_seen": "2026-08-25T19:08:33+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: RST",
-  "last_seen": "2026-08-28T08:09:19+00:00"
+  "last_seen": "2026-08-30T00:10:15+00:00"
  },
  "outcome-x:sara": {
   "first_seen": "2026-08-25T19:08:33+00:00",
@@ -433,9 +433,9 @@
  },
  "collector-error:unrealizableoutcomefalsepositive": {
   "first_seen": "2026-08-26T03:08:52+00:00",
-  "count": 5,
+  "count": 6,
   "example": "collector-error: UnrealizableOutcomeFalsePositive",
-  "last_seen": "2026-08-28T08:09:51+00:00"
+  "last_seen": "2026-08-30T03:28:07+00:00"
  },
  "scanner-hit:atm": {
   "first_seen": "2026-08-26T05:07:35+00:00",
@@ -606,9 +606,9 @@
  },
  "scanner-hit:anthropic": {
   "first_seen": "2026-08-27T06:08:10+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: Anthropic",
-  "last_seen": "2026-08-28T21:08:57+00:00"
+  "last_seen": "2026-08-30T00:10:25+00:00"
  },
  "outcome-x:letgo": {
   "first_seen": "2026-08-27T06:08:32+00:00",
@@ -987,5 +987,91 @@
   "first_seen": "2026-08-29T03:21:52+00:00",
   "count": 1,
   "example": "collector-error: SandboxCommandTimeout"
+ },
+ "scanner-hit:azure": {
+  "first_seen": "2026-08-29T23:08:13+00:00",
+  "count": 1,
+  "example": "scanner-hit: AZURE"
+ },
+ "scanner-hit:ponsguy": {
+  "first_seen": "2026-08-29T23:08:13+00:00",
+  "count": 1,
+  "example": "scanner-hit: PONSGUY"
+ },
+ "scanner-hit:stacy": {
+  "first_seen": "2026-08-30T00:10:00+00:00",
+  "count": 1,
+  "example": "scanner-hit: STACY"
+ },
+ "scanner-hit:mycel": {
+  "first_seen": "2026-08-30T00:10:14+00:00",
+  "count": 1,
+  "example": "scanner-hit: MYCEL"
+ },
+ "outcome-x:nvda": {
+  "first_seen": "2026-08-30T03:27:24+00:00",
+  "count": 1,
+  "example": "outcome-3x: NVDA"
+ },
+ "outcome-x:niulai": {
+  "first_seen": "2026-08-30T03:27:25+00:00",
+  "count": 1,
+  "example": "outcome-3x: NIULAI"
+ },
+ "outcome-x:her": {
+  "first_seen": "2026-08-30T03:27:25+00:00",
+  "count": 1,
+  "example": "outcome-3x: her"
+ },
+ "outcome-x:mama": {
+  "first_seen": "2026-08-30T03:27:26+00:00",
+  "count": 1,
+  "example": "outcome-3x: MAMA"
+ },
+ "outcome-x:perform": {
+  "first_seen": "2026-08-30T03:27:26+00:00",
+  "count": 1,
+  "example": "outcome-3x: PERFORM"
+ },
+ "outcome-x:rockstar": {
+  "first_seen": "2026-08-30T03:27:26+00:00",
+  "count": 1,
+  "example": "outcome-3x: ROCKSTAR"
+ },
+ "outcome-x:fill": {
+  "first_seen": "2026-08-30T03:27:27+00:00",
+  "count": 1,
+  "example": "outcome-3x: fill"
+ },
+ "outcome-x:ponsguy": {
+  "first_seen": "2026-08-30T03:27:27+00:00",
+  "count": 1,
+  "example": "outcome-3x: PONSGUY"
+ },
+ "scanner-hit:nikolas": {
+  "first_seen": "2026-08-30T04:07:29+00:00",
+  "count": 1,
+  "example": "scanner-hit: Nikolas"
+ },
+ "scanner-hit:pbj": {
+  "first_seen": "2026-08-30T04:07:29+00:00",
+  "count": 1,
+  "example": "scanner-hit: PBJ"
+ },
+ "collector-zero:verify": {
+  "first_seen": "2026-08-30T04:25:16+00:00",
+  "count": 2,
+  "example": "collector-zero: VERIFY-2026-08-30",
+  "last_seen": "2026-08-30T04:25:17+00:00"
+ },
+ "collector-zero:solana": {
+  "first_seen": "2026-08-30T04:25:33+00:00",
+  "count": 1,
+  "example": "collector-zero: solana"
+ },
+ "collector-zero:wording-check": {
+  "first_seen": "2026-08-30T04:26:29+00:00",
+  "count": 1,
+  "example": "collector-zero: WORDING-CHECK"
  }
 }

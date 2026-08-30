@@ -33,6 +33,13 @@ def pace():
     """Sleep the shared inter-request gap. Call between paged fetches."""
     time.sleep(PACE_S)
 
+# Permanent HTTP failures. A delisted pair is gone forever, so retrying it is
+# pure latency. Measured 2026-08-30: _get retried 3x at timeout=20s with
+# backoff, so ONE dead pool cost ~63s against the sandbox's 178s command cap.
+# Three consecutive passes journalled zero observations because of it.
+PERMANENT_STATUS = (400, 401, 403, 404, 410, 422)
+
+
 def _get(url, timeout=20, tries=3, backoff=1.6, headers=None):
     last = None
     h = {**UA, **(headers or {})}
@@ -40,11 +47,19 @@ def _get(url, timeout=20, tries=3, backoff=1.6, headers=None):
         try:
             r = urllib.request.urlopen(urllib.request.Request(url, headers=h), timeout=timeout)
             return json.loads(r.read().decode("utf-8", "ignore"))
+        except urllib.error.HTTPError as e:
+            # 429 IS worth retrying - it is a rate limit, not a dead resource.
+            if e.code in PERMANENT_STATUS:
+                raise
+            last = e
+            if i < tries - 1:
+                time.sleep(backoff ** i)
         except Exception as e:
             last = e
             if i < tries - 1:
                 time.sleep(backoff ** i)
     raise last
+
 
 def _post(url, payload, timeout=20):
     req = urllib.request.Request(url, headers={**UA, "Content-Type": "application/json"},

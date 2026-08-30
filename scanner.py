@@ -8,7 +8,7 @@ is worthless. The job is to throw away 99% and be honest about the survivors.
 
 Nothing here is a recommendation. It is a filter over public data.
 """
-import time, math, datetime as dt
+import os, time, math, datetime as dt
 import sources as S
 import namecheck
 import weights
@@ -103,20 +103,49 @@ def score(pair):
 
     return min(pts, 100), reasons, flags, gates, WVER
 
-def scan(network="solana", pages=None, verbose=True):
+# Enrichment budget. Dexscreener answers in ~0.2s when healthy and was measured
+# at 6.3s degraded on 2026-08-30, with read timeouts costing 20s x 3 tries.
+# Without a ceiling one stalled pool eats the whole pass. When the budget is
+# spent the loop stops and returns what it has, because a partial scan is worth
+# enormously more than a lost hour.
+SCAN_BUDGET_S = float(os.environ.get("CRYPTO_SCAN_BUDGET_S", "150"))
+LAST_SCAN = {"pools": 0, "enriched": 0, "failed": 0, "budget_hit": False}
+
+
+def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None):
+    """Pull new pools, enrich and score each one.
+
+    on_row is called with every scored row AS IT IS PRODUCED. The caller
+    journals from there rather than waiting for the return value: on
+    2026-08-30 three consecutive passes journalled zero observations because
+    enrichment stalled and journal.record was only ever called after the loop
+    finished. Incremental journalling turns that into a partial hour.
+    """
     # pages=None defers to sources.PAGES, the CRYPTO_NEW_POOL_PAGES dial.
     # Hard-coding it here is what kept the funnel at 2 pages.
     pools = S.new_pools(network, pages=pages)
     if verbose: print(f"pulled {len(pools)} new pools on {network}")
+    budget = SCAN_BUDGET_S if budget_s is None else budget_s
+    started = time.time()
+    LAST_SCAN.update(pools=len(pools), enriched=0, failed=0, budget_hit=False)
     rows = []
     for i, p in enumerate(pools):
+        if time.time() - started > budget:
+            LAST_SCAN["budget_hit"] = True
+            if verbose:
+                print(f"  enrichment budget {budget:.0f}s spent after {i}/{len(pools)} "
+                      f"pools - stopping and keeping what we have")
+            break
         addr = p.get("attributes", {}).get("address")
         if not addr: continue
         try:
             pair = S.dexscreener_pair(network, addr)
         except Exception:
+            LAST_SCAN["failed"] += 1
             continue
-        if not pair: continue
+        if not pair:
+            LAST_SCAN["failed"] += 1
+            continue
         sc, reasons, flags, gates, wver = score(pair)
         # Name-safety runs AFTER numeric scoring and can veto outright.
         # Impersonation tokens often have the best numbers - that is the bait.
@@ -127,7 +156,7 @@ def scan(network="solana", pages=None, verbose=True):
             if any("IMPERSONATION" in f for f in nf):
                 sc = 0
         t1 = pair.get("txns", {}).get("h1", {}) or {}
-        rows.append(dict(
+        row = dict(
             name   = pair.get("baseToken", {}).get("symbol", "?"),
             price_usd = _f(pair.get("priceUsd")),
             fdv       = _f(pair.get("fdv")),
@@ -146,10 +175,15 @@ def scan(network="solana", pages=None, verbose=True):
             url    = pair.get("url", ""),
             reasons= reasons, flags = flags,
             gates  = gates, weights_version = wver,
-        ))
+        )
+        rows.append(row)
+        LAST_SCAN["enriched"] += 1
+        if on_row:
+            on_row(row)          # journal NOW, not after the loop
         S.pace()
     rows.sort(key=lambda r: r["score"], reverse=True)
     return rows
+
 
 def report(rows, min_score=70, show=10):
     passed = [r for r in rows if r["score"] >= min_score]

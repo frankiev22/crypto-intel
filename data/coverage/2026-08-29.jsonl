@@ -7,3 +7,4 @@
 {"ts":1788044163,"network":"solana","kind":"discovery_window","pools_returned":91,"oldest":"2026-08-29T22:50:05+00:00","newest":"2026-08-29T22:54:15+00:00","span_s":250.0,"pages_lost":0,"suspected_cause":null,"scanned":91,"passed":4,"pass_score":70}
 {"ts":1788044180,"network":"solana","kind":"aborted_pass","stage":"scan","started_ts":1788044179,"ran_for_s":1,"suspected_cause":"killed - no clean exit","pools_returned":0,"span_s":null,"scanned":0,"passed":0}
 {"ts":1788044208,"network":"solana","kind":"discovery_window","pools_returned":60,"oldest":"2026-08-29T22:53:47+00:00","newest":"2026-08-29T22:55:58+00:00","span_s":131.0,"pages_lost":2,"suspected_cause":null,"scanned":59,"passed":1,"pass_score":70}
+{"ts":1788044782,"network":"solana","kind":"discovery_window","pools_returned":74,"oldest":"2026-08-29T23:01:43+00:00","newest":"2026-08-29T23:04:03+00:00","span_s":140.0,"pages_lost":0,"suspected_cause":null,"scanned":74,"passed":6,"pass_score":70}

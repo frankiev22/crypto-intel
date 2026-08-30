@@ -28,9 +28,10 @@ The journal is append-only and outcome scoring is idempotent, so running the
 stages separately is behaviour-identical to one full pass.
 """
 import sys, time, traceback, datetime as dt
-import scanner, journal, track, notify, macro, sources
+import scanner, journal, track, notify, macro, sources, findings
 
 PASS_SCORE = 70
+JOURNAL_BATCH = 10
 
 
 def scan_stage(networks=("solana",), verbose=True):
@@ -38,12 +39,29 @@ def scan_stage(networks=("solana",), verbose=True):
     later: an unobserved launch is gone permanently."""
     total_seen = total_passed = 0
     for net in networks:
+        # Journal AS WE GO. Waiting for the loop to finish is what turned a
+        # stalled Dexscreener lookup into three consecutive zero-observation
+        # passes on 2026-08-30. A batch of 10 bounds the loss to 9 pools and
+        # still keeps the Supabase push to one call per batch.
+        buf, done = [], [0]
+
+        def _flush(_net=net):
+            if buf:
+                done[0] += journal.record(list(buf), _net, pass_score=PASS_SCORE)
+                buf.clear()
+
+        def _on_row(r):
+            buf.append(r)
+            if len(buf) >= JOURNAL_BATCH:
+                _flush()
+
+        rows = []
         try:
-            rows = scanner.scan(net, verbose=verbose)
+            rows = scanner.scan(net, verbose=verbose, on_row=_on_row)
         except Exception as e:
-            print(f"  [{net}] scan failed: {e}")
-            continue
-        n = journal.record(rows, net, pass_score=PASS_SCORE)
+            print(f"  [{net}] scan failed after {done[0]} journalled: {e}")
+        _flush()          # keep the tail, and anything a raise left behind
+        n = done[0]
         passed = [r for r in rows if r["score"] >= PASS_SCORE]
         # What the discovery window actually covered. Recorded every pass,
         # because it cannot be reconstructed afterwards.
@@ -130,6 +148,20 @@ def main():
                 if seen == 0:
                     print("  NOTHING JOURNALLED - failed pass, not a quiet one")
                     rc = 1
+                    # This must reach Frank, not a log file. It is the one
+                    # condition that means the dataset stopped growing, and it
+                    # went unnoticed six times because the error class had
+                    # already pinged once and was suppressed thereafter.
+                    _, _, pinged, why = findings.record(
+                        "collector-zero", ",".join(nets),
+                        "collector journalled ZERO observations while the host was up",
+                        f"stage={stage}. Discovery returned "
+                        f"{scanner.LAST_SCAN['pools']} pools, enriched "
+                        f"{scanner.LAST_SCAN['enriched']}, failed "
+                        f"{scanner.LAST_SCAN['failed']}, budget_hit="
+                        f"{scanner.LAST_SCAN['budget_hit']}. This hour has no "
+                        f"observations and cannot be recovered.")
+                    print(f"  zero-result alert: {why}")
         except Exception:
             traceback.print_exc()
             rc = 1
