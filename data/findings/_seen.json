@@ -80,9 +80,9 @@
  },
  "scanner-hit:unknown": {
   "first_seen": "2026-08-24T07:09:37+00:00",
-  "count": 31,
+  "count": 34,
   "example": "scanner-hit: \u725b\u6765",
-  "last_seen": "2026-08-30T22:10:46+00:00"
+  "last_seen": "2026-08-31T04:10:17+00:00"
  },
  "scanner-hit:giggle": {
   "first_seen": "2026-08-24T07:09:37+00:00",
@@ -393,8 +393,9 @@
  },
  "scanner-hit:ocb": {
   "first_seen": "2026-08-25T21:07:17+00:00",
-  "count": 1,
-  "example": "scanner-hit: OCB"
+  "count": 2,
+  "example": "scanner-hit: OCB",
+  "last_seen": "2026-08-31T00:12:05+00:00"
  },
  "outcome-x:lode": {
   "first_seen": "2026-08-25T22:07:24+00:00",
@@ -522,9 +523,9 @@
  },
  "outcome-x:unknown": {
   "first_seen": "2026-08-26T13:08:03+00:00",
-  "count": 16,
+  "count": 18,
   "example": "outcome-3x: \u95ea\u8fea",
-  "last_seen": "2026-08-30T22:10:55+00:00"
+  "last_seen": "2026-08-31T02:08:00+00:00"
  },
  "scanner-hit:clanker": {
   "first_seen": "2026-08-26T14:08:11+00:00",
@@ -606,9 +607,9 @@
  },
  "scanner-hit:anthropic": {
   "first_seen": "2026-08-27T06:08:10+00:00",
-  "count": 4,
+  "count": 5,
   "example": "scanner-hit: Anthropic",
-  "last_seen": "2026-08-30T15:08:49+00:00"
+  "last_seen": "2026-08-31T04:10:17+00:00"
  },
  "outcome-x:letgo": {
   "first_seen": "2026-08-27T06:08:32+00:00",
@@ -689,8 +690,9 @@
  },
  "outcome-x:sol": {
   "first_seen": "2026-08-28T00:08:24+00:00",
-  "count": 1,
-  "example": "outcome-3x: SOL"
+  "count": 2,
+  "example": "outcome-3x: SOL",
+  "last_seen": "2026-08-31T00:12:22+00:00"
  },
  "outcome-x:merp": {
   "first_seen": "2026-08-28T00:08:42+00:00",
@@ -1014,9 +1016,9 @@
  },
  "outcome-x:nvda": {
   "first_seen": "2026-08-30T03:27:24+00:00",
-  "count": 2,
+  "count": 3,
   "example": "outcome-3x: NVDA",
-  "last_seen": "2026-08-30T07:09:54+00:00"
+  "last_seen": "2026-08-31T00:12:22+00:00"
  },
  "outcome-x:niulai": {
   "first_seen": "2026-08-30T03:27:25+00:00",
@@ -1457,8 +1459,9 @@
  },
  "outcome-x:testo": {
   "first_seen": "2026-08-30T21:08:22+00:00",
-  "count": 1,
-  "example": "outcome-3x: TESTO"
+  "count": 2,
+  "example": "outcome-3x: TESTO",
+  "last_seen": "2026-08-31T01:11:03+00:00"
  },
  "outcome-x:cot": {
   "first_seen": "2026-08-30T21:08:22+00:00",
@@ -1500,5 +1503,81 @@
   "first_seen": "2026-08-30T23:08:15+00:00",
   "count": 1,
   "example": "scanner-hit: sharav"
+ },
+ "scanner-hit:apec": {
+  "first_seen": "2026-08-31T00:12:04+00:00",
+  "count": 2,
+  "example": "scanner-hit: APEC",
+  "last_seen": "2026-08-31T01:08:43+00:00"
+ },
+ "outcome-x:avant": {
+  "first_seen": "2026-08-31T00:12:21+00:00",
+  "count": 1,
+  "example": "outcome-3x: AVANT"
+ },
+ "outcome-x:cjk-niulai": {
+  "first_seen": "2026-08-31T00:12:21+00:00",
+  "count": 1,
+  "example": "outcome-3x: CJK-niulai"
+ },
+ "outcome-x:tap": {
+  "first_seen": "2026-08-31T00:12:22+00:00",
+  "count": 1,
+  "example": "outcome-3x: tap"
+ },
+ "scanner-hit:coffee": {
+  "first_seen": "2026-08-31T01:08:42+00:00",
+  "count": 1,
+  "example": "scanner-hit: COFFEE"
+ },
+ "scanner-hit:duval": {
+  "first_seen": "2026-08-31T01:08:43+00:00",
+  "count": 1,
+  "example": "scanner-hit: DUVAL"
+ },
+ "outcome-x:sfm": {
+  "first_seen": "2026-08-31T01:11:01+00:00",
+  "count": 1,
+  "example": "outcome-3x: SFM"
+ },
+ "outcome-x:apec": {
+  "first_seen": "2026-08-31T01:11:02+00:00",
+  "count": 1,
+  "example": "outcome-3x: APEC"
+ },
+ "outcome-x:buddy": {
+  "first_seen": "2026-08-31T01:11:03+00:00",
+  "count": 1,
+  "example": "outcome-3x: BUDDY"
+ },
+ "outcome-x:mike": {
+  "first_seen": "2026-08-31T01:11:12+00:00",
+  "count": 1,
+  "example": "outcome-3x: MIKE"
+ },
+ "outcome-x:spiegel": {
+  "first_seen": "2026-08-31T01:11:13+00:00",
+  "count": 1,
+  "example": "outcome-3x: SPIEGEL"
+ },
+ "outcome-x:macroduck": {
+  "first_seen": "2026-08-31T02:08:00+00:00",
+  "count": 1,
+  "example": "outcome-3x: MACRODUCK"
+ },
+ "scanner-hit:meowdani": {
+  "first_seen": "2026-08-31T04:10:17+00:00",
+  "count": 1,
+  "example": "scanner-hit: Meowdani"
+ },
+ "scanner-hit:hope": {
+  "first_seen": "2026-08-31T04:10:18+00:00",
+  "count": 1,
+  "example": "scanner-hit: HOPE"
+ },
+ "outcome-x:bwidge": {
+  "first_seen": "2026-08-31T04:10:24+00:00",
+  "count": 1,
+  "example": "outcome-3x: BWIDGE"
  }
 }

@@ -24,7 +24,7 @@ digits so "scored 92" and "scored 87" collapse together.
     python findings.py --today          # print today's file
     python findings.py --classes        # what has already pinged
 """
-import json, os, re, sys, datetime as dt
+import hashlib, json, os, re, sys, unicodedata, datetime as dt
 
 import config  # loads .env
 import notify
@@ -33,15 +33,83 @@ DIR = "data/findings"
 SEEN = os.path.join(DIR, "_seen.json")
 
 
+# How many distinct raw keys may share one slug before that is a bug signal.
+# A dedupe key colliding is not a rare edge: _slug collapsed 181 distinct
+# non-ASCII symbols across 255 tokens into the single bucket "unknown", and
+# that bucket swallowed the best outcome of 2026-08-30 - a 56.5x, alive, with
+# liquidity up 658% - which never pinged because something else had already
+# claimed "unknown" days earlier.
+SLUG_COLLISION_LIMIT = 5
+_guarding = False
+
+
 def _slug(s):
-    """Normalise to a class token. Digits go, so severity numbers and dollar
-    amounts do not each look like a brand new problem."""
-    s = re.sub(r"\d+", "", str(s or "")).lower()
-    return re.sub(r"[^a-z]+", "-", s).strip("-") or "unknown"
+    """Normalise to a class token, WITHOUT collapsing non-ASCII to nothing.
+
+    The old version ran re.sub(r"[^a-z]+", "-", ...) and returned "unknown" for
+    any name with no Latin letters. Every coin in the Justin Sun / Jing Tian
+    narrative is Chinese-named, so the four biggest movers of 2026-08-30 all
+    deduped against each other and against 177 unrelated tokens.
+
+    Chosen fix: NFKC-normalise, keep whatever ASCII skeleton exists, and append
+    a short BLAKE2b digest of the normalised original whenever it contained
+    non-ASCII.
+
+      - NOT transliteration: that needs a third-party package, and this
+        codebase is deliberately stdlib-only. The hosted runner has no pip
+        install step, and adding one to alert on a Chinese ticker is a bad
+        trade.
+      - NOT the contract address: the slug's job is repeat-suppression by
+        defect CLASS, and callers pass the symbol on purpose. Hashing the
+        symbol keeps that meaning while making distinct names distinct.
+      - Digits still go, so "scored 92" and "scored 87" still collapse.
+
+    Pure-ASCII keys slug EXACTLY as before, so the existing _seen.json history
+    stays valid and nothing re-pings on deploy.
+    """
+    raw = unicodedata.normalize("NFKC", str(s or ""))
+    stripped = re.sub(r"\d+", "", raw).lower()
+    ascii_part = re.sub(r"[^a-z]+", "-", stripped).strip("-")
+    if all(ord(c) < 128 for c in raw):
+        return ascii_part or "unknown"
+    # Non-ASCII present: make it distinct and stable across runs and machines.
+    # hashlib, not hash(), because PYTHONHASHSEED randomises the builtin.
+    digest = hashlib.blake2b(raw.encode("utf-8"), digest_size=3).hexdigest()
+    return f"{ascii_part}-{digest}" if ascii_part else f"u-{digest}"
 
 
 def defect_class(kind, key):
     return f"{_slug(kind)}:{_slug(key)}"
+
+
+def _collision_guard(cls, seen):
+    """One slug covering many distinct raw keys means the slug function is
+    losing information, and everything after the first key goes silent.
+
+    This fires ONCE per class. It is deliberately a ping and not a log line:
+    the failure it detects is itself a failure to ping, so writing it to the
+    file the alerts were already not reaching would be circular.
+    """
+    global _guarding
+    if _guarding:
+        return
+    meta = seen.get(cls) or {}
+    keys = meta.get("keys") or []
+    if len(keys) <= SLUG_COLLISION_LIMIT or meta.get("collision_reported"):
+        return
+    _guarding = True
+    try:
+        meta["collision_reported"] = True
+        _save_seen(seen)
+        sample = ", ".join(keys[:8])
+        record("slug-collision", cls,
+               f"{len(keys)} distinct keys share the dedupe slug {cls!r}",
+               f"Everything after the first is suppressed and never pings. "
+               f"Sample keys: {sample}. Check findings._slug - it is dropping "
+               f"the characters that make these distinct.",
+               always_ping=True)
+    finally:
+        _guarding = False
 
 
 def _load_seen():
@@ -73,7 +141,7 @@ def today_path(day=None):
 #
 # A component that cannot tell "found nothing" from "did not look" must fail
 # loudly, every time, on the channel Frank actually reads.
-ALWAYS_PING = {"collector-zero"}
+ALWAYS_PING = {"collector-zero", "slug-collision"}
 
 
 def record(kind, key, summary, detail=None, allow_discord=True, always_ping=None):
@@ -96,11 +164,18 @@ def record(kind, key, summary, detail=None, allow_discord=True, always_ping=None
     first_time = cls not in seen
     if first_time:
         seen[cls] = {"first_seen": now.isoformat(timespec="seconds"),
-                     "count": 1, "example": f"{kind}: {key}"}
+                     "count": 1, "example": f"{kind}: {key}",
+                     "keys": [str(key)]}
     else:
         seen[cls]["count"] = seen[cls].get("count", 1) + 1
         seen[cls]["last_seen"] = now.isoformat(timespec="seconds")
+        ks = seen[cls].setdefault("keys", [])
+        if str(key) not in ks and len(ks) < 64:
+            ks.append(str(key))
     _save_seen(seen)
+
+    # A dedupe key that collides is a defect, not traffic. Say so once, loudly.
+    _collision_guard(cls, seen)
 
     if always_ping is None:
         always_ping = kind in ALWAYS_PING
@@ -111,12 +186,11 @@ def record(kind, key, summary, detail=None, allow_discord=True, always_ping=None
 
     if always_ping and not first_time:
         head = "**" + kind + "**" + chr(10) + str(key) + chr(10) + summary + chr(10)
-        body = head + ("_Occurrence %d of this class. This class always pings: "
-                       "it means the collector produced nothing._"
-                       % seen[cls].get("count", 1))
+        body = head + ("_Occurrence %d. This class always pings - every "
+                       "occurrence matters._" % seen[cls].get("count", 1))
     elif always_ping:
         head = "**" + kind + "**" + chr(10) + str(key) + chr(10) + summary + chr(10)
-        body = head + "_This class always pings: it means the collector produced nothing._"
+        body = head + "_This class always pings - every occurrence matters._"
     else:
         head = "**New finding: " + kind + "**" + chr(10) + str(key) + chr(10) + summary + chr(10)
         body = head + ("_First time this class has appeared. Repeats go to "
