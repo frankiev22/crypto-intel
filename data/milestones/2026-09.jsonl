@@ -1463,3 +1463,11 @@
 {"token":"HS5tMhjYGB6SFfuM5TD123FVu9SFfC6F2VF739ruEtm1","milestone":"mcap_100k","crossed_ts":1788321953,"crossed_at":"2026-09-02T04:05:53+00:00","symbol":"Tesla","value":101300.0,"kind":"mcap","liq":180654.92,"backfilled":true}
 {"token":"G6qT1yYLAyL2qZrqarkw31s2C3pkXr6d6WuHaqUSwcLg","milestone":"mcap_100k","crossed_ts":1788321957,"crossed_at":"2026-09-02T04:05:57+00:00","symbol":"AI","value":605336.0,"kind":"mcap","liq":156144.45,"backfilled":true}
 {"token":"G6qT1yYLAyL2qZrqarkw31s2C3pkXr6d6WuHaqUSwcLg","milestone":"mcap_200k","crossed_ts":1788321957,"crossed_at":"2026-09-02T04:05:57+00:00","symbol":"AI","value":605336.0,"kind":"mcap","liq":156144.45,"backfilled":true}
+{"token":"Hu3SJpFgKRTQLxaSWRmee3L64DayjtFRu7QwQfLA9RT6","milestone":"realizable_2x","crossed_ts":1788349624,"crossed_at":"2026-09-02T11:47:04+00:00","symbol":"UOKN","value":8.1125,"kind":"multiple"}
+{"token":"Hu3SJpFgKRTQLxaSWRmee3L64DayjtFRu7QwQfLA9RT6","milestone":"realizable_3x","crossed_ts":1788349624,"crossed_at":"2026-09-02T11:47:04+00:00","symbol":"UOKN","value":8.1125,"kind":"multiple"}
+{"token":"5jVswL4YZAKNdCedLs2eJTqm74HQ4sHf27iJ758HDhss","milestone":"realizable_2x","crossed_ts":1788349625,"crossed_at":"2026-09-02T11:47:05+00:00","symbol":"UOKN","value":7.5361,"kind":"multiple"}
+{"token":"5jVswL4YZAKNdCedLs2eJTqm74HQ4sHf27iJ758HDhss","milestone":"realizable_3x","crossed_ts":1788349625,"crossed_at":"2026-09-02T11:47:05+00:00","symbol":"UOKN","value":7.5361,"kind":"multiple"}
+{"token":"Bcr5tADtRRUAX41W4jMSJpAmbKwL2p5GdDVAq1dbrxmt","milestone":"realizable_2x","crossed_ts":1788349626,"crossed_at":"2026-09-02T11:47:06+00:00","symbol":"UOKN","value":7.4216,"kind":"multiple"}
+{"token":"Bcr5tADtRRUAX41W4jMSJpAmbKwL2p5GdDVAq1dbrxmt","milestone":"realizable_3x","crossed_ts":1788349626,"crossed_at":"2026-09-02T11:47:06+00:00","symbol":"UOKN","value":7.4216,"kind":"multiple"}
+{"token":"7opqF5S7XbEX8o36TrfpxLou9uL51THfjYEQNLH5e2g6","milestone":"realizable_2x","crossed_ts":1788349626,"crossed_at":"2026-09-02T11:47:06+00:00","symbol":"UOKN","value":7.4039,"kind":"multiple"}
+{"token":"7opqF5S7XbEX8o36TrfpxLou9uL51THfjYEQNLH5e2g6","milestone":"realizable_3x","crossed_ts":1788349626,"crossed_at":"2026-09-02T11:47:06+00:00","symbol":"UOKN","value":7.4039,"kind":"multiple"}
