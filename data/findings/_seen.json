@@ -55,8 +55,12 @@
  },
  "scanner-hit:normie": {
   "first_seen": "2026-08-24T05:07:49+00:00",
-  "count": 1,
-  "example": "scanner-hit: Normie"
+  "count": 2,
+  "example": "scanner-hit: Normie",
+  "last_seen": "2026-09-02T03:09:59+00:00",
+  "keys": [
+   "NORMIE"
+  ]
  },
  "scanner-hit:inf": {
   "first_seen": "2026-08-24T05:07:50+00:00",
@@ -117,9 +121,12 @@
  },
  "scanner-hit:tmx": {
   "first_seen": "2026-08-24T09:09:12+00:00",
-  "count": 3,
+  "count": 4,
   "example": "scanner-hit: TMX",
-  "last_seen": "2026-08-26T04:07:20+00:00"
+  "last_seen": "2026-09-01T13:10:07+00:00",
+  "keys": [
+   "TMX"
+  ]
  },
  "scanner-hit:starlink": {
   "first_seen": "2026-08-24T09:09:12+00:00",
@@ -161,8 +168,12 @@
  },
  "outcome-x:tmx": {
   "first_seen": "2026-08-24T10:09:03+00:00",
-  "count": 1,
-  "example": "outcome-3x: TMX"
+  "count": 2,
+  "example": "outcome-3x: TMX",
+  "last_seen": "2026-09-01T15:10:21+00:00",
+  "keys": [
+   "TMX"
+  ]
  },
  "scanner-hit:martians": {
   "first_seen": "2026-08-24T11:09:02+00:00",
@@ -187,9 +198,12 @@
  },
  "outcome-x:cyberleek": {
   "first_seen": "2026-08-24T17:07:38+00:00",
-  "count": 5,
+  "count": 7,
   "example": "outcome-3x: CYBERLEEK",
-  "last_seen": "2026-08-30T22:10:56+00:00"
+  "last_seen": "2026-09-01T17:09:14+00:00",
+  "keys": [
+   "CYBERLEEK"
+  ]
  },
  "outcome-x:spcx": {
   "first_seen": "2026-08-24T17:07:47+00:00",
@@ -409,8 +423,12 @@
  },
  "scanner-hit:msft": {
   "first_seen": "2026-08-26T00:07:30+00:00",
-  "count": 1,
-  "example": "scanner-hit: MSFT"
+  "count": 2,
+  "example": "scanner-hit: MSFT",
+  "last_seen": "2026-09-01T11:09:17+00:00",
+  "keys": [
+   "MSFT"
+  ]
  },
  "scanner-hit:drillpig": {
   "first_seen": "2026-08-26T02:07:35+00:00",
@@ -523,9 +541,13 @@
  },
  "outcome-x:unknown": {
   "first_seen": "2026-08-26T13:08:03+00:00",
-  "count": 18,
+  "count": 22,
   "example": "outcome-3x: \u95ea\u8fea",
-  "last_seen": "2026-08-31T02:08:00+00:00"
+  "last_seen": "2026-09-02T03:10:26+00:00",
+  "keys": [
+   "$1",
+   "2028"
+  ]
  },
  "scanner-hit:clanker": {
   "first_seen": "2026-08-26T14:08:11+00:00",
@@ -607,9 +629,12 @@
  },
  "scanner-hit:anthropic": {
   "first_seen": "2026-08-27T06:08:10+00:00",
-  "count": 5,
+  "count": 6,
   "example": "scanner-hit: Anthropic",
-  "last_seen": "2026-08-31T04:10:17+00:00"
+  "last_seen": "2026-08-31T11:09:35+00:00",
+  "keys": [
+   "Anthropic"
+  ]
  },
  "outcome-x:letgo": {
   "first_seen": "2026-08-27T06:08:32+00:00",
@@ -623,8 +648,12 @@
  },
  "outcome-x:anthropic": {
   "first_seen": "2026-08-27T08:08:34+00:00",
-  "count": 1,
-  "example": "outcome-3x: Anthropic"
+  "count": 3,
+  "example": "outcome-3x: Anthropic",
+  "last_seen": "2026-08-31T13:09:25+00:00",
+  "keys": [
+   "Anthropic"
+  ]
  },
  "scanner-hit:buddy": {
   "first_seen": "2026-08-27T09:07:58+00:00",
@@ -690,9 +719,13 @@
  },
  "outcome-x:sol": {
   "first_seen": "2026-08-28T00:08:24+00:00",
-  "count": 2,
+  "count": 5,
   "example": "outcome-3x: SOL",
-  "last_seen": "2026-08-31T00:12:22+00:00"
+  "last_seen": "2026-09-01T15:10:34+00:00",
+  "keys": [
+   "Sol",
+   "SOL"
+  ]
  },
  "outcome-x:merp": {
   "first_seen": "2026-08-28T00:08:42+00:00",
@@ -766,8 +799,12 @@
  },
  "scanner-hit:ai": {
   "first_seen": "2026-08-28T08:09:05+00:00",
-  "count": 1,
-  "example": "scanner-hit: AI"
+  "count": 2,
+  "example": "scanner-hit: AI",
+  "last_seen": "2026-09-02T04:09:23+00:00",
+  "keys": [
+   "AI"
+  ]
  },
  "scanner-hit:merp": {
   "first_seen": "2026-08-28T09:07:39+00:00",
@@ -833,9 +870,12 @@
  },
  "scanner-hit:ast": {
   "first_seen": "2026-08-28T16:08:34+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: AST",
-  "last_seen": "2026-08-28T17:08:38+00:00"
+  "last_seen": "2026-09-01T12:09:31+00:00",
+  "keys": [
+   "AST"
+  ]
  },
  "outcome-x:conk": {
   "first_seen": "2026-08-28T16:08:47+00:00",
@@ -919,8 +959,12 @@
  },
  "scanner-hit:flork": {
   "first_seen": "2026-08-28T22:08:03+00:00",
-  "count": 1,
-  "example": "scanner-hit: FLORK"
+  "count": 2,
+  "example": "scanner-hit: FLORK",
+  "last_seen": "2026-09-01T13:10:10+00:00",
+  "keys": [
+   "FLORK"
+  ]
  },
  "scanner-hit:usof": {
   "first_seen": "2026-08-28T22:08:15+00:00",
@@ -1166,9 +1210,12 @@
  },
  "outcome-x:gta-coin": {
   "first_seen": "2026-08-30T08:09:25+00:00",
-  "count": 2,
+  "count": 5,
   "example": "outcome-3x: GTA 6 COIN",
-  "last_seen": "2026-08-30T12:11:52+00:00"
+  "last_seen": "2026-09-01T08:09:09+00:00",
+  "keys": [
+   "GTA 6 COIN"
+  ]
  },
  "outcome-x:gz": {
   "first_seen": "2026-08-30T08:09:25+00:00",
@@ -1178,8 +1225,12 @@
  },
  "outcome-x:rst": {
   "first_seen": "2026-08-30T08:09:26+00:00",
-  "count": 1,
-  "example": "outcome-3x: RST"
+  "count": 2,
+  "example": "outcome-3x: RST",
+  "last_seen": "2026-09-01T06:09:28+00:00",
+  "keys": [
+   "RST"
+  ]
  },
  "outcome-x:namaste": {
   "first_seen": "2026-08-30T08:09:26+00:00",
@@ -1486,8 +1537,12 @@
  },
  "scanner-hit:lqx": {
   "first_seen": "2026-08-30T22:10:45+00:00",
-  "count": 1,
-  "example": "scanner-hit: LQX"
+  "count": 2,
+  "example": "scanner-hit: LQX",
+  "last_seen": "2026-09-02T04:09:28+00:00",
+  "keys": [
+   "LQX"
+  ]
  },
  "scanner-hit:owlin": {
   "first_seen": "2026-08-30T22:10:45+00:00",
@@ -1522,8 +1577,12 @@
  },
  "outcome-x:tap": {
   "first_seen": "2026-08-31T00:12:22+00:00",
-  "count": 1,
-  "example": "outcome-3x: tap"
+  "count": 2,
+  "example": "outcome-3x: tap",
+  "last_seen": "2026-08-31T05:10:11+00:00",
+  "keys": [
+   "tap"
+  ]
  },
  "scanner-hit:coffee": {
   "first_seen": "2026-08-31T01:08:42+00:00",
@@ -1542,13 +1601,21 @@
  },
  "outcome-x:apec": {
   "first_seen": "2026-08-31T01:11:02+00:00",
-  "count": 1,
-  "example": "outcome-3x: APEC"
+  "count": 3,
+  "example": "outcome-3x: APEC",
+  "last_seen": "2026-09-01T05:09:41+00:00",
+  "keys": [
+   "APEC"
+  ]
  },
  "outcome-x:buddy": {
   "first_seen": "2026-08-31T01:11:03+00:00",
-  "count": 1,
-  "example": "outcome-3x: BUDDY"
+  "count": 2,
+  "example": "outcome-3x: BUDDY",
+  "last_seen": "2026-08-31T06:08:42+00:00",
+  "keys": [
+   "BUDDY"
+  ]
  },
  "outcome-x:mike": {
   "first_seen": "2026-08-31T01:11:12+00:00",
@@ -1562,8 +1629,12 @@
  },
  "outcome-x:macroduck": {
   "first_seen": "2026-08-31T02:08:00+00:00",
-  "count": 1,
-  "example": "outcome-3x: MACRODUCK"
+  "count": 3,
+  "example": "outcome-3x: MACRODUCK",
+  "last_seen": "2026-08-31T12:09:15+00:00",
+  "keys": [
+   "MACRODUCK"
+  ]
  },
  "scanner-hit:meowdani": {
   "first_seen": "2026-08-31T04:10:17+00:00",
@@ -1572,12 +1643,1086 @@
  },
  "scanner-hit:hope": {
   "first_seen": "2026-08-31T04:10:18+00:00",
-  "count": 1,
-  "example": "scanner-hit: HOPE"
+  "count": 2,
+  "example": "scanner-hit: HOPE",
+  "last_seen": "2026-09-01T12:09:40+00:00",
+  "keys": [
+   "HOPE"
+  ]
  },
  "outcome-x:bwidge": {
   "first_seen": "2026-08-31T04:10:24+00:00",
   "count": 1,
   "example": "outcome-3x: BWIDGE"
+ },
+ "scanner-hit:djt": {
+  "first_seen": "2026-08-31T05:09:43+00:00",
+  "count": 1,
+  "example": "scanner-hit: DJT",
+  "keys": [
+   "DJT"
+  ]
+ },
+ "scanner-hit:shit": {
+  "first_seen": "2026-08-31T05:09:47+00:00",
+  "count": 1,
+  "example": "scanner-hit: SHIT",
+  "keys": [
+   "SHIT"
+  ]
+ },
+ "scanner-hit:macroduck": {
+  "first_seen": "2026-08-31T05:09:52+00:00",
+  "count": 2,
+  "example": "scanner-hit: MACRODUCK",
+  "keys": [
+   "MACRODUCK"
+  ],
+  "last_seen": "2026-09-01T15:09:55+00:00"
+ },
+ "outcome-x:teletomoon": {
+  "first_seen": "2026-08-31T05:09:59+00:00",
+  "count": 1,
+  "example": "outcome-3x: TELETOMOON",
+  "keys": [
+   "TELETOMOON"
+  ]
+ },
+ "outcome-x:fdc": {
+  "first_seen": "2026-08-31T05:10:05+00:00",
+  "count": 1,
+  "example": "outcome-3x: FDC",
+  "keys": [
+   "FDC"
+  ]
+ },
+ "outcome-x:u-88d612": {
+  "first_seen": "2026-08-31T06:08:32+00:00",
+  "count": 2,
+  "example": "outcome-3x: \u5b59\u5b87\u6668",
+  "keys": [
+   "\u5b59\u5b87\u6668"
+  ],
+  "last_seen": "2026-08-31T11:10:07+00:00"
+ },
+ "outcome-x:catus": {
+  "first_seen": "2026-08-31T06:08:45+00:00",
+  "count": 2,
+  "example": "outcome-3x: Catus",
+  "keys": [
+   "Catus"
+  ],
+  "last_seen": "2026-08-31T11:10:07+00:00"
+ },
+ "scanner-hit:trguys": {
+  "first_seen": "2026-08-31T07:09:47+00:00",
+  "count": 1,
+  "example": "scanner-hit: TRGuys",
+  "keys": [
+   "TRGuys"
+  ]
+ },
+ "scanner-hit:sampurna": {
+  "first_seen": "2026-08-31T07:10:01+00:00",
+  "count": 1,
+  "example": "scanner-hit: Sampurna",
+  "keys": [
+   "Sampurna"
+  ]
+ },
+ "scanner-hit:xrphai": {
+  "first_seen": "2026-08-31T07:10:06+00:00",
+  "count": 1,
+  "example": "scanner-hit: XRPHAI",
+  "keys": [
+   "XRPHAI"
+  ]
+ },
+ "scanner-hit:home": {
+  "first_seen": "2026-08-31T07:10:14+00:00",
+  "count": 1,
+  "example": "scanner-hit: HOME",
+  "keys": [
+   "HOME"
+  ]
+ },
+ "scanner-hit:wwr": {
+  "first_seen": "2026-08-31T07:10:20+00:00",
+  "count": 2,
+  "example": "scanner-hit: WWR",
+  "keys": [
+   "WWR"
+  ],
+  "last_seen": "2026-09-01T21:09:22+00:00"
+ },
+ "scanner-hit:qsb": {
+  "first_seen": "2026-08-31T07:10:25+00:00",
+  "count": 1,
+  "example": "scanner-hit: QSB",
+  "keys": [
+   "QSB"
+  ]
+ },
+ "scanner-hit:max": {
+  "first_seen": "2026-08-31T07:10:31+00:00",
+  "count": 1,
+  "example": "scanner-hit: Max",
+  "keys": [
+   "Max"
+  ]
+ },
+ "scanner-hit:psyoped": {
+  "first_seen": "2026-08-31T07:10:36+00:00",
+  "count": 1,
+  "example": "scanner-hit: PSYOPED",
+  "keys": [
+   "PSYOPED"
+  ]
+ },
+ "outcome-x:djt": {
+  "first_seen": "2026-08-31T07:10:55+00:00",
+  "count": 2,
+  "example": "outcome-3x: DJT",
+  "keys": [
+   "DJT"
+  ],
+  "last_seen": "2026-08-31T12:09:07+00:00"
+ },
+ "outcome-x:cjk-sunyuchen": {
+  "first_seen": "2026-08-31T07:10:56+00:00",
+  "count": 1,
+  "example": "outcome-3x: CJK-sunyuchen",
+  "keys": [
+   "CJK-sunyuchen"
+  ]
+ },
+ "outcome-x:cjk-boyfriend-sunyuchen": {
+  "first_seen": "2026-08-31T07:11:03+00:00",
+  "count": 1,
+  "example": "outcome-3x: CJK-boyfriend-sunyuchen",
+  "keys": [
+   "CJK-boyfriend-sunyuchen"
+  ]
+ },
+ "scanner-hit:rabbit": {
+  "first_seen": "2026-08-31T08:09:12+00:00",
+  "count": 1,
+  "example": "scanner-hit: Rabbit",
+  "keys": [
+   "Rabbit"
+  ]
+ },
+ "scanner-hit:aum": {
+  "first_seen": "2026-08-31T08:09:16+00:00",
+  "count": 1,
+  "example": "scanner-hit: AUM0",
+  "keys": [
+   "AUM0"
+  ]
+ },
+ "scanner-hit:life": {
+  "first_seen": "2026-08-31T08:09:20+00:00",
+  "count": 1,
+  "example": "scanner-hit: LIFE",
+  "keys": [
+   "LIFE"
+  ]
+ },
+ "outcome-x:usws": {
+  "first_seen": "2026-08-31T08:09:29+00:00",
+  "count": 1,
+  "example": "outcome-3x: USWS",
+  "keys": [
+   "USWS"
+  ]
+ },
+ "scanner-hit:hood": {
+  "first_seen": "2026-08-31T09:09:19+00:00",
+  "count": 1,
+  "example": "scanner-hit: HOOD",
+  "keys": [
+   "HOOD"
+  ]
+ },
+ "scanner-hit:starcas": {
+  "first_seen": "2026-08-31T09:09:24+00:00",
+  "count": 1,
+  "example": "scanner-hit: Starcas",
+  "keys": [
+   "Starcas"
+  ]
+ },
+ "scanner-hit:cap": {
+  "first_seen": "2026-08-31T09:09:42+00:00",
+  "count": 1,
+  "example": "scanner-hit: Cap",
+  "keys": [
+   "Cap"
+  ]
+ },
+ "scanner-hit:trenchape": {
+  "first_seen": "2026-08-31T09:09:48+00:00",
+  "count": 1,
+  "example": "scanner-hit: TRENCHAPE",
+  "keys": [
+   "TRENCHAPE"
+  ]
+ },
+ "scanner-hit:pixeldog": {
+  "first_seen": "2026-08-31T09:09:53+00:00",
+  "count": 1,
+  "example": "scanner-hit: pixeldog",
+  "keys": [
+   "pixeldog"
+  ]
+ },
+ "scanner-hit:u-202668": {
+  "first_seen": "2026-08-31T09:09:58+00:00",
+  "count": 1,
+  "example": "scanner-hit: \u6076\u517d",
+  "keys": [
+   "\u6076\u517d"
+  ]
+ },
+ "scanner-hit:mimikyu": {
+  "first_seen": "2026-08-31T09:10:03+00:00",
+  "count": 2,
+  "example": "scanner-hit: Mimikyu",
+  "keys": [
+   "Mimikyu"
+  ],
+  "last_seen": "2026-08-31T10:09:43+00:00"
+ },
+ "scanner-hit:tfone": {
+  "first_seen": "2026-08-31T09:10:09+00:00",
+  "count": 1,
+  "example": "scanner-hit: tfone",
+  "keys": [
+   "tfone"
+  ]
+ },
+ "scanner-hit:froggy": {
+  "first_seen": "2026-08-31T10:09:28+00:00",
+  "count": 1,
+  "example": "scanner-hit: FROGGY",
+  "keys": [
+   "FROGGY"
+  ]
+ },
+ "scanner-hit:motion": {
+  "first_seen": "2026-08-31T10:09:43+00:00",
+  "count": 1,
+  "example": "scanner-hit: motion",
+  "keys": [
+   "motion"
+  ]
+ },
+ "scanner-hit:s-new": {
+  "first_seen": "2026-08-31T10:09:44+00:00",
+  "count": 1,
+  "example": "scanner-hit: S'NEW",
+  "keys": [
+   "S'NEW"
+  ]
+ },
+ "scanner-hit:aleiah": {
+  "first_seen": "2026-08-31T10:09:45+00:00",
+  "count": 1,
+  "example": "scanner-hit: ALEIAH",
+  "keys": [
+   "ALEIAH"
+  ]
+ },
+ "scanner-hit:usms": {
+  "first_seen": "2026-08-31T10:09:45+00:00",
+  "count": 1,
+  "example": "scanner-hit: USMS",
+  "keys": [
+   "USMS"
+  ]
+ },
+ "scanner-hit:course": {
+  "first_seen": "2026-08-31T11:09:49+00:00",
+  "count": 1,
+  "example": "scanner-hit: Course",
+  "keys": [
+   "Course"
+  ]
+ },
+ "scanner-hit:dc": {
+  "first_seen": "2026-08-31T11:09:49+00:00",
+  "count": 1,
+  "example": "scanner-hit: DC",
+  "keys": [
+   "DC"
+  ]
+ },
+ "scanner-hit:joke": {
+  "first_seen": "2026-08-31T11:09:50+00:00",
+  "count": 1,
+  "example": "scanner-hit: JOKE",
+  "keys": [
+   "JOKE"
+  ]
+ },
+ "scanner-hit:snoofi": {
+  "first_seen": "2026-08-31T11:09:51+00:00",
+  "count": 1,
+  "example": "scanner-hit: SNOOFI",
+  "keys": [
+   "SNOOFI"
+  ]
+ },
+ "scanner-hit:u-464d2f": {
+  "first_seen": "2026-08-31T11:09:51+00:00",
+  "count": 1,
+  "example": "scanner-hit: \u9ec4\u679c\u4e4b\u5e74",
+  "keys": [
+   "\u9ec4\u679c\u4e4b\u5e74"
+  ]
+ },
+ "scanner-hit:whitewhale": {
+  "first_seen": "2026-08-31T11:10:06+00:00",
+  "count": 1,
+  "example": "scanner-hit: WhiteWhale",
+  "keys": [
+   "WhiteWhale"
+  ]
+ },
+ "scanner-hit:wen": {
+  "first_seen": "2026-08-31T11:10:06+00:00",
+  "count": 1,
+  "example": "scanner-hit: WEN",
+  "keys": [
+   "WEN"
+  ]
+ },
+ "outcome-x:hammer": {
+  "first_seen": "2026-08-31T12:09:29+00:00",
+  "count": 1,
+  "example": "outcome-3x: hammer",
+  "keys": [
+   "hammer"
+  ]
+ },
+ "scanner-hit:heehawsem": {
+  "first_seen": "2026-08-31T13:08:54+00:00",
+  "count": 1,
+  "example": "scanner-hit: HeeHawSem",
+  "keys": [
+   "HeeHawSem"
+  ]
+ },
+ "scanner-hit:topdog": {
+  "first_seen": "2026-08-31T13:08:59+00:00",
+  "count": 2,
+  "example": "scanner-hit: topdog",
+  "keys": [
+   "topdog",
+   "TOPDOG"
+  ],
+  "last_seen": "2026-08-31T13:09:08+00:00"
+ },
+ "scanner-hit:chimp": {
+  "first_seen": "2026-08-31T13:09:14+00:00",
+  "count": 1,
+  "example": "scanner-hit: chimp",
+  "keys": [
+   "chimp"
+  ]
+ },
+ "scanner-hit:trump": {
+  "first_seen": "2026-08-31T13:09:19+00:00",
+  "count": 1,
+  "example": "scanner-hit: TRUMP",
+  "keys": [
+   "TRUMP"
+  ]
+ },
+ "scanner-hit:xcat": {
+  "first_seen": "2026-09-01T04:09:06+00:00",
+  "count": 2,
+  "example": "scanner-hit: XCAT",
+  "keys": [
+   "XCAT"
+  ],
+  "last_seen": "2026-09-01T18:10:06+00:00"
+ },
+ "scanner-hit:grokcat": {
+  "first_seen": "2026-09-01T04:09:12+00:00",
+  "count": 1,
+  "example": "scanner-hit: GROKCAT",
+  "keys": [
+   "GROKCAT"
+  ]
+ },
+ "scanner-hit:goaf": {
+  "first_seen": "2026-09-01T04:09:16+00:00",
+  "count": 1,
+  "example": "scanner-hit: GOAF",
+  "keys": [
+   "GOAF"
+  ]
+ },
+ "scanner-hit:nekomaru": {
+  "first_seen": "2026-09-01T04:09:22+00:00",
+  "count": 1,
+  "example": "scanner-hit: nekomaru",
+  "keys": [
+   "nekomaru"
+  ]
+ },
+ "scanner-hit:kk": {
+  "first_seen": "2026-09-01T04:09:27+00:00",
+  "count": 2,
+  "example": "scanner-hit: 10KK",
+  "keys": [
+   "10KK"
+  ],
+  "last_seen": "2026-09-01T13:10:34+00:00"
+ },
+ "outcome-x:nukeiran": {
+  "first_seen": "2026-09-01T04:09:32+00:00",
+  "count": 3,
+  "example": "outcome-3x: $NUKEIRAN",
+  "keys": [
+   "$NUKEIRAN"
+  ],
+  "last_seen": "2026-09-02T03:10:21+00:00"
+ },
+ "scanner-hit:minilyst": {
+  "first_seen": "2026-09-01T05:09:08+00:00",
+  "count": 1,
+  "example": "scanner-hit: minilyst",
+  "keys": [
+   "minilyst"
+  ]
+ },
+ "scanner-hit:oomf": {
+  "first_seen": "2026-09-01T05:09:12+00:00",
+  "count": 3,
+  "example": "scanner-hit: oomf",
+  "keys": [
+   "oomf"
+  ],
+  "last_seen": "2026-09-01T05:09:30+00:00"
+ },
+ "scanner-hit:butthole": {
+  "first_seen": "2026-09-01T05:09:16+00:00",
+  "count": 1,
+  "example": "scanner-hit: Butthole",
+  "keys": [
+   "Butthole"
+  ]
+ },
+ "scanner-hit:pup": {
+  "first_seen": "2026-09-01T05:09:21+00:00",
+  "count": 1,
+  "example": "scanner-hit: PUP",
+  "keys": [
+   "PUP"
+  ]
+ },
+ "outcome-x:xcat": {
+  "first_seen": "2026-09-01T05:09:41+00:00",
+  "count": 2,
+  "example": "outcome-3x: XCAT",
+  "keys": [
+   "XCAT",
+   "xcat"
+  ],
+  "last_seen": "2026-09-02T02:09:14+00:00"
+ },
+ "scanner-hit:callout": {
+  "first_seen": "2026-09-01T06:08:37+00:00",
+  "count": 1,
+  "example": "scanner-hit: CALLOUT",
+  "keys": [
+   "CALLOUT"
+  ]
+ },
+ "scanner-hit:micro": {
+  "first_seen": "2026-09-01T06:08:55+00:00",
+  "count": 1,
+  "example": "scanner-hit: MICRO",
+  "keys": [
+   "MICRO"
+  ]
+ },
+ "scanner-hit:mecha": {
+  "first_seen": "2026-09-01T06:08:56+00:00",
+  "count": 1,
+  "example": "scanner-hit: MECHA",
+  "keys": [
+   "MECHA"
+  ]
+ },
+ "scanner-hit:robbie": {
+  "first_seen": "2026-09-01T06:09:04+00:00",
+  "count": 1,
+  "example": "scanner-hit: ROBBIE",
+  "keys": [
+   "ROBBIE"
+  ]
+ },
+ "scanner-hit:wife": {
+  "first_seen": "2026-09-01T06:09:04+00:00",
+  "count": 1,
+  "example": "scanner-hit: WIFE",
+  "keys": [
+   "WIFE"
+  ]
+ },
+ "outcome-x:prostate": {
+  "first_seen": "2026-09-01T06:09:28+00:00",
+  "count": 1,
+  "example": "outcome-3x: PROSTATE",
+  "keys": [
+   "PROSTATE"
+  ]
+ },
+ "scanner-hit:elon": {
+  "first_seen": "2026-09-01T07:08:50+00:00",
+  "count": 2,
+  "example": "scanner-hit: ELON",
+  "keys": [
+   "ELON"
+  ],
+  "last_seen": "2026-09-01T13:10:30+00:00"
+ },
+ "scanner-hit:berwick": {
+  "first_seen": "2026-09-01T07:08:50+00:00",
+  "count": 1,
+  "example": "scanner-hit: BERWICK",
+  "keys": [
+   "BERWICK"
+  ]
+ },
+ "scanner-hit:u-57b2de": {
+  "first_seen": "2026-09-01T07:08:51+00:00",
+  "count": 1,
+  "example": "scanner-hit: \u5bcc\u8d35\u72f8\u732b",
+  "keys": [
+   "\u5bcc\u8d35\u72f8\u732b"
+  ]
+ },
+ "scanner-hit:caveman": {
+  "first_seen": "2026-09-01T07:08:51+00:00",
+  "count": 1,
+  "example": "scanner-hit: CAVEMAN",
+  "keys": [
+   "CAVEMAN"
+  ]
+ },
+ "outcome-x:callout": {
+  "first_seen": "2026-09-01T07:09:00+00:00",
+  "count": 1,
+  "example": "outcome-3x: CALLOUT",
+  "keys": [
+   "CALLOUT"
+  ]
+ },
+ "scanner-hit:gpro": {
+  "first_seen": "2026-09-01T08:08:49+00:00",
+  "count": 1,
+  "example": "scanner-hit: GPRO",
+  "keys": [
+   "GPRO"
+  ]
+ },
+ "scanner-hit:muhammad": {
+  "first_seen": "2026-09-01T08:08:56+00:00",
+  "count": 1,
+  "example": "scanner-hit: MUHAMMAD",
+  "keys": [
+   "MUHAMMAD"
+  ]
+ },
+ "scanner-hit:cuban": {
+  "first_seen": "2026-09-01T08:09:02+00:00",
+  "count": 1,
+  "example": "scanner-hit: CUBAN",
+  "keys": [
+   "CUBAN"
+  ]
+ },
+ "outcome-x:poly": {
+  "first_seen": "2026-09-01T08:09:09+00:00",
+  "count": 1,
+  "example": "outcome-3x: POLY",
+  "keys": [
+   "POLY"
+  ]
+ },
+ "outcome-x:elon": {
+  "first_seen": "2026-09-01T08:09:15+00:00",
+  "count": 1,
+  "example": "outcome-3x: ELON",
+  "keys": [
+   "ELON"
+  ]
+ },
+ "scanner-hit:u-8d79c6": {
+  "first_seen": "2026-09-01T09:09:17+00:00",
+  "count": 1,
+  "example": "scanner-hit: \u5f69\u793c\u5e01",
+  "keys": [
+   "\u5f69\u793c\u5e01"
+  ]
+ },
+ "scanner-hit:deepseekai": {
+  "first_seen": "2026-09-01T09:09:24+00:00",
+  "count": 1,
+  "example": "scanner-hit: DeepSeekAI",
+  "keys": [
+   "DeepSeekAI"
+  ]
+ },
+ "scanner-hit:aapl": {
+  "first_seen": "2026-09-01T09:09:30+00:00",
+  "count": 2,
+  "example": "scanner-hit: AAPL",
+  "keys": [
+   "AAPL"
+  ],
+  "last_seen": "2026-09-01T10:09:25+00:00"
+ },
+ "scanner-hit:fable": {
+  "first_seen": "2026-09-01T09:09:38+00:00",
+  "count": 1,
+  "example": "scanner-hit: fable",
+  "keys": [
+   "fable"
+  ]
+ },
+ "scanner-hit:angrychicken": {
+  "first_seen": "2026-09-01T09:09:47+00:00",
+  "count": 1,
+  "example": "scanner-hit: ANGRYCHICKEN",
+  "keys": [
+   "ANGRYCHICKEN"
+  ]
+ },
+ "scanner-hit:cto": {
+  "first_seen": "2026-09-01T09:09:47+00:00",
+  "count": 1,
+  "example": "scanner-hit: CTO",
+  "keys": [
+   "CTO"
+  ]
+ },
+ "outcome-x:gpro": {
+  "first_seen": "2026-09-01T09:10:09+00:00",
+  "count": 2,
+  "example": "outcome-3x: GPRO",
+  "keys": [
+   "GPRO"
+  ],
+  "last_seen": "2026-09-01T14:09:27+00:00"
+ },
+ "scanner-hit:lilmiss": {
+  "first_seen": "2026-09-01T10:09:11+00:00",
+  "count": 1,
+  "example": "scanner-hit: LilMiss",
+  "keys": [
+   "LilMiss"
+  ]
+ },
+ "scanner-hit:cia": {
+  "first_seen": "2026-09-01T10:09:15+00:00",
+  "count": 1,
+  "example": "scanner-hit: CIA",
+  "keys": [
+   "CIA"
+  ]
+ },
+ "scanner-hit:tesla": {
+  "first_seen": "2026-09-01T10:09:20+00:00",
+  "count": 2,
+  "example": "scanner-hit: Tesla",
+  "keys": [
+   "Tesla"
+  ],
+  "last_seen": "2026-09-02T04:09:19+00:00"
+ },
+ "scanner-hit:mobi": {
+  "first_seen": "2026-09-01T11:09:06+00:00",
+  "count": 1,
+  "example": "scanner-hit: Mobi",
+  "keys": [
+   "Mobi"
+  ]
+ },
+ "scanner-hit:u-07fc28": {
+  "first_seen": "2026-09-01T11:09:12+00:00",
+  "count": 1,
+  "example": "scanner-hit: \u77f3\u5934\u8bb0",
+  "keys": [
+   "\u77f3\u5934\u8bb0"
+  ]
+ },
+ "scanner-hit:grokpro": {
+  "first_seen": "2026-09-01T11:09:22+00:00",
+  "count": 1,
+  "example": "scanner-hit: GrokPro",
+  "keys": [
+   "GrokPro"
+  ]
+ },
+ "scanner-hit:arrow": {
+  "first_seen": "2026-09-01T11:09:27+00:00",
+  "count": 1,
+  "example": "scanner-hit: ARROW",
+  "keys": [
+   "ARROW"
+  ]
+ },
+ "outcome-x:deepseekai": {
+  "first_seen": "2026-09-01T11:09:46+00:00",
+  "count": 1,
+  "example": "outcome-3x: DeepSeekAI",
+  "keys": [
+   "DeepSeekAI"
+  ]
+ },
+ "outcome-x:cto": {
+  "first_seen": "2026-09-01T11:09:52+00:00",
+  "count": 1,
+  "example": "outcome-3x: CTO",
+  "keys": [
+   "CTO"
+  ]
+ },
+ "scanner-hit:u-baf97c": {
+  "first_seen": "2026-09-01T12:09:34+00:00",
+  "count": 1,
+  "example": "scanner-hit: \u666f\u751c",
+  "keys": [
+   "\u666f\u751c"
+  ]
+ },
+ "outcome-x:micro": {
+  "first_seen": "2026-09-01T12:09:55+00:00",
+  "count": 1,
+  "example": "outcome-3x: MICRO",
+  "keys": [
+   "MICRO"
+  ]
+ },
+ "scanner-hit:krabby": {
+  "first_seen": "2026-09-01T13:10:14+00:00",
+  "count": 1,
+  "example": "scanner-hit: KRABBY",
+  "keys": [
+   "KRABBY"
+  ]
+ },
+ "scanner-hit:otc": {
+  "first_seen": "2026-09-01T13:10:19+00:00",
+  "count": 1,
+  "example": "scanner-hit: OTC",
+  "keys": [
+   "OTC"
+  ]
+ },
+ "scanner-hit:pfp": {
+  "first_seen": "2026-09-01T13:10:25+00:00",
+  "count": 1,
+  "example": "scanner-hit: PFP",
+  "keys": [
+   "PFP"
+  ]
+ },
+ "outcome-x:u-d703c2": {
+  "first_seen": "2026-09-01T13:10:38+00:00",
+  "count": 2,
+  "example": "outcome-3x: \u725b\u56db",
+  "keys": [
+   "\u725b\u56db"
+  ],
+  "last_seen": "2026-09-01T18:10:31+00:00"
+ },
+ "scanner-hit:pokemon": {
+  "first_seen": "2026-09-01T15:10:00+00:00",
+  "count": 1,
+  "example": "scanner-hit: POKEMON",
+  "keys": [
+   "POKEMON"
+  ]
+ },
+ "scanner-hit:market": {
+  "first_seen": "2026-09-01T15:10:05+00:00",
+  "count": 1,
+  "example": "scanner-hit: MARKET",
+  "keys": [
+   "MARKET"
+  ]
+ },
+ "scanner-hit:solami": {
+  "first_seen": "2026-09-01T15:10:09+00:00",
+  "count": 1,
+  "example": "scanner-hit: SOLAMI",
+  "keys": [
+   "SOLAMI"
+  ]
+ },
+ "scanner-hit:hackooor": {
+  "first_seen": "2026-09-01T15:10:15+00:00",
+  "count": 1,
+  "example": "scanner-hit: Hackooor",
+  "keys": [
+   "Hackooor"
+  ]
+ },
+ "outcome-x:trumpdrop": {
+  "first_seen": "2026-09-01T15:10:27+00:00",
+  "count": 2,
+  "example": "outcome-3x: TRUMPDROP",
+  "keys": [
+   "TRUMPDROP"
+  ],
+  "last_seen": "2026-09-01T20:08:29+00:00"
+ },
+ "scanner-hit:gpons": {
+  "first_seen": "2026-09-01T16:09:54+00:00",
+  "count": 1,
+  "example": "scanner-hit: GPONS",
+  "keys": [
+   "GPONS"
+  ]
+ },
+ "scanner-hit:care": {
+  "first_seen": "2026-09-01T16:10:07+00:00",
+  "count": 1,
+  "example": "scanner-hit: CARE",
+  "keys": [
+   "CARE"
+  ]
+ },
+ "outcome-x:hackooor": {
+  "first_seen": "2026-09-01T17:09:08+00:00",
+  "count": 1,
+  "example": "outcome-3x: Hackooor",
+  "keys": [
+   "Hackooor"
+  ]
+ },
+ "scanner-hit:opensol": {
+  "first_seen": "2026-09-01T18:09:58+00:00",
+  "count": 1,
+  "example": "scanner-hit: OpenSOL",
+  "keys": [
+   "OpenSOL"
+  ]
+ },
+ "scanner-hit:artificial": {
+  "first_seen": "2026-09-01T18:10:14+00:00",
+  "count": 1,
+  "example": "scanner-hit: Artificial",
+  "keys": [
+   "Artificial"
+  ]
+ },
+ "outcome-x:care": {
+  "first_seen": "2026-09-01T18:10:23+00:00",
+  "count": 2,
+  "example": "outcome-3x: CARE",
+  "keys": [
+   "CARE"
+  ],
+  "last_seen": "2026-09-01T23:08:18+00:00"
+ },
+ "outcome-x:dickbutt": {
+  "first_seen": "2026-09-01T19:08:40+00:00",
+  "count": 1,
+  "example": "outcome-3x: DICKBUTT",
+  "keys": [
+   "DICKBUTT"
+  ]
+ },
+ "outcome-x:pfp": {
+  "first_seen": "2026-09-01T20:08:33+00:00",
+  "count": 1,
+  "example": "outcome-3x: PFP",
+  "keys": [
+   "PFP"
+  ]
+ },
+ "outcome-x:flork": {
+  "first_seen": "2026-09-01T20:08:37+00:00",
+  "count": 1,
+  "example": "outcome-3x: FLORK",
+  "keys": [
+   "FLORK"
+  ]
+ },
+ "outcome-x:memeployed": {
+  "first_seen": "2026-09-01T20:08:41+00:00",
+  "count": 1,
+  "example": "outcome-3x: memeployed",
+  "keys": [
+   "memeployed"
+  ]
+ },
+ "scanner-hit:dancedog": {
+  "first_seen": "2026-09-01T21:08:59+00:00",
+  "count": 1,
+  "example": "scanner-hit: DANCEDOG",
+  "keys": [
+   "DANCEDOG"
+  ]
+ },
+ "scanner-hit:callcat": {
+  "first_seen": "2026-09-01T21:09:04+00:00",
+  "count": 1,
+  "example": "scanner-hit: CALLCAT",
+  "keys": [
+   "CALLCAT"
+  ]
+ },
+ "scanner-hit:snp": {
+  "first_seen": "2026-09-01T21:09:11+00:00",
+  "count": 1,
+  "example": "scanner-hit: SNP500",
+  "keys": [
+   "SNP500"
+  ]
+ },
+ "scanner-hit:jew": {
+  "first_seen": "2026-09-01T21:09:15+00:00",
+  "count": 1,
+  "example": "scanner-hit: Jew",
+  "keys": [
+   "Jew"
+  ]
+ },
+ "outcome-x:fit": {
+  "first_seen": "2026-09-01T21:09:43+00:00",
+  "count": 2,
+  "example": "outcome-3x: Fit",
+  "keys": [
+   "Fit"
+  ],
+  "last_seen": "2026-09-02T02:09:21+00:00"
+ },
+ "outcome-x:reb": {
+  "first_seen": "2026-09-01T21:09:51+00:00",
+  "count": 1,
+  "example": "outcome-3x: REB",
+  "keys": [
+   "REB"
+  ]
+ },
+ "outcome-x:soldog": {
+  "first_seen": "2026-09-01T21:09:57+00:00",
+  "count": 1,
+  "example": "outcome-3x: SOLDOG",
+  "keys": [
+   "SOLDOG"
+  ]
+ },
+ "outcome-x:babyai": {
+  "first_seen": "2026-09-01T23:08:13+00:00",
+  "count": 1,
+  "example": "outcome-3x: BABYAI",
+  "keys": [
+   "BABYAI"
+  ]
+ },
+ "scanner-hit:ninja": {
+  "first_seen": "2026-09-02T00:08:41+00:00",
+  "count": 1,
+  "example": "scanner-hit: NINJA",
+  "keys": [
+   "NINJA"
+  ]
+ },
+ "scanner-hit:potato": {
+  "first_seen": "2026-09-02T00:08:45+00:00",
+  "count": 1,
+  "example": "scanner-hit: potato",
+  "keys": [
+   "potato"
+  ]
+ },
+ "scanner-hit:gronk": {
+  "first_seen": "2026-09-02T00:08:49+00:00",
+  "count": 1,
+  "example": "scanner-hit: Gronk",
+  "keys": [
+   "Gronk"
+  ]
+ },
+ "scanner-hit:ok": {
+  "first_seen": "2026-09-02T02:09:09+00:00",
+  "count": 1,
+  "example": "scanner-hit: ok",
+  "keys": [
+   "ok"
+  ]
+ },
+ "outcome-x:u-01016f": {
+  "first_seen": "2026-09-02T02:09:20+00:00",
+  "count": 1,
+  "example": "outcome-3x: \u5b59\u5272\u81ea\u4f20",
+  "keys": [
+   "\u5b59\u5272\u81ea\u4f20"
+  ]
+ },
+ "scanner-hit:nick-woodman": {
+  "first_seen": "2026-09-02T03:09:45+00:00",
+  "count": 1,
+  "example": "scanner-hit: Nick Woodman",
+  "keys": [
+   "Nick Woodman"
+  ]
+ },
+ "scanner-hit:pumpape": {
+  "first_seen": "2026-09-02T03:09:50+00:00",
+  "count": 1,
+  "example": "scanner-hit: Pumpape",
+  "keys": [
+   "Pumpape"
+  ]
+ },
+ "outcome-x:sink": {
+  "first_seen": "2026-09-02T03:10:05+00:00",
+  "count": 1,
+  "example": "outcome-3x: SINK",
+  "keys": [
+   "SINK"
+  ]
+ },
+ "outcome-x:snp": {
+  "first_seen": "2026-09-02T03:10:10+00:00",
+  "count": 1,
+  "example": "outcome-3x: SNP500",
+  "keys": [
+   "SNP500"
+  ]
+ },
+ "outcome-x:jew": {
+  "first_seen": "2026-09-02T03:10:16+00:00",
+  "count": 1,
+  "example": "outcome-3x: Jew",
+  "keys": [
+   "Jew"
+  ]
+ },
+ "scanner-hit:dog": {
+  "first_seen": "2026-09-02T04:09:15+00:00",
+  "count": 1,
+  "example": "scanner-hit: dog",
+  "keys": [
+   "dog"
+  ]
+ },
+ "outcome-x:normie": {
+  "first_seen": "2026-09-02T04:09:39+00:00",
+  "count": 1,
+  "example": "outcome-3x: NORMIE",
+  "keys": [
+   "NORMIE"
+  ]
  }
 }

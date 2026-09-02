@@ -18,6 +18,7 @@ SQLite or pandas trivially for analysis.
 import json, os, time, glob, urllib.request, datetime as dt
 
 import config  # noqa: F401 - importing this loads .env
+import milestones
 from scanner import CFG as _SCAN_CFG
 
 # --------------------------------------------------------------------------
@@ -337,7 +338,7 @@ def scored_pairs():
 
 
 def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
-                   base_price, base_liq, symbol=""):
+                   base_price, base_liq, symbol="", token=""):
     mult   = (price / base_price) if (base_price and price) else None
     liqchg = ((liq - base_liq) / base_liq * 100) if (base_liq and liq is not None) else None
     if liq is None:
@@ -356,6 +357,17 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
            "realizable": ok, "unrealizable_reason": why}
     _append(OUT, obj)                      # system of record, first
     _push("record_outcomes", [obj])        # best effort, never raises
+
+    # Milestone crossings claim themselves, atomically. Nothing downstream may
+    # decide it is "the first" by inspecting history and hoping - on 2026-09-01
+    # two passes each announced the first realizable 3x when 82 were already on
+    # record. A claim is an O_EXCL file create; the OS picks the winner.
+    try:
+        obj["new_milestones"] = milestones.check_outcome(
+            token, symbol, mult, ok, mcap=None)
+    except Exception as e:
+        obj["new_milestones"] = []
+        print(f"    milestone check failed (non-fatal): {type(e).__name__}")
     return status, mult
 
 

@@ -24,7 +24,7 @@ digits so "scored 92" and "scored 87" collapse together.
     python findings.py --today          # print today's file
     python findings.py --classes        # what has already pinged
 """
-import hashlib, json, os, re, sys, unicodedata, datetime as dt
+import hashlib, json, os, re, sys, time, unicodedata, datetime as dt
 
 import config  # loads .env
 import notify
@@ -39,6 +39,43 @@ SEEN = os.path.join(DIR, "_seen.json")
 # that bucket swallowed the best outcome of 2026-08-30 - a 56.5x, alive, with
 # liquidity up 658% - which never pinged because something else had already
 # claimed "unknown" days earlier.
+# Discord budget per rolling hour.
+#
+# The 85 threshold fires 3-9 hits a pass and one hour on 2026-09-01 sent twelve
+# pings. Frank rejected hourly noise explicitly and it crept back. Fixing
+# _slug makes this worse, not better: names that were silently absorbed into
+# the "unknown" bucket now each announce themselves.
+#
+# So routine findings share an hourly budget and the rest go to the file, which
+# is where the full record has always lived. ALWAYS_PING classes ignore the
+# budget entirely - a collector that produced nothing, or a dedupe key that is
+# eating alerts, must never be rate-limited into silence.
+PING_BUDGET_PER_HOUR = 4
+BUDGET_FILE = os.path.join(DIR, "_ping_budget.json")
+
+
+def _budget_spend():
+    """(allowed, spent, remaining) for the current rolling hour."""
+    now = time.time()
+    try:
+        with open(BUDGET_FILE, encoding="utf-8") as f:
+            stamps = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        stamps = []
+    stamps = [t for t in stamps if now - t < 3600]
+    if len(stamps) >= PING_BUDGET_PER_HOUR:
+        return False, len(stamps), 0
+    stamps.append(now)
+    os.makedirs(DIR, exist_ok=True)
+    try:
+        tmp = BUDGET_FILE + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(stamps, f)
+        os.replace(tmp, BUDGET_FILE)
+    except OSError:
+        pass
+    return True, len(stamps), PING_BUDGET_PER_HOUR - len(stamps)
+
 SLUG_COLLISION_LIMIT = 5
 _guarding = False
 
@@ -183,6 +220,14 @@ def record(kind, key, summary, detail=None, allow_discord=True, always_ping=None
         return path, cls, False, f"class already reported {seen[cls]['count']}x, file only"
     if not allow_discord:
         return path, cls, False, "discord suppressed by caller"
+
+    # Routine findings share an hourly budget; critical classes bypass it.
+    if not always_ping:
+        ok_budget, spent, left = _budget_spend()
+        if not ok_budget:
+            return (path, cls, False,
+                    f"hourly ping budget spent ({spent}/{PING_BUDGET_PER_HOUR}), "
+                    f"file only - full record is in {os.path.basename(path)}")
 
     if always_ping and not first_time:
         head = "**" + kind + "**" + chr(10) + str(key) + chr(10) + summary + chr(10)

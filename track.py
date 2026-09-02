@@ -41,7 +41,8 @@ def score_horizon(horizon_h, limit=80, verbose=True):
             price = liq = vol24 = None       # delisted / no longer indexed
         status, mult = journal.record_outcome(
             o["pair"], o["ts"], horizon_h, price, liq, vol24,
-            o.get("price_usd"), o.get("liq"), o.get("symbol", ""))
+            o.get("price_usd"), o.get("liq"), o.get("symbol", ""),
+            token=o.get("token", ""))
         done += 1
         if verbose and mult and mult >= 2:
             ok, why = journal.realizable(status, liq, mult)
