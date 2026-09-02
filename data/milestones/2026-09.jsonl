@@ -1473,3 +1473,6 @@
 {"token":"7opqF5S7XbEX8o36TrfpxLou9uL51THfjYEQNLH5e2g6","milestone":"realizable_3x","crossed_ts":1788349626,"crossed_at":"2026-09-02T11:47:06+00:00","symbol":"UOKN","value":7.4039,"kind":"multiple"}
 {"token":"7cmrfzf6XHoYM4Hj6zQ3CB6qGTNRqHAm3j54z6hrFunf","milestone":"realizable_2x","crossed_ts":1788362639,"crossed_at":"2026-09-02T15:23:59+00:00","symbol":"TMX","value":8.0985,"kind":"multiple"}
 {"token":"7cmrfzf6XHoYM4Hj6zQ3CB6qGTNRqHAm3j54z6hrFunf","milestone":"realizable_3x","crossed_ts":1788362639,"crossed_at":"2026-09-02T15:23:59+00:00","symbol":"TMX","value":8.0985,"kind":"multiple"}
+{"token":"DQNkx95XVrRuhqbGYJFPcpJ2b4UNM25jV1QhKaVkGB5G","milestone":"realizable_2x","crossed_ts":1788375635,"crossed_at":"2026-09-02T19:00:35+00:00","symbol":"SOLCAT","value":6.4633,"kind":"multiple"}
+{"token":"DQNkx95XVrRuhqbGYJFPcpJ2b4UNM25jV1QhKaVkGB5G","milestone":"realizable_3x","crossed_ts":1788375635,"crossed_at":"2026-09-02T19:00:35+00:00","symbol":"SOLCAT","value":6.4633,"kind":"multiple"}
+{"token":"DGxNfqdqQLxCdrNZrbcA9AutX2cobj7Nx4dpJmDVpump","milestone":"realizable_2x","crossed_ts":1788375647,"crossed_at":"2026-09-02T19:00:47+00:00","symbol":"FONELESS","value":2.4881,"kind":"multiple"}
