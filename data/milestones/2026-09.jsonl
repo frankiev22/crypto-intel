@@ -1480,3 +1480,5 @@
 {"token":"CZJhtPhMkjUa25MEju9sAC99X7WW8659E6GJPWqCsS3t","milestone":"realizable_3x","crossed_ts":1788399374,"crossed_at":"2026-09-03T01:36:14+00:00","symbol":"\u725b\u6765","value":24.328,"kind":"multiple"}
 {"token":"CZJhtPhMkjUa25MEju9sAC99X7WW8659E6GJPWqCsS3t","milestone":"realizable_10x","crossed_ts":1788399374,"crossed_at":"2026-09-03T01:36:14+00:00","symbol":"\u725b\u6765","value":24.328,"kind":"multiple"}
 {"token":"kxRaKqrqc8FJGwCmgPtroD9ukZGw3gAbWANF6Bnpump","milestone":"realizable_2x","crossed_ts":1788436057,"crossed_at":"2026-09-03T11:47:37+00:00","symbol":"WOFI","value":2.6504,"kind":"multiple"}
+{"token":"3tMPiDB4HSkA8o3Yr2TQHLyqeDUGfVeAX4u86uzXatww","milestone":"realizable_2x","crossed_ts":1788448662,"crossed_at":"2026-09-03T15:17:42+00:00","symbol":"XDC","value":5.103,"kind":"multiple"}
+{"token":"3tMPiDB4HSkA8o3Yr2TQHLyqeDUGfVeAX4u86uzXatww","milestone":"realizable_3x","crossed_ts":1788448662,"crossed_at":"2026-09-03T15:17:42+00:00","symbol":"XDC","value":5.103,"kind":"multiple"}
