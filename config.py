@@ -9,6 +9,27 @@ environment, which wins over .env. Nothing here ever writes or logs a value.
 """
 import os
 
+# --------------------------------------------------------------------------
+# Console encoding.
+#
+# Windows consoles default to cp1252, which cannot encode a CJK ticker. Every
+# print of a token symbol is therefore a potential UnicodeEncodeError, and one
+# of those kills the pass and loses the hour - which is exactly the class of
+# silent-ish failure this project keeps finding. A large share of the tokens
+# that actually run are Chinese-named, so this is not an edge case.
+#
+# Done here because every entry point imports config, and errors="replace"
+# rather than "ignore" so a mangled character is visible rather than absent.
+# --------------------------------------------------------------------------
+import sys as _sys
+
+for _stream in ("stdout", "stderr"):
+    try:
+        getattr(_sys, _stream).reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, ValueError, OSError):
+        pass          # already utf-8, redirected, or not reconfigurable
+
+
 ENV_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
 
 def _load_env(path=ENV_FILE):

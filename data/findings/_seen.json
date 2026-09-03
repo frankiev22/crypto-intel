@@ -84,9 +84,12 @@
  },
  "scanner-hit:unknown": {
   "first_seen": "2026-08-24T07:09:37+00:00",
-  "count": 34,
+  "count": 38,
   "example": "scanner-hit: \u725b\u6765",
-  "last_seen": "2026-08-31T04:10:17+00:00"
+  "last_seen": "2026-09-03T01:10:09+00:00",
+  "keys": [
+   "$1"
+  ]
  },
  "scanner-hit:giggle": {
   "first_seen": "2026-08-24T07:09:37+00:00",
@@ -145,9 +148,12 @@
  },
  "scanner-hit:nvda": {
   "first_seen": "2026-08-24T10:08:49+00:00",
-  "count": 3,
+  "count": 5,
   "example": "scanner-hit: NVDA",
-  "last_seen": "2026-08-29T23:08:13+00:00"
+  "last_seen": "2026-09-03T08:10:04+00:00",
+  "keys": [
+   "NVDA"
+  ]
  },
  "scanner-hit:mango": {
   "first_seen": "2026-08-24T10:08:50+00:00",
@@ -162,9 +168,12 @@
  },
  "scanner-hit:cyberleek": {
   "first_seen": "2026-08-24T10:08:51+00:00",
-  "count": 3,
+  "count": 4,
   "example": "scanner-hit: CYBERLEEK",
-  "last_seen": "2026-08-30T16:10:14+00:00"
+  "last_seen": "2026-09-03T00:09:44+00:00",
+  "keys": [
+   "CYBERLEEK"
+  ]
  },
  "outcome-x:tmx": {
   "first_seen": "2026-08-24T10:09:03+00:00",
@@ -391,9 +400,12 @@
  },
  "scanner-hit:rst": {
   "first_seen": "2026-08-25T19:08:33+00:00",
-  "count": 3,
+  "count": 5,
   "example": "scanner-hit: RST",
-  "last_seen": "2026-08-30T00:10:15+00:00"
+  "last_seen": "2026-09-03T20:10:25+00:00",
+  "keys": [
+   "RST"
+  ]
  },
  "outcome-x:sara": {
   "first_seen": "2026-08-25T19:08:33+00:00",
@@ -402,8 +414,12 @@
  },
  "scanner-hit:grass": {
   "first_seen": "2026-08-25T21:07:16+00:00",
-  "count": 1,
-  "example": "scanner-hit: GRASS"
+  "count": 2,
+  "example": "scanner-hit: GRASS",
+  "last_seen": "2026-09-03T16:10:41+00:00",
+  "keys": [
+   "GRASS"
+  ]
  },
  "scanner-hit:ocb": {
   "first_seen": "2026-08-25T21:07:17+00:00",
@@ -541,9 +557,9 @@
  },
  "outcome-x:unknown": {
   "first_seen": "2026-08-26T13:08:03+00:00",
-  "count": 22,
+  "count": 23,
   "example": "outcome-3x: \u95ea\u8fea",
-  "last_seen": "2026-09-02T03:10:26+00:00",
+  "last_seen": "2026-09-02T17:11:00+00:00",
   "keys": [
    "$1",
    "2028"
@@ -629,9 +645,9 @@
  },
  "scanner-hit:anthropic": {
   "first_seen": "2026-08-27T06:08:10+00:00",
-  "count": 6,
+  "count": 8,
   "example": "scanner-hit: Anthropic",
-  "last_seen": "2026-08-31T11:09:35+00:00",
+  "last_seen": "2026-09-03T13:10:23+00:00",
   "keys": [
    "Anthropic"
   ]
@@ -648,9 +664,9 @@
  },
  "outcome-x:anthropic": {
   "first_seen": "2026-08-27T08:08:34+00:00",
-  "count": 3,
+  "count": 4,
   "example": "outcome-3x: Anthropic",
-  "last_seen": "2026-08-31T13:09:25+00:00",
+  "last_seen": "2026-09-03T14:11:07+00:00",
   "keys": [
    "Anthropic"
   ]
@@ -813,9 +829,12 @@
  },
  "scanner-hit:wofi": {
   "first_seen": "2026-08-28T11:07:45+00:00",
-  "count": 3,
+  "count": 4,
   "example": "scanner-hit: WOFI",
-  "last_seen": "2026-08-30T16:10:15+00:00"
+  "last_seen": "2026-09-03T04:10:11+00:00",
+  "keys": [
+   "WOFI"
+  ]
  },
  "scanner-hit:greg": {
   "first_seen": "2026-08-28T11:07:57+00:00",
@@ -1144,8 +1163,12 @@
  },
  "outcome-x:ai": {
   "first_seen": "2026-08-30T05:09:24+00:00",
-  "count": 1,
-  "example": "outcome-3x: AI"
+  "count": 6,
+  "example": "outcome-3x: AI",
+  "last_seen": "2026-09-03T20:10:43+00:00",
+  "keys": [
+   "AI"
+  ]
  },
  "scanner-hit:risk": {
   "first_seen": "2026-08-30T06:10:52+00:00",
@@ -1169,8 +1192,12 @@
  },
  "scanner-hit:gemini-ai": {
   "first_seen": "2026-08-30T07:09:14+00:00",
-  "count": 1,
-  "example": "scanner-hit: Gemini AI"
+  "count": 2,
+  "example": "scanner-hit: Gemini AI",
+  "last_seen": "2026-09-02T23:09:37+00:00",
+  "keys": [
+   "Gemini AI"
+  ]
  },
  "scanner-hit:leadmem": {
   "first_seen": "2026-08-30T07:09:15+00:00",
@@ -1225,9 +1252,9 @@
  },
  "outcome-x:rst": {
   "first_seen": "2026-08-30T08:09:26+00:00",
-  "count": 2,
+  "count": 3,
   "example": "outcome-3x: RST",
-  "last_seen": "2026-09-01T06:09:28+00:00",
+  "last_seen": "2026-09-02T05:10:33+00:00",
   "keys": [
    "RST"
   ]
@@ -1301,8 +1328,12 @@
  },
  "scanner-hit:ustf": {
   "first_seen": "2026-08-30T12:11:42+00:00",
-  "count": 1,
-  "example": "scanner-hit: USTF"
+  "count": 2,
+  "example": "scanner-hit: USTF",
+  "last_seen": "2026-09-03T05:10:04+00:00",
+  "keys": [
+   "USTF"
+  ]
  },
  "scanner-hit:memecoin": {
   "first_seen": "2026-08-30T12:11:42+00:00",
@@ -1393,8 +1424,12 @@
  },
  "scanner-hit:googl": {
   "first_seen": "2026-08-30T16:10:16+00:00",
-  "count": 1,
-  "example": "scanner-hit: GOOGL"
+  "count": 2,
+  "example": "scanner-hit: GOOGL",
+  "last_seen": "2026-09-02T08:09:28+00:00",
+  "keys": [
+   "GOOGL"
+  ]
  },
  "scanner-hit:mc": {
   "first_seen": "2026-08-30T17:09:26+00:00",
@@ -1435,8 +1470,12 @@
  },
  "outcome-x:googl": {
   "first_seen": "2026-08-30T18:08:12+00:00",
-  "count": 1,
-  "example": "outcome-3x: GOOGL"
+  "count": 2,
+  "example": "outcome-3x: GOOGL",
+  "last_seen": "2026-09-03T17:09:41+00:00",
+  "keys": [
+   "GOOGL"
+  ]
  },
  "outcome-x:awr": {
   "first_seen": "2026-08-30T18:08:13+00:00",
@@ -1537,9 +1576,9 @@
  },
  "scanner-hit:lqx": {
   "first_seen": "2026-08-30T22:10:45+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: LQX",
-  "last_seen": "2026-09-02T04:09:28+00:00",
+  "last_seen": "2026-09-03T11:10:05+00:00",
   "keys": [
    "LQX"
   ]
@@ -1740,20 +1779,21 @@
  },
  "scanner-hit:home": {
   "first_seen": "2026-08-31T07:10:14+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: HOME",
   "keys": [
    "HOME"
-  ]
+  ],
+  "last_seen": "2026-09-02T14:09:58+00:00"
  },
  "scanner-hit:wwr": {
   "first_seen": "2026-08-31T07:10:20+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: WWR",
   "keys": [
    "WWR"
   ],
-  "last_seen": "2026-09-01T21:09:22+00:00"
+  "last_seen": "2026-09-02T16:10:28+00:00"
  },
  "scanner-hit:qsb": {
   "first_seen": "2026-08-31T07:10:25+00:00",
@@ -1935,11 +1975,12 @@
  },
  "scanner-hit:usms": {
   "first_seen": "2026-08-31T10:09:45+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: USMS",
   "keys": [
    "USMS"
-  ]
+  ],
+  "last_seen": "2026-09-03T01:10:32+00:00"
  },
  "scanner-hit:course": {
   "first_seen": "2026-08-31T11:09:49+00:00",
@@ -2058,11 +2099,12 @@
  },
  "scanner-hit:goaf": {
   "first_seen": "2026-09-01T04:09:16+00:00",
-  "count": 1,
+  "count": 3,
   "example": "scanner-hit: GOAF",
   "keys": [
    "GOAF"
-  ]
+  ],
+  "last_seen": "2026-09-03T08:10:26+00:00"
  },
  "scanner-hit:nekomaru": {
   "first_seen": "2026-09-01T04:09:22+00:00",
@@ -2117,29 +2159,31 @@
  },
  "scanner-hit:pup": {
   "first_seen": "2026-09-01T05:09:21+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: PUP",
   "keys": [
    "PUP"
-  ]
+  ],
+  "last_seen": "2026-09-02T07:10:03+00:00"
  },
  "outcome-x:xcat": {
   "first_seen": "2026-09-01T05:09:41+00:00",
-  "count": 2,
+  "count": 3,
   "example": "outcome-3x: XCAT",
   "keys": [
    "XCAT",
    "xcat"
   ],
-  "last_seen": "2026-09-02T02:09:14+00:00"
+  "last_seen": "2026-09-02T08:09:41+00:00"
  },
  "scanner-hit:callout": {
   "first_seen": "2026-09-01T06:08:37+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: CALLOUT",
   "keys": [
    "CALLOUT"
-  ]
+  ],
+  "last_seen": "2026-09-02T16:10:38+00:00"
  },
  "scanner-hit:micro": {
   "first_seen": "2026-09-01T06:08:55+00:00",
@@ -2175,20 +2219,21 @@
  },
  "outcome-x:prostate": {
   "first_seen": "2026-09-01T06:09:28+00:00",
-  "count": 1,
+  "count": 2,
   "example": "outcome-3x: PROSTATE",
   "keys": [
    "PROSTATE"
-  ]
+  ],
+  "last_seen": "2026-09-02T05:10:44+00:00"
  },
  "scanner-hit:elon": {
   "first_seen": "2026-09-01T07:08:50+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: ELON",
   "keys": [
    "ELON"
   ],
-  "last_seen": "2026-09-01T13:10:30+00:00"
+  "last_seen": "2026-09-02T15:10:13+00:00"
  },
  "scanner-hit:berwick": {
   "first_seen": "2026-09-01T07:08:50+00:00",
@@ -2305,11 +2350,12 @@
  },
  "scanner-hit:cto": {
   "first_seen": "2026-09-01T09:09:47+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: CTO",
   "keys": [
    "CTO"
-  ]
+  ],
+  "last_seen": "2026-09-03T16:10:49+00:00"
  },
  "outcome-x:gpro": {
   "first_seen": "2026-09-01T09:10:09+00:00",
@@ -2387,11 +2433,12 @@
  },
  "outcome-x:cto": {
   "first_seen": "2026-09-01T11:09:52+00:00",
-  "count": 1,
+  "count": 2,
   "example": "outcome-3x: CTO",
   "keys": [
    "CTO"
-  ]
+  ],
+  "last_seen": "2026-09-02T11:09:54+00:00"
  },
  "scanner-hit:u-baf97c": {
   "first_seen": "2026-09-01T12:09:34+00:00",
@@ -2419,11 +2466,12 @@
  },
  "scanner-hit:otc": {
   "first_seen": "2026-09-01T13:10:19+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: OTC",
   "keys": [
    "OTC"
-  ]
+  ],
+  "last_seen": "2026-09-03T02:09:57+00:00"
  },
  "scanner-hit:pfp": {
   "first_seen": "2026-09-01T13:10:25+00:00",
@@ -2435,12 +2483,12 @@
  },
  "outcome-x:u-d703c2": {
   "first_seen": "2026-09-01T13:10:38+00:00",
-  "count": 2,
+  "count": 3,
   "example": "outcome-3x: \u725b\u56db",
   "keys": [
    "\u725b\u56db"
   ],
-  "last_seen": "2026-09-01T18:10:31+00:00"
+  "last_seen": "2026-09-02T14:10:49+00:00"
  },
  "scanner-hit:pokemon": {
   "first_seen": "2026-09-01T15:10:00+00:00",
@@ -2687,11 +2735,12 @@
  },
  "outcome-x:sink": {
   "first_seen": "2026-09-02T03:10:05+00:00",
-  "count": 1,
+  "count": 2,
   "example": "outcome-3x: SINK",
   "keys": [
    "SINK"
-  ]
+  ],
+  "last_seen": "2026-09-02T10:09:26+00:00"
  },
  "outcome-x:snp": {
   "first_seen": "2026-09-02T03:10:10+00:00",
@@ -2719,10 +2768,1103 @@
  },
  "outcome-x:normie": {
   "first_seen": "2026-09-02T04:09:39+00:00",
-  "count": 1,
+  "count": 2,
   "example": "outcome-3x: NORMIE",
   "keys": [
    "NORMIE"
+  ],
+  "last_seen": "2026-09-02T12:10:16+00:00"
+ },
+ "scanner-hit:boomer": {
+  "first_seen": "2026-09-02T05:09:56+00:00",
+  "count": 1,
+  "example": "scanner-hit: Boomer",
+  "keys": [
+   "Boomer"
+  ]
+ },
+ "scanner-hit:u-0638cb": {
+  "first_seen": "2026-09-02T05:10:06+00:00",
+  "count": 1,
+  "example": "scanner-hit: \u6211\u7231\u4f60",
+  "keys": [
+   "\u6211\u7231\u4f60"
+  ]
+ },
+ "scanner-hit:phaseone": {
+  "first_seen": "2026-09-02T05:10:11+00:00",
+  "count": 1,
+  "example": "scanner-hit: PHASEONE",
+  "keys": [
+   "PHASEONE"
+  ]
+ },
+ "scanner-hit:pumpcoin": {
+  "first_seen": "2026-09-02T05:10:15+00:00",
+  "count": 1,
+  "example": "scanner-hit: pumpcoin",
+  "keys": [
+   "pumpcoin"
+  ]
+ },
+ "scanner-hit:pizza": {
+  "first_seen": "2026-09-02T05:10:20+00:00",
+  "count": 1,
+  "example": "scanner-hit: Pizza",
+  "keys": [
+   "Pizza"
+  ]
+ },
+ "scanner-hit:u-9954c3": {
+  "first_seen": "2026-09-02T05:10:26+00:00",
+  "count": 1,
+  "example": "scanner-hit: \u5b59\u52723000",
+  "keys": [
+   "\u5b59\u52723000"
+  ]
+ },
+ "outcome-x:donk": {
+  "first_seen": "2026-09-02T05:10:44+00:00",
+  "count": 1,
+  "example": "outcome-3x: DONK",
+  "keys": [
+   "DONK"
+  ]
+ },
+ "outcome-x:rbtx": {
+  "first_seen": "2026-09-02T05:10:44+00:00",
+  "count": 1,
+  "example": "outcome-3x: RBTX",
+  "keys": [
+   "RBTX"
+  ]
+ },
+ "scanner-hit:bit": {
+  "first_seen": "2026-09-02T06:09:30+00:00",
+  "count": 1,
+  "example": "scanner-hit: 8Bit",
+  "keys": [
+   "8Bit"
+  ]
+ },
+ "scanner-hit:bitcat": {
+  "first_seen": "2026-09-02T06:09:34+00:00",
+  "count": 1,
+  "example": "scanner-hit: BITCAT",
+  "keys": [
+   "BITCAT"
+  ]
+ },
+ "scanner-hit:captain-x": {
+  "first_seen": "2026-09-02T06:09:39+00:00",
+  "count": 1,
+  "example": "scanner-hit: Captain X",
+  "keys": [
+   "Captain X"
+  ]
+ },
+ "outcome-x:pons": {
+  "first_seen": "2026-09-02T06:09:49+00:00",
+  "count": 1,
+  "example": "outcome-3x: PONS",
+  "keys": [
+   "PONS"
+  ]
+ },
+ "scanner-hit:trumppercs": {
+  "first_seen": "2026-09-02T07:10:01+00:00",
+  "count": 1,
+  "example": "scanner-hit: TRUMPPERCS",
+  "keys": [
+   "TRUMPPERCS"
+  ]
+ },
+ "scanner-hit:dms": {
+  "first_seen": "2026-09-02T07:10:02+00:00",
+  "count": 1,
+  "example": "scanner-hit: DMS",
+  "keys": [
+   "DMS"
+  ]
+ },
+ "outcome-x:clippy": {
+  "first_seen": "2026-09-02T07:10:10+00:00",
+  "count": 1,
+  "example": "outcome-3x: CLIPPY",
+  "keys": [
+   "CLIPPY"
+  ]
+ },
+ "outcome-x:barry": {
+  "first_seen": "2026-09-02T07:10:11+00:00",
+  "count": 1,
+  "example": "outcome-3x: BARRY",
+  "keys": [
+   "BARRY"
+  ]
+ },
+ "outcome-x:mrl": {
+  "first_seen": "2026-09-02T07:10:11+00:00",
+  "count": 1,
+  "example": "outcome-3x: MRL",
+  "keys": [
+   "MRL"
+  ]
+ },
+ "outcome-x:wojak": {
+  "first_seen": "2026-09-02T07:10:12+00:00",
+  "count": 1,
+  "example": "outcome-3x: Wojak",
+  "keys": [
+   "Wojak"
+  ]
+ },
+ "outcome-x:babyfon": {
+  "first_seen": "2026-09-02T07:10:12+00:00",
+  "count": 1,
+  "example": "outcome-3x: BABYFON",
+  "keys": [
+   "BABYFON"
+  ]
+ },
+ "scanner-hit:transmeme": {
+  "first_seen": "2026-09-02T08:09:33+00:00",
+  "count": 1,
+  "example": "scanner-hit: TransMeme",
+  "keys": [
+   "TransMeme"
+  ]
+ },
+ "outcome-x:shiba": {
+  "first_seen": "2026-09-02T08:09:41+00:00",
+  "count": 2,
+  "example": "outcome-3x: SHIBA",
+  "keys": [
+   "SHIBA"
+  ],
+  "last_seen": "2026-09-02T15:10:31+00:00"
+ },
+ "outcome-x:pizza": {
+  "first_seen": "2026-09-02T08:09:41+00:00",
+  "count": 2,
+  "example": "outcome-3x: Pizza",
+  "keys": [
+   "Pizza"
+  ],
+  "last_seen": "2026-09-02T14:10:45+00:00"
+ },
+ "scanner-hit:chuffy": {
+  "first_seen": "2026-09-02T09:09:50+00:00",
+  "count": 1,
+  "example": "scanner-hit: Chuffy",
+  "keys": [
+   "Chuffy"
+  ]
+ },
+ "scanner-hit:titcoin": {
+  "first_seen": "2026-09-02T09:09:55+00:00",
+  "count": 1,
+  "example": "scanner-hit: titcoin",
+  "keys": [
+   "titcoin"
+  ]
+ },
+ "outcome-x:xcc": {
+  "first_seen": "2026-09-02T09:10:01+00:00",
+  "count": 2,
+  "example": "outcome-3x: XCC",
+  "keys": [
+   "XCC"
+  ],
+  "last_seen": "2026-09-03T08:10:32+00:00"
+ },
+ "outcome-x:dooyet": {
+  "first_seen": "2026-09-02T10:09:21+00:00",
+  "count": 1,
+  "example": "outcome-3x: DOOYET",
+  "keys": [
+   "DOOYET"
+  ]
+ },
+ "outcome-x:duobutt": {
+  "first_seen": "2026-09-02T11:09:43+00:00",
+  "count": 1,
+  "example": "outcome-3x: DUOBUTT",
+  "keys": [
+   "DUOBUTT"
+  ]
+ },
+ "scanner-hit:ubik": {
+  "first_seen": "2026-09-02T12:09:40+00:00",
+  "count": 1,
+  "example": "scanner-hit: UBIK",
+  "keys": [
+   "UBIK"
+  ]
+ },
+ "scanner-hit:cashcow": {
+  "first_seen": "2026-09-02T12:10:00+00:00",
+  "count": 1,
+  "example": "scanner-hit: CASHCOW",
+  "keys": [
+   "CASHCOW"
+  ]
+ },
+ "scanner-hit:exuun": {
+  "first_seen": "2026-09-02T12:10:10+00:00",
+  "count": 1,
+  "example": "scanner-hit: EXU4un42",
+  "keys": [
+   "EXU4un42"
+  ]
+ },
+ "scanner-hit:ezyxtrvv": {
+  "first_seen": "2026-09-02T12:10:10+00:00",
+  "count": 1,
+  "example": "scanner-hit: EzYxtrvv",
+  "keys": [
+   "EzYxtrvv"
+  ]
+ },
+ "scanner-hit:bros": {
+  "first_seen": "2026-09-02T14:09:53+00:00",
+  "count": 1,
+  "example": "scanner-hit: Bros",
+  "keys": [
+   "Bros"
+  ]
+ },
+ "scanner-hit:ftfs": {
+  "first_seen": "2026-09-02T14:10:03+00:00",
+  "count": 1,
+  "example": "scanner-hit: FTFS",
+  "keys": [
+   "FTFS"
+  ]
+ },
+ "outcome-x:cache": {
+  "first_seen": "2026-09-02T14:10:40+00:00",
+  "count": 1,
+  "example": "outcome-3x: CACHE",
+  "keys": [
+   "CACHE"
+  ]
+ },
+ "scanner-hit:redditr": {
+  "first_seen": "2026-09-02T15:10:01+00:00",
+  "count": 1,
+  "example": "scanner-hit: REDDITR79",
+  "keys": [
+   "REDDITR79"
+  ]
+ },
+ "scanner-hit:lucy": {
+  "first_seen": "2026-09-02T15:10:07+00:00",
+  "count": 1,
+  "example": "scanner-hit: Lucy",
+  "keys": [
+   "Lucy"
+  ]
+ },
+ "outcome-x:captain-x": {
+  "first_seen": "2026-09-02T15:10:35+00:00",
+  "count": 1,
+  "example": "outcome-3x: Captain X",
+  "keys": [
+   "Captain X"
+  ]
+ },
+ "outcome-x:banksy": {
+  "first_seen": "2026-09-02T16:10:18+00:00",
+  "count": 2,
+  "example": "outcome-3x: BANKSY",
+  "keys": [
+   "BANKSY"
+  ],
+  "last_seen": "2026-09-02T22:09:17+00:00"
+ },
+ "scanner-hit:solcat": {
+  "first_seen": "2026-09-02T16:10:27+00:00",
+  "count": 1,
+  "example": "scanner-hit: SOLCAT",
+  "keys": [
+   "SOLCAT"
+  ]
+ },
+ "scanner-hit:hopejak": {
+  "first_seen": "2026-09-02T17:10:32+00:00",
+  "count": 1,
+  "example": "scanner-hit: HOPEJAK",
+  "keys": [
+   "HOPEJAK"
+  ]
+ },
+ "scanner-hit:crashcat": {
+  "first_seen": "2026-09-02T17:10:40+00:00",
+  "count": 1,
+  "example": "scanner-hit: CRASHCAT",
+  "keys": [
+   "CRASHCAT"
+  ]
+ },
+ "scanner-hit:papu": {
+  "first_seen": "2026-09-02T18:11:36+00:00",
+  "count": 1,
+  "example": "scanner-hit: PAPU",
+  "keys": [
+   "PAPU"
+  ]
+ },
+ "scanner-hit:u-e94e27": {
+  "first_seen": "2026-09-02T18:11:42+00:00",
+  "count": 1,
+  "example": "scanner-hit: \u70ed\u94b1",
+  "keys": [
+   "\u70ed\u94b1"
+  ]
+ },
+ "scanner-hit:soltrump": {
+  "first_seen": "2026-09-02T18:11:47+00:00",
+  "count": 1,
+  "example": "scanner-hit: SOLTRUMP",
+  "keys": [
+   "SOLTRUMP"
+  ]
+ },
+ "outcome-x:ponsi": {
+  "first_seen": "2026-09-02T18:12:00+00:00",
+  "count": 2,
+  "example": "outcome-3x: PONSI",
+  "keys": [
+   "PONSI"
+  ],
+  "last_seen": "2026-09-03T00:10:05+00:00"
+ },
+ "scanner-hit:vlud": {
+  "first_seen": "2026-09-02T20:09:46+00:00",
+  "count": 1,
+  "example": "scanner-hit: Vlud",
+  "keys": [
+   "Vlud"
+  ]
+ },
+ "scanner-hit:replay": {
+  "first_seen": "2026-09-02T20:09:51+00:00",
+  "count": 1,
+  "example": "scanner-hit: Replay",
+  "keys": [
+   "Replay"
+  ]
+ },
+ "scanner-hit:stratton": {
+  "first_seen": "2026-09-02T20:09:56+00:00",
+  "count": 1,
+  "example": "scanner-hit: STRATTON",
+  "keys": [
+   "STRATTON"
+  ]
+ },
+ "outcome-x:lmao": {
+  "first_seen": "2026-09-02T20:10:01+00:00",
+  "count": 1,
+  "example": "outcome-3x: LMAO",
+  "keys": [
+   "LMAO"
+  ]
+ },
+ "outcome-x:unknown-ewrohc": {
+  "first_seen": "2026-09-02T21:13:37+00:00",
+  "count": 1,
+  "example": "outcome-3x: UNKNOWN-EW2Rohc",
+  "keys": [
+   "UNKNOWN-EW2Rohc"
+  ]
+ },
+ "outcome-x:stratton": {
+  "first_seen": "2026-09-02T21:13:46+00:00",
+  "count": 3,
+  "example": "outcome-3x: STRATTON",
+  "keys": [
+   "STRATTON"
+  ],
+  "last_seen": "2026-09-03T04:10:19+00:00"
+ },
+ "outcome-x:gta": {
+  "first_seen": "2026-09-02T22:09:24+00:00",
+  "count": 2,
+  "example": "outcome-3x: GTA6",
+  "keys": [
+   "GTA6",
+   "$GTA6"
+  ],
+  "last_seen": "2026-09-03T04:10:24+00:00"
+ },
+ "outcome-x:leadership": {
+  "first_seen": "2026-09-02T22:09:28+00:00",
+  "count": 1,
+  "example": "outcome-3x: LEADERSHIP",
+  "keys": [
+   "LEADERSHIP"
+  ]
+ },
+ "outcome-x:home": {
+  "first_seen": "2026-09-02T22:09:32+00:00",
+  "count": 1,
+  "example": "outcome-3x: HOME",
+  "keys": [
+   "HOME"
+  ]
+ },
+ "scanner-hit:u-5815f4": {
+  "first_seen": "2026-09-02T23:09:21+00:00",
+  "count": 3,
+  "example": "scanner-hit: \u725b\u6765",
+  "keys": [
+   "\u725b\u6765"
+  ],
+  "last_seen": "2026-09-03T20:10:20+00:00"
+ },
+ "scanner-hit:solbull": {
+  "first_seen": "2026-09-02T23:09:25+00:00",
+  "count": 1,
+  "example": "scanner-hit: solbull",
+  "keys": [
+   "solbull"
+  ]
+ },
+ "scanner-hit:mine": {
+  "first_seen": "2026-09-02T23:09:32+00:00",
+  "count": 1,
+  "example": "scanner-hit: MINE",
+  "keys": [
+   "MINE"
+  ]
+ },
+ "scanner-hit:gaku": {
+  "first_seen": "2026-09-03T00:09:50+00:00",
+  "count": 1,
+  "example": "scanner-hit: Gaku",
+  "keys": [
+   "Gaku"
+  ]
+ },
+ "scanner-hit:eyetag": {
+  "first_seen": "2026-09-03T00:09:56+00:00",
+  "count": 1,
+  "example": "scanner-hit: EyeTag",
+  "keys": [
+   "EyeTag"
+  ]
+ },
+ "outcome-x:pink": {
+  "first_seen": "2026-09-03T00:10:00+00:00",
+  "count": 2,
+  "example": "outcome-3x: PINK",
+  "keys": [
+   "PINK"
+  ],
+  "last_seen": "2026-09-03T07:09:51+00:00"
+ },
+ "outcome-x:hope": {
+  "first_seen": "2026-09-03T00:10:10+00:00",
+  "count": 1,
+  "example": "outcome-3x: HOPE",
+  "keys": [
+   "HOPE"
+  ]
+ },
+ "scanner-hit:xcc": {
+  "first_seen": "2026-09-03T01:10:17+00:00",
+  "count": 1,
+  "example": "scanner-hit: XCC",
+  "keys": [
+   "XCC"
+  ]
+ },
+ "scanner-hit:mlg": {
+  "first_seen": "2026-09-03T01:10:18+00:00",
+  "count": 1,
+  "example": "scanner-hit: MLG",
+  "keys": [
+   "MLG"
+  ]
+ },
+ "scanner-hit:cac": {
+  "first_seen": "2026-09-03T01:10:19+00:00",
+  "count": 1,
+  "example": "scanner-hit: CAC",
+  "keys": [
+   "CAC"
+  ]
+ },
+ "scanner-hit:never": {
+  "first_seen": "2026-09-03T01:10:31+00:00",
+  "count": 2,
+  "example": "scanner-hit: NEVER",
+  "keys": [
+   "NEVER"
+  ],
+  "last_seen": "2026-09-03T02:10:02+00:00"
+ },
+ "outcome-x:usa": {
+  "first_seen": "2026-09-03T01:10:39+00:00",
+  "count": 1,
+  "example": "outcome-3x: USA",
+  "keys": [
+   "USA"
+  ]
+ },
+ "scanner-hit:poggers": {
+  "first_seen": "2026-09-03T02:09:48+00:00",
+  "count": 1,
+  "example": "scanner-hit: POGGERS",
+  "keys": [
+   "POGGERS"
+  ]
+ },
+ "scanner-hit:looprat": {
+  "first_seen": "2026-09-03T02:09:53+00:00",
+  "count": 1,
+  "example": "scanner-hit: Looprat",
+  "keys": [
+   "Looprat"
+  ]
+ },
+ "outcome-x:u-5815f4": {
+  "first_seen": "2026-09-03T02:10:26+00:00",
+  "count": 1,
+  "example": "outcome-3x: \u725b\u6765",
+  "keys": [
+   "\u725b\u6765"
+  ]
+ },
+ "scanner-hit:beaver": {
+  "first_seen": "2026-09-03T03:09:33+00:00",
+  "count": 1,
+  "example": "scanner-hit: BEAVER",
+  "keys": [
+   "BEAVER"
+  ]
+ },
+ "scanner-hit:tits": {
+  "first_seen": "2026-09-03T03:09:38+00:00",
+  "count": 1,
+  "example": "scanner-hit: TITS",
+  "keys": [
+   "TITS"
+  ]
+ },
+ "outcome-x:poggers": {
+  "first_seen": "2026-09-03T03:09:44+00:00",
+  "count": 1,
+  "example": "outcome-3x: POGGERS",
+  "keys": [
+   "POGGERS"
+  ]
+ },
+ "scanner-hit:wassie": {
+  "first_seen": "2026-09-03T04:09:49+00:00",
+  "count": 1,
+  "example": "scanner-hit: Wassie",
+  "keys": [
+   "Wassie"
+  ]
+ },
+ "scanner-hit:doublef": {
+  "first_seen": "2026-09-03T04:09:55+00:00",
+  "count": 1,
+  "example": "scanner-hit: DoubleF",
+  "keys": [
+   "DoubleF"
+  ]
+ },
+ "scanner-hit:dwc": {
+  "first_seen": "2026-09-03T04:10:05+00:00",
+  "count": 1,
+  "example": "scanner-hit: DWC",
+  "keys": [
+   "DWC"
+  ]
+ },
+ "outcome-x:beaver": {
+  "first_seen": "2026-09-03T04:10:32+00:00",
+  "count": 1,
+  "example": "outcome-3x: BEAVER",
+  "keys": [
+   "BEAVER"
+  ]
+ },
+ "outcome-x:prog": {
+  "first_seen": "2026-09-03T04:10:37+00:00",
+  "count": 1,
+  "example": "outcome-3x: prog",
+  "keys": [
+   "prog"
+  ]
+ },
+ "scanner-hit:ponschi": {
+  "first_seen": "2026-09-03T05:09:46+00:00",
+  "count": 1,
+  "example": "scanner-hit: ponschi",
+  "keys": [
+   "ponschi"
+  ]
+ },
+ "scanner-hit:u-a97504": {
+  "first_seen": "2026-09-03T05:09:50+00:00",
+  "count": 1,
+  "example": "scanner-hit: \u5f3a\u751f",
+  "keys": [
+   "\u5f3a\u751f"
+  ]
+ },
+ "scanner-hit:hiero": {
+  "first_seen": "2026-09-03T05:09:54+00:00",
+  "count": 1,
+  "example": "scanner-hit: HIERO",
+  "keys": [
+   "HIERO"
+  ]
+ },
+ "scanner-hit:groktown": {
+  "first_seen": "2026-09-03T05:09:59+00:00",
+  "count": 1,
+  "example": "scanner-hit: Groktown",
+  "keys": [
+   "Groktown"
+  ]
+ },
+ "outcome-x:anrh": {
+  "first_seen": "2026-09-03T05:10:08+00:00",
+  "count": 2,
+  "example": "outcome-3x: ANRH",
+  "keys": [
+   "ANRH"
+  ],
+  "last_seen": "2026-09-03T12:10:59+00:00"
+ },
+ "scanner-hit:wdog": {
+  "first_seen": "2026-09-03T06:09:56+00:00",
+  "count": 1,
+  "example": "scanner-hit: WDOG",
+  "keys": [
+   "WDOG"
+  ]
+ },
+ "scanner-hit:bear": {
+  "first_seen": "2026-09-03T06:10:01+00:00",
+  "count": 1,
+  "example": "scanner-hit: BEAR",
+  "keys": [
+   "BEAR"
+  ]
+ },
+ "scanner-hit:schizex": {
+  "first_seen": "2026-09-03T06:10:07+00:00",
+  "count": 1,
+  "example": "scanner-hit: schizex",
+  "keys": [
+   "schizex"
+  ]
+ },
+ "scanner-hit:unicorn": {
+  "first_seen": "2026-09-03T08:10:08+00:00",
+  "count": 1,
+  "example": "scanner-hit: UniCorn",
+  "keys": [
+   "UniCorn"
+  ]
+ },
+ "scanner-hit:nudes": {
+  "first_seen": "2026-09-03T08:10:16+00:00",
+  "count": 1,
+  "example": "scanner-hit: NUDES",
+  "keys": [
+   "NUDES"
+  ]
+ },
+ "scanner-hit:pmperctn": {
+  "first_seen": "2026-09-03T08:10:21+00:00",
+  "count": 1,
+  "example": "scanner-hit: PMPERCTN",
+  "keys": [
+   "PMPERCTN"
+  ]
+ },
+ "outcome-x:mlg": {
+  "first_seen": "2026-09-03T08:10:42+00:00",
+  "count": 1,
+  "example": "outcome-3x: MLG",
+  "keys": [
+   "MLG"
+  ]
+ },
+ "scanner-hit:bleu": {
+  "first_seen": "2026-09-03T10:10:01+00:00",
+  "count": 1,
+  "example": "scanner-hit: BLEU",
+  "keys": [
+   "BLEU"
+  ]
+ },
+ "scanner-hit:ben": {
+  "first_seen": "2026-09-03T10:10:06+00:00",
+  "count": 2,
+  "example": "scanner-hit: BEN",
+  "keys": [
+   "BEN"
+  ],
+  "last_seen": "2026-09-03T12:10:20+00:00"
+ },
+ "scanner-hit:nina": {
+  "first_seen": "2026-09-03T10:10:11+00:00",
+  "count": 1,
+  "example": "scanner-hit: Nina",
+  "keys": [
+   "Nina"
+  ]
+ },
+ "scanner-hit:blocky": {
+  "first_seen": "2026-09-03T10:10:17+00:00",
+  "count": 1,
+  "example": "scanner-hit: Blocky",
+  "keys": [
+   "Blocky"
+  ]
+ },
+ "outcome-x:hero": {
+  "first_seen": "2026-09-03T10:10:35+00:00",
+  "count": 2,
+  "example": "outcome-3x: HERO",
+  "keys": [
+   "HERO"
+  ],
+  "last_seen": "2026-09-03T16:10:58+00:00"
+ },
+ "outcome-x:never": {
+  "first_seen": "2026-09-03T10:10:35+00:00",
+  "count": 1,
+  "example": "outcome-3x: NEVER",
+  "keys": [
+   "NEVER"
+  ]
+ },
+ "outcome-x:leaving": {
+  "first_seen": "2026-09-03T10:10:45+00:00",
+  "count": 1,
+  "example": "outcome-3x: LEAVING",
+  "keys": [
+   "LEAVING"
+  ]
+ },
+ "outcome-x:chicken": {
+  "first_seen": "2026-09-03T10:10:45+00:00",
+  "count": 1,
+  "example": "outcome-3x: Chicken",
+  "keys": [
+   "Chicken"
+  ]
+ },
+ "scanner-hit:rsa": {
+  "first_seen": "2026-09-03T11:09:56+00:00",
+  "count": 1,
+  "example": "scanner-hit: RSA-260",
+  "keys": [
+   "RSA-260"
+  ]
+ },
+ "scanner-hit:mip": {
+  "first_seen": "2026-09-03T11:10:01+00:00",
+  "count": 1,
+  "example": "scanner-hit: MIP",
+  "keys": [
+   "MIP"
+  ]
+ },
+ "scanner-hit:tuzki": {
+  "first_seen": "2026-09-03T12:10:01+00:00",
+  "count": 2,
+  "example": "scanner-hit: TUZKI",
+  "keys": [
+   "TUZKI"
+  ],
+  "last_seen": "2026-09-03T12:10:12+00:00"
+ },
+ "scanner-hit:riptrump": {
+  "first_seen": "2026-09-03T12:10:17+00:00",
+  "count": 1,
+  "example": "scanner-hit: RIPTRUMP",
+  "keys": [
+   "RIPTRUMP"
+  ]
+ },
+ "scanner-hit:pepe": {
+  "first_seen": "2026-09-03T12:10:25+00:00",
+  "count": 1,
+  "example": "scanner-hit: PEPE",
+  "keys": [
+   "PEPE"
+  ]
+ },
+ "scanner-hit:wotf": {
+  "first_seen": "2026-09-03T12:10:30+00:00",
+  "count": 1,
+  "example": "scanner-hit: WOTF",
+  "keys": [
+   "WOTF"
+  ]
+ },
+ "outcome-x:gram": {
+  "first_seen": "2026-09-03T12:10:54+00:00",
+  "count": 2,
+  "example": "outcome-3x: GRAM",
+  "keys": [
+   "GRAM"
+  ],
+  "last_seen": "2026-09-03T18:10:39+00:00"
+ },
+ "scanner-hit:hug": {
+  "first_seen": "2026-09-03T13:10:28+00:00",
+  "count": 1,
+  "example": "scanner-hit: HUG",
+  "keys": [
+   "HUG"
+  ]
+ },
+ "scanner-hit:birkin": {
+  "first_seen": "2026-09-03T13:10:39+00:00",
+  "count": 1,
+  "example": "scanner-hit: Birkin",
+  "keys": [
+   "Birkin"
+  ]
+ },
+ "scanner-hit:drip": {
+  "first_seen": "2026-09-03T13:10:48+00:00",
+  "count": 1,
+  "example": "scanner-hit: drip",
+  "keys": [
+   "drip"
+  ]
+ },
+ "outcome-x:jayden": {
+  "first_seen": "2026-09-03T13:10:48+00:00",
+  "count": 1,
+  "example": "outcome-3x: Jayden",
+  "keys": [
+   "Jayden"
+  ]
+ },
+ "outcome-x:pepe": {
+  "first_seen": "2026-09-03T14:11:00+00:00",
+  "count": 1,
+  "example": "outcome-3x: PEPE",
+  "keys": [
+   "PEPE"
+  ]
+ },
+ "outcome-x:trme": {
+  "first_seen": "2026-09-03T14:11:15+00:00",
+  "count": 1,
+  "example": "outcome-3x: TRME",
+  "keys": [
+   "TRME"
+  ]
+ },
+ "outcome-x:hims": {
+  "first_seen": "2026-09-03T14:11:31+00:00",
+  "count": 1,
+  "example": "outcome-3x: HIMS",
+  "keys": [
+   "HIMS"
+  ]
+ },
+ "outcome-x:trump": {
+  "first_seen": "2026-09-03T14:11:44+00:00",
+  "count": 2,
+  "example": "outcome-3x: TRUMP1",
+  "keys": [
+   "TRUMP1",
+   "Trump"
+  ],
+  "last_seen": "2026-09-03T17:09:44+00:00"
+ },
+ "outcome-x:birkin": {
+  "first_seen": "2026-09-03T15:10:21+00:00",
+  "count": 2,
+  "example": "outcome-3x: Birkin",
+  "keys": [
+   "Birkin"
+  ],
+  "last_seen": "2026-09-03T21:10:58+00:00"
+ },
+ "outcome-x:rsa": {
+  "first_seen": "2026-09-03T15:10:28+00:00",
+  "count": 1,
+  "example": "outcome-3x: RSA",
+  "keys": [
+   "RSA"
+  ]
+ },
+ "scanner-hit:soldog": {
+  "first_seen": "2026-09-03T16:10:36+00:00",
+  "count": 1,
+  "example": "scanner-hit: SOLDOG",
+  "keys": [
+   "SOLDOG"
+  ]
+ },
+ "scanner-hit:robert": {
+  "first_seen": "2026-09-03T16:10:49+00:00",
+  "count": 1,
+  "example": "scanner-hit: Robert",
+  "keys": [
+   "Robert"
+  ]
+ },
+ "outcome-x:bog": {
+  "first_seen": "2026-09-03T16:10:57+00:00",
+  "count": 1,
+  "example": "outcome-3x: BOG",
+  "keys": [
+   "BOG"
+  ]
+ },
+ "outcome-x:u-baf97c": {
+  "first_seen": "2026-09-03T16:10:58+00:00",
+  "count": 1,
+  "example": "outcome-3x: \u666f\u751c",
+  "keys": [
+   "\u666f\u751c"
+  ]
+ },
+ "outcome-x:playday": {
+  "first_seen": "2026-09-03T17:09:37+00:00",
+  "count": 1,
+  "example": "outcome-3x: PLAYDAY",
+  "keys": [
+   "PLAYDAY"
+  ]
+ },
+ "outcome-x:ben": {
+  "first_seen": "2026-09-03T17:09:48+00:00",
+  "count": 1,
+  "example": "outcome-3x: BEN",
+  "keys": [
+   "BEN"
+  ]
+ },
+ "outcome-x:ni-a-bbb850": {
+  "first_seen": "2026-09-03T17:09:51+00:00",
+  "count": 1,
+  "example": "outcome-3x: Ni\u00f1a",
+  "keys": [
+   "Ni\u00f1a"
+  ]
+ },
+ "scanner-hit:zec": {
+  "first_seen": "2026-09-03T18:10:30+00:00",
+  "count": 1,
+  "example": "scanner-hit: ZEC",
+  "keys": [
+   "ZEC"
+  ]
+ },
+ "outcome-x:grass": {
+  "first_seen": "2026-09-03T18:10:35+00:00",
+  "count": 1,
+  "example": "outcome-3x: GRASS",
+  "keys": [
+   "GRASS"
+  ]
+ },
+ "scanner-hit:poke": {
+  "first_seen": "2026-09-03T19:10:33+00:00",
+  "count": 1,
+  "example": "scanner-hit: POKE",
+  "keys": [
+   "POKE"
+  ]
+ },
+ "scanner-hit:retardio": {
+  "first_seen": "2026-09-03T19:10:39+00:00",
+  "count": 1,
+  "example": "scanner-hit: RETARDIO",
+  "keys": [
+   "RETARDIO"
+  ]
+ },
+ "outcome-x:aura": {
+  "first_seen": "2026-09-03T19:10:43+00:00",
+  "count": 1,
+  "example": "outcome-3x: AURA",
+  "keys": [
+   "AURA"
+  ]
+ },
+ "outcome-x:mice": {
+  "first_seen": "2026-09-03T19:10:51+00:00",
+  "count": 1,
+  "example": "outcome-3x: Mice",
+  "keys": [
+   "Mice"
+  ]
+ },
+ "scanner-hit:fomo": {
+  "first_seen": "2026-09-03T20:10:12+00:00",
+  "count": 2,
+  "example": "scanner-hit: FOMO",
+  "keys": [
+   "FOMO"
+  ],
+  "last_seen": "2026-09-03T20:10:48+00:00"
+ },
+ "scanner-hit:machine": {
+  "first_seen": "2026-09-03T20:10:16+00:00",
+  "count": 1,
+  "example": "scanner-hit: MACHINE",
+  "keys": [
+   "MACHINE"
+  ]
+ },
+ "scanner-hit:bizcat": {
+  "first_seen": "2026-09-03T21:10:35+00:00",
+  "count": 1,
+  "example": "scanner-hit: BIZCAT",
+  "keys": [
+   "BIZCAT"
+  ]
+ },
+ "outcome-x:goldcoin": {
+  "first_seen": "2026-09-03T21:10:41+00:00",
+  "count": 1,
+  "example": "outcome-3x: Goldcoin",
+  "keys": [
+   "Goldcoin"
+  ]
+ },
+ "outcome-x:retardio": {
+  "first_seen": "2026-09-03T21:10:46+00:00",
+  "count": 1,
+  "example": "outcome-3x: RETARDIO",
+  "keys": [
+   "RETARDIO"
+  ]
+ },
+ "outcome-x:fomo": {
+  "first_seen": "2026-09-03T21:10:52+00:00",
+  "count": 1,
+  "example": "outcome-3x: FOMO",
+  "keys": [
+   "FOMO"
+  ]
+ },
+ "outcome-x:machine": {
+  "first_seen": "2026-09-03T22:10:48+00:00",
+  "count": 1,
+  "example": "outcome-3x: MACHINE",
+  "keys": [
+   "MACHINE"
   ]
  }
 }

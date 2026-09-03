@@ -15,34 +15,57 @@ Horizons: 1h catches the initial pump, 6h catches whether it held, 24h catches
 whether it was real, 168h catches whether anything survived a week.
 """
 import math, time, statistics as st
-import journal, sources as S
+import journal, resolve, sources as S
 
 HORIZONS = [1, 6, 24, 168]
 MIN_WINS_TO_TRUST = 10            # wins, not rows. Rows are cheap; wins are scarce.
 
 
 # ---------------------------------------------------------------- scoring ---
+# GeckoTerminal is the fallback and it is rate-limited to ~10-15 calls/min.
+# Cap how many a single pass may spend so a bad hour for Dexscreener cannot
+# turn into a 429 storm that costs the outcome scoring too.
+FALLBACK_BUDGET = 8
+
+
 def score_horizon(horizon_h, limit=80, verbose=True):
     """Re-check pairs first seen ~horizon_h ago and record what happened."""
     todo = journal.pending(horizon_h)[:limit]
     if verbose:
         print(f"  {horizon_h}h horizon: {len(todo)} pairs due")
     done = 0
+    fallbacks = 0
     for o in todo:
         try:
             pair = S.dexscreener_pair(o.get("network", "solana"), o["pair"])
         except Exception:
             pair = None
+        reasons, src = None, None
         if pair:
             price = float(pair.get("priceUsd") or 0) or None
             liq   = float((pair.get("liquidity") or {}).get("usd") or 0)
             vol24 = float((pair.get("volume") or {}).get("h24") or 0)
+            src = "dexscreener"
         else:
-            price = liq = vol24 = None       # delisted / no longer indexed
+            # The primary went quiet. That is NOT the same as the token dying -
+            # coins do not stop existing. Resolve it properly before writing a
+            # label we cannot take back.
+            price = liq = vol24 = None
+            tok = o.get("token")
+            if tok and fallbacks < FALLBACK_BUDGET:
+                fallbacks += 1
+                r = resolve.resolve(tok, o.get("network", "solana"))
+                price, liq = r.get("price_usd"), r.get("liq_usd")
+                reasons, src = r.get("reasons"), r.get("source")
+                if verbose:
+                    print(f"    {str(o.get('symbol','?'))[:12]:<14} dexscreener dropped it "
+                          f"-> {src or 'unresolved'}: {', '.join(reasons or [])}")
+            elif tok:
+                reasons, src = ["source_dropped", "fallback_budget_spent"], None
         status, mult = journal.record_outcome(
             o["pair"], o["ts"], horizon_h, price, liq, vol24,
             o.get("price_usd"), o.get("liq"), o.get("symbol", ""),
-            token=o.get("token", ""))
+            token=o.get("token", ""), reasons=reasons, source=src)
         done += 1
         if verbose and mult and mult >= 2:
             ok, why = journal.realizable(status, liq, mult)

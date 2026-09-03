@@ -28,7 +28,7 @@ The journal is append-only and outcome scoring is idempotent, so running the
 stages separately is behaviour-identical to one full pass.
 """
 import sys, time, traceback, datetime as dt
-import scanner, journal, track, notify, macro, sources, findings
+import scanner, journal, track, notify, macro, sources, findings, resolve
 
 PASS_SCORE = 70
 JOURNAL_BATCH = 10
@@ -168,6 +168,19 @@ def main():
         if not loop:
             break
         time.sleep(900)
+
+    # Per-source reliability. If Dexscreener is a single point of failure it
+    # should at least be a measured one.
+    try:
+        h = resolve.log_health()
+        drops = h["dexscreener_dropped"]
+        if drops:
+            tot = drops + h["dexscreener_ok"]
+            print(f"  source health: dexscreener dropped {drops}/{tot} lookups, "
+                  f"geckoterminal recovered {h['geckoterminal_ok']}, "
+                  f"{h['unresolved']} unresolved")
+    except Exception as e:
+        print(f"  source-health log failed (non-fatal): {e}")
 
     # One line a day saying the collector is alive. Failures already page; a
     # week of silence from a runner nobody has seen working does not prove it

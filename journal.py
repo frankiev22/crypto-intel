@@ -338,7 +338,8 @@ def scored_pairs():
 
 
 def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
-                   base_price, base_liq, symbol="", token=""):
+                   base_price, base_liq, symbol="", token="",
+                   reasons=None, source=None):
     mult   = (price / base_price) if (base_price and price) else None
     liqchg = ((liq - base_liq) / base_liq * 100) if (base_liq and liq is not None) else None
     if liq is None:
@@ -354,7 +355,11 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
            "checked_ts": int(time.time()), "horizon_h": horizon_h,
            "price_usd": price, "liq": liq, "vol_h24": vol24,
            "mult": mult, "liq_change_pct": liqchg, "status": status,
-           "realizable": ok, "unrealizable_reason": why}
+           "realizable": ok, "unrealizable_reason": why,
+           # WHY the reading looks the way it does. "our index went quiet",
+           # "the pool drained" and "the price went to zero" are three facts,
+           # and collapsing them into status="gone" destroyed outcome labels.
+           "reasons": reasons or [], "price_source": source}
     _append(OUT, obj)                      # system of record, first
     _push("record_outcomes", [obj])        # best effort, never raises
 
