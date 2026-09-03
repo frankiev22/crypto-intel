@@ -62,6 +62,11 @@ jobs:
           # against Dexscreener's 300/min. It is what keeps a run inside one
           # billable minute on a private repo.
           CRYPTO_HTTP_PACE_S: '0.05'
+          # Dexscreener drops far more lookups than a budget of 8 can service
+          # (125 drops in one measured pass). A pass takes ~60s against the
+          # 900s ceiling below, so the hosted runner can afford to resolve
+          # properly where the sandbox cannot.
+          CRYPTO_FALLBACK_BUDGET: '40'
         run: python3 collect.py solana | tee run.log
 
       # Commit BEFORE deciding whether the job failed. A pass that died halfway

@@ -14,7 +14,7 @@ signal from twelve rows.
 Horizons: 1h catches the initial pump, 6h catches whether it held, 24h catches
 whether it was real, 168h catches whether anything survived a week.
 """
-import math, time, statistics as st
+import math, os, time, statistics as st
 import journal, resolve, sources as S
 
 HORIZONS = [1, 6, 24, 168]
@@ -22,10 +22,16 @@ MIN_WINS_TO_TRUST = 10            # wins, not rows. Rows are cheap; wins are sca
 
 
 # ---------------------------------------------------------------- scoring ---
-# GeckoTerminal is the fallback and it is rate-limited to ~10-15 calls/min.
-# Cap how many a single pass may spend so a bad hour for Dexscreener cannot
-# turn into a 429 storm that costs the outcome scoring too.
-FALLBACK_BUDGET = 8
+# GeckoTerminal is the fallback and it is rate-limited to ~10-15 calls/min, so
+# a single pass gets a budget rather than a free hand: a bad hour for
+# Dexscreener must not turn into a 429 storm that costs the outcome scoring too.
+#
+# Measured 2026-09-03: one pass produced 125 dropped lookups and 107 of them
+# hit a budget of 8. The drop rate is an order of magnitude above what that
+# services, so the budget is now the dial. The hosted runner sets it high - a
+# pass takes ~60s against a 900s ceiling, so it can afford 40 fallbacks at
+# ~2.5s each - while the sandbox keeps it small to stay inside its 178s cap.
+FALLBACK_BUDGET = int(os.environ.get("CRYPTO_FALLBACK_BUDGET", "8"))
 
 
 def score_horizon(horizon_h, limit=80, verbose=True):
