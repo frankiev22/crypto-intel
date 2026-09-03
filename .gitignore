@@ -13,3 +13,14 @@ __pycache__/
 # local scratch
 logs/
 data/journal.db
+
+# Per-machine runner state, deliberately NOT shared.
+#
+# Both the hosted workflow and the local Claude cron write data/. The pass
+# sentinel detects a kill on the machine that was killed - a hosted-runner kill
+# is not something the local cron can or should observe - and the heartbeat
+# marker is likewise per-runner. Sharing them produced a merge conflict on
+# every overlap and told neither runner anything true about the other.
+data/.pass_state.json
+data/.pass_state.json.done
+data/.heartbeat.json
