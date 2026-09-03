@@ -29,3 +29,5 @@
 {"ts":1788473185,"network":"solana","kind":"discovery_window","pools_returned":76,"oldest":"2026-09-03T21:58:47+00:00","newest":"2026-09-03T22:02:04+00:00","span_s":197.0,"pages_lost":0,"suspected_cause":null,"scanned":76,"passed":1,"pass_score":70}
 {"ts":1788474304,"network":"solana","kind":"aborted_pass","stage":"24","started_ts":1788474276,"ran_for_s":28,"suspected_cause":"killed - no clean exit","pools_returned":0,"span_s":null,"scanned":0,"passed":0}
 {"ts":1788474395,"network":"solana","kind":"discovery_window","pools_returned":61,"oldest":"2026-09-03T22:21:51+00:00","newest":"2026-09-03T22:24:59+00:00","span_s":188.0,"pages_lost":1,"suspected_cause":null,"scanned":61,"passed":1,"pass_score":70}
+{"ts":1788478516,"network":"solana","kind":"aborted_pass","stage":"full","started_ts":1788474370,"ran_for_s":4146,"suspected_cause":"killed - no clean exit","pools_returned":0,"span_s":null,"scanned":0,"passed":0}
+{"ts":1788478538,"network":"solana","kind":"discovery_window","pools_returned":62,"oldest":"2026-09-03T23:31:01+00:00","newest":"2026-09-03T23:32:59+00:00","span_s":118.0,"pages_lost":0,"suspected_cause":null,"scanned":61,"passed":6,"pass_score":70}
