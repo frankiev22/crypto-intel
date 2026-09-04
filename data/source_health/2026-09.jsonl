@@ -70,3 +70,4 @@
 {"ts":1788520190,"dexscreener_ok":0,"dexscreener_dropped":8,"geckoterminal_ok":4,"geckoterminal_fail":4,"onchain_ok":8,"onchain_fail":0,"unresolved":4}
 {"ts":1788522599,"dexscreener_ok":6,"dexscreener_dropped":29,"geckoterminal_ok":6,"geckoterminal_fail":23,"onchain_ok":35,"onchain_fail":0,"unresolved":23}
 {"ts":1788534912,"dexscreener_ok":4,"dexscreener_dropped":75,"geckoterminal_ok":8,"geckoterminal_fail":67,"onchain_ok":79,"onchain_fail":0,"unresolved":67}
+{"ts":1788547139,"dexscreener_ok":7,"dexscreener_dropped":70,"geckoterminal_ok":8,"geckoterminal_fail":62,"onchain_ok":77,"onchain_fail":0,"unresolved":62}

@@ -1525,3 +1525,5 @@
 {"token":"BpmpS2AuRqdPN6rCK7n86XHPCaxzLi56LyUxsj18pump","milestone":"realizable_2x","crossed_ts":1788509306,"crossed_at":"2026-09-04T08:08:26+00:00","symbol":"WOFI","value":2.0272,"kind":"multiple"}
 {"token":"BpmpS2AuRqdPN6rCK7n86XHPCaxzLi56LyUxsj18pump","milestone":"realizable_3x","crossed_ts":1788509308,"crossed_at":"2026-09-04T08:08:28+00:00","symbol":"WOFI","value":333.3333,"kind":"multiple"}
 {"token":"BpmpS2AuRqdPN6rCK7n86XHPCaxzLi56LyUxsj18pump","milestone":"realizable_10x","crossed_ts":1788509308,"crossed_at":"2026-09-04T08:08:28+00:00","symbol":"WOFI","value":333.3333,"kind":"multiple"}
+{"token":"Fm8JdWMMsEjbQMuNV4tdFs4gs5wGSQwxEBDJfvewzeYp","milestone":"realizable_2x","crossed_ts":1788547005,"crossed_at":"2026-09-04T18:36:45+00:00","symbol":"worthless","value":4.7271,"kind":"multiple"}
+{"token":"Fm8JdWMMsEjbQMuNV4tdFs4gs5wGSQwxEBDJfvewzeYp","milestone":"realizable_3x","crossed_ts":1788547005,"crossed_at":"2026-09-04T18:36:45+00:00","symbol":"worthless","value":4.7271,"kind":"multiple"}
