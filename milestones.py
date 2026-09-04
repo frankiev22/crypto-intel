@@ -67,6 +67,12 @@ def _ledger_path():
     return os.path.join(DIR, dt.datetime.now(dt.timezone.utc).strftime("%Y-%m") + ".jsonl")
 
 
+# LIMIT OF THE O_EXCL CLAIM, measured 2026-09-04. The lock is per FILESYSTEM.
+# Two runners on two machines each create the file successfully and git has to
+# arbitrate at merge time - `worthless` realizable_2x was claimed at 13:06:57Z
+# locally and 18:36:45Z on the hosted runner. The rule when that happens is the
+# EARLIEST crossing wins, because a claim records who crossed first, not who
+# wrote first. Within one runner the guarantee still holds.
 def claim(token, milestone, **meta):
     """Atomically claim (token, milestone). True ONLY for the first caller.
 
