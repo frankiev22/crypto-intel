@@ -400,9 +400,9 @@
  },
  "scanner-hit:rst": {
   "first_seen": "2026-08-25T19:08:33+00:00",
-  "count": 5,
+  "count": 6,
   "example": "scanner-hit: RST",
-  "last_seen": "2026-09-03T20:10:25+00:00",
+  "last_seen": "2026-09-04T11:10:52+00:00",
   "keys": [
    "RST"
   ]
@@ -1564,8 +1564,12 @@
  },
  "scanner-hit:meta": {
   "first_seen": "2026-08-30T22:10:43+00:00",
-  "count": 1,
-  "example": "scanner-hit: META"
+  "count": 2,
+  "example": "scanner-hit: META",
+  "last_seen": "2026-09-04T05:11:04+00:00",
+  "keys": [
+   "META"
+  ]
  },
  "scanner-hit:luna": {
   "first_seen": "2026-08-30T22:10:43+00:00",
@@ -3999,11 +4003,12 @@
  },
  "scanner-hit:biketyson": {
   "first_seen": "2026-09-04T03:10:54+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: biketyson",
   "keys": [
    "biketyson"
-  ]
+  ],
+  "last_seen": "2026-09-04T07:10:26+00:00"
  },
  "scanner-hit:ponscat": {
   "first_seen": "2026-09-04T03:10:59+00:00",
@@ -4040,12 +4045,175 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 3,
+  "count": 15,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-04T06:37:49+00:00"
+  "last_seen": "2026-09-04T11:09:49+00:00"
+ },
+ "scanner-hit:patience": {
+  "first_seen": "2026-09-04T05:11:20+00:00",
+  "count": 1,
+  "example": "scanner-hit: PATIENCE",
+  "keys": [
+   "PATIENCE"
+  ]
+ },
+ "scanner-hit:pons": {
+  "first_seen": "2026-09-04T05:11:33+00:00",
+  "count": 2,
+  "example": "scanner-hit: PONS",
+  "keys": [
+   "PONS"
+  ],
+  "last_seen": "2026-09-04T08:11:48+00:00"
+ },
+ "scanner-hit:concern": {
+  "first_seen": "2026-09-04T06:11:23+00:00",
+  "count": 1,
+  "example": "scanner-hit: CONCERN",
+  "keys": [
+   "CONCERN"
+  ]
+ },
+ "scanner-hit:hippons": {
+  "first_seen": "2026-09-04T06:11:34+00:00",
+  "count": 1,
+  "example": "scanner-hit: HIPPONS",
+  "keys": [
+   "HIPPONS"
+  ]
+ },
+ "scanner-hit:cjk-niulai": {
+  "first_seen": "2026-09-04T06:11:45+00:00",
+  "count": 1,
+  "example": "scanner-hit: cjk-niulai",
+  "keys": [
+   "cjk-niulai"
+  ]
+ },
+ "outcome-x:tikzzz": {
+  "first_seen": "2026-09-04T06:11:55+00:00",
+  "count": 1,
+  "example": "outcome-3x: TIKZZZ",
+  "keys": [
+   "TIKZZZ"
+  ]
+ },
+ "scanner-hit:rip": {
+  "first_seen": "2026-09-04T07:10:11+00:00",
+  "count": 1,
+  "example": "scanner-hit: RIP",
+  "keys": [
+   "RIP"
+  ]
+ },
+ "scanner-hit:marscoin": {
+  "first_seen": "2026-09-04T07:10:16+00:00",
+  "count": 2,
+  "example": "scanner-hit: MARSCOIN",
+  "keys": [
+   "MARSCOIN",
+   "MarsCoin"
+  ],
+  "last_seen": "2026-09-04T11:10:41+00:00"
+ },
+ "scanner-hit:bnbcat": {
+  "first_seen": "2026-09-04T07:10:21+00:00",
+  "count": 1,
+  "example": "scanner-hit: BNBCAT",
+  "keys": [
+   "BNBCAT"
+  ]
+ },
+ "scanner-hit:frogas": {
+  "first_seen": "2026-09-04T08:11:30+00:00",
+  "count": 1,
+  "example": "scanner-hit: FROGAS",
+  "keys": [
+   "FROGAS"
+  ]
+ },
+ "scanner-hit:mining": {
+  "first_seen": "2026-09-04T08:11:36+00:00",
+  "count": 1,
+  "example": "scanner-hit: MINING",
+  "keys": [
+   "MINING"
+  ]
+ },
+ "scanner-hit:tiktok": {
+  "first_seen": "2026-09-04T08:11:47+00:00",
+  "count": 1,
+  "example": "scanner-hit: TIKTOK",
+  "keys": [
+   "TIKTOK"
+  ]
+ },
+ "outcome-x:wofi": {
+  "first_seen": "2026-09-04T08:12:10+00:00",
+  "count": 1,
+  "example": "outcome-3x: WOFI",
+  "keys": [
+   "WOFI"
+  ]
+ },
+ "scanner-hit:gme": {
+  "first_seen": "2026-09-04T09:10:48+00:00",
+  "count": 1,
+  "example": "scanner-hit: GME",
+  "keys": [
+   "GME"
+  ]
+ },
+ "scanner-hit:ponsedian": {
+  "first_seen": "2026-09-04T09:10:56+00:00",
+  "count": 1,
+  "example": "scanner-hit: PONSEDIAN",
+  "keys": [
+   "PONSEDIAN"
+  ]
+ },
+ "scanner-hit:anseminu": {
+  "first_seen": "2026-09-04T10:10:27+00:00",
+  "count": 1,
+  "example": "scanner-hit: ANSEMINU",
+  "keys": [
+   "ANSEMINU"
+  ]
+ },
+ "scanner-hit:him": {
+  "first_seen": "2026-09-04T10:10:33+00:00",
+  "count": 1,
+  "example": "scanner-hit: HIM",
+  "keys": [
+   "HIM"
+  ]
+ },
+ "scanner-hit:bold": {
+  "first_seen": "2026-09-04T10:10:40+00:00",
+  "count": 1,
+  "example": "scanner-hit: BOLD",
+  "keys": [
+   "BOLD"
+  ]
+ },
+ "collector-error:lookupoutage": {
+  "first_seen": "2026-09-04T10:10:47+00:00",
+  "count": 1,
+  "example": "collector-error: LookupOutage",
+  "keys": [
+   "LookupOutage"
+  ]
+ },
+ "scanner-hit:onlymeme": {
+  "first_seen": "2026-09-04T11:10:46+00:00",
+  "count": 1,
+  "example": "scanner-hit: ONLYMEME",
+  "keys": [
+   "ONLYMEME"
+  ]
  }
 }

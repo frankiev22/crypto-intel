@@ -1522,3 +1522,6 @@
 {"token":"8ZvAY5ZgoXXgFyEod2LTvX1gyLKACAYqWegPop3YEx2t","milestone":"realizable_2x","crossed_ts":1788478563,"crossed_at":"2026-09-03T23:36:03+00:00","symbol":"PLUMHORNN","value":2.0569,"kind":"multiple"}
 {"token":"8ZvAY5ZgoXXgFyEod2LTvX1gyLKACAYqWegPop3YEx2t","milestone":"realizable_2x","crossed_ts":1788494881,"crossed_at":"2026-09-04T04:08:01+00:00","symbol":"PLUMHORNN","value":3.6384,"kind":"multiple"}
 {"token":"8ZvAY5ZgoXXgFyEod2LTvX1gyLKACAYqWegPop3YEx2t","milestone":"realizable_3x","crossed_ts":1788494881,"crossed_at":"2026-09-04T04:08:01+00:00","symbol":"PLUMHORNN","value":3.6384,"kind":"multiple"}
+{"token":"BpmpS2AuRqdPN6rCK7n86XHPCaxzLi56LyUxsj18pump","milestone":"realizable_2x","crossed_ts":1788509306,"crossed_at":"2026-09-04T08:08:26+00:00","symbol":"WOFI","value":2.0272,"kind":"multiple"}
+{"token":"BpmpS2AuRqdPN6rCK7n86XHPCaxzLi56LyUxsj18pump","milestone":"realizable_3x","crossed_ts":1788509308,"crossed_at":"2026-09-04T08:08:28+00:00","symbol":"WOFI","value":333.3333,"kind":"multiple"}
+{"token":"BpmpS2AuRqdPN6rCK7n86XHPCaxzLi56LyUxsj18pump","milestone":"realizable_10x","crossed_ts":1788509308,"crossed_at":"2026-09-04T08:08:28+00:00","symbol":"WOFI","value":333.3333,"kind":"multiple"}
