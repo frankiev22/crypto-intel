@@ -188,13 +188,19 @@ def main():
     try:
         hb = journal.daily_summary()
         if hb:
-            notify.send(content=(
-                f"**crypto-intel daily** {hb['hours_with_data']}/24 hours with data, "
-                f"{hb['observations']} observations, {hb['passed']} cleared the filter, "
-                f"{hb['stream_coverage_pct']}% of the launch stream seen"
-                + (f", {hb['aborted']} aborted passes" if hb["aborted"] else "")
-                + (f", best realizable {hb['best_realizable_mult_24h']}x"
-                   if hb["best_realizable_mult_24h"] else "")))
+            msg = (f"**crypto-intel daily** {hb['hours_with_data']}/24 hours with data, "
+                   f"{hb['observations']} observations, {hb['passed']} cleared the filter, "
+                   f"{hb['stream_coverage_pct']}% of the launch stream seen")
+            if hb["aborted"]:
+                msg += f", {hb['aborted']} aborted passes"
+            if hb["best_realizable_mult_24h"]:
+                msg += f", best realizable {hb['best_realizable_mult_24h']}x"
+            # Per-horizon lookup success on the line. A horizon failing at
+            # 100% is what happened on 09-03 for four passes running, unseen.
+            if hb.get("horizon_lookups"):
+                msg += chr(10) + "horizon lookups resolved: " + ", ".join(
+                    f"{k} {v}" for k, v in hb["horizon_lookups"].items())
+            notify.send(content=msg)
     except Exception as e:
         print(f"  heartbeat failed (non-fatal): {e}")
 

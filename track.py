@@ -33,6 +33,11 @@ MIN_WINS_TO_TRUST = 10            # wins, not rows. Rows are cheap; wins are sca
 # ~2.5s each - while the sandbox keeps it small to stay inside its 178s cap.
 FALLBACK_BUDGET = int(os.environ.get("CRYPTO_FALLBACK_BUDGET", "8"))
 
+# Per-horizon lookup health, and the floor below which a pass says so loudly.
+HORIZON_HEALTH = {}
+PRIMARY_OK_FLOOR = 0.5     # under half resolving is an outage, not variance
+MIN_LOOKUPS_TO_JUDGE = 10  # do not cry outage over three lookups
+
 
 def score_horizon(horizon_h, limit=80, verbose=True):
     """Re-check pairs first seen ~horizon_h ago and record what happened."""
@@ -41,6 +46,7 @@ def score_horizon(horizon_h, limit=80, verbose=True):
         print(f"  {horizon_h}h horizon: {len(todo)} pairs due")
     done = 0
     fallbacks = 0
+    primary_ok = primary_miss = 0
     for o in todo:
         try:
             pair = S.dexscreener_pair(o.get("network", "solana"), o["pair"])
@@ -52,11 +58,13 @@ def score_horizon(horizon_h, limit=80, verbose=True):
             liq   = float((pair.get("liquidity") or {}).get("usd") or 0)
             vol24 = float((pair.get("volume") or {}).get("h24") or 0)
             src = "dexscreener"
+            primary_ok += 1
         else:
             # The primary went quiet. That is NOT the same as the token dying -
             # coins do not stop existing. Resolve it properly before writing a
             # label we cannot take back.
             price = liq = vol24 = None
+            primary_miss += 1
             tok = o.get("token")
             if tok and fallbacks < FALLBACK_BUDGET:
                 fallbacks += 1
@@ -96,6 +104,29 @@ def score_horizon(horizon_h, limit=80, verbose=True):
             else:
                 print(f"    {o.get('symbol','?'):<12} {mult:>6.2f}x  NOT REALIZABLE - {why}")
         S.pace()
+
+    # A lookup class failing at ~100% inside one pass is not weather, it is an
+    # outage, and on 2026-09-03 the 24h and 168h horizons failed at ~100% for
+    # four consecutive passes without raising anything. These are the horizons
+    # that would prove or kill the scoring model. Alert loudly, every time.
+    seen_n = primary_ok + primary_miss
+    HORIZON_HEALTH[horizon_h] = {"due": len(todo), "primary_ok": primary_ok,
+                                 "primary_miss": primary_miss}
+    if seen_n >= MIN_LOOKUPS_TO_JUDGE and primary_ok / seen_n < PRIMARY_OK_FLOOR:
+        rate = primary_ok / seen_n
+        msg = (f"{horizon_h}h horizon: primary price source resolved only "
+               f"{primary_ok}/{seen_n} lookups ({rate:.0%})")
+        print(f"    LOOKUP OUTAGE - {msg}")
+        try:
+            import findings
+            findings.record("lookup-outage", f"{horizon_h}h", msg,
+                            f"{primary_miss} of {seen_n} lookups fell through to "
+                            f"the fallback or failed entirely. Outcomes at this "
+                            f"horizon are being priced off a fallback or not at "
+                            f"all, which is how a scoring model dies quietly.",
+                            always_ping=True)
+        except Exception as e:
+            print(f"    (could not raise the outage finding: {e})")
     return done
 
 

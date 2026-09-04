@@ -282,7 +282,14 @@ def daily_summary(force=False):
         except OSError:
             pass
 
-    return {"hours_with_data": hours, "observations": len(obs), "passed": passed,
+    try:
+        import track
+        hh = {f"{k}h": f"{v['primary_ok']}/{v['primary_ok']+v['primary_miss']}"
+              for k, v in sorted(track.HORIZON_HEALTH.items())}
+    except Exception:
+        hh = {}
+    return {"horizon_lookups": hh,
+            "hours_with_data": hours, "observations": len(obs), "passed": passed,
             "passes": len(cov), "aborted": aborted,
             "stream_coverage_pct": round(window, 2),
             "best_realizable_mult_24h": round(best, 2)}
