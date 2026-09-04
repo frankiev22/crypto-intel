@@ -32,3 +32,4 @@
 {"ts":1788494977,"dexscreener_ok":0,"dexscreener_dropped":8,"geckoterminal_ok":2,"geckoterminal_fail":6,"onchain_ok":8,"onchain_fail":0,"unresolved":6}
 {"ts":1788496145,"dexscreener_ok":0,"dexscreener_dropped":8,"geckoterminal_ok":4,"geckoterminal_fail":4,"onchain_ok":8,"onchain_fail":0,"unresolved":4}
 {"ts":1788496361,"dexscreener_ok":2,"dexscreener_dropped":5,"geckoterminal_ok":4,"geckoterminal_fail":1,"onchain_ok":7,"onchain_fail":0,"unresolved":1}
+{"ts":1788503869,"dexscreener_ok":6,"dexscreener_dropped":71,"geckoterminal_ok":7,"geckoterminal_fail":64,"onchain_ok":77,"onchain_fail":0,"unresolved":64}
