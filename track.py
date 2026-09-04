@@ -57,20 +57,34 @@ def score_horizon(horizon_h, limit=80, verbose=True):
             price = float(pair.get("priceUsd") or 0) or None
             liq   = float((pair.get("liquidity") or {}).get("usd") or 0)
             vol24 = float((pair.get("volume") or {}).get("h24") or 0)
+            # What you could actually be paid, not the pool valued at its own
+            # token. See resolve.exit_depth_usd().
+            depth = resolve.exit_depth_usd(pair)
             src = "dexscreener"
             primary_ok += 1
         else:
             # The primary went quiet. That is NOT the same as the token dying -
             # coins do not stop existing. Resolve it properly before writing a
             # label we cannot take back.
-            price = liq = vol24 = None
+            price = liq = vol24 = depth = None
             primary_miss += 1
             tok = o.get("token")
             if tok and fallbacks < FALLBACK_BUDGET:
                 fallbacks += 1
                 r = resolve.resolve(tok, o.get("network", "solana"))
                 price, liq = r.get("price_usd"), r.get("liq_usd")
+                depth = r.get("exit_depth_usd")
                 reasons, src = r.get("reasons"), r.get("source")
+                # WOFI, 2026-09-04. We entered on pair 4mvH... at $0.00004131,
+                # that pool went quiet, the token-level fallback priced the
+                # OTHER pool at $0.01377, and the division recorded 333.33x.
+                # The pair we actually held went 2.03x. Two pools of one token
+                # are not one series and must never be divided into each other.
+                if r.get("pair_address") and r["pair_address"] != o["pair"]:
+                    reasons = list(reasons or []) + ["cross_pair_fallback"]
+                    if verbose:
+                        print(f"    {str(o.get('symbol','?'))[:12]:<14} priced from a "
+                              f"DIFFERENT pool than we entered - not comparable")
                 if verbose:
                     print(f"    {str(o.get('symbol','?'))[:12]:<14} dexscreener dropped it "
                           f"-> {src or 'unresolved'}: {', '.join(reasons or [])}")
@@ -87,7 +101,8 @@ def score_horizon(horizon_h, limit=80, verbose=True):
                 and o.get("token") and fallbacks < FALLBACK_BUDGET):
             fallbacks += 1
             _okp, verdict = pricecheck.check_multiple(
-                o["token"], implied, o.get("network", "solana"))
+                o["token"], implied, o.get("network", "solana"),
+                base_price=base_px)
             if verdict and not verdict.get("trustworthy") and verbose:
                 print(f"    {str(o.get('symbol','?'))[:12]:<14} {implied:>8.2f}x "
                       f"QUARANTINED - {verdict['confidence']}: {verdict['detail'][:70]}")
@@ -95,7 +110,7 @@ def score_horizon(horizon_h, limit=80, verbose=True):
             o["pair"], o["ts"], horizon_h, price, liq, vol24,
             o.get("price_usd"), o.get("liq"), o.get("symbol", ""),
             token=o.get("token", ""), reasons=reasons, source=src,
-            price_verdict=verdict)
+            price_verdict=verdict, exit_depth=depth)
         done += 1
         if verbose and mult and mult >= 2:
             ok, why = journal.realizable(status, liq, mult)

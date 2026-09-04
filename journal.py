@@ -19,6 +19,7 @@ import json, os, time, glob, urllib.request, datetime as dt
 
 import config  # noqa: F401 - importing this loads .env
 import milestones
+import tickers
 from scanner import CFG as _SCAN_CFG
 
 # --------------------------------------------------------------------------
@@ -45,12 +46,20 @@ MIN_EXIT_LIQ_USD = _SCAN_CFG["min_liquidity_usd"]
 MAX_PLAUSIBLE_MULT = 1000
 
 
-def realizable(status, liq, mult):
-    """(bool, reason_if_not). Could this multiple actually have been taken?"""
+def realizable(status, liq, mult, exit_depth=None):
+    """(bool, reason_if_not). Could this multiple actually have been taken?
+
+    `exit_depth` is the quote side of the pool. Prefer it over `liq` whenever
+    it is known: `liq` counts the base token valued at its own price, so a pool
+    holding a billion of its own token and $10k of SOL reports $1.28M of
+    "liquidity" and clears any floor set against it.
+    """
     if status != "alive":
         return False, f"status is {status}, not alive"
-    if liq is None or liq < MIN_EXIT_LIQ_USD:
-        return False, (f"exit liquidity ${(liq or 0):,.0f} is below the "
+    judged = exit_depth if exit_depth is not None else liq
+    if judged is None or judged < MIN_EXIT_LIQ_USD:
+        which = "exit depth" if exit_depth is not None else "exit liquidity"
+        return False, (f"{which} ${(judged or 0):,.0f} is below the "
                        f"${MIN_EXIT_LIQ_USD:,.0f} exit floor")
     if mult is not None and mult > MAX_PLAUSIBLE_MULT:
         return False, (f"{mult:,.0f}x exceeds the {MAX_PLAUSIBLE_MULT}x plausibility "
@@ -300,6 +309,14 @@ def record(rows, network, pass_score=70):
     now = int(time.time())
     n = 0
     mirror = []
+    # Ticker collision is recorded, never scored. 58.1% of everything we have
+    # seen shares a symbol with something else, and the outcome difference
+    # between variant-count buckets does not survive its own confidence
+    # intervals - see tickers.py. Impersonation is a separate, structural flag.
+    try:
+        tick_idx = tickers._load()
+    except Exception:
+        tick_idx = {}
     for r in rows:
         obj = {
             "ts": now, "network": network,
@@ -316,9 +333,20 @@ def record(rows, network, pass_score=70):
             # a 66 from v5 look identical in the scoreboard and are not.
             "weights_version": r.get("weights_version"),
         }
+        try:
+            obj["ticker_variants"] = tickers.note(
+                r.get("name"), r.get("addr"), idx=tick_idx)
+            obj["impersonation"] = tickers.impersonation(r.get("name"))
+        except Exception:
+            obj["ticker_variants"] = None
+            obj["impersonation"] = []
         _append(OBS, obj)      # system of record, first and unconditional
         mirror.append(obj)
         n += 1
+    try:
+        tickers._save(tick_idx)
+    except Exception:
+        pass
     _push("record_observations", mirror)   # best effort, never raises
     return n
 
@@ -346,7 +374,8 @@ def scored_pairs():
 
 def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
                    base_price, base_liq, symbol="", token="",
-                   reasons=None, source=None, price_verdict=None):
+                   reasons=None, source=None, price_verdict=None,
+                   exit_depth=None):
     mult   = (price / base_price) if (base_price and price) else None
     liqchg = ((liq - base_liq) / base_liq * 100) if (base_liq and liq is not None) else None
     if liq is None:
@@ -357,7 +386,7 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
         status = "dead"
     else:
         status = "alive"
-    ok, why = realizable(status, liq, mult)
+    ok, why = realizable(status, liq, mult, exit_depth=exit_depth)
     # A multiple built on an untrustworthy price is not a small error, it is a
     # fabrication: FLORK recorded 444x off a pool holding $0.0036, against a
     # deeper pool on the same token quoting 490x lower. If cross-source
@@ -367,10 +396,20 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
         ok = False
         why = (f"price {price_verdict.get('confidence')}: "
                f"{price_verdict.get('detail')}")
+    # A multiple across two different pools of the same token is arithmetic,
+    # not a return. Recorded, never counted.
+    if "cross_pair_fallback" in (reasons or []):
+        ok = False
+        why = ("priced from a different pool than the one observed; the entry "
+               "and exit prices are not the same series")
     obj = {"pair": pair, "symbol": symbol, "observed_ts": observed_ts,
            "checked_ts": int(time.time()), "horizon_h": horizon_h,
            "price_usd": price, "liq": liq, "vol_h24": vol24,
            "mult": mult, "liq_change_pct": liqchg, "status": status,
+           # The quote side only. `liq` counts the token side too, which for a
+           # one-sided pool is FDV in disguise - measured 2026-09-04 at ~125x
+           # the real depth. Nothing downstream should size an exit off `liq`.
+           "exit_depth_usd": exit_depth,
            "realizable": ok, "unrealizable_reason": why,
            # WHY the reading looks the way it does. "our index went quiet",
            # "the pool drained" and "the price went to zero" are three facts,

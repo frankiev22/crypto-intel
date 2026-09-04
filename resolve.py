@@ -60,6 +60,41 @@ def _f(x, d=None):
         return d
 
 
+def exit_depth_usd(pair):
+    """USD on the QUOTE side of one pool - the only side you can be paid in.
+
+    WHY, measured 2026-09-04. Dexscreener's `liquidity.usd` counts BOTH sides,
+    and the base side is the token valued at its own price. For a one-sided
+    launch pool that makes the reported figure a restatement of FDV:
+
+        worthless  liquidity.usd $1,285,629
+                   base  981,744,468 tokens x $0.001299 = $1,275,286
+                   quote 98.73 SOL                      =    ~$10,300
+
+        TIKZZZ     liquidity.usd $1,304,531
+                   base  981,741,611 tokens, quote 98.72 SOL
+
+    Two unrelated tokens, the same 98.7 SOL and the same 981.7M tokens, both
+    on fluxbeam, both quoting priceNative 0.00001253. The pool is a template.
+    Reported depth overstates what you could actually sell into by ~125x, and
+    every exit model reading `liquidity.usd` inherits that error.
+
+    priceNative is the token priced in the quote asset, so
+    quote_price_usd = priceUsd / priceNative, with no need to know or hardcode
+    what the quote asset is.
+    """
+    liq = pair.get("liquidity") or {}
+    q = _f(liq.get("quote"))
+    pu, pn = _f(pair.get("priceUsd")), _f(pair.get("priceNative"))
+    if q is not None and pu and pn:
+        return q * (pu / pn)
+    # Fall back to subtracting the base side out of the reported total.
+    total, base = _f(liq.get("usd")), _f(liq.get("base"))
+    if total is not None and base is not None and pu:
+        return max(0.0, total - base * pu)
+    return None
+
+
 def _dexscreener(chain, token):
     """Primary. Richest payload, and the one that goes quiet."""
     pairs = S.dexscreener_token(token)
@@ -69,9 +104,18 @@ def _dexscreener(chain, token):
     # be split across pump.fun, PumpSwap and Raydium at once, and reading only
     # the top pool understates what is actually exitable.
     total_liq = sum(_f((p.get("liquidity") or {}).get("usd"), 0) or 0 for p in pairs)
+    depths = [exit_depth_usd(p) for p in pairs]
+    total_depth = sum(d for d in depths if d is not None) if any(
+        d is not None for d in depths) else None
     best = max(pairs, key=lambda p: _f((p.get("liquidity") or {}).get("usd"), 0) or 0)
     return {"price_usd": _f(best.get("priceUsd")),
             "liq_usd": total_liq,
+            "exit_depth_usd": total_depth,
+            # WHICH pool this price came from. A token-scoped lookup answers
+            # "does this token still trade"; it does not answer "what happened
+            # to the pool we entered". Keeping the address lets the caller
+            # refuse to divide one pool's price by another pool's price.
+            "pair_address": best.get("pairAddress"),
             "liq_top_pair": _f((best.get("liquidity") or {}).get("usd"), 0),
             "pairs": len(pairs),
             "fdv": _f(best.get("fdv")),
@@ -90,6 +134,13 @@ def _geckoterminal(chain, token):
         return None
     return {"price_usd": _f(a.get("price_usd")),
             "liq_usd": _f(a.get("total_reserve_in_usd"), 0),
+            # UNKNOWN, deliberately. total_reserve_in_usd is documented as a
+            # total, and a total that includes the base side is FDV wearing a
+            # different name - see exit_depth_usd(). Until that is measured
+            # against a pool whose sides we can see, do not pretend this is
+            # tradeable depth.
+            "exit_depth_usd": None,
+            "pair_address": None,
             "liq_top_pair": None,
             "pairs": None,
             "fdv": _f(a.get("fdv_usd")),
@@ -117,6 +168,7 @@ def resolve(token, chain="solana", want_onchain=True):
     out = {"token": token, "chain": chain,
            "checked_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
            "source": None, "reasons": [], "price_usd": None, "liq_usd": None,
+           "exit_depth_usd": None, "pair_address": None,
            "fdv": None, "mcap": None, "on_chain": None, "exitable": False,
            "pairs": None, "liq_top_pair": None}
 
@@ -143,16 +195,24 @@ def resolve(token, chain="solana", want_onchain=True):
             HEALTH["geckoterminal_fail"] += 1
 
     if data:
-        for k in ("price_usd", "liq_usd", "fdv", "mcap", "source",
-                  "pairs", "liq_top_pair"):
+        for k in ("price_usd", "liq_usd", "exit_depth_usd", "pair_address",
+                  "fdv", "mcap", "source", "pairs", "liq_top_pair"):
             out[k] = data.get(k)
         liq = out["liq_usd"] or 0
         px = out["price_usd"] or 0
+        depth = out["exit_depth_usd"]
         if px <= ZERO_PRICE:
             out["reasons"].append("price_to_zero")
         if liq < DUST_LIQ_USD:
             out["reasons"].append("liquidity_pulled")
-        out["exitable"] = liq >= MIN_EXIT_LIQ_USD and px > ZERO_PRICE
+        # A pool whose reported liquidity is almost entirely its own token is
+        # not a market you can leave. Record it as its own fact.
+        if depth is not None and liq > 0 and depth < liq * 0.10:
+            out["reasons"].append("one_sided_pool")
+        # Exitability is judged on the quote side when we can see it, and only
+        # falls back to the both-sides figure when we cannot.
+        judged = depth if depth is not None else liq
+        out["exitable"] = judged >= MIN_EXIT_LIQ_USD and px > ZERO_PRICE
     else:
         HEALTH["unresolved"] += 1
         out["reasons"].append("unresolved")

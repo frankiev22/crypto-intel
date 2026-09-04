@@ -47,11 +47,23 @@ NO_PRICE_LIQ_USD = float(os.environ.get("CRYPTO_NO_PRICE_LIQ", "100.0"))
 # fallback API budget.
 VALIDATE_ABOVE = float(os.environ.get("CRYPTO_VALIDATE_ABOVE", "2.0"))
 
+# Two sources may quote the same price and still disagree about whether there
+# is a pool behind it. 2026-09-04: 景甜 recorded 29.53x, and the recomputed
+# multiple agreed exactly - but Dexscreener showed $0 liquidity where
+# GeckoTerminal showed $36,202. Price agreement was never evidence about depth.
+LIQ_DIVERGENCE_LIMIT = float(os.environ.get("CRYPTO_LIQ_DIVERGENCE", "10.0"))
+
+# How far a recorded multiple may sit from one recomputed against a fresh
+# price before it is treated as a bookkeeping error rather than a return.
+MULT_TOLERANCE = float(os.environ.get("CRYPTO_MULT_TOLERANCE", "1.25"))
+
 CONFIRMED = "confirmed"
 SINGLE = "single_source"
 Q_DIVERGENT = "quarantined_divergent"
+Q_LIQ_DIVERGENT = "quarantined_liquidity_divergent"
 Q_DUST = "quarantined_no_liquidity"
 Q_UNRESOLVED = "quarantined_unresolved"
+Q_MULT_MISMATCH = "quarantined_multiple_mismatch"
 
 
 def validate(token, chain="solana"):
@@ -65,7 +77,9 @@ def validate(token, chain="solana"):
     """
     out = {"token": token, "price": None, "confidence": Q_UNRESOLVED,
            "dex_price": None, "gt_price": None, "ratio": None,
-           "liq_usd": None, "trustworthy": False, "detail": ""}
+           "liq_usd": None, "exit_depth_usd": None, "dex_liq": None,
+           "gt_liq": None, "liq_ratio": None, "trustworthy": False,
+           "detail": ""}
 
     dex = gt = None
     try:
@@ -91,18 +105,38 @@ def validate(token, chain="solana"):
             liq = cand
             break
     out["liq_usd"] = liq
+    out["dex_liq"] = (dex or {}).get("liq_usd")
+    out["gt_liq"] = (gt or {}).get("liq_usd")
+    out["exit_depth_usd"] = (dex or {}).get("exit_depth_usd")
 
     if not dex and not gt:
         out["detail"] = "neither source resolved the token"
         return out
 
     # Dust first: below the floor, no source is describing a tradeable price,
-    # so agreement between them would prove nothing.
-    if liq is not None and liq < NO_PRICE_LIQ_USD:
+    # so agreement between them would prove nothing. Judge on the quote side
+    # where it is visible - a pool holding a billion of its own token and
+    # $10k of SOL reports over a million dollars of "liquidity".
+    floor_on = out["exit_depth_usd"] if out["exit_depth_usd"] is not None else liq
+    if floor_on is not None and floor_on < NO_PRICE_LIQ_USD:
         out["confidence"] = Q_DUST
-        out["detail"] = (f"total reserve ${liq:,.4f} is below the "
+        which = "exit depth" if out["exit_depth_usd"] is not None else "total reserve"
+        out["detail"] = (f"{which} ${floor_on:,.4f} is below the "
                          f"${NO_PRICE_LIQ_USD:,.0f} floor; no quote is meaningful")
         return out
+
+    # Sources can agree on price and still disagree on whether a pool exists.
+    dl, gl = out["dex_liq"], out["gt_liq"]
+    if dl is not None and gl is not None and max(dl, gl) >= NO_PRICE_LIQ_USD:
+        hi_l, lo_l = max(dl, gl), min(dl, gl)
+        lr = (hi_l / lo_l) if lo_l > 0 else float("inf")
+        out["liq_ratio"] = lr
+        if lr > LIQ_DIVERGENCE_LIMIT:
+            out["confidence"] = Q_LIQ_DIVERGENT
+            out["detail"] = (f"dexscreener liquidity ${dl:,.0f} vs geckoterminal "
+                             f"${gl:,.0f}; the sources do not agree that there is "
+                             f"a pool to exit into")
+            return out
 
     a, b = out["dex_price"], out["gt_price"]
     if a and b:
@@ -131,15 +165,61 @@ def validate(token, chain="solana"):
     return out
 
 
-def check_multiple(token, mult, chain="solana"):
+def check_multiple(token, mult, chain="solana", base_price=None):
     """Validate a multiple before it is recorded. Returns (ok, verdict_or_None).
 
     Small multiples pass without spending an API call - a wrong price on a
     1.02x changes nothing, and the GeckoTerminal budget is the scarce resource.
+
+    When `base_price` is supplied the multiple itself is re-derived from the
+    validated price, not just the price it was built on. That guards against a
+    stored multiple drifting from the price it was computed against.
+
+    IT DOES NOT CATCH WOFI, and it is worth being exact about why. WOFI
+    recorded 333.33x on 2026-09-04 and the arithmetic was correct: entry
+    $0.00004131, exit $0.01377, 333.33x. The two prices simply came from two
+    DIFFERENT POOLS of the same token - we entered on a pool holding no
+    liquidity at $0.00004131, that pool went quiet, and the token-level
+    fallback priced the live pool at $0.01377. Re-deriving the multiple
+    reproduces the same wrong number. Only pair identity catches it, which is
+    why `resolve()` returns `pair_address` and `record_outcome` refuses any row
+    carrying `cross_pair_fallback`. Measured across the record: 3 rows affected,
+    1 of them a multiple over 2x. Rare, and fabricated.
     """
     if mult is None or mult < VALIDATE_ABOVE:
         return True, None
     v = validate(token, chain)
+    if v["trustworthy"] and base_price:
+        v = _check_arithmetic(v, mult, base_price)
+    return bool(v["trustworthy"]), v
+
+
+def _check_arithmetic(v, mult, base_price):
+    """Re-derive the multiple from the validated price and compare."""
+    px = v.get("price")
+    if not px or not base_price:
+        return v
+    recomputed = px / base_price
+    v["recomputed_mult"] = recomputed
+    v["recorded_mult"] = mult
+    hi, lo = max(mult, recomputed), min(mult, recomputed)
+    off = (hi / lo) if lo > 0 else float("inf")
+    v["mult_ratio"] = off
+    if off > MULT_TOLERANCE:
+        v["trustworthy"] = False
+        v["confidence"] = Q_MULT_MISMATCH
+        v["detail"] = (f"recorded {mult:,.2f}x but the validated price "
+                       f"${px:.10g} against an entry of ${base_price:.10g} is "
+                       f"{recomputed:,.2f}x - {off:,.1f}x apart")
+    return v
+
+
+def verify_multiple(token, base_price, recorded_mult, chain="solana"):
+    """Standalone re-derivation, for auditing rows already on the record."""
+    v = validate(token, chain)
+    if not v["trustworthy"]:
+        return False, v
+    v = _check_arithmetic(v, recorded_mult, base_price)
     return bool(v["trustworthy"]), v
 
 

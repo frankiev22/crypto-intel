@@ -1,86 +1,148 @@
-# Liquidity trajectory beats the score, out of sample
+# Liquidity trajectory: RETRACTED as a signal, kept as a diagnosis
 
-Run 2026-09-04. Reproduce from `data/` with the join described below.
+Run 2026-09-04. Supersedes the 2026-09-04 version of this file, which claimed
+liquidity trajectory beat the score by 14.5x out of sample.
 
-## The question
+## The retraction, stated plainly
 
-`PLUMHORNN` scored 35, was rejected, and returned a realizable 3.64x with
-liquidity growing $11.4k to $22.4k. That was the first measured false negative.
-The tell was the liquidity trajectory, and the model has no term for it.
+**That claim was wrong, and the error was leakage.** The rule was scored on
+`mult` measured **from entry**, while the feature was measured **at the 1h
+check**. A token already up 5x by 1h scores a win at 6h without moving another
+cent. The feature was not predicting the outcome; it was a restatement of it.
 
-## The formulation
+Decomposing the eleven out-of-sample wins that produced the 14.5x:
 
-Non-leaky, and actionable: use `liq_change_pct` **measured at the 1h check** to
-predict the realizable outcome at **6h and 24h**. That information exists one
-hour after entry, so a strategy could act on it, and it cannot see its own
-label.
+| liq change at 1h | multiple AT 1h | multiple at 6h |
+|---:|---:|---:|
+| +614% | 7.25 | 7.25 |
+| +537% | 6.46 | 6.46 |
+| +422% | 5.29 | 5.29 |
+| +404% | 5.10 | 5.10 |
+| +383% | 4.89 | 4.89 |
+| +378% | 4.84 | 4.84 |
+| +367% | 4.73 | 4.73 |
+| +335% | 4.40 | 4.40 |
+| +325% | 4.30 | 4.30 |
+| +100% | 3.56 | 5.18 |
+| +70%  | 2.49 | 2.48 |
 
-A win is `realizable AND mult >= 2`. Denominator is every pair that came due.
+**11 of 11 were already >= 2x at the decision point.** In nine of them the 6h
+price is identical to the 1h price - nothing happened after the decision at
+all. The rule was reading the answer off the label.
 
-## In-sample, 6h, n=2160, base 2.27%
+## The same leak, in the +20% cliff
 
-| bucket | n | wins | rate | 95% CI | lift |
-|---|---:|---:|---:|---|---:|
-| score >= 70 | 777 | 18 | 2.32% | [1.47%, 3.63%] | **1.0x** |
-| score < 70 | 1383 | 31 | 2.24% | [1.58%, 3.16%] | 1.0x |
-| **liq grew >= +50% by 1h** | 124 | 37 | **29.84%** | [22.49%, 38.40%] | **13.2x** |
-| liq grew 0..+50% | 413 | 11 | 2.66% | [1.49%, 4.71%] | 1.2x |
-| liq fell -50..0% | 361 | 1 | 0.28% | [0.05%, 1.55%] | 0.1x |
-| **liq collapsed < -50%** | 1262 | **0** | **0.00%** | [0.00%, 0.30%] | 0.0x |
+The finer bucketing (entry = first observation with liq > $5,000, outcome =
+best realizable multiple at any horizon > 1h) reproduces cleanly - n=146
+against a reported 144:
 
-## Out of sample — temporal 70/30 split, 6h
+| 1h liquidity change | n | hit 2x | hit 5x | mean |
+|---|---:|---:|---:|---:|
+| negative | 38 | 5.3% | 0.0% | 0.89 |
+| 0 to +20% | 58 | 12.1% | 1.7% | 1.37 |
+| +20 to 50% | 10 | 80.0% | 10.0% | 4.66 |
+| +50 to 100% | 6 | 100% | 66.7% | 5.88 |
+| +100% or more | 34 | 97.1% | 61.8% | 5.93 |
 
-Train 1512 rows / 35 wins. **Test 648 rows / 14 wins**, split at 09-02 03:05Z.
-Test base rate 2.16%.
+Two things are wrong with it, and they compound.
 
-| rule | n | wins | rate | 95% CI | lift |
-|---|---:|---:|---:|---|---:|
-| score >= 70 (incumbent) | 210 | 4 | 1.90% | [0.74%, 4.79%] | **0.9x** |
-| **liq grew >= +50% by 1h** | 35 | 11 | **31.43%** | [18.55%, 47.98%] | **14.5x** |
-| liq grew >= 0 | 178 | 14 | 7.87% | [4.74%, 12.77%] | 3.6x |
-| **liq fell (any)** | 470 | **0** | **0.00%** | [0.00%, 0.81%] | 0.0x |
-| score >= 70 AND liq >= 0 | 28 | 4 | 14.29% | [5.70%, 31.49%] | 6.6x |
+**1. The denominator is survivorship.** 1,162 of 1,308 cases (88.8%) are
+excluded for having no realizable later outcome, and exclusion is not random:
+the negative bucket keeps 3.5% of its rows, the +100% bucket keeps 51.5%. On
+the full population, with "no realizable outcome" scored as the 0x it was:
 
-**11 of the 14 test wins sit in the 35 rows where liquidity grew 50% or more.**
+| 1h liquidity change | n | hit 2x | hit 5x | mean |
+|---|---:|---:|---:|---:|
+| negative | 1098 | 0.2% | 0.0% | 0.03 |
+| 0 to +20% | 94 | 7.4% | 1.1% | 0.85 |
+| +20 to 50% | 35 | 22.9% | 2.9% | 1.33 |
+| +50 to 100% | 15 | 40.0% | 26.7% | 2.35 |
+| +100% or more | 66 | 50.0% | 31.8% | 3.06 |
 
-## What this establishes
+The gradient survives. **97.1% does not** - it was 50.0%.
 
-1. **The score has no edge at 6h.** 0.9x out of sample, 1.0x in sample, and the
-   confidence intervals sit on top of the base rate. Measured honestly on the
-   full denominator, `score >= 70` is not distinguishable from picking at
-   random. This corroborates the bucket table where score<70 hit 3x more often
-   than score-100, and it corroborates PLUMHORNN.
+**2. What is left is still the leak.** Median multiple already achieved by the
+1h decision point, by bucket: negative 0.98, 0-20% 1.04, +20-50% 1.60,
++50-100% 2.68, +100%+ **6.97**. In the top bucket **98.5% were already >= 2x
+before the decision was made.**
 
-2. **Liquidity trajectory at 1h is the strongest signal found so far.** 14.5x
-   out of sample, on data the rule never saw, with intervals nowhere near the
-   base rate.
+## What a 1h buyer actually earns
 
-3. **Falling liquidity is a near-perfect kill signal.** Zero wins in 470
-   out-of-sample rows and zero in 1262 in-sample rows. As a filter for what NOT
-   to hold, this is the most reliable thing in the dataset.
+The honest question is the forward return: buy at the 1h price, sell at the
+best later horizon, and score "could not exit" as the total loss it is.
+Restricted to tokens with >= $8,000 of liquidity at 1h, because you cannot buy
+into a pool that is not there:
 
-## What it does NOT establish
+| 1h liquidity change | n | fwd >= 2x | 95% CI | mean fwd | wiped out |
+|---|---:|---:|---|---:|---:|
+| negative | 45 | 4.4% | [1.2%, 14.8%] | 0.84 | 31.1% |
+| 0 to +20% | 89 | 3.4% | [1.2%, 9.4%] | 0.81 | 34.8% |
+| +20 to 50% | 32 | 9.4% | [3.2%, 24.2%] | 0.98 | 68.8% |
+| +50 to 100% | 15 | 13.3% | [3.7%, 37.9%] | 0.76 | 60.0% |
+| **+100% or more** | 59 | **0.0%** | [0.0%, 6.1%] | **0.56** | 42.4% |
 
-- **This is not an entry signal.** It is measured an hour after entry, so it
-  cannot tell you what to buy at t=0. It tells you what to hold, add to, or
-  abandon at t=1h. That maps onto the BONDING-CROSS and MOMENTUM-EARLY
-  strategies, not onto IMMEDIATE.
-- **24h says nothing.** The 24h test window contains zero wins, so every rule
-  scores 0.00% and none can be separated. Not evidence against; no evidence.
-- The strongest 6h bucket rests on 35 test rows and 11 wins. Directionally
-  strong, not precise.
-- Survivorship in the sources still applies: `liq_change_pct` comes from
-  whatever Dexscreener reported at the 1h check, and that source drops tokens
-  whose reserves collapse. Drops now resolve through `resolve.py`, but rows
-  collected before 2026-09-03 predate that.
+**Every bucket has a mean forward multiple below 1.0.** The strongest
+entry-anchored bucket is the worst forward bucket: zero winners in 59, and on
+average you keep 56 cents on the dollar. Buying after liquidity has doubled is
+buying the top.
 
-## What to do
+## The threshold sweep, which was the specific ask
 
-Do not re-tune the existing weights around this. The finding is that the
-feature set is looking at the wrong moment, not that the coefficients are
-wrong. A point-in-time snapshot of a two-minute-old pool cannot carry this
-information at all - the trajectory does not exist yet at t=0.
+Rule: "liquidity change at 1h >= T", forward return, actionable cohort.
 
-The useful next step is a second observation at a fixed short lag, so
-trajectory becomes a first-class feature rather than a by-product of the 1h
-outcome check.
+| T | n | fwd >= 2x | mean fwd |
+|---:|---:|---:|---:|
+| 0% | 195 | 4.1% | 0.76 |
+| +5% | 137 | 5.8% | 0.70 |
+| +10% | 125 | 4.8% | 0.68 |
+| +15% | 114 | 5.3% | 0.75 |
+| +20% | 106 | 4.7% | 0.71 |
+| +25% | 96 | 4.2% | 0.58 |
+| +30% | 87 | 4.6% | 0.63 |
+| +35% | 81 | 3.7% | 0.61 |
+| +40% | 77 | 2.6% | 0.60 |
+| +50% | 74 | 2.7% | 0.60 |
+| +100% | 59 | 0.0% | 0.56 |
+
+**There is no cliff at +20%, and none anywhere between +10% and +40%.** The
+sweep is flat inside its own noise and then falls off. Out of sample (70/30
+temporal, split 09-02 06:29Z, test n=72) the best band, +20% to +100%, is
+n=9 with 1 win. Nothing is established. The incumbent `score >= 70` tests at
+2.7%, lift 0.97x - also nothing, which is unchanged and still true.
+
+## Why the entry-anchored numbers looked so good: a 36-token artifact
+
+Nine of the eleven "wins" share a signature. Every one entered at 2-8 minutes
+old with reported liquidity of $121k-$359k and a price of $0.00012-$0.00036,
+and every one was later quoted at $0.00120-$0.00134 with $1.20M-$1.32M of
+"liquidity". 36 tokens in the record match. Inside that group, entry
+liquidity / entry price is within 5% of exactly 1e9 for **35 of 35**; outside
+it, 47 of 1,339. Their entry rows read:
+
+    GRAM   vol/liq 0.004  txns 37  buys/sells 37/0   age 0.09h
+    XDC    vol/liq 0.004  txns 33  buys/sells 33/0   age 0.08h
+    AI     vol/liq 0.005  txns 45  buys/sells 45/0   age 0.11h
+    GME    vol/liq 0.005  txns 55  buys/sells 55/0   age 0.13h
+
+**Zero sells, every time.** Two free entry-time checks - liquidity/price within
+5% of 1e9, and zero sells against >= 10 buys - flag 47 tokens, of which 41 have
+later outcomes and **27 record a >= 2x (65.9%), against 2.4% for everything
+else.** That 47-token group produces roughly half of every winner on the books.
+
+They are not winners. See EXIT_DEPTH.md: the reported liquidity is the token
+side of a one-sided pool valued at its own price, and the real depth is ~$10k.
+
+## What stands, and what to do
+
+1. **Falling liquidity remains a kill signal**, and it is the only claim in the
+   original file that survives: 0.3% forward >= 2x across 969 rows, mean 0.04.
+   Use it to abandon, never to buy.
+2. **No entry or add rule is supported.** Delete the +20% and +50% thresholds
+   from consideration rather than tuning between them.
+3. **Never score a feature measured at t against an outcome measured from 0.**
+   Every future rule is measured forward from its own decision point, and
+   "could not exit" is scored 0, not 1.
+4. **There is no 30m horizon** - the record holds 1h, 6h, 24h and 168h only, so
+   the halved-latency question cannot be asked yet. Adding one is cheap and is
+   the single change that would make trajectory testable as a real feature,
+   because at 30m the outcome is still ahead of the measurement.
