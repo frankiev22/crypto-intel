@@ -15,7 +15,7 @@ Horizons: 1h catches the initial pump, 6h catches whether it held, 24h catches
 whether it was real, 168h catches whether anything survived a week.
 """
 import math, os, time, statistics as st
-import journal, resolve, sources as S
+import journal, pricecheck, resolve, sources as S
 
 HORIZONS = [1, 6, 24, 168]
 MIN_WINS_TO_TRUST = 10            # wins, not rows. Rows are cheap; wins are scarce.
@@ -68,10 +68,26 @@ def score_horizon(horizon_h, limit=80, verbose=True):
                           f"-> {src or 'unresolved'}: {', '.join(reasons or [])}")
             elif tok:
                 reasons, src = ["source_dropped", "fallback_budget_spent"], None
+        # Validate BEFORE recording, and only for multiples large enough to
+        # be believed. A wrong price on a 1.02x costs nothing; a wrong price
+        # on a 444x becomes the headline. Shares the fallback budget because
+        # the check costs the same rate-limited GeckoTerminal call.
+        base_px = o.get("price_usd")
+        implied = (price / base_px) if (base_px and price) else None
+        verdict = None
+        if (implied and implied >= pricecheck.VALIDATE_ABOVE
+                and o.get("token") and fallbacks < FALLBACK_BUDGET):
+            fallbacks += 1
+            _okp, verdict = pricecheck.check_multiple(
+                o["token"], implied, o.get("network", "solana"))
+            if verdict and not verdict.get("trustworthy") and verbose:
+                print(f"    {str(o.get('symbol','?'))[:12]:<14} {implied:>8.2f}x "
+                      f"QUARANTINED - {verdict['confidence']}: {verdict['detail'][:70]}")
         status, mult = journal.record_outcome(
             o["pair"], o["ts"], horizon_h, price, liq, vol24,
             o.get("price_usd"), o.get("liq"), o.get("symbol", ""),
-            token=o.get("token", ""), reasons=reasons, source=src)
+            token=o.get("token", ""), reasons=reasons, source=src,
+            price_verdict=verdict)
         done += 1
         if verbose and mult and mult >= 2:
             ok, why = journal.realizable(status, liq, mult)

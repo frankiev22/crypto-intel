@@ -339,7 +339,7 @@ def scored_pairs():
 
 def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
                    base_price, base_liq, symbol="", token="",
-                   reasons=None, source=None):
+                   reasons=None, source=None, price_verdict=None):
     mult   = (price / base_price) if (base_price and price) else None
     liqchg = ((liq - base_liq) / base_liq * 100) if (base_liq and liq is not None) else None
     if liq is None:
@@ -351,6 +351,15 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
     else:
         status = "alive"
     ok, why = realizable(status, liq, mult)
+    # A multiple built on an untrustworthy price is not a small error, it is a
+    # fabrication: FLORK recorded 444x off a pool holding $0.0036, against a
+    # deeper pool on the same token quoting 490x lower. If cross-source
+    # validation could not stand the number up, it does not count as realized
+    # no matter how healthy the liquidity reading looks.
+    if price_verdict is not None and not price_verdict.get("trustworthy"):
+        ok = False
+        why = (f"price {price_verdict.get('confidence')}: "
+               f"{price_verdict.get('detail')}")
     obj = {"pair": pair, "symbol": symbol, "observed_ts": observed_ts,
            "checked_ts": int(time.time()), "horizon_h": horizon_h,
            "price_usd": price, "liq": liq, "vol_h24": vol24,
@@ -359,7 +368,9 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
            # WHY the reading looks the way it does. "our index went quiet",
            # "the pool drained" and "the price went to zero" are three facts,
            # and collapsing them into status="gone" destroyed outcome labels.
-           "reasons": reasons or [], "price_source": source}
+           "reasons": reasons or [], "price_source": source,
+           "price_confidence": (price_verdict or {}).get("confidence"),
+           "price_sources_ratio": (price_verdict or {}).get("ratio")}
     _append(OUT, obj)                      # system of record, first
     _push("record_outcomes", [obj])        # best effort, never raises
 

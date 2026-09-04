@@ -673,8 +673,12 @@
  },
  "scanner-hit:buddy": {
   "first_seen": "2026-08-27T09:07:58+00:00",
-  "count": 1,
-  "example": "scanner-hit: Buddy"
+  "count": 2,
+  "example": "scanner-hit: Buddy",
+  "last_seen": "2026-09-04T01:10:24+00:00",
+  "keys": [
+   "BUDDY"
+  ]
  },
  "scanner-hit:collective": {
   "first_seen": "2026-08-27T09:07:59+00:00",
@@ -1163,9 +1167,9 @@
  },
  "outcome-x:ai": {
   "first_seen": "2026-08-30T05:09:24+00:00",
-  "count": 6,
+  "count": 7,
   "example": "outcome-3x: AI",
-  "last_seen": "2026-09-03T20:10:43+00:00",
+  "last_seen": "2026-09-04T02:11:24+00:00",
   "keys": [
    "AI"
   ]
@@ -1788,12 +1792,12 @@
  },
  "scanner-hit:wwr": {
   "first_seen": "2026-08-31T07:10:20+00:00",
-  "count": 3,
+  "count": 4,
   "example": "scanner-hit: WWR",
   "keys": [
    "WWR"
   ],
-  "last_seen": "2026-09-02T16:10:28+00:00"
+  "last_seen": "2026-09-04T03:11:10+00:00"
  },
  "scanner-hit:qsb": {
   "first_seen": "2026-08-31T07:10:25+00:00",
@@ -1878,11 +1882,12 @@
  },
  "scanner-hit:hood": {
   "first_seen": "2026-08-31T09:09:19+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: HOOD",
   "keys": [
    "HOOD"
-  ]
+  ],
+  "last_seen": "2026-09-04T04:10:56+00:00"
  },
  "scanner-hit:starcas": {
   "first_seen": "2026-08-31T09:09:24+00:00",
@@ -2099,12 +2104,12 @@
  },
  "scanner-hit:goaf": {
   "first_seen": "2026-09-01T04:09:16+00:00",
-  "count": 3,
+  "count": 4,
   "example": "scanner-hit: GOAF",
   "keys": [
    "GOAF"
   ],
-  "last_seen": "2026-09-03T08:10:26+00:00"
+  "last_seen": "2026-09-04T00:10:46+00:00"
  },
  "scanner-hit:nekomaru": {
   "first_seen": "2026-09-01T04:09:22+00:00",
@@ -2442,11 +2447,12 @@
  },
  "scanner-hit:u-baf97c": {
   "first_seen": "2026-09-01T12:09:34+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: \u666f\u751c",
   "keys": [
    "\u666f\u751c"
-  ]
+  ],
+  "last_seen": "2026-09-04T03:11:05+00:00"
  },
  "outcome-x:micro": {
   "first_seen": "2026-09-01T12:09:55+00:00",
@@ -3217,12 +3223,12 @@
  },
  "scanner-hit:u-5815f4": {
   "first_seen": "2026-09-02T23:09:21+00:00",
-  "count": 3,
+  "count": 4,
   "example": "scanner-hit: \u725b\u6765",
   "keys": [
    "\u725b\u6765"
   ],
-  "last_seen": "2026-09-03T20:10:20+00:00"
+  "last_seen": "2026-09-04T02:11:00+00:00"
  },
  "scanner-hit:solbull": {
   "first_seen": "2026-09-02T23:09:25+00:00",
@@ -3608,11 +3614,12 @@
  },
  "scanner-hit:wotf": {
   "first_seen": "2026-09-03T12:10:30+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: WOTF",
   "keys": [
    "WOTF"
-  ]
+  ],
+  "last_seen": "2026-09-04T00:10:47+00:00"
  },
  "outcome-x:gram": {
   "first_seen": "2026-09-03T12:10:54+00:00",
@@ -3732,11 +3739,12 @@
  },
  "outcome-x:u-baf97c": {
   "first_seen": "2026-09-03T16:10:58+00:00",
-  "count": 1,
+  "count": 2,
   "example": "outcome-3x: \u666f\u751c",
   "keys": [
    "\u666f\u751c"
-  ]
+  ],
+  "last_seen": "2026-09-03T23:10:58+00:00"
  },
  "outcome-x:playday": {
   "first_seen": "2026-09-03T17:09:37+00:00",
@@ -3772,11 +3780,12 @@
  },
  "outcome-x:grass": {
   "first_seen": "2026-09-03T18:10:35+00:00",
-  "count": 1,
+  "count": 2,
   "example": "outcome-3x: GRASS",
   "keys": [
    "GRASS"
-  ]
+  ],
+  "last_seen": "2026-09-03T23:10:50+00:00"
  },
  "scanner-hit:poke": {
   "first_seen": "2026-09-03T19:10:33+00:00",
@@ -3796,11 +3805,12 @@
  },
  "outcome-x:aura": {
   "first_seen": "2026-09-03T19:10:43+00:00",
-  "count": 1,
+  "count": 2,
   "example": "outcome-3x: AURA",
   "keys": [
    "AURA"
-  ]
+  ],
+  "last_seen": "2026-09-04T00:10:52+00:00"
  },
  "outcome-x:mice": {
   "first_seen": "2026-09-03T19:10:51+00:00",
@@ -3866,5 +3876,166 @@
   "keys": [
    "MACHINE"
   ]
+ },
+ "scanner-hit:doggycoin": {
+  "first_seen": "2026-09-03T23:10:20+00:00",
+  "count": 1,
+  "example": "scanner-hit: DOGGYCOIN",
+  "keys": [
+   "DOGGYCOIN"
+  ]
+ },
+ "scanner-hit:morty": {
+  "first_seen": "2026-09-03T23:10:26+00:00",
+  "count": 1,
+  "example": "scanner-hit: Morty",
+  "keys": [
+   "Morty"
+  ]
+ },
+ "scanner-hit:u-93c243": {
+  "first_seen": "2026-09-03T23:10:31+00:00",
+  "count": 1,
+  "example": "scanner-hit: \ud83e\udd17",
+  "keys": [
+   "\ud83e\udd17"
+  ]
+ },
+ "outcome-x:tikz": {
+  "first_seen": "2026-09-03T23:10:58+00:00",
+  "count": 1,
+  "example": "outcome-3x: TikZ",
+  "keys": [
+   "TikZ"
+  ]
+ },
+ "outcome-x:grift": {
+  "first_seen": "2026-09-03T23:11:04+00:00",
+  "count": 1,
+  "example": "outcome-3x: GRIFT",
+  "keys": [
+   "GRIFT"
+  ]
+ },
+ "scanner-hit:ponser": {
+  "first_seen": "2026-09-04T00:10:33+00:00",
+  "count": 1,
+  "example": "scanner-hit: Ponser",
+  "keys": [
+   "Ponser"
+  ]
+ },
+ "scanner-hit:dolphin": {
+  "first_seen": "2026-09-04T00:10:38+00:00",
+  "count": 1,
+  "example": "scanner-hit: DOLPHIN",
+  "keys": [
+   "DOLPHIN"
+  ]
+ },
+ "scanner-hit:creampie": {
+  "first_seen": "2026-09-04T01:10:29+00:00",
+  "count": 1,
+  "example": "scanner-hit: creampie",
+  "keys": [
+   "creampie"
+  ]
+ },
+ "scanner-hit:chillrobin": {
+  "first_seen": "2026-09-04T01:10:34+00:00",
+  "count": 1,
+  "example": "scanner-hit: CHILLROBIN",
+  "keys": [
+   "CHILLROBIN"
+  ]
+ },
+ "scanner-hit:psdq": {
+  "first_seen": "2026-09-04T01:10:39+00:00",
+  "count": 1,
+  "example": "scanner-hit: PSDQ",
+  "keys": [
+   "PSDQ"
+  ]
+ },
+ "outcome-x:boltricks": {
+  "first_seen": "2026-09-04T01:10:54+00:00",
+  "count": 1,
+  "example": "outcome-3x: Boltricks",
+  "keys": [
+   "Boltricks"
+  ]
+ },
+ "scanner-hit:uspc": {
+  "first_seen": "2026-09-04T02:10:47+00:00",
+  "count": 1,
+  "example": "scanner-hit: uspc",
+  "keys": [
+   "uspc"
+  ]
+ },
+ "scanner-hit:heist": {
+  "first_seen": "2026-09-04T02:10:53+00:00",
+  "count": 1,
+  "example": "scanner-hit: Heist",
+  "keys": [
+   "Heist"
+  ]
+ },
+ "outcome-x:doggycoin": {
+  "first_seen": "2026-09-04T02:11:24+00:00",
+  "count": 1,
+  "example": "outcome-3x: DOGGYCOIN",
+  "keys": [
+   "DOGGYCOIN"
+  ]
+ },
+ "scanner-hit:libtroll": {
+  "first_seen": "2026-09-04T03:10:49+00:00",
+  "count": 1,
+  "example": "scanner-hit: LIBTROLL",
+  "keys": [
+   "LIBTROLL"
+  ]
+ },
+ "scanner-hit:biketyson": {
+  "first_seen": "2026-09-04T03:10:54+00:00",
+  "count": 1,
+  "example": "scanner-hit: biketyson",
+  "keys": [
+   "biketyson"
+  ]
+ },
+ "scanner-hit:ponscat": {
+  "first_seen": "2026-09-04T03:10:59+00:00",
+  "count": 1,
+  "example": "scanner-hit: ponscat",
+  "keys": [
+   "ponscat"
+  ]
+ },
+ "outcome-x:u-eakola": {
+  "first_seen": "2026-09-04T03:11:33+00:00",
+  "count": 1,
+  "example": "outcome-3x: U+202EakolA",
+  "keys": [
+   "U+202EakolA"
+  ]
+ },
+ "scanner-hit:robincat": {
+  "first_seen": "2026-09-04T04:11:02+00:00",
+  "count": 1,
+  "example": "scanner-hit: ROBINCAT",
+  "keys": [
+   "ROBINCAT"
+  ]
+ },
+ "outcome-x:plumhornn": {
+  "first_seen": "2026-09-04T04:11:09+00:00",
+  "count": 2,
+  "example": "outcome-3x: PLUMHORNN",
+  "keys": [
+   "PLUMHORNN"
+  ],
+  "last_seen": "2026-09-04T04:11:23+00:00"
  }
 }
