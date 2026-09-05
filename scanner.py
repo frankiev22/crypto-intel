@@ -9,6 +9,7 @@ is worthless. The job is to throw away 99% and be honest about the survivors.
 Nothing here is a recommendation. It is a filter over public data.
 """
 import os, time, math, datetime as dt
+import plausibility
 import sources as S
 import namecheck
 import weights
@@ -100,6 +101,21 @@ def score(pair):
 
     if fdv and liq and fdv / liq > 250:
         flags.append(f"FDV/liq {fdv/liq:.0f} - valuation unsupported by liquidity")
+
+    # A reading that cannot be true does not get to be scored. Measured
+    # 2026-09-05: three rows passed on liq > 2 x fdv, which needs the cash side
+    # of the pool to be worth more than every token in existence - SUMMITLP at
+    # $2,729 against a $1 fdv. Separately, 43 rows report over $10M of depth
+    # while under an hour old, against a maximum of $9,089,748 across every
+    # pool anyone has ever actually sold into. The row is still journalled in
+    # full; it simply cannot clear the pass line on a number that is wrong.
+    _p = plausibility.assess({"liq": liq, "fdv": fdv, "age_hours": age,
+                              "buys_h1": buys, "sells_h1": sells})
+    if not _p["liquidity_plausible"]:
+        for f in _p["flags"]:
+            if f in ("liq_exceeds_2x_fdv", "liq_implausible_for_age"):
+                flags.append(f"{f} - liquidity reading is not physically possible")
+        return 0, reasons, flags, gates, WVER
 
     return min(pts, 100), reasons, flags, gates, WVER
 

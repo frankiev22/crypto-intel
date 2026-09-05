@@ -1537,3 +1537,12 @@
 {"token":"2s3EsngYybUbN6SzxTNmHsxVgYSKqzjzTpUKaYbs1KHh","milestone":"realizable_3x","crossed_ts":1788548792,"crossed_at":"2026-09-04T19:06:32+00:00","symbol":"SUNCOIN","value":5.1104,"kind":"multiple"}
 {"token":"ByptnpYZxoHYRi9ZGgv9R3Zv2RU8Tf4Cc55xYWfvKjUn","milestone":"realizable_2x","crossed_ts":1788589424,"crossed_at":"2026-09-05T06:23:44+00:00","symbol":"UNKNOWN","value":3.68,"kind":"multiple"}
 {"token":"ByptnpYZxoHYRi9ZGgv9R3Zv2RU8Tf4Cc55xYWfvKjUn","milestone":"realizable_3x","crossed_ts":1788589424,"crossed_at":"2026-09-05T06:23:44+00:00","symbol":"UNKNOWN","value":3.68,"kind":"multiple"}
+{"token":"ByptnpYZxoHYRi9ZGgv9R3Zv2RU8Tf4Cc55xYWfvKjUn","milestone":"realizable_2x","crossed_ts":1788588559,"crossed_at":"2026-09-05T06:09:19+00:00","symbol":"UNKNOWN","value":3.68,"kind":"multiple"}
+{"token":"ByptnpYZxoHYRi9ZGgv9R3Zv2RU8Tf4Cc55xYWfvKjUn","milestone":"realizable_3x","crossed_ts":1788588560,"crossed_at":"2026-09-05T06:09:20+00:00","symbol":"UNKNOWN","value":3.68,"kind":"multiple"}
+{"token":"DzrA8JigytJkQV2hgUhFkpjdSjsBMKiVYyGubG3aRkqA","milestone":"realizable_2x","crossed_ts":1788599226,"crossed_at":"2026-09-05T09:07:06+00:00","symbol":"PEPE","value":9.7136,"kind":"multiple"}
+{"token":"DzrA8JigytJkQV2hgUhFkpjdSjsBMKiVYyGubG3aRkqA","milestone":"realizable_3x","crossed_ts":1788599226,"crossed_at":"2026-09-05T09:07:06+00:00","symbol":"PEPE","value":9.7136,"kind":"multiple"}
+{"token":"J378DrfWG7C2SuNFqhdcQe29qnEG18A7Hj3o7dpgJBDx","milestone":"realizable_2x","crossed_ts":1788602832,"crossed_at":"2026-09-05T10:07:12+00:00","symbol":"POOD","value":6.3897,"kind":"multiple"}
+{"token":"J378DrfWG7C2SuNFqhdcQe29qnEG18A7Hj3o7dpgJBDx","milestone":"realizable_3x","crossed_ts":1788602832,"crossed_at":"2026-09-05T10:07:12+00:00","symbol":"POOD","value":6.3897,"kind":"multiple"}
+{"token":"DEu4gEMuacabeDppSyE5YsGSWVQgzPH5YWz5dnizwM7c","milestone":"realizable_2x","crossed_ts":1788606441,"crossed_at":"2026-09-05T11:07:21+00:00","symbol":"USWR","value":5.0287,"kind":"multiple"}
+{"token":"DEu4gEMuacabeDppSyE5YsGSWVQgzPH5YWz5dnizwM7c","milestone":"realizable_3x","crossed_ts":1788606441,"crossed_at":"2026-09-05T11:07:21+00:00","symbol":"USWR","value":5.0287,"kind":"multiple"}
+{"token":"8RQniNaU348sKHap11zQWWSh6WfDgWm5GbEMjsVRpump","milestone":"realizable_2x","crossed_ts":1788610008,"crossed_at":"2026-09-05T12:06:48+00:00","symbol":"Paperbag","value":2.3528,"kind":"multiple"}

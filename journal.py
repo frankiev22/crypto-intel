@@ -20,6 +20,7 @@ import json, os, time, glob, urllib.request, datetime as dt
 import config  # noqa: F401 - importing this loads .env
 import milestones
 import tickers
+import plausibility
 from scanner import CFG as _SCAN_CFG
 
 # --------------------------------------------------------------------------
@@ -340,6 +341,15 @@ def record(rows, network, pass_score=70):
         except Exception:
             obj["ticker_variants"] = None
             obj["impersonation"] = []
+        # Liquidity plausibility and the template fingerprint, from stored
+        # fields only. Doing it here means no analysis ever has to fetch pool
+        # reserves again to exclude the template class.
+        try:
+            plausibility.annotate(obj)
+        except Exception:
+            obj["liq_to_fdv_ratio"] = None
+            obj["template_suspect"] = None
+            obj["liquidity_plausible"] = None
         _append(OBS, obj)      # system of record, first and unconditional
         mirror.append(obj)
         n += 1
@@ -352,7 +362,21 @@ def record(rows, network, pass_score=70):
 
 
 def observations(days=None):
-    return _read(OBS, days)
+    """Observations, with the plausibility assessment filled in.
+
+    Computed on READ, not written back. Every input it needs - liq, fdv,
+    age_hours, buys_h1, sells_h1 - has been on every row since the beginning,
+    so history classifies exactly and the archive is never rewritten. Nothing
+    is deleted and nothing is restated; the flags are derived, not recorded.
+    """
+    rows = _read(OBS, days)
+    for o in rows:
+        if o.get("template_suspect") is None:
+            try:
+                plausibility.annotate(o)
+            except Exception:
+                pass
+    return rows
 
 
 def _fill_elapsed(o):
