@@ -110,7 +110,7 @@
  "scanner-hit:unknown": {
   "first_seen": "2026-08-24T07:09:37+00:00",
   "count": 38,
-  "example": "scanner-hit: 牛来",
+  "example": "scanner-hit: \u725b\u6765",
   "last_seen": "2026-09-03T01:10:09+00:00",
   "keys": [
    "$1"
@@ -485,7 +485,7 @@
  "outcome-x:shandi": {
   "first_seen": "2026-08-25T14:09:53+00:00",
   "count": 2,
-  "example": "outcome-3x: 闪迪 (SHANDI)",
+  "example": "outcome-3x: \u95ea\u8fea (SHANDI)",
   "last_seen": "2026-08-25T19:08:56+00:00",
   "last_escalated": null
  },
@@ -651,7 +651,7 @@
  "scanner-hit:srlerfd": {
   "first_seen": "2026-08-26T09:07:28+00:00",
   "count": 1,
-  "example": "scanner-hit: 维特根斯坦-8srLerfd",
+  "example": "scanner-hit: \u7ef4\u7279\u6839\u65af\u5766-8srLerfd",
   "last_seen": null,
   "last_escalated": null
  },
@@ -728,7 +728,7 @@
  "outcome-x:unknown": {
   "first_seen": "2026-08-26T13:08:03+00:00",
   "count": 23,
-  "example": "outcome-3x: 闪迪",
+  "example": "outcome-3x: \u95ea\u8fea",
   "last_seen": "2026-09-02T17:11:00+00:00",
   "keys": [
    "$1",
@@ -1863,7 +1863,7 @@
  "scanner-hit:clinton": {
   "first_seen": "2026-08-30T16:10:15+00:00",
   "count": 1,
-  "example": "scanner-hit: Clinton©",
+  "example": "scanner-hit: Clinton\u00a9",
   "last_seen": null,
   "last_escalated": null
  },
@@ -2283,9 +2283,9 @@
  "outcome-x:u-88d612": {
   "first_seen": "2026-08-31T06:08:32+00:00",
   "count": 2,
-  "example": "outcome-3x: 孙宇晨",
+  "example": "outcome-3x: \u5b59\u5b87\u6668",
   "keys": [
-   "孙宇晨"
+   "\u5b59\u5b87\u6668"
   ],
   "last_seen": "2026-08-31T11:10:07+00:00",
   "last_escalated": null
@@ -2503,9 +2503,9 @@
  "scanner-hit:u-202668": {
   "first_seen": "2026-08-31T09:09:58+00:00",
   "count": 1,
-  "example": "scanner-hit: 恶兽",
+  "example": "scanner-hit: \u6076\u517d",
   "keys": [
-   "恶兽"
+   "\u6076\u517d"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -2623,9 +2623,9 @@
  "scanner-hit:u-464d2f": {
   "first_seen": "2026-08-31T11:09:51+00:00",
   "count": 1,
-  "example": "scanner-hit: 黄果之年",
+  "example": "scanner-hit: \u9ec4\u679c\u4e4b\u5e74",
   "keys": [
-   "黄果之年"
+   "\u9ec4\u679c\u4e4b\u5e74"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -2895,9 +2895,9 @@
  "scanner-hit:u-57b2de": {
   "first_seen": "2026-09-01T07:08:51+00:00",
   "count": 1,
-  "example": "scanner-hit: 富贵狸猫",
+  "example": "scanner-hit: \u5bcc\u8d35\u72f8\u732b",
   "keys": [
-   "富贵狸猫"
+   "\u5bcc\u8d35\u72f8\u732b"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -2975,9 +2975,9 @@
  "scanner-hit:u-8d79c6": {
   "first_seen": "2026-09-01T09:09:17+00:00",
   "count": 1,
-  "example": "scanner-hit: 彩礼币",
+  "example": "scanner-hit: \u5f69\u793c\u5e01",
   "keys": [
-   "彩礼币"
+   "\u5f69\u793c\u5e01"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -3085,9 +3085,9 @@
  "scanner-hit:u-07fc28": {
   "first_seen": "2026-09-01T11:09:12+00:00",
   "count": 1,
-  "example": "scanner-hit: 石头记",
+  "example": "scanner-hit: \u77f3\u5934\u8bb0",
   "keys": [
-   "石头记"
+   "\u77f3\u5934\u8bb0"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -3135,9 +3135,9 @@
  "scanner-hit:u-baf97c": {
   "first_seen": "2026-09-01T12:09:34+00:00",
   "count": 3,
-  "example": "scanner-hit: 景甜",
+  "example": "scanner-hit: \u666f\u751c",
   "keys": [
-   "景甜"
+   "\u666f\u751c"
   ],
   "last_seen": "2026-09-05T08:10:24+00:00",
   "last_escalated": "2026-09-05T08:10:24+00:00"
@@ -3185,9 +3185,9 @@
  "outcome-x:u-d703c2": {
   "first_seen": "2026-09-01T13:10:38+00:00",
   "count": 3,
-  "example": "outcome-3x: 牛四",
+  "example": "outcome-3x: \u725b\u56db",
   "keys": [
-   "牛四"
+   "\u725b\u56db"
   ],
   "last_seen": "2026-09-02T14:10:49+00:00",
   "last_escalated": null
@@ -3465,9 +3465,9 @@
  "outcome-x:u-01016f": {
   "first_seen": "2026-09-02T02:09:20+00:00",
   "count": 1,
-  "example": "outcome-3x: 孙割自传",
+  "example": "outcome-3x: \u5b59\u5272\u81ea\u4f20",
   "keys": [
-   "孙割自传"
+   "\u5b59\u5272\u81ea\u4f20"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -3555,9 +3555,9 @@
  "scanner-hit:u-0638cb": {
   "first_seen": "2026-09-02T05:10:06+00:00",
   "count": 1,
-  "example": "scanner-hit: 我爱你",
+  "example": "scanner-hit: \u6211\u7231\u4f60",
   "keys": [
-   "我爱你"
+   "\u6211\u7231\u4f60"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -3595,9 +3595,9 @@
  "scanner-hit:u-9954c3": {
   "first_seen": "2026-09-02T05:10:26+00:00",
   "count": 1,
-  "example": "scanner-hit: 孙割3000",
+  "example": "scanner-hit: \u5b59\u52723000",
   "keys": [
-   "孙割3000"
+   "\u5b59\u52723000"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -3965,9 +3965,9 @@
  "scanner-hit:u-e94e27": {
   "first_seen": "2026-09-02T18:11:42+00:00",
   "count": 1,
-  "example": "scanner-hit: 热钱",
+  "example": "scanner-hit: \u70ed\u94b1",
   "keys": [
-   "热钱"
+   "\u70ed\u94b1"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -4086,9 +4086,9 @@
  "scanner-hit:u-5815f4": {
   "first_seen": "2026-09-02T23:09:21+00:00",
   "count": 5,
-  "example": "scanner-hit: 牛来",
+  "example": "scanner-hit: \u725b\u6765",
   "keys": [
-   "牛来"
+   "\u725b\u6765"
   ],
   "last_seen": "2026-09-05T05:11:56+00:00",
   "last_escalated": "2026-09-05T05:11:56+00:00"
@@ -4226,9 +4226,9 @@
  "outcome-x:u-5815f4": {
   "first_seen": "2026-09-03T02:10:26+00:00",
   "count": 1,
-  "example": "outcome-3x: 牛来",
+  "example": "outcome-3x: \u725b\u6765",
   "keys": [
-   "牛来"
+   "\u725b\u6765"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -4326,9 +4326,9 @@
  "scanner-hit:u-a97504": {
   "first_seen": "2026-09-03T05:09:50+00:00",
   "count": 1,
-  "example": "scanner-hit: 强生",
+  "example": "scanner-hit: \u5f3a\u751f",
   "keys": [
-   "强生"
+   "\u5f3a\u751f"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -4717,9 +4717,9 @@
  "outcome-x:u-baf97c": {
   "first_seen": "2026-09-03T16:10:58+00:00",
   "count": 2,
-  "example": "outcome-3x: 景甜",
+  "example": "outcome-3x: \u666f\u751c",
   "keys": [
-   "景甜"
+   "\u666f\u751c"
   ],
   "last_seen": "2026-09-03T23:10:58+00:00",
   "last_escalated": null
@@ -4747,9 +4747,9 @@
  "outcome-x:ni-a-bbb850": {
   "first_seen": "2026-09-03T17:09:51+00:00",
   "count": 1,
-  "example": "outcome-3x: Niña",
+  "example": "outcome-3x: Ni\u00f1a",
   "keys": [
-   "Niña"
+   "Ni\u00f1a"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -4907,9 +4907,9 @@
  "scanner-hit:u-93c243": {
   "first_seen": "2026-09-03T23:10:31+00:00",
   "count": 1,
-  "example": "scanner-hit: 🤗",
+  "example": "scanner-hit: \ud83e\udd17",
   "keys": [
-   "🤗"
+   "\ud83e\udd17"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -5086,15 +5086,15 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 32,
+  "count": 33,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-05T12:09:24+00:00",
-  "last_escalated": "2026-09-05T06:24:23+00:00",
-  "escalations": 1
+  "last_seen": "2026-09-05T13:09:33+00:00",
+  "last_escalated": "2026-09-05T13:09:33+00:00",
+  "escalations": 2
  },
  "scanner-hit:patience": {
   "first_seen": "2026-09-04T05:11:20+00:00",
@@ -5390,9 +5390,9 @@
  "scanner-hit:u-7c277a": {
   "first_seen": "2026-09-04T14:11:18+00:00",
   "count": 1,
-  "example": "scanner-hit: 孙小圣",
+  "example": "scanner-hit: \u5b59\u5c0f\u5723",
   "keys": [
-   "孙小圣"
+   "\u5b59\u5c0f\u5723"
   ],
   "last_seen": null,
   "last_escalated": null

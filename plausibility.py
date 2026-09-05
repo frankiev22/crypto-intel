@@ -1,63 +1,82 @@
-"""Is this liquidity reading physically possible, and is it a template pool?
+"""Descriptive liquidity columns. NOT a fraud verdict, and nothing filters on it.
 
-Everything here reads FIELDS WE ALREADY STORE. No API call, no live lookup. The
-template class was originally found by pulling base/quote reserves pool by pool
-on 2026-09-04; this recovers the same population from `liq`, `fdv`, `age_hours`
-and the buy/sell counts, which means every historical row can be classified for
-free and every future one at write time.
+READ THIS BEFORE USING ANY FIELD HERE TO EXCLUDE A ROW: don't. On 2026-09-05
+this module briefly zeroed the score of any observation it judged implausible.
+That gate was withdrawn the same day, because it had never been validated
+against ground truth, and three things were wrong with it.
 
-THE ARITHMETIC, verified against a pool whose sides were measured live
-('worthless', 2026-09-04):
+1. CIRCULARITY. It used Dexscreener's `liquidity.usd` to decide when
+   Dexscreener's `liquidity.usd` was misleading. The template class was
+   originally found from base/quote RESERVES pulled live - independent
+   evidence. A summary field cannot audit itself.
 
-    reported liq $1,285,629     fdv $1,298,827        liq/fdv = 0.9898
-    base  981,744,468 tokens x $0.001299 = $1,275,286
-    quote 98.73 SOL                      =    ~$10,236
-                                           ----------
-                                  base + quote = $1,285,522
+2. `age_hours` IS PAIR AGE, from `pairCreatedAt`, NOT token age. A newly
+   created pool for a long-established token looks exactly like a brand new
+   token, so "implausible magnitude for age" can flag a legitimate large token
+   as fraud. This scanner has repeatedly ingested multi-billion-dollar tokens
+   that share a memecoin ticker.
 
-So liq/fdv decomposes as (share of supply sitting in the pool) + (quote/fdv):
-0.9817 + 0.0079 = 0.9896 against an observed 0.9898.
+3. IT WAS NEVER MEASURED. The precision and recall figures this module used to
+   quote - 87% and 100% - were computed against another HEURISTIC
+   (`liq/price ~ 1e9` plus silence), not against reserves. Detector-versus-
+   detector agreement is not validation. Only three pools had ever been
+   confirmed by pulling their sides: SUNCOIN, TIKZZZ and `worthless`.
 
-Three consequences, and the first two correct an instinct worth writing down:
+When a proper labelled set was attempted, it could not be built: of 43 tokens
+sampled across four strata, **only 9 could still be resolved at all** (21%).
+Dexscreener stops indexing pools whose reserves collapse, which is precisely
+the population that needs labelling, and GeckoTerminal's pools endpoint returns
+`reserve_in_usd` with no base/quote split, so it cannot substitute.
 
-1. `liq > fdv` IS NOT IMPOSSIBLE. It needs quote_usd > (supply - base) x price,
-   and for a fresh launch with nearly all supply pooled that right-hand side is
-   about zero, so any cash side at all clears it. 708 of 2,723 tokens (26.0%)
-   are in that state and they are not defective.
+WHAT THE 9 RESOLVABLE ROWS DID SHOW, as measurements rather than proxies:
 
-2. `liq > 2 x fdv` IS impossible: it requires the cash side alone to be worth
-   more than the entire token supply. Six tokens in the record do it, worst at
-   2,729x on a $1 fdv. Those are corrupt rows, and three of them passed the
-   filter.
+    SUNCOIN   reported $1,260,745   exit depth $10,030   125.7x   0 sells/24h
+    ZODL      reported $1,263,969   exit depth $10,061   125.6x   0 sells/24h
+    CHAD      reported $1,261,985   exit depth $10,045   125.6x   0 sells/24h
+    HASH      reported       $486   exit depth      $4   125.7x   0 sells/24h
+    STUFFY    reported       $484   exit depth      $4   125.8x   0 sells/24h
+    ---
+    Solana    reported     $2,286   exit depth    $244     9.4x  1397 sells/24h
+    minilyst  reported     $2,299   exit depth    $274     8.4x     2 sells/24h
+    CYBERLEEK reported         $0   exit depth      $0     2.0x    51 sells/24h
 
-3. liq/fdv NEAR 1 means all supply is in the pool - which is the one-sided
-   signature. The template pools sit at 0.99, just UNDER one, so they never
-   appear in the liq>fdv population at all.
+Five pools at 125.6-125.8x with zero sells is a tight, real cluster. Three
+controls with sell-side activity sit at 2-9x. That is suggestive and it is
+nine rows. It is not a validated detector and must not be used as one.
 
-MAGNITUDE, tuned from the distribution rather than guessed. Reported liquidity
-for tokens under an hour old, n=20,292:
+THE FIX IS FORWARD, NOT RETROSPECTIVE. `scanner.score()` now stores
+`liq_base`, `liq_quote`, `price_native` and a computed `exit_depth_usd` on
+every observation, taken from the pair object already in hand. That is a real
+measurement made cheap by caching rather than a proxy, and it is available at
+the moment Dexscreener still indexes the pair. Fresh balanced pools measured
+exactly 2.00x on the first pass that recorded it. Once enough rows carry it, a
+detector can be validated properly - against reserves, with precision, recall
+and counts reported before anything is allowed to filter.
 
-    p50 $0    p95 $21,136    p99 $207,140    p99.5 $344,813
-    p99.9 $199,803,718       p99.95 $956,443,208     max $7,406,577,362
+WHAT REMAINS SOUND HERE:
 
-There is a 580x cliff between p99.5 and p99.9. And among pools that anyone has
-actually sold into (>= 3 sells in the hour, n=13,424) the p99.9 is $607,779 and
-the maximum ever seen is $9,089,748. So a sub-hour pool reporting eight figures
-has no counterpart anywhere in the traded population.
+`liq/fdv` decomposes as (share of supply sitting in the pool) + (quote/fdv),
+verified arithmetically against a pool whose sides were measured:
 
-WHAT DOES NOT WORK, measured: a plain "liq > $1M" gate catches 2 of the 53
-verified template tokens. They report $160k-$360k AT ENTRY and only reach
-~$1.26M by the outcome check, so a write-time gate never sees the big number.
-Magnitude and template are two different populations - the $1M+ cohort mostly
-carries real sell-side activity and a third of its top ten are right-to-left
-override impersonations. Keep the two flags separate.
+    worthless   liq $1,285,629   fdv $1,298,827   liq/fdv = 0.9898
+                base 981,744,468 x $0.001299 = $1,275,286   (0.9817 of supply)
+                quote 98.73 SOL              =    ~$10,236   (0.0079 of fdv)
 
-The detector that does work, against the 53 live-verified tokens:
+So `liq > fdv` is NOT impossible - it needs quote_usd > (supply - base) x price,
+about zero for a fresh launch, and 708 of 2,723 tokens sit there legitimately.
+`liq > 2 x fdv` IS impossible: the cash side alone would have to outweigh every
+token in existence. Six rows do it, worst at 2,729x against a $1 fdv. Those are
+data-integrity errors and are FLAGGED, not filtered - at least one of the two
+numbers is corrupt, and we do not know which.
 
-    liq/fdv >= 0.95                     536 flagged   10% precision  100% recall
-    zero sells with >= 10 buys           75 flagged   71% precision  100% recall
-    both together                        61 flagged   87% precision  100% recall
+AND ON DESCRIBING THIS DATA AT ALL: report medians and distributions, never
+bare means. Every field here is heavy-tailed. The zero-sell entry cohort has a
+mean liquidity of $169,061,510 and a median of $256,219; across all entries the
+mean is $22,296,205 against a median of $24,630. The best-realizable-multiple
+column has a mean of 0.307 and a median of 0.000. Hit rates are counts and are
+safe; mean columns are tail artifacts.
 """
+
 import os
 
 # Above this, the cash side would have to be worth more than the whole supply.

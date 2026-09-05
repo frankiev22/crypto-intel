@@ -36,6 +36,20 @@ def age_hours(pair):
     if not ms: return None
     return (time.time() - ms/1000) / 3600
 
+def resolve_exit_depth(pair):
+    """Quote-side USD for one pool. Local copy of resolve.exit_depth_usd() to
+    keep the scanner free of a circular import."""
+    liq = pair.get("liquidity") or {}
+    q = _f(liq.get("quote"))
+    pu, pn = _f(pair.get("priceUsd")), _f(pair.get("priceNative"))
+    if q is not None and pu and pn:
+        return q * (pu / pn)
+    total, base = _f(liq.get("usd")), _f(liq.get("base"))
+    if total is not None and base is not None and pu:
+        return max(0.0, total - base * pu)
+    return None
+
+
 def score(pair):
     """Returns (score 0-100, reasons, flags, gates, weights_version).
 
@@ -102,20 +116,21 @@ def score(pair):
     if fdv and liq and fdv / liq > 250:
         flags.append(f"FDV/liq {fdv/liq:.0f} - valuation unsupported by liquidity")
 
-    # A reading that cannot be true does not get to be scored. Measured
-    # 2026-09-05: three rows passed on liq > 2 x fdv, which needs the cash side
-    # of the pool to be worth more than every token in existence - SUMMITLP at
-    # $2,729 against a $1 fdv. Separately, 43 rows report over $10M of depth
-    # while under an hour old, against a maximum of $9,089,748 across every
-    # pool anyone has ever actually sold into. The row is still journalled in
-    # full; it simply cannot clear the pass line on a number that is wrong.
-    _p = plausibility.assess({"liq": liq, "fdv": fdv, "age_hours": age,
-                              "buys_h1": buys, "sells_h1": sells})
-    if not _p["liquidity_plausible"]:
-        for f in _p["flags"]:
-            if f in ("liq_exceeds_2x_fdv", "liq_implausible_for_age"):
-                flags.append(f"{f} - liquidity reading is not physically possible")
-        return 0, reasons, flags, gates, WVER
+    # WITHDRAWN 2026-09-05, same day it shipped. This block used to return 0
+    # for a row failing plausibility.assess(). It was an unvalidated filter and
+    # it had no business changing a score:
+    #
+    #   - `age_hours` is PAIR age, from pairCreatedAt, not token age. A new
+    #     pool for an established token is indistinguishable from a new token,
+    #     so a magnitude-for-age rule can zero a legitimate large token.
+    #   - The magnitude ceiling was never tested against ground truth. When it
+    #     finally was, only 1 of 12 sampled rows in that cohort could still be
+    #     resolved at all, so it remains unmeasured.
+    #   - A filter with an unmeasured false-positive rate is worse than none.
+    #
+    # The assessment is still ATTACHED to every observation as description, in
+    # journal.record(). Nothing scores on it, nothing filters on it, and
+    # nothing is excluded from the journal because of it.
 
     return min(pts, 100), reasons, flags, gates, WVER
 
@@ -185,6 +200,16 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
             pair   = addr,
             score  = sc,
             liq    = _f((pair.get("liquidity") or {}).get("usd")),
+            # THE RESERVES THEMSELVES, not a summary of them. `liq` counts both
+            # sides with the base valued at its own price; only the quote side
+            # can pay you. We already have this object in hand, so storing the
+            # split costs nothing and turns exit depth into a recorded fact
+            # instead of something that needs a live refetch later - by which
+            # time Dexscreener has dropped 79% of the tokens worth labelling.
+            liq_base  = _f((pair.get("liquidity") or {}).get("base")),
+            liq_quote = _f((pair.get("liquidity") or {}).get("quote")),
+            price_native = _f(pair.get("priceNative")),
+            exit_depth_usd = resolve_exit_depth(pair),
             v24    = _f((pair.get("volume") or {}).get("h24")),
             age_h  = age_hours(pair),
             chg_h1 = _f((pair.get("priceChange") or {}).get("h1")),
