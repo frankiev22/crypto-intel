@@ -327,6 +327,8 @@ def record(rows, network, pass_score=70):
             "vol_h1": r.get("vol_h1"), "vol_h24": r.get("v24"),
             "txns_h1": r.get("txns_h1"), "buys_h1": r.get("buys_h1"),
             "sells_h1": r.get("sells_h1"),
+            "dex_id": r.get("dex_id"), "venue_type": r.get("venue_type"),
+            "is_graduated": r.get("is_graduated"),
             "liq_base": r.get("liq_base"), "liq_quote": r.get("liq_quote"),
             "price_native": r.get("price_native"),
             "exit_depth_usd": r.get("exit_depth_usd"),

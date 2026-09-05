@@ -9,6 +9,7 @@ is worthless. The job is to throw away 99% and be honest about the survivors.
 Nothing here is a recommendation. It is a filter over public data.
 """
 import os, time, math, datetime as dt
+import venue
 import plausibility
 import sources as S
 import namecheck
@@ -169,6 +170,10 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
             break
         addr = p.get("attributes", {}).get("address")
         if not addr: continue
+        # GeckoTerminal already told us the venue in the discovery payload.
+        # Reading it costs nothing and it is the dimension that decides whether
+        # a "liquidity" figure means anything at all.
+        gt_dex = venue.from_discovery(p)
         try:
             pair = S.dexscreener_pair(network, addr)
         except Exception:
@@ -210,6 +215,8 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
             liq_quote = _f((pair.get("liquidity") or {}).get("quote")),
             price_native = _f(pair.get("priceNative")),
             exit_depth_usd = resolve_exit_depth(pair),
+            dex_id = pair.get("dexId") or gt_dex,
+            gt_dex = gt_dex,
             v24    = _f((pair.get("volume") or {}).get("h24")),
             age_h  = age_hours(pair),
             chg_h1 = _f((pair.get("priceChange") or {}).get("h1")),
@@ -217,6 +224,7 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
             reasons= reasons, flags = flags,
             gates  = gates, weights_version = wver,
         )
+        venue.annotate(row, dex=row.get("dex_id"))
         rows.append(row)
         LAST_SCAN["enriched"] += 1
         if on_row:
