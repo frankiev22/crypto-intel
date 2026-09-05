@@ -24,3 +24,7 @@ data/journal.db
 data/.pass_state.json
 data/.pass_state.json.done
 data/.heartbeat.json
+
+# Derived, rebuildable from data/observations, and unmergeable between the
+# two runners - tickers._load() regenerates it on demand.
+data/tickers/index.json

@@ -54,10 +54,26 @@ INCUMBENTS = {
 
 
 def _load():
+    """Load the index, rebuilding it from the journal if it is missing or bad.
+
+    The index is DERIVED state, not a record - every fact in it comes from
+    data/observations. It is gitignored for the same reason the pass markers
+    are: two runners writing it produced an unmergeable conflict on the first
+    overlap, and a JSON blob has no union merge. Rebuilding is deterministic
+    and costs one pass over the journal, so a corrupt or absent index is a
+    non-event rather than a broken counter.
+    """
     try:
         with open(IDX, encoding="utf-8") as f:
-            return json.load(f)
+            d = json.load(f)
+        if isinstance(d, dict):
+            return d
     except (OSError, ValueError):
+        pass
+    try:
+        import journal
+        return rebuild(journal.observations())
+    except Exception:
         return {}
 
 
