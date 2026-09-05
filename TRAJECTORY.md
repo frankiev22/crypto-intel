@@ -146,3 +146,74 @@ side of a one-sided pool valued at its own price, and the real depth is ~$10k.
    the halved-latency question cannot be asked yet. Adding one is cheap and is
    the single change that would make trajectory testable as a real feature,
    because at 30m the outcome is still ahead of the measurement.
+
+---
+
+# Addendum 2026-09-05: horizon drift, and what it does and does not explain
+
+## The drift is real, and it is confined to the 1h horizon
+
+| nominal | n | min | median | p90 | p99 | worst | median drift | past 2x its label |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1h | 17,754 | 1.00 | **2.00** | 5.23 | 6.81 | 7.01 | **2.00x** | **51.4%** |
+| 6h | 16,075 | 6.00 | 7.02 | 9.64 | 11.33 | 11.71 | 1.17x | 0.0% |
+| 24h | 12,973 | 24.00 | 27.04 | 29.05 | 29.76 | 30.00 | 1.13x | 0.0% |
+| 168h | 4,835 | 168.00 | 168.07 | 170.72 | 173.50 | 173.76 | 1.00x | 0.0% |
+
+**Every minimum equals the nominal horizon exactly.** The scheduler never checks
+early, only late, so this is one-sided queueing lag, not jitter. The 1h cohort
+splits 42.6% inside 1.5h, 30.8% at 1.5-2.5h, 11.9% at 2.5-4h, 14.7% past 4h.
+
+The cause is structural: **1h is shorter than the interval between passes.** The
+hosted runner fires roughly every 3.5h, so a row that comes due at T is checked
+at the next pass. No amount of scheduling makes a 1h label true at that cadence.
+6h and beyond are longer than the interval and are consequently fine.
+
+## It is not what broke the finding
+
+Restricting to rows whose "1h" check genuinely landed inside 1.0-1.5h, the
+entry-anchored gradient **survives**: 0.2% / 5.7% / 18.8% / 33.3% / 50.0%
+across the same buckets, n=575. So drift is not the explanation, and the two
+case confirmations are not spurious.
+
+Removing the one-sided-pool template as well collapses it: the top bucket goes
+**50.0% -> 16.7%** (n=18, 3 wins) and the shape stops being monotonic. The
+winner count falls 56 -> 25 (drift filter) -> **13** (artifact filter). In the
++100% bucket: 33 -> 15 -> **3**.
+
+## And the leak is still there after both corrections
+
+On the clean cohort, share already >= 2x at a genuine 1h check:
+
+| bucket | n | already >= 2x | median mult at the check |
+|---|---:|---:|---:|
+| negative | 437 | 15.6% | 0.85 |
+| 0 to +20% | 51 | 0.0% | 1.04 |
+| +20 to 50% | 13 | 7.7% | 1.53 |
+| +50 to 100% | 9 | 55.6% | 2.30 |
+| **+100%+** | 18 | **94.4%** | **9.26** |
+
+Forward return from the 1h price, actionable only (n=120):
+
+| bucket | n | fwd >= 2x | mean fwd | wiped out |
+|---|---:|---:|---:|---:|
+| negative | 29 | 3.4% | 0.88 | 34.5% |
+| 0 to +20% | 51 | 2.0% | 0.60 | 49.0% |
+| +20 to 50% | 13 | 7.7% | 1.66 | 69.2% |
+| +50 to 100% | 9 | 22.2% | 0.86 | 66.7% |
+| **+100%+** | 18 | **0.0%** | **0.19** | 77.8% |
+
+Forward sweep: 4.4% at T=0, 6.0% at +10%, 7.5% at +20%, 6.5% at +30%, 7.4% at
++50%, 9.1% at +75%, **0.0% at +100%**. Mean forward is below 1.0 at every
+threshold. **The retraction stands.** Buckets of 9-18 cannot prove no signal
+exists; they do show that the strongest entry-anchored bucket is confidently
+the worst place to buy.
+
+## What changed in the code
+
+`actual_elapsed_h` and `on_time` are written on every outcome row and backfilled
+on read for history (both timestamps were always there). `pending()` schedules
+freshest-due first so the slice is spent where the label can still be true, and
+the 1h slice went 80 -> 200 because a pass pulls ~90 pools and 80 could not
+clear the backlog. A pass whose median drift exceeds tolerance now records a
+`horizon-drift` finding. **Nothing is bucketed on `horizon_h` again.**

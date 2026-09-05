@@ -56,3 +56,32 @@
   template change when the checks start rejecting it?
 - **Can any entry rule be supported at all?** Nothing in the record currently
   separates. That is the honest state.
+
+## Resolved 2026-09-05
+
+- **Does horizon drift invalidate the gradient?** No, but it was real and worth
+  finding. Drift is one-sided lag confined to the 1h horizon (median 2.00x its
+  label, 51.4% past 2h). Restricted to genuine 1.0-1.5h checks the gradient
+  survives; removing the one-sided template collapses it. See TRAJECTORY.md.
+- **Is the score saturated at 100?** Not globally - only 4.06% of 19,745
+  observations sit at 100. But **72.2% of everything scoring >= 70 is exactly
+  100**, and the whole scale has just **12 distinct values**, two of which
+  (30 and 45) are 59% of all mass. The pass band is effectively binary.
+- **Is the score inverted?** No, and the evidence that suggested it was
+  contaminated. Raw, rejected tokens beat passed ones 8.5% to 2.6%. Excluding
+  the one-sided template the two are indistinguishable: passed 2.6%
+  [1.7%, 3.9%], rejected 1.7% [0.8%, 3.8%]. The 45-69 band falls from 5.3% to
+  0.4% once the artifact is removed. **Not inverted. Not informative either.**
+  Score 100 remains the worst band at 1.5% [0.8%, 2.7%], and that survives the
+  artifact filter because none of its 687 rows are template pools.
+
+## Open
+
+- **Is the 1h horizon worth keeping?** It cannot be measured at the current
+  ~3.5h pass cadence. Either the runner fires far more often - a cost decision,
+  billed minutes, Frank's call - or the shortest trustworthy horizon is 6h and
+  the 1h label should be retired rather than repaired.
+- **Rescaling the score:** re-deriving weights against a target where 72% of
+  passes share one value is wasted work, but the fix is granularity, not
+  uncapping - there is no evidence the ceiling is clipping a real signal, since
+  the ceiling band performs worst.
