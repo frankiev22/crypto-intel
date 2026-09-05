@@ -4045,13 +4045,13 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 24,
+  "count": 26,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-04T23:30:00+00:00"
+  "last_seen": "2026-09-05T01:33:14+00:00"
  },
  "scanner-hit:patience": {
   "first_seen": "2026-09-04T05:11:20+00:00",
