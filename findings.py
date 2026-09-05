@@ -180,6 +180,49 @@ def today_path(day=None):
 # loudly, every time, on the channel Frank actually reads.
 ALWAYS_PING = {"collector-zero", "slug-collision"}
 
+# DEDUPLICATION SUPPRESSES REPETITION. IT MUST NEVER SUPPRESS DURATION.
+#
+# Measured 2026-09-05: Dexscreener's 168h lookups were on their second day of
+# failure - 0% resolution twice, 1-6% for most of the day - and the whole
+# two-day outage produced ONE ping, because the class was already in _seen.json
+# and the 4-per-hour budget swallowed the rest. A defect that persists is a
+# different and worse event than a defect that repeats, and the machinery could
+# not tell them apart.
+#
+# So: once a class has been firing for longer than ESCALATE_AFTER_H, it
+# re-alerts on its own schedule, bypassing both first-time suppression and the
+# hourly budget, and it says how long it has been going and how many times.
+# The interval does not shrink - the escalation is in the wording and in the
+# fact that it arrives at all, not in volume.
+ESCALATE_AFTER_H = float(os.environ.get("CRYPTO_ESCALATE_AFTER_H", "6"))
+RE_ALERT_EVERY_H = float(os.environ.get("CRYPTO_RE_ALERT_EVERY_H", "6"))
+
+
+def _parse_ts(v):
+    try:
+        return dt.datetime.fromisoformat(v)
+    except (TypeError, ValueError):
+        return None
+
+
+def _duration_escalation(entry, now):
+    """(should_ping, hours_running, nth_escalation) for a class that persists."""
+    first = _parse_ts(entry.get("first_seen"))
+    if not first:
+        return False, 0.0, 0
+    if first.tzinfo is None:
+        first = first.replace(tzinfo=dt.timezone.utc)
+    running = (now - first).total_seconds() / 3600.0
+    if running < ESCALATE_AFTER_H:
+        return False, running, 0
+    last = _parse_ts(entry.get("last_escalated"))
+    if last is not None:
+        if last.tzinfo is None:
+            last = last.replace(tzinfo=dt.timezone.utc)
+        if (now - last).total_seconds() / 3600.0 < RE_ALERT_EVERY_H:
+            return False, running, entry.get("escalations", 0)
+    return True, running, entry.get("escalations", 0) + 1
+
 
 def record(kind, key, summary, detail=None, allow_discord=True, always_ping=None):
     """Append a finding. Returns (path, defect_class, pinged_bool, why)."""
@@ -216,20 +259,44 @@ def record(kind, key, summary, detail=None, allow_discord=True, always_ping=None
 
     if always_ping is None:
         always_ping = kind in ALWAYS_PING
-    if not first_time and not always_ping:
+
+    # A class that has been failing for hours escalates on duration, whatever
+    # the dedupe and budget rules would otherwise do with it.
+    escalate, running_h, nth = (False, 0.0, 0)
+    if not first_time:
+        escalate, running_h, nth = _duration_escalation(seen[cls], now)
+        if escalate:
+            seen[cls]["last_escalated"] = now.isoformat(timespec="seconds")
+            seen[cls]["escalations"] = nth
+            _save_seen(seen)
+
+    if not first_time and not always_ping and not escalate:
         return path, cls, False, f"class already reported {seen[cls]['count']}x, file only"
     if not allow_discord:
         return path, cls, False, "discord suppressed by caller"
 
-    # Routine findings share an hourly budget; critical classes bypass it.
-    if not always_ping:
+    # Routine findings share an hourly budget; critical classes and anything
+    # escalating on duration bypass it.
+    if not always_ping and not escalate:
         ok_budget, spent, left = _budget_spend()
         if not ok_budget:
             return (path, cls, False,
                     f"hourly ping budget spent ({spent}/{PING_BUDGET_PER_HOUR}), "
                     f"file only - full record is in {os.path.basename(path)}")
 
-    if always_ping and not first_time:
+    if escalate:
+        hrs = int(running_h)
+        head = ("**STILL FAILING: " + kind + "**" + chr(10) + str(key) + chr(10)
+                + summary + chr(10))
+        body = head + ("_This is not a repeat, it is a duration. The class has "
+                       "been failing for %dh %dm across %d occurrences, first "
+                       "seen %s. Escalation %d; the next one follows in %gh if "
+                       "it is still failing._"
+                       % (hrs, int((running_h - hrs) * 60),
+                          seen[cls].get("count", 1),
+                          seen[cls].get("first_seen", "?"), nth,
+                          RE_ALERT_EVERY_H))
+    elif always_ping and not first_time:
         head = "**" + kind + "**" + chr(10) + str(key) + chr(10) + summary + chr(10)
         body = head + ("_Occurrence %d. This class always pings - every "
                        "occurrence matters._" % seen[cls].get("count", 1))

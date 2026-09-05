@@ -355,6 +355,19 @@ def observations(days=None):
     return _read(OBS, days)
 
 
+def _fill_elapsed(o):
+    """Historical rows predate actual_elapsed_h but carry both timestamps, so
+    the true elapsed time is recoverable exactly. Nothing is rewritten on disk."""
+    if o.get("actual_elapsed_h") is None:
+        ct, ot = o.get("checked_ts"), o.get("observed_ts")
+        if ct and ot:
+            o["actual_elapsed_h"] = round((ct - ot) / 3600.0, 4)
+    e, h = o.get("actual_elapsed_h"), o.get("horizon_h")
+    if o.get("on_time") is None and e is not None and h:
+        o["on_time"] = e <= h * DRIFT_TOLERANCE
+    return o
+
+
 def outcomes(days=None):
     """Outcomes, with realizability filled in for any legacy row that predates
     the field. Computed on read so historical data is correct immediately and
@@ -364,12 +377,19 @@ def outcomes(days=None):
         if "realizable" not in o:
             ok, why = realizable(o.get("status"), o.get("liq"), o.get("mult"))
             o["realizable"], o["unrealizable_reason"] = ok, why
+        _fill_elapsed(o)
     return rows
 
 
 def scored_pairs():
     """(pair, horizon) already scored, so outcome runs are idempotent."""
     return {(o["pair"], o["horizon_h"]) for o in outcomes()}
+
+
+# How far past its nominal horizon a check may land and still be treated as
+# measuring that horizon. 1.5x is generous; it is set where it is because at
+# 1.0-1.5x the 1h cohort still holds 575 of 1,350 rows, enough to analyse.
+DRIFT_TOLERANCE = float(os.environ.get("CRYPTO_DRIFT_TOLERANCE", "1.5"))
 
 
 def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
@@ -402,8 +422,19 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
         ok = False
         why = ("priced from a different pool than the one observed; the entry "
                "and exit prices are not the same series")
+    checked_ts = int(time.time())
+    # THE LABEL IS NOT THE MEASUREMENT. Measured 2026-09-05: the median "1h"
+    # row was checked 2.00 hours after observation, 51.4% landed past 2h, p90
+    # was 5.23h and the worst 7.01h. The scheduler never checks EARLY - the
+    # minimum equals the nominal horizon exactly - so this is one-sided
+    # queueing lag, and any analysis that reads horizon_h as elapsed time is
+    # measuring a variable window. Record what actually happened.
+    elapsed_h = round((checked_ts - observed_ts) / 3600.0, 4) if observed_ts else None
     obj = {"pair": pair, "symbol": symbol, "observed_ts": observed_ts,
-           "checked_ts": int(time.time()), "horizon_h": horizon_h,
+           "checked_ts": checked_ts, "horizon_h": horizon_h,
+           "actual_elapsed_h": elapsed_h,
+           "on_time": (None if elapsed_h is None
+                       else elapsed_h <= horizon_h * DRIFT_TOLERANCE),
            "price_usd": price, "liq": liq, "vol_h24": vol24,
            "mult": mult, "liq_change_pct": liqchg, "status": status,
            # The quote side only. `liq` counts the token side too, which for a
@@ -445,9 +476,18 @@ def pending(horizon_h, window_h=6):
             continue
         if p not in first or o["ts"] < first[p]["ts"]:
             first[p] = o
-    return [o for p, o in first.items()
-            if cutoff - window_h * 3600 <= o["ts"] <= cutoff
-            and (p, horizon_h) not in done]
+    due = [o for p, o in first.items()
+           if cutoff - window_h * 3600 <= o["ts"] <= cutoff
+           and (p, horizon_h) not in done]
+    # FRESHEST-DUE FIRST. The caller takes a slice, and whatever it does not
+    # reach this pass gets checked later with a larger elapsed time. Scoring the
+    # oldest backlog first pushed every fresh row's check further out and made
+    # the drift self-sustaining: the median "1h" check landed at 2.00h. Sorting
+    # this way spends the slice on the rows that can still be measured at their
+    # nominal horizon. Nothing is dropped - stragglers stay due until the window
+    # closes and carry an honest actual_elapsed_h when they are scored.
+    due.sort(key=lambda o: o["ts"], reverse=True)
+    return due
 
 
 def stats():

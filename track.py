@@ -39,14 +39,25 @@ PRIMARY_OK_FLOOR = 0.5     # under half resolving is an outage, not variance
 MIN_LOOKUPS_TO_JUDGE = 10  # do not cry outage over three lookups
 
 
-def score_horizon(horizon_h, limit=80, verbose=True):
+# Per-horizon slice. The 1h horizon needs the biggest one: a pass pulls ~90 new
+# pools and the old flat limit of 80 could not clear them, so the shortfall
+# became next pass's backlog and the "1h" check drifted to a median of 2.00h.
+# The long horizons see far fewer rows come due per pass and do not need it.
+HORIZON_LIMIT = {1: int(os.environ.get("CRYPTO_LIMIT_1H", "200"))}
+
+
+def score_horizon(horizon_h, limit=None, verbose=True):
+    limit = limit or HORIZON_LIMIT.get(horizon_h, 80)
     """Re-check pairs first seen ~horizon_h ago and record what happened."""
-    todo = journal.pending(horizon_h)[:limit]
+    queue = journal.pending(horizon_h)
+    todo = queue[:limit]
     if verbose:
-        print(f"  {horizon_h}h horizon: {len(todo)} pairs due")
+        extra = f", {len(queue) - len(todo)} deferred to the next pass" if len(queue) > len(todo) else ""
+        print(f"  {horizon_h}h horizon: {len(todo)} pairs due{extra}")
     done = 0
     fallbacks = 0
     primary_ok = primary_miss = 0
+    elapsed_seen = []
     for o in todo:
         try:
             pair = S.dexscreener_pair(o.get("network", "solana"), o["pair"])
@@ -112,6 +123,7 @@ def score_horizon(horizon_h, limit=80, verbose=True):
             token=o.get("token", ""), reasons=reasons, source=src,
             price_verdict=verdict, exit_depth=depth)
         done += 1
+        elapsed_seen.append((time.time() - o["ts"]) / 3600.0)
         if verbose and mult and mult >= 2:
             ok, why = journal.realizable(status, liq, mult)
             if ok:
@@ -125,8 +137,27 @@ def score_horizon(horizon_h, limit=80, verbose=True):
     # four consecutive passes without raising anything. These are the horizons
     # that would prove or kill the scoring model. Alert loudly, every time.
     seen_n = primary_ok + primary_miss
+    med_drift = None
+    if elapsed_seen:
+        e = sorted(elapsed_seen)
+        med_drift = e[len(e) // 2] / horizon_h
     HORIZON_HEALTH[horizon_h] = {"due": len(todo), "primary_ok": primary_ok,
-                                 "primary_miss": primary_miss}
+                                 "primary_miss": primary_miss,
+                                 "median_drift": med_drift,
+                                 "deferred": len(queue) - len(todo)}
+    # A horizon label that does not mean what it says corrupts every analysis
+    # built on it, silently, and it did: the "1h" gradient was measured over a
+    # median 2.00h window. Say so as soon as a pass drifts.
+    if med_drift is not None and med_drift > journal.DRIFT_TOLERANCE and len(elapsed_seen) >= 10:
+        import findings
+        findings.record(
+            "horizon-drift", f"{horizon_h}h",
+            f"{horizon_h}h horizon checked at a median {med_drift:.2f}x its label "
+            f"({med_drift * horizon_h:.2f}h elapsed) across {len(elapsed_seen)} rows",
+            detail=(f"{len(queue) - len(todo)} rows were deferred to a later pass. "
+                    f"Nominal horizon_h is a label, not a measurement - read "
+                    f"actual_elapsed_h instead. Anything bucketed on the label "
+                    f"is measuring a variable window."))
     if seen_n >= MIN_LOOKUPS_TO_JUDGE and primary_ok / seen_n < PRIMARY_OK_FLOOR:
         rate = primary_ok / seen_n
         msg = (f"{horizon_h}h horizon: primary price source resolved only "
