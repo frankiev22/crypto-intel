@@ -1535,3 +1535,5 @@
 {"token":"FRoqYFdS7GqG7kp9MszCK6u4iPTUvKUw8niFfsEdjwvw","milestone":"realizable_3x","crossed_ts":1788545165,"crossed_at":"2026-09-04T18:06:05+00:00","symbol":"CACA","value":4.2622,"kind":"multiple"}
 {"token":"2s3EsngYybUbN6SzxTNmHsxVgYSKqzjzTpUKaYbs1KHh","milestone":"realizable_2x","crossed_ts":1788548792,"crossed_at":"2026-09-04T19:06:32+00:00","symbol":"SUNCOIN","value":5.1104,"kind":"multiple"}
 {"token":"2s3EsngYybUbN6SzxTNmHsxVgYSKqzjzTpUKaYbs1KHh","milestone":"realizable_3x","crossed_ts":1788548792,"crossed_at":"2026-09-04T19:06:32+00:00","symbol":"SUNCOIN","value":5.1104,"kind":"multiple"}
+{"token":"ByptnpYZxoHYRi9ZGgv9R3Zv2RU8Tf4Cc55xYWfvKjUn","milestone":"realizable_2x","crossed_ts":1788589424,"crossed_at":"2026-09-05T06:23:44+00:00","symbol":"UNKNOWN","value":3.68,"kind":"multiple"}
+{"token":"ByptnpYZxoHYRi9ZGgv9R3Zv2RU8Tf4Cc55xYWfvKjUn","milestone":"realizable_3x","crossed_ts":1788589424,"crossed_at":"2026-09-05T06:23:44+00:00","symbol":"UNKNOWN","value":3.68,"kind":"multiple"}
