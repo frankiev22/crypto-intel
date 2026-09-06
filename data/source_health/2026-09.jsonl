@@ -333,3 +333,14 @@
 {"ts":1788693008,"dexscreener_ok":0,"dexscreener_dropped":8,"geckoterminal_ok":4,"geckoterminal_fail":4,"onchain_ok":8,"onchain_fail":0,"unresolved":4}
 {"ts":1788695647,"dexscreener_ok":1,"dexscreener_dropped":15,"geckoterminal_ok":7,"geckoterminal_fail":8,"onchain_ok":16,"onchain_fail":0,"unresolved":8}
 {"ts":1788695951,"dexscreener_ok":0,"dexscreener_dropped":8,"geckoterminal_ok":4,"geckoterminal_fail":4,"onchain_ok":8,"onchain_fail":0,"unresolved":4}
+{"ts":1788696397,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
+{"ts":1788696440,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
+{"ts":1788696491,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
+{"ts":1788696547,"dexscreener_ok":0,"dexscreener_dropped":8,"geckoterminal_ok":4,"geckoterminal_fail":4,"onchain_ok":8,"onchain_fail":0,"unresolved":4}
+{"ts":1788696605,"dexscreener_ok":0,"dexscreener_dropped":8,"geckoterminal_ok":3,"geckoterminal_fail":5,"onchain_ok":8,"onchain_fail":0,"unresolved":5}
+{"ts":1788700007,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
+{"ts":1788700100,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
+{"ts":1788700152,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
+{"ts":1788700206,"dexscreener_ok":1,"dexscreener_dropped":7,"geckoterminal_ok":3,"geckoterminal_fail":4,"onchain_ok":8,"onchain_fail":0,"unresolved":4}
+{"ts":1788700260,"dexscreener_ok":0,"dexscreener_dropped":7,"geckoterminal_ok":2,"geckoterminal_fail":5,"onchain_ok":7,"onchain_fail":0,"unresolved":5}
+{"ts":1788701734,"dexscreener_ok":2,"dexscreener_dropped":12,"geckoterminal_ok":5,"geckoterminal_fail":7,"onchain_ok":14,"onchain_fail":0,"unresolved":7}

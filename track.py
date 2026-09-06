@@ -45,13 +45,23 @@ MIN_LOOKUPS_TO_JUDGE = 10  # do not cry outage over three lookups
 # The long horizons see far fewer rows come due per pass and do not need it.
 HORIZON_LIMIT = {1: int(os.environ.get("CRYPTO_LIMIT_1H", "200"))}
 
+# Default slice for the other horizons. MEASURED 2026-09-06: new distinct pairs
+# arrive at 2,308/day = 96 per hourly pass, against a slice of 80. The deficit
+# was 16 per pass and it did not queue - pending() only offers a pair inside a
+# 6h window, so the overflow aged out and was NEVER scored at that horizon.
+# 4,203 rows were lost that way at 24h (20.8% of everything eligible), 3,238 at
+# 6h (14.5%). 120 covers arrival with ~25% headroom; the extra 40 lookups per
+# horizon cost ~14s of Dexscreener at a measured 0.116s median, against a
+# published 300 req/min, and spend none of the scarce GeckoTerminal budget.
+HORIZON_SLICE = int(os.environ.get("CRYPTO_HORIZON_SLICE", "120"))
+
 # A validated realizable multiple at or above this is announced by the runner
 # itself. Matches findings.SIGNIFICANCE_ALWAYS so it is never rationed.
 WIN_ANNOUNCE_MULT = float(os.environ.get("CRYPTO_WIN_ANNOUNCE_MULT", "3.0"))
 
 
 def score_horizon(horizon_h, limit=None, verbose=True):
-    limit = limit or HORIZON_LIMIT.get(horizon_h, 80)
+    limit = limit or HORIZON_LIMIT.get(horizon_h, HORIZON_SLICE)
     """Re-check pairs first seen ~horizon_h ago and record what happened."""
     queue = journal.pending(horizon_h)
     todo = queue[:limit]

@@ -493,9 +493,20 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
     return status, mult
 
 
-def pending(horizon_h, window_h=6):
+# How far back a pair stays ELIGIBLE after its horizon comes due. This is not a
+# cosmetic dial: a pair outside the window is not deferred, it is gone - the
+# queue never offers it again and it is never scored at that horizon. At 6h,
+# with arrival above slice capacity, that silently discarded 20.8% of the 24h
+# horizon. Widening costs nothing, because actual_elapsed_h already records the
+# honest elapsed time, so a late check is a late check and not a mislabelled
+# one. Raised 2026-09-06; see OUTCOMES.md for the loss table.
+PENDING_WINDOW_H = float(os.environ.get("CRYPTO_PENDING_WINDOW_H", "18"))
+
+
+def pending(horizon_h, window_h=None):
     """First observation of each pair now old enough to score at this horizon
     and not yet scored at it."""
+    window_h = PENDING_WINDOW_H if window_h is None else window_h
     done = scored_pairs()
     cutoff = time.time() - horizon_h * 3600
     first = {}

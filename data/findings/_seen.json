@@ -206,10 +206,14 @@
  },
  "scanner-hit:mango": {
   "first_seen": "2026-08-24T10:08:50+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: Mango",
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-06T13:12:50+00:00",
+  "last_escalated": "2026-09-06T13:12:50+00:00",
+  "keys": [
+   "MANGO"
+  ],
+  "escalations": 1
  },
  "scanner-hit:ridark": {
   "first_seen": "2026-08-24T10:08:50+00:00",
@@ -4466,13 +4470,14 @@
  },
  "scanner-hit:ben": {
   "first_seen": "2026-09-03T10:10:06+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: BEN",
   "keys": [
    "BEN"
   ],
-  "last_seen": "2026-09-03T12:10:20+00:00",
-  "last_escalated": null
+  "last_seen": "2026-09-06T12:11:17+00:00",
+  "last_escalated": "2026-09-06T12:11:17+00:00",
+  "escalations": 1
  },
  "scanner-hit:nina": {
   "first_seen": "2026-09-03T10:10:11+00:00",
@@ -5108,13 +5113,13 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 68,
+  "count": 74,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-06T11:59:07+00:00",
+  "last_seen": "2026-09-06T13:35:32+00:00",
   "last_escalated": "2026-09-06T08:10:33+00:00",
   "escalations": 4
  },
@@ -6648,6 +6653,62 @@
   "example": "scanner-hit: DCAT",
   "keys": [
    "DCAT"
+  ]
+ },
+ "scanner-hit:bill": {
+  "first_seen": "2026-09-06T12:11:07+00:00",
+  "count": 1,
+  "example": "scanner-hit: BILL",
+  "keys": [
+   "BILL"
+  ]
+ },
+ "scanner-hit:robintroll": {
+  "first_seen": "2026-09-06T12:11:12+00:00",
+  "count": 1,
+  "example": "scanner-hit: RobinTroll",
+  "keys": [
+   "RobinTroll"
+  ]
+ },
+ "scanner-hit:twa": {
+  "first_seen": "2026-09-06T13:12:23+00:00",
+  "count": 1,
+  "example": "scanner-hit: TWA",
+  "keys": [
+   "TWA"
+  ]
+ },
+ "scanner-hit:ron": {
+  "first_seen": "2026-09-06T13:12:29+00:00",
+  "count": 1,
+  "example": "scanner-hit: RON",
+  "keys": [
+   "RON"
+  ]
+ },
+ "scanner-hit:rob": {
+  "first_seen": "2026-09-06T13:12:35+00:00",
+  "count": 1,
+  "example": "scanner-hit: ROB",
+  "keys": [
+   "ROB"
+  ]
+ },
+ "scanner-hit:billboard": {
+  "first_seen": "2026-09-06T13:12:39+00:00",
+  "count": 1,
+  "example": "scanner-hit: billboard",
+  "keys": [
+   "billboard"
+  ]
+ },
+ "scanner-hit:airdrop": {
+  "first_seen": "2026-09-06T13:12:45+00:00",
+  "count": 1,
+  "example": "scanner-hit: Airdrop",
+  "keys": [
+   "Airdrop"
   ]
  }
 }

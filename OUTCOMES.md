@@ -48,6 +48,20 @@ it needs the denominator we already have. Both tables below are the same data:
 | 69–100k | 366 | 3 | 0.82% | [0.28%, 2.38%] |
 | **over 100k** | 732 | 65 | **8.88%** | [7.03%, 11.16%] |
 
+With the **$1,000 FDV floor** applied, so the low band matches the 15,207 as
+presented (n=15,166 — same data):
+
+| band | n | wins ≥2x | rate | 95% CI |
+|---|---:|---:|---:|---|
+| 1k–20k | 15,166 | 24 | **0.16%** | [0.11%, 0.24%] |
+| 20–40k | 725 | 6 | 0.83% | [0.38%, 1.79%] |
+| 40–55k | 902 | 6 | 0.67% | [0.31%, 1.44%] |
+| 55–69k approach | 246 | 0 | 0.00% | [0.00%, 1.54%] |
+| 69–100k | 366 | 3 | 0.82% | [0.28%, 2.38%] |
+| over 100k | 733 | 65 | **8.87%** | [7.02%, 11.15%] |
+
+**0.16%, not 62.9%.** A factor of ~390.
+
 **As previously reported — realizable-outcome denominator:**
 
 | band | n | wins | rate |
@@ -95,20 +109,35 @@ backlog cannot drain, so the overflow ages out of the window. The comment in
 `pending()` says "nothing is dropped — stragglers stay due until the window
 closes"; the window closing *is* the drop.
 
-**Proposed fix, not yet applied** — this is a collection change and the numbers
-are here for the decision:
+**APPLIED.** This is a bug fix that only adds coverage — it discards nothing
+and changes no label — so it was not held for a decision.
 
-1. Raise the per-horizon slice from 80 to **120**. That covers arrival with
-   ~25% headroom. Cost: 40 extra Dexscreener calls per horizon per pass = 120
-   calls, at a measured 0.116s median = **~14 seconds**. Dexscreener publishes
-   300 req/min and answered 12/12 in testing; this does not touch the scarce
-   GeckoTerminal budget.
-2. Widen `window_h` from 6 to 12 on the 24h and 168h horizons, so a pass missed
-   for any reason is recoverable rather than fatal. Costs nothing — it only
-   changes which rows are *eligible*, and `actual_elapsed_h` already records the
-   honest elapsed time so a late check is not a mislabelled one.
+1. `track.HORIZON_SLICE`: per-horizon slice **80 → 120**. Covers arrival
+   (96/pass) with ~25% headroom. Cost: 40 extra Dexscreener calls per horizon
+   per pass at a measured 0.116s median = **~14 seconds**; Dexscreener publishes
+   300 req/min and answered 12/12 in testing. Spends **no** GeckoTerminal
+   budget, which is the scarce one.
+2. `journal.PENDING_WINDOW_H`: eligibility window **6h → 18h**. Costs nothing —
+   it changes only which rows are *offered*, and `actual_elapsed_h` already
+   records honest elapsed time, so a late check is a late check and not a
+   mislabelled one.
 
-Neither is applied yet.
+Measured effect immediately after the change:
+
+| horizon | due at 6h window | due at 18h window | recovered |
+|---:|---:|---:|---:|
+| 6h | 0 | 353 | **+353** |
+| 24h | 23 | 440 | **+417** |
+| 168h | 0 | 95 | **+95** |
+
+**865 rows became eligible again** that the 6h window had already excluded.
+With capacity now 120/pass against 96/pass arrival, the backlog drains at 24
+per pass instead of growing — the queue converges where before it diverged.
+
+**Honest limit: this prevents future loss. It does not recover the past.** The
+4,203 rows already aged out at the 24h horizon are far more than 18h past their
+cutoff and stay lost. Widening further would only relabel very old checks as if
+they were timely, which is the drift defect in another form.
 
 ## The approach band is testable, and the answer is zero
 
