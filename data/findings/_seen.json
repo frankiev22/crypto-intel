@@ -5095,15 +5095,15 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 60,
+  "count": 61,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-06T13:14:55+00:00",
-  "last_escalated": "2026-09-06T09:46:11+00:00",
-  "escalations": 4
+  "last_seen": "2026-09-06T16:32:20+00:00",
+  "last_escalated": "2026-09-06T16:32:20+00:00",
+  "escalations": 5
  },
  "scanner-hit:patience": {
   "first_seen": "2026-09-04T05:11:20+00:00",
@@ -5568,13 +5568,13 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 11,
+  "count": 12,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h"
   ],
-  "last_seen": "2026-09-06T13:13:17+00:00",
+  "last_seen": "2026-09-06T16:30:36+00:00",
   "last_escalated": "2026-09-06T13:13:17+00:00",
   "escalations": 3
  },
@@ -6382,6 +6382,14 @@
   "example": "scanner-hit: WOULD",
   "keys": [
    "WOULD"
+  ]
+ },
+ "outcome-win:dcfcftjzzugwvjtniemqpxynsecdqtpas": {
+  "first_seen": "2026-09-06T16:30:39+00:00",
+  "count": 1,
+  "example": "outcome-win: DCfCf8TJ82Z8ZU4G157wvjTNi9EMq5PXYnseCDQT4pas",
+  "keys": [
+   "DCfCf8TJ82Z8ZU4G157wvjTNi9EMq5PXYnseCDQT4pas"
   ]
  }
 }
