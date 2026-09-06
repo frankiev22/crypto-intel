@@ -45,6 +45,10 @@ MIN_LOOKUPS_TO_JUDGE = 10  # do not cry outage over three lookups
 # The long horizons see far fewer rows come due per pass and do not need it.
 HORIZON_LIMIT = {1: int(os.environ.get("CRYPTO_LIMIT_1H", "200"))}
 
+# A validated realizable multiple at or above this is announced by the runner
+# itself. Matches findings.SIGNIFICANCE_ALWAYS so it is never rationed.
+WIN_ANNOUNCE_MULT = float(os.environ.get("CRYPTO_WIN_ANNOUNCE_MULT", "3.0"))
+
 
 def score_horizon(horizon_h, limit=None, verbose=True):
     limit = limit or HORIZON_LIMIT.get(horizon_h, 80)
@@ -123,7 +127,48 @@ def score_horizon(horizon_h, limit=None, verbose=True):
             token=o.get("token", ""), reasons=reasons, source=src,
             price_verdict=verdict, exit_depth=depth)
         done += 1
-        elapsed_seen.append((time.time() - o["ts"]) / 3600.0)
+        _elapsed = (time.time() - o["ts"]) / 3600.0
+        elapsed_seen.append(_elapsed)
+        # ANNOUNCE A WIN FROM HERE, not from the desktop skill.
+        # Until 2026-09-06 outcome findings existed only in SKILL.md, so the
+        # hosted runner - the one that is actually up 24/7 - never announced a
+        # win at all. Nothing was rationed; nothing was ever attempted.
+        #
+        # Only a validated one goes out: realizable, and not quarantined by the
+        # cross-source check. Significance is the multiple itself, so the ping
+        # budget ranks it by value instead of arrival order.
+        if (mult is not None and mult >= WIN_ANNOUNCE_MULT
+                and journal.realizable(status, liq, mult, exit_depth=depth)[0]
+                and (verdict is None or verdict.get("trustworthy"))):
+            try:
+                import findings
+                conf = (verdict or {}).get("confidence") or "unvalidated"
+                ratio = (verdict or {}).get("ratio")
+                # KEY ON THE CONTRACT ADDRESS. The dedupe class is identity,
+                # and a ticker is not identity: there are 25 distinct FLORK
+                # contracts, and the one that returned 5.49x on 2026-09-05
+                # (DKwc8cML...) is NOT the one that collapsed to a $24k FDV
+                # (AH8DQTFk...). Keyed on the symbol, the second FLORK would
+                # have been suppressed as a repeat of the first.
+                findings.record(
+                    "outcome-win", o.get("token") or o.get("symbol", "?"),
+                    f"{o.get('symbol','?')} {mult:,.2f}x, realizable, at the "
+                    f"{horizon_h}h horizon (measured {_elapsed:.2f}h after "
+                    f"observation)",
+                    detail=(
+                        "contract " + str(o.get("token")) + chr(10)
+                        + "pair     " + str(o["pair"]) + chr(10)
+                        + f"entry    ${(o.get('price_usd') or 0):.10g}" + chr(10)
+                        + f"now      ${(price or 0):.10g}" + chr(10)
+                        + f"exit depth ${(depth or 0):,.0f} of ${(liq or 0):,.0f} reported" + chr(10)
+                        + f"price     {conf}"
+                        + (f", sources within {ratio:.4f}x" if ratio else "")
+                        + chr(10)
+                        + f"NOMINAL {horizon_h}h, ACTUAL {_elapsed:.2f}h elapsed - "
+                          "read actual_elapsed_h, not the label."),
+                    significance=float(mult))
+            except Exception as e:
+                print(f"    win announcement failed (non-fatal): {type(e).__name__}")
         if verbose and mult and mult >= 2:
             ok, why = journal.realizable(status, liq, mult)
             if ok:

@@ -54,27 +54,62 @@ PING_BUDGET_PER_HOUR = 4
 BUDGET_FILE = os.path.join(DIR, "_ping_budget.json")
 
 
-def _budget_spend():
-    """(allowed, spent, remaining) for the current rolling hour."""
+def _budget_spend(lane="routine", significance=None):
+    """(allowed, spent, remaining) for this LANE in the current rolling hour.
+
+    Two rules beyond the count:
+
+    - Lanes are independent. A flood of scanner hits cannot exhaust the lane a
+      confirmed outcome arrives in.
+    - Inside a lane, a finding MORE significant than anything already sent this
+      hour is allowed even when the count is spent. This is how "rank by value,
+      not arrival time" survives in a streaming system where earlier pings
+      cannot be recalled: a 6x can always break through a wall of 1.1x, but a
+      second 6x cannot.
+    """
     now = time.time()
     try:
         with open(BUDGET_FILE, encoding="utf-8") as f:
-            stamps = json.load(f)
+            data = json.load(f)
     except (OSError, json.JSONDecodeError):
-        stamps = []
-    stamps = [t for t in stamps if now - t < 3600]
-    if len(stamps) >= PING_BUDGET_PER_HOUR:
-        return False, len(stamps), 0
-    stamps.append(now)
+        data = {}
+    # Migrate the old flat list of timestamps into the routine lane.
+    if isinstance(data, list):
+        data = {"routine": [[t, None] for t in data]}
+    if not isinstance(data, dict):
+        data = {}
+
+    cap = LANE_BUDGET.get(lane, LANE_BUDGET["routine"])
+    entries = [e for e in data.get(lane, [])
+               if isinstance(e, (list, tuple)) and len(e) == 2 and now - e[0] < 3600]
+    spent = len(entries)
+
+    allowed = spent < cap
+    if not allowed and significance is not None:
+        best = max((e[1] for e in entries if e[1] is not None), default=None)
+        if best is None or significance > best:
+            allowed = True   # more valuable than anything already sent
+
+    if not allowed:
+        data[lane] = entries
+        _save_budget(data)
+        return False, spent, 0
+
+    entries.append([now, significance])
+    data[lane] = entries
+    _save_budget(data)
+    return True, len(entries), max(0, cap - len(entries))
+
+
+def _save_budget(data):
     os.makedirs(DIR, exist_ok=True)
     try:
         tmp = BUDGET_FILE + ".tmp"
         with open(tmp, "w", encoding="utf-8") as f:
-            json.dump(stamps, f)
+            json.dump(data, f)
         os.replace(tmp, BUDGET_FILE)
     except OSError:
         pass
-    return True, len(stamps), PING_BUDGET_PER_HOUR - len(stamps)
 
 SLUG_COLLISION_LIMIT = 5
 _guarding = False
@@ -180,6 +215,51 @@ def today_path(day=None):
 # loudly, every time, on the channel Frank actually reads.
 ALWAYS_PING = {"collector-zero", "slug-collision"}
 
+# SEPARATE BUDGETS PER LANE. Measured 2026-09-06 across every finding ever
+# recorded: scanner-hit is 484 classes and 645 fires (59.2% of all traffic),
+# outcome-x is 225 classes and 358 fires (32.9%). They shared one 4-per-hour
+# budget, and because the scan stage runs before the outcome stage, routine
+# scanner hits consumed the quota first and outcomes lost on ARRIVAL ORDER -
+# the worst possible tiebreak.
+#
+# The cost was exact. On 2026-09-05 the system produced its first three clean,
+# non-quarantined, realizable 3x+ outcomes - POOD 6.39x, FLORK 5.49x,
+# CBULLNEO 3.43x - and NONE of them reached Frank. The validation layer worked
+# and the notification layer threw the results away.
+#
+# So a lane cannot starve another lane. Routine noise stays rationed; the lanes
+# that carry meaning do not compete with it.
+LANES = {
+    "scanner-hit": "routine",
+    "outcome": "outcome",
+    "milestone": "outcome",
+    "lookup-outage": "health",
+    "collector-error": "health",
+    "horizon-drift": "health",
+    "reporting-path": "health",
+    "correction": "outcome",
+}
+LANE_BUDGET = {
+    "routine": int(os.environ.get("CRYPTO_BUDGET_ROUTINE", "4")),
+    "outcome": int(os.environ.get("CRYPTO_BUDGET_OUTCOME", "12")),
+    "health": int(os.environ.get("CRYPTO_BUDGET_HEALTH", "6")),
+}
+
+# A finding carrying at least this much significance is never rationed. For an
+# outcome the significance IS the multiple, so a confirmed 3x always pings.
+SIGNIFICANCE_ALWAYS = float(os.environ.get("CRYPTO_SIGNIFICANCE_ALWAYS", "3.0"))
+
+
+def lane_of(kind):
+    k = (kind or "").strip().lower()
+    if k in LANES:
+        return LANES[k]
+    # outcome-3x, outcome-10x, outcome-anything
+    for prefix, lane in LANES.items():
+        if k.startswith(prefix):
+            return lane
+    return "routine"
+
 # DEDUPLICATION SUPPRESSES REPETITION. IT MUST NEVER SUPPRESS DURATION.
 #
 # Measured 2026-09-05: Dexscreener's 168h lookups were on their second day of
@@ -224,7 +304,8 @@ def _duration_escalation(entry, now):
     return True, running, entry.get("escalations", 0) + 1
 
 
-def record(kind, key, summary, detail=None, allow_discord=True, always_ping=None):
+def record(kind, key, summary, detail=None, allow_discord=True, always_ping=None,
+           significance=None):
     """Append a finding. Returns (path, defect_class, pinged_bool, why)."""
     os.makedirs(DIR, exist_ok=True)
     now = dt.datetime.now(dt.timezone.utc)
@@ -258,7 +339,12 @@ def record(kind, key, summary, detail=None, allow_discord=True, always_ping=None
     _collision_guard(cls, seen)
 
     if always_ping is None:
-        always_ping = kind in ALWAYS_PING
+        # A verified outcome big enough to matter is not routine traffic. This
+        # is the positive-side twin of the duration escalation below: suppress
+        # repetition, never suppress significance.
+        always_ping = (kind in ALWAYS_PING
+                       or (significance is not None
+                           and significance >= SIGNIFICANCE_ALWAYS))
 
     # A class that has been failing for hours escalates on duration, whatever
     # the dedupe and budget rules would otherwise do with it.
@@ -277,11 +363,12 @@ def record(kind, key, summary, detail=None, allow_discord=True, always_ping=None
 
     # Routine findings share an hourly budget; critical classes and anything
     # escalating on duration bypass it.
+    lane = lane_of(kind)
     if not always_ping and not escalate:
-        ok_budget, spent, left = _budget_spend()
+        ok_budget, spent, left = _budget_spend(lane, significance)
         if not ok_budget:
             return (path, cls, False,
-                    f"hourly ping budget spent ({spent}/{PING_BUDGET_PER_HOUR}), "
+                    f"{lane} lane budget spent ({spent}/{LANE_BUDGET.get(lane)}), "
                     f"file only - full record is in {os.path.basename(path)}")
 
     if escalate:
@@ -307,6 +394,11 @@ def record(kind, key, summary, detail=None, allow_discord=True, always_ping=None
         head = "**New finding: " + kind + "**" + chr(10) + str(key) + chr(10) + summary + chr(10)
         body = head + ("_First time this class has appeared. Repeats go to "
                        + os.path.basename(path) + " silently._")
+    # A significant finding's DETAIL is the part worth reading - the contract
+    # address, the exit depth, the real elapsed time. Sending only the summary
+    # put all of that in a file nobody opens.
+    if significance is not None and detail:
+        body = body + chr(10) + chr(10) + "```" + chr(10) + str(detail)[:1200] + chr(10) + "```"
     ok = notify.send(content=body)
     return path, cls, bool(ok), ("pinged Discord" if ok else "Discord send failed, file written")
 
@@ -331,9 +423,16 @@ def main():
     kind, key, summary = opt("--kind"), opt("--key"), opt("--summary")
     if not (kind and key and summary):
         print(__doc__); sys.exit(2)
-    path, cls, pinged, why = record(kind, key, summary, opt("--detail"))
+    sig = opt("--significance")
+    try:
+        sig = float(sig) if sig is not None else None
+    except ValueError:
+        sig = None
+    path, cls, pinged, why = record(kind, key, summary, opt("--detail"),
+                                    significance=sig)
     print(f"  recorded -> {path}")
     print(f"  class    -> {cls}")
+    print(f"  lane     -> {lane_of(kind)}")
     print(f"  discord  -> {why}")
 
 
