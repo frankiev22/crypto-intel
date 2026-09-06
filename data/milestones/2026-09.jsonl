@@ -1571,3 +1571,13 @@
 {"token":"G744hkfpN3g9GC9xRgnvk2KSsrBEwBQLP6fNv3LJvSbq","milestone":"realizable_3x","crossed_ts":1788656872,"crossed_at":"2026-09-06T01:07:52+00:00","symbol":"CBULLNEO","value":3.4252,"kind":"multiple"}
 {"token":"78ckveV5mgVmLZ9HB9oNwkvvj5hisLqNFx81iiCcZMhr","milestone":"realizable_2x","crossed_ts":1788660530,"crossed_at":"2026-09-06T02:08:50+00:00","symbol":"ZODL","value":4.6674,"kind":"multiple"}
 {"token":"78ckveV5mgVmLZ9HB9oNwkvvj5hisLqNFx81iiCcZMhr","milestone":"realizable_3x","crossed_ts":1788660530,"crossed_at":"2026-09-06T02:08:50+00:00","symbol":"ZODL","value":4.6674,"kind":"multiple"}
+{"token":"9qMddYQ8ZHWZ1MEcRTkKq69mMmPn5pUckaXByTuosfG9","milestone":"realizable_2x","crossed_ts":1788674973,"crossed_at":"2026-09-06T06:09:33+00:00","symbol":"cTERX","value":3.4917,"kind":"multiple"}
+{"token":"9qMddYQ8ZHWZ1MEcRTkKq69mMmPn5pUckaXByTuosfG9","milestone":"realizable_3x","crossed_ts":1788674973,"crossed_at":"2026-09-06T06:09:33+00:00","symbol":"cTERX","value":3.4917,"kind":"multiple"}
+{"token":"Ceo1jti236tE8WmBMuDHDDJHa4KaTJuxRja6Fra21dwZ","milestone":"realizable_2x","crossed_ts":1788678439,"crossed_at":"2026-09-06T07:07:19+00:00","symbol":"MarsCoin","value":3.6779,"kind":"multiple"}
+{"token":"Ceo1jti236tE8WmBMuDHDDJHa4KaTJuxRja6Fra21dwZ","milestone":"realizable_3x","crossed_ts":1788678439,"crossed_at":"2026-09-06T07:07:19+00:00","symbol":"MarsCoin","value":3.6779,"kind":"multiple"}
+{"token":"DnbVzBd3AoUEPwKnL1AKB6AMGHhN6jqUjsMjPUaeCThF","milestone":"realizable_2x","crossed_ts":1788678549,"crossed_at":"2026-09-06T07:09:09+00:00","symbol":"S500","value":4.1567,"kind":"multiple"}
+{"token":"DnbVzBd3AoUEPwKnL1AKB6AMGHhN6jqUjsMjPUaeCThF","milestone":"realizable_3x","crossed_ts":1788678549,"crossed_at":"2026-09-06T07:09:09+00:00","symbol":"S500","value":4.1567,"kind":"multiple"}
+{"token":"6d56RCCbKNu6vHKXEvbki2ZfVPT9pCNVE48vCJ4KEQQW","milestone":"realizable_2x","crossed_ts":1788678566,"crossed_at":"2026-09-06T07:09:26+00:00","symbol":"S500","value":5.3814,"kind":"multiple"}
+{"token":"6d56RCCbKNu6vHKXEvbki2ZfVPT9pCNVE48vCJ4KEQQW","milestone":"realizable_3x","crossed_ts":1788678566,"crossed_at":"2026-09-06T07:09:26+00:00","symbol":"S500","value":5.3814,"kind":"multiple"}
+{"token":"6zTzfjyEHKV3zZuMFJN5KtZ7viP8kiSP6UebGd6tfr1T","milestone":"realizable_2x","crossed_ts":1788685619,"crossed_at":"2026-09-06T09:06:59+00:00","symbol":"\u4e91\u7cef\u7cef","value":5.9788,"kind":"multiple"}
+{"token":"6zTzfjyEHKV3zZuMFJN5KtZ7viP8kiSP6UebGd6tfr1T","milestone":"realizable_3x","crossed_ts":1788685620,"crossed_at":"2026-09-06T09:07:00+00:00","symbol":"\u4e91\u7cef\u7cef","value":5.9788,"kind":"multiple"}

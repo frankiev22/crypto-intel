@@ -112,13 +112,14 @@
  },
  "scanner-hit:unknown": {
   "first_seen": "2026-08-24T07:09:37+00:00",
-  "count": 41,
-  "example": "scanner-hit: 牛来",
-  "last_seen": "2026-09-05T23:11:23+00:00",
+  "count": 42,
+  "example": "scanner-hit: \u725b\u6765",
+  "last_seen": "2026-09-06T09:11:41+00:00",
   "keys": [
    "$1"
   ],
-  "last_escalated": "2026-09-05T23:11:23+00:00"
+  "last_escalated": "2026-09-06T09:11:41+00:00",
+  "escalations": 1
  },
  "scanner-hit:giggle": {
   "first_seen": "2026-08-24T07:09:37+00:00",
@@ -488,7 +489,7 @@
  "outcome-x:shandi": {
   "first_seen": "2026-08-25T14:09:53+00:00",
   "count": 2,
-  "example": "outcome-3x: 闪迪 (SHANDI)",
+  "example": "outcome-3x: \u95ea\u8fea (SHANDI)",
   "last_seen": "2026-08-25T19:08:56+00:00",
   "last_escalated": null
  },
@@ -522,13 +523,14 @@
  },
  "scanner-hit:rst": {
   "first_seen": "2026-08-25T19:08:33+00:00",
-  "count": 6,
+  "count": 7,
   "example": "scanner-hit: RST",
-  "last_seen": "2026-09-04T11:10:52+00:00",
+  "last_seen": "2026-09-06T09:11:44+00:00",
   "keys": [
    "RST"
   ],
-  "last_escalated": null
+  "last_escalated": "2026-09-06T09:11:44+00:00",
+  "escalations": 1
  },
  "outcome-x:sara": {
   "first_seen": "2026-08-25T19:08:33+00:00",
@@ -625,10 +627,14 @@
  },
  "scanner-hit:coin": {
   "first_seen": "2026-08-26T06:06:18+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: Coin",
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-06T09:11:49+00:00",
+  "last_escalated": "2026-09-06T09:11:49+00:00",
+  "keys": [
+   "COIN"
+  ],
+  "escalations": 1
  },
  "scanner-hit:xst": {
   "first_seen": "2026-08-26T07:08:31+00:00",
@@ -654,7 +660,7 @@
  "scanner-hit:srlerfd": {
   "first_seen": "2026-08-26T09:07:28+00:00",
   "count": 1,
-  "example": "scanner-hit: 维特根斯坦-8srLerfd",
+  "example": "scanner-hit: \u7ef4\u7279\u6839\u65af\u5766-8srLerfd",
   "last_seen": null,
   "last_escalated": null
  },
@@ -731,7 +737,7 @@
  "outcome-x:unknown": {
   "first_seen": "2026-08-26T13:08:03+00:00",
   "count": 23,
-  "example": "outcome-3x: 闪迪",
+  "example": "outcome-3x: \u95ea\u8fea",
   "last_seen": "2026-09-02T17:11:00+00:00",
   "keys": [
    "$1",
@@ -1500,10 +1506,14 @@
  },
  "collector-zero:solana": {
   "first_seen": "2026-08-30T04:25:33+00:00",
-  "count": 1,
+  "count": 2,
   "example": "collector-zero: solana",
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-06T11:54:07+00:00",
+  "last_escalated": "2026-09-06T11:54:07+00:00",
+  "keys": [
+   "solana"
+  ],
+  "escalations": 1
  },
  "collector-zero:wording-check": {
   "first_seen": "2026-08-30T04:26:29+00:00",
@@ -1872,7 +1882,7 @@
  "scanner-hit:clinton": {
   "first_seen": "2026-08-30T16:10:15+00:00",
   "count": 1,
-  "example": "scanner-hit: Clinton©",
+  "example": "scanner-hit: Clinton\u00a9",
   "last_seen": null,
   "last_escalated": null
  },
@@ -2292,9 +2302,9 @@
  "outcome-x:u-88d612": {
   "first_seen": "2026-08-31T06:08:32+00:00",
   "count": 2,
-  "example": "outcome-3x: 孙宇晨",
+  "example": "outcome-3x: \u5b59\u5b87\u6668",
   "keys": [
-   "孙宇晨"
+   "\u5b59\u5b87\u6668"
   ],
   "last_seen": "2026-08-31T11:10:07+00:00",
   "last_escalated": null
@@ -2341,13 +2351,14 @@
  },
  "scanner-hit:home": {
   "first_seen": "2026-08-31T07:10:14+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: HOME",
   "keys": [
    "HOME"
   ],
-  "last_seen": "2026-09-02T14:09:58+00:00",
-  "last_escalated": null
+  "last_seen": "2026-09-06T07:11:53+00:00",
+  "last_escalated": "2026-09-06T07:11:53+00:00",
+  "escalations": 1
  },
  "scanner-hit:wwr": {
   "first_seen": "2026-08-31T07:10:20+00:00",
@@ -2512,9 +2523,9 @@
  "scanner-hit:u-202668": {
   "first_seen": "2026-08-31T09:09:58+00:00",
   "count": 1,
-  "example": "scanner-hit: 恶兽",
+  "example": "scanner-hit: \u6076\u517d",
   "keys": [
-   "恶兽"
+   "\u6076\u517d"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -2632,9 +2643,9 @@
  "scanner-hit:u-464d2f": {
   "first_seen": "2026-08-31T11:09:51+00:00",
   "count": 1,
-  "example": "scanner-hit: 黄果之年",
+  "example": "scanner-hit: \u9ec4\u679c\u4e4b\u5e74",
   "keys": [
-   "黄果之年"
+   "\u9ec4\u679c\u4e4b\u5e74"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -2904,9 +2915,9 @@
  "scanner-hit:u-57b2de": {
   "first_seen": "2026-09-01T07:08:51+00:00",
   "count": 1,
-  "example": "scanner-hit: 富贵狸猫",
+  "example": "scanner-hit: \u5bcc\u8d35\u72f8\u732b",
   "keys": [
-   "富贵狸猫"
+   "\u5bcc\u8d35\u72f8\u732b"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -2984,9 +2995,9 @@
  "scanner-hit:u-8d79c6": {
   "first_seen": "2026-09-01T09:09:17+00:00",
   "count": 1,
-  "example": "scanner-hit: 彩礼币",
+  "example": "scanner-hit: \u5f69\u793c\u5e01",
   "keys": [
-   "彩礼币"
+   "\u5f69\u793c\u5e01"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -3003,13 +3014,14 @@
  },
  "scanner-hit:aapl": {
   "first_seen": "2026-09-01T09:09:30+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: AAPL",
   "keys": [
    "AAPL"
   ],
-  "last_seen": "2026-09-01T10:09:25+00:00",
-  "last_escalated": null
+  "last_seen": "2026-09-06T07:11:47+00:00",
+  "last_escalated": "2026-09-06T07:11:47+00:00",
+  "escalations": 1
  },
  "scanner-hit:fable": {
   "first_seen": "2026-09-01T09:09:38+00:00",
@@ -3094,9 +3106,9 @@
  "scanner-hit:u-07fc28": {
   "first_seen": "2026-09-01T11:09:12+00:00",
   "count": 1,
-  "example": "scanner-hit: 石头记",
+  "example": "scanner-hit: \u77f3\u5934\u8bb0",
   "keys": [
-   "石头记"
+   "\u77f3\u5934\u8bb0"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -3144,9 +3156,9 @@
  "scanner-hit:u-baf97c": {
   "first_seen": "2026-09-01T12:09:34+00:00",
   "count": 3,
-  "example": "scanner-hit: 景甜",
+  "example": "scanner-hit: \u666f\u751c",
   "keys": [
-   "景甜"
+   "\u666f\u751c"
   ],
   "last_seen": "2026-09-05T08:10:24+00:00",
   "last_escalated": "2026-09-05T08:10:24+00:00"
@@ -3194,9 +3206,9 @@
  "outcome-x:u-d703c2": {
   "first_seen": "2026-09-01T13:10:38+00:00",
   "count": 3,
-  "example": "outcome-3x: 牛四",
+  "example": "outcome-3x: \u725b\u56db",
   "keys": [
-   "牛四"
+   "\u725b\u56db"
   ],
   "last_seen": "2026-09-02T14:10:49+00:00",
   "last_escalated": null
@@ -3474,9 +3486,9 @@
  "outcome-x:u-01016f": {
   "first_seen": "2026-09-02T02:09:20+00:00",
   "count": 1,
-  "example": "outcome-3x: 孙割自传",
+  "example": "outcome-3x: \u5b59\u5272\u81ea\u4f20",
   "keys": [
-   "孙割自传"
+   "\u5b59\u5272\u81ea\u4f20"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -3564,9 +3576,9 @@
  "scanner-hit:u-0638cb": {
   "first_seen": "2026-09-02T05:10:06+00:00",
   "count": 1,
-  "example": "scanner-hit: 我爱你",
+  "example": "scanner-hit: \u6211\u7231\u4f60",
   "keys": [
-   "我爱你"
+   "\u6211\u7231\u4f60"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -3604,9 +3616,9 @@
  "scanner-hit:u-9954c3": {
   "first_seen": "2026-09-02T05:10:26+00:00",
   "count": 1,
-  "example": "scanner-hit: 孙割3000",
+  "example": "scanner-hit: \u5b59\u52723000",
   "keys": [
-   "孙割3000"
+   "\u5b59\u52723000"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -3974,9 +3986,9 @@
  "scanner-hit:u-e94e27": {
   "first_seen": "2026-09-02T18:11:42+00:00",
   "count": 1,
-  "example": "scanner-hit: 热钱",
+  "example": "scanner-hit: \u70ed\u94b1",
   "keys": [
-   "热钱"
+   "\u70ed\u94b1"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -4095,9 +4107,9 @@
  "scanner-hit:u-5815f4": {
   "first_seen": "2026-09-02T23:09:21+00:00",
   "count": 6,
-  "example": "scanner-hit: 牛来",
+  "example": "scanner-hit: \u725b\u6765",
   "keys": [
-   "牛来"
+   "\u725b\u6765"
   ],
   "last_seen": "2026-09-05T18:11:28+00:00",
   "last_escalated": "2026-09-05T18:11:28+00:00"
@@ -4235,9 +4247,9 @@
  "outcome-x:u-5815f4": {
   "first_seen": "2026-09-03T02:10:26+00:00",
   "count": 1,
-  "example": "outcome-3x: 牛来",
+  "example": "outcome-3x: \u725b\u6765",
   "keys": [
-   "牛来"
+   "\u725b\u6765"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -4335,9 +4347,9 @@
  "scanner-hit:u-a97504": {
   "first_seen": "2026-09-03T05:09:50+00:00",
   "count": 1,
-  "example": "scanner-hit: 强生",
+  "example": "scanner-hit: \u5f3a\u751f",
   "keys": [
-   "强生"
+   "\u5f3a\u751f"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -4574,13 +4586,14 @@
  },
  "scanner-hit:wotf": {
   "first_seen": "2026-09-03T12:10:30+00:00",
-  "count": 3,
+  "count": 5,
   "example": "scanner-hit: WOTF",
   "keys": [
    "WOTF"
   ],
-  "last_seen": "2026-09-05T18:11:59+00:00",
-  "last_escalated": "2026-09-05T18:11:59+00:00"
+  "last_seen": "2026-09-06T09:11:44+00:00",
+  "last_escalated": "2026-09-06T07:12:04+00:00",
+  "escalations": 1
  },
  "outcome-x:gram": {
   "first_seen": "2026-09-03T12:10:54+00:00",
@@ -4726,9 +4739,9 @@
  "outcome-x:u-baf97c": {
   "first_seen": "2026-09-03T16:10:58+00:00",
   "count": 2,
-  "example": "outcome-3x: 景甜",
+  "example": "outcome-3x: \u666f\u751c",
   "keys": [
-   "景甜"
+   "\u666f\u751c"
   ],
   "last_seen": "2026-09-03T23:10:58+00:00",
   "last_escalated": null
@@ -4756,9 +4769,9 @@
  "outcome-x:ni-a-bbb850": {
   "first_seen": "2026-09-03T17:09:51+00:00",
   "count": 1,
-  "example": "outcome-3x: Niña",
+  "example": "outcome-3x: Ni\u00f1a",
   "keys": [
-   "Niña"
+   "Ni\u00f1a"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -4916,9 +4929,9 @@
  "scanner-hit:u-93c243": {
   "first_seen": "2026-09-03T23:10:31+00:00",
   "count": 1,
-  "example": "scanner-hit: 🤗",
+  "example": "scanner-hit: \ud83e\udd17",
   "keys": [
-   "🤗"
+   "\ud83e\udd17"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -5095,15 +5108,15 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 54,
+  "count": 68,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-06T04:10:21+00:00",
-  "last_escalated": "2026-09-06T02:10:25+00:00",
-  "escalations": 3
+  "last_seen": "2026-09-06T11:59:07+00:00",
+  "last_escalated": "2026-09-06T08:10:33+00:00",
+  "escalations": 4
  },
  "scanner-hit:patience": {
   "first_seen": "2026-09-04T05:11:20+00:00",
@@ -5218,13 +5231,14 @@
  },
  "scanner-hit:tiktok": {
   "first_seen": "2026-09-04T08:11:47+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: TIKTOK",
   "keys": [
    "TIKTOK"
   ],
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-06T05:12:02+00:00",
+  "last_escalated": "2026-09-06T05:12:02+00:00",
+  "escalations": 1
  },
  "outcome-x:wofi": {
   "first_seen": "2026-09-04T08:12:10+00:00",
@@ -5399,9 +5413,9 @@
  "scanner-hit:u-7c277a": {
   "first_seen": "2026-09-04T14:11:18+00:00",
   "count": 1,
-  "example": "scanner-hit: 孙小圣",
+  "example": "scanner-hit: \u5b59\u5c0f\u5723",
   "keys": [
-   "孙小圣"
+   "\u5b59\u5c0f\u5723"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -5448,23 +5462,25 @@
  },
  "scanner-hit:stonks": {
   "first_seen": "2026-09-04T16:11:43+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: Stonks",
   "keys": [
    "Stonks"
   ],
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-06T09:11:45+00:00",
+  "last_escalated": "2026-09-06T09:11:45+00:00",
+  "escalations": 1
  },
  "scanner-hit:amc": {
   "first_seen": "2026-09-04T17:11:00+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: AMC",
   "keys": [
    "AMC"
   ],
-  "last_seen": "2026-09-04T20:11:27+00:00",
-  "last_escalated": null
+  "last_seen": "2026-09-06T09:11:42+00:00",
+  "last_escalated": "2026-09-06T09:11:42+00:00",
+  "escalations": 1
  },
  "scanner-hit:dcresist": {
   "first_seen": "2026-09-04T17:11:05+00:00",
@@ -5568,15 +5584,15 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 9,
+  "count": 10,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h"
   ],
-  "last_seen": "2026-09-06T04:30:04+00:00",
-  "last_escalated": "2026-09-06T04:30:04+00:00",
-  "escalations": 2
+  "last_seen": "2026-09-06T11:58:16+00:00",
+  "last_escalated": "2026-09-06T11:58:16+00:00",
+  "escalations": 3
  },
  "scanner-hit:pomp": {
   "first_seen": "2026-09-05T05:11:36+00:00",
@@ -6043,9 +6059,9 @@
  "scanner-hit:u-9d33ca": {
   "first_seen": "2026-09-05T14:10:48+00:00",
   "count": 1,
-  "example": "scanner-hit: 福凤",
+  "example": "scanner-hit: \u798f\u51e4",
   "keys": [
-   "福凤"
+   "\u798f\u51e4"
   ],
   "last_seen": null,
   "last_escalated": null
@@ -6346,11 +6362,12 @@
  },
  "scanner-hit:zcat": {
   "first_seen": "2026-09-06T03:11:44+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: ZCAT",
   "keys": [
    "ZCAT"
-  ]
+  ],
+  "last_seen": "2026-09-06T08:12:15+00:00"
  },
  "scanner-hit:cancat": {
   "first_seen": "2026-09-06T04:11:58+00:00",
@@ -6382,6 +6399,255 @@
   "example": "scanner-hit: WOULD",
   "keys": [
    "WOULD"
+  ]
+ },
+ "scanner-hit:pshroom": {
+  "first_seen": "2026-09-06T05:11:57+00:00",
+  "count": 1,
+  "example": "scanner-hit: PSHROOM",
+  "keys": [
+   "PSHROOM"
+  ]
+ },
+ "scanner-hit:mrpoo": {
+  "first_seen": "2026-09-06T05:12:07+00:00",
+  "count": 1,
+  "example": "scanner-hit: MRPOO",
+  "keys": [
+   "MRPOO"
+  ]
+ },
+ "scanner-hit:p-emoji-szeubk": {
+  "first_seen": "2026-09-06T05:12:20+00:00",
+  "count": 1,
+  "example": "scanner-hit: P-emoji-SzEUbk",
+  "keys": [
+   "P-emoji-SzEUbk"
+  ]
+ },
+ "scanner-hit:p-emoji-dxasax": {
+  "first_seen": "2026-09-06T05:12:21+00:00",
+  "count": 1,
+  "example": "scanner-hit: P-emoji-DxaSaX",
+  "keys": [
+   "P-emoji-DxaSaX"
+  ]
+ },
+ "scanner-hit:butterfly-emoji-vtasr": {
+  "first_seen": "2026-09-06T05:12:21+00:00",
+  "count": 1,
+  "example": "scanner-hit: butterfly-emoji-8vtasr",
+  "keys": [
+   "butterfly-emoji-8vtasr"
+  ]
+ },
+ "outcome-win:qmddyqzhwzmecrtkkqmmmpnpuckaxbytuosfg": {
+  "first_seen": "2026-09-06T06:09:33+00:00",
+  "count": 1,
+  "example": "outcome-win: 9qMddYQ8ZHWZ1MEcRTkKq69mMmPn5pUckaXByTuosfG9",
+  "keys": [
+   "9qMddYQ8ZHWZ1MEcRTkKq69mMmPn5pUckaXByTuosfG9"
+  ]
+ },
+ "scanner-hit:robin": {
+  "first_seen": "2026-09-06T06:12:21+00:00",
+  "count": 1,
+  "example": "scanner-hit: ROBIN",
+  "keys": [
+   "ROBIN"
+  ]
+ },
+ "scanner-hit:butt": {
+  "first_seen": "2026-09-06T06:12:25+00:00",
+  "count": 1,
+  "example": "scanner-hit: BUTT",
+  "keys": [
+   "BUTT"
+  ]
+ },
+ "outcome-win:ceojtitewmbmudhddjhakatjuxrjafradwz": {
+  "first_seen": "2026-09-06T07:07:19+00:00",
+  "count": 1,
+  "example": "outcome-win: Ceo1jti236tE8WmBMuDHDDJHa4KaTJuxRja6Fra21dwZ",
+  "keys": [
+   "Ceo1jti236tE8WmBMuDHDDJHa4KaTJuxRja6Fra21dwZ"
+  ]
+ },
+ "outcome-win:dnbvzbdaouepwknlakbamghhnjqujsmjpuaecthf": {
+  "first_seen": "2026-09-06T07:09:09+00:00",
+  "count": 1,
+  "example": "outcome-win: DnbVzBd3AoUEPwKnL1AKB6AMGHhN6jqUjsMjPUaeCThF",
+  "keys": [
+   "DnbVzBd3AoUEPwKnL1AKB6AMGHhN6jqUjsMjPUaeCThF"
+  ]
+ },
+ "outcome-win:drccbknuvhkxevbkizfvptpcnvevcjkeqqw": {
+  "first_seen": "2026-09-06T07:09:26+00:00",
+  "count": 1,
+  "example": "outcome-win: 6d56RCCbKNu6vHKXEvbki2ZfVPT9pCNVE48vCJ4KEQQW",
+  "keys": [
+   "6d56RCCbKNu6vHKXEvbki2ZfVPT9pCNVE48vCJ4KEQQW"
+  ]
+ },
+ "scanner-hit:ntda": {
+  "first_seen": "2026-09-06T07:11:42+00:00",
+  "count": 1,
+  "example": "scanner-hit: NTDA",
+  "keys": [
+   "NTDA"
+  ]
+ },
+ "scanner-hit:queef": {
+  "first_seen": "2026-09-06T07:11:59+00:00",
+  "count": 1,
+  "example": "scanner-hit: QUEEF",
+  "keys": [
+   "QUEEF"
+  ]
+ },
+ "scanner-hit:pushin": {
+  "first_seen": "2026-09-06T07:12:10+00:00",
+  "count": 1,
+  "example": "scanner-hit: Pushin",
+  "keys": [
+   "Pushin"
+  ]
+ },
+ "scanner-hit:pill": {
+  "first_seen": "2026-09-06T08:11:45+00:00",
+  "count": 1,
+  "example": "scanner-hit: pill",
+  "keys": [
+   "pill"
+  ]
+ },
+ "scanner-hit:whewre": {
+  "first_seen": "2026-09-06T08:11:54+00:00",
+  "count": 1,
+  "example": "scanner-hit: Whewre",
+  "keys": [
+   "Whewre"
+  ]
+ },
+ "scanner-hit:pipetoad": {
+  "first_seen": "2026-09-06T08:11:59+00:00",
+  "count": 1,
+  "example": "scanner-hit: pipetoad",
+  "keys": [
+   "pipetoad"
+  ]
+ },
+ "scanner-hit:u-ba3a4a": {
+  "first_seen": "2026-09-06T08:12:05+00:00",
+  "count": 1,
+  "example": "scanner-hit: \u4e91\u7cef\u7cef",
+  "keys": [
+   "\u4e91\u7cef\u7cef"
+  ]
+ },
+ "scanner-hit:bazinga": {
+  "first_seen": "2026-09-06T08:12:10+00:00",
+  "count": 1,
+  "example": "scanner-hit: BAZINGA",
+  "keys": [
+   "BAZINGA"
+  ]
+ },
+ "outcome-win:ztzfjyehkvzzumfjnktzvipkispuebgdtfrt": {
+  "first_seen": "2026-09-06T09:07:00+00:00",
+  "count": 1,
+  "example": "outcome-win: 6zTzfjyEHKV3zZuMFJN5KtZ7viP8kiSP6UebGd6tfr1T",
+  "keys": [
+   "6zTzfjyEHKV3zZuMFJN5KtZ7viP8kiSP6UebGd6tfr1T"
+  ]
+ },
+ "scanner-hit:u-da502c": {
+  "first_seen": "2026-09-06T09:11:46+00:00",
+  "count": 1,
+  "example": "scanner-hit: \u8c79\u5bcc",
+  "keys": [
+   "\u8c79\u5bcc"
+  ]
+ },
+ "scanner-hit:nuke": {
+  "first_seen": "2026-09-06T09:11:46+00:00",
+  "count": 1,
+  "example": "scanner-hit: NUKE",
+  "keys": [
+   "NUKE"
+  ]
+ },
+ "scanner-hit:akimi": {
+  "first_seen": "2026-09-06T09:11:47+00:00",
+  "count": 2,
+  "example": "scanner-hit: Akimi",
+  "keys": [
+   "Akimi"
+  ],
+  "last_seen": "2026-09-06T09:11:47+00:00"
+ },
+ "scanner-hit:aicoin": {
+  "first_seen": "2026-09-06T09:11:48+00:00",
+  "count": 1,
+  "example": "scanner-hit: AICOIN",
+  "keys": [
+   "AICOIN"
+  ]
+ },
+ "scanner-hit:exod": {
+  "first_seen": "2026-09-06T09:11:48+00:00",
+  "count": 1,
+  "example": "scanner-hit: EXOD",
+  "keys": [
+   "EXOD"
+  ]
+ },
+ "scanner-hit:intc": {
+  "first_seen": "2026-09-06T10:11:17+00:00",
+  "count": 1,
+  "example": "scanner-hit: INTC",
+  "keys": [
+   "INTC"
+  ]
+ },
+ "scanner-hit:yuri": {
+  "first_seen": "2026-09-06T10:11:26+00:00",
+  "count": 1,
+  "example": "scanner-hit: Yuri",
+  "keys": [
+   "Yuri"
+  ]
+ },
+ "scanner-hit:jk": {
+  "first_seen": "2026-09-06T10:11:31+00:00",
+  "count": 1,
+  "example": "scanner-hit: 401jk",
+  "keys": [
+   "401jk"
+  ]
+ },
+ "scanner-hit:usdc": {
+  "first_seen": "2026-09-06T10:11:39+00:00",
+  "count": 1,
+  "example": "scanner-hit: USDC",
+  "keys": [
+   "USDC"
+  ]
+ },
+ "scanner-hit:bonke": {
+  "first_seen": "2026-09-06T10:11:39+00:00",
+  "count": 1,
+  "example": "scanner-hit: Bonke",
+  "keys": [
+   "Bonke"
+  ]
+ },
+ "scanner-hit:dcat": {
+  "first_seen": "2026-09-06T11:11:04+00:00",
+  "count": 1,
+  "example": "scanner-hit: DCAT",
+  "keys": [
+   "DCAT"
   ]
  }
 }
