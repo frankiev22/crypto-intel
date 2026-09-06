@@ -131,11 +131,20 @@ def score_horizon(horizon_h, limit=None, verbose=True):
             if verdict and not verdict.get("trustworthy") and verbose:
                 print(f"    {str(o.get('symbol','?'))[:12]:<14} {implied:>8.2f}x "
                       f"QUARANTINED - {verdict['confidence']}: {verdict['detail'][:70]}")
+        # Quote-token consistency needs price_native at BOTH ends. The exit
+        # value is already in the pair object we fetched, and the entry value
+        # is on the observation, so this costs no call. If entry and exit are
+        # quoted against different assets their ratio is not a return.
+        try:
+            _pn_exit = float(pair.get("priceNative")) if pair else None
+        except (TypeError, ValueError):
+            _pn_exit = None
         status, mult = journal.record_outcome(
             o["pair"], o["ts"], horizon_h, price, liq, vol24,
             o.get("price_usd"), o.get("liq"), o.get("symbol", ""),
             token=o.get("token", ""), reasons=reasons, source=src,
-            price_verdict=verdict, exit_depth=depth)
+            price_verdict=verdict, exit_depth=depth,
+            base_price_native=o.get("price_native"), price_native=_pn_exit)
         done += 1
         _elapsed = (time.time() - o["ts"]) / 3600.0
         elapsed_seen.append(_elapsed)

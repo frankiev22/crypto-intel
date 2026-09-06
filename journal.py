@@ -21,6 +21,7 @@ import config  # noqa: F401 - importing this loads .env
 import milestones
 import tickers
 import plausibility
+import pricecheck
 from scanner import CFG as _SCAN_CFG
 
 # --------------------------------------------------------------------------
@@ -461,7 +462,7 @@ DRIFT_TOLERANCE = float(os.environ.get("CRYPTO_DRIFT_TOLERANCE", "1.5"))
 def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
                    base_price, base_liq, symbol="", token="",
                    reasons=None, source=None, price_verdict=None,
-                   exit_depth=None):
+                   exit_depth=None, base_price_native=None, price_native=None):
     mult   = (price / base_price) if (base_price and price) else None
     liqchg = ((liq - base_liq) / base_liq * 100) if (base_liq and liq is not None) else None
     if liq is None:
@@ -482,6 +483,18 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
         ok = False
         why = (f"price {price_verdict.get('confidence')}: "
                f"{price_verdict.get('detail')}")
+    # WRITE-TIME QUOTE-TOKEN CHECK. Free - both inputs were already in hand.
+    # `price_usd / price_native` is the quote asset's own USD price, so if the
+    # entry implies SOL and the exit implies USDC the two prices came from
+    # pools with different quote tokens and the ratio between them is not a
+    # return. Same defect class as the cross-pool division that fabricated
+    # FLORK's 444x. Forward-only: historical rows carry no price_native, so
+    # nothing retrospective is claimed from it.
+    quote_check = pricecheck.check_quote_consistency(
+        base_price, base_price_native, price, price_native)
+    if not quote_check.get("trustworthy"):
+        ok = False
+        why = f"{quote_check.get('confidence')}: {quote_check.get('detail')}"
     # A multiple across two different pools of the same token is arithmetic,
     # not a return. Recorded, never counted.
     if "cross_pair_fallback" in (reasons or []):
@@ -502,6 +515,11 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
            # side was never seen and `liq` was used instead - fine for a
            # balanced pool, off by up to 125x for a one-sided one.
            "depth_unmeasured": depth_unmeasured(exit_depth),
+           "price_native": price_native,
+           "base_price_native": base_price_native,
+           "quote_asset_entry": quote_check.get("entry_quote_asset"),
+           "quote_asset_exit": quote_check.get("exit_quote_asset"),
+           "quote_consistent": quote_check.get("trustworthy"),
            "actual_elapsed_h": elapsed_h,
            "on_time": (None if elapsed_h is None
                        else elapsed_h <= horizon_h * DRIFT_TOLERANCE),

@@ -235,3 +235,89 @@ if __name__ == "__main__":
         print(f"    liquidity    : {v['liq_usd']}")
         print(f"    verdict      : {v['confidence']}  trustworthy={v['trustworthy']}")
         print(f"    {v['detail']}")
+
+
+# ---------------------------------------------------------------------------
+# WRITE-TIME MULTIPLE VALIDATION. Free - no network call, no rate-limit spend.
+#
+# The longest-standing open item. The existing validator (`check_multiple`)
+# only runs above VALIDATE_ABOVE=2.0 and costs a call to each source, so it
+# cannot run on every row: GeckoTerminal sustains under 10 successful calls a
+# minute and a pass already makes ~213 outcome lookups.
+#
+# THIS ONE COSTS NOTHING, because both inputs are already in the pair object.
+# `price_usd / price_native` is the QUOTE TOKEN's price in USD. Measured across
+# 3,043 observations carrying both fields:
+#
+#     94.71%  imply $50-400      -> SOL, median $104.04, tight
+#      5.00%  imply $0.5-2       -> USDC
+#      0.30%  imply neither      -> 9 rows, from $0.000015 to $79,770
+#
+# The 9 are not necessarily corrupt - AAPLx implies $79,770, which is simply a
+# BTC-quoted pair. But a token quoted against another memecoin has no stable
+# USD leg, and its "multiple" moves when the QUOTE moves.
+#
+# THE ACTIONABLE CHECK IS CONSISTENCY, NOT RANGE. If the entry implies SOL and
+# the exit implies USDC, the two prices came from pools with different quote
+# tokens and the ratio between them is not a return. That is the same defect
+# class as the cross-pool division that fabricated FLORK's 444x, and it is
+# detectable for free at the moment the row is written.
+#
+# FORWARD-ONLY. Historical outcome rows carry no `price_native`, so this cannot
+# be backtested and no retrospective claim is made from it. Consistent with
+# standing rule 14: prefer forward records.
+# ---------------------------------------------------------------------------
+QUOTE_TOLERANCE = float(os.environ.get("CRYPTO_QUOTE_TOLERANCE", "3.0"))
+Q_QUOTE_MISMATCH = "quarantined_quote_token_mismatch"
+
+# Known quote assets, by the USD price they imply. Descriptive only - a pair
+# outside every band is RECORDED, never rejected for that alone.
+QUOTE_BANDS = (("USDC/USDT", 0.5, 2.0), ("SOL", 50.0, 400.0),
+               ("ETH", 800.0, 6000.0), ("BTC", 20000.0, 200000.0))
+
+
+def implied_quote_usd(price_usd, price_native):
+    """The quote token's USD price implied by one pair's own two price fields."""
+    try:
+        pu, pn = float(price_usd), float(price_native)
+    except (TypeError, ValueError):
+        return None
+    return (pu / pn) if pn else None
+
+
+def quote_asset(implied):
+    if implied is None:
+        return None
+    for name, lo, hi in QUOTE_BANDS:
+        if lo <= implied <= hi:
+            return name
+    return "unknown"
+
+
+def check_quote_consistency(base_price, base_price_native, price, price_native):
+    """Do entry and exit agree on what the pair is quoted in? Free.
+
+    Returns a verdict shaped like the others: {trustworthy, confidence, detail}.
+    `trustworthy` is True when the check cannot run - an absent field is not
+    evidence of a fault, and must not be treated as one.
+    """
+    a = implied_quote_usd(base_price, base_price_native)
+    b = implied_quote_usd(price, price_native)
+    out = {"trustworthy": True, "confidence": None, "detail": None,
+           "entry_quote_usd": a, "exit_quote_usd": b,
+           "entry_quote_asset": quote_asset(a), "exit_quote_asset": quote_asset(b)}
+    if a is None or b is None or a <= 0 or b <= 0:
+        out["detail"] = "price_native missing at one end - check not run"
+        return out
+    hi, lo = max(a, b), min(a, b)
+    ratio = hi / lo
+    out["quote_ratio"] = ratio
+    if ratio > QUOTE_TOLERANCE:
+        out["trustworthy"] = False
+        out["confidence"] = Q_QUOTE_MISMATCH
+        out["detail"] = (
+            f"entry priced against an asset worth ${a:,.4f} "
+            f"({out['entry_quote_asset']}), exit against ${b:,.4f} "
+            f"({out['exit_quote_asset']}) - {ratio:,.1f}x apart. The two "
+            f"prices are not the same series, so their ratio is not a return.")
+    return out

@@ -5117,13 +5117,13 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 80,
+  "count": 81,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-06T16:11:25+00:00",
+  "last_seen": "2026-09-06T17:01:10+00:00",
   "last_escalated": "2026-09-06T14:11:35+00:00",
   "escalations": 5
  },
@@ -5594,13 +5594,13 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 12,
+  "count": 13,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h"
   ],
-  "last_seen": "2026-09-06T16:07:29+00:00",
+  "last_seen": "2026-09-06T16:59:57+00:00",
   "last_escalated": "2026-09-06T11:58:16+00:00",
   "escalations": 3
  },

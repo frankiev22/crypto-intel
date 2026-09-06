@@ -153,21 +153,38 @@ def consider(row):
     return True
 
 
-def _graduated(pair_obj, fdv, liq, liq_quote, dex_id):
+# A pool you could not exit this much from is not a graduation, it is a husk.
+# CORRECTED 2026-09-06, on the detector's FIRST firing. "GTA 6 Coin" entered the
+# band at $62,876 of FDV, collapsed to $437 with $0.04 of liquidity, and was
+# announced as GRADUATED - because it sat on `meteora`, an AMM venue, with a
+# non-null quote reserve of $0.0001542. `real_pool` had no magnitude floor, so
+# four cents satisfied it. See RETRACTIONS in this file's history.
+GRAD_MIN_DEPTH = float(os.environ.get("CRYPTO_GRAD_MIN_DEPTH", "500"))
+
+
+def _graduated(pair_obj, fdv, liq, liq_quote, dex_id, depth=None):
     """Has this token actually graduated?
 
-    Two independent signatures, and BOTH are recorded because they can
-    disagree and the disagreement is informative:
+    Two signatures, both recorded, because they can disagree and the
+    disagreement is informative:
 
       fdv_cross  - FDV at or above the published threshold
-      real_pool  - an AMM venue with a two-sided reserve split
+      real_pool  - an AMM venue with a two-sided reserve split AND enough
+                   quote-side depth to be worth calling a market
 
     `real_pool` is the event that matters for an exit. A curve token whose FDV
     ticks over the threshold has not graduated until the pool exists.
+
+    AND A TOKEN FALLING OUT OF THE BAND DOWNWARD IS NOT GRADUATING. FDV must
+    still be at least at the bottom of the approach band, or the "graduation"
+    is a collapse that happens to have left a pool behind.
     """
     fdv_cross = fdv is not None and fdv >= GRADUATION_FDV
     vt = venue.venue_type(dex_id)
-    real_pool = bool(vt == venue.AMM and liq_quote is not None and (liq or 0) > 0)
+    deep_enough = (depth is not None and depth >= GRAD_MIN_DEPTH)
+    still_up = fdv is not None and fdv >= BAND_LO
+    real_pool = bool(vt == venue.AMM and liq_quote is not None
+                     and (liq or 0) > 0 and deep_enough and still_up)
     return fdv_cross, real_pool
 
 
@@ -240,7 +257,7 @@ def sweep(fetch_pair, on_observation=None, verbose=True):
             except Exception:
                 pass
 
-        fdv_cross, real_pool = _graduated(pair, fdv, liq, lq, dex_id)
+        fdv_cross, real_pool = _graduated(pair, fdv, liq, lq, dex_id, depth)
         if fdv_cross or real_pool:
             meta = {"symbol": m.get("symbol"), "kind": "graduation",
                     "value": fdv, "fdv_at_crossing": fdv,
@@ -265,7 +282,11 @@ def sweep(fetch_pair, on_observation=None, verbose=True):
         m["last_vol_h1"] = v1
         if fdv is not None:
             m["peak_fdv"] = max(m.get("peak_fdv") or 0, fdv)
-        if now - m["added_ts"] > TTL_H * 3600:
+        if fdv is not None and fdv < BAND_LO * 0.5:
+            # Fell well out of the band downward. Not a graduation candidate
+            # any more; retired with the reason, never deleted.
+            drop.append((ca, "collapsed_out_of_band"))
+        elif now - m["added_ts"] > TTL_H * 3600:
             drop.append((ca, "ttl_no_graduation"))
 
     for ca, why in drop:
