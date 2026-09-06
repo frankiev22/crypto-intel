@@ -5095,15 +5095,15 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 56,
+  "count": 58,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-06T05:14:17+00:00",
-  "last_escalated": "2026-09-06T02:10:25+00:00",
-  "escalations": 3
+  "last_seen": "2026-09-06T09:46:38+00:00",
+  "last_escalated": "2026-09-06T09:46:11+00:00",
+  "escalations": 4
  },
  "scanner-hit:patience": {
   "first_seen": "2026-09-04T05:11:20+00:00",
@@ -5568,13 +5568,13 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 9,
+  "count": 10,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h"
   ],
-  "last_seen": "2026-09-06T04:30:04+00:00",
+  "last_seen": "2026-09-06T09:45:24+00:00",
   "last_escalated": "2026-09-06T04:30:04+00:00",
   "escalations": 2
  },
