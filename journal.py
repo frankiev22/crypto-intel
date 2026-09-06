@@ -67,6 +67,37 @@ def realizable(status, liq, mult, exit_depth=None):
                        f"ceiling; treat as a data error until checked by hand")
     return True, None
 
+# MEASURED 2026-09-06, n=104 outcome rows that carry BOTH a measured exit depth
+# and a reported liquidity. depth/liq distribution:
+#
+#     p05 0.008   p25 0.482   median 0.496   p75 0.499   p95 0.500
+#
+# A healthy constant-product pool sits at almost exactly 0.5, as the arithmetic
+# says it must - so using `liq` where depth is unknown overstates exitable size
+# by about 2x, which is tolerable. But **16 of 104 rows (15.4%) sit below 0.10**,
+# and those are the one-sided pools where the overstatement reaches 125x.
+#
+# 495 of 599 realizable rows (82.6%) have no measured depth, 161 of them at
+# >=2x. GeckoTerminal can NEVER supply it: its pool payload carries only
+# `reserve_in_usd`, a combined total with no base/quote split, confirmed against
+# a live response on 2026-09-06. All 20 GT-sourced realizable rows lack depth,
+# though none is currently >=2x.
+#
+# This is RECORDED, NOT FILTERED. Standing rule 10 - no detector filters or
+# backfills until it reports precision and recall against a labelled set. The
+# flag lets every downstream analysis exclude unverified rows by choice; it does
+# not make that choice for them.
+DEPTH_VERIFIED_RATIO = 0.10
+
+
+def depth_unmeasured(exit_depth):
+    """True when exitability was judged on the both-sides figure.
+
+    Not a verdict on the row. A flag saying which measurement stood behind it.
+    """
+    return exit_depth is None
+
+
 BASE = os.path.dirname(os.path.abspath(__file__))
 OBS  = os.path.join(BASE, "data", "observations")
 OUT  = os.path.join(BASE, "data", "outcomes")
@@ -406,6 +437,12 @@ def outcomes(days=None):
         if "realizable" not in o:
             ok, why = realizable(o.get("status"), o.get("liq"), o.get("mult"))
             o["realizable"], o["unrealizable_reason"] = ok, why
+        # Depth provenance, derived on read so the whole archive carries it
+        # immediately and nothing is rewritten. Every input has been on every
+        # row since the field existed; where it never existed the answer is
+        # still correct, because absent IS unmeasured.
+        if "depth_unmeasured" not in o:
+            o["depth_unmeasured"] = depth_unmeasured(o.get("exit_depth_usd"))
         _fill_elapsed(o)
     return rows
 
@@ -461,6 +498,10 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
     elapsed_h = round((checked_ts - observed_ts) / 3600.0, 4) if observed_ts else None
     obj = {"pair": pair, "symbol": symbol, "observed_ts": observed_ts,
            "checked_ts": checked_ts, "horizon_h": horizon_h,
+           # Which measurement stood behind `realizable`. True means the quote
+           # side was never seen and `liq` was used instead - fine for a
+           # balanced pool, off by up to 125x for a one-sided one.
+           "depth_unmeasured": depth_unmeasured(exit_depth),
            "actual_elapsed_h": elapsed_h,
            "on_time": (None if elapsed_h is None
                        else elapsed_h <= horizon_h * DRIFT_TOLERANCE),

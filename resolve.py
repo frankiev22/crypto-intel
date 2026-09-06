@@ -213,6 +213,15 @@ def resolve(token, chain="solana", want_onchain=True):
         # falls back to the both-sides figure when we cannot.
         judged = depth if depth is not None else liq
         out["exitable"] = judged >= MIN_EXIT_LIQ_USD and px > ZERO_PRICE
+        # AND WE RECORD WHICH ONE IT WAS. GeckoTerminal can never supply the
+        # split - its pool payload carries only `reserve_in_usd`, a combined
+        # total, confirmed against a live response 2026-09-06 - so every
+        # GT-resolved row lands here on the both-sides figure. For a balanced
+        # pool that overstates exitable size ~2x (measured median depth/liq
+        # 0.496); for a one-sided pool it reaches 125x. Recorded, not filtered.
+        out["depth_unmeasured"] = depth is None
+        if depth is None:
+            out["reasons"].append("depth_unmeasured")
     else:
         HEALTH["unresolved"] += 1
         out["reasons"].append("unresolved")
