@@ -13,6 +13,7 @@ import venue
 import plausibility
 import sources as S
 import namecheck
+import paper
 import weights
 
 # ---- thresholds. tune these; they are the whole product ----
@@ -225,6 +226,31 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
             gates  = gates, weights_version = wver,
         )
         venue.annotate(row, dex=row.get("dex_id"))
+        # FORWARD PAPER LOG. The one place in this codebase where a decision is
+        # recorded with no knowledge of what happens next. Every retrospective
+        # finding here has died of leakage - a feature read after the outcome
+        # had already partly occurred - and no amount of care with historical
+        # data fixes that, because history has no ordering we can trust. This
+        # does. It must stay inside the enrichment loop, before any outcome
+        # exists, and it must never be moved into a later pass.
+        try:
+            _ok, _why = paper.qualifies(row)
+            if _ok and row.get("addr"):
+                _e = paper.open_entry(
+                    row["addr"], symbol=row.get("name"),
+                    price=row.get("price_usd"),
+                    exit_depth=row.get("exit_depth_usd"),
+                    liq=row.get("liq"), fdv=row.get("fdv"),
+                    score=row.get("score"), venue_type=row.get("venue_type"),
+                    dex_id=row.get("dex_id"))
+                if _e is not None:
+                    row["paper_entry"] = _e["hash"][:12]
+                    if verbose:
+                        print(f"  [paper] entered {row.get('name')} "
+                              f"{row['addr'][:12]} @ ${row.get('price_usd')} "
+                              f"depth ${row.get('exit_depth_usd'):,.0f}")
+        except Exception as e:
+            print(f"  [paper] {type(e).__name__}: {str(e)[:90]}")
         rows.append(row)
         LAST_SCAN["enriched"] += 1
         if on_row:
