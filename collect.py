@@ -29,6 +29,7 @@ stages separately is behaviour-identical to one full pass.
 """
 import sys, time, traceback, datetime as dt
 import scanner, journal, track, notify, macro, sources, findings, resolve
+import watchlist
 
 PASS_SCORE = 70
 JOURNAL_BATCH = 10
@@ -95,6 +96,16 @@ def scan_stage(networks=("solana",), verbose=True):
 
 def one_pass(networks=("solana",), verbose=True):
     total_seen, total_passed = scan_stage(networks, verbose=verbose)
+    # APPROACH BAND, every pass. Tokens between $45k and $69k of FDV are the
+    # only population where graduation is still ahead of them and observable;
+    # the 1/6/24/168h outcome schedule cannot see a crossing that takes
+    # minutes. Costs Dexscreener calls only - it spends none of the scarce
+    # GeckoTerminal budget. Runs before outcome scoring so a graduation is
+    # claimed on the freshest possible read.
+    try:
+        watchlist.sweep(sources.dexscreener_pair, verbose=verbose)
+    except Exception as e:
+        print(f"  watchlist sweep failed: {e}")
     try:
         track.score_all(verbose=verbose)
     except Exception as e:

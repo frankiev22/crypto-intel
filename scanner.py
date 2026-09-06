@@ -14,6 +14,7 @@ import plausibility
 import sources as S
 import namecheck
 import paper
+import watchlist
 import weights
 
 # ---- thresholds. tune these; they are the whole product ----
@@ -226,6 +227,27 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
             gates  = gates, weights_version = wver,
         )
         venue.annotate(row, dex=row.get("dex_id"))
+        # VOLUME, DERIVED. vol_h1 and vol_h24 have been stored since day one and
+        # used nowhere. Point-in-time volume is a level; these two are the shape.
+        # vol/liq is turnover against parked liquidity - the same quantity the
+        # scorer already gates on, now recorded per row so it can be analysed
+        # rather than only thresholded. vol_h1/vol_h24 is the burst ratio: 1/24
+        # is a token trading evenly, well above that is a token trading NOW.
+        _v1, _v24, _lq = row.get("vol_h1"), row.get("v24"), row.get("liq")
+        row["vol_to_liq"] = round(_v1 / _lq, 6) if (_v1 is not None and _lq) else None
+        row["vol_burst"] = round(_v1 / _v24, 6) if (_v1 is not None and _v24) else None
+        # APPROACH BAND. A token between $45k and $69k of FDV is inside the only
+        # window where graduation is still ahead of it and observable. The
+        # normal 1/6/24/168h schedule cannot see a crossing that takes minutes,
+        # so these go on a watchlist checked every pass instead.
+        try:
+            if watchlist.consider(row):
+                row["watchlisted"] = True
+                if verbose:
+                    print(f"  [watchlist] +{row.get('name')} {row['addr'][:12]} "
+                          f"fdv ${(row.get('fdv') or 0):,.0f}")
+        except Exception as e:
+            print(f"  [watchlist] {type(e).__name__}: {str(e)[:90]}")
         # FORWARD PAPER LOG. The one place in this codebase where a decision is
         # recorded with no knowledge of what happens next. Every retrospective
         # finding here has died of leakage - a feature read after the outcome
