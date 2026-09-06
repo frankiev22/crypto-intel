@@ -1582,3 +1582,10 @@
 {"token":"6zTzfjyEHKV3zZuMFJN5KtZ7viP8kiSP6UebGd6tfr1T","milestone":"realizable_2x","crossed_ts":1788685619,"crossed_at":"2026-09-06T09:06:59+00:00","symbol":"\u4e91\u7cef\u7cef","value":5.9788,"kind":"multiple"}
 {"token":"6zTzfjyEHKV3zZuMFJN5KtZ7viP8kiSP6UebGd6tfr1T","milestone":"realizable_3x","crossed_ts":1788685620,"crossed_at":"2026-09-06T09:07:00+00:00","symbol":"\u4e91\u7cef\u7cef","value":5.9788,"kind":"multiple"}
 {"token":"BQhAa3AcCAKJWyjyhpQBdGpaQ74HKwk29v8sUjMxdNz2","milestone":"realizable_2x","crossed_ts":1788700109,"crossed_at":"2026-09-06T13:08:29+00:00","symbol":"QUEEF","value":2.5855,"kind":"multiple"}
+{"token":"FhvPmeGQkWvKuxsKhhHRDikNCxE81MdPSF22eumFikwS","milestone":"realizable_2x","crossed_ts":1788703755,"crossed_at":"2026-09-06T14:09:15+00:00","symbol":"PONS","value":4.5432,"kind":"multiple"}
+{"token":"FhvPmeGQkWvKuxsKhhHRDikNCxE81MdPSF22eumFikwS","milestone":"realizable_3x","crossed_ts":1788703755,"crossed_at":"2026-09-06T14:09:15+00:00","symbol":"PONS","value":4.5432,"kind":"multiple"}
+{"token":"CmRkAmUMaUsVYS2GAaxVT2nxobEKtCN63LDrhXkk2aJ4","milestone":"realizable_2x","crossed_ts":1788703760,"crossed_at":"2026-09-06T14:09:20+00:00","symbol":"PONS","value":4.4882,"kind":"multiple"}
+{"token":"CmRkAmUMaUsVYS2GAaxVT2nxobEKtCN63LDrhXkk2aJ4","milestone":"realizable_3x","crossed_ts":1788703760,"crossed_at":"2026-09-06T14:09:20+00:00","symbol":"PONS","value":4.4882,"kind":"multiple"}
+{"token":"DuD1sA53BucR23QpwPqoifSMVtC6Y4JTYQQbghDmd7mm","milestone":"realizable_2x","crossed_ts":1788710772,"crossed_at":"2026-09-06T16:06:12+00:00","symbol":"Memeworld","value":8.5615,"kind":"multiple"}
+{"token":"DuD1sA53BucR23QpwPqoifSMVtC6Y4JTYQQbghDmd7mm","milestone":"realizable_3x","crossed_ts":1788710772,"crossed_at":"2026-09-06T16:06:12+00:00","symbol":"Memeworld","value":8.5615,"kind":"multiple"}
+{"token":"HQpSAa99W1wbfPuoZVJMEdFsEbAeS9AvGAkHnazKwdz8","milestone":"realizable_2x","crossed_ts":1788710817,"crossed_at":"2026-09-06T16:06:57+00:00","symbol":"BEN","value":2.569,"kind":"multiple"}

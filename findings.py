@@ -237,6 +237,12 @@ LANES = {
     "collector-error": "health",
     "horizon-drift": "health",
     "reporting-path": "health",
+    # A feed going quiet is a collection failure, not a market event. It belongs
+    # in the health lane so it gets duration escalation - a source that has been
+    # dead for two days must ping louder, not go silent because the class is
+    # already in _seen.json. Keyed per OUTLET so four independent feeds cannot
+    # collapse into one suppressed alert.
+    "news-stale": "health",
     "correction": "outcome",
 }
 LANE_BUDGET = {

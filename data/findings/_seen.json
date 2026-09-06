@@ -1165,10 +1165,14 @@
  },
  "scanner-hit:gta-coin": {
   "first_seen": "2026-08-28T16:08:32+00:00",
-  "count": 3,
+  "count": 4,
   "example": "scanner-hit: GTA 6 Coin",
-  "last_seen": "2026-08-30T17:09:27+00:00",
-  "last_escalated": null
+  "last_seen": "2026-09-06T15:11:44+00:00",
+  "last_escalated": "2026-09-06T15:11:44+00:00",
+  "keys": [
+   "GTA 6 Coin"
+  ],
+  "escalations": 1
  },
  "scanner-hit:vibecat": {
   "first_seen": "2026-08-28T16:08:33+00:00",
@@ -5113,15 +5117,15 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 74,
+  "count": 80,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-06T13:35:32+00:00",
-  "last_escalated": "2026-09-06T08:10:33+00:00",
-  "escalations": 4
+  "last_seen": "2026-09-06T16:11:25+00:00",
+  "last_escalated": "2026-09-06T14:11:35+00:00",
+  "escalations": 5
  },
  "scanner-hit:patience": {
   "first_seen": "2026-09-04T05:11:20+00:00",
@@ -5135,13 +5139,14 @@
  },
  "scanner-hit:pons": {
   "first_seen": "2026-09-04T05:11:33+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: PONS",
   "keys": [
    "PONS"
   ],
-  "last_seen": "2026-09-04T08:11:48+00:00",
-  "last_escalated": null
+  "last_seen": "2026-09-06T15:11:42+00:00",
+  "last_escalated": "2026-09-06T15:11:42+00:00",
+  "escalations": 1
  },
  "scanner-hit:concern": {
   "first_seen": "2026-09-04T06:11:23+00:00",
@@ -5589,13 +5594,13 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 10,
+  "count": 12,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h"
   ],
-  "last_seen": "2026-09-06T11:58:16+00:00",
+  "last_seen": "2026-09-06T16:07:29+00:00",
   "last_escalated": "2026-09-06T11:58:16+00:00",
   "escalations": 3
  },
@@ -6709,6 +6714,87 @@
   "example": "scanner-hit: Airdrop",
   "keys": [
    "Airdrop"
+  ]
+ },
+ "outcome-win:fhvpmegqkwvkuxskhhhrdikncxemdpsfeumfikws": {
+  "first_seen": "2026-09-06T14:09:15+00:00",
+  "count": 1,
+  "example": "outcome-win: FhvPmeGQkWvKuxsKhhHRDikNCxE81MdPSF22eumFikwS",
+  "keys": [
+   "FhvPmeGQkWvKuxsKhhHRDikNCxE81MdPSF22eumFikwS"
+  ]
+ },
+ "outcome-win:cmrkamumausvysgaaxvtnxobektcnldrhxkkaj": {
+  "first_seen": "2026-09-06T14:09:20+00:00",
+  "count": 1,
+  "example": "outcome-win: CmRkAmUMaUsVYS2GAaxVT2nxobEKtCN63LDrhXkk2aJ4",
+  "keys": [
+   "CmRkAmUMaUsVYS2GAaxVT2nxobEKtCN63LDrhXkk2aJ4"
+  ]
+ },
+ "outcome-win:aszzfkugifldqpcqeywvnrztqnrdrngssvdyl": {
+  "first_seen": "2026-09-06T14:09:26+00:00",
+  "count": 1,
+  "example": "outcome-win: 5ASZZFkuGiFLdqPcqeywvnrzt68Qnr7Dr4N55GsSVdyL",
+  "keys": [
+   "5ASZZFkuGiFLdqPcqeywvnrzt68Qnr7Dr4N55GsSVdyL"
+  ]
+ },
+ "scanner-hit:cnpy": {
+  "first_seen": "2026-09-06T15:11:41+00:00",
+  "count": 1,
+  "example": "scanner-hit: CNPY",
+  "keys": [
+   "CNPY"
+  ]
+ },
+ "scanner-hit:zisk": {
+  "first_seen": "2026-09-06T15:11:43+00:00",
+  "count": 2,
+  "example": "scanner-hit: ZisK",
+  "keys": [
+   "ZisK"
+  ],
+  "last_seen": "2026-09-06T15:11:43+00:00"
+ },
+ "scanner-hit:gekko": {
+  "first_seen": "2026-09-06T15:11:44+00:00",
+  "count": 1,
+  "example": "scanner-hit: GEKKO",
+  "keys": [
+   "GEKKO"
+  ]
+ },
+ "scanner-hit:worthless": {
+  "first_seen": "2026-09-06T15:11:45+00:00",
+  "count": 1,
+  "example": "scanner-hit: WORTHLESS",
+  "keys": [
+   "WORTHLESS"
+  ]
+ },
+ "scanner-hit:howeycoin": {
+  "first_seen": "2026-09-06T15:11:46+00:00",
+  "count": 1,
+  "example": "scanner-hit: HoweyCoin",
+  "keys": [
+   "HoweyCoin"
+  ]
+ },
+ "scanner-hit:memeworld": {
+  "first_seen": "2026-09-06T15:11:46+00:00",
+  "count": 1,
+  "example": "scanner-hit: Memeworld",
+  "keys": [
+   "Memeworld"
+  ]
+ },
+ "outcome-win:dudsabucrqpwpqoifsmvtcyjtyqqbghdmdmm": {
+  "first_seen": "2026-09-06T16:06:12+00:00",
+  "count": 1,
+  "example": "outcome-win: DuD1sA53BucR23QpwPqoifSMVtC6Y4JTYQQbghDmd7mm",
+  "keys": [
+   "DuD1sA53BucR23QpwPqoifSMVtC6Y4JTYQQbghDmd7mm"
   ]
  }
 }

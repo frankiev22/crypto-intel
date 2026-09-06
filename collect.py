@@ -30,6 +30,7 @@ stages separately is behaviour-identical to one full pass.
 import sys, time, traceback, datetime as dt
 import scanner, journal, track, notify, macro, sources, findings, resolve
 import watchlist
+import news
 
 PASS_SCORE = 70
 JOURNAL_BATCH = 10
@@ -192,6 +193,18 @@ def main():
                   f"{h['unresolved']} unresolved")
     except Exception as e:
         print(f"  source-health log failed (non-fatal): {e}")
+
+    # PER-OUTLET NEWS FRESHNESS. A 6x drop in daily article count was spotted by
+    # hand on 2026-09-06 and turned out to be ordinary weekend cadence - every
+    # weekend in the record drops 4-5x and all four outlets drop together. A
+    # volume alert would therefore fire two days in seven and be muted inside a
+    # week. This checks staleness PER OUTLET instead, because a real failure is
+    # one feed going quiet while the others keep publishing, which is visible on
+    # a weekend too. Thresholds sit above every gap observed in 21 days.
+    try:
+        news.check_freshness(record=findings.record, verbose=verbose)
+    except Exception as e:
+        print(f"  news-freshness check failed (non-fatal): {e}")
 
     # One line a day saying the collector is alive. Failures already page; a
     # week of silence from a runner nobody has seen working does not prove it
