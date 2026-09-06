@@ -117,7 +117,9 @@ them.
 RPC call"* on `api.mainnet-beta.solana.com`. Tested at 0s, 5s, 15s, 30s and 45s
 spacing: **0 of 5 succeeded.** The method is rate-limited per-method on the
 public endpoint. `getAccountInfo` and `getTokenSupply` work fine, so this is not
-a general throttle. Concentration needs a keyed RPC provider.
+a general throttle. Concentration needs a keyed RPC provider. **Priced 2026-09-06: $0/month** -
+Helius's free tier (1M credits, 10 req/s) covers our ~114k calls/month at 11%
+utilisation. See `ONCHAIN_COST.md`. Not signed up for; Frank's call.
 
 **A trap noted for whoever builds it:** `getTokenLargestAccounts` returns the
 pool's own token account, which for a fresh launch holds nearly all supply. A
