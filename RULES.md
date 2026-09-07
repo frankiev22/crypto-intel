@@ -94,6 +94,23 @@ of leakage — the liquidity gradient, the score reversal, the graduation
 predictor — each a restatement of progress already made. History has no ordering
 we can trust; a forward append-only log does.
 
+**19. The record starts 2026-09-07.** *Added 2026-09-07.* Zero of 165
+pre-epoch wins are verifiable — no outcome row written before then carries an
+`exit_pair`, and the pools are delisted, so pair identity cannot be
+reconstructed from any source. They are not wrong; they are unknowable, which is
+worse, because nothing can settle them. `journal.RECORD_EPOCH` enforces it,
+`verified_outcomes()` excludes them, and `assert_citable()` raises
+`UnverifiableRecord` rather than quietly returning an empty list. Nothing before
+the epoch is cited by a report, the daily research task, or the memory writer.
+
+**20. Ask whether a counterparty ever existed before asking how big the number
+is.** *Added 2026-09-07.* A depth floor cannot catch a pool nobody has ever sold
+into — $10,045 of real quote side clears a $100 exit honestly. What disqualifies
+those pools is that the price was set by a curve with nobody on the other side.
+Every fraud check runs the capability question first: has anyone sold, can the
+deployer print supply, can the deployer freeze the sale, is there a second side
+at all. None of those is a statistic.
+
 ## Operating
 
 **15. Free tools only.** Surface paid options with prices. Never sign up.

@@ -559,7 +559,35 @@ def outcomes(days=None):
     return rows
 
 
-def verified_outcomes(days=None, require_identity=True):
+# THE RECORD STARTS HERE. Everything before this timestamp is unverifiable:
+# no outcome row written earlier carries an exit_pair, the pools are delisted,
+# and pair identity cannot be reconstructed from any source. Those rows are not
+# wrong - they are unknowable, which is worse, because nothing can settle them.
+#
+# Instruction 2026-09-07: nothing before this date is cited by anyone - not the
+# daily research task, not the memory writer, not a report. A caller that tries
+# to quote a pre-epoch win gets an exception, not a quiet empty list.
+RECORD_EPOCH = int(dt.datetime(2026, 9, 7, tzinfo=dt.timezone.utc).timestamp())
+
+
+class UnverifiableRecord(Exception):
+    """Raised when something tries to cite a win from before RECORD_EPOCH."""
+
+
+def assert_citable(rows, what="this result"):
+    """Fail LOUDLY if any row predates the epoch. Call before reporting."""
+    bad = [r for r in rows
+           if (r.get("checked_ts") or r.get("ts") or 0) < RECORD_EPOCH]
+    if bad:
+        raise UnverifiableRecord(
+            f"{what} cites {len(bad)} row(s) from before {dt.datetime.fromtimestamp(RECORD_EPOCH, dt.timezone.utc).date()}. "
+            f"Zero of 165 pre-epoch wins are verifiable - no exit_pair was ever "
+            f"recorded and the pools are delisted. Use journal.verified_outcomes() "
+            f"as the denominator; do not quote the historical record.")
+    return rows
+
+
+def verified_outcomes(days=None, require_identity=True, since_epoch=True):
     """Outcomes that clear the win gate. THE denominator for any win claim.
 
     Use this, not `outcomes()`, wherever a result is going to be reported.
@@ -569,6 +597,8 @@ def verified_outcomes(days=None, require_identity=True):
     """
     keep = []
     for o in outcomes(days):
+        if since_epoch and (o.get("checked_ts") or 0) < RECORD_EPOCH:
+            continue
         if require_identity and not o.get("pair_identity_verifiable"):
             continue
         ok, failed = verify_win(
