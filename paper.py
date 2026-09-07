@@ -83,6 +83,38 @@ SCORE_HI = int(os.environ.get("CRYPTO_PAPER_SCORE_HI", "99"))
 TARGET_MULT = float(os.environ.get("CRYPTO_PAPER_TARGET", "2.0"))
 MAX_HOLD_H = float(os.environ.get("CRYPTO_PAPER_MAX_HOLD_H", "24"))
 
+# ---------------------------------------------------------------------------
+# THE GATE IS LOCKED.
+#
+# Every constant above reads an environment variable, so a one-line change in
+# the workflow could widen the entry rule without touching a line of Python and
+# without anything noticing. That would not be cheating so much as quietly
+# destroying the experiment: the whole value of this log is that the rule was
+# fixed BEFORE the outcomes existed, and a gate that moves mid-run makes the
+# closes non-comparable and the n meaningless.
+#
+# The measurement runs to n=200 closes, projected 2026-09-14. Until then these
+# values are pinned here as literals and checked on every entry. Changing the
+# rule requires editing this block and starting RULE_V2 with its own ledger -
+# which is the honest way to change a rule, and leaves the v1 record intact.
+#
+# Loosening is the specific risk: a 14.3% hit rate with a 0.40x median is
+# information, and the temptation when the number is bad is to widen the gate
+# until it looks better.
+PINNED_GATE = {"MIN_EXIT_DEPTH": 1000.0, "SCORE_LO": 70, "SCORE_HI": 99,
+               "TARGET_MULT": 2.0, "MAX_HOLD_H": 24.0,
+               "NOTIONAL_USD": 100.0, "MIN_N": 30}
+
+
+def gate_drift():
+    """[(name, pinned, actual)] for every constant that has moved. Empty = ok."""
+    live = {"MIN_EXIT_DEPTH": MIN_EXIT_DEPTH, "SCORE_LO": SCORE_LO,
+            "SCORE_HI": SCORE_HI, "TARGET_MULT": TARGET_MULT,
+            "MAX_HOLD_H": MAX_HOLD_H, "NOTIONAL_USD": NOTIONAL_USD,
+            "MIN_N": MIN_N}
+    return [(k, v, live[k]) for k, v in PINNED_GATE.items()
+            if float(live[k]) != float(v)]
+
 
 def _now():
     return dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -131,10 +163,17 @@ def _append(rec):
 def qualifies(row):
     """Does this observation meet RULE_V1? Returns (bool, reason).
 
+    Refuses outright if the gate constants have drifted from PINNED_GATE - a
+    widened rule must not silently enter positions into a v1 ledger.
+
     Reads only fields captured at observation time. Nothing here may consult a
     later price, a later liquidity, or an outcome - that is the leakage this
     whole file exists to prevent.
     """
+    _drift = gate_drift()
+    if _drift:
+        return False, ("ENTRY GATE HAS DRIFTED from RULE_V1 - refusing to enter: "
+                       + "; ".join(f"{k} pinned {p} but is {a}" for k, p, a in _drift))
     if (row.get("venue_type") or "") != "amm":
         return False, f"venue={row.get('venue_type') or 'unknown'}, not amm"
     depth = row.get("exit_depth_usd")

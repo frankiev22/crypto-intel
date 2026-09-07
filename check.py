@@ -44,6 +44,13 @@ except Exception:                       # pragma: no cover
 # can absorb - a liquidity fact, not advice about whether to take it.
 SLIPPAGE_DIVISOR = 20
 
+# What Frank is actually going to trade. He starts with $1,000 and sizes around
+# $100, so the number that matters at the moment he decides is what a $100
+# ROUND TRIP costs in this specific pool - not a table in a report he read once.
+# Constant-product impact paid twice, plus the pool fee twice.
+DEFAULT_CLIP_USD = float(os.environ.get("CRYPTO_CLIP_USD", "100"))
+POOL_FEE = 0.0025          # Raydium-class. pump.fun AMM is nearer 1%.
+
 # Below this much quote-side depth the pool cannot be exited at ANY size, so
 # there is nothing to assess. Caught in testing 2026-09-07: a dead pool with $0
 # exitable depth returned "NOT FLAGGED", exit code 0 - which reads as clean.
@@ -84,7 +91,8 @@ def analyse(contract):
            "refusals": [], "warnings": [], "pair": None, "symbol": None,
            "exit_depth_usd": None, "liq_usd": None, "fdv_usd": None,
            "pools_seen": 0, "d1": None, "d2": None, "authorities": None,
-           "max_size_5pct": None}
+           "max_size_5pct": None, "round_trip_pct": None,
+           "clip_usd": DEFAULT_CLIP_USD, "concentration": None}
 
     if not contract or len(contract) < 32:
         out["verdict"] = "REFUSED"
@@ -129,6 +137,16 @@ def analyse(contract):
     out["liq_usd"] = _f((pair.get("liquidity") or {}).get("usd"))
     out["fdv_usd"] = _f(pair.get("fdv")) or _f(pair.get("marketCap"))
     out["max_size_5pct"] = depth / SLIPPAGE_DIVISOR if depth else 0.0
+    # Round-trip cost at his actual clip. Only ever computed from a MEASURED
+    # depth - if depth is unknown this stays None and renders as "cannot be
+    # measured", never as a default number.
+    if depth and depth > 0:
+        x = DEFAULT_CLIP_USD
+        out["clip_usd"] = x
+        out["round_trip_pct"] = 100.0 * ((x / (depth + x)) * 2 + 2 * POOL_FEE)
+    else:
+        out["clip_usd"] = DEFAULT_CLIP_USD
+        out["round_trip_pct"] = None
 
     if len(scored) > 1:
         out["warnings"].append(
@@ -200,6 +218,32 @@ def analyse(contract):
         except Exception as e:
             out["warnings"].append(f"authority check failed ({type(e).__name__}).")
 
+    # ---- holder concentration. Unblocked 2026-09-07 when SOL_RPC was finally
+    # routed through the Helius key that had been in .env since 08-23. The
+    # public endpoint refuses getTokenLargestAccounts at any spacing, which is
+    # why this never ran before. One holder sitting on most of the supply is a
+    # fact Frank should see at the moment he decides.
+    if onchain is not None:
+        try:
+            c = onchain.concentration(contract)
+            out["concentration"] = c
+            if c.get("concentration_error"):
+                out["warnings"].append(
+                    f"holder concentration unreadable ({c['concentration_error']}). "
+                    f"Not a pass - it means we do not know.")
+            else:
+                t1 = c.get("top1_share")
+                ex = c.get("top10_share_ex_largest")
+                if t1 is not None and t1 >= 0.50:
+                    out["warnings"].append(
+                        f"TOP HOLDER HOLDS {100*t1:.1f}% of the sampled supply"
+                        + (" (may be the pool itself - "
+                           f"{100*ex:.1f}% excluding the largest account)"
+                           if ex is not None else "")
+                        + ". One wallet that size can end the price at will.")
+        except Exception as e:
+            out["warnings"].append(f"concentration check failed ({type(e).__name__}).")
+
     # ---- the depth sanity check, independent of either detector
     if out["liq_usd"] and depth is not None and out["liq_usd"] > 0:
         share = depth / out["liq_usd"]
@@ -245,6 +289,34 @@ def render(r):
                  + (f"   ({100*r['depth_over_liq']:.1f}% is really exitable)"
                     if (r.get("depth_over_liq") is not None
                         and (r.get("liq_usd") or 0) >= 1000) else ""))
+    rt = r.get("round_trip_pct")
+    if rt is None:
+        L.append(f"  ${r.get('clip_usd', 100):,.0f} round trip     CANNOT BE MEASURED"
+                 f" - no depth, so no estimate is given")
+    else:
+        verdict = ("cheap" if rt < 2 else "tolerable" if rt < 5
+                   else "EXPENSIVE" if rt < 20 else "PROHIBITIVE")
+        # A slippage number on a FLAGGED pool is arithmetic about a trade that
+        # may not be completable at all. Never let it read as reassurance.
+        if r["verdict"] == "FLAGGED":
+            verdict += " -- but this pool is FLAGGED; the cost of leaving a"
+            verdict += " fraud is not its quoted slippage"
+        L.append(f"  ${r['clip_usd']:,.0f} round trip     {rt:.2f}%   {verdict}"
+                 f"   (in + out, incl. {100*POOL_FEE:.2f}% fee each way)")
+    c = r.get("concentration") or {}
+    if c.get("top1_share") is not None:
+        L.append(f"  top holder            {100*c['top1_share']:.1f}% of sampled supply"
+                 + (f"   ({100*c['top10_share_ex_largest']:.1f}% excluding it)"
+                    if c.get("top10_share_ex_largest") is not None else ""))
+    elif c.get("concentration_error"):
+        L.append(f"  top holder            UNREADABLE ({c['concentration_error']})")
+    a = r.get("authorities") or {}
+    if a.get("can_mint") is not None:
+        L.append(f"  mint / freeze auth    "
+                 f"{'CAN MINT' if a.get('can_mint') else 'revoked'} / "
+                 f"{'CAN FREEZE' if a.get('can_freeze') else 'revoked'}")
+    elif a.get("authorities_error"):
+        L.append(f"  mint / freeze auth    UNREADABLE ({a['authorities_error']})")
     if r.get("max_size_5pct"):
         L.append(f"  size before ~5% slip  ${r['max_size_5pct']:,.0f}"
                  f"   (pool absorbs about 1/20th of quote depth)")
