@@ -1,19 +1,10 @@
-# The journal is append-only and is written by two different operating systems:
-# Frank's Windows machine and the Ubuntu runner. Pin the data files to LF in
-# both the repo and the working tree, or a Windows checkout rewrites every line
-# ending and each hourly commit shows the entire file as changed.
-*.jsonl text eol=lf
-*.py    text eol=lf
-*.yml   text eol=lf
-
-# Append-only data: use git's built-in union merge.
+# Data files are written by Python's text-mode open(), which emits CRLF on
+# Windows, while the hosted Linux runner writes LF. Letting git normalize them
+# made data/liveness.json and the jsonl ledgers permanently "modified" in the
+# working tree, which blocked every merge with the runner and cost a stash
+# round-trip that nearly stranded 4 rows of real data.
 #
-# Both runners now write - the hosted workflow and Frank's local Claude cron -
-# and on 2026-09-02 that produced add/add conflicts on seven data files. The
-# only correct resolution for an append-only log is BOTH sides: picking one
-# deletes rows that really were collected. `merge=union` is built into git, so
-# it needs no local config to work on a fresh clone or on the runner.
-#
-# Order and duplicates do not matter here: every row is self-contained and
-# timestamped, readers sort as needed, and outcomes dedupe on (pair, horizon).
-*.jsonl merge=union
+# These are append-only records, not source. Git should store the bytes it is
+# given and stop rewriting them.
+data/** -text
+*.jsonl -text
