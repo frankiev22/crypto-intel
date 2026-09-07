@@ -1,8 +1,8 @@
 {
  "detector.drift": {
-  "last_ts": 1788804423,
-  "last_at": "2026-09-07T18:07:03+00:00",
-  "count": 32,
+  "last_ts": 1788804525,
+  "last_at": "2026-09-07T18:08:45+00:00",
+  "count": 33,
   "first_ts": 1788782114,
   "detail": "stable"
  },
@@ -21,16 +21,16 @@
   "detail": null
  },
  "news.freshness": {
-  "last_ts": 1788804422,
-  "last_at": "2026-09-07T18:07:02+00:00",
-  "count": 31,
+  "last_ts": 1788804524,
+  "last_at": "2026-09-07T18:08:44+00:00",
+  "count": 32,
   "first_ts": 1788782822,
   "detail": "0 stale outlet(s)"
  },
  "outcome.recorded": {
-  "last_ts": 1788804502,
-  "last_at": "2026-09-07T18:08:22+00:00",
-  "count": 2773,
+  "last_ts": 1788804523,
+  "last_at": "2026-09-07T18:08:43+00:00",
+  "count": 2786,
   "first_ts": 1788782831,
   "detail": null
  },
