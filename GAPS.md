@@ -165,8 +165,24 @@ Items 1, 2 and 4 were all blocked on the same free key, **which we already had**
 
 ## Part 5 — Small stakes vs real size
 
-Measured on the 67 pools that actually pass the entry rule. Median quote-side
-exit depth **$12,668**.
+**Superseded 2026-09-07, and the earlier table was too kind.** It used a
+one-way 1/20-of-depth rule of thumb. Frank round-trips: he buys AND sells, and
+pays the pool fee twice. Modelled properly on constant-product impact
+(`2 x size/(depth+size) + 2 x 0.25% fee`) across 71 tradeable-shape pools,
+median quote-side depth **$13,330**:
+
+| size | p25 (good) | MEDIAN | p75 | p90 (bad) | under 5% | over 20% |
+|---|---|---|---|---|---|---|
+| **$100** | 0.68% | **1.99%** | 7.78% | 12.45% | **70%** | 0% |
+| $250 | 0.94% | 4.18% | 17.76% | 27.93% | 59% | 21% |
+| $500 | 1.38% | 7.73% | 32.28% | 48.74% | 37% | 30% |
+| $1,000 | 2.25% | 14.46% | 55.34% | 78.23% | 37% | 32% |
+
+**The cliff is between $100 and $250, not between $500 and $1,000.** At $100 the
+median round trip costs 2% and nothing costs more than 20%. At $500 the median
+is 7.7% and **30% of pools cost over a fifth of the position to enter and
+leave**. On a $1,000 bankroll that is the difference between friction and the
+main source of loss.
 
 | position | tradeable within ~5% slippage |
 |---|---|
