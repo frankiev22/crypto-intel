@@ -48,6 +48,8 @@ scored against its own input.
 import math
 import os
 
+import liveness
+
 FAKE_RATIO = float(os.environ.get("CRYPTO_FAKE_RATIO", "0.10"))
 D2_MIN_LIQ = float(os.environ.get("CRYPTO_D2_MIN_LIQ", "1000000"))
 D2_MAX_TXNS = int(os.environ.get("CRYPTO_D2_MAX_TXNS", "5"))
@@ -239,6 +241,7 @@ def check_drift(record=None, verbose=True):
                detail=d.get("note", "") + " Recall was characterised on the "
                       "previous population and should be re-measured before "
                       "any figure from it is quoted again.")
+    liveness.beat("detector.drift", detail=d.get("verdict"))
     return d
 
 

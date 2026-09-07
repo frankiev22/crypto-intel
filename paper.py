@@ -61,6 +61,7 @@ implied.
 """
 import datetime as dt
 import hashlib
+import liveness
 import json
 import os
 
@@ -203,6 +204,7 @@ def open_entry(contract, symbol=None, price=None, exit_depth=None, liq=None,
         "max_hold_h": MAX_HOLD_H,
         "note": note,
     })
+    liveness.beat("paper.open", detail=str(symbol or contract)[:24])
 
 
 def close_entry(entry_id, price=None, exit_depth=None, reason=None, void=None):
@@ -398,6 +400,7 @@ def sweep(fetch_pair, verbose=True):
     testable without network and free of a circular import.
     """
     import datetime as _dt
+    liveness.beat("paper.sweep")
     rows = _read()
     closed_ids = {r.get("entry_id") for r in rows if r.get("type") == "exit"}
     opens = [r for r in rows if r.get("type") == "entry"
@@ -486,4 +489,5 @@ def _close(entry, price, depth, reason, detail):
         ok, failed = None, ["gate_unavailable"]
     rec = close_entry(entry["hash"], price=price, exit_depth=depth,
                       reason=f"{reason}: {detail}")
+    liveness.beat("paper.close", detail=str(reason)[:24])
     return rec

@@ -32,6 +32,7 @@ import json
 import os
 import time
 
+import liveness
 import milestones
 import venue
 
@@ -195,6 +196,7 @@ def sweep(fetch_pair, on_observation=None, verbose=True):
     module stays free of a circular import and is testable without network.
     """
     state = _load()
+    liveness.beat("watchlist.sweep")
     LAST_SWEEP.update(checked=0, graduated=0, retired=0, added=0, capped=False)
     if not state:
         return LAST_SWEEP

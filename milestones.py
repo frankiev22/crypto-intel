@@ -32,6 +32,7 @@ Postgres cannot be created from here. The claim files ARE the constraint; the
 ledger mirrors them for querying and can be replayed into a table later.
 """
 import hashlib, json, os, re, time, glob, datetime as dt
+import liveness
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 DIR = os.path.join(BASE, "data", "milestones")
@@ -104,6 +105,14 @@ def claim(token, milestone, **meta):
             f.write(json.dumps(row, separators=(",", ":")) + "\n")
     except OSError:
         pass          # the claim file is the constraint; the ledger is a copy
+    # Liveness, by family. Only reached on a genuine first claim, and there is
+    # no backfill path in the code any more - a replay must never beat, because
+    # a replay is not a detection. That is the whole mcap lesson.
+    fam = ("mcap" if str(milestone).startswith("mcap")
+           else "realizable" if str(milestone).startswith("realizable")
+           else "graduated" if str(milestone) == "graduated" else None)
+    if fam:
+        liveness.beat(f"milestone.{fam}", detail=f"{milestone} {token}")
     return True
 
 
@@ -124,9 +133,50 @@ def crossings(milestone=None):
             except json.JSONDecodeError:
                 continue
             if milestone is None or r.get("milestone") == milestone:
+                # Provenance, every read. A caller that forgets to ask still
+                # gets told which rows are replay.
+                r["provenance"] = ("backfill"
+                                   if r.get("crossed_ts", 0) <= BACKFILL_EPOCH
+                                   else "live")
                 out.append(r)
     out.sort(key=lambda r: r.get("crossed_ts", 0))
     return out
+
+
+# ---------------------------------------------------------------------------
+# BACKFILL IS NOT DETECTION.
+#
+# This module was created 2026-09-02 04:28Z and its first act was to replay
+# history. 1,465 claim files were written in that ONE MINUTE - every mcap
+# crossing on record among them (574 x 100k, 403 x 200k, 225 x 1m, 127 x 5m).
+# Those are a reconstruction from stored observations, not events this system
+# noticed as they happened.
+#
+# It is worse than "old". The mcap tiers never fired at all: the call site in
+# journal.record_outcome passed mcap=None from the day the module shipped until
+# 2026-09-07. So 100% of the mcap record is replay, and none of it is evidence
+# that the tracker has ever worked. Read as live signal it would say the
+# opposite of the truth.
+#
+# Recorded HERE, on read, rather than by rewriting the ledger - the same reason
+# journal.outcomes() annotates instead of editing. Nothing is ever deleted, and
+# a row's meaning can change as we learn how it was produced.
+#
+# MEASURED BOUNDARY, not a guess. Backfilled claims carry crossed_ts from
+# 2026-08-21 03:38:47Z to 2026-09-02 04:06:40Z. The first claim written after
+# that minute crossed at 2026-09-02 06:06:35Z. A two-hour gap separates them,
+# so a timestamp cutoff placed inside the gap is exact.
+BACKFILL_EPOCH = int(dt.datetime(2026, 9, 2, 5, 0,
+                                 tzinfo=dt.timezone.utc).timestamp())
+
+
+def live_crossings(milestone=None):
+    """Crossings this system DETECTED as they happened. The citable set.
+
+    Everything else is replay and must never be quoted as a detection, the way
+    journal.verified_outcomes() excludes pre-epoch wins.
+    """
+    return [r for r in crossings(milestone) if r.get("provenance") == "live"]
 
 
 def is_first(milestone):
@@ -155,8 +205,16 @@ def stats():
     by = {}
     for r in c:
         by[r["milestone"]] = by.get(r["milestone"], 0) + 1
+    live = [r for r in c if r.get("provenance") == "live"]
+    by_live = {}
+    for r in live:
+        by_live[r["milestone"]] = by_live.get(r["milestone"], 0) + 1
     return {"total": len(c), "distinct_tokens": len({r["token"] for r in c}),
-            "by_milestone": by}
+            "by_milestone": by,
+            # The number that means something. "total" includes the 2026-09-02
+            # backfill and will overstate every tier it touched.
+            "live": len(live), "by_milestone_live": by_live,
+            "backfill": len(c) - len(live)}
 
 
 if __name__ == "__main__":

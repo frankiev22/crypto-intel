@@ -9,6 +9,7 @@ CryptoPanic has two live API paths and which one a key works against depends on
 the plan, so we try developer/v2 first and fall back to v1.
 """
 import os, json, time, urllib.request, urllib.error
+import liveness
 
 TOKEN_ENV = "CRYPTOPANIC_API_TOKEN"
 V2 = "https://cryptopanic.com/api/developer/v2/posts/"
@@ -247,6 +248,7 @@ def check_freshness(record=None, verbose=True):
                            f"cadence. The other outlets are checked independently - "
                            f"if they are fresh, this is THIS feed failing, not "
                            f"quiet news."))
+    liveness.beat("news.freshness", detail=f"{len(stale)} stale outlet(s)")
     return stale
 
 

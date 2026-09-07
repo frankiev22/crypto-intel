@@ -1,0 +1,9 @@
+{
+ "detector.drift": {
+  "last_ts": 1788782114,
+  "last_at": "2026-09-07T11:55:14+00:00",
+  "count": 1,
+  "first_ts": 1788782114,
+  "detail": "stable"
+ }
+}

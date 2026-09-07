@@ -19,6 +19,7 @@ import json, os, time, glob, urllib.request, datetime as dt
 
 import config  # noqa: F401 - importing this loads .env
 import milestones
+import liveness
 import tickers
 import plausibility
 import pricecheck
@@ -497,6 +498,8 @@ def record(rows, network, pass_score=70):
     except Exception:
         pass
     _push("record_observations", mirror)   # best effort, never raises
+    if n:
+        liveness.beat("scan.observations", n)
     return n
 
 
@@ -698,6 +701,7 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
            "price_sources_ratio": (price_verdict or {}).get("ratio")}
     _append(OUT, obj)                      # system of record, first
     _push("record_outcomes", [obj])        # best effort, never raises
+    liveness.beat("outcome.recorded")
 
     # Milestone crossings claim themselves, atomically. Nothing downstream may
     # decide it is "the first" by inspecting history and hoping - on 2026-09-01

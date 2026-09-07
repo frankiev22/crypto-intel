@@ -34,6 +34,7 @@ import news
 import paper
 import fieldguard
 import detector
+import liveness
 
 PASS_SCORE = 70
 JOURNAL_BATCH = 10
@@ -79,6 +80,7 @@ def scan_stage(networks=("solana",), verbose=True):
             if rows:
                 _w = max(rows, key=lambda r: sum(1 for v in r.values() if v is not None))
                 _ok, _dropped = fieldguard.check(_w)
+                liveness.beat("fieldguard.check")
                 if not _ok:
                     print(f"  !! FIELD GUARD: {_dropped} computed but not persisted")
                     findings.record(
@@ -251,6 +253,21 @@ def main():
         detector.check_drift(record=findings.record, verbose=True)
     except Exception as e:
         print(f"  drift check failed (non-fatal): {e}")
+
+    # THE LIVENESS REGISTRY. Runs LAST, after every component has had its
+    # chance to fire this pass. Four systems in this repo produced convincing
+    # output while doing nothing - the win record, the news check, the volume
+    # features and the milestone tracker - and in every case absence of a
+    # signal was indistinguishable from a quiet market. This iterates a
+    # hardcoded manifest rather than the registry contents, so a component that
+    # has NEVER fired is an alarm rather than an empty row nobody reads.
+    #
+    # It says "it ran", never "it works". Correctness is still the win gate,
+    # the paper ledger and D1's interval.
+    try:
+        liveness.check(record=findings.record, verbose=True)
+    except Exception as e:
+        print(f"  liveness check failed (non-fatal): {e}")
 
     # One line a day saying the collector is alive. Failures already page; a
     # week of silence from a runner nobody has seen working does not prove it

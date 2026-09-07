@@ -111,6 +111,32 @@ Every fraud check runs the capability question first: has anyone sold, can the
 deployer print supply, can the deployer freeze the sale, is there a second side
 at all. None of those is a statistic.
 
+**21. "Committed" and "deployed" are different states, and only one of them
+runs.** *Added 2026-09-07.* Seventeen commits sat unpushed on master while the
+hosted runner executed pre-fix code — including two P0s Frank had ordered
+shipped the same day: the pair-identity assertion and the 60/min rate limit.
+`paper.py`, `detector.py`, `fieldguard.py` and `watchlist.py` did not exist in
+production at all. Local test output proves the code works on this machine and
+says nothing about what the runner is doing. Verify a fix from the DEPLOYED ref,
+not from the push exit code.
+
+**22. Every tracker, check and feed must answer "when did you last fire, live,
+on real data" — and something must complain when the answer is never or is
+stale.** *Added 2026-09-07.* Four systems have now produced convincing output
+while doing nothing: the win record, the news check, the volume features, the
+milestone tracker. In each case absence of a signal was indistinguishable from
+a quiet market. `liveness.py` declares components in a hardcoded manifest and
+iterates the MANIFEST, not the registry, so a component that has never fired is
+an alarm rather than an empty row. It reports that something ran; it never
+reports that it works.
+
+**23. A backfill is not a detection.** *Added 2026-09-07.* 1,329 mcap crossings
+were written in one minute on 2026-09-02 by a replay of stored history, and
+read exactly like five days of live signal. Provenance is annotated on read
+(`milestones.crossings()`), and `live_crossings()` is the citable set — the same
+shape as `journal.verified_outcomes()` and the record epoch. Replayed history
+must never beat a liveness component.
+
 ## Operating
 
 **15. Free tools only.** Surface paid options with prices. Never sign up.
