@@ -74,3 +74,64 @@ evidence.
 5. If the on-chain read cannot be validated against a known-good pool first,
    **the whole exercise is abandoned and reported as not attempted** — an
    unvalidated new source would just be a second way to be wrong.
+
+---
+
+# RESULTS, scored against the thresholds above
+
+Written after the analysis. Nothing above was edited.
+
+## H1 — the referee test: **CANNOT BE TESTED**
+
+Threshold required **≥20 flagged rows with on-chain labels**. Got **1**.
+
+The reason is itself the finding: **33 of D1's 38 flags sit on fluxbeam**, and the
+layout-scanning reserve reader cannot reliably resolve fluxbeam vaults. 14 of 34
+attempted reads were rejected by the reliability check. **D1's depth-ratio ground
+truth therefore remains unverified by an independent source.**
+
+The supply-concentration test run separately (12/14 flagged vs 3/14 controls
+holding ≥90% of supply in one account, +64pp) still stands and independently
+confirms the *"supply IS the pool"* half of the conjunction. The *depth ratio*
+half does not.
+
+## H2 — how wrong is Dexscreener: **NO SEPARATION DEMONSTRABLE**
+
+n=20 readable (19 clean, 1 flagged). chain/Dexscreener ratio p25 **1.001**,
+median **1.299**, p75 **1.586**; 9/19 within ±25%.
+
+Threshold was a >2x difference between flagged and clean populations. With
+flagged n=1 that comparison cannot be made. Separately, the ~30% median
+over-read on clean pools means **the reader is not precise enough to adjudicate
+Dexscreener** even where it works. It agrees closely on Meteora (0.99–1.08) and
+loosely elsewhere.
+
+## H3 — does the paper log's verdict move: **NOT TESTABLE**
+
+4 of 10 closes were repriceable, and only at *current* depth. Repricing the
+closes needs reserves **as of the close**, which requires archival RPC we do not
+have. The median does not move because it cannot be recomputed.
+
+Current depths corroborate the earlier finding without measuring it: `$1` $349,
+WWR $21, MANGO $47, MARSCOIN $3 — against entry depths of $12k–$219k.
+
+## H4 — score bands on clean labels: **NOT ATTEMPTED**
+
+Depended on clean labels from H1/H2. They did not materialise.
+
+## New question, NOT a pre-committed hypothesis — logged, not claimed
+
+**D1 may be substantially a venue proxy.**
+
+| rule | flagged | precision | recall |
+|---|---:|---|---|
+| D1 | 38 | 97.37% [86.5, 99.5] | 49.3% |
+| **`dex_id == fluxbeam` alone** | 35 | **100.00% [90.1, 100.0]** | 46.7% |
+| D1 excluding fluxbeam | 5 | 80.00% **[37.6, 96.4]** | 5.3% |
+
+A single venue check matches or beats D1. Stripped of fluxbeam rows D1 flags 5
+things with an interval spanning 37.6–96.4%. This does not make D1 useless — a
+venue-specific detector still detects — but it is **not the general mechanism it
+was described as**, and it will fail the moment the operator changes venue.
+
+This needs its own pre-committed test. It is recorded here as a question.

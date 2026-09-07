@@ -5136,13 +5136,13 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 127,
+  "count": 129,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-07T13:25:26+00:00",
+  "last_seen": "2026-09-07T15:12:23+00:00",
   "last_escalated": "2026-09-07T10:50:10+00:00",
   "escalations": 8
  },
@@ -5615,15 +5615,15 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 19,
+  "count": 20,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h"
   ],
-  "last_seen": "2026-09-07T10:49:26+00:00",
-  "last_escalated": "2026-09-07T05:20:10+00:00",
-  "escalations": 3
+  "last_seen": "2026-09-07T14:32:13+00:00",
+  "last_escalated": "2026-09-07T14:32:13+00:00",
+  "escalations": 4
  },
  "scanner-hit:pomp": {
   "first_seen": "2026-09-05T05:11:36+00:00",
@@ -7204,11 +7204,12 @@
  },
  "outcome-win:trjphsbiwqakqzeyvtmcqwktzfxsxywuhvrry": {
   "first_seen": "2026-09-07T10:08:37+00:00",
-  "count": 1,
+  "count": 2,
   "example": "outcome-win: 8TrjPHSbi1W8QAkqZEyvt9mcQWKtzfXsx3y6wUHVR1rY",
   "keys": [
    "8TrjPHSbi1W8QAkqZEyvt9mcQWKtzfXsx3y6wUHVR1rY"
-  ]
+  ],
+  "last_seen": "2026-09-07T15:09:52+00:00"
  },
  "scanner-hit:kabosup": {
   "first_seen": "2026-09-07T10:16:34+00:00",
@@ -7329,6 +7330,30 @@
   "example": "outcome-win: 4itze1gA35GCSUDZbDGxeDg1fqbVMURJpDdWFSH4U3Dg",
   "keys": [
    "4itze1gA35GCSUDZbDGxeDg1fqbVMURJpDdWFSH4U3Dg"
+  ]
+ },
+ "scanner-hit:laptop": {
+  "first_seen": "2026-09-07T15:13:25+00:00",
+  "count": 1,
+  "example": "scanner-hit: LAPTOP",
+  "keys": [
+   "LAPTOP"
+  ]
+ },
+ "scanner-hit:jr": {
+  "first_seen": "2026-09-07T15:13:29+00:00",
+  "count": 1,
+  "example": "scanner-hit: JR2000",
+  "keys": [
+   "JR2000"
+  ]
+ },
+ "scanner-hit:flywill": {
+  "first_seen": "2026-09-07T15:13:33+00:00",
+  "count": 1,
+  "example": "scanner-hit: FLYWILL",
+  "keys": [
+   "FLYWILL"
   ]
  }
 }

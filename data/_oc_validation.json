@@ -1,0 +1,308 @@
+[
+ {
+  "sym": "\u725b\u6765",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 1536.8115804066545,
+  "chain": 1563.4954374904,
+  "err": null,
+  "liq": 3069.43
+ },
+ {
+  "sym": "LAPTOP",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.3754675205855444,
+  "chain": 0.50133505584,
+  "err": null,
+  "liq": 0.74
+ },
+ {
+  "sym": "FLYWILL",
+  "dex": "pumpswap",
+  "flagged": false,
+  "ds": 14349.417554744525,
+  "chain": 14533.658332476001,
+  "err": null,
+  "liq": 28644.21
+ },
+ {
+  "sym": "SCRIB",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.40872118709181715,
+  "chain": 1.64826456928,
+  "err": null,
+  "liq": 0.81
+ },
+ {
+  "sym": "ANTHROPIC",
+  "dex": "orca",
+  "flagged": true,
+  "ds": 1005.0,
+  "chain": 1005.0,
+  "err": null,
+  "liq": 9930067.7
+ },
+ {
+  "sym": "JR2000",
+  "dex": "pumpswap",
+  "flagged": false,
+  "ds": 18687.300693533274,
+  "chain": 18286.83479451024,
+  "err": null,
+  "liq": 39241.51
+ },
+ {
+  "sym": "LAPTOP",
+  "dex": "pumpswap",
+  "flagged": false,
+  "ds": 3.1259842519685044e-07,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 0 vs largest account 419,295,768 (0.0%) - scan missed the real vault",
+  "liq": 0.0
+ },
+ {
+  "sym": "ETHICS",
+  "dex": "fluxbeam",
+  "flagged": false,
+  "ds": 5390.024642802275,
+  "chain": 5458.5576,
+  "err": null,
+  "liq": 676081.24
+ },
+ {
+  "sym": "COIN",
+  "dex": "pumpswap",
+  "flagged": false,
+  "ds": 4.668764044943821,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 253,233,245 vs largest account 555,872,681 (45.6%) - scan missed the real vault",
+  "liq": 9.36
+ },
+ {
+  "sym": "LAPTOP",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 2331.792889561271,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 12,794,172 vs largest account 900,584,786 (1.4%) - scan missed the real vault",
+  "liq": 4768.28
+ },
+ {
+  "sym": "SCRIB",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.4155795129206172,
+  "chain": 2.44747314992,
+  "err": null,
+  "liq": 0.82
+ },
+ {
+  "sym": "LAPTOP",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.3824152661680598,
+  "chain": 0.50869995552,
+  "err": null,
+  "liq": 0.75
+ },
+ {
+  "sym": "\ud83c\udd7f\ufe0f",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.3890076040781648,
+  "chain": 1.8137405156800002,
+  "err": null,
+  "liq": 0.77
+ },
+ {
+  "sym": "NASA",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.1407044057377049,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 3,325 vs largest account 800,000,135 (0.0%) - scan missed the real vault",
+  "liq": 0.27
+ },
+ {
+  "sym": "BOT",
+  "dex": "pumpswap",
+  "flagged": false,
+  "ds": 1.0471261836599868e-07,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 0 vs largest account 824,294,247 (0.0%) - scan missed the real vault",
+  "liq": 0.0
+ },
+ {
+  "sym": "WET",
+  "dex": "fluxbeam",
+  "flagged": true,
+  "ds": 10297.39716679968,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 1,272,780 vs largest account 980,468,835 (0.1%) - scan missed the real vault",
+  "liq": 1293491.11
+ },
+ {
+  "sym": "stankmeme",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.07825600341588386,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 5,976 vs largest account 800,000,135 (0.0%) - scan missed the real vault",
+  "liq": 0.15
+ },
+ {
+  "sym": "\ud83c\udd7f\ufe0f",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.35246316059517707,
+  "chain": 1.0873707939200001,
+  "err": null,
+  "liq": 0.7
+ },
+ {
+  "sym": "Bounty",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.37012265679240913,
+  "chain": 0.56739284928,
+  "err": null,
+  "liq": 0.73
+ },
+ {
+  "sym": "Bounty",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.6488734244495065,
+  "chain": 0.77415281392,
+  "err": null,
+  "liq": 1.29
+ },
+ {
+  "sym": "GOLDR",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.1627170474516696,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 2,871 vs largest account 800,000,135 (0.0%) - scan missed the real vault",
+  "liq": 0.33
+ },
+ {
+  "sym": "ANYTHINGP",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.41875344732487596,
+  "chain": 0.5439347907200001,
+  "err": null,
+  "liq": 0.83
+ },
+ {
+  "sym": "ZCAT",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.09297874095513749,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 61 vs largest account 800,000,135 (0.0%) - scan missed the real vault",
+  "liq": 0.18
+ },
+ {
+  "sym": "ZCAT",
+  "dex": "pumpswap",
+  "flagged": false,
+  "ds": 4.2030696576151124e-07,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 0 vs largest account 800,000,135 (0.0%) - scan missed the real vault",
+  "liq": 0.0
+ },
+ {
+  "sym": "Crypto",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.36245395225464183,
+  "chain": 5.97911854304,
+  "err": null,
+  "liq": 0.72
+ },
+ {
+  "sym": "\u202eGODZ",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.22935596352883195,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 500,388 vs largest account 534,573,521 (0.1%) - scan missed the real vault",
+  "liq": 0.45
+ },
+ {
+  "sym": "GRND",
+  "dex": "pumpswap",
+  "flagged": false,
+  "ds": 384.3279481132075,
+  "chain": 384.75987984784,
+  "err": null,
+  "liq": 2595.55
+ },
+ {
+  "sym": "LNRA",
+  "dex": "pumpswap",
+  "flagged": false,
+  "ds": 14865.437459216966,
+  "chain": 14864.83429214368,
+  "err": null,
+  "liq": 30415.99
+ },
+ {
+  "sym": "LEVERCAT",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 1.0409666280752534,
+  "chain": 1.6506835947200003,
+  "err": null,
+  "liq": 2.09
+ },
+ {
+  "sym": "whitehats",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.12542654580770476,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 3,729 vs largest account 800,000,135 (0.0%) - scan missed the real vault",
+  "liq": 0.24
+ },
+ {
+  "sym": "wind",
+  "dex": "pumpswap",
+  "flagged": false,
+  "ds": 2.4807476099426387,
+  "chain": 2.4551442804800003,
+  "err": null,
+  "liq": 5.13
+ },
+ {
+  "sym": "TRONK",
+  "dex": "pumpswap",
+  "flagged": false,
+  "ds": 22.75296442687747,
+  "chain": 22.73454824688,
+  "err": null,
+  "liq": 1608.77
+ },
+ {
+  "sym": "BUDDY",
+  "dex": "meteora",
+  "flagged": false,
+  "ds": 0.023713989349900155,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 242 vs largest account 800,000,135 (0.0%) - scan missed the real vault",
+  "liq": 0.04
+ },
+ {
+  "sym": "GRND",
+  "dex": "pumpswap",
+  "flagged": false,
+  "ds": 2.11373092926491e-07,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 0 vs largest account 476,541,743 (0.0%) - scan missed the real vault",
+  "liq": 0.0
+ }
+]
