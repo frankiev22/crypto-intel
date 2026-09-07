@@ -5136,15 +5136,15 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 129,
+  "count": 133,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-07T15:12:23+00:00",
-  "last_escalated": "2026-09-07T10:50:10+00:00",
-  "escalations": 8
+  "last_seen": "2026-09-07T17:24:25+00:00",
+  "last_escalated": "2026-09-07T17:18:48+00:00",
+  "escalations": 9
  },
  "scanner-hit:patience": {
   "first_seen": "2026-09-04T05:11:20+00:00",
@@ -6548,14 +6548,14 @@
  },
  "scanner-hit:robin": {
   "first_seen": "2026-09-06T06:12:21+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: ROBIN",
   "keys": [
    "ROBIN"
   ],
-  "last_seen": "2026-09-06T22:11:59+00:00",
-  "last_escalated": "2026-09-06T22:11:59+00:00",
-  "escalations": 1
+  "last_seen": "2026-09-07T16:16:19+00:00",
+  "last_escalated": "2026-09-07T16:16:19+00:00",
+  "escalations": 2
  },
  "scanner-hit:butt": {
   "first_seen": "2026-09-06T06:12:25+00:00",
@@ -7334,11 +7334,12 @@
  },
  "scanner-hit:laptop": {
   "first_seen": "2026-09-07T15:13:25+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: LAPTOP",
   "keys": [
    "LAPTOP"
-  ]
+  ],
+  "last_seen": "2026-09-07T16:16:11+00:00"
  },
  "scanner-hit:jr": {
   "first_seen": "2026-09-07T15:13:29+00:00",
@@ -7354,6 +7355,14 @@
   "example": "scanner-hit: FLYWILL",
   "keys": [
    "FLYWILL"
+  ]
+ },
+ "scanner-hit:jobcoin": {
+  "first_seen": "2026-09-07T16:15:59+00:00",
+  "count": 1,
+  "example": "scanner-hit: Jobcoin",
+  "keys": [
+   "Jobcoin"
   ]
  }
 }
