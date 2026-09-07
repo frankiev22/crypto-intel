@@ -15,6 +15,7 @@ import sources as S
 import namecheck
 import paper
 import watchlist
+import onchain
 import weights
 
 # ---- thresholds. tune these; they are the whole product ----
@@ -143,6 +144,10 @@ def score(pair):
 # spent the loop stops and returns what it has, because a partial scan is worth
 # enormously more than a lost hour.
 SCAN_BUDGET_S = float(os.environ.get("CRYPTO_SCAN_BUDGET_S", "150"))
+
+# Only rows at or above this score get an authority check, plus anything the
+# paper log would enter. Bounds the RPC spend to the rows we would act on.
+AUTHORITY_CHECK_SCORE = int(os.environ.get("CRYPTO_AUTHORITY_SCORE", "70"))
 LAST_SCAN = {"pools": 0, "enriched": 0, "failed": 0, "budget_hit": False}
 
 
@@ -248,6 +253,41 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
                           f"fdv ${(row.get('fdv') or 0):,.0f}")
         except Exception as e:
             print(f"  [watchlist] {type(e).__name__}: {str(e)[:90]}")
+        # MINT / FREEZE AUTHORITY. One getAccountInfo on the mint, free and
+        # keyless. This is not a statistical signal and is not treated as one:
+        # it is a CAPABILITY. Live mint authority means the deployer can print
+        # supply into your bid; live freeze authority means they can stop you
+        # selling. Either one alone makes a position untakeable regardless of
+        # how good the numbers look.
+        #
+        # Measured 2026-09-05 across 228 tokens: 227 had both already revoked,
+        # because the launchpads revoke automatically. So as a FEATURE it has
+        # near-zero variance and must never enter a score. As a DISQUALIFIER it
+        # still earns its call, because the one token in 228 that keeps its
+        # authority is exactly the one you must not hold.
+        #
+        # Run only on rows we would actually act on - anything clearing the pass
+        # score or eligible for the paper log - which is ~2-8 per pass rather
+        # than ~75, and keeps the public RPC well inside its limits.
+        _act = (row.get("score", 0) >= AUTHORITY_CHECK_SCORE) or paper.qualifies(row)[0]
+        if _act and row.get("addr"):
+            try:
+                _a = onchain.authorities(row["addr"])
+                row["mint_authority"] = _a.get("mint_authority")
+                row["freeze_authority"] = _a.get("freeze_authority")
+                row["can_mint"] = _a.get("can_mint")
+                row["can_freeze"] = _a.get("can_freeze")
+                row["authorities_error"] = _a.get("authorities_error")
+                if _a.get("can_mint"):
+                    row["flags"] = ["MINT AUTHORITY LIVE - deployer can print "
+                                    "supply into your bid"] + list(row.get("flags") or [])
+                if _a.get("can_freeze"):
+                    row["flags"] = ["FREEZE AUTHORITY LIVE - deployer can stop "
+                                    "you selling"] + list(row.get("flags") or [])
+                time.sleep(onchain.RPC_PACE_S)
+            except Exception as e:
+                row["authorities_error"] = f"{type(e).__name__}"
+
         # FORWARD PAPER LOG. The one place in this codebase where a decision is
         # recorded with no knowledge of what happens next. Every retrospective
         # finding here has died of leakage - a feature read after the outcome
@@ -264,7 +304,7 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
                     exit_depth=row.get("exit_depth_usd"),
                     liq=row.get("liq"), fdv=row.get("fdv"),
                     score=row.get("score"), venue_type=row.get("venue_type"),
-                    dex_id=row.get("dex_id"))
+                    dex_id=row.get("dex_id"), pair=row.get("pair"))
                 if _e is not None:
                     row["paper_entry"] = _e["hash"][:12]
                     if verbose:

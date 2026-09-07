@@ -5126,13 +5126,13 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 107,
+  "count": 108,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-07T04:27:28+00:00",
+  "last_seen": "2026-09-07T04:38:24+00:00",
   "last_escalated": "2026-09-07T03:09:24+00:00",
   "escalations": 7
  },

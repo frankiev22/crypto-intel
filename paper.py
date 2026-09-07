@@ -141,6 +141,20 @@ def qualifies(row):
         return False, "no exit depth measured"
     if float(depth) < MIN_EXIT_DEPTH:
         return False, f"exit depth ${float(depth):,.0f} < ${MIN_EXIT_DEPTH:,.0f}"
+    # CAPABILITY DISQUALIFIERS, checked before any number. A depth floor cannot
+    # catch a pool nobody has ever sold into, and no amount of liquidity helps
+    # if the deployer can print supply into your bid or freeze your sell. These
+    # are facts about what the contract PERMITS, not estimates.
+    if row.get("can_mint"):
+        return False, "mint authority live - deployer can print supply"
+    if row.get("can_freeze"):
+        return False, "freeze authority live - deployer can stop you selling"
+    # A pool with buys and no sells has never had a counterparty. Ask whether
+    # one has ever existed BEFORE asking how big the number is.
+    _sells = row.get("sells_h1")
+    _buys = row.get("buys_h1")
+    if _sells is not None and _buys is not None and _sells == 0 and _buys >= 10:
+        return False, f"no sell side: {_buys} buys, 0 sells - price never tested"
     score = row.get("score")
     if score is None:
         return False, "no score"
@@ -155,7 +169,7 @@ def has_open(contract):
 
 def open_entry(contract, symbol=None, price=None, exit_depth=None, liq=None,
                fdv=None, score=None, venue_type=None, dex_id=None,
-               rule=RULE_V1, exit_rule=EXIT_RULE_V1, note=None):
+               rule=RULE_V1, exit_rule=EXIT_RULE_V1, note=None, pair=None):
     """Record an entry. Keyed on CONTRACT ADDRESS, never ticker.
 
     Returns None if this contract already has an open position. A token that
@@ -170,6 +184,10 @@ def open_entry(contract, symbol=None, price=None, exit_depth=None, liq=None,
         "type": "entry",
         "ts": _now(),
         "contract": contract,
+        # THE POOL, not just the token. Closing a position by token-level price
+        # is how a different pool's quote gets divided into our entry - the
+        # exact defect that contaminated the outcome journal. Stored at entry.
+        "pair": pair,
         "symbol": symbol,
         "rule": rule,
         "exit_rule": exit_rule,          # declared NOW, not at exit
@@ -308,3 +326,164 @@ if __name__ == "__main__":
         if "median_mult" in s:
             print(f"  mult      : p25 {s['p25_mult']:.3f}  median {s['median_mult']:.3f}  "
                   f"p75 {s['p75_mult']:.3f}  max {s['max_mult']:.3f}")
+
+
+# ---------------------------------------------------------------------------
+# THE CLOSER. Added 2026-09-07.
+#
+# A log of open positions is not a record, it is a wishlist. Twenty entries sat
+# open for a day because nothing ever closed them, which meant the log contained
+# no losers - and a log that only ever fills in the winners is worth nothing.
+# THE LOSERS ARE THE PROOF.
+#
+# Every open position is evaluated against the exit rule DECLARED AT ENTRY, and
+# every one that meets it is closed, whatever the number says. Three outcomes
+# and all three are recorded:
+#
+#   target   the position reached its declared multiple on quote-side depth
+#   expiry   max hold elapsed; closed at whatever it is worth, including zero
+#   unpriceable  the source dropped the pair before we could close it
+#
+# `unpriceable` is NOT recorded as a zero. We do not know the price, and
+# inventing one is exactly the class of error this whole file exists to prevent.
+# It stays in the denominator as a closed position with `mult = None`, which is
+# the honest treatment: it was never a win, and it was not measurably a loss.
+# ---------------------------------------------------------------------------
+CLOSE_TARGET = "target"
+CLOSE_EXPIRY = "expiry"
+CLOSE_UNPRICEABLE = "unpriceable"
+
+
+def _exit_depth(pair):
+    liq = pair.get("liquidity") or {}
+    try:
+        q = float(liq.get("quote")) if liq.get("quote") is not None else None
+        pu = float(pair.get("priceUsd")) if pair.get("priceUsd") else None
+        pn = float(pair.get("priceNative")) if pair.get("priceNative") else None
+    except (TypeError, ValueError):
+        return None
+    if q is not None and pu and pn:
+        return q * (pu / pn)
+    return None
+
+
+def _pair_for(entry):
+    """The pool this entry was opened on.
+
+    Entries written before 2026-09-07 did not store it. It is RECOVERED from
+    our own observation journal by contract address - not guessed, not looked
+    up by token, because a token-level lookup can return a different pool and
+    that is precisely the contamination this log exists to avoid. An entry
+    whose pool cannot be recovered is closed `unpriceable`, never priced.
+    """
+    if entry.get("pair"):
+        return entry["pair"]
+    try:
+        import journal
+        best = None
+        for o in journal.observations():
+            if o.get("token") != entry.get("contract"):
+                continue
+            if best is None or o.get("ts", 0) < best.get("ts", 0):
+                best = o
+        return (best or {}).get("pair")
+    except Exception:
+        return None
+
+
+def sweep(fetch_pair, verbose=True):
+    """Close every open position whose declared exit rule has been met.
+
+    `fetch_pair(network, pair_address) -> pair or None`, injected so this stays
+    testable without network and free of a circular import.
+    """
+    import datetime as _dt
+    rows = _read()
+    closed_ids = {r.get("entry_id") for r in rows if r.get("type") == "exit"}
+    opens = [r for r in rows if r.get("type") == "entry"
+             and r.get("hash") not in closed_ids]
+    now = dt.datetime.now(dt.timezone.utc)
+    stats = {"checked": 0, "closed": 0, "target": 0, "expiry": 0,
+             "unpriceable": 0, "still_open": 0}
+    for e in opens:
+        stats["checked"] += 1
+        try:
+            t0 = dt.datetime.strptime(e["ts"], "%Y-%m-%dT%H:%M:%SZ").replace(
+                tzinfo=dt.timezone.utc)
+            elapsed_h = (now - t0).total_seconds() / 3600.0
+        except Exception:
+            elapsed_h = 0.0
+        expired = elapsed_h >= float(e.get("max_hold_h") or MAX_HOLD_H)
+
+        pair = None
+        try:
+            _pa = _pair_for(e)
+            pair = fetch_pair("solana", _pa) if _pa else None
+        except Exception:
+            pair = None
+
+        if not pair:
+            if expired:
+                _close(e, None, None, CLOSE_UNPRICEABLE,
+                       "source dropped the pair before the hold expired; "
+                       "no exit price is knowable and none is invented")
+                stats["closed"] += 1; stats["unpriceable"] += 1
+                if verbose:
+                    print(f"  [paper] CLOSED {e.get('symbol')} unpriceable "
+                          f"after {elapsed_h:.1f}h")
+            else:
+                stats["still_open"] += 1
+            continue
+
+        try:
+            px = float(pair.get("priceUsd")) if pair.get("priceUsd") else None
+        except (TypeError, ValueError):
+            px = None
+        depth = _exit_depth(pair)
+        ep = e.get("entry_price_usd")
+        mult = (px / ep) if (px and ep) else None
+        target = float(e.get("target_mult") or TARGET_MULT)
+
+        hit = (mult is not None and mult >= target
+               and depth is not None and depth >= MIN_EXIT_DEPTH)
+        if hit:
+            _close(e, px, depth, CLOSE_TARGET,
+                   f"reached {mult:.3f}x with ${depth:,.0f} of quote-side depth")
+            stats["closed"] += 1; stats["target"] += 1
+            if verbose:
+                print(f"  [paper] CLOSED {e.get('symbol')} TARGET {mult:.2f}x "
+                      f"depth ${depth:,.0f} after {elapsed_h:.1f}h")
+        elif expired:
+            _close(e, px, depth, CLOSE_EXPIRY,
+                   f"max hold {elapsed_h:.1f}h elapsed at "
+                   f"{('%.3fx' % mult) if mult is not None else 'no price'}")
+            stats["closed"] += 1; stats["expiry"] += 1
+            if verbose:
+                m = f"{mult:.3f}x" if mult is not None else "unpriced"
+                print(f"  [paper] CLOSED {e.get('symbol')} expiry {m} "
+                      f"depth ${(depth or 0):,.0f} after {elapsed_h:.1f}h")
+        else:
+            stats["still_open"] += 1
+    if verbose and stats["checked"]:
+        print(f"  [paper] {stats['checked']} open checked, {stats['closed']} closed "
+              f"({stats['target']} target, {stats['expiry']} expiry, "
+              f"{stats['unpriceable']} unpriceable), {stats['still_open']} still open")
+    return stats
+
+
+def _close(entry, price, depth, reason, detail):
+    """Write the exit. Applies the SAME gate the outcome journal uses, so a
+    paper win and a journalled win mean the same thing."""
+    try:
+        import journal
+        ok, failed = journal.verify_win(
+            "alive" if price else "gone",
+            None, (price / entry["entry_price_usd"]) if (price and entry.get("entry_price_usd")) else None,
+            exit_depth=depth,
+            pair=entry.get("contract"), exit_pair=entry.get("contract"),
+            elapsed_h=1.0)
+    except Exception:
+        ok, failed = None, ["gate_unavailable"]
+    rec = close_entry(entry["hash"], price=price, exit_depth=depth,
+                      reason=f"{reason}: {detail}")
+    return rec

@@ -455,6 +455,19 @@ def record(rows, network, pass_score=70):
             "exit_depth_usd": r.get("exit_depth_usd"),
             "price_usd": r.get("price_usd"), "chg_h1": r.get("chg_h1"),
             "chg_h24": r.get("chg_h24"), "age_hours": r.get("age_h"),
+            # Volume shape, not level. Added 2026-09-06 and SILENTLY DROPPED
+            # until 2026-09-07 because this dict is a whitelist and they were
+            # never added to it - the same class of quiet loss as the news
+            # NameError. A field computed and not persisted is a field that
+            # does not exist.
+            "vol_to_liq": r.get("vol_to_liq"), "vol_burst": r.get("vol_burst"),
+            # CAPABILITY, not statistic. Live mint authority means the deployer
+            # can print supply into your bid; live freeze means they can stop
+            # you selling. Checked only on rows we would act on.
+            "mint_authority": r.get("mint_authority"),
+            "freeze_authority": r.get("freeze_authority"),
+            "can_mint": r.get("can_mint"), "can_freeze": r.get("can_freeze"),
+            "authorities_error": r.get("authorities_error"),
             "reasons": r.get("reasons", []), "flags": r.get("flags", []),
             # which weight set produced this score. Without it a 66 from v2 and
             # a 66 from v5 look identical in the scoreboard and are not.

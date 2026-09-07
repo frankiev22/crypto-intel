@@ -31,6 +31,7 @@ import sys, time, traceback, datetime as dt
 import scanner, journal, track, notify, macro, sources, findings, resolve
 import watchlist
 import news
+import paper
 
 PASS_SCORE = 70
 JOURNAL_BATCH = 10
@@ -107,6 +108,13 @@ def one_pass(networks=("solana",), verbose=True):
         watchlist.sweep(sources.dexscreener_pair, verbose=verbose)
     except Exception as e:
         print(f"  watchlist sweep failed: {e}")
+    # CLOSE THE PAPER LOG. A log of open positions is a wishlist; the losers
+    # are what make it evidence. Every position that has met its declared exit
+    # rule is closed here, whatever the number says, including to zero.
+    try:
+        paper.sweep(sources.dexscreener_pair, verbose=verbose)
+    except Exception as e:
+        print(f"  paper sweep failed: {e}")
     try:
         track.score_all(verbose=verbose)
     except Exception as e:
