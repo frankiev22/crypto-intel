@@ -1907,3 +1907,6 @@
 {"token":"59zaD8n398WQ69Rnawkb5LmqqwxXcnijr5UNf6qhmjfC","milestone":"mcap_1m","crossed_ts":1788801767,"crossed_at":"2026-09-07T17:22:47+00:00","symbol":"BEN","value":2805611.0,"kind":"mcap"}
 {"token":"59zaD8n398WQ69Rnawkb5LmqqwxXcnijr5UNf6qhmjfC","milestone":"mcap_5m","crossed_ts":1788801787,"crossed_at":"2026-09-07T17:23:07+00:00","symbol":"BEN","value":7058063.0,"kind":"mcap"}
 {"token":"CcBBc1kwfzz4uYHgmGZVC3eAAkw2SnChhoKPMpZTRiBh","milestone":"mcap_100k","crossed_ts":1788804435,"crossed_at":"2026-09-07T18:07:15+00:00","symbol":"RUNNER","value":155521.0,"kind":"mcap"}
+{"token":"3DZkJb2jCSLkqXBZJvVGohzXg6CNeRq7mMfq2pADzQsZ","milestone":"mcap_100k","crossed_ts":1788804467,"crossed_at":"2026-09-07T18:07:47+00:00","symbol":"BIDEX","value":1041119.0,"kind":"mcap"}
+{"token":"3DZkJb2jCSLkqXBZJvVGohzXg6CNeRq7mMfq2pADzQsZ","milestone":"mcap_200k","crossed_ts":1788804468,"crossed_at":"2026-09-07T18:07:48+00:00","symbol":"BIDEX","value":1041119.0,"kind":"mcap"}
+{"token":"3DZkJb2jCSLkqXBZJvVGohzXg6CNeRq7mMfq2pADzQsZ","milestone":"mcap_1m","crossed_ts":1788804468,"crossed_at":"2026-09-07T18:07:48+00:00","symbol":"BIDEX","value":1041119.0,"kind":"mcap"}
