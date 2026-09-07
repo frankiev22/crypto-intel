@@ -259,7 +259,8 @@ def open_entry(contract, symbol=None, price=None, exit_depth=None, liq=None,
     liveness.beat("paper.open", detail=str(symbol or contract)[:24])
 
 
-def close_entry(entry_id, price=None, exit_depth=None, reason=None, void=None):
+def close_entry(entry_id, price=None, exit_depth=None, reason=None, void=None,
+                chain_depth=None):
     """Record an exit against an open entry. Never edits the entry row.
 
     `void` closes a row entered in error. The entry stays on the chain; the
@@ -297,6 +298,9 @@ def close_entry(entry_id, price=None, exit_depth=None, reason=None, void=None):
         "symbol": ent.get("symbol"),
         "exit_price_usd": price,
         "exit_depth_usd": exit_depth,
+        # Independent quote-side depth read from chain AT THE MOMENT OF CLOSE.
+        # Not recoverable later at any RPC tier - see _close().
+        "chain_depth_usd": chain_depth,
         "mult": (round(mult, 6) if mult is not None else None),
         "actual_elapsed_h": elapsed,
         "realizable_usd": (round(realizable, 2) if realizable is not None else None),
@@ -539,7 +543,22 @@ def _close(entry, price, depth, reason, detail):
             elapsed_h=1.0)
     except Exception:
         ok, failed = None, ["gate_unavailable"]
+    # CAPTURE RESERVES AT THE MOMENT OF CLOSE. Solana RPC has no historical
+    # account state at any tier - getAccountInfo always answers for the current
+    # slot - so reserves not recorded now can never be recovered, only replayed
+    # from transaction history at far greater cost. Repricing the first 10
+    # closes failed for exactly this reason. One call here versus a permanently
+    # unrepriceable ledger.
+    _chain = None
+    try:
+        import onchain_reserves as _OR
+        _pa = entry.get("pair") or _pair_for(entry)
+        if _pa and entry.get("contract"):
+            _d, _e, _ = _OR.exit_depth(_pa, entry["contract"], _OR.WSOL)
+            _chain = _d
+    except Exception:
+        _chain = None
     rec = close_entry(entry["hash"], price=price, exit_depth=depth,
-                      reason=f"{reason}: {detail}")
+                      reason=f"{reason}: {detail}", chain_depth=_chain)
     liveness.beat("paper.close", detail=str(reason)[:24])
     return rec

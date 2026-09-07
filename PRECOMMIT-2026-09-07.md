@@ -135,3 +135,59 @@ venue-specific detector still detects — but it is **not the general mechanism 
 was described as**, and it will fail the moment the operator changes venue.
 
 This needs its own pre-committed test. It is recorded here as a question.
+
+---
+
+# ADDENDUM, same day: the reader was fixed, and two results changed
+
+## ⚠️ Correction: the WET "misread" was not a misread
+
+`base_vault_is_plausible()` rejected the $13 reading of WET against
+Dexscreener's $10,297, on the assumption that a pool's base vault is the mint's
+largest account. **That assumption is wrong for exactly the pools that matter.**
+
+fluxbeam's pool account is 324 bytes — SPL Token-Swap's documented `SwapV1`
+layout. Decoding it at fixed offsets is exact and self-verifying (mint_a/mint_b
+must match the pair). The decode confirms **$13 is correct**; the pool holds
+1,272,780 tokens and 0.128 SOL, while 980M of that mint sits in an account that
+is not the pool.
+
+So the guardrail suppressed a true finding by measuring the wrong invariant. It
+was right to fire — I could not distinguish the two cases then — but the
+conclusion I published, that the reading was a fabrication, was wrong. Layout
+now beats heuristic and the plausibility check is not applied on that path.
+
+## H2 — RESULT: fires overwhelmingly
+
+Threshold was a >2x difference in median ratio between populations.
+
+| population | n | Dexscreener / on-chain depth |
+|---|---:|---|
+| **D1-flagged** | 14 | **median 781.61x** (p90 785.2x, max 788.0x) |
+| not flagged | 31 | **median 0.97x** |
+
+**A 930x separation against a 2x threshold.** Dexscreener's reported liquidity
+is accurate on ordinary pools and catastrophically wrong on precisely the pools
+D1 flags. The tightness of the flagged band (781–788x) is one template, not a
+family.
+
+**This vindicates D1's substance.** The pools it flags really are ~780x
+overstated, confirmed by a source that is not Dexscreener. It does **not**
+settle whether D1 generalises beyond fluxbeam — see `PRECOMMIT-VENUE.md`.
+
+## H1 — still UNTESTABLE at n=17 of 20
+
+The exact decoder raised fluxbeam parsing from 1/14 to 17 readable flagged rows,
+but the floor was pre-committed at 20 and **17 is not 20.** Not rounded up.
+Reachable as new flagged pools appear; the same accumulation that gates the
+venue test.
+
+## H3 — fixed forward, unrecoverable backward
+
+Confirmed: **standard Solana RPC has no historical account state at any tier.**
+`getAccountInfo` always answers for the current slot; reconstructing past
+reserves means replaying transactions. Helius's free tier does not change this.
+
+So the first 10 closes are permanently unrepriceable. `paper._close()` now
+records `chain_depth_usd` at the moment of close. One call now versus a ledger
+that can never be audited.

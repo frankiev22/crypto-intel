@@ -115,6 +115,66 @@ def vaults(pool_address, mints=None, max_candidates=600, step=1):
     return found, None
 
 
+# ---------------------------------------------------------------------------
+# SPL TOKEN-SWAP (fluxbeam) - EXACT, not scanned.
+#
+# The heuristic scanner could not resolve fluxbeam: 1 of 14 pools parsed. That
+# mattered more than any other gap, because 33 of D1's 38 flags are fluxbeam,
+# so the blind spot pointed exactly at the population we needed to adjudicate.
+#
+# It turns out no reverse-engineering was required. The pool account is 324
+# bytes, which is SPL Token-Swap's documented SwapV1 layout, and fluxbeam is a
+# fork of it. The vault and mint pubkeys sit at fixed offsets. Decoding them is
+# exact rather than probabilistic, and self-verifying: if mint_a/mint_b do not
+# match the pair's own mints, the layout does not apply and we return nothing.
+#
+# WHAT THIS OVERTURNED. The heuristic read WET's quote side as $13 against
+# Dexscreener's $10,297, and base_vault_is_plausible() rejected it as a misread
+# because the pool's base vault (1,272,780 tokens) is far below the mint's
+# largest account (980M). The exact decode confirms $13 is CORRECT: for these
+# pools the largest holder of the token is simply not the pool. The guardrail
+# was measuring the wrong invariant, and it suppressed a true 772x finding.
+# Layout beats heuristic; the plausibility check is not applied on this path.
+SWAP_V1_LEN = 324
+SWAP_V1 = {"token_a": 35, "token_b": 67, "pool_mint": 99,
+           "mint_a": 131, "mint_b": 163}
+
+
+def token_swap_reserves(pool_address, base_mint, quote_mint):
+    """Exact reserves for an SPL Token-Swap pool. (base_amt, quote_amt) or None.
+
+    Returns None - never a guess - when the account is not 324 bytes or the
+    decoded mints do not match the pair, which is the layout asserting itself.
+    """
+    import base64
+    res, err = _rpc("getAccountInfo", [pool_address, {"encoding": "base64"}])
+    v = (res or {}).get("value")
+    if err or not v:
+        return None, f"pool account unreadable ({err or 'missing'})"
+    raw = base64.b64decode(v["data"][0])
+    if len(raw) != SWAP_V1_LEN:
+        return None, f"not a token-swap pool ({len(raw)} bytes)"
+    f = {k: b58(raw[o:o + 32]) for k, o in SWAP_V1.items()}
+    mints = {f["mint_a"], f["mint_b"]}
+    if base_mint not in mints or quote_mint not in mints:
+        return None, "decoded mints do not match the pair - layout does not apply"
+    quote_acct = f["token_a"] if f["mint_a"] == quote_mint else f["token_b"]
+    base_acct = f["token_b"] if f["mint_a"] == quote_mint else f["token_a"]
+    r2, e2 = _rpc("getMultipleAccounts", [[base_acct, quote_acct],
+                                          {"encoding": "jsonParsed"}])
+    vals = (r2 or {}).get("value") or []
+    if e2 or len(vals) != 2 or not all(vals):
+        return None, "vault accounts unreadable"
+    out = []
+    for a in vals:
+        d = a.get("data")
+        if not isinstance(d, dict):
+            return None, "vault is not a parsed token account"
+        info = (d.get("parsed") or {}).get("info") or {}
+        out.append(float((info.get("tokenAmount") or {}).get("uiAmount") or 0))
+    return (out[0], out[1]), None
+
+
 def quote_price_usd(quote_mint, sol_usd=None):
     """USD per unit of the quote asset. Stables are 1; SOL needs a price."""
     if quote_mint in STABLES:
@@ -159,7 +219,16 @@ def base_vault_is_plausible(base_mint, found_base):
 
 
 def exit_depth(pool_address, base_mint, quote_mint, sol_usd=None, verify=True):
-    """Quote-side USD held by the pool, read from chain. None if not readable."""
+    """Quote-side USD held by the pool, read from chain. None if not readable.
+
+    Tries the EXACT token-swap decode first; falls back to the heuristic scan
+    for layouts we do not decode. `method` in the returned tuple says which.
+    """
+    px = quote_price_usd(quote_mint, sol_usd)
+    exact, eerr = token_swap_reserves(pool_address, base_mint, quote_mint)
+    if exact and px is not None:
+        return exact[1] * px, None, {"method": "token_swap_exact",
+                                     base_mint: exact[0], quote_mint: exact[1]}
     v, err = vaults(pool_address, mints={base_mint, quote_mint})
     if err:
         return None, err, {}

@@ -1,0 +1,154 @@
+[
+ {
+  "sym": "ETHICS",
+  "dex": "fluxbeam",
+  "ds": 6757.8239614689965,
+  "chain": 6884.877240000001,
+  "err": null,
+  "flagged": false
+ },
+ {
+  "sym": "WET",
+  "dex": "fluxbeam",
+  "ds": 10297.39716679968,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 1,272,780 vs largest account 980,468,835 (0.1%) - scan missed the real vault",
+  "flagged": true
+ },
+ {
+  "sym": "ZEROCASH",
+  "dex": "fluxbeam",
+  "ds": 10352.547725458899,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 1,272,780 vs largest account 980,468,831 (0.1%) - scan missed the real vault",
+  "flagged": true
+ },
+ {
+  "sym": "ZILLIONS",
+  "dex": "fluxbeam",
+  "ds": 10473.718539505187,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 1,272,584 vs largest account 980,466,952 (0.1%) - scan missed the real vault",
+  "flagged": true
+ },
+ {
+  "sym": "BREW",
+  "dex": "fluxbeam",
+  "ds": 10360.42637669593,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 1,272,780 vs largest account 980,468,835 (0.1%) - scan missed the real vault",
+  "flagged": true
+ },
+ {
+  "sym": "\ud83c\udf92",
+  "dex": "fluxbeam",
+  "ds": 10367.674860335195,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 1,272,819 vs largest account 980,469,271 (0.1%) - scan missed the real vault",
+  "flagged": true
+ },
+ {
+  "sym": "ICP",
+  "dex": "fluxbeam",
+  "ds": 10354.540399361023,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 1,273,167 vs largest account 980,473,214 (0.1%) - scan missed the real vault",
+  "flagged": true
+ },
+ {
+  "sym": "TOAD2.0",
+  "dex": "fluxbeam",
+  "ds": 10423.455586592177,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 1,272,780 vs largest account 980,468,833 (0.1%) - scan missed the real vault",
+  "flagged": true
+ },
+ {
+  "sym": "NASDUCK",
+  "dex": "fluxbeam",
+  "ds": 10415.576935355148,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 1,272,780 vs largest account 980,468,832 (0.1%) - scan missed the real vault",
+  "flagged": true
+ },
+ {
+  "sym": "ZEZE",
+  "dex": "fluxbeam",
+  "ds": 10486.484796488427,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 1,272,780 vs largest account 980,468,833 (0.1%) - scan missed the real vault",
+  "flagged": false
+ },
+ {
+  "sym": "MERT",
+  "dex": "fluxbeam",
+  "ds": 10439.21288906624,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 1,272,781 vs largest account 980,468,829 (0.1%) - scan missed the real vault",
+  "flagged": true
+ },
+ {
+  "sym": "KPOP",
+  "dex": "fluxbeam",
+  "ds": 10462.848842777334,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 1,272,780 vs largest account 980,468,831 (0.1%) - scan missed the real vault",
+  "flagged": true
+ },
+ {
+  "sym": "TPA",
+  "dex": "fluxbeam",
+  "ds": 10499.029281723862,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 1,272,976 vs largest account 980,471,048 (0.1%) - scan missed the real vault",
+  "flagged": true
+ },
+ {
+  "sym": "ZONKEY",
+  "dex": "fluxbeam",
+  "ds": 10462.848842777334,
+  "chain": null,
+  "err": "UNRELIABLE READ: found base vault holds 1,272,780 vs largest account 980,468,831 (0.1%) - scan missed the real vault",
+  "flagged": true
+ },
+ {
+  "sym": "\u725b\u6765",
+  "dex": "meteora",
+  "ds": 1488.0056925996205,
+  "chain": 1514.7372071834102,
+  "err": null,
+  "flagged": false
+ },
+ {
+  "sym": "ANTHROPIC",
+  "dex": "orca",
+  "ds": 1005.0,
+  "chain": 1005.0,
+  "err": null,
+  "flagged": true
+ },
+ {
+  "sym": "JR2000",
+  "dex": "pumpswap",
+  "ds": 18288.922320117472,
+  "chain": 18098.940826148042,
+  "err": null,
+  "flagged": false
+ },
+ {
+  "sym": "LNRA",
+  "dex": "pumpswap",
+  "ds": 15112.004440746347,
+  "chain": 15137.894767107238,
+  "err": null,
+  "flagged": false
+ },
+ {
+  "sym": "CLAWNEO",
+  "dex": "meteora",
+  "ds": 12671.25150473518,
+  "chain": 12577.69024708158,
+  "err": null,
+  "flagged": false
+ }
+]
