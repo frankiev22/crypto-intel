@@ -1579,3 +1579,5 @@
 {"token":"wyLQ66yopxzmqGd3YXhNPudhXS8Woq5LhgW1DKWpump","milestone":"realizable_2x","crossed_ts":1788728011,"crossed_at":"2026-09-06T20:53:31+00:00","symbol":"HOOD","value":2.9401,"kind":"multiple"}
 {"token":"2cGGaf8GKbnVnFNrgiCk8YeTiJZ3kkdv8o7U7e724b1D","milestone":"realizable_2x","crossed_ts":1788728016,"crossed_at":"2026-09-06T20:53:36+00:00","symbol":"MERT","value":5.6867,"kind":"multiple"}
 {"token":"2cGGaf8GKbnVnFNrgiCk8YeTiJZ3kkdv8o7U7e724b1D","milestone":"realizable_3x","crossed_ts":1788728016,"crossed_at":"2026-09-06T20:53:36+00:00","symbol":"MERT","value":5.6867,"kind":"multiple"}
+{"token":"G9rJzzWCRikpJetmufaNC5ngAn6NsSoZXYVJf7umUG35","milestone":"realizable_2x","crossed_ts":1788740678,"crossed_at":"2026-09-07T00:24:38+00:00","symbol":"ZEZE","value":8.3501,"kind":"multiple"}
+{"token":"G9rJzzWCRikpJetmufaNC5ngAn6NsSoZXYVJf7umUG35","milestone":"realizable_3x","crossed_ts":1788740678,"crossed_at":"2026-09-07T00:24:38+00:00","symbol":"ZEZE","value":8.3501,"kind":"multiple"}
