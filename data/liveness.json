@@ -28,9 +28,9 @@
   "detail": "0 stale outlet(s)"
  },
  "outcome.recorded": {
-  "last_ts": 1788804711,
-  "last_at": "2026-09-07T18:11:51+00:00",
-  "count": 2853,
+  "last_ts": 1788804735,
+  "last_at": "2026-09-07T18:12:15+00:00",
+  "count": 2867,
   "first_ts": 1788782831,
   "detail": null
  },
