@@ -5136,13 +5136,13 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 129,
+  "count": 130,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-07T15:12:23+00:00",
+  "last_seen": "2026-09-07T16:16:08+00:00",
   "last_escalated": "2026-09-07T10:50:10+00:00",
   "escalations": 8
  },
@@ -7354,6 +7354,14 @@
   "example": "scanner-hit: FLYWILL",
   "keys": [
    "FLYWILL"
+  ]
+ },
+ "outcome-win:fxqbrinsiahwpcunjhcsgsfaujzdyblhapump": {
+  "first_seen": "2026-09-07T16:10:29+00:00",
+  "count": 1,
+  "example": "outcome-win: 3FXq1br3iNSiaHWPCU67NjHCSgSfAu6JZD4YBLhapump",
+  "keys": [
+   "3FXq1br3iNSiaHWPCU67NjHCSgSfAu6JZD4YBLhapump"
   ]
  }
 }
