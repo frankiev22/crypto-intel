@@ -32,6 +32,7 @@ import scanner, journal, track, notify, macro, sources, findings, resolve
 import watchlist
 import news
 import paper
+import fieldguard
 
 PASS_SCORE = 70
 JOURNAL_BATCH = 10
@@ -66,6 +67,29 @@ def scan_stage(networks=("solana",), verbose=True):
         _flush()          # keep the tail, and anything a raise left behind
         n = done[0]
         passed = [r for r in rows if r["score"] >= PASS_SCORE]
+        # FIELD GUARD. Three silent-drop bugs in two days - vol_to_liq/vol_burst,
+        # the news freshness check, and mint/freeze authority - all the same
+        # shape: a field computed and never added to journal.record()'s
+        # whitelist, so it was discarded without an error. Non-fatal here,
+        # because losing a whole pass is worse than losing a column, but it
+        # pings the health lane so it cannot go unnoticed the way those did.
+        # `python fieldguard.py` exits non-zero, for CI.
+        try:
+            if rows:
+                _w = max(rows, key=lambda r: sum(1 for v in r.values() if v is not None))
+                _ok, _dropped = fieldguard.check(_w)
+                if not _ok:
+                    print(f"  !! FIELD GUARD: {_dropped} computed but not persisted")
+                    findings.record(
+                        "collector-error", "field-guard",
+                        f"{len(_dropped)} computed field(s) are not persisted: "
+                        f"{', '.join(_dropped)}",
+                        detail=("A field computed and not persisted is a field that "
+                                "does not exist. Add them to journal.record()'s "
+                                "whitelist, or to fieldguard.TRANSIENT with a reason."))
+        except Exception as e:
+            print(f"  field guard failed (non-fatal): {e}")
+
         # What the discovery window actually covered. Recorded every pass,
         # because it cannot be reconstructed afterwards.
         cov = journal.record_coverage(net, sources.LAST_WINDOW, n,
