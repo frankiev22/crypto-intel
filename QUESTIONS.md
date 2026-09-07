@@ -1,9 +1,12 @@
 # Question queue
 
 ## Answered
-- **Does liquidity trajectory beat point-in-time score?** YES. Out of sample,
-  6h: liq grew >=+50% by 1h = 31.43% realizable-2x rate (14.5x lift) vs
-  score>=70 at 0.9x. Falling liquidity: 0 wins in 470 test rows. TRAJECTORY.md.
+- **Does liquidity trajectory beat point-in-time score?** ~~YES, 14.5x lift~~
+  **NO. RETRACTED 2026-09-04 - see "Resolved" below.** This entry is kept
+  struck through rather than removed because it was quoted to Frank as a real
+  result before the leakage was found. The feature was measured at 1h and the
+  outcome from entry, so 11 of 11 out-of-sample wins were already >=2x before
+  the decision point. Do not trade this.
 - **What does `total_reserve_in_usd` measure?** It aggregates across pools
   (FLORK pools summed $0.0763 vs reported $0.0605). The GRASS "contradiction"
   is volume-as-trailing-24h-sum vs reserve-as-snapshot. Both true at once.

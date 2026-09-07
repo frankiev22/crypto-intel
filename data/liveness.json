@@ -1,9 +1,79 @@
 {
  "detector.drift": {
-  "last_ts": 1788782114,
-  "last_at": "2026-09-07T11:55:14+00:00",
-  "count": 1,
+  "last_ts": 1788790174,
+  "last_at": "2026-09-07T14:09:34+00:00",
+  "count": 10,
   "first_ts": 1788782114,
   "detail": "stable"
+ },
+ "scan.observations": {
+  "last_ts": 1788790039,
+  "last_at": "2026-09-07T14:07:19+00:00",
+  "count": 257,
+  "first_ts": 1788782726,
+  "detail": null
+ },
+ "fieldguard.check": {
+  "last_ts": 1788790040,
+  "last_at": "2026-09-07T14:07:20+00:00",
+  "count": 3,
+  "first_ts": 1788782815,
+  "detail": null
+ },
+ "news.freshness": {
+  "last_ts": 1788790173,
+  "last_at": "2026-09-07T14:09:33+00:00",
+  "count": 9,
+  "first_ts": 1788782822,
+  "detail": "0 stale outlet(s)"
+ },
+ "outcome.recorded": {
+  "last_ts": 1788790192,
+  "last_at": "2026-09-07T14:09:52+00:00",
+  "count": 1207,
+  "first_ts": 1788782831,
+  "detail": null
+ },
+ "milestone.mcap": {
+  "last_ts": 1788790163,
+  "last_at": "2026-09-07T14:09:23+00:00",
+  "count": 118,
+  "first_ts": 1788782876,
+  "detail": "mcap_100k EFN2M6jMxVP7QNazN5fFp2wsBMEbYvZeyety28v1GTnq"
+ },
+ "milestone.realizable": {
+  "last_ts": 1788790122,
+  "last_at": "2026-09-07T14:08:42+00:00",
+  "count": 5,
+  "first_ts": 1788783020,
+  "detail": "realizable_3x 4itze1gA35GCSUDZbDGxeDg1fqbVMURJpDdWFSH4U3Dg"
+ },
+ "watchlist.sweep": {
+  "last_ts": 1788786917,
+  "last_at": "2026-09-07T13:15:17+00:00",
+  "count": 1,
+  "first_ts": 1788786917,
+  "detail": null
+ },
+ "milestone.graduated": {
+  "last_ts": 1788786923,
+  "last_at": "2026-09-07T13:15:23+00:00",
+  "count": 1,
+  "first_ts": 1788786923,
+  "detail": "graduated A9p6mV1hSkAtq9bCQHEbct6fY3TATAwcyjFXfaRbdmaJ"
+ },
+ "paper.sweep": {
+  "last_ts": 1788786927,
+  "last_at": "2026-09-07T13:15:27+00:00",
+  "count": 1,
+  "first_ts": 1788786927,
+  "detail": null
+ },
+ "paper.close": {
+  "last_ts": 1788786955,
+  "last_at": "2026-09-07T13:15:55+00:00",
+  "count": 7,
+  "first_ts": 1788786929,
+  "detail": "target"
  }
 }
