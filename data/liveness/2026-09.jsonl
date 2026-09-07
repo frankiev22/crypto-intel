@@ -3242,3 +3242,30 @@
 {"name": "outcome.recorded", "ts": 1788804603, "n": 1, "detail": null}
 {"name": "outcome.recorded", "ts": 1788804605, "n": 1, "detail": null}
 {"name": "outcome.recorded", "ts": 1788804606, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804643, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804645, "n": 1, "detail": null}
+{"name": "news.freshness", "ts": 1788804646, "n": 1, "detail": "0 stale outlet(s)"}
+{"name": "detector.drift", "ts": 1788804647, "n": 1, "detail": "stable"}
+{"name": "detector.drift", "ts": 1788804655, "n": 1, "detail": "lf-test"}
+{"name": "outcome.recorded", "ts": 1788804655, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804657, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804658, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804660, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804662, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804663, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804665, "n": 1, "detail": null}
+{"name": "milestone.mcap", "ts": 1788804665, "n": 1, "detail": "mcap_100k 4ZtdpbuoPxLDpAJ45YiEYx6Kc34LaDsP6QXzcgoutMCg"}
+{"name": "milestone.mcap", "ts": 1788804665, "n": 1, "detail": "mcap_200k 4ZtdpbuoPxLDpAJ45YiEYx6Kc34LaDsP6QXzcgoutMCg"}
+{"name": "milestone.mcap", "ts": 1788804665, "n": 1, "detail": "mcap_1m 4ZtdpbuoPxLDpAJ45YiEYx6Kc34LaDsP6QXzcgoutMCg"}
+{"name": "milestone.mcap", "ts": 1788804665, "n": 1, "detail": "mcap_5m 4ZtdpbuoPxLDpAJ45YiEYx6Kc34LaDsP6QXzcgoutMCg"}
+{"name": "outcome.recorded", "ts": 1788804667, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804668, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804669, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804671, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804674, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804676, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804677, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804679, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804680, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804682, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1788804683, "n": 1, "detail": null}

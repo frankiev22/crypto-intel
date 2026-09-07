@@ -132,13 +132,15 @@ def beat(name, n=1, detail=None):
                      "detail": detail}
         os.makedirs(os.path.dirname(REG), exist_ok=True)
         tmp = REG + ".tmp"
-        with open(tmp, "w", encoding="utf-8") as f:
+        with open(tmp, "w", encoding="utf-8", newline="
+") as f:
             json.dump(reg, f, indent=1, ensure_ascii=False)
         os.replace(tmp, REG)          # atomic; a killed pass cannot truncate it
         os.makedirs(LEDGER_DIR, exist_ok=True)
         path = os.path.join(LEDGER_DIR,
                             dt.datetime.now(dt.timezone.utc).strftime("%Y-%m") + ".jsonl")
-        with open(path, "a", encoding="utf-8") as f:
+        with open(path, "a", encoding="utf-8", newline="
+") as f:
             f.write(json.dumps({"name": name, "ts": now, "n": n,
                                 "detail": detail}, ensure_ascii=False) + "\n")
         return True
