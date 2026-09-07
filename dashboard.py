@@ -51,12 +51,23 @@ def usd(v, unknown="unknown"):
     None renders "unknown" in italics; a real zero renders "$0". Printing
     "$0.0000" for both is how an absent reading gets read as a real one, which
     is the failure class that has cost this project five separate findings.
+
+    There is a third case, and it bit on the first build: a measured value too
+    small to survive four decimals also printed "$0.0000". That is the same
+    collision wearing a different hat - it reads as an exact zero AND carries
+    four digits of precision the number does not have. Anything under a
+    hundredth of a cent renders as a BOUND, "<$0.0001", so it cannot be
+    mistaken for either a measurement or a zero.
     """
     v = _f(v)
     if v is None:
         return unknown
     if v == 0:
         return "$0"
+    if 0 < v < 0.0001:
+        return "&lt;$0.0001"
+    if v < 0:
+        return "unknown"          # negative depth is not a reading, it is a bug
     if v >= 1_000_000:
         return f"${v/1_000_000:,.2f}M"
     if v >= 1000:
