@@ -243,6 +243,10 @@ LANES = {
     # already in _seen.json. Keyed per OUTLET so four independent feeds cannot
     # collapse into one suppressed alert.
     "news-stale": "health",
+    # The detector's own shelf life. The template pools share depth/liq to five
+    # decimals, which is one operator running one script; when that constant
+    # moves, recall falls and nothing else would say so.
+    "detector-drift": "health",
     "correction": "outcome",
 }
 LANE_BUDGET = {

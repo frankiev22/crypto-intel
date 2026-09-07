@@ -153,7 +153,98 @@ def line(r=None):
     return "\n".join(ls)
 
 
+# ---------------------------------------------------------------------------
+# TEMPLATE DRIFT MONITOR.
+#
+# The caught pools share `depth/liq = 0.00796` to FIVE DECIMAL PLACES across
+# CHAD, GME, JERSEY, ZODL, cTERX and S500. That is not a family of similar
+# frauds, it is one operator running one script with one hard-coded ratio.
+#
+# Which means D1's recall has an expiry date nobody is watching. The moment the
+# operator changes the constant - or stops, or is replaced - the fingerprint
+# moves and recall falls silently. A detector with no drift monitor is a
+# detector with an unknown shelf life.
+#
+# Two things are watched, and they fail in different directions:
+#
+#   the CONSTANT moves   the script changed. Our labels are still right, but
+#                        anything keyed to the old ratio is now stale.
+#   the SHARE falls      flagged rows stop matching the constant. Either the
+#                        operator diversified or a second operator appeared.
+#
+# Neither is an error. Both are notice that the thing being measured has
+# changed underneath the measurement.
+# ---------------------------------------------------------------------------
+TEMPLATE_RATIO = float(os.environ.get("CRYPTO_TEMPLATE_RATIO", "0.00796"))
+TEMPLATE_TOL = float(os.environ.get("CRYPTO_TEMPLATE_TOL", "0.0002"))
+# Below this share of flagged rows matching the constant, the population the
+# detector was characterised on is no longer the population it is seeing.
+MIN_TEMPLATE_SHARE = float(os.environ.get("CRYPTO_MIN_TEMPLATE_SHARE", "0.50"))
+
+
+def template_drift(observations=None, min_n=10):
+    """Is the fingerprint still the fingerprint? Returns a dict, never raises.
+
+    `verdict` is one of: insufficient_n, stable, constant_moved, share_fell.
+    """
+    if observations is None:
+        import journal
+        observations = journal.observations()
+    rows = labelled(observations)
+    # D1 ONLY. The constant 0.00796 is D1's population's fingerprint; D2 finds
+    # a different mechanism whose median ratio is 0.00016. Mixing them makes the
+    # share fall by construction and reports drift that is not there - which is
+    # exactly what the first version of this function did.
+    flagged = [(o, x) for o, x in rows if d1(o)]
+    if len(flagged) < min_n:
+        return {"verdict": "insufficient_n", "flagged": len(flagged),
+                "min_n": min_n, "note": f"need {min_n} flagged rows to judge drift"}
+    ratios = sorted(x for _, x in flagged)
+    n = len(ratios)
+    med = ratios[n // 2] if n % 2 else (ratios[n // 2 - 1] + ratios[n // 2]) / 2
+    matching = [x for x in ratios if abs(x - TEMPLATE_RATIO) <= TEMPLATE_TOL]
+    share = len(matching) / n
+    out = {"flagged": n, "median_ratio": med, "expected_ratio": TEMPLATE_RATIO,
+           "matching_constant": len(matching), "share": share,
+           "p25": ratios[int(0.25 * (n - 1))], "p75": ratios[int(0.75 * (n - 1))],
+           "verdict": "stable"}
+    if share < MIN_TEMPLATE_SHARE:
+        out["verdict"] = "share_fell"
+        out["note"] = (f"only {100*share:.0f}% of flagged rows still sit at "
+                       f"{TEMPLATE_RATIO} +/- {TEMPLATE_TOL} (was ~100%). Either the "
+                       f"operator diversified or a second one appeared; D1's "
+                       f"recall was characterised on the old population.")
+    elif abs(med - TEMPLATE_RATIO) > TEMPLATE_TOL:
+        out["verdict"] = "constant_moved"
+        out["note"] = (f"median flagged ratio has moved to {med:.5f} from "
+                       f"{TEMPLATE_RATIO}. The script changed.")
+    return out
+
+
+def check_drift(record=None, verbose=True):
+    """Emit a finding when the fingerprint moves. Health lane, keyed per verdict."""
+    d = template_drift()
+    if verbose:
+        if d["verdict"] == "insufficient_n":
+            print(f"  template drift: {d['note']} ({d['flagged']} flagged)")
+        else:
+            print(f"  template drift: {d['verdict']} - {d['matching_constant']}/"
+                  f"{d['flagged']} at {TEMPLATE_RATIO} "
+                  f"(median {d['median_ratio']:.5f})")
+    if record and d["verdict"] in ("constant_moved", "share_fell"):
+        record("detector-drift", d["verdict"],
+               f"template fingerprint {d['verdict'].replace('_',' ')}: "
+               f"{d['matching_constant']}/{d['flagged']} flagged rows match "
+               f"{TEMPLATE_RATIO}, median {d['median_ratio']:.5f}",
+               detail=d.get("note", "") + " Recall was characterised on the "
+                      "previous population and should be re-measured before "
+                      "any figure from it is quoted again.")
+    return d
+
+
 if __name__ == "__main__":
     import sys
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     print(line())
+    print()
+    check_drift()

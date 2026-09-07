@@ -85,3 +85,45 @@
   passes share one value is wasted work, but the fix is granularity, not
   uncapping - there is no evidence the ceiling is clipping a real signal, since
   the ceiling band performs worst.
+
+---
+
+## Logged, not built: the pump.fun launch bot
+
+2026-09-07. Frank has an idea banked for a bot that mints coins on pump.fun the
+moment something goes viral. **It is not being built and no part of it is being
+scaffolded.** This entry exists so that if he revives it, nobody re-derives what
+already exists.
+
+Two components in this repo would be the ones it needed:
+
+- **the fraud detector** (`detector.py`, `plausibility.py`) — D1 and D2, the
+  conjunctions and their measured precision. Whatever the bot is, knowing which
+  pools are fake is the same problem.
+- **the narrative-cluster work** (`tickers.py`, `news.py`) — ticker variant
+  counts, impersonation detection, and the per-outlet news feed that would be
+  the "something went viral" trigger.
+
+Both were built for the opposite purpose: to identify what is fake and what is
+being impersonated. That they would also be the inputs to a launcher is worth
+recording plainly rather than discovering later.
+
+Nothing here is a recommendation to build it. Standing instruction: refer it
+back rather than starting it.
+
+## D1's first false positive, 2026-09-07 — and why it is NOT being fixed
+
+`Anthropic`, orca, `liq $3,120.67 / fdv $1,658.00 = 1.8822`, 21 buys, 0 sells,
+**depth/liq 0.52060** — a textbook healthy two-sided pool. It cleared D1 because
+`liq/fdv >= 0.95` is a floor, and 1.88 clears a floor.
+
+The template population clusters at `liq/fdv` **median 1.0020** (p25 1.0003,
+p75 1.0018) — *at* one, not above it. A ratio of 1.88 means the cash side
+outweighs the token side, which is the opposite of "the supply is the pool".
+
+**The obvious refinement is a band rather than a floor**, e.g.
+`0.95 <= liq/fdv <= 1.10`. It is deliberately NOT applied. Tuning a rule on the
+first false positive it produces is in-sample fitting — the exact error that
+killed four earlier findings — and D1's whole value is that it was derived
+before the data existed. If this shape recurs, it earns the change with
+evidence. Until then the honest number is precision 95.83% [79.8, 99.3], n=24.

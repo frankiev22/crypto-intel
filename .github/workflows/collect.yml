@@ -58,10 +58,30 @@ jobs:
           SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
           CRYPTO_JOURNAL_SECRET: ${{ secrets.CRYPTO_JOURNAL_SECRET }}
           CRYPTO_DISCORD_WEBHOOK: ${{ secrets.CRYPTO_DISCORD_WEBHOOK }}
-          # The request itself costs ~0.2s, so this still sits near 240 req/min
-          # against Dexscreener's 300/min. It is what keeps a run inside one
-          # billable minute on a private repo.
-          CRYPTO_HTTP_PACE_S: '0.05'
+          # WAS '0.05'. CORRECTED 2026-09-07.
+          #
+          # The old comment claimed that sat "near 240 req/min against
+          # Dexscreener's 300/min". Both halves were wrong. A 0.05s sleep plus
+          # a measured ~0.116s request is ~0.166s per call, which is roughly
+          # **360 req/min**, and the 300/min figure it was measured against is
+          # not documented anywhere in Dexscreener's current API reference.
+          #
+          # What IS documented is 60 req/min - for /token-profiles, /ads,
+          # /metas and /community-takeovers. The endpoints this project uses,
+          # /latest/dex/pairs and /latest/dex/tokens, have NO stated limit and
+          # publish NO rate-limit headers, so there is no way to discover the
+          # real ceiling except by being cut off.
+          #
+          # An unstated limit is not permission. We pace to the only published
+          # number. This source is a single point of failure twice over - it
+          # supplies collection AND the reserve split that is ground truth for
+          # the fraud detector - so losing it would not merely stop the data,
+          # it would make the detector unfalsifiable.
+          #
+          # Costs nothing: 607 calls/pass measured, 3,600/hour available at
+          # 60/min, 83% headroom. A full pass goes from ~2min to ~10min, which
+          # still fits the 15-minute job timeout above.
+          CRYPTO_HTTP_PACE_S: '1.0'
           # Dexscreener drops far more lookups than a budget of 8 can service
           # (125 drops in one measured pass). A pass takes ~60s against the
           # 900s ceiling below, so the hosted runner can afford to resolve

@@ -14,20 +14,49 @@ UA = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
 # --------------------------------------------------------------------------
 # Pacing.
 #
-# Every caller that loops over pairs sleeps between requests so we stay well
-# inside Dexscreener's published 300 req/min on the pairs endpoint. The value
-# lives here rather than being retyped as a bare 0.25 in scanner and track,
-# because those two are the same rate budget and drifting them apart is how a
-# 429 storm starts.
+# Every caller that loops over pairs sleeps between requests. The value lives
+# here rather than being retyped as a bare number in scanner and track, because
+# those are the same rate budget and drifting them apart is how a 429 storm
+# starts.
 #
-# CRYPTO_HTTP_PACE_S overrides it. The hosted runner sets a smaller value: the
-# request itself already costs ~0.2s, so 0.05 still leaves us near 240 req/min,
-# and it is what keeps a scheduled run inside one billable minute.
+# CRYPTO_HTTP_PACE_S overrides it, and the override is the thing to watch: the
+# GitHub workflow set it to 0.05 - about 360 req/min once the ~0.116s request
+# is counted - while its own comment claimed 240 against a 300 limit. Both
+# numbers were wrong and neither was ever sourced. Corrected 2026-09-07.
 #
 # GeckoTerminal is a SEPARATE, stricter budget (~30/min unauthenticated) and
 # keeps its own fixed sleep below. It must not be sped up.
 # --------------------------------------------------------------------------
-PACE_S = float(os.environ.get("CRYPTO_HTTP_PACE_S", "0.25"))
+#
+# RESOLVED 2026-09-07, and the old comment above was resting on an unsourced
+# number. What was actually checked:
+#
+#   * Dexscreener's current API reference documents **60 requests per minute**,
+#     but ONLY for /token-profiles, /community-takeovers, /ads and /metas -
+#     endpoints this project does not use.
+#   * The endpoints we DO use - /latest/dex/pairs and /latest/dex/tokens - have
+#     **no rate limit stated anywhere in the current documentation.** They are
+#     linked as OpenAPI specs with no limit shown.
+#   * **No rate-limit headers are published on any endpoint.** Checked live on
+#     all three: no x-ratelimit-*, no retry-after, nothing. The server gives no
+#     runtime signal, so there is no way to discover the limit by observation
+#     short of being banned.
+#   * We have never recorded a 429 from Dexscreener.
+#
+# AN UNSTATED LIMIT IS NOT PERMISSION. The only published number that could
+# apply is 60/min, so that is what we pace to. Running at 300 because nothing
+# has stopped us is exactly the reasoning that gets an API key revoked, and
+# this source is a single point of failure twice over: it supplies collection
+# AND the reserve split that is ground truth for the fraud detector. Losing it
+# would not just stop the data, it would make the detector unfalsifiable.
+#
+# WHAT IT COSTS: nothing. Measured 2026-09-07 - 607 Dexscreener calls per pass
+# (421 outcomes, 105 enrichment, 60 watchlist, 21 paper) against an hourly
+# budget of 3,600 at 60/min. That is 83% headroom. A single-command full pass
+# now takes ~10 minutes instead of 2, which exceeds the 178s runner cap, but
+# `collect.py --stage` already splits it and EVERY STAGE FITS: scan 105s,
+# watchlist 60s, paper 21s, each horizon ~140s.
+PACE_S = float(os.environ.get("CRYPTO_HTTP_PACE_S", "1.0"))
 
 def pace():
     """Sleep the shared inter-request gap. Call between paged fetches."""
