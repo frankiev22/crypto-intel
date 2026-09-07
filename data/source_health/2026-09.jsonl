@@ -460,3 +460,13 @@
 {"ts":1788779549,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
 {"ts":1788779648,"dexscreener_ok":2,"dexscreener_dropped":6,"geckoterminal_ok":4,"geckoterminal_fail":2,"onchain_ok":8,"onchain_fail":0,"unresolved":2}
 {"ts":1788779786,"dexscreener_ok":0,"dexscreener_dropped":8,"geckoterminal_ok":5,"geckoterminal_fail":3,"onchain_ok":8,"onchain_fail":0,"unresolved":3}
+{"ts":1788671658,"dexscreener_ok":6,"dexscreener_dropped":71,"geckoterminal_ok":9,"geckoterminal_fail":62,"onchain_ok":77,"onchain_fail":0,"unresolved":62}
+{"ts":1788687999,"dexscreener_ok":14,"dexscreener_dropped":60,"geckoterminal_ok":4,"geckoterminal_fail":56,"onchain_ok":74,"onchain_fail":0,"unresolved":56}
+{"ts":1788700496,"dexscreener_ok":11,"dexscreener_dropped":62,"geckoterminal_ok":5,"geckoterminal_fail":57,"onchain_ok":73,"onchain_fail":0,"unresolved":57}
+{"ts":1788712341,"dexscreener_ok":8,"dexscreener_dropped":67,"geckoterminal_ok":11,"geckoterminal_fail":56,"onchain_ok":75,"onchain_fail":0,"unresolved":56}
+{"ts":1788720192,"dexscreener_ok":8,"dexscreener_dropped":67,"geckoterminal_ok":3,"geckoterminal_fail":64,"onchain_ok":75,"onchain_fail":0,"unresolved":64}
+{"ts":1788728107,"dexscreener_ok":5,"dexscreener_dropped":72,"geckoterminal_ok":4,"geckoterminal_fail":68,"onchain_ok":77,"onchain_fail":0,"unresolved":68}
+{"ts":1788733822,"dexscreener_ok":10,"dexscreener_dropped":66,"geckoterminal_ok":6,"geckoterminal_fail":60,"onchain_ok":76,"onchain_fail":0,"unresolved":60}
+{"ts":1788740823,"dexscreener_ok":5,"dexscreener_dropped":73,"geckoterminal_ok":9,"geckoterminal_fail":64,"onchain_ok":78,"onchain_fail":0,"unresolved":64}
+{"ts":1788758503,"dexscreener_ok":8,"dexscreener_dropped":69,"geckoterminal_ok":5,"geckoterminal_fail":64,"onchain_ok":77,"onchain_fail":0,"unresolved":64}
+{"ts":1788778259,"dexscreener_ok":12,"dexscreener_dropped":64,"geckoterminal_ok":7,"geckoterminal_fail":57,"onchain_ok":76,"onchain_fail":0,"unresolved":57}
