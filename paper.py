@@ -317,20 +317,63 @@ def open_positions():
 
 
 def verify():
-    """Walk the chain. Returns (ok, first_bad_index, message)."""
+    """Walk the chain. Returns (ok, first_bad_index, message).
+
+    TWO DIFFERENT FAILURES, and conflating them would be a lie in the direction
+    that matters. Discovered 2026-09-07 when merging the hosted runner's history:
+
+      TAMPERING     a row's content no longer matches its own hash, or a row was
+                    removed or reordered. The ledger is not trustworthy.
+
+      A FORK        two writers - Frank's machine and the hosted runner - each
+                    appended independently, so two rows share a `seq` and chain
+                    to different predecessors. Every row is still internally
+                    valid and nothing is lost; the log simply is not a single
+                    line any more.
+
+    A hash chain with one `prev` pointer cannot survive concurrent writers, and
+    union-merging one across two machines produces a fork by construction. The
+    honest response is to REPORT the fork, not to re-chain the rows: rewriting
+    the hashes so verify() passes would forge exactly the property the chain
+    exists to prove.
+
+    So per-row integrity is checked for every row, and a broken link is only
+    called tampering when the rows involved do not look like a merge fork.
+    """
     rows = _read()
-    prev = None
+    # 1. per-row integrity - this catches editing regardless of any fork
     for i, r in enumerate(rows):
         if "_unparseable" in r:
             return False, i, f"row {i} is not valid JSON"
-        if r.get("prev") != prev:
-            return False, i, (f"row {i} says prev={str(r.get('prev'))[:12]}, "
-                              f"chain says {str(prev)[:12]} - a row before this "
-                              "was edited, reordered or removed")
         if r.get("hash") != _hash(r):
-            return False, i, f"row {i} content does not match its own hash - edited in place"
+            return False, i, (f"row {i} content does not match its own hash - "
+                              "edited in place")
+    # 2. linkage
+    by_hash = {r.get("hash") for r in rows}
+    seqs = {}
+    for r in rows:
+        seqs.setdefault(r.get("seq"), []).append(r)
+    forks = sorted(s for s, rs in seqs.items() if len(rs) > 1)
+    prev = None
+    breaks = []
+    for i, r in enumerate(rows):
+        if r.get("prev") != prev:
+            breaks.append(i)
         prev = r.get("hash")
-    return True, None, f"chain intact, {len(rows)} records"
+    if not breaks:
+        return True, None, f"chain intact, {len(rows)} records"
+    # A break whose stated `prev` is some other row we hold is a re-parenting -
+    # the signature of a merge, not of a deletion.
+    reparent = all((rows[i].get("prev") is None or rows[i].get("prev") in by_hash)
+                   for i in breaks)
+    if forks and reparent:
+        return (True, breaks[0],
+                f"chain FORKED at seq {forks}, {len(rows)} records, every row "
+                f"individually valid and none missing - two writers appended "
+                f"concurrently and the histories were merged. Not tampering.")
+    return False, breaks[0], (
+        f"row {breaks[0]} says prev={str(rows[breaks[0]].get('prev'))[:12]} which "
+        f"is not a row we hold - something was edited, reordered or removed")
 
 
 def summary():

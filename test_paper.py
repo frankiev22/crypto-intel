@@ -94,6 +94,42 @@ check("both revoked DOES qualify",
       paper.qualifies(dict(base, can_mint=False, can_freeze=False))[0] is True)
 
 print()
+print("=" * 70)
+print("4. a merge fork is not tampering, but tampering is still caught")
+print("=" * 70)
+import json as _json
+paper.LEDGER = os.path.join(tempfile.mkdtemp(), "ledger.jsonl")
+a = paper.open_entry("TESTaaa1111111111111111111111111111111111111", symbol="A",
+                     price=0.001, exit_depth=5000, liq=1, fdv=1, score=80,
+                     venue_type="amm", dex_id="t", pair="pA")
+b = paper.open_entry("TESTbbb2222222222222222222222222222222222222", symbol="B",
+                     price=0.001, exit_depth=5000, liq=1, fdv=1, score=80,
+                     venue_type="amm", dex_id="t", pair="pB")
+check("a clean chain verifies", paper.verify()[0])
+
+# simulate the merge: a second writer's row that chains to the FIRST row, so
+# two rows share seq=1 and one re-parents. Nothing edited, nothing removed.
+rows = [_json.loads(l) for l in open(paper.LEDGER, encoding="utf-8")]
+forked = dict(rows[1]); forked["contract"] = "TESTccc333333333333333333333333333333333333"
+forked["symbol"] = "C"; forked["prev"] = rows[0]["hash"]; forked["seq"] = 1
+forked["hash"] = paper._hash(forked)
+with open(paper.LEDGER, "a", encoding="utf-8") as f:
+    f.write(_json.dumps(forked, sort_keys=True) + "\n")
+ok, _, msg = paper.verify()
+check("a concurrent-writer fork verifies as OK", ok, msg)
+check("and is reported as a fork, not as intact", "FORKED" in msg, msg[:70])
+
+# now actually tamper: edit a row's content without rehashing
+rows = [_json.loads(l) for l in open(paper.LEDGER, encoding="utf-8")]
+rows[0]["entry_price_usd"] = 999999.0
+with open(paper.LEDGER, "w", encoding="utf-8") as f:
+    for r in rows:
+        f.write(_json.dumps(r, sort_keys=True) + "\n")
+ok2, _, msg2 = paper.verify()
+check("an edited row still FAILS verification", ok2 is False, msg2[:70])
+check("and says it was edited in place", "hash" in msg2, msg2[:70])
+
+print()
 bad = [r for r in R if not r[1]]
 print(f"{len(R) - len(bad)}/{len(R)} passed")
 sys.exit(1 if bad else 0)
