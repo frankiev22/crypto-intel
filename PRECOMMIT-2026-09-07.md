@@ -191,3 +191,29 @@ reserves means replaying transactions. Helius's free tier does not change this.
 So the first 10 closes are permanently unrepriceable. `paper._close()` now
 records `chain_depth_usd` at the moment of close. One call now versus a ledger
 that can never be audited.
+
+---
+
+# H2 ANCHOR WIDENED, as instructed — the band holds and hardens
+
+18 fluxbeam pools decoded exactly.
+
+| | n | dexscreener ÷ on-chain |
+|---|---:|---|
+| agreeing (anchor) | 2 | 1.000x, 1.018x |
+| **overstated** | **13** | min **778.9x**, median **788.4x**, max **794.2x** |
+
+**13 of 13 fall inside the original 700–850 band. None outside.** The median
+moved 781.6 → 788.4, which tracks SOL moving $104.15 → $104.25 rather than any
+change in the template.
+
+**The hardest evidence yet that this is one script:** among the 13 overstated
+pools there are **two distinct quote-reserve values** — 0.1280 SOL in twelve of
+them and 0.1279 in the thirteenth. Not a family of similar frauds. One
+hard-coded number, replicated.
+
+**The anchor is still thin at 2 pools, and that stays the honest caveat.** It is
+qualitatively stronger than it was, though: ETHICS was $7,633 on the first read
+and $10,195 on this one, and Dexscreener agreed at *both* points (1.013x, then
+1.000x). The decoder tracks a live pool as it changes, in lockstep. That is a
+better anchor than two static agreements, but it is still two pools.

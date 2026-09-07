@@ -90,3 +90,51 @@ scores at or above 70.
 Deferred, as instructed. It needs live milestone labels, and those only began
 accruing on 2026-09-07 after the mcap tracker was found never to have fired.
 Not testable until that set is meaningful.
+
+---
+
+# RESULTS — all three underpowered. Floor held.
+
+Computed after the thresholds above; nothing above was edited.
+
+| test | groups | rate | interval | verdict |
+|---|---|---|---|---|
+| **H5 primary** | score 100 | 6/24 = 25.0% | [12.0, 44.9] | **UNDERPOWERED** |
+| | score <100 | 7/16 = 43.8% | [23.1, 66.8] | both under n=30 |
+| **H5 secondary** | score 100 | 6/24 = 25.0% | [12.0, 44.9] | **UNDERPOWERED** |
+| | score 70–99 | 0/7 = 0.0% | [0.0, 35.4] | 70–99 far under |
+| **H6** | score <70 | 7/9 = 77.8% | [45.3, 93.7] | **UNDERPOWERED** |
+| | score ≥70 | 6/31 = 19.4% | [9.2, 36.3] | <70 far under |
+
+54 verified outcomes, 14 excluded as D1/D2-flagged, 40 usable.
+
+## H6 is the trap, and it was worth looking at twice
+
+On its face H6 is a **4x effect with non-overlapping 95% intervals** — 77.8%
+[45.3, 93.7] against 19.4% [9.2, 36.3]. Under a weaker rule than the one fixed
+in advance, that would have been reported as the inversion confirmed.
+
+It is not a result, for three separate reasons, and each would be enough:
+
+1. **n=9 against a pre-committed floor of 30.** Not lowered.
+2. **The 9 rows are 6 distinct tokens; the 7 wins are 5.** Three tokens each
+   appear twice, as the 1h and 6h horizon of the same pool — one token measured
+   at two moments, not two observations. One pair reads 3.192x at *both*
+   horizons. **Effective independent n is 6.**
+3. **Every row in the band has score exactly 50.** The "<70 band" contains a
+   single score value. There is no gradient here to invert; it is one score
+   compared against another, dressed as a range.
+
+## Amendment for the next run, declared now rather than after
+
+**The floor should count distinct tokens, not rows.** My pre-commitment said
+n≥30 rows, and rows double-count a token measured at several horizons — which
+inflates n by roughly 1.5x in this sample. That is a flaw in the threshold I
+wrote, not in the data. The next run uses **n≥30 distinct tokens per group.**
+Stated here before the retest so it cannot be tuned to a result.
+
+## When these become testable
+
+<70 rows accrue at ~9/day → the row floor of 30 arrives in **~2.3 days**. On the
+stricter distinct-token floor it is longer. **No result before 2026-09-10**, and
+the scanner is not changed before then regardless.
