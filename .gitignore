@@ -28,3 +28,8 @@ data/.heartbeat.json
 # Derived, rebuildable from data/observations, and unmergeable between the
 # two runners - tickers._load() regenerates it on demand.
 data/tickers/index.json
+
+# Atomic-write scratch file from liveness.beat(). It exists for microseconds
+# between write and os.replace, and a `git add -A` that lands in that window
+# fails outright - which blocked a merge with the runner on 2026-09-07.
+*.tmp
