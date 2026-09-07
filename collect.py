@@ -202,7 +202,11 @@ def main():
     # one feed going quiet while the others keep publishing, which is visible on
     # a weekend too. Thresholds sit above every gap observed in 21 days.
     try:
-        news.check_freshness(record=findings.record, verbose=verbose)
+        # NOTE: this block lives in main(), which has no `verbose` local.
+        # Passing one here raised NameError on every pass from 2026-09-06
+        # 17:11Z and silently killed the freshness check - the very class
+        # of silent failure it exists to catch.
+        news.check_freshness(record=findings.record, verbose=True)
     except Exception as e:
         print(f"  news-freshness check failed (non-fatal): {e}")
 

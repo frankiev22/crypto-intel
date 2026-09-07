@@ -58,6 +58,16 @@ by 125.6–125.8x.
 
 ## Shipping
 
+**10a. A win must clear a GATE, not a checklist.** *Added 2026-09-07, after the
+fourth headline result evaporated.* `journal.verify_win()` runs inside
+`record_outcome()` before any row is written, and records each failed check by
+name. Pair identity, depth measured, depth floor, sell side, source agreement,
+plausibility, elapsed recorded, alive. **Treat every win as contaminated until
+specifically proven otherwise** — the four that died (718x, liquidity gradient,
+low-score inversion, half the win record) all had checks that existed and were
+not applied. Adding a check to the gate applies it everywhere at once; a
+checklist depends on someone remembering, which caught it about half the time.
+
 **10. No detector filters, scores or backfills until it reports precision and
 recall with counts against a labelled set built from reserves**, both classes.
 A filter with an unmeasured false-positive rate is worse than none, because it

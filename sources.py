@@ -150,11 +150,43 @@ def trending_pools(network="solana"):
     return _get(f"https://api.geckoterminal.com/api/v2/networks/{network}/trending_pools").get("data", [])
 
 # ---------- enrichment ----------
-def dexscreener_pair(chain, pair_address):
+def dexscreener_pair(chain, pair_address, require_match=True):
+    """One pair, and BY DEFAULT it is the pair you asked for.
+
+    P0 FIX 2026-09-07. This used to `return pairs[0]` with no check that the
+    returned pairAddress was the one requested. Nothing in the primary outcome
+    path then guaranteed that the pool we priced was the pool we held, and 85 of
+    165 realizable 3x+ wins (51.5%) sit in a single $1.2M-$1.35M liquidity band
+    across 53 different symbols - the signature of many tokens being priced off
+    one shared reference pool. Every one of those rows came through THIS
+    function with no reasons recorded; the existing `cross_pair_fallback` guard
+    only ever covered the fallback branch.
+
+    The list is SEARCHED for the requested address rather than rejected
+    outright, because a multi-pair response containing ours is fine - we just
+    have to pick ours instead of whichever happened to sort first.
+    """
     d = _get(f"https://api.dexscreener.com/latest/dex/pairs/{chain}/{pair_address}")
     pairs = d.get("pairs") or d.get("pair")
-    if isinstance(pairs, list): return pairs[0] if pairs else None
-    return pairs
+    if isinstance(pairs, dict):
+        pairs = [pairs]
+    if not pairs:
+        return None
+    if not require_match:
+        return pairs[0]
+    for p in pairs:
+        if (p or {}).get("pairAddress") == pair_address:
+            return p
+    # Asked for one pool, given another. That is not our series and must never
+    # be divided into our entry price.
+    LAST_PAIR_MISMATCH.append({"asked": pair_address,
+                               "got": [(p or {}).get("pairAddress") for p in pairs]})
+    return None
+
+
+# Pair-identity misses seen this process. Read by track.py so a mismatch is
+# reported rather than silently indistinguishable from a delisting.
+LAST_PAIR_MISMATCH = []
 
 def dexscreener_token(token_address):
     d = _get(f"https://api.dexscreener.com/latest/dex/tokens/{token_address}")

@@ -36,10 +36,14 @@
  },
  "scanner-hit:meow": {
   "first_seen": "2026-08-24T02:07:11+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: MEOW",
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-07T02:10:54+00:00",
+  "last_escalated": "2026-09-07T02:10:54+00:00",
+  "keys": [
+   "MEOW"
+  ],
+  "escalations": 1
  },
  "scanner-hit:crypt": {
   "first_seen": "2026-08-24T02:07:11+00:00",
@@ -206,14 +210,14 @@
  },
  "scanner-hit:mango": {
   "first_seen": "2026-08-24T10:08:50+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: Mango",
-  "last_seen": "2026-09-06T13:12:50+00:00",
-  "last_escalated": "2026-09-06T13:12:50+00:00",
+  "last_seen": "2026-09-06T20:12:24+00:00",
+  "last_escalated": "2026-09-06T20:12:24+00:00",
   "keys": [
    "MANGO"
   ],
-  "escalations": 1
+  "escalations": 2
  },
  "scanner-hit:ridark": {
   "first_seen": "2026-08-24T10:08:50+00:00",
@@ -1353,10 +1357,15 @@
  },
  "scanner-hit:claude": {
   "first_seen": "2026-08-29T00:08:04+00:00",
-  "count": 1,
+  "count": 3,
   "example": "scanner-hit: claude",
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-07T03:10:28+00:00",
+  "last_escalated": "2026-09-06T22:12:26+00:00",
+  "keys": [
+   "CLAUDE",
+   "Claude"
+  ],
+  "escalations": 1
  },
  "scanner-hit:paid": {
   "first_seen": "2026-08-29T00:08:05+00:00",
@@ -5117,15 +5126,15 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 82,
+  "count": 107,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-06T17:01:32+00:00",
-  "last_escalated": "2026-09-06T14:11:35+00:00",
-  "escalations": 5
+  "last_seen": "2026-09-07T04:27:28+00:00",
+  "last_escalated": "2026-09-07T03:09:24+00:00",
+  "escalations": 7
  },
  "scanner-hit:patience": {
   "first_seen": "2026-09-04T05:11:20+00:00",
@@ -5432,13 +5441,14 @@
  },
  "scanner-hit:agi": {
   "first_seen": "2026-09-04T15:10:46+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: AGI",
   "keys": [
    "AGI"
   ],
-  "last_seen": "2026-09-04T16:11:38+00:00",
-  "last_escalated": null
+  "last_seen": "2026-09-06T20:12:17+00:00",
+  "last_escalated": "2026-09-06T20:12:17+00:00",
+  "escalations": 1
  },
  "scanner-hit:shapan": {
   "first_seen": "2026-09-04T16:11:24+00:00",
@@ -5483,14 +5493,14 @@
  },
  "scanner-hit:amc": {
   "first_seen": "2026-09-04T17:11:00+00:00",
-  "count": 3,
+  "count": 4,
   "example": "scanner-hit: AMC",
   "keys": [
    "AMC"
   ],
-  "last_seen": "2026-09-06T09:11:42+00:00",
-  "last_escalated": "2026-09-06T09:11:42+00:00",
-  "escalations": 1
+  "last_seen": "2026-09-07T02:11:08+00:00",
+  "last_escalated": "2026-09-07T02:11:08+00:00",
+  "escalations": 2
  },
  "scanner-hit:dcresist": {
   "first_seen": "2026-09-04T17:11:05+00:00",
@@ -6461,11 +6471,14 @@
  },
  "scanner-hit:robin": {
   "first_seen": "2026-09-06T06:12:21+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: ROBIN",
   "keys": [
    "ROBIN"
-  ]
+  ],
+  "last_seen": "2026-09-06T22:11:59+00:00",
+  "last_escalated": "2026-09-06T22:11:59+00:00",
+  "escalations": 1
  },
  "scanner-hit:butt": {
   "first_seen": "2026-09-06T06:12:25+00:00",
@@ -6795,6 +6808,209 @@
   "example": "outcome-win: DuD1sA53BucR23QpwPqoifSMVtC6Y4JTYQQbghDmd7mm",
   "keys": [
    "DuD1sA53BucR23QpwPqoifSMVtC6Y4JTYQQbghDmd7mm"
+  ]
+ },
+ "scanner-hit:u-8f5add": {
+  "first_seen": "2026-09-06T17:11:29+00:00",
+  "count": 1,
+  "example": "scanner-hit: \ud83d\udee1\ufe0f",
+  "keys": [
+   "\ud83d\udee1\ufe0f"
+  ]
+ },
+ "collector-error:nameerror": {
+  "first_seen": "2026-09-06T17:11:35+00:00",
+  "count": 4,
+  "example": "collector-error: NameError",
+  "keys": [
+   "NameError"
+  ],
+  "last_seen": "2026-09-07T04:10:51+00:00",
+  "last_escalated": "2026-09-07T03:10:44+00:00",
+  "escalations": 1
+ },
+ "scanner-hit:memeperps": {
+  "first_seen": "2026-09-06T18:11:51+00:00",
+  "count": 1,
+  "example": "scanner-hit: MemePerps",
+  "keys": [
+   "MemePerps"
+  ]
+ },
+ "scanner-hit:morgan": {
+  "first_seen": "2026-09-06T18:11:55+00:00",
+  "count": 1,
+  "example": "scanner-hit: MORGAN",
+  "keys": [
+   "MORGAN"
+  ]
+ },
+ "scanner-hit:nakula": {
+  "first_seen": "2026-09-06T18:12:03+00:00",
+  "count": 1,
+  "example": "scanner-hit: Nakula",
+  "keys": [
+   "Nakula"
+  ]
+ },
+ "scanner-hit:fomocat": {
+  "first_seen": "2026-09-06T20:12:01+00:00",
+  "count": 1,
+  "example": "scanner-hit: FOMOCAT",
+  "keys": [
+   "FOMOCAT"
+  ]
+ },
+ "scanner-hit:u-c0b5ae": {
+  "first_seen": "2026-09-06T20:12:11+00:00",
+  "count": 1,
+  "example": "scanner-hit: \u5b59\u5272",
+  "keys": [
+   "\u5b59\u5272"
+  ]
+ },
+ "scanner-hit:momo": {
+  "first_seen": "2026-09-06T21:10:43+00:00",
+  "count": 1,
+  "example": "scanner-hit: MOMO",
+  "keys": [
+   "MOMO"
+  ]
+ },
+ "scanner-hit:chop": {
+  "first_seen": "2026-09-06T21:10:48+00:00",
+  "count": 1,
+  "example": "scanner-hit: CHOP",
+  "keys": [
+   "CHOP"
+  ]
+ },
+ "scanner-hit:buntrph": {
+  "first_seen": "2026-09-06T22:12:04+00:00",
+  "count": 1,
+  "example": "scanner-hit: BUNTRPH",
+  "keys": [
+   "BUNTRPH"
+  ]
+ },
+ "scanner-hit:u-0510a7": {
+  "first_seen": "2026-09-06T22:12:11+00:00",
+  "count": 1,
+  "example": "scanner-hit: \u9a6c\u5230",
+  "keys": [
+   "\u9a6c\u5230"
+  ]
+ },
+ "scanner-hit:kpop": {
+  "first_seen": "2026-09-06T22:12:18+00:00",
+  "count": 1,
+  "example": "scanner-hit: KPOP",
+  "keys": [
+   "KPOP"
+  ]
+ },
+ "collector-error:sharedpoolliquiditymisattribution": {
+  "first_seen": "2026-09-06T23:13:31+00:00",
+  "count": 1,
+  "example": "collector-error: SharedPoolLiquidityMisattribution",
+  "keys": [
+   "SharedPoolLiquidityMisattribution"
+  ]
+ },
+ "outcome-win:cdwbddmdpugdttnrqbmdpnbtbxalshpxutfc": {
+  "first_seen": "2026-09-07T00:08:23+00:00",
+  "count": 1,
+  "example": "outcome-win: Cdwbddm4D3PUgdttnr62qbmDPNbtbX6aLSh8Px6U6TFc",
+  "keys": [
+   "Cdwbddm4D3PUgdttnr62qbmDPNbtbX6aLSh8Px6U6TFc"
+  ]
+ },
+ "outcome-win:gachbtftchldsbgnwdfgkwzpouqzgydcubjcam": {
+  "first_seen": "2026-09-07T00:08:33+00:00",
+  "count": 1,
+  "example": "outcome-win: GACH9BtfT8C3HLdSbGnWDFGKWZPouQZ93Gydc9ubJcAM",
+  "keys": [
+   "GACH9BtfT8C3HLdSbGnWDFGKWZPouQZ93Gydc9ubJcAM"
+  ]
+ },
+ "collector-error:divergencecheckfailsopen": {
+  "first_seen": "2026-09-07T00:12:14+00:00",
+  "count": 1,
+  "example": "collector-error: DivergenceCheckFailsOpen",
+  "keys": [
+   "DivergenceCheckFailsOpen"
+  ]
+ },
+ "outcome-win:gaykybkkzadhmjvwrdxbcpkkqrfzhybscqhm": {
+  "first_seen": "2026-09-07T01:08:03+00:00",
+  "count": 1,
+  "example": "outcome-win: Gaykyb5K9kza6dhmjVWrDXbCP4KKqrfzhY8B8scQH26M",
+  "keys": [
+   "Gaykyb5K9kza6dhmjVWrDXbCP4KKqrfzhY8B8scQH26M"
+  ]
+ },
+ "outcome-win:eirpzjpzrkycgaxonqrfmhghojvdhxptwvnrev": {
+  "first_seen": "2026-09-07T01:08:05+00:00",
+  "count": 1,
+  "example": "outcome-win: EirPzJPZ4rkYCgaXoNqRFm613hgH5ojvd1hxPtWvnRev",
+  "keys": [
+   "EirPzJPZ4rkYCgaXoNqRFm613hgH5ojvd1hxPtWvnRev"
+  ]
+ },
+ "outcome-win:hcrncnuxexlstxqlydbtylqbqnyemeygxaxkm": {
+  "first_seen": "2026-09-07T01:08:10+00:00",
+  "count": 1,
+  "example": "outcome-win: HCrn6cnUXExLStxQ3LYDbtYL9QbQny6emEYGxA8xkM24",
+  "keys": [
+   "HCrn6cnUXExLStxQ3LYDbtYL9QbQny6emEYGxA8xkM24"
+  ]
+ },
+ "collector-error:sharedpoolfalsepositivewins": {
+  "first_seen": "2026-09-07T01:11:39+00:00",
+  "count": 1,
+  "example": "collector-error: SharedPoolFalsePositiveWins",
+  "keys": [
+   "SharedPoolFalsePositiveWins"
+  ]
+ },
+ "outcome-win:dkmyrqfuxdrssduehcdbacbgcycngvetsjyi": {
+  "first_seen": "2026-09-07T02:06:35+00:00",
+  "count": 1,
+  "example": "outcome-win: 73dKMYrq8fuxD3RsSdUehcDb4a4cbgCycngVeT37SJyi",
+  "keys": [
+   "73dKMYrq8fuxD3RsSdUehcDb4a4cbgCycngVeT37SJyi"
+  ]
+ },
+ "scanner-hit:pgob": {
+  "first_seen": "2026-09-07T02:10:59+00:00",
+  "count": 1,
+  "example": "scanner-hit: PGOB",
+  "keys": [
+   "PGOB"
+  ]
+ },
+ "scanner-hit:snowball": {
+  "first_seen": "2026-09-07T02:11:07+00:00",
+  "count": 1,
+  "example": "scanner-hit: SNOWBALL",
+  "keys": [
+   "SNOWBALL"
+  ]
+ },
+ "scanner-hit:mona-lisa": {
+  "first_seen": "2026-09-07T03:10:23+00:00",
+  "count": 1,
+  "example": "scanner-hit: Mona Lisa",
+  "keys": [
+   "Mona Lisa"
+  ]
+ },
+ "scanner-hit:catgpt": {
+  "first_seen": "2026-09-07T03:10:36+00:00",
+  "count": 1,
+  "example": "scanner-hit: CatGPT",
+  "keys": [
+   "CatGPT"
   ]
  }
 }

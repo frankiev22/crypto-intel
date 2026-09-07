@@ -78,6 +78,8 @@ def score_horizon(horizon_h, limit=None, verbose=True):
         except Exception:
             pair = None
         reasons, src = None, None
+        _exit_pair = None          # per-iteration; never leak across the loop
+        _sells24 = _buys24 = None
         if pair:
             price = float(pair.get("priceUsd") or 0) or None
             liq   = float((pair.get("liquidity") or {}).get("usd") or 0)
@@ -86,6 +88,17 @@ def score_horizon(horizon_h, limit=None, verbose=True):
             # token. See resolve.exit_depth_usd().
             depth = resolve.exit_depth_usd(pair)
             src = "dexscreener"
+            _exit_pair = pair.get("pairAddress")
+            # Sell-side at exit. Free - the pair object is already in hand. A
+            # pool with buys and no sells has never had its price tested by
+            # anyone trying to leave, which is the template signature that a
+            # depth floor cannot catch.
+            _t24 = (pair.get("txns") or {}).get("h24") or {}
+            try:
+                _sells24 = int(_t24.get("sells")) if _t24.get("sells") is not None else None
+                _buys24 = int(_t24.get("buys")) if _t24.get("buys") is not None else None
+            except (TypeError, ValueError):
+                _sells24 = _buys24 = None
             primary_ok += 1
         else:
             # The primary went quiet. That is NOT the same as the token dying -
@@ -100,6 +113,7 @@ def score_horizon(horizon_h, limit=None, verbose=True):
                 price, liq = r.get("price_usd"), r.get("liq_usd")
                 depth = r.get("exit_depth_usd")
                 reasons, src = r.get("reasons"), r.get("source")
+                _exit_pair = r.get("pair_address")
                 # WOFI, 2026-09-04. We entered on pair 4mvH... at $0.00004131,
                 # that pool went quiet, the token-level fallback priced the
                 # OTHER pool at $0.01377, and the division recorded 333.33x.
@@ -139,12 +153,14 @@ def score_horizon(horizon_h, limit=None, verbose=True):
             _pn_exit = float(pair.get("priceNative")) if pair else None
         except (TypeError, ValueError):
             _pn_exit = None
+
         status, mult = journal.record_outcome(
             o["pair"], o["ts"], horizon_h, price, liq, vol24,
             o.get("price_usd"), o.get("liq"), o.get("symbol", ""),
             token=o.get("token", ""), reasons=reasons, source=src,
             price_verdict=verdict, exit_depth=depth,
-            base_price_native=o.get("price_native"), price_native=_pn_exit)
+            base_price_native=o.get("price_native"), price_native=_pn_exit,
+            exit_pair=_exit_pair, sells_h24=_sells24, buys_h24=_buys24)
         done += 1
         _elapsed = (time.time() - o["ts"]) / 3600.0
         elapsed_seen.append(_elapsed)

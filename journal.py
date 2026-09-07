@@ -91,6 +91,95 @@ def realizable(status, liq, mult, exit_depth=None):
 DEPTH_VERIFIED_RATIO = 0.10
 
 
+# ---------------------------------------------------------------------------
+# THE WIN GATE. Added 2026-09-07, P0.
+#
+# FOUR HEADLINE RESULTS HAVE NOW EVAPORATED ON INSPECTION: the 718x, the
+# liquidity-trajectory gradient, the low-score inversion, and now more than half
+# of every win on the books. Four for four. The common factor is not that the
+# checks did not exist - most of them did - but that they were a checklist
+# somebody had to remember to apply, and applying them depended on a human
+# spot-check that caught it about half the time.
+#
+# So this is a GATE, not a checklist. A row cannot be marked realizable without
+# passing every check, each one is recorded by name on the row, and adding a new
+# check here applies it everywhere at once.
+#
+# Treat every win as contaminated until specifically proven otherwise.
+WIN_CHECKS = ("pair_identity", "depth_measured", "depth_floor", "sell_side",
+              "source_agreement", "plausibility", "elapsed_recorded", "alive")
+
+# A price nobody has ever sold at is not a price you can realise. MEASURED
+# 2026-09-07 on the 141 outcome rows reporting $1.2M-$1.35M of liquidity, which
+# are 85 of the 165 realizable 3x+ wins on the books:
+#
+#   every row with a measured depth shows depth/liq = 0.00796 - IDENTICAL to
+#   five decimal places across CHAD, GME, JERSEY, ZODL, U SDD, cTERX and S500 -
+#   i.e. $1.26M reported against ~$10,045 of real quote side, 125.6x overstated
+#   liq/fdv median 1.0020, so the entire supply IS the pool
+#   56 of 63 entries had ZERO sells against >=10 buys
+#   56 of 63 were already flagged template_suspect at entry
+#
+# These clear a $100 depth floor on $10k of quote, so depth alone does NOT
+# disqualify them. What disqualifies them is that nobody has ever sold: the
+# price is set by a curve with no counterparty and has never been tested.
+MIN_SELLS_FOR_WIN = int(os.environ.get("CRYPTO_MIN_SELLS_WIN", "1"))
+
+
+def verify_win(status, liq, mult, exit_depth=None, pair=None, exit_pair=None,
+               price_verdict=None, elapsed_h=None, reasons=None,
+               sells_h24=None, buys_h24=None):
+    """Every check a multiple must clear before it counts. Returns (ok, failed).
+
+    `failed` is a list of check NAMES, so the row records which gate stopped it
+    rather than a single opaque reason string.
+    """
+    failed = []
+
+    # 1. PAIR IDENTITY. The pool we priced must be the pool we held. Two pools
+    #    of one token are not one series and their ratio is not a return.
+    if exit_pair is not None and pair is not None and exit_pair != pair:
+        failed.append("pair_identity")
+    if "cross_pair_fallback" in (reasons or []):
+        failed.append("pair_identity")
+
+    # 2/3. DEPTH. `liq` counts the base side valued at its own price; only the
+    #      quote side can pay you. Measured 2026-09-06: depth/liq is ~0.496 for
+    #      a healthy pool but under 0.10 for 15.4% of rows, where using `liq`
+    #      overstates exitable size by up to 125x.
+    if exit_depth is None:
+        failed.append("depth_measured")
+    elif exit_depth < MIN_EXIT_LIQ_USD:
+        failed.append("depth_floor")
+
+    # 3b. SELL SIDE. The template pools pass a depth floor - $10k of real quote
+    #     is enough to exit $100 - so depth cannot catch them. Silence can: a
+    #     pool with buys and no sells has never had its price tested by anyone
+    #     trying to leave. Only applied when sell data was actually recorded;
+    #     an absent count is not evidence of silence.
+    if sells_h24 is not None and buys_h24 is not None:
+        if sells_h24 < MIN_SELLS_FOR_WIN and buys_h24 >= 10:
+            failed.append("sell_side")
+
+    # 4. SOURCE AGREEMENT, when it was checked at all.
+    if price_verdict is not None and not price_verdict.get("trustworthy"):
+        failed.append("source_agreement")
+
+    # 5. PLAUSIBILITY.
+    if mult is not None and mult > MAX_PLAUSIBLE_MULT:
+        failed.append("plausibility")
+
+    # 6. ELAPSED TIME. The label is not the measurement.
+    if elapsed_h is None:
+        failed.append("elapsed_recorded")
+
+    # 7. The token has to still be there.
+    if status != "alive":
+        failed.append("alive")
+
+    return (not failed), sorted(set(failed))
+
+
 def depth_unmeasured(exit_depth):
     """True when exitability was judged on the both-sides figure.
 
@@ -444,8 +533,40 @@ def outcomes(days=None):
         # still correct, because absent IS unmeasured.
         if "depth_unmeasured" not in o:
             o["depth_unmeasured"] = depth_unmeasured(o.get("exit_depth_usd"))
+        # PAIR IDENTITY IS UNVERIFIABLE FOR EVERY ROW WRITTEN BEFORE 2026-09-07.
+        # The exit pair was never stored, and the pools involved are delisted,
+        # so it cannot be reconstructed - not from the journal, not from the
+        # API. These rows must be EXCLUDED from analysis, not merely flagged:
+        # 165 of them are realizable 3x+ wins and 85 sit in one $1.2M-$1.35M
+        # liquidity band across 53 symbols, which is the signature of many
+        # tokens priced off one shared reference pool.
+        if "pair_identity_verifiable" not in o:
+            o["pair_identity_verifiable"] = ("exit_pair" in o)
         _fill_elapsed(o)
     return rows
+
+
+def verified_outcomes(days=None, require_identity=True):
+    """Outcomes that clear the win gate. THE denominator for any win claim.
+
+    Use this, not `outcomes()`, wherever a result is going to be reported.
+    Rows predating 2026-09-07 carry no exit pair and cannot pass identity, so
+    with the default they are excluded entirely - which is correct, because
+    their identity is unknowable rather than merely unrecorded.
+    """
+    keep = []
+    for o in outcomes(days):
+        if require_identity and not o.get("pair_identity_verifiable"):
+            continue
+        ok, failed = verify_win(
+            o.get("status"), o.get("liq"), o.get("mult"),
+            exit_depth=o.get("exit_depth_usd"), pair=o.get("pair"),
+            exit_pair=o.get("exit_pair"), elapsed_h=o.get("actual_elapsed_h"),
+            reasons=o.get("reasons"))
+        o["gate_ok"], o["gate_failed"] = ok, failed
+        if ok:
+            keep.append(o)
+    return keep
 
 
 def scored_pairs():
@@ -462,7 +583,8 @@ DRIFT_TOLERANCE = float(os.environ.get("CRYPTO_DRIFT_TOLERANCE", "1.5"))
 def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
                    base_price, base_liq, symbol="", token="",
                    reasons=None, source=None, price_verdict=None,
-                   exit_depth=None, base_price_native=None, price_native=None):
+                   exit_depth=None, base_price_native=None, price_native=None,
+                   exit_pair=None, sells_h24=None, buys_h24=None):
     mult   = (price / base_price) if (base_price and price) else None
     liqchg = ((liq - base_liq) / base_liq * 100) if (base_liq and liq is not None) else None
     if liq is None:
@@ -473,34 +595,22 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
         status = "dead"
     else:
         status = "alive"
-    ok, why = realizable(status, liq, mult, exit_depth=exit_depth)
-    # A multiple built on an untrustworthy price is not a small error, it is a
-    # fabrication: FLORK recorded 444x off a pool holding $0.0036, against a
-    # deeper pool on the same token quoting 490x lower. If cross-source
-    # validation could not stand the number up, it does not count as realized
-    # no matter how healthy the liquidity reading looks.
-    if price_verdict is not None and not price_verdict.get("trustworthy"):
-        ok = False
-        why = (f"price {price_verdict.get('confidence')}: "
-               f"{price_verdict.get('detail')}")
-    # WRITE-TIME QUOTE-TOKEN CHECK. Free - both inputs were already in hand.
-    # `price_usd / price_native` is the quote asset's own USD price, so if the
-    # entry implies SOL and the exit implies USDC the two prices came from
-    # pools with different quote tokens and the ratio between them is not a
-    # return. Same defect class as the cross-pool division that fabricated
-    # FLORK's 444x. Forward-only: historical rows carry no price_native, so
-    # nothing retrospective is claimed from it.
+    # THE GATE. Every check applied in one place, each recorded by name. See
+    # verify_win() for why this is a gate and not a checklist.
+    _elapsed_pre = ((time.time() - observed_ts) / 3600.0) if observed_ts else None
     quote_check = pricecheck.check_quote_consistency(
         base_price, base_price_native, price, price_native)
-    if not quote_check.get("trustworthy"):
-        ok = False
-        why = f"{quote_check.get('confidence')}: {quote_check.get('detail')}"
-    # A multiple across two different pools of the same token is arithmetic,
-    # not a return. Recorded, never counted.
-    if "cross_pair_fallback" in (reasons or []):
-        ok = False
-        why = ("priced from a different pool than the one observed; the entry "
-               "and exit prices are not the same series")
+    _verdict = price_verdict
+    if _verdict is None and not quote_check.get("trustworthy"):
+        _verdict = quote_check
+    ok, failed = verify_win(status, liq, mult, exit_depth=exit_depth,
+                            pair=pair, exit_pair=exit_pair,
+                            price_verdict=_verdict, elapsed_h=_elapsed_pre,
+                            reasons=reasons, sells_h24=sells_h24,
+                            buys_h24=buys_h24)
+    why = None if ok else ("failed " + ", ".join(failed))
+    if not ok and "source_agreement" in failed and _verdict is not None:
+        why += f" ({_verdict.get('confidence')}: {_verdict.get('detail')})"
     checked_ts = int(time.time())
     # THE LABEL IS NOT THE MEASUREMENT. Measured 2026-09-05: the median "1h"
     # row was checked 2.00 hours after observation, 51.4% landed past 2h, p90
@@ -515,6 +625,13 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
            # side was never seen and `liq` was used instead - fine for a
            # balanced pool, off by up to 125x for a one-sided one.
            "depth_unmeasured": depth_unmeasured(exit_depth),
+           # THE POOL WE ACTUALLY PRICED. Recorded on every row from
+           # 2026-09-07 so pair identity is auditable forever instead of being
+           # unrecoverable, which is what made 165 historical wins unverifiable.
+           "exit_pair": exit_pair,
+           "win_checks_failed": failed,
+           "sells_h24": sells_h24,
+           "buys_h24": buys_h24,
            "price_native": price_native,
            "base_price_native": base_price_native,
            "quote_asset_entry": quote_check.get("entry_quote_asset"),
