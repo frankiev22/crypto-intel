@@ -33,6 +33,7 @@ import watchlist
 import news
 import paper
 import fieldguard
+import detector
 
 PASS_SCORE = 70
 JOURNAL_BATCH = 10
@@ -241,6 +242,15 @@ def main():
         news.check_freshness(record=findings.record, verbose=True)
     except Exception as e:
         print(f"  news-freshness check failed (non-fatal): {e}")
+
+    # THE DETECTOR'S OWN SHELF LIFE. The template pools share depth/liq to five
+    # decimal places, which is one operator running one script. When that
+    # constant moves, D1's recall falls and absolutely nothing else would say
+    # so. Free - it reads the journal, makes no calls.
+    try:
+        detector.check_drift(record=findings.record, verbose=True)
+    except Exception as e:
+        print(f"  drift check failed (non-fatal): {e}")
 
     # One line a day saying the collector is alive. Failures already page; a
     # week of silence from a runner nobody has seen working does not prove it
