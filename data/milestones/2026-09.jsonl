@@ -1754,3 +1754,12 @@
 {"token":"8X69q8KLSGRsJ9KGm2zdrLhdVaRQbf7BYZNWzEVbYRXW","milestone":"mcap_1m","crossed_ts":1788790133,"crossed_at":"2026-09-07T14:08:53+00:00","symbol":"CIRCUMSIZE","value":1339474.0,"kind":"mcap"}
 {"token":"Fjp59ZbCDmTqhZMG9LxDmJYbNQiLZ6b3RRtFNbJ86ZU2","milestone":"mcap_100k","crossed_ts":1788790138,"crossed_at":"2026-09-07T14:08:58+00:00","symbol":"\u202eDFPK","value":158145.87,"kind":"mcap"}
 {"token":"EFN2M6jMxVP7QNazN5fFp2wsBMEbYvZeyety28v1GTnq","milestone":"mcap_100k","crossed_ts":1788790162,"crossed_at":"2026-09-07T14:09:22+00:00","symbol":"CALICO","value":165189.0,"kind":"mcap"}
+{"token":"GPBkxv5oRL3PZW2YUb865y5PtQUWCopw4FB6cAB2LuKZ","milestone":"mcap_100k","crossed_ts":1788790193,"crossed_at":"2026-09-07T14:09:53+00:00","symbol":"HOOD","value":252194.0,"kind":"mcap"}
+{"token":"GPBkxv5oRL3PZW2YUb865y5PtQUWCopw4FB6cAB2LuKZ","milestone":"mcap_200k","crossed_ts":1788790193,"crossed_at":"2026-09-07T14:09:53+00:00","symbol":"HOOD","value":252194.0,"kind":"mcap"}
+{"token":"7oxxiG2uBu4cXNyN2z2ctUrJ2jPCh3xcKgjXeVMobonk","milestone":"mcap_100k","crossed_ts":1788790210,"crossed_at":"2026-09-07T14:10:10+00:00","symbol":"Ggpsbat","value":135673.0,"kind":"mcap"}
+{"token":"6JeGheW6gteXpSH1bN4UAsPiMDKCeYXvdGtxphtpZGEB","milestone":"mcap_100k","crossed_ts":1788790226,"crossed_at":"2026-09-07T14:10:26+00:00","symbol":"ICOIN","value":111425.0,"kind":"mcap"}
+{"token":"6JeGheW6gteXpSH1bN4UAsPiMDKCeYXvdGtxphtpZGEB","milestone":"mcap_200k","crossed_ts":1788790232,"crossed_at":"2026-09-07T14:10:32+00:00","symbol":"ICOIN","value":468066.0,"kind":"mcap"}
+{"token":"6UPCeRvD8uyXHTHi8Yq5DCCsE1PYHkd6XPLMqYLxuXFZ","milestone":"mcap_100k","crossed_ts":1788790276,"crossed_at":"2026-09-07T14:11:16+00:00","symbol":"CNPY","value":25905859.0,"kind":"mcap"}
+{"token":"6UPCeRvD8uyXHTHi8Yq5DCCsE1PYHkd6XPLMqYLxuXFZ","milestone":"mcap_200k","crossed_ts":1788790276,"crossed_at":"2026-09-07T14:11:16+00:00","symbol":"CNPY","value":25905859.0,"kind":"mcap"}
+{"token":"6UPCeRvD8uyXHTHi8Yq5DCCsE1PYHkd6XPLMqYLxuXFZ","milestone":"mcap_1m","crossed_ts":1788790277,"crossed_at":"2026-09-07T14:11:17+00:00","symbol":"CNPY","value":25905859.0,"kind":"mcap"}
+{"token":"6UPCeRvD8uyXHTHi8Yq5DCCsE1PYHkd6XPLMqYLxuXFZ","milestone":"mcap_5m","crossed_ts":1788790277,"crossed_at":"2026-09-07T14:11:17+00:00","symbol":"CNPY","value":25905859.0,"kind":"mcap"}
