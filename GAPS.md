@@ -76,7 +76,7 @@ the difference between a position and a total loss.** Nothing in the current
 stack can tell them apart, because both look identical from a single source.
 
 **Passing:** an independent on-chain reserve read at exit that resolves ≥90% of
-unpriceable closes into drained/alive. **Blocked on the Helius key.** ~108 calls.
+unpriceable closes into drained/alive. **Unblocked 2026-09-07 — the key was already in `.env`.** ~108 calls.
 
 ### G3. Ground truth is single-source. *(engineering, blocked on the key)*
 
@@ -92,8 +92,9 @@ one-sided classification. **~108 RPC calls = 0.011% of Helius's free tier.**
 
 ### G4. Holder concentration and deployer history are unmeasured. *(blocked)*
 
-`getTokenLargestAccounts` returns 429 on the public endpoint **at any spacing** —
-0 of 5 succeeded at 0/5/15/30/45s. Not a pacing problem; the method is refused.
+~~Blocked~~ **LIVE as of 2026-09-07.** `getTokenLargestAccounts` returns 429 on
+the *public* endpoint at any spacing, but returns in **94–193ms through Helius**,
+whose key was in `.env` all along. Concentration now runs.
 These are the two causal features most likely to catch what D1's 50% recall
 misses.
 
@@ -158,7 +159,7 @@ exclude.
 4. **Concentration + deployer (G4).** Best candidates for D1's missing 50%.
 5. Coverage. Last, deliberately.
 
-Items 1, 2 and 4 are all blocked on the same free key.
+Items 1, 2 and 4 were all blocked on the same free key, **which we already had**. They are now unblocked and are work, not asks.
 
 ---
 
@@ -186,6 +187,12 @@ Neither size is supported by a measured edge today. The difference is only how
 much is lost while finding out.
 
 ---
+
+## ⚠️ Correction: the Helius key was never missing
+
+Written this morning as though the key had to be obtained. It has been in
+`.env` since 2026-08-23 and is now wired. G3 and G4 were never blocked on Frank;
+they were blocked on me not checking. What follows is what it buys, now live.
 
 ## What the Helius key buys, in decision terms
 

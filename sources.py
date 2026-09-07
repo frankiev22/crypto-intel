@@ -249,7 +249,27 @@ def btc_fees():
     return _get("https://mempool.space/api/v1/fees/recommended")
 
 # ---------- solana chain ----------
-SOL_RPC = "https://api.mainnet-beta.solana.com"
+# SOLANA RPC. Routed through Helius when HELIUS_API_KEY is set, and the key HAS
+# been set since 2026-08-23.
+#
+# THIS LINE WAS A HARDCODED PUBLIC ENDPOINT UNTIL 2026-09-07, and that mistake
+# cost two weeks of a blocked feature. config.helius_rpc() already existed and
+# already did the right thing; nothing called it. On 2026-09-06 I then wrote
+# ONCHAIN_COST.md concluding holder concentration was "blocked by not having an
+# API key" - measured against the public endpoint, without ever checking .env,
+# where the key was sitting the whole time. It was blocked on not looking.
+#
+# The difference is not marginal. getTokenLargestAccounts, the method
+# concentration needs, returns HTTP 429 from the public endpoint at ANY spacing
+# (0 of 5 succeeded at 0/5/15/30/45s) and returns in ~100-200ms through Helius.
+#
+# Falls back to the public endpoint when no key is present, so this stays
+# correct for anyone running without one.
+try:
+    import config as _config
+    SOL_RPC = _config.helius_rpc()
+except Exception:
+    SOL_RPC = "https://api.mainnet-beta.solana.com"
 PUMP_FUN_PROGRAM = "6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P"
 
 def sol_slot():

@@ -146,6 +146,19 @@ def qualifies(row):
     # catch a pool nobody has ever sold into, and no amount of liquidity helps
     # if the deployer can print supply into your bid or freeze your sell. These
     # are facts about what the contract PERMITS, not estimates.
+    # FAIL CLOSED ON UNKNOWN. Until 2026-09-07 a row whose authority lookup had
+    # never run, or had failed, read as `None` and PASSED - absence of evidence
+    # rendered as evidence of absence, on the single most destructive fact about
+    # a token. 85% of qualifying observations had no authority recorded. A pool
+    # whose deployer might be able to freeze your sale is not a pool you enter
+    # because the RPC call timed out.
+    #
+    # The scanner fetches authorities immediately before this runs, so the cost
+    # of failing closed is only the rows where that fetch genuinely failed.
+    if row.get("can_mint") is None or row.get("can_freeze") is None:
+        return False, (f"mint/freeze authority unknown"
+                       f"{' (' + str(row.get('authorities_error')) + ')' if row.get('authorities_error') else ''}"
+                       f" - not entering on an unverified contract")
     if row.get("can_mint"):
         return False, "mint authority live - deployer can print supply"
     if row.get("can_freeze"):

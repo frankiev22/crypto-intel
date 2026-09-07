@@ -1,5 +1,28 @@
 # Unblocking the causal features: which tier, and what it costs
 
+> ## ⚠️ CORRECTION, 2026-09-07: THE KEY ALREADY EXISTED. THIS WAS MY ERROR.
+>
+> Everything below concluded that holder concentration was "blocked by not
+> having an API key" and that obtaining one was Frank's call. **That was wrong.**
+> `HELIUS_API_KEY` has been in `.env` since **2026-08-23** — 15 days before this
+> document was written — and `config.have("helius")` returned `True` the whole
+> time. `config.helius_rpc()` already existed and already returned the correct
+> authenticated URL. **Nothing called it**: `sources.py` hardcoded
+> `https://api.mainnet-beta.solana.com`.
+>
+> So the measurements below are real but the conclusion drawn from them was not.
+> I benchmarked the *public* endpoint, found it refused the method, and wrote
+> that we were blocked — **without ever checking whether we had a key.** Holder
+> concentration and the independent reserve read were blocked on nothing but
+> not looking, for two weeks.
+>
+> Verified live 2026-09-07 on three journal mints:
+> `getTokenLargestAccounts` returns in **94–193ms** through Helius and **HTTP
+> 429** on the public endpoint for the same mint, same moment.
+>
+> Fixed: `sources.SOL_RPC` now calls `config.helius_rpc()`, falling back to the
+> public endpoint when no key is set.
+
 2026-09-06. Instruction was to report **exactly which tier unblocks it and the
 monthly cost, so Frank decides with a number**. Here is the number.
 

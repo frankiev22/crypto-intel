@@ -28,18 +28,18 @@
   "detail": "0 stale outlet(s)"
  },
  "outcome.recorded": {
-  "last_ts": 1788790278,
-  "last_at": "2026-09-07T14:11:18+00:00",
-  "count": 1266,
+  "last_ts": 1788790531,
+  "last_at": "2026-09-07T14:15:31+00:00",
+  "count": 1438,
   "first_ts": 1788782831,
   "detail": null
  },
  "milestone.mcap": {
-  "last_ts": 1788790277,
-  "last_at": "2026-09-07T14:11:17+00:00",
-  "count": 127,
+  "last_ts": 1788790478,
+  "last_at": "2026-09-07T14:14:38+00:00",
+  "count": 144,
   "first_ts": 1788782876,
-  "detail": "mcap_5m 6UPCeRvD8uyXHTHi8Yq5DCCsE1PYHkd6XPLMqYLxuXFZ"
+  "detail": "mcap_1m EPCXqcytq5wSkyQo6Qr83pDHUiFWKoweMR5RQ7Mg51Wk"
  },
  "milestone.realizable": {
   "last_ts": 1788790122,
