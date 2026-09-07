@@ -80,6 +80,7 @@ def score_horizon(horizon_h, limit=None, verbose=True):
         reasons, src = None, None
         _exit_pair = None          # per-iteration; never leak across the loop
         _sells24 = _buys24 = None
+        _mcap = None               # per-iteration; primary branch only
         if pair:
             price = float(pair.get("priceUsd") or 0) or None
             liq   = float((pair.get("liquidity") or {}).get("usd") or 0)
@@ -99,6 +100,15 @@ def score_horizon(horizon_h, limit=None, verbose=True):
                 _buys24 = int(_t24.get("buys")) if _t24.get("buys") is not None else None
             except (TypeError, ValueError):
                 _sells24 = _buys24 = None
+            # MARKET CAP AT EXIT, for the mcap milestones. PRIMARY BRANCH ONLY:
+            # dexscreener_pair verifies the returned pairAddress is the one we
+            # asked for, so this number belongs to the pool we actually hold.
+            # The fallback path may price a different pool of the same token -
+            # exactly the WOFI failure above - and must never claim a milestone.
+            try:
+                _mcap = float(pair.get("marketCap") or pair.get("fdv") or 0) or None
+            except (TypeError, ValueError):
+                _mcap = None
             primary_ok += 1
         else:
             # The primary went quiet. That is NOT the same as the token dying -
@@ -160,7 +170,8 @@ def score_horizon(horizon_h, limit=None, verbose=True):
             token=o.get("token", ""), reasons=reasons, source=src,
             price_verdict=verdict, exit_depth=depth,
             base_price_native=o.get("price_native"), price_native=_pn_exit,
-            exit_pair=_exit_pair, sells_h24=_sells24, buys_h24=_buys24)
+            exit_pair=_exit_pair, sells_h24=_sells24, buys_h24=_buys24,
+            mcap=_mcap)
         done += 1
         _elapsed = (time.time() - o["ts"]) / 3600.0
         elapsed_seen.append(_elapsed)

@@ -627,7 +627,7 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
                    base_price, base_liq, symbol="", token="",
                    reasons=None, source=None, price_verdict=None,
                    exit_depth=None, base_price_native=None, price_native=None,
-                   exit_pair=None, sells_h24=None, buys_h24=None):
+                   exit_pair=None, sells_h24=None, buys_h24=None, mcap=None):
     mult   = (price / base_price) if (base_price and price) else None
     liqchg = ((liq - base_liq) / base_liq * 100) if (base_liq and liq is not None) else None
     if liq is None:
@@ -704,8 +704,14 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
     # two passes each announced the first realizable 3x when 82 were already on
     # record. A claim is an O_EXCL file create; the OS picks the winner.
     try:
+        # mcap=None was hardcoded here when milestones.py was created
+        # (f8b03bc, 2026-09-02 04:28Z). check_outcome guards on `if mcap:`, so
+        # all four mcap tiers were unreachable from the moment the module
+        # shipped. The 1,329 mcap crossings on record are ONE backfill run
+        # written in that same minute; not one has ever fired live. Found and
+        # fixed 2026-09-07 - five days of crossings were never detected.
         obj["new_milestones"] = milestones.check_outcome(
-            token, symbol, mult, ok, mcap=None)
+            token, symbol, mult, ok, mcap=mcap)
     except Exception as e:
         obj["new_milestones"] = []
         print(f"    milestone check failed (non-fatal): {type(e).__name__}")
