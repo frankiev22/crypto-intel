@@ -5636,8 +5636,8 @@
    "1h",
    "6h"
   ],
-  "last_seen": "2026-09-08T05:28:27+00:00",
-  "last_escalated": "2026-09-08T05:28:27+00:00",
+  "last_seen": "2026-09-08T06:40:27+00:00",
+  "last_escalated": "2026-09-08T06:40:27+00:00",
   "escalations": 5
  },
  "scanner-hit:pomp": {
@@ -7603,7 +7603,9 @@
   "example": "scanner-hit: POPCAT",
   "keys": [
    "POPCAT"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:mcdonald": {
   "first_seen": "2026-09-07T20:15:34+00:00",
@@ -7611,7 +7613,9 @@
   "example": "scanner-hit: MCDONALD",
   "keys": [
    "MCDONALD"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:vcz": {
   "first_seen": "2026-09-07T20:15:34+00:00",
@@ -7619,7 +7623,9 @@
   "example": "scanner-hit: VC18Z",
   "keys": [
    "VC18Z"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:hamstr": {
   "first_seen": "2026-09-07T20:15:46+00:00",
@@ -7627,7 +7633,9 @@
   "example": "scanner-hit: haMSTR",
   "keys": [
    "haMSTR"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:stratcap": {
   "first_seen": "2026-09-07T20:15:47+00:00",
@@ -7635,7 +7643,9 @@
   "example": "scanner-hit: STRATCAP",
   "keys": [
    "STRATCAP"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:stockcat": {
   "first_seen": "2026-09-07T21:19:16+00:00",
@@ -7643,7 +7653,9 @@
   "example": "scanner-hit: StockCat",
   "keys": [
    "StockCat"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:catsdaq": {
   "first_seen": "2026-09-07T21:19:23+00:00",
@@ -7651,7 +7663,9 @@
   "example": "scanner-hit: CATSDAQ",
   "keys": [
    "CATSDAQ"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:mpga": {
   "first_seen": "2026-09-07T21:19:30+00:00",
@@ -7659,7 +7673,9 @@
   "example": "scanner-hit: MPGA",
   "keys": [
    "MPGA"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "outcome-win:odfsfachkqsxeyaplbpufefjjyjcaiejlqxm": {
   "first_seen": "2026-09-07T22:14:30+00:00",
@@ -7667,7 +7683,9 @@
   "example": "outcome-win: 48oDfsFaChKQ3SXE7Y1APLbpUfEfJJY6JCAiEJL2Q9xm",
   "keys": [
    "48oDfsFaChKQ3SXE7Y1APLbpUfEfJJY6JCAiEJL2Q9xm"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:amd": {
   "first_seen": "2026-09-07T23:16:31+00:00",
@@ -7675,7 +7693,9 @@
   "example": "scanner-hit: AMD",
   "keys": [
    "AMD"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:naswif": {
   "first_seen": "2026-09-07T23:16:37+00:00",
@@ -7683,7 +7703,9 @@
   "example": "scanner-hit: NASWIF",
   "keys": [
    "NASWIF"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:musk": {
   "first_seen": "2026-09-07T23:16:46+00:00",
@@ -7691,7 +7713,9 @@
   "example": "scanner-hit: MUSK",
   "keys": [
    "MUSK"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:csm": {
   "first_seen": "2026-09-07T23:16:47+00:00",
@@ -7699,7 +7723,9 @@
   "example": "scanner-hit: CSM",
   "keys": [
    "CSM"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:holmes": {
   "first_seen": "2026-09-07T23:16:56+00:00",
@@ -7707,7 +7733,9 @@
   "example": "scanner-hit: HOLMES",
   "keys": [
    "HOLMES"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:coca-cola": {
   "first_seen": "2026-09-07T23:17:08+00:00",
@@ -7715,7 +7743,9 @@
   "example": "scanner-hit: Coca Cola",
   "keys": [
    "Coca Cola"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:nas": {
   "first_seen": "2026-09-08T00:15:22+00:00",
@@ -7723,7 +7753,9 @@
   "example": "scanner-hit: NAS67",
   "keys": [
    "NAS67"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:pear": {
   "first_seen": "2026-09-08T00:15:29+00:00",
@@ -7732,7 +7764,8 @@
   "keys": [
    "PEAR"
   ],
-  "last_seen": "2026-09-08T00:15:36+00:00"
+  "last_seen": "2026-09-08T00:15:36+00:00",
+  "last_escalated": null
  },
  "outcome-win:aftqewjeqnohyagtbruuwhrnzrrxecgganvxwv": {
   "first_seen": "2026-09-08T01:11:12+00:00",
@@ -7740,7 +7773,9 @@
   "example": "outcome-win: A7F2TqewjeQNoHYagTBR18Uu2W7HRNzrrxeCGgANVXWv",
   "keys": [
    "A7F2TqewjeQNoHYagTBR18Uu2W7HRNzrrxeCGgANVXWv"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "lookup-outage:dexscreener": {
   "first_seen": "2026-09-08T01:17:56+00:00",
@@ -7748,7 +7783,9 @@
   "example": "lookup-outage: dexscreener",
   "keys": [
    "dexscreener"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:pelstar": {
   "first_seen": "2026-09-08T02:14:15+00:00",
@@ -7756,7 +7793,9 @@
   "example": "scanner-hit: PELSTAR",
   "keys": [
    "PELSTAR"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:piggy": {
   "first_seen": "2026-09-08T02:14:20+00:00",
@@ -7764,7 +7803,9 @@
   "example": "scanner-hit: PIGGY",
   "keys": [
    "PIGGY"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "outcome-win:gizbwxbcytpotfybngtaknicwnzvpspaxbfhsx": {
   "first_seen": "2026-09-08T05:31:00+00:00",
