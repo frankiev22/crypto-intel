@@ -287,3 +287,58 @@ constant is a one-line change and is deliberately NOT made here: it would
 retroactively move the win column during the locked window, and `RULE_V1` and
 the paper entry criteria are frozen until 2026-09-14. **Decide after
 2026-09-14, and expect the 3x+ column to shrink by roughly 40% when it lands.**
+
+---
+
+# 2026-09-08: the 24h hold vs pool lifespan — a mismatch we are keeping on purpose
+
+## Correction first: the "6.4h median indexed lifespan" was a censoring artifact
+
+I reported that the median paper-entered pair stays indexed 6.4h and that only
+34% are still indexed at 24h. **The 6.4h figure is wrong and is withdrawn.**
+
+It was computed as "the last horizon at which a price resolved", across all
+entries. But only 27 of 57 paper-entered pairs have *reached* a 24h checkpoint
+yet - the rest are too recent. For those, the last horizon with a price is 6h
+because 6h is the last check that has run, not because the pool died. That is
+right-censoring read as mortality.
+
+The 34% was also the wrong population: it is the all-pairs number, not the
+gate-passing one.
+
+## What the survival curve actually says
+
+Measured as: of the pairs that reached each checkpoint, what fraction still
+returned a price.
+
+| checkpoint | all observed pairs | | paper-entered pairs | |
+|---|---:|---|---:|---|
+| | survival | n | survival | n |
+| 1h | 99.7% [99.6, 99.7] | 26,969 | 98.2% [90.7, 99.7] | 57 |
+| 6h | 99.6% [99.5, 99.7] | 24,609 | 98.0% [89.7, 99.7] | 51 |
+| **24h** | **34.1%** [33.5, 34.7] | 21,876 | **74.1%** [55.3, 86.8] | 27 |
+| 168h | 4.2% [3.8, 4.6] | 9,242 | — | — |
+
+Two things follow, and they point in opposite directions:
+
+1. **The market-wide number is brutal and it is solid.** Two thirds of new
+   Solana pools stop being publicly price-trackable within a day, n=21,876.
+2. **Our entry gate selects pools that last.** 74.1% of gate-passing pairs are
+   still trackable at 24h against 34.1% of everything - but on n=27, with an
+   interval from 55% to 87%. Suggestive, not established.
+
+**And trackable is not exitable.** Of the 20 paper-entered pairs still priced
+at 24h, only 11 - **55% [34.2, 74.2]** - still held $1,000 or more of
+liquidity. A price print on a drained pool is the single most common way this
+project has been fooled.
+
+## The mismatch, and why we keep it
+
+A 24h hold against a population where a third of pools stop being trackable
+inside a day is a design mismatch. It is being kept, deliberately, and the
+reason is sample continuity: the 61 entries so far were opened under a 24h
+rule, changing it resets the sample to zero, slips n=200 past 2026-09-14, and
+structurally suppresses 2x hits (fewer pools reach 2x in 6h than in 24h). Three
+costs to buy information we can get for free by labelling instead.
+
+**Revisit after n=200 closes on 2026-09-13, not before.**

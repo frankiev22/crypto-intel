@@ -376,29 +376,6 @@ def verify():
         f"is not a row we hold - something was edited, reordered or removed")
 
 
-def summary():
-    """Counts only. Refuses to quote a rate below MIN_N."""
-    rows = _read()
-    entries = [r for r in rows if r.get("type") == "entry"]
-    exits = [r for r in rows if r.get("type") == "exit" and not r.get("void")]
-    voids = [r for r in rows if r.get("type") == "exit" and r.get("void")]
-    mults = sorted(r["mult"] for r in exits if r.get("mult") is not None)
-    wins = [m for m in mults if m >= TARGET_MULT]
-    out = {"entries": len(entries), "closed": len(exits), "void": len(voids),
-           "open": len(entries) - len(exits) - len(voids),
-           "wins": len(wins), "min_n": MIN_N,
-           "conclusive": len(exits) >= MIN_N}
-    if mults:
-        n = len(mults)
-        out["median_mult"] = mults[n // 2] if n % 2 else (mults[n // 2 - 1] + mults[n // 2]) / 2
-        out["p25_mult"] = mults[int(0.25 * (n - 1))]
-        out["p75_mult"] = mults[int(0.75 * (n - 1))]
-        out["max_mult"] = mults[-1]
-    out["hit_rate"] = (f"{100.0 * len(wins) / len(exits):.2f}%" if out["conclusive"]
-                       else f"WITHHELD - {len(exits)} closed, need {MIN_N}")
-    return out
-
-
 if __name__ == "__main__":
     import sys
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -450,6 +427,14 @@ if __name__ == "__main__":
 # It stays in the denominator as a closed position with `mult = None`, which is
 # the honest treatment: it was never a win, and it was not measurably a loss.
 # ---------------------------------------------------------------------------
+class PairLookupFailed(RuntimeError):
+    """Our own journal could not be read. The pool is UNKNOWN, not absent.
+
+    Distinct from "no observation exists for this contract", which is a real
+    answer. A close is permanent, so the caller must leave the position open.
+    """
+
+
 CLOSE_TARGET = "target"
 CLOSE_EXPIRY = "expiry"
 CLOSE_UNPRICEABLE = "unpriceable"
@@ -479,17 +464,26 @@ def _pair_for(entry):
     """
     if entry.get("pair"):
         return entry["pair"]
+    # NOT a bare except any more. Two different answers were collapsed into
+    # None: "the journal holds no observation for this contract" (a real
+    # answer) and "reading the journal failed" (not an answer). The caller
+    # closes on None, and a close is PERMANENT in an append-only ledger - so a
+    # transient read failure was writing an irreversible `unpriceable` verdict.
+    # Same family as safeload: absent and unreadable must not answer alike.
+    import journal
     try:
-        import journal
-        best = None
-        for o in journal.observations():
-            if o.get("token") != entry.get("contract"):
-                continue
-            if best is None or o.get("ts", 0) < best.get("ts", 0):
-                best = o
-        return (best or {}).get("pair")
-    except Exception:
-        return None
+        obs = journal.observations()
+    except Exception as e:
+        raise PairLookupFailed(
+            f"could not read the observation journal to recover the pool for "
+            f"{entry.get('contract')}: {type(e).__name__}: {e}") from e
+    best = None
+    for o in obs:
+        if o.get("token") != entry.get("contract"):
+            continue
+        if best is None or o.get("ts", 0) < best.get("ts", 0):
+            best = o
+    return (best or {}).get("pair")
 
 
 def sweep(fetch_pair, verbose=True):
@@ -520,9 +514,23 @@ def sweep(fetch_pair, verbose=True):
         pair = None
         try:
             _pa = _pair_for(e)
+        except PairLookupFailed as err:
+            # We do not know the pool, so we do not know anything. Leave the
+            # position OPEN and try again next sweep; never spend an
+            # irreversible close on a failure to read our own journal.
+            print(f"  [paper] {e.get('symbol')} left open - {err}")
+            stats["still_open"] += 1
+            continue
+        try:
             pair = fetch_pair("solana", _pa) if _pa else None
-        except Exception:
-            pair = None
+        except Exception as err:
+            # A fetch that RAISED is a failed lookup, not a delisted pool.
+            # Only a lookup that succeeded and returned nothing is evidence
+            # of absence.
+            print(f"  [paper] {e.get('symbol')} left open - exit price fetch "
+                  f"failed: {type(err).__name__}: {err}")
+            stats["still_open"] += 1
+            continue
 
         if not pair:
             if expired:
@@ -605,3 +613,188 @@ def _close(entry, price, depth, reason, detail):
                       reason=f"{reason}: {detail}", chain_depth=_chain)
     liveness.beat("paper.close", detail=str(reason)[:24])
     return rec
+
+
+# ---------------------------------------------------------------------------
+# INFERRED TOTAL LOSSES: labelling what we already know, without inventing it.
+#
+# 26 of the first 40 closes were `unpriceable` - the pool was delisted before
+# the 24h hold expired, so no exit price existed and none was invented. That is
+# honest, but it is not the same as unknown. The last witness we hold for those
+# positions says: 15 rugged, 5 dead, 4 alive; median last-known liquidity $0,
+# with 19 of 24 under $1,000. A position whose pool was drained to nothing and
+# then deindexed did not have an unknown outcome. It went to zero.
+#
+# WHAT WE MUST NOT DO, and it is the whole reason this is careful: adopt the
+# last-known MULTIPLE. Median last multiple across those 26 is 0.967x and 8 of
+# 24 printed >= 2x - on pools holding $0. Taking those numbers moves the >=2x
+# rate from 21% to 29%: it manufactures wins out of drained pools. That is the
+# rug-that-pumps-on-the-way-out shape which has fooled this project five times.
+# So the label asserts a multiple of ZERO, from liquidity, never a price read
+# off a corpse. `multiple_adopted` is written as null on every row to record
+# that refusal explicitly.
+#
+# THE LEDGER IS APPEND-ONLY AND HASH-CHAINED, so labels are appended as their
+# own records referencing an exit's hash. No exit row is ever edited. Deriving
+# the log with or without inferred labels is therefore always possible, and the
+# hit rate gets reported both ways, forever.
+#
+# Criteria pre-committed before the counts were computed:
+#   status in (rugged, dead)  AND  last-known liquidity <= $100.
+# `alive` is never labelled, however low its liquidity - an honest "unknown" is
+# still the right answer for some rows, and forcing a label to raise coverage
+# is exactly the failure this is meant to avoid.
+# ---------------------------------------------------------------------------
+LABEL_INFERRED_LOSS = "total_loss_inferred"
+LABEL_MEASURED_LOSS = "total_loss_measured"
+DEAD_LIQ_USD = float(os.environ.get("CRYPTO_PAPER_DEAD_LIQ_USD", "100"))
+DEAD_STATUSES = ("rugged", "dead")
+
+
+def _witness(entry):
+    """The last outcome row that actually carried a price for this entry's pool.
+
+    Read-only, from data/outcomes. Returns None when we hold no witness - in
+    which case nothing is inferred and the close stays unpriceable.
+    """
+    import glob
+    pair = entry.get("pair")
+    if not pair:
+        try:
+            pair = _pair_for(entry)
+        except PairLookupFailed:
+            return None
+    if not pair:
+        return None
+    best = None
+    for path in sorted(glob.glob(os.path.join("data", "outcomes", "*.jsonl"))):
+        with open(path, encoding="utf-8") as f:
+            for line in f:
+                if not line.strip() or pair not in line:
+                    continue
+                try:
+                    d = json.loads(line)
+                except ValueError:
+                    continue
+                if d.get("pair") != pair or d.get("price_usd") is None:
+                    continue
+                if best is None or (d.get("checked_ts") or 0) > (best.get("checked_ts") or 0):
+                    best = d
+    return best
+
+
+def labelled_exits():
+    """exit hash -> its label record. Labels never overwrite; the first stands."""
+    out = {}
+    for r in _read():
+        if r.get("type") == "label" and r.get("exit_id") not in out:
+            out[r["exit_id"]] = r
+    return out
+
+
+def label_unpriceable(dry_run=True, verbose=True):
+    """Append `total_loss_inferred` labels for unambiguously dead positions."""
+    rows = _read()
+    entries = {r["hash"]: r for r in rows if r.get("type") == "entry"}
+    already = labelled_exits()
+    made, skipped = [], []
+    for r in rows:
+        if r.get("type") != "exit" or r.get("void"):
+            continue
+        if not str(r.get("reason", "")).startswith(CLOSE_UNPRICEABLE):
+            continue
+        if r.get("hash") in already:
+            continue
+        e = entries.get(r.get("entry_id")) or {}
+        w = _witness(e)
+        if not w:
+            skipped.append((r.get("symbol"), "no witness held"))
+            continue
+        status, liq = w.get("status"), w.get("liq")
+        if status not in DEAD_STATUSES:
+            skipped.append((r.get("symbol"), f"last seen {status} - stays unpriceable"))
+            continue
+        if liq is None or liq > DEAD_LIQ_USD:
+            shown = "unknown" if liq is None else f"${liq:,.2f}"
+            skipped.append((r.get("symbol"),
+                            f"liquidity {shown} above the ${DEAD_LIQ_USD:,.0f} floor"))
+            continue
+        rec = {
+            "type": "label", "exit_id": r["hash"], "entry_id": r.get("entry_id"),
+            "contract": r.get("contract"), "symbol": r.get("symbol"),
+            "label": LABEL_INFERRED_LOSS,
+            "inferred": True,
+            "mult_effective": 0.0,
+            # Null on purpose: we refused to adopt the last-known price.
+            "multiple_adopted": None,
+            "witness_status": status,
+            "witness_liq_usd": liq,
+            "witness_price_usd": w.get("price_usd"),
+            "witness_checked_ts": w.get("checked_ts"),
+            "witness_horizon_h": w.get("horizon_h"),
+            "witness_elapsed_h": w.get("actual_elapsed_h"),
+            "basis": (f"pool last seen {status} holding ${liq:,.2f} of liquidity "
+                      f"at checked_ts {w.get('checked_ts')}, then delisted before "
+                      f"the hold expired. Outcome INFERRED from liquidity, not "
+                      f"measured; the last-known price was deliberately not used."),
+            "criteria": {"statuses": list(DEAD_STATUSES), "max_liq_usd": DEAD_LIQ_USD},
+            "ts": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        }
+        made.append(rec)
+    if verbose:
+        print(f"  {len(made)} to label, {len(skipped)} left unpriceable")
+        for sym, why in skipped:
+            print(f"    SKIP {str(sym)[:14]:<15} {why}")
+    if not dry_run:
+        for rec in made:
+            _append(rec)
+    return made, skipped
+
+
+def summary(include_inferred=False):
+    """Counts only. Refuses to quote a rate below MIN_N.
+
+    `include_inferred` folds in positions labelled total_loss_inferred at a
+    multiple of 0.0. Report BOTH ways: if they differ materially, that gap is
+    the finding, not a footnote.
+    """
+    rows = _read()
+    entries = [r for r in rows if r.get("type") == "entry"]
+    exits = [r for r in rows if r.get("type") == "exit" and not r.get("void")]
+    voids = [r for r in rows if r.get("type") == "exit" and r.get("void")]
+    labels = labelled_exits()
+    mults = sorted(r["mult"] for r in exits if r.get("mult") is not None)
+    measured_n = len(mults)
+    inferred = [r for r in exits
+                if r.get("mult") is None
+                and r.get("hash") in labels
+                and labels[r["hash"]].get("label") == LABEL_INFERRED_LOSS]
+    if include_inferred:
+        mults = sorted(mults + [0.0] * len(inferred))
+    wins = [m for m in mults if m >= TARGET_MULT]
+    n = len(mults)
+    # THE FLOOR COUNTS DISTINCT TOKENS, NOT ROWS. Declared 2026-09-07 after the
+    # low-score inversion was found to rest on 9 rows that were 6 tokens. The
+    # inferred labels make this bite: they took n from 14 to 33, over a row
+    # floor of 30, and summary() published a 9.09% hit rate. But those 19 rows
+    # are 12 distinct contracts - HOOD appears four times, CatGPT twice. A
+    # token measured at several horizons is one token.
+    counted = [r for r in exits if r.get("mult") is not None]
+    if include_inferred:
+        counted = counted + inferred
+    n_tokens = len({r.get("contract") for r in counted if r.get("contract")})
+    out = {"entries": len(entries), "closed": len(exits), "void": len(voids),
+           "open": len(entries) - len(exits) - len(voids),
+           "priceable": measured_n, "inferred_losses": len(inferred),
+           "unpriceable_unlabelled": len(exits) - measured_n - len(inferred),
+           "basis": ("measured + inferred" if include_inferred else "measured only"),
+           "n": n, "n_tokens": n_tokens, "wins": len(wins), "min_n": MIN_N,
+           "conclusive": n_tokens >= MIN_N}
+    if n:
+        out["median_mult"] = mults[n // 2] if n % 2 else (mults[n // 2 - 1] + mults[n // 2]) / 2
+        out["p25_mult"] = mults[int(0.25 * (n - 1))]
+        out["p75_mult"] = mults[int(0.75 * (n - 1))]
+        out["max_mult"] = mults[-1]
+    out["hit_rate"] = (f"{100.0 * len(wins) / n:.2f}%" if out["conclusive"]
+                       else f"WITHHELD - {n_tokens} distinct tokens, need {MIN_N}")
+    return out
