@@ -44,3 +44,4 @@
 {"token": "DpqBJJrUz5RrQfx9eEksMYDq2eZ9LtDAXqqnxEgPQZMp", "ts": 1788866317, "confidence": "quarantined_unresolved", "horizon_h": 24, "detail": "neither source resolved the token"}
 {"token": "GtDLbvXTn3K6RhiAtcif8mYr5Vf8Qs9BFAXzjWHmt81C", "ts": 1788866407, "confidence": "quarantined_unresolved", "horizon_h": 168, "detail": "neither source resolved the token"}
 {"token": "EGmZXtHMLUAz3CzsBVCvouDtwVcMRQp5UmE4ERZ2kxEY", "ts": 1788866597, "confidence": "quarantined_no_liquidity", "horizon_h": 168, "detail": "total reserve $0.2128 is below the $100 floor; no quote is meaningful"}
+{"token": "EdJRRh2LCCm8zx2Ezu2jfV1xp2ZoVX3UwHjYX8enYakG", "ts": 1788868323, "confidence": "quarantined_no_liquidity", "horizon_h": 1, "detail": "exit depth $0.0000 is below the $100 floor; no quote is meaningful"}
