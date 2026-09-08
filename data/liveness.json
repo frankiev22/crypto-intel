@@ -49,9 +49,9 @@
   "detail": "realizable_2x Aoe2GRB6YxDWyR5miJu7NLX8fK98D7Kt1M1UwTDH7SwV"
  },
  "watchlist.sweep": {
-  "last_ts": 1788830050,
-  "last_at": "2026-09-08T01:14:10+00:00",
-  "count": 5,
+  "last_ts": 1788831275,
+  "last_at": "2026-09-08T01:34:35+00:00",
+  "count": 6,
   "first_ts": 1788786917,
   "detail": null
  },
@@ -63,15 +63,15 @@
   "detail": "graduated 7TAVqmXU5n5HuCd5T7XGoeyRpF58s6Kf4okbeVkUSnSW"
  },
  "paper.sweep": {
-  "last_ts": 1788830060,
-  "last_at": "2026-09-08T01:14:20+00:00",
-  "count": 5,
+  "last_ts": 1788831278,
+  "last_at": "2026-09-08T01:34:38+00:00",
+  "count": 6,
   "first_ts": 1788786927,
   "detail": null
  },
  "paper.close": {
-  "last_ts": 1788830075,
-  "last_at": "2026-09-08T01:14:35+00:00",
+  "last_ts": 1788831280,
+  "last_at": "2026-09-08T01:34:40+00:00",
   "count": 15,
   "first_ts": 1788786929,
   "detail": "target"

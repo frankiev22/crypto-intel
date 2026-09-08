@@ -558,3 +558,6 @@
 {"ts":1788840673,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
 {"ts":1788840807,"dexscreener_ok":1,"dexscreener_dropped":7,"geckoterminal_ok":5,"geckoterminal_fail":2,"onchain_ok":8,"onchain_fail":0,"unresolved":2}
 {"ts":1788840937,"dexscreener_ok":0,"dexscreener_dropped":8,"geckoterminal_ok":5,"geckoterminal_fail":3,"onchain_ok":8,"onchain_fail":0,"unresolved":3}
+{"ts":1788812507,"dexscreener_ok":7,"dexscreener_dropped":31,"geckoterminal_ok":7,"geckoterminal_fail":24,"onchain_ok":38,"onchain_fail":0,"unresolved":24}
+{"ts":1788822796,"dexscreener_ok":9,"dexscreener_dropped":29,"geckoterminal_ok":11,"geckoterminal_fail":18,"onchain_ok":38,"onchain_fail":0,"unresolved":18}
+{"ts":1788831854,"dexscreener_ok":7,"dexscreener_dropped":68,"geckoterminal_ok":17,"geckoterminal_fail":51,"onchain_ok":75,"onchain_fail":0,"unresolved":51}
