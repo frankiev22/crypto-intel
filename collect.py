@@ -156,6 +156,19 @@ def one_pass(networks=("solana",), verbose=True):
         paper.sweep(sources.dexscreener_pair, verbose=verbose)
     except Exception as e:
         print(f"  paper sweep failed: {e}")
+    # LABEL THE UNAMBIGUOUSLY DEAD. A close whose pool was last seen rugged or
+    # dead holding ~$0 did not have an unknown outcome, and leaving 65% of
+    # closes unmeasurable would hand 2026-09-13 a sample too thin to read.
+    # Asserts a multiple of ZERO from liquidity - never the last-known price,
+    # which on these pools medians 0.967x and would manufacture wins. Appended
+    # as its own record type, so the log is still derivable both ways.
+    try:
+        _made, _left = paper.label_unpriceable(dry_run=False, verbose=verbose)
+        if _made:
+            print(f"  [paper] labelled {len(_made)} inferred total losses, "
+                  f"{len(_left)} left honestly unpriceable")
+    except Exception as e:
+        print(f"  paper labelling failed: {e}")
     try:
         track.score_all(verbose=verbose)
     except Exception as e:

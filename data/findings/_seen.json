@@ -5630,13 +5630,13 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 24,
+  "count": 25,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h"
   ],
-  "last_seen": "2026-09-08T06:40:27+00:00",
+  "last_seen": "2026-09-08T11:52:26+00:00",
   "last_escalated": "2026-09-08T06:40:27+00:00",
   "escalations": 5
  },
@@ -7997,6 +7997,14 @@
   "example": "outcome-win: 3RXnsrd9M5w9AGsSFBeH88yhssmqEswM22FZjnpxpump",
   "keys": [
    "3RXnsrd9M5w9AGsSFBeH88yhssmqEswM22FZjnpxpump"
+  ]
+ },
+ "outcome-win:ddtndhmhrecyhugqpwrrgabbnjfemyxbvqvmznc": {
+  "first_seen": "2026-09-08T11:50:10+00:00",
+  "count": 1,
+  "example": "outcome-win: DdTNdhMHReC78yhUgq6pWRrGabBNJfeMYXBvQ8vMZNC2",
+  "keys": [
+   "DdTNdhMHReC78yhUgq6pWRrGabBNJfeMYXBvQ8vMZNC2"
   ]
  }
 }
