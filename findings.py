@@ -29,6 +29,8 @@ import hashlib, json, os, re, sys, time, unicodedata, datetime as dt
 import config  # loads .env
 import notify
 
+import safeload
+
 DIR = "data/findings"
 SEEN = os.path.join(DIR, "_seen.json")
 
@@ -185,17 +187,19 @@ def _collision_guard(cls, seen):
 
 
 def _load_seen():
-    try:
-        return json.load(open(SEEN))
-    except Exception:
-        return {}
+    """Absent -> {}. Present-but-unreadable -> safeload.LoadFailed, NOT {}.
+
+    This used to be a bare `except: return {}` feeding an atomic write, which
+    made any transient read failure permanently delete all 852 dedup entries.
+    See safeload.py for why absent and unreadable must not answer alike.
+    """
+    return safeload.load_json(SEEN)
 
 
 def _save_seen(d):
-    os.makedirs(DIR, exist_ok=True)
-    tmp = SEEN + ".tmp"
-    json.dump(d, open(tmp, "w"), indent=1)
-    os.replace(tmp, SEEN)
+    # allow_empty stays False: this file is only ever added to, so an empty
+    # write is always a bug, never an intention.
+    safeload.save_json(SEEN, d)
 
 
 def today_path(day=None):
@@ -331,7 +335,15 @@ def record(kind, key, summary, detail=None, allow_discord=True, always_ping=None
         if detail:
             f.write(f"```\n{str(detail).strip()[:4000]}\n```\n\n")
 
-    seen = _load_seen()
+    # A dedup file we cannot read must not be overwritten, and a finding must
+    # not be silently swallowed because the dedup state is unavailable. So an
+    # unreadable file degrades to "report it, write nothing" - noisy, not lossy.
+    seen, seen_ok = {}, True
+    try:
+        seen = _load_seen()
+    except safeload.LoadFailed as e:
+        seen_ok = False
+        print(f"  findings: dedup state unreadable, NOT writing it - {e}")
     first_time = cls not in seen
     if first_time:
         seen[cls] = {"first_seen": now.isoformat(timespec="seconds"),
@@ -343,10 +355,10 @@ def record(kind, key, summary, detail=None, allow_discord=True, always_ping=None
         ks = seen[cls].setdefault("keys", [])
         if str(key) not in ks and len(ks) < 64:
             ks.append(str(key))
-    _save_seen(seen)
-
-    # A dedupe key that collides is a defect, not traffic. Say so once, loudly.
-    _collision_guard(cls, seen)
+    if seen_ok:
+        _save_seen(seen)
+        # A dedupe key that collides is a defect, not traffic. Say so once.
+        _collision_guard(cls, seen)
 
     if always_ping is None:
         # A verified outcome big enough to matter is not routine traffic. This
@@ -366,7 +378,9 @@ def record(kind, key, summary, detail=None, allow_discord=True, always_ping=None
             seen[cls]["escalations"] = nth
             _save_seen(seen)
 
-    if not first_time and not always_ping and not escalate:
+    if not seen_ok:
+        always_ping = True            # cannot dedupe -> must not suppress
+    if seen_ok and not first_time and not always_ping and not escalate:
         return path, cls, False, f"class already reported {seen[cls]['count']}x, file only"
     if not allow_discord:
         return path, cls, False, "discord suppressed by caller"

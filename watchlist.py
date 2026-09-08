@@ -36,6 +36,10 @@ import liveness
 import milestones
 import venue
 
+import safeload
+
+_EMPTYING = False   # set True only by a deliberate 'retire everything' path
+
 BASE = os.path.dirname(os.path.abspath(__file__))
 DIR = os.path.join(BASE, "data", "watchlist")
 ACTIVE = os.path.join(DIR, "active.json")
@@ -75,22 +79,25 @@ def _now():
 
 
 def _load():
-    try:
-        with open(ACTIVE, encoding="utf-8") as f:
-            d = json.load(f)
-        return d if isinstance(d, dict) else {}
-    except Exception:
-        # Self-healing: a corrupt or conflict-marked state file must not stop
-        # collection. The check ledger is the durable record; this is a cache.
-        return {}
+    """Absent -> {}. Present-but-corrupt -> safeload.LoadFailed.
+
+    The "self-healing cache" reasoning here is genuinely true and was checked
+    rather than assumed: all 57 active entries appear in checks.jsonl, which
+    carries a superset of the fields. So losing this file loses nothing
+    permanently - unlike findings/_seen.json, which has no ledger behind it.
+
+    It is still wrong to WRITE the empty value back. Self-healing means it can
+    be rebuilt from the ledger, not that silently discarding 57 live positions
+    and continuing is free. Corrupt now raises; the caller decides.
+    """
+    return safeload.load_json(ACTIVE)
 
 
 def _save(state):
-    os.makedirs(DIR, exist_ok=True)
-    tmp = ACTIVE + ".tmp"
-    with open(tmp, "w", encoding="utf-8") as f:
-        json.dump(state, f, sort_keys=True)
-    os.replace(tmp, ACTIVE)
+    # Refuses to write empty over a populated file. Retiring the last position
+    # is legitimate and rare, so it must be said explicitly rather than fallen
+    # into by a failed read.
+    safeload.save_json(ACTIVE, state, allow_empty=not state and _EMPTYING)
 
 
 def _append(path, row):
@@ -128,7 +135,13 @@ def consider(row):
     ca = row.get("addr") or row.get("token")
     if not ca or not in_band(row.get("fdv")):
         return False
-    state = _load()
+    try:
+        state = _load()
+    except safeload.LoadFailed as e:
+        # Skip this add rather than start a fresh state that would overwrite
+        # the positions we simply failed to read.
+        print(f"  watchlist: state unreadable, not adding {ca} - {e}")
+        return False
     if ca in state:
         return False
     if len(state) >= MAX_ACTIVE:
@@ -195,7 +208,15 @@ def sweep(fetch_pair, on_observation=None, verbose=True):
     `fetch_pair(network, pair_address) -> pair dict or None` is injected so this
     module stays free of a circular import and is testable without network.
     """
-    state = _load()
+    try:
+        state = _load()
+    except safeload.LoadFailed as e:
+        # Collection must not stop, and the file must not be rebuilt on top of
+        # itself. Skip this sweep; the next one re-reads.
+        print(f"  watchlist: state unreadable, sweep skipped - {e}")
+        LAST_SWEEP.update(checked=0, graduated=0, retired=0, added=0,
+                          capped=False, error="state unreadable")
+        return LAST_SWEEP
     liveness.beat("watchlist.sweep")
     LAST_SWEEP.update(checked=0, graduated=0, retired=0, added=0, capped=False)
     if not state:

@@ -32,6 +32,9 @@ believed. A wrong price on a 1.02x changes nothing; a wrong price on a 444x
 becomes the headline.
 """
 import os
+import safeload
+import time
+import json
 
 import resolve
 
@@ -66,7 +69,7 @@ Q_UNRESOLVED = "quarantined_unresolved"
 Q_MULT_MISMATCH = "quarantined_multiple_mismatch"
 
 
-def validate(token, chain="solana"):
+def _validate_fresh(token, chain="solana"):
     """Return a verdict on the token price.
 
     {price, confidence, dex_price, gt_price, ratio, liq_usd, trustworthy}
@@ -165,7 +168,125 @@ def validate(token, chain="solana"):
     return out
 
 
-def check_multiple(token, mult, chain="solana", base_price=None):
+
+# ---------------------------------------------------------------------------
+# STICKY QUARANTINE - a rejection at one horizon binds every later horizon.
+#
+# KPOP, 2026-09-07. Pair E9HaVWoQ was quarantined at 1h and again at 6h:
+# dexscreener reported $1,315,074 of liquidity against geckoterminal's $41,842,
+# a 31x disagreement about whether a pool exists at all. Eighteen hours later
+# the SAME pair at the 24h horizon came back trustworthy, carrying the same
+# 6.66x multiple. Only the unrelated `sell_side` check kept it off the record.
+#
+# THE MECHANISM IS A FAIL-OPEN, and it is the same shape as the P0 in
+# safeload.py: the divergence test is guarded by
+#     if dl is not None and gl is not None and ...
+# so when geckoterminal does not resolve - rate limit, budget spent, outage -
+# the test is SKIPPED rather than failed, and execution falls through to the
+# single-source path which sets trustworthy=True. Absence of the corroborating
+# source is read as corroboration.
+#
+# Two things follow, and only the first is done here:
+#
+#  1. A quarantine is a fact about the PAIR, not about the moment it was
+#     observed. Once a signature is rejected it stays rejected, keyed on
+#     contract address per standing rule, so a later horizon cannot silently
+#     admit it. That is this block.
+#
+#  2. Whether a single uncorroborated source should be trustworthy AT ALL is a
+#     separate and larger question. Changing it would move outcome labelling
+#     across the whole record mid-measurement, and the n=200 run closes
+#     2026-09-14. It is therefore NOT changed here - it is written up in
+#     GAPS.md as an open decision with its blast radius measured.
+#
+# Nothing is ever deleted: the store is a cache over an append-only ledger.
+# ---------------------------------------------------------------------------
+QUARANTINE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "data", "quarantine.json")
+QUARANTINE_LOG = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                              "data", "quarantine.jsonl")
+_Q_CACHE = {"mtime": None, "data": {}}
+
+
+def _q_all():
+    """The sticky store, re-read only when it changes on disk."""
+    try:
+        mt = os.path.getmtime(QUARANTINE)
+    except OSError:
+        mt = None
+    if mt != _Q_CACHE["mtime"]:
+        try:
+            _Q_CACHE["data"] = safeload.load_json(QUARANTINE)
+        except safeload.LoadFailed as e:
+            # Unreadable is NOT empty. An unreadable store must not silently
+            # un-quarantine everything it holds, so keep the last good copy.
+            print(f"  pricecheck: quarantine store unreadable, keeping cached "
+                  f"copy of {len(_Q_CACHE['data'])} entries - {e}")
+            return _Q_CACHE["data"]
+        _Q_CACHE["mtime"] = mt
+    return _Q_CACHE["data"]
+
+
+def quarantined(token):
+    """The sticky record for this contract address, or None."""
+    return _q_all().get(str(token)) if token else None
+
+
+def _remember(token, verdict, horizon_h=None):
+    """Persist a rejection so no later horizon can admit the same signature."""
+    if not token:
+        return
+    key = str(token)
+    store = dict(_q_all())
+    prev = store.get(key) or {}
+    now = int(time.time())
+    store[key] = {
+        "confidence": prev.get("confidence") or verdict.get("confidence"),
+        "detail": prev.get("detail") or verdict.get("detail"),
+        "first_ts": prev.get("first_ts") or now,
+        "first_horizon_h": prev.get("first_horizon_h", horizon_h),
+        "last_ts": now,
+        "hits": (prev.get("hits") or 0) + 1,
+    }
+    try:
+        safeload.save_json(QUARANTINE, store)
+        _Q_CACHE["data"] = store
+        _Q_CACHE["mtime"] = os.path.getmtime(QUARANTINE)
+        os.makedirs(os.path.dirname(QUARANTINE_LOG), exist_ok=True)
+        with open(QUARANTINE_LOG, "a", encoding="utf-8", newline="\n") as f:
+            f.write(json.dumps({"token": key, "ts": now,
+                                "confidence": verdict.get("confidence"),
+                                "horizon_h": horizon_h,
+                                "detail": verdict.get("detail")},
+                               ensure_ascii=False) + "\n")
+    except Exception as e:
+        # Failing to persist must not turn a rejection into an acceptance.
+        print(f"  pricecheck: could not persist quarantine for {key}: {e}")
+
+
+def validate(token, chain="solana", horizon_h=None):
+    """`_validate_fresh`, plus: a rejection at any horizon binds all later ones."""
+    out = _validate_fresh(token, chain)
+    if not out.get("trustworthy"):
+        if str(out.get("confidence") or "").startswith("quarantined"):
+            _remember(token, out, horizon_h)
+        return out
+    prior = quarantined(token)
+    if prior:
+        out["trustworthy"] = False
+        out["confidence"] = prior["confidence"]
+        out["sticky_quarantine"] = True
+        out["detail"] = (
+            f"previously quarantined as {prior['confidence']}"
+            + (f" at the {prior['first_horizon_h']}h horizon"
+               if prior.get("first_horizon_h") is not None else "")
+            + f" ({prior.get('hits', 1)} sightings); a later horizon does not "
+              f"clear a rejected signature. Original: {prior.get('detail') or '?'}")
+    return out
+
+
+def check_multiple(token, mult, chain="solana", base_price=None,
+                   horizon_h=None):
     """Validate a multiple before it is recorded. Returns (ok, verdict_or_None).
 
     Small multiples pass without spending an API call - a wrong price on a
@@ -188,7 +309,7 @@ def check_multiple(token, mult, chain="solana", base_price=None):
     """
     if mult is None or mult < VALIDATE_ABOVE:
         return True, None
-    v = validate(token, chain)
+    v = validate(token, chain, horizon_h=horizon_h)
     if v["trustworthy"] and base_price:
         v = _check_arithmetic(v, mult, base_price)
     return bool(v["trustworthy"]), v

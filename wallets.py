@@ -12,6 +12,8 @@ Two modes.
 import json, time, collections
 import config, sources as S
 
+import safeload
+
 WATCHLIST = "data/watchlist.json"
 
 def _rpc(method, params):
@@ -50,8 +52,13 @@ def build_watchlist(winning_mints, min_hits=2):
     return keep
 
 def load_watchlist():
-    try: return json.load(open(WATCHLIST))
-    except Exception: return {}
+    """Absent -> {}. Present-but-corrupt -> safeload.LoadFailed.
+
+    Latent rather than fired: the file does not exist yet, so this has always
+    taken the absent path. It is fixed now because it is the same shape, and
+    the moment the file exists the shape becomes a live data-loss path.
+    """
+    return safeload.load_json(WATCHLIST)
 
 def recent_activity(wallet, limit=10):
     return _rpc("getSignaturesForAddress", [wallet, {"limit": limit}]).get("result", [])

@@ -146,12 +146,28 @@ def score_horizon(horizon_h, limit=None, verbose=True):
         base_px = o.get("price_usd")
         implied = (price / base_px) if (base_px and price) else None
         verdict = None
-        if (implied and implied >= pricecheck.VALIDATE_ABOVE
+        # A rejection already on the record costs nothing to honour, and it must
+        # be honoured BEFORE the budget test. KPOP's E9HaVWoQ was quarantined at
+        # 1h and 6h for a 31x liquidity disagreement, then came back clean at
+        # 24h - not because anything had improved, but because the fallback
+        # budget was spent, so the check never ran and the row fell through to
+        # the trustworthy path. A spent budget is a reason to know less, never a
+        # reason to admit more.
+        sticky = pricecheck.quarantined(o.get("token"))
+        if sticky:
+            verdict = {"trustworthy": False, "confidence": sticky["confidence"],
+                       "sticky_quarantine": True,
+                       "detail": f"sticky: {sticky.get('detail') or ''}"[:300]}
+            if verbose:
+                print(f"    {str(o.get('symbol','?'))[:12]:<14} "
+                      f"{(implied or 0):>8.2f}x STICKY-QUARANTINED "
+                      f"({sticky.get('hits',1)} prior sightings)")
+        elif (implied and implied >= pricecheck.VALIDATE_ABOVE
                 and o.get("token") and fallbacks < FALLBACK_BUDGET):
             fallbacks += 1
             _okp, verdict = pricecheck.check_multiple(
                 o["token"], implied, o.get("network", "solana"),
-                base_price=base_px)
+                base_price=base_px, horizon_h=horizon_h)
             if verdict and not verdict.get("trustworthy") and verbose:
                 print(f"    {str(o.get('symbol','?'))[:12]:<14} {implied:>8.2f}x "
                       f"QUARANTINED - {verdict['confidence']}: {verdict['detail'][:70]}")

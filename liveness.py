@@ -68,6 +68,8 @@ measured cadence yet and should be tightened once it has one.
 """
 import json, os, time, datetime as dt
 
+import safeload
+
 BASE = os.path.dirname(os.path.abspath(__file__))
 REG = os.path.join(BASE, "data", "liveness.json")
 LEDGER_DIR = os.path.join(BASE, "data", "liveness")
@@ -109,13 +111,15 @@ COMPONENTS = {
 
 
 def _load():
-    try:
-        with open(REG, encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        # Missing or corrupt reads as EMPTY, which makes every component report
-        # `never`. That is deliberate: see IT FAILS LOUD above.
-        return {}
+    """Absent -> {}. Present-but-corrupt -> safeload.LoadFailed.
+
+    The original lumped these together, reasoning that empty makes every
+    component report `never` and `never` is loud. That is CORRECT for status(),
+    which only reads. It is destructive in beat(), which loads, mutates and
+    atomically writes back - there "unreadable" became "empty" and then became
+    true on disk. The two states are now distinct and each caller chooses.
+    """
+    return safeload.load_json(REG)
 
 
 def beat(name, n=1, detail=None):
@@ -130,11 +134,8 @@ def beat(name, n=1, detail=None):
                      "count": (cur.get("count") or 0) + n,
                      "first_ts": cur.get("first_ts") or now,
                      "detail": detail}
-        os.makedirs(os.path.dirname(REG), exist_ok=True)
-        tmp = REG + ".tmp"
-        with open(tmp, "w", encoding="utf-8", newline="\n") as f:
-            json.dump(reg, f, indent=1, ensure_ascii=False)
-        os.replace(tmp, REG)          # atomic; a killed pass cannot truncate it
+        # atomic, and refuses to write empty over a populated registry
+        safeload.save_json(REG, reg)
         os.makedirs(LEDGER_DIR, exist_ok=True)
         path = os.path.join(LEDGER_DIR,
                             dt.datetime.now(dt.timezone.utc).strftime("%Y-%m") + ".jsonl")
@@ -142,13 +143,24 @@ def beat(name, n=1, detail=None):
             f.write(json.dumps({"name": name, "ts": now, "n": n,
                                 "detail": detail}, ensure_ascii=False) + "\n")
         return True
+    except safeload.LoadFailed as e:
+        # Ahead of the blanket handler: the registry is there but unreadable,
+        # so this beat is dropped rather than written on top of it.
+        print(f"  liveness: registry unreadable, beat NOT written - {e}")
+        return False
     except Exception:
         return False
 
 
 def status():
     """Every DECLARED component, whether or not it has ever been seen."""
-    reg = _load()
+    try:
+        reg = _load()
+    except safeload.LoadFailed as e:
+        # Do NOT report 11 live components as `never` because one file failed
+        # to parse. That is the exact mislabelling this module exists to catch.
+        raise RuntimeError(f"liveness registry unreadable, refusing to report "
+                           f"every component as never-fired: {e}") from e
     now = time.time()
     out = []
     for name, (max_age_h, declared, basis, what) in sorted(COMPONENTS.items()):
