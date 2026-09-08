@@ -16,13 +16,27 @@ append-only so a duplicate scan just adds another time-series point.
     python collect.py solana loop        keep going every 15 minutes
 
 STAGES. Some runners cap a single command well below what a full pass needs -
-the dispatch sandbox kills one at ~178s and a full pass takes ~5 minutes there.
-A killed pass journals nothing and reports success, which is the worst failure
-this system can have. --stage drives the pass in pieces that each fit:
+the Claude dispatch sandbox kills one at ~178s. A killed pass journals nothing
+and reports success, which is the worst failure this system can have.
 
-    python collect.py solana --stage scan       scan, journal, alert
-    python collect.py solana --stage outcomes   all four horizons
-    python collect.py solana --stage 1          one horizon
+WHICH RUNNER YOU ARE ON DECIDES WHETHER YOU NEED THIS:
+
+  production - .github/workflows/collect.yml, hourly cron, 15-minute job
+    timeout. Runs `collect.py solana` UNSTAGED and should keep doing so; a full
+    pass is ~11 minutes at the current 1.0s pacing and fits.
+
+  the sandbox - 178s per command, and as of 2026-09-07 NOT EVERY STAGE FITS
+    ANY MORE. Pacing went 0.05s -> 1.0s per call, so a stage now costs roughly
+    its call count in seconds (table and basis in sources.py):
+
+    python collect.py solana --stage scan        105 calls  ~117s  fits
+    python collect.py solana --stage watchlist    60 calls   ~67s  fits
+    python collect.py solana --stage paper        21 calls   ~23s  fits
+    python collect.py solana --stage 6            120 calls ~134s  fits, bare
+    python collect.py solana --stage 1            200 calls ~223s  DOES NOT FIT
+    python collect.py solana --stage outcomes     421 calls ~470s  DOES NOT FIT
+
+    For --stage 1 in the sandbox, set CRYPTO_LIMIT_1H below ~150 first.
 
 The journal is append-only and outcome scoring is idempotent, so running the
 stages separately is behaviour-identical to one full pass.

@@ -666,6 +666,15 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
     # measuring a variable window. Record what actually happened.
     elapsed_h = round((checked_ts - observed_ts) / 3600.0, 4) if observed_ts else None
     obj = {"pair": pair, "symbol": symbol, "observed_ts": observed_ts,
+           # THE CONTRACT ADDRESS. Accepted as an argument since this function
+           # was written, used for milestones, and never written to the row -
+           # 0 of 88,235 outcome rows carry one. Standing rule is to key on
+           # contract address and never on ticker, and no outcome row on the
+           # record could obey it. The fifth field silently dropped here.
+           #
+           # Purely additive: it changes no label, no gate and no measurement,
+           # so it is safe to land inside the locked n=200 window.
+           "token": token or None,
            "checked_ts": checked_ts, "horizon_h": horizon_h,
            # Which measurement stood behind `realizable`. True means the quote
            # side was never seen and `liq` was used instead - fine for a

@@ -53,9 +53,34 @@ UA = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
 # WHAT IT COSTS: nothing. Measured 2026-09-07 - 607 Dexscreener calls per pass
 # (421 outcomes, 105 enrichment, 60 watchlist, 21 paper) against an hourly
 # budget of 3,600 at 60/min. That is 83% headroom. A single-command full pass
-# now takes ~10 minutes instead of 2, which exceeds the 178s runner cap, but
-# `collect.py --stage` already splits it and EVERY STAGE FITS: scan 105s,
-# watchlist 60s, paper 21s, each horizon ~140s.
+# now takes ~10 minutes instead of 2.
+#
+# CORRECTED 2026-09-07: "EVERY STAGE FITS" IS NO LONGER TRUE.
+#
+# Those per-stage timings (scan 105s, watchlist 60s, paper 21s, each horizon
+# ~140s) were measured at PACE_S=0.05. Pacing then went to 1.0s - a 20x change -
+# and the runbook line was never re-derived. At 1.0s of sleep plus a measured
+# 0.116s request, every call costs ~1.116s, so a stage's duration is very
+# nearly its call count in seconds:
+#
+#   stage             calls   ~seconds   vs the sandbox's 178s command cap
+#   scan                105       117    fits, ~34% headroom
+#   watchlist            60        67    fits
+#   paper                21        23    fits
+#   --stage 1           200       223    DOES NOT FIT (HORIZON_LIMIT[1] is 200)
+#   --stage 6/24/168    120       134    fits bare, before any fallback lookups
+#   --stage outcomes    421       470    DOES NOT FIT, and never could at 1.0s
+#
+# Call counts are the measured 2026-09-07 pass (421 outcomes, 105 enrichment,
+# 60 watchlist, 21 paper) against HORIZON_LIMIT/HORIZON_SLICE.
+#
+# THIS MOSTLY DOES NOT MATTER, because the 178s cap is the Claude dispatch
+# sandbox's, not production's. Production is .github/workflows/collect.yml,
+# which runs `collect.py solana` UNSTAGED on an hourly cron with a 15-minute
+# job timeout, and an ~11 minute pass fits that with room. --stage is the
+# sandbox path only: run scan, then watchlist, then paper, then ONE horizon at
+# a time, and lower CRYPTO_LIMIT_1H below ~150 for the 1h stage or it is
+# killed mid-pass.
 PACE_S = float(os.environ.get("CRYPTO_HTTP_PACE_S", "1.0"))
 
 def pace():

@@ -69,6 +69,41 @@ def journal_fields():
     return keys
 
 
+def _fields_of(fn):
+    """The keys a writer actually persists, read from its own source."""
+    import inspect
+    import re
+    src = inspect.getsource(fn)
+    keys = set()
+    for m in re.finditer(r'"([a-z_0-9]+)"\s*:', src):
+        keys.add(m.group(1))
+    for m in re.finditer(r'obj\[\s*"([a-z_0-9]+)"\s*\]\s*=', src):
+        keys.add(m.group(1))
+    return keys
+
+
+def outcome_fields():
+    """The keys journal.record_outcome() persists.
+
+    THIS GUARD DID NOT EXIST, AND THAT IS WHY THE FIFTH DROP SURVIVED.
+    fieldguard covered journal.record() - observations - and nothing covered
+    record_outcome(). `token` was accepted as an argument, used to key
+    milestones, and never written: 0 of 88,235 outcome rows carried a contract
+    address, so no outcome row on the record could obey the standing rule to
+    key on contract address rather than ticker. A guard aimed at one of two
+    writers is not a guard, it is a reason to believe you have one.
+    """
+    import journal
+    return _fields_of(journal.record_outcome)
+
+
+def check_outcome(row):
+    """Diff a produced outcome row against what record_outcome persists."""
+    produced = {k for k, v in row.items() if v is not None}
+    dropped = produced - outcome_fields() - TRANSIENT
+    return (not dropped), sorted(dropped)
+
+
 def check(row, strict=True):
     """Diff one produced row against what the journal persists.
 

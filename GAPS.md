@@ -226,3 +226,64 @@ entire labelled set is 0.24%. Monthly production need is ~114k credits against
 
 It is free, it is 11% utilised, and three of the five open work items are behind
 it. Nothing has been signed up for; creating the account is Frank's call.
+
+---
+
+# Open decisions logged 2026-09-07, deliberately NOT taken before the n=200 close
+
+Each of these was found while fixing something else. Each would move a number
+that the 2026-09-14 measurement depends on, so each is written down rather than
+acted on. Blast radius is measured, not estimated.
+
+## 1. A single uncorroborated source is currently `trustworthy = True`
+
+`pricecheck._validate_fresh` ends on a fallthrough: when only one of
+Dexscreener and GeckoTerminal resolves, it takes that price, labels it
+`single_source`, and sets `trustworthy = True`. Combined with the guard
+`if dl is not None and gl is not None` on the liquidity-divergence test, a
+missing second source means the divergence test is SKIPPED, not failed. That
+is how KPOP's E9HaVWoQ pair came back clean at 24h after being quarantined at
+1h and 6h.
+
+Sticky quarantine (shipped) closes the specific hole: a rejection now binds
+later horizons. It does not answer whether an uncorroborated price should
+count at all.
+
+**Blast radius, measured across all 88,235 outcome rows:**
+
+| | n |
+|---|---:|
+| rows labelled `single_source` | 23 |
+| `realizable=True` rows that are `single_source` | 13 of 707 (1.8%) |
+| realizable 3x+ rows that are `single_source` | 10 of 182 (5.5%) |
+
+Small, but 5.5% of the win column is not nothing, and flipping it mid-run makes
+closes non-comparable. **Decide after 2026-09-14.**
+
+## 2. Lookup health counts dead pools as failed lookups
+
+`PRIMARY_OK_FLOOR` was one global 0.5 across every horizon. 24h resolves at
+45.5%, so the outage alarm fired every pass - 21 times by midday - while the
+underlying number was the best it has ever been (14.1% on 09-01 to 49.3% on
+09-08). Per-horizon floors are shipped as the immediate fix.
+
+The deeper problem is the denominator: `source_dropped` is set on ~60% of 24h
+rows, and a pool Dexscreener has deindexed because it died is a **measured
+outcome**, not a failed lookup. Health should be judged on lookups that could
+have succeeded. That changes what the number means, so it is not being done
+days before the run closes. **Decide after 2026-09-14.**
+
+## 3. The 0.00796 template rows are still labelled `realizable = True`
+
+Seven of the sixteen distinct pairs in the 2026-09-07 3x+ set carry the
+template constant (depth/liq 0.007957-0.007961) that on-chain reads confirmed
+as a 781-794x liquidity overstatement. All seven are fluxbeam; the nine
+non-template pairs are pumpswap and meteora, ratios 0.474-0.500. Zero
+crossover.
+
+They are still marked realizable, and the win gate never ran on them at all
+(`win_checks_failed` is null, not `[]`). Auto-quarantining on the template
+constant is a one-line change and is deliberately NOT made here: it would
+retroactively move the win column during the locked window, and `RULE_V1` and
+the paper entry criteria are frozen until 2026-09-14. **Decide after
+2026-09-14, and expect the 3x+ column to shrink by roughly 40% when it lands.**

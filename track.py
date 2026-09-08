@@ -35,8 +35,41 @@ FALLBACK_BUDGET = int(os.environ.get("CRYPTO_FALLBACK_BUDGET", "8"))
 
 # Per-horizon lookup health, and the floor below which a pass says so loudly.
 HORIZON_HEALTH = {}
-PRIMARY_OK_FLOOR = 0.5     # under half resolving is an outage, not variance
 MIN_LOOKUPS_TO_JUDGE = 10  # do not cry outage over three lookups
+
+# ONE GLOBAL FLOOR WAS WRONG, AND IT WAS FIRING 21 TIMES BY MIDDAY.
+#
+# The floor was a flat 0.5: "under half resolving is an outage". That is right
+# for 1h and 6h, which resolve at 99.8-100.0% every day on the record. It is
+# structurally unreachable at 24h, because the denominator includes tokens that
+# no longer exist. A pool that died in its first day is not a failed lookup, it
+# is a measured outcome, and Dexscreener deindexes it - `source_dropped` is set
+# on ~60% of 24h rows.
+#
+# MEASURED, all outcome rows, primary resolution by day:
+#     horizon   09-01   09-03   09-05   09-07   09-08
+#        1h     99.9%   99.9%   99.9%   99.9%  100.0%
+#        6h     99.9%   99.9%  100.0%   99.8%  100.0%
+#       24h     14.1%   17.2%   38.4%   45.5%   49.3%
+#      168h      3.0%    1.9%    3.7%    5.1%    2.7%
+#
+# So 24h is not degrading - it has risen from 14% to 49% in eight days and is
+# the healthiest it has been. It sat just under the flat 0.5 floor, which is
+# why the alarm fired every pass while the underlying number improved. An alarm
+# that cannot be satisfied is one nobody reads, and 168h is the cautionary case
+# in the other direction: at 2.7-5.1% it is genuinely dead, and it was retired.
+#
+# Floors are per horizon, set below the measured range and above the level that
+# would mean the lookup mechanism itself broke. The deeper fix - judging health
+# on lookups that COULD have succeeded, excluding pools the source has
+# deindexed - is written up in GAPS.md; it changes what the number means and is
+# not being done days before the n=200 run closes.
+PRIMARY_OK_FLOOR_BY_H = {1: 0.90, 6: 0.90, 24: 0.20, 168: 0.01}
+PRIMARY_OK_FLOOR = 0.5     # fallback for an undeclared horizon
+
+
+def primary_floor(horizon_h):
+    return PRIMARY_OK_FLOOR_BY_H.get(horizon_h, PRIMARY_OK_FLOOR)
 
 
 # Per-horizon slice. The 1h horizon needs the biggest one: a pass pulls ~90 new
@@ -265,10 +298,12 @@ def score_horizon(horizon_h, limit=None, verbose=True):
                     f"Nominal horizon_h is a label, not a measurement - read "
                     f"actual_elapsed_h instead. Anything bucketed on the label "
                     f"is measuring a variable window."))
-    if seen_n >= MIN_LOOKUPS_TO_JUDGE and primary_ok / seen_n < PRIMARY_OK_FLOOR:
+    _floor = primary_floor(horizon_h)
+    if seen_n >= MIN_LOOKUPS_TO_JUDGE and primary_ok / seen_n < _floor:
         rate = primary_ok / seen_n
         msg = (f"{horizon_h}h horizon: primary price source resolved only "
-               f"{primary_ok}/{seen_n} lookups ({rate:.0%})")
+               f"{primary_ok}/{seen_n} lookups ({rate:.0%}), under this "
+               f"horizon's {_floor:.0%} floor")
         print(f"    LOOKUP OUTAGE - {msg}")
         try:
             import findings
