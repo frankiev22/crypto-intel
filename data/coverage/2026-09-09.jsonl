@@ -1,2 +1,3 @@
 {"ts":1788931606,"network":"solana","kind":"discovery_window","pools_returned":74,"oldest":"2026-09-09T05:19:45+00:00","newest":"2026-09-09T05:23:00+00:00","span_s":195.0,"pages_lost":0,"suspected_cause":null,"scanned":74,"passed":2,"pass_score":70}
 {"ts":1788948745,"network":"solana","kind":"discovery_window","pools_returned":66,"oldest":"2026-09-09T10:06:05+00:00","newest":"2026-09-09T10:10:14+00:00","span_s":249.0,"pages_lost":0,"suspected_cause":null,"scanned":65,"passed":5,"pass_score":70}
+{"ts":1788965511,"network":"solana","kind":"discovery_window","pools_returned":75,"oldest":"2026-09-09T14:44:25+00:00","newest":"2026-09-09T14:49:03+00:00","span_s":278.0,"pages_lost":0,"suspected_cause":null,"scanned":74,"passed":7,"pass_score":70}
