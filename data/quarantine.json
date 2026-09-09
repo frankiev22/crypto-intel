@@ -326,5 +326,61 @@
   "first_horizon_h": 1,
   "last_ts": 1788868323,
   "hits": 1
+ },
+ "5Sm8KEVtwKdjDvEMQjLfsecxdx71tQNQU8gR7JJvRXpE": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0000 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1788931746,
+  "first_horizon_h": 1,
+  "last_ts": 1788931746,
+  "hits": 1
+ },
+ "FvHicYGUXv6EQwqanDqgefkyAa4upeKdgVxR9RDvddMa": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0440 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1788931749,
+  "first_horizon_h": 1,
+  "last_ts": 1788931749,
+  "hits": 1
+ },
+ "A79TeL9vP9PqzFFAnASYsKoybaAcF6sKLwqedugZpump": {
+  "confidence": "quarantined_liquidity_divergent",
+  "detail": "dexscreener liquidity $0 vs geckoterminal $10,862; the sources do not agree that there is a pool to exit into",
+  "first_ts": 1788931813,
+  "first_horizon_h": 1,
+  "last_ts": 1788931813,
+  "hits": 1
+ },
+ "F6PRsx34u7LFLCT2HEJMUMRX9wwznKGAddHgwUcUpump": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $1.2396 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1788931861,
+  "first_horizon_h": 1,
+  "last_ts": 1788931861,
+  "hits": 1
+ },
+ "DCEGC1QY6qFDh6NUiu57PY8om5khU5F3U7bbNq66NAwb": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "total reserve $0.2881 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1788932088,
+  "first_horizon_h": 24,
+  "last_ts": 1788932088,
+  "hits": 1
+ },
+ "8Z7kk1Vb4NiUuhtkpyfUiTt7ssc5xb4bJwciX4oyRb6r": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0238 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1788932129,
+  "first_horizon_h": 24,
+  "last_ts": 1788932129,
+  "hits": 1
+ },
+ "GyZuetge7PbaUxpJeUTfAM3pTLNTTTCmuK1vvdAUWdYB": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.2530 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1788932137,
+  "first_horizon_h": 24,
+  "last_ts": 1788932137,
+  "hits": 1
  }
 }

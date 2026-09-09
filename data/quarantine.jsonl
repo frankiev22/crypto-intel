@@ -45,3 +45,10 @@
 {"token": "GtDLbvXTn3K6RhiAtcif8mYr5Vf8Qs9BFAXzjWHmt81C", "ts": 1788866407, "confidence": "quarantined_unresolved", "horizon_h": 168, "detail": "neither source resolved the token"}
 {"token": "EGmZXtHMLUAz3CzsBVCvouDtwVcMRQp5UmE4ERZ2kxEY", "ts": 1788866597, "confidence": "quarantined_no_liquidity", "horizon_h": 168, "detail": "total reserve $0.2128 is below the $100 floor; no quote is meaningful"}
 {"token": "EdJRRh2LCCm8zx2Ezu2jfV1xp2ZoVX3UwHjYX8enYakG", "ts": 1788868323, "confidence": "quarantined_no_liquidity", "horizon_h": 1, "detail": "exit depth $0.0000 is below the $100 floor; no quote is meaningful"}
+{"token": "5Sm8KEVtwKdjDvEMQjLfsecxdx71tQNQU8gR7JJvRXpE", "ts": 1788931746, "confidence": "quarantined_no_liquidity", "horizon_h": 1, "detail": "exit depth $0.0000 is below the $100 floor; no quote is meaningful"}
+{"token": "FvHicYGUXv6EQwqanDqgefkyAa4upeKdgVxR9RDvddMa", "ts": 1788931749, "confidence": "quarantined_no_liquidity", "horizon_h": 1, "detail": "exit depth $0.0440 is below the $100 floor; no quote is meaningful"}
+{"token": "A79TeL9vP9PqzFFAnASYsKoybaAcF6sKLwqedugZpump", "ts": 1788931813, "confidence": "quarantined_liquidity_divergent", "horizon_h": 1, "detail": "dexscreener liquidity $0 vs geckoterminal $10,862; the sources do not agree that there is a pool to exit into"}
+{"token": "F6PRsx34u7LFLCT2HEJMUMRX9wwznKGAddHgwUcUpump", "ts": 1788931861, "confidence": "quarantined_no_liquidity", "horizon_h": 1, "detail": "exit depth $1.2396 is below the $100 floor; no quote is meaningful"}
+{"token": "DCEGC1QY6qFDh6NUiu57PY8om5khU5F3U7bbNq66NAwb", "ts": 1788932088, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "total reserve $0.2881 is below the $100 floor; no quote is meaningful"}
+{"token": "8Z7kk1Vb4NiUuhtkpyfUiTt7ssc5xb4bJwciX4oyRb6r", "ts": 1788932129, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "exit depth $0.0238 is below the $100 floor; no quote is meaningful"}
+{"token": "GyZuetge7PbaUxpJeUTfAM3pTLNTTTCmuK1vvdAUWdYB", "ts": 1788932137, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "exit depth $0.2530 is below the $100 floor; no quote is meaningful"}

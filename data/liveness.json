@@ -1,45 +1,45 @@
 {
  "detector.drift": {
-  "last_ts": 1788868352,
-  "last_at": "2026-09-08T11:52:32+00:00",
-  "count": 129,
+  "last_ts": 1788932401,
+  "last_at": "2026-09-09T05:40:01+00:00",
+  "count": 130,
   "first_ts": 1788782114,
   "detail": "stable"
  },
  "scan.observations": {
-  "last_ts": 1788868182,
-  "last_at": "2026-09-08T11:49:42+00:00",
-  "count": 1962,
+  "last_ts": 1788931606,
+  "last_at": "2026-09-09T05:26:46+00:00",
+  "count": 2036,
   "first_ts": 1788782726,
   "detail": null
  },
  "fieldguard.check": {
-  "last_ts": 1788868182,
-  "last_at": "2026-09-08T11:49:42+00:00",
-  "count": 25,
+  "last_ts": 1788931606,
+  "last_at": "2026-09-09T05:26:46+00:00",
+  "count": 26,
   "first_ts": 1788782815,
   "detail": null
  },
  "news.freshness": {
-  "last_ts": 1788868352,
-  "last_at": "2026-09-08T11:52:32+00:00",
-  "count": 131,
+  "last_ts": 1788932401,
+  "last_at": "2026-09-09T05:40:01+00:00",
+  "count": 132,
   "first_ts": 1788782822,
   "detail": "0 stale outlet(s)"
  },
  "outcome.recorded": {
-  "last_ts": 1788868345,
-  "last_at": "2026-09-08T11:52:25+00:00",
-  "count": 9165,
+  "last_ts": 1788932398,
+  "last_at": "2026-09-09T05:39:58+00:00",
+  "count": 9694,
   "first_ts": 1788782831,
   "detail": null
  },
  "milestone.mcap": {
-  "last_ts": 1788868229,
-  "last_at": "2026-09-08T11:50:29+00:00",
-  "count": 509,
+  "last_ts": 1788932179,
+  "last_at": "2026-09-09T05:36:19+00:00",
+  "count": 522,
   "first_ts": 1788782876,
-  "detail": "mcap_5m EQxngF7vx5X9WikfNLsGWxVEmG5jmEpHz2oBqMjWpump"
+  "detail": "mcap_1m GLRyB95LzCyyY8TVfwZVDyrVcZuSJPJJoaPTnyWs89mv"
  },
  "milestone.realizable": {
   "last_ts": 1788868210,
@@ -49,9 +49,9 @@
   "detail": "realizable_3x DdTNdhMHReC78yhUgq6pWRrGabBNJfeMYXBvQ8vMZNC2"
  },
  "watchlist.sweep": {
-  "last_ts": 1788868185,
-  "last_at": "2026-09-08T11:49:45+00:00",
-  "count": 9,
+  "last_ts": 1788931609,
+  "last_at": "2026-09-09T05:26:49+00:00",
+  "count": 10,
   "first_ts": 1788786917,
   "detail": null
  },
@@ -63,16 +63,16 @@
   "detail": "graduated 4gKsXcvfGPQuCHngi8bKhqjcDHz2s2XSscQfcPdk49aG"
  },
  "paper.sweep": {
-  "last_ts": 1788868197,
-  "last_at": "2026-09-08T11:49:57+00:00",
-  "count": 9,
+  "last_ts": 1788931613,
+  "last_at": "2026-09-09T05:26:53+00:00",
+  "count": 10,
   "first_ts": 1788786927,
   "detail": null
  },
  "paper.close": {
-  "last_ts": 1788868201,
-  "last_at": "2026-09-08T11:50:01+00:00",
-  "count": 30,
+  "last_ts": 1788931711,
+  "last_at": "2026-09-09T05:28:31+00:00",
+  "count": 55,
   "first_ts": 1788786929,
   "detail": "expiry"
  }
