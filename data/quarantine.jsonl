@@ -52,3 +52,10 @@
 {"token": "DCEGC1QY6qFDh6NUiu57PY8om5khU5F3U7bbNq66NAwb", "ts": 1788932088, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "total reserve $0.2881 is below the $100 floor; no quote is meaningful"}
 {"token": "8Z7kk1Vb4NiUuhtkpyfUiTt7ssc5xb4bJwciX4oyRb6r", "ts": 1788932129, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "exit depth $0.0238 is below the $100 floor; no quote is meaningful"}
 {"token": "GyZuetge7PbaUxpJeUTfAM3pTLNTTTCmuK1vvdAUWdYB", "ts": 1788932137, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "exit depth $0.2530 is below the $100 floor; no quote is meaningful"}
+{"token": "3awM8Q8jjwntaCCgzsV4USmdHHf2wSuTZYXCRKzyxUya", "ts": 1788948851, "confidence": "quarantined_no_liquidity", "horizon_h": 1, "detail": "exit depth $0.0653 is below the $100 floor; no quote is meaningful"}
+{"token": "6GaSv9fjAqHnBrAJrvUD5Rt7Av8ziDGVWG9JqjFfpump", "ts": 1788948881, "confidence": "quarantined_no_liquidity", "horizon_h": 1, "detail": "exit depth $1.4871 is below the $100 floor; no quote is meaningful"}
+{"token": "GtDQNe8vzig9mwdTB5282ziP6L9rAqibMaeSwEwZzHWG", "ts": 1788948976, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "exit depth $0.1782 is below the $100 floor; no quote is meaningful"}
+{"token": "4uWTqyMRY9VnbGsXFK3St4i5bDgRtdsSsUTLQob2SDUZ", "ts": 1788948992, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "exit depth $0.1621 is below the $100 floor; no quote is meaningful"}
+{"token": "DUXkQWNk1FcR59xheiHmzGaLdR8FaUkRfc5g7q53Y6j", "ts": 1788949040, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "exit depth $0.1272 is below the $100 floor; no quote is meaningful"}
+{"token": "CfeC1vRSg27pQtKYAm2cAggxFrk8ZMUNkwVFo8tEbrV4", "ts": 1788949140, "confidence": "quarantined_no_liquidity", "horizon_h": 168, "detail": "total reserve $0.0506 is below the $100 floor; no quote is meaningful"}
+{"token": "BKRAvWBCmZLDoNc2PirvZJfRmsJP9RgmmhCpBSt6WAbf", "ts": 1788949144, "confidence": "quarantined_no_liquidity", "horizon_h": 168, "detail": "total reserve $0.0414 is below the $100 floor; no quote is meaningful"}
