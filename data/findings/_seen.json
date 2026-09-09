@@ -5150,13 +5150,13 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 153,
+  "count": 154,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-09T21:29:14+00:00",
+  "last_seen": "2026-09-09T23:40:58+00:00",
   "last_escalated": "2026-09-09T21:26:09+00:00",
   "escalations": 13
  },
@@ -5630,14 +5630,14 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 34,
+  "count": 36,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h",
    "24h"
   ],
-  "last_seen": "2026-09-09T21:26:09+00:00",
+  "last_seen": "2026-09-09T23:40:58+00:00",
   "last_escalated": "2026-09-09T21:21:30+00:00",
   "escalations": 8
  },
@@ -8010,12 +8010,12 @@
  },
  "liveness:paper-open": {
   "first_seen": "2026-09-09T15:02:17+00:00",
-  "count": 3,
+  "count": 4,
   "example": "liveness: paper.open",
   "keys": [
    "paper.open"
   ],
-  "last_seen": "2026-09-09T21:29:16+00:00",
+  "last_seen": "2026-09-09T23:43:49+00:00",
   "last_escalated": "2026-09-09T21:29:16+00:00",
   "escalations": 1
  }
