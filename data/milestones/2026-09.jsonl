@@ -2271,3 +2271,12 @@
 {"token":"2jqjDacSD3695MRLj3s1bXe4kRh5bn8BKQxTJxTixE9D","milestone":"mcap_200k","crossed_ts":1788977086,"crossed_at":"2026-09-09T18:04:46+00:00","symbol":"B500","value":269419.0,"kind":"mcap"}
 {"token":"AnHhAe8JSwQTYsubjrtB8AeDGoVx2LMTGn7TLJ7syK6F","milestone":"mcap_100k","crossed_ts":1788977157,"crossed_at":"2026-09-09T18:05:57+00:00","symbol":"IF","value":422812.0,"kind":"mcap"}
 {"token":"AnHhAe8JSwQTYsubjrtB8AeDGoVx2LMTGn7TLJ7syK6F","milestone":"mcap_200k","crossed_ts":1788977157,"crossed_at":"2026-09-09T18:05:57+00:00","symbol":"IF","value":422812.0,"kind":"mcap"}
+{"token":"8gvTxSrBmrYPkdgbWUrbF7LKyaNYEeDBV8Dy8zR5Pxhm","milestone":"mcap_100k","crossed_ts":1788988856,"crossed_at":"2026-09-09T21:20:56+00:00","symbol":"GOOGL","value":3210602.0,"kind":"mcap"}
+{"token":"8gvTxSrBmrYPkdgbWUrbF7LKyaNYEeDBV8Dy8zR5Pxhm","milestone":"mcap_200k","crossed_ts":1788988856,"crossed_at":"2026-09-09T21:20:56+00:00","symbol":"GOOGL","value":3210602.0,"kind":"mcap"}
+{"token":"8gvTxSrBmrYPkdgbWUrbF7LKyaNYEeDBV8Dy8zR5Pxhm","milestone":"mcap_1m","crossed_ts":1788988856,"crossed_at":"2026-09-09T21:20:56+00:00","symbol":"GOOGL","value":3210602.0,"kind":"mcap"}
+{"token":"HiMSSzzwkZkrXJ4PGVJRdtfLaANeAztjjcgk5Dxe7Lwx","milestone":"mcap_100k","crossed_ts":1788988859,"crossed_at":"2026-09-09T21:20:59+00:00","symbol":"HIMS","value":173240.0,"kind":"mcap"}
+{"token":"49nbiaLVoz1RuHk4JowSEhvN7334ov7yuXhrg8WhgTXw","milestone":"mcap_100k","crossed_ts":1788988871,"crossed_at":"2026-09-09T21:21:11+00:00","symbol":"DTCOKE","value":137510.0,"kind":"mcap"}
+{"token":"3F36ARhv2n4bVCRo9qoSUKPGMnynQDopYGg6DrrQVvAf","milestone":"mcap_100k","crossed_ts":1788988872,"crossed_at":"2026-09-09T21:21:12+00:00","symbol":"LAPCAT","value":529775.0,"kind":"mcap"}
+{"token":"3F36ARhv2n4bVCRo9qoSUKPGMnynQDopYGg6DrrQVvAf","milestone":"mcap_200k","crossed_ts":1788988872,"crossed_at":"2026-09-09T21:21:12+00:00","symbol":"LAPCAT","value":529775.0,"kind":"mcap"}
+{"token":"G23PWQjEoMiQKFQTGKUzS48bry6kVZxrKtdCyiNd3BC5","milestone":"mcap_100k","crossed_ts":1788988991,"crossed_at":"2026-09-09T21:23:11+00:00","symbol":"ANSEMCOIN","value":158548.0,"kind":"mcap"}
+{"token":"6SWnaJekNJifAkUeer2emAuBpP1f3mJsQAjjjykzAjJr","milestone":"mcap_200k","crossed_ts":1788989115,"crossed_at":"2026-09-09T21:25:15+00:00","symbol":"xStonk","value":263605.0,"kind":"mcap"}
