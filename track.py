@@ -35,6 +35,11 @@ FALLBACK_BUDGET = int(os.environ.get("CRYPTO_FALLBACK_BUDGET", "8"))
 
 # Per-horizon lookup health, and the floor below which a pass says so loudly.
 HORIZON_HEALTH = {}
+# Why a horizon stopped short, per horizon. Written so an incomplete pass is a
+# RECORDED FACT rather than something the next pass has to infer from a stale
+# sentinel - the failure mode that let a 76% collection decline run for three
+# days looking like quiet market conditions.
+LAST_STOP = {}
 MIN_LOOKUPS_TO_JUDGE = 10  # do not cry outage over three lookups
 
 # ONE GLOBAL FLOOR WAS WRONG, AND IT WAS FIRING 21 TIMES BY MIDDAY.
@@ -105,7 +110,17 @@ def score_horizon(horizon_h, limit=None, verbose=True):
     fallbacks = 0
     primary_ok = primary_miss = 0
     elapsed_seen = []
+    stopped_early = None
+    LAST_STOP.pop(horizon_h, None)
     for o in todo:
+        # STOP CLEANLY AT THE BUDGET. Reserve headroom for the fallback lookup
+        # this row may need, so we never stop half way through one pair.
+        if S.over_budget(headroom=2):
+            stopped_early = (f"call budget reached after {done} of {len(todo)} "
+                             f"pairs ({S.calls_made()} calls)")
+            if verbose:
+                print(f"    stopping cleanly: {stopped_early}")
+            break
         try:
             pair = S.dexscreener_pair(o.get("network", "solana"), o["pair"])
         except Exception:
@@ -315,11 +330,22 @@ def score_horizon(horizon_h, limit=None, verbose=True):
                             always_ping=True)
         except Exception as e:
             print(f"    (could not raise the outage finding: {e})")
+    if stopped_early:
+        LAST_STOP[horizon_h] = stopped_early
     return done
 
 
 def score_all(verbose=True):
-    return {h: score_horizon(h, verbose=verbose) for h in HORIZONS}
+    out = {}
+    for h in HORIZONS:
+        if S.over_budget(headroom=2):
+            LAST_STOP[h] = f"skipped entirely: call budget spent ({S.calls_made()} calls)"
+            out[h] = 0
+            if verbose:
+                print(f"  {h}h horizon: skipped, call budget spent")
+            continue
+        out[h] = score_horizon(h, verbose=verbose)
+    return out
 
 
 # --------------------------------------------------------------- analysis ---

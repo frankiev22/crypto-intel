@@ -1,8 +1,8 @@
 {
  "detector.drift": {
-  "last_ts": 1788998879,
-  "last_at": "2026-09-10T00:07:59+00:00",
-  "count": 202,
+  "last_ts": 1788999710,
+  "last_at": "2026-09-10T00:21:50+00:00",
+  "count": 206,
   "first_ts": 1788782114,
   "detail": "stable"
  },
@@ -21,25 +21,25 @@
   "detail": null
  },
  "news.freshness": {
-  "last_ts": 1788998877,
-  "last_at": "2026-09-10T00:07:57+00:00",
-  "count": 205,
+  "last_ts": 1788999708,
+  "last_at": "2026-09-10T00:21:48+00:00",
+  "count": 209,
   "first_ts": 1788782822,
   "detail": "0 stale outlet(s)"
  },
  "outcome.recorded": {
-  "last_ts": 1788999417,
-  "last_at": "2026-09-10T00:16:57+00:00",
-  "count": 13937,
+  "last_ts": 1788999706,
+  "last_at": "2026-09-10T00:21:46+00:00",
+  "count": 14092,
   "first_ts": 1788782831,
   "detail": null
  },
  "milestone.mcap": {
-  "last_ts": 1788999038,
-  "last_at": "2026-09-10T00:10:38+00:00",
-  "count": 590,
+  "last_ts": 1788999445,
+  "last_at": "2026-09-10T00:17:25+00:00",
+  "count": 592,
   "first_ts": 1788782876,
-  "detail": "mcap_1m ALtBt8eRjCkhqWFfUyJfASZ8saotwDcjLT5kEMLD1mT5"
+  "detail": "mcap_100k 4dTMVcUKsSjjkZKFMgcHfZ4qadBhZ4xNRwLMJt5S6wTw"
  },
  "milestone.realizable": {
   "last_ts": 1788876999,
@@ -75,5 +75,12 @@
   "count": 61,
   "first_ts": 1788786929,
   "detail": "unpriceable"
+ },
+ "paper.open": {
+  "last_ts": 1788999700,
+  "last_at": "2026-09-10T00:21:40+00:00",
+  "count": 8,
+  "first_ts": 1788999700,
+  "detail": "B"
  }
 }

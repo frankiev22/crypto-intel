@@ -74,6 +74,10 @@ UA = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
 # Call counts are the measured 2026-09-07 pass (421 outcomes, 105 enrichment,
 # 60 watchlist, 21 paper) against HORIZON_LIMIT/HORIZON_SLICE.
 #
+# RESOLVED 2026-09-09: staged invocations now carry a call budget
+# (CRYPTO_STAGE_CALLS, default 150 ~ 170s) and stop cleanly when it is spent,
+# resuming on the next invocation. The table below is why the budget exists.
+#
 # THIS MOSTLY DOES NOT MATTER, because the 178s cap is the Claude dispatch
 # sandbox's, not production's. Production is .github/workflows/collect.yml,
 # which runs `collect.py solana` UNSTAGED on an hourly cron with a 15-minute
@@ -94,7 +98,49 @@ def pace():
 PERMANENT_STATUS = (400, 401, 403, 404, 410, 422)
 
 
+# ---------------------------------------------------------------------------
+# CALL BUDGET. Make the work fit the window instead of making the calls faster.
+#
+# Pacing to the only published rate limit (60/min) is a deliberate choice and it
+# stands. The consequence is arithmetic: at ~1.116s per call - 1.0s of pacing
+# plus a measured 0.116s request - a full pass of ~607 calls takes about ten
+# minutes. That fits the GitHub runner's 15-minute job timeout with room, and
+# blows the Claude dispatch sandbox's 178s command cap by 3.4x.
+#
+# So Claude-side passes were being SIGKILLed part-way through, which is exactly
+# what the data showed: runtime per pass climbing 8.4s -> 70s -> 97s -> 110s
+# while pools returned per pass fell 79 -> 33, and observations per day fell
+# 2,881 -> 678 over three days before anyone noticed.
+#
+# A budget is counted here rather than estimated by the caller, because this is
+# the only place that knows what a call is. Callers check `over_budget()` at
+# their own loop boundaries and stop CLEANLY, so a short pass is a recorded
+# fact rather than a corpse the next pass has to infer.
+# ---------------------------------------------------------------------------
+CALLS = 0                  # calls made since the last budget reset
+CALL_BUDGET = None         # None means unlimited: the runner's normal mode
+
+
+def set_call_budget(n):
+    """Start a budgeted window. None or 0 disables the budget."""
+    global CALLS, CALL_BUDGET
+    CALLS = 0
+    CALL_BUDGET = int(n) if n else None
+    return CALL_BUDGET
+
+
+def over_budget(headroom=0):
+    """True when the next `headroom` calls would exceed the budget."""
+    return CALL_BUDGET is not None and (CALLS + headroom) >= CALL_BUDGET
+
+
+def calls_made():
+    return CALLS
+
+
 def _get(url, timeout=20, tries=3, backoff=1.6, headers=None):
+    global CALLS
+    CALLS += 1
     last = None
     h = {**UA, **(headers or {})}
     for i in range(tries):

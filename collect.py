@@ -25,24 +25,40 @@ WHICH RUNNER YOU ARE ON DECIDES WHETHER YOU NEED THIS:
     timeout. Runs `collect.py solana` UNSTAGED and should keep doing so; a full
     pass is ~11 minutes at the current 1.0s pacing and fits.
 
-  the sandbox - 178s per command, and as of 2026-09-07 NOT EVERY STAGE FITS
-    ANY MORE. Pacing went 0.05s -> 1.0s per call, so a stage now costs roughly
-    its call count in seconds (table and basis in sources.py):
+  the sandbox - 178s per command. Pacing went 0.05s -> 1.0s per call on
+    2026-09-07, so a stage costs roughly its call count in seconds and the
+    bigger stages stopped fitting. That was not noticed for three days: passes
+    were SIGKILLed part-way, observations/day fell 2,881 -> 678, and the
+    coverage log could only say `suspected_cause: killed - no clean exit`.
 
-    python collect.py solana --stage scan        105 calls  ~117s  fits
-    python collect.py solana --stage watchlist    60 calls   ~67s  fits
-    python collect.py solana --stage paper        21 calls   ~23s  fits
-    python collect.py solana --stage 6            120 calls ~134s  fits, bare
-    python collect.py solana --stage 1            200 calls ~223s  DOES NOT FIT
-    python collect.py solana --stage outcomes     421 calls ~470s  DOES NOT FIT
+    THE FIX IS TO MAKE THE WORK FIT THE WINDOW, not to make the calls faster.
+    Pacing to the only published rate limit stands. Instead every staged
+    invocation carries a CALL BUDGET, defaulting to CRYPTO_STAGE_CALLS=150
+    (~170s at 1.116s/call), and stops CLEANLY when it is spent. Scoring is
+    idempotent and journal.pending() re-offers whatever was not reached, so a
+    short pass loses nothing - the next invocation resumes.
 
-    For --stage 1 in the sandbox, set CRYPTO_LIMIT_1H below ~150 first.
+    python collect.py solana --stage scan        ~105 calls, fits
+    python collect.py solana --stage watchlist    ~60 calls, fits
+    python collect.py solana --stage paper        ~21 calls, fits
+    python collect.py solana --stage 1           budgeted, resumes next run
+    python collect.py solana --stage 6           budgeted, resumes next run
+    python collect.py solana --stage 24          budgeted, resumes next run
+    python collect.py solana --stage 168         budgeted, resumes next run
+
+    --stage outcomes is ~421 calls and will now stop after ~150 rather than be
+    killed; run the four horizons as separate invocations to drain them.
+    Override with --max-calls N. A short pass records kind="pass_short" with
+    complete=false and the exact reason, so an incomplete pass is a FACT in
+    data/coverage, never an inference from a stale sentinel.
 
 The journal is append-only and outcome scoring is idempotent, so running the
 stages separately is behaviour-identical to one full pass.
 """
-import sys, time, traceback, datetime as dt
+import os, sys, time, traceback, datetime as dt
 import scanner, journal, track, notify, macro, sources, findings, resolve
+DEFAULT_STAGE_CALLS = int(os.environ.get('CRYPTO_STAGE_CALLS', '150'))
+
 import watchlist
 import news
 import paper
@@ -184,6 +200,19 @@ def main():
         stage = argv[i + 1] if i + 1 < len(argv) else "full"
         del argv[i:i + 2]
 
+    # CALL BUDGET. A staged invocation must fit its window, and the window is
+    # 178s on the Claude dispatch sandbox. At ~1.116s per call that is ~150
+    # calls, so a staged run defaults to a budget and stops CLEANLY at it.
+    # Unstaged runs - the GitHub runner, 15-minute timeout - stay unlimited.
+    max_calls = None
+    if "--max-calls" in argv:
+        i = argv.index("--max-calls")
+        max_calls = int(argv[i + 1]) if i + 1 < len(argv) else DEFAULT_STAGE_CALLS
+        del argv[i:i + 2]
+    elif stage != "full":
+        max_calls = DEFAULT_STAGE_CALLS
+    sources.set_call_budget(max_calls)
+
     nets = ("solana",)
     loop = False
     if argv:
@@ -194,7 +223,7 @@ def main():
     # Claim the pass before doing any work. If the previous one left its marker
     # behind it was killed, and that hour needs to be on the record as broken
     # rather than quiet.
-    stale = journal.pass_begin(",".join(nets), stage)
+    stale = journal.pass_begin(",".join(nets), stage, budget=max_calls)
     if stale:
         ab = journal.record_aborted(stale)
         print(f"  PREVIOUS PASS NEVER FINISHED: stage={ab['stage']} "
@@ -207,8 +236,10 @@ def main():
         try:
             if stage == "outcomes":
                 track.score_all()
+                journal.pass_note(phase="outcomes", calls=sources.calls_made())
             elif stage.isdigit():
                 track.score_horizon(int(stage))
+                journal.pass_note(phase=f"{stage}h", calls=sources.calls_made())
             else:
                 seen, passed = (scan_stage(nets) if stage == "scan" else one_pass(nets))
                 s = journal.stats()
@@ -319,7 +350,18 @@ def main():
         print(f"  heartbeat failed (non-fatal): {e}")
 
     if rc == 0:
-        journal.pass_end()      # only a clean finish clears the marker
+        # Completeness is RECORDED, not inferred. A budgeted stop is a
+        # deliberate short pass; a kill leaves the marker for the next run.
+        _stops = {k: v for k, v in track.LAST_STOP.items()}
+        _short = bool(_stops) or sources.over_budget()
+        journal.pass_end(
+            complete=not _short,
+            reason=("; ".join(f"{k}h: {v}" for k, v in _stops.items())
+                    if _stops else ("call budget spent" if _short else None)),
+            calls=sources.calls_made(), phase=stage)
+        if _short:
+            print(f"  SHORT PASS (recorded): {sources.calls_made()} calls against "
+                  f"a budget of {max_calls}. Remaining work resumes next invocation.")
     return rc
 
 

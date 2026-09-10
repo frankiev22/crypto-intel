@@ -2375,3 +2375,5 @@
 {"token":"ALtBt8eRjCkhqWFfUyJfASZ8saotwDcjLT5kEMLD1mT5","milestone":"mcap_100k","crossed_ts":1788999038,"crossed_at":"2026-09-10T00:10:38+00:00","symbol":"4Stock","value":2425907.0,"kind":"mcap"}
 {"token":"ALtBt8eRjCkhqWFfUyJfASZ8saotwDcjLT5kEMLD1mT5","milestone":"mcap_200k","crossed_ts":1788999038,"crossed_at":"2026-09-10T00:10:38+00:00","symbol":"4Stock","value":2425907.0,"kind":"mcap"}
 {"token":"ALtBt8eRjCkhqWFfUyJfASZ8saotwDcjLT5kEMLD1mT5","milestone":"mcap_1m","crossed_ts":1788999038,"crossed_at":"2026-09-10T00:10:38+00:00","symbol":"4Stock","value":2425907.0,"kind":"mcap"}
+{"token":"GsTQNuxhtKEqb7hHerqmhWMALM6LYtSUAs28EAgeA8AE","milestone":"mcap_100k","crossed_ts":1788999432,"crossed_at":"2026-09-10T00:17:12+00:00","symbol":"\u200e \u200e \u200e \u200e \u200e","value":108992.64,"kind":"mcap"}
+{"token":"4dTMVcUKsSjjkZKFMgcHfZ4qadBhZ4xNRwLMJt5S6wTw","milestone":"mcap_100k","crossed_ts":1788999444,"crossed_at":"2026-09-10T00:17:24+00:00","symbol":"Anthropic","value":129364.11,"kind":"mcap"}

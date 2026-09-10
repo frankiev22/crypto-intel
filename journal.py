@@ -23,6 +23,8 @@ import liveness
 import tickers
 import plausibility
 import pricecheck
+
+import safeload
 from scanner import CFG as _SCAN_CFG
 
 # --------------------------------------------------------------------------
@@ -235,38 +237,99 @@ def record_coverage(network, window, scanned, pass_score=70, passed=0):
 PASS_STATE = os.path.join(BASE, "data", ".pass_state.json")
 
 
-def pass_begin(network, stage="full"):
+def pass_begin(network, stage="full", budget=None):
     """Claim the pass. Returns the previous pass's marker if it never finished."""
     stale = None
     try:
         with open(PASS_STATE, encoding="utf-8") as f:
             stale = json.load(f)
-    except (OSError, json.JSONDecodeError):
+    except FileNotFoundError:
         pass
+    except (OSError, json.JSONDecodeError) as e:
+        # A marker we cannot read is NOT a clean previous pass. Say so, and let
+        # the caller record an abort of unknown extent rather than silence.
+        stale = {"unreadable": f"{type(e).__name__}: {e}"}
     os.makedirs(os.path.dirname(PASS_STATE), exist_ok=True)
-    with open(PASS_STATE, "w", encoding="utf-8") as f:
-        json.dump({"started_ts": int(time.time()), "network": network,
-                   "stage": stage, "pid": os.getpid()}, f)
+    safeload.save_json(PASS_STATE,
+                       {"started_ts": int(time.time()), "network": network,
+                        "stage": stage, "pid": os.getpid(),
+                        "call_budget": budget, "progress": {}},
+                       allow_empty=True)
     return stale
 
 
-def pass_end():
-    """Clear the marker. Only reached on a clean finish, which is the point."""
+def pass_note(**counters):
+    """Record progress INTO the marker, so a killed pass leaves evidence.
+
+    The old sentinel recorded a killed pass as `pools_returned: 0, scanned: 0`
+    with `suspected_cause` guessing at the reason. That understates the work
+    actually done and makes the cause an inference. A pass that dies after
+    scanning 33 pools should say 33, and say where it was.
+    """
+    try:
+        st = safeload.load_json(PASS_STATE)
+    except Exception:
+        return None
+    st.setdefault("progress", {}).update(counters)
+    st["progress"]["noted_ts"] = int(time.time())
+    try:
+        safeload.save_json(PASS_STATE, st, allow_empty=True)
+    except Exception:
+        return None
+    return st["progress"]
+
+
+def pass_end(complete=True, reason=None, **counters):
+    """Close the pass and record whether it FINISHED, as a fact not a guess.
+
+    `complete=False` with a reason is a pass that stopped deliberately - a
+    spent call budget, say. That is a different thing from being killed, and
+    the difference is now recorded rather than reconstructed.
+    """
+    prog = pass_note(**counters) or {}
+    try:
+        st = safeload.load_json(PASS_STATE)
+    except Exception:
+        st = {}
+    started = st.get("started_ts")
+    obj = {"ts": int(time.time()), "network": st.get("network"),
+           "kind": "pass_complete" if complete else "pass_short",
+           "stage": st.get("stage"), "started_ts": started,
+           "ran_for_s": (int(time.time()) - started) if started else None,
+           "complete": bool(complete), "stop_reason": reason,
+           "call_budget": st.get("call_budget"),
+           "progress": prog}
+    _append(COV, obj)
     try:
         os.replace(PASS_STATE, PASS_STATE + ".done")
     except OSError:
         pass
+    return obj
 
 
 def record_aborted(stale, cause="killed - no clean exit"):
-    """A pass that never finished. Recorded so a silent hour is visible."""
+    """A pass that never finished. Recorded so a silent hour is visible.
+
+    Reports what the dead pass ACTUALLY achieved, from the progress it wrote
+    into its own marker, instead of zeros. A 76% collection decline read as
+    quiet market conditions for three days because these rows all said 0.
+    """
     started = stale.get("started_ts")
+    prog = stale.get("progress") or {}
     obj = {"ts": int(time.time()), "network": stale.get("network"),
            "kind": "aborted_pass", "stage": stale.get("stage"),
            "started_ts": started,
            "ran_for_s": (int(time.time()) - started) if started else None,
-           "suspected_cause": cause,
-           "pools_returned": 0, "span_s": None, "scanned": 0, "passed": 0}
+           "complete": False,
+           "suspected_cause": (stale.get("unreadable") or cause),
+           "call_budget": stale.get("call_budget"),
+           "progress": prog,
+           "last_phase": prog.get("phase"),
+           "calls_made": prog.get("calls"),
+           "pools_returned": prog.get("pools_returned", 0),
+           "span_s": None,
+           "scanned": prog.get("scanned", 0),
+           "passed": prog.get("passed", 0)}
     _append(COV, obj)
     return obj
 
