@@ -117,30 +117,99 @@ PERMANENT_STATUS = (400, 401, 403, 404, 410, 422)
 # their own loop boundaries and stop CLEANLY, so a short pass is a recorded
 # fact rather than a corpse the next pass has to infer.
 # ---------------------------------------------------------------------------
+# A CALL COUNT WAS THE WRONG UNIT, AND IT DRIFTED WITHIN A DAY.
+#
+# The first version budgeted 150 calls on an assumed 1.116s/call. That number
+# came from a runbook correction and was never re-measured. Measured fresh
+# 2026-09-10 against live queue rows: a bare Dexscreener request is 0.33s
+# median (p95 0.72s), so an effective 1.33s with PACE_S=1.0 - but a single ROW
+# can spend several calls (primary, GeckoTerminal fallback, an on-chain reserve
+# read) plus retries, and observed per-row cost reached 2.77s. 150 x 2.77s is
+# 415s against a 178s cap, so every staged command died and filed a spurious
+# aborted-pass marker.
+#
+# Any hardcoded call count is a guess about latency that goes stale the moment
+# anything changes - the network, the fallback rate, the retry mix. So the
+# budget is a DEADLINE, and cost per call is measured continuously rather than
+# assumed. The stop rule asks "is there time for another one of whatever these
+# have been costing", which needs no constant at all.
 CALLS = 0                  # calls made since the last budget reset
-CALL_BUDGET = None         # None means unlimited: the runner's normal mode
+CALL_BUDGET = None         # legacy call cap; None unless explicitly set
+DEADLINE = None            # monotonic time after which we must stop
+_T0 = None
+_RECENT = []               # rolling per-call durations, newest last
+_RECENT_MAX = 40
 
 
-def set_call_budget(n):
-    """Start a budgeted window. None or 0 disables the budget."""
-    global CALLS, CALL_BUDGET
+def set_time_budget(seconds, call_cap=None):
+    """Start a budgeted window of `seconds`. None disables it."""
+    global CALLS, DEADLINE, _T0, _RECENT, CALL_BUDGET
     CALLS = 0
-    CALL_BUDGET = int(n) if n else None
-    return CALL_BUDGET
+    _RECENT = []
+    _T0 = time.monotonic()
+    DEADLINE = (_T0 + float(seconds)) if seconds else None
+    CALL_BUDGET = int(call_cap) if call_cap else None
+    return DEADLINE
 
 
-def over_budget(headroom=0):
-    """True when the next `headroom` calls would exceed the budget."""
-    return CALL_BUDGET is not None and (CALLS + headroom) >= CALL_BUDGET
+# Kept so existing callers and tests keep working; expressed in time.
+def set_call_budget(n):
+    return set_time_budget(None if not n else n * per_call_estimate(),
+                           call_cap=n)
+
+
+def per_call_estimate():
+    """Measured cost of a call, biased pessimistic. 1.5s until we know."""
+    # PACE_S is part of the cost: every call in the scoring loops is followed
+    # by pace(). Leaving it out is how a budget looks affordable and is not.
+    if not _RECENT:
+        return 1.5 + PACE_S
+    v = sorted(_RECENT)
+    p75 = v[min(len(v) - 1, int(0.75 * len(v)))]
+    # Never trust an optimistic estimate near a hard kill: overrunning costs a
+    # SIGKILL mid-write, stopping early costs one deferred row that the next
+    # invocation picks up.
+    return max(p75, 0.25) + PACE_S
+
+
+def seconds_left():
+    return None if DEADLINE is None else (DEADLINE - time.monotonic())
+
+
+def over_budget(headroom=1):
+    """True when there is not time for `headroom` more calls of recent cost."""
+    if CALL_BUDGET is not None and (CALLS + headroom) >= CALL_BUDGET:
+        return True
+    if DEADLINE is None:
+        return False
+    return seconds_left() <= headroom * per_call_estimate()
 
 
 def calls_made():
     return CALLS
 
 
+def budget_report():
+    el = None if _T0 is None else (time.monotonic() - _T0)
+    return {"calls": CALLS, "elapsed_s": None if el is None else round(el, 1),
+            "seconds_left": None if DEADLINE is None else round(seconds_left(), 1),
+            "per_call_s": round(per_call_estimate(), 3),
+            "measured_n": len(_RECENT)}
+
+
 def _get(url, timeout=20, tries=3, backoff=1.6, headers=None):
     global CALLS
     CALLS += 1
+    _t0 = time.monotonic()
+    try:
+        return _get_inner(url, timeout, tries, backoff, headers)
+    finally:
+        _RECENT.append(time.monotonic() - _t0)
+        if len(_RECENT) > _RECENT_MAX:
+            del _RECENT[:-_RECENT_MAX]
+
+
+def _get_inner(url, timeout=20, tries=3, backoff=1.6, headers=None):
     last = None
     h = {**UA, **(headers or {})}
     for i in range(tries):

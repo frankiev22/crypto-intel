@@ -136,3 +136,63 @@ which is the precondition for ever knowing whether anything else does.
 That prediction is impossible. Only that **four attempts have failed, zero wins
 are verifiable, and the measurement infrastructure supports one of these two
 products and not the other.**
+
+---
+
+# 2026-09-09/10: a zero-win day is the product working
+
+**104 candidates at 3x or better across two UTC days. Zero cleared the gate.**
+
+This is the first time the filter's actual output has been visible at scale, and
+it should be read as the strongest evidence yet that the exit-depth floor is
+load-bearing — not as a bad day.
+
+| UTC day | outcome rows | 3x+ candidates | gate-passing |
+|---|---:|---:|---:|
+| 2026-09-09 | 5,193 | 69 | **0** |
+| 2026-09-10 | 1,513 | 35 | **0** |
+
+## What was rejected, and on what
+
+A row can fail several checks; these are counts of failures, not of rows.
+
+| check | 09-09 | 09-10 |
+|---|---:|---:|
+| alive | 65 | 34 |
+| source_agreement | 65 | 30 |
+| depth_floor | 39 | 27 |
+| depth_measured | 26 | 8 |
+| plausibility | 18 | 11 |
+| pair_identity | 14 | 6 |
+| sell_side | 4 | 0 |
+
+The largest "wins" the system produced in those two days:
+
+| symbol | multiple | measured exit depth |
+|---|---:|---:|
+| LAPTOP | 15,151,781,786x | **$0.04** |
+| Anthropic | 9,846,558,527x | **$0.02** |
+| 4Stock | 50,720,585x | $0.04 |
+| STONK | 4,278,317x | $0.04 |
+| strive | 183,408x | **$0.00** |
+
+Every one is a price print on a drained pool. `alive` failed on 65 of 69 and 34
+of 35, so the overwhelming majority were not merely illiquid — the pool was
+gone. A 15-billion-x multiple against four cents of quote-side depth is what
+this whole apparatus exists to refuse, and it refused all 104.
+
+## Why this is the right way to score the day
+
+A day of six wins has, five times, turned out to contain none. A day of zero
+wins with 104 documented rejections contains a measurement: the filter saw
+everything the market offered, and said no to all of it, for reasons recorded
+per row. **The rejections are the product.** Frank's use of this system is as a
+filter on his own picks, and its value is precisely the things it stops.
+
+Recorded so the record says so in those terms, rather than showing a zero and
+reading like a quiet day.
+
+**Not a failure:** the host was powered down roughly 21 hours (2026-09-09 03:10Z
+to 2026-09-10 00:00Z). The hosted runner kept collecting throughout — 444
+distinct new pairs in that window. That is Frank turning his machine off, and it
+is not filed as an outage.

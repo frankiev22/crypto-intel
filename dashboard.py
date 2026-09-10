@@ -32,6 +32,8 @@ import sys
 import time
 import datetime as dt
 
+import safeload
+
 BASE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(BASE, "data", "dashboard.html")
 POOL_FEE = 0.0025
@@ -430,8 +432,9 @@ def build(path=OUT):
     d = gather()
     htm = render(d)
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
-        f.write(htm)
+    # Atomic: the dashboard is the thing Frank keeps open, and a half-written
+    # page renders as a broken one rather than a stale one.
+    safeload.save_text(path, htm)
     return path, d
 
 

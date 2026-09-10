@@ -499,8 +499,10 @@ def daily_summary(force=False):
     if not force:
         st["last"] = today
         try:
-            with open(HEARTBEAT, "w", encoding="utf-8") as f:
-                json.dump(st, f)
+            # Atomic: a SIGKILL at the 178s cap truncated data/liveness.json
+            # mid-write on 2026-09-09. Every state file this process rewrites
+            # is either the old version or the new one, never a fragment.
+            safeload.save_json(HEARTBEAT, st, allow_empty=True)
         except OSError:
             pass
 

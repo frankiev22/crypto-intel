@@ -156,8 +156,11 @@ def score_horizon(horizon_h, limit=None, verbose=True):
         # STOP CLEANLY AT THE BUDGET. Reserve headroom for the fallback lookup
         # this row may need, so we never stop half way through one pair.
         if S.over_budget(headroom=2):
-            stopped_early = (f"call budget reached after {done} of {len(todo)} "
-                             f"pairs ({S.calls_made()} calls)")
+            _b = S.budget_report()
+            stopped_early = (f"time budget reached after {done} of {len(todo)} "
+                             f"pairs: {_b['calls']} calls in {_b['elapsed_s']}s, "
+                             f"{_b['seconds_left']}s left, measured "
+                             f"{_b['per_call_s']}s/call over {_b['measured_n']} calls")
             if verbose:
                 print(f"    stopping cleanly: {stopped_early}")
             break
@@ -416,7 +419,8 @@ def score_all(verbose=True):
     out = {}
     for h in HORIZONS:
         if S.over_budget(headroom=2):
-            LAST_STOP[h] = f"skipped entirely: call budget spent ({S.calls_made()} calls)"
+            LAST_STOP[h] = (f"skipped entirely: time budget spent "
+                            f"({S.budget_report()})")
             out[h] = 0
             if verbose:
                 print(f"  {h}h horizon: skipped, call budget spent")

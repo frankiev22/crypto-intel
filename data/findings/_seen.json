@@ -646,10 +646,14 @@
  },
  "scanner-hit:xst": {
   "first_seen": "2026-08-26T07:08:31+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: XST",
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-10T03:38:03+00:00",
+  "last_escalated": "2026-09-10T03:38:03+00:00",
+  "keys": [
+   "XST"
+  ],
+  "escalations": 1
  },
  "scanner-hit:npc": {
   "first_seen": "2026-08-26T07:08:37+00:00",
@@ -2782,13 +2786,14 @@
  },
  "scanner-hit:goaf": {
   "first_seen": "2026-09-01T04:09:16+00:00",
-  "count": 4,
+  "count": 5,
   "example": "scanner-hit: GOAF",
   "keys": [
    "GOAF"
   ],
-  "last_seen": "2026-09-04T00:10:46+00:00",
-  "last_escalated": null
+  "last_seen": "2026-09-10T03:38:12+00:00",
+  "last_escalated": "2026-09-10T03:38:12+00:00",
+  "escalations": 1
  },
  "scanner-hit:nekomaru": {
   "first_seen": "2026-09-01T04:09:22+00:00",
@@ -4629,14 +4634,14 @@
  },
  "scanner-hit:wotf": {
   "first_seen": "2026-09-03T12:10:30+00:00",
-  "count": 5,
+  "count": 6,
   "example": "scanner-hit: WOTF",
   "keys": [
    "WOTF"
   ],
-  "last_seen": "2026-09-06T09:11:44+00:00",
-  "last_escalated": "2026-09-06T07:12:04+00:00",
-  "escalations": 1
+  "last_seen": "2026-09-10T03:38:13+00:00",
+  "last_escalated": "2026-09-10T03:38:13+00:00",
+  "escalations": 2
  },
  "outcome-x:gram": {
   "first_seen": "2026-09-03T12:10:54+00:00",
@@ -5151,13 +5156,13 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 158,
+  "count": 166,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-10T00:21:47+00:00",
+  "last_seen": "2026-09-10T02:17:00+00:00",
   "last_escalated": "2026-09-09T21:26:09+00:00",
   "escalations": 12
  },
@@ -5631,14 +5636,14 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 37,
+  "count": 44,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h",
    "24h"
   ],
-  "last_seen": "2026-09-10T00:17:49+00:00",
+  "last_seen": "2026-09-10T02:17:00+00:00",
   "last_escalated": "2026-09-09T21:21:30+00:00",
   "escalations": 7
  },
@@ -8316,5 +8321,45 @@
    "watchlist.sweep"
   ],
   "last_seen": "2026-09-10T00:08:00+00:00"
+ },
+ "collector-error:stagebudgetoverrun": {
+  "first_seen": "2026-09-10T01:53:35+00:00",
+  "count": 1,
+  "example": "collector-error: StageBudgetOverrun",
+  "keys": [
+   "StageBudgetOverrun"
+  ]
+ },
+ "scanner-hit:u-7929aa": {
+  "first_seen": "2026-09-10T03:38:23+00:00",
+  "count": 1,
+  "example": "scanner-hit: 巫师蛙",
+  "keys": [
+   "巫师蛙"
+  ]
+ },
+ "scanner-hit:kimchi": {
+  "first_seen": "2026-09-10T03:38:24+00:00",
+  "count": 1,
+  "example": "scanner-hit: KIMCHI",
+  "keys": [
+   "KIMCHI"
+  ]
+ },
+ "scanner-hit:duuue": {
+  "first_seen": "2026-09-10T03:38:25+00:00",
+  "count": 1,
+  "example": "scanner-hit: DUUUE",
+  "keys": [
+   "DUUUE"
+  ]
+ },
+ "outcome-win:afedlofjwxngqalnglnbjhacmdeyppguubuu": {
+  "first_seen": "2026-09-10T04:27:24+00:00",
+  "count": 1,
+  "example": "outcome-win: A5FE7dLoFJWXNGqaLn9G7Ln6bJhACMDe5Y8pPguu2Buu",
+  "keys": [
+   "A5FE7dLoFJWXNGqaLn9G7Ln6bJhACMDe5Y8pPguu2Buu"
+  ]
  }
 }

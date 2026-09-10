@@ -47,7 +47,7 @@ def build_watchlist(winning_mints, min_hits=2):
             tally[w] += 1
     keep = {w: n for w, n in tally.items() if n >= min_hits}
     import os; os.makedirs("data", exist_ok=True)
-    json.dump(keep, open(WATCHLIST, "w"), indent=1)
+    safeload.save_json(WATCHLIST, keep, allow_empty=True)
     print(f"  {len(keep)} wallets early on >= {min_hits} winners -> {WATCHLIST}")
     return keep
 
@@ -164,9 +164,10 @@ def seed_from_trending(n_tokens=3, min_hits=2, sigs=120):
         keep = dict(tally.most_common(25))
         mode = f"early on 1 of {len(mints)} trending tokens (strict filter empty)"
     os.makedirs("data", exist_ok=True)
-    json.dump({"wallets": keep, "mode": mode, "tokens": names,
-               "built": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())},
-              open(WATCHLIST, "w"), indent=1)
+    safeload.save_json(WATCHLIST,
+                       {"wallets": keep, "mode": mode, "tokens": names,
+                        "built": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())},
+                       allow_empty=True)
     print(f"  {len(keep)} wallets - {mode} -> {WATCHLIST}")
     return keep, mode
 

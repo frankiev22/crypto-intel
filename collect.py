@@ -57,7 +57,15 @@ stages separately is behaviour-identical to one full pass.
 """
 import os, sys, time, traceback, datetime as dt
 import scanner, journal, track, notify, macro, sources, findings, resolve
-DEFAULT_STAGE_CALLS = int(os.environ.get('CRYPTO_STAGE_CALLS', '150'))
+# The Claude dispatch sandbox SIGKILLs at ~178s. Stop at 155s, leaving 23s for
+# the pass to finish its bookkeeping and write its own short-pass record - a
+# budget that ends exactly at the kill is not a budget.
+#
+# Expressed in SECONDS, not calls. The previous 150-call figure assumed
+# 1.116s/call, was never re-measured, and the real per-row cost reached 2.77s -
+# so 150 calls was 415s against a 178s cap and every staged command died.
+STAGE_SECONDS = float(os.environ.get('CRYPTO_STAGE_SECONDS', '155'))
+DEFAULT_STAGE_CALLS = None      # no fixed call count; see STAGE_SECONDS
 
 import watchlist
 import news
@@ -193,6 +201,17 @@ def one_pass(networks=("solana",), verbose=True):
 
 
 def main():
+    # LINE-BUFFER STDOUT. Python block-buffers when stdout is a pipe, so a pass
+    # SIGKILLed at the 178s cap flushed NOTHING - the work it had narrated was
+    # still sitting in a 8KB buffer when the process died. That is why seven
+    # dead stages looked like silence instead of seven error reports, and it is
+    # the same lesson as the incomplete-pass marker: a failure that cannot
+    # speak is indistinguishable from nothing happening.
+    try:
+        sys.stdout.reconfigure(line_buffering=True)
+        sys.stderr.reconfigure(line_buffering=True)
+    except Exception:
+        pass
     argv = [a for a in sys.argv[1:]]
     stage = "full"
     if "--stage" in argv:
@@ -205,12 +224,20 @@ def main():
     # calls, so a staged run defaults to a budget and stops CLEANLY at it.
     # Unstaged runs - the GitHub runner, 15-minute timeout - stay unlimited.
     max_calls = None
+    max_seconds = None
+    if "--max-seconds" in argv:
+        i = argv.index("--max-seconds")
+        max_seconds = float(argv[i + 1]) if i + 1 < len(argv) else STAGE_SECONDS
+        del argv[i:i + 2]
     if "--max-calls" in argv:
         i = argv.index("--max-calls")
-        max_calls = int(argv[i + 1]) if i + 1 < len(argv) else DEFAULT_STAGE_CALLS
+        max_calls = int(argv[i + 1]) if i + 1 < len(argv) else None
         del argv[i:i + 2]
-    elif stage != "full":
-        max_calls = DEFAULT_STAGE_CALLS
+    if max_seconds is None and (stage != "full"
+                                or not os.environ.get("GITHUB_ACTIONS")):
+        max_seconds = STAGE_SECONDS
+    if False:  # retained branch shape; superseded by the time budget
+        pass
     elif not os.environ.get("GITHUB_ACTIONS"):
         # An UNSTAGED pass off the GitHub runner is still a sandbox pass, and
         # a full pass is ~607 calls against a 178s cap. 10 of the 57 recent
@@ -218,8 +245,13 @@ def main():
         # them makes the pass short-and-recorded instead of dead-and-inferred.
         # GITHUB_ACTIONS is set by Actions itself, so the hosted runner keeps
         # its unlimited full pass unchanged.
-        max_calls = DEFAULT_STAGE_CALLS
-    sources.set_call_budget(max_calls)
+        pass
+    sources.set_time_budget(max_seconds, call_cap=max_calls)
+    if max_seconds:
+        print(f"  budget: {max_seconds:.0f}s wall"
+              + (f", cap {max_calls} calls" if max_calls else "")
+              + f" (per-call estimate {sources.per_call_estimate():.2f}s, "
+                f"re-measured as it runs)")
 
     nets = ("solana",)
     loop = False
@@ -366,10 +398,15 @@ def main():
             complete=not _short,
             reason=("; ".join(f"{k}h: {v}" for k, v in _stops.items())
                     if _stops else ("call budget spent" if _short else None)),
-            calls=sources.calls_made(), phase=stage)
+            calls=sources.calls_made(), phase=stage,
+            budget_s=max_seconds, per_call_s=sources.per_call_estimate(),
+            elapsed_s=sources.budget_report()["elapsed_s"])
         if _short:
-            print(f"  SHORT PASS (recorded): {sources.calls_made()} calls against "
-                  f"a budget of {max_calls}. Remaining work resumes next invocation.")
+            _b = sources.budget_report()
+            print(f"  SHORT PASS (recorded): {_b['calls']} calls in "
+                  f"{_b['elapsed_s']}s of a {max_seconds:.0f}s budget; measured "
+                  f"{_b['per_call_s']}s/call. Remaining work resumes next "
+                  f"invocation.")
     return rc
 
 

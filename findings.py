@@ -440,6 +440,21 @@ def main():
         p = today_path()
         print(open(p, encoding="utf-8").read() if os.path.exists(p) else f"(nothing in {p})")
         return
+    if "--wins" in a:
+        i = a.index("--wins")
+        day = a[i + 1] if i + 1 < len(a) and a[i + 1].startswith("20") else None
+        w = wins_on(day)
+        print(f"  {w['utc_day']} UTC · {w['file']}")
+        if not w["exists"]:
+            print("  (no findings file for that UTC day)"); return
+        print(f"  {w['distinct_contracts']} distinct contracts, "
+              f"{w['ping_events']} ping events"
+              + (f", {w['inflation']}x inflation if you count pings" if w["inflation"] else ""))
+        for e in w["wins"]:
+            print(f"    {e['contract'][:44]:<45} x{len(e['pings'])}")
+            for pg in e["pings"]:
+                print(f"       {pg['at_utc']}  {pg['text'][:86]}")
+        return
     if "--classes" in a:
         seen = _load_seen()
         if not seen:
@@ -465,6 +480,49 @@ def main():
     print(f"  class    -> {cls}")
     print(f"  lane     -> {lane_of(kind)}")
     print(f"  discord  -> {why}")
+
+
+# ---------------------------------------------------------------------------
+# ONE CLOCK, AND ONE PLACE TO ASK.
+#
+# The findings files are UTC-dated and every entry stamps UTC. Daily summaries
+# were being written against ET, so 2026-09-09's working day landed entirely in
+# 2026-09-10.md, and CWINK's 6h ping (09-07 13:17 UTC) and 24h ping (09-08
+# 05:36 UTC) were counted as two separate clean wins on two days.
+#
+# Restating the convention in prose has not been enough twice. So there is now
+# one function that answers "how many wins on this day", it takes a UTC date,
+# and it counts DISTINCT CONTRACT ADDRESSES rather than ping events - because
+# one token pings once per horizon and that inflated the record 1.17x overall
+# (1.29x on 2026-09-07).
+#
+#   python findings.py --wins             today, UTC
+#   python findings.py --wins 2026-09-09  a specific UTC day
+# ---------------------------------------------------------------------------
+def wins_on(utc_day=None):
+    """Distinct contracts announced as wins on one UTC day, with their pings."""
+    import re as _re
+    day = utc_day or dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d")
+    path = os.path.join(DIR, f"{day}.md")
+    hdr = _re.compile(r"^## (\d{2}:\d{2}:\d{2}) UTC · ([a-z0-9-]+) · (.+)$")
+    by_contract, events, cur = {}, 0, None
+    if not os.path.exists(path):
+        return {"utc_day": day, "file": path, "exists": False,
+                "distinct_contracts": 0, "ping_events": 0, "wins": []}
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            m = hdr.match(line.strip())
+            if m:
+                cur = m.groups() if m.group(2) == "outcome-win" else None
+            elif cur and line.strip():
+                events += 1
+                by_contract.setdefault(cur[2], []).append(
+                    {"at_utc": cur[0], "text": line.strip()})
+                cur = None
+    return {"utc_day": day, "file": path, "exists": True,
+            "distinct_contracts": len(by_contract), "ping_events": events,
+            "inflation": round(events / len(by_contract), 2) if by_contract else None,
+            "wins": [{"contract": k, "pings": v} for k, v in by_contract.items()]}
 
 
 if __name__ == "__main__":
