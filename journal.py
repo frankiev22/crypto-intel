@@ -561,6 +561,12 @@ def record(rows, network, pass_score=70):
             "freeze_authority": r.get("freeze_authority"),
             "can_mint": r.get("can_mint"), "can_freeze": r.get("can_freeze"),
             "authorities_error": r.get("authorities_error"),
+            # WHY a capability is absent, not just that it is. Until 2026-09-10
+            # a row whose lookup never ran was byte-identical to one whose
+            # lookup failed: can_mint None, no error. 201 such rows exist.
+            # A non-attempt is a fact and it gets persisted like any other.
+            "authorities_checked": r.get("authorities_checked"),
+            "authorities_skipped": r.get("authorities_skipped"),
             "reasons": r.get("reasons", []), "flags": r.get("flags", []),
             # which weight set produced this score. Without it a 66 from v2 and
             # a 66 from v5 look identical in the scoreboard and are not.

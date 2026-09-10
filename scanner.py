@@ -273,6 +273,19 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
         # the old rule let the score gate the evidence, so a low-scoring token
         # could never be verified and therefore could never qualify.
         _act = paper.wants_authority_check(row)
+        # A NON-ATTEMPT IS A FACT, AND IT HAS TO BE WRITTEN DOWN.
+        # 201 rows on 2026-09-07..10 carried can_mint=None with no error beside
+        # it, so "we never looked" and "we looked and it failed" read the same
+        # downstream. That is the label corruption again, one level up: the
+        # value is honestly absent, but WHY it is absent was not recorded.
+        row["authorities_checked"] = bool(_act and row.get("addr"))
+        if not row["authorities_checked"]:
+            row["authorities_skipped"] = (
+                "no address" if not row.get("addr")
+                else "not amm" if (row.get("venue_type") or "") != "amm"
+                else "exit depth below the entry floor"
+                if (row.get("exit_depth_usd") or 0) < paper.MIN_EXIT_DEPTH
+                else "no sell side")
         if _act and row.get("addr"):
             try:
                 _a = onchain.authorities(row["addr"])
