@@ -1561,10 +1561,14 @@
  },
  "scanner-hit:rock": {
   "first_seen": "2026-08-30T05:09:12+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: ROCK",
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-10T07:19:12+00:00",
+  "last_escalated": "2026-09-10T07:19:12+00:00",
+  "keys": [
+   "ROCK"
+  ],
+  "escalations": 1
  },
  "scanner-hit:anstasy": {
   "first_seen": "2026-08-30T05:09:13+00:00",
@@ -2514,14 +2518,14 @@
  },
  "scanner-hit:hood": {
   "first_seen": "2026-08-31T09:09:19+00:00",
-  "count": 5,
+  "count": 6,
   "example": "scanner-hit: HOOD",
   "keys": [
    "HOOD"
   ],
-  "last_seen": "2026-09-07T07:16:05+00:00",
-  "last_escalated": "2026-09-07T07:16:05+00:00",
-  "escalations": 1
+  "last_seen": "2026-09-10T07:18:57+00:00",
+  "last_escalated": "2026-09-10T07:18:57+00:00",
+  "escalations": 2
  },
  "scanner-hit:starcas": {
   "first_seen": "2026-08-31T09:09:24+00:00",
@@ -3058,14 +3062,14 @@
  },
  "scanner-hit:aapl": {
   "first_seen": "2026-09-01T09:09:30+00:00",
-  "count": 4,
+  "count": 5,
   "example": "scanner-hit: AAPL",
   "keys": [
    "AAPL"
   ],
-  "last_seen": "2026-09-08T10:18:11+00:00",
-  "last_escalated": "2026-09-08T10:18:11+00:00",
-  "escalations": 2
+  "last_seen": "2026-09-10T11:19:03+00:00",
+  "last_escalated": "2026-09-10T11:19:03+00:00",
+  "escalations": 3
  },
  "scanner-hit:fable": {
   "first_seen": "2026-09-01T09:09:38+00:00",
@@ -3701,14 +3705,14 @@
  },
  "scanner-hit:bitcat": {
   "first_seen": "2026-09-02T06:09:34+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: BITCAT",
   "keys": [
    "BITCAT"
   ],
-  "last_seen": "2026-09-09T02:17:53+00:00",
-  "last_escalated": "2026-09-09T02:17:53+00:00",
-  "escalations": 1
+  "last_seen": "2026-09-10T11:19:07+00:00",
+  "last_escalated": "2026-09-10T11:19:07+00:00",
+  "escalations": 2
  },
  "scanner-hit:captain-x": {
   "first_seen": "2026-09-02T06:09:39+00:00",
@@ -4153,13 +4157,14 @@
  },
  "scanner-hit:u-5815f4": {
   "first_seen": "2026-09-02T23:09:21+00:00",
-  "count": 6,
+  "count": 7,
   "example": "scanner-hit: 牛来",
   "keys": [
    "牛来"
   ],
-  "last_seen": "2026-09-05T18:11:28+00:00",
-  "last_escalated": "2026-09-05T18:11:28+00:00"
+  "last_seen": "2026-09-10T07:19:20+00:00",
+  "last_escalated": "2026-09-10T07:19:20+00:00",
+  "escalations": 1
  },
  "scanner-hit:solbull": {
   "first_seen": "2026-09-02T23:09:25+00:00",
@@ -5156,15 +5161,15 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 166,
+  "count": 176,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-10T02:17:00+00:00",
-  "last_escalated": "2026-09-09T21:26:09+00:00",
-  "escalations": 12
+  "last_seen": "2026-09-10T10:18:07+00:00",
+  "last_escalated": "2026-09-10T04:32:08+00:00",
+  "escalations": 13
  },
  "scanner-hit:patience": {
   "first_seen": "2026-09-04T05:11:20+00:00",
@@ -5280,14 +5285,15 @@
  },
  "scanner-hit:tiktok": {
   "first_seen": "2026-09-04T08:11:47+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: TIKTOK",
   "keys": [
-   "TIKTOK"
+   "TIKTOK",
+   "TikTok"
   ],
-  "last_seen": "2026-09-06T05:12:02+00:00",
-  "last_escalated": "2026-09-06T05:12:02+00:00",
-  "escalations": 1
+  "last_seen": "2026-09-10T08:16:44+00:00",
+  "last_escalated": "2026-09-10T08:16:44+00:00",
+  "escalations": 2
  },
  "outcome-x:wofi": {
   "first_seen": "2026-09-04T08:12:10+00:00",
@@ -5636,16 +5642,16 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 44,
+  "count": 46,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h",
    "24h"
   ],
-  "last_seen": "2026-09-10T02:17:00+00:00",
-  "last_escalated": "2026-09-09T21:21:30+00:00",
-  "escalations": 7
+  "last_seen": "2026-09-10T04:38:24+00:00",
+  "last_escalated": "2026-09-10T04:36:26+00:00",
+  "escalations": 8
  },
  "scanner-hit:pomp": {
   "first_seen": "2026-09-05T05:11:36+00:00",
@@ -8415,6 +8421,104 @@
   "example": "outcome-win: A5FE7dLoFJWXNGqaLn9G7Ln6bJhACMDe5Y8pPguu2Buu",
   "keys": [
    "A5FE7dLoFJWXNGqaLn9G7Ln6bJhACMDe5Y8pPguu2Buu"
+  ]
+ },
+ "outcome-win:ndqarfhftwcdqcqegvgshvyberkbvqxtkoiyzhe": {
+  "first_seen": "2026-09-10T06:09:54+00:00",
+  "count": 1,
+  "example": "outcome-win: 4NDQA5RFhftwCdqCQEGvgshV17yBErkb6vQxTKoiyzHE",
+  "keys": [
+   "4NDQA5RFhftwCdqCQEGvgshV17yBErkb6vQxTKoiyzHE"
+  ]
+ },
+ "scanner-hit:nazgul": {
+  "first_seen": "2026-09-10T07:19:02+00:00",
+  "count": 1,
+  "example": "scanner-hit: Nazgul",
+  "keys": [
+   "Nazgul"
+  ]
+ },
+ "scanner-hit:uponly": {
+  "first_seen": "2026-09-10T07:19:06+00:00",
+  "count": 1,
+  "example": "scanner-hit: UPONLY",
+  "keys": [
+   "UPONLY"
+  ]
+ },
+ "scanner-hit:antfun": {
+  "first_seen": "2026-09-10T07:19:13+00:00",
+  "count": 1,
+  "example": "scanner-hit: ANTFUN",
+  "keys": [
+   "ANTFUN"
+  ]
+ },
+ "outcome-win:ffzkfdffksntrhudfkdstetuzslyvvxdmvwcu": {
+  "first_seen": "2026-09-10T08:09:30+00:00",
+  "count": 2,
+  "example": "outcome-win: FFZKFdFFksNtrhudFKd85sT56Et2uZsL6YVv4xdMVwCu",
+  "keys": [
+   "FFZKFdFFksNtrhudFKd85sT56Et2uZsL6YVv4xdMVwCu"
+  ],
+  "last_seen": "2026-09-10T08:16:56+00:00"
+ },
+ "scanner-hit:evilt": {
+  "first_seen": "2026-09-10T08:16:31+00:00",
+  "count": 2,
+  "example": "scanner-hit: EvilT",
+  "keys": [
+   "EvilT"
+  ],
+  "last_seen": "2026-09-10T09:16:35+00:00"
+ },
+ "scanner-hit:wcat": {
+  "first_seen": "2026-09-10T08:16:35+00:00",
+  "count": 1,
+  "example": "scanner-hit: WCAT",
+  "keys": [
+   "WCAT"
+  ]
+ },
+ "scanner-hit:meeko": {
+  "first_seen": "2026-09-10T08:16:39+00:00",
+  "count": 1,
+  "example": "scanner-hit: MEEKO",
+  "keys": [
+   "MEEKO"
+  ]
+ },
+ "scanner-hit:niu-lai": {
+  "first_seen": "2026-09-10T09:16:30+00:00",
+  "count": 1,
+  "example": "scanner-hit: Niu Lai",
+  "keys": [
+   "Niu Lai"
+  ]
+ },
+ "scanner-hit:duo": {
+  "first_seen": "2026-09-10T09:16:39+00:00",
+  "count": 1,
+  "example": "scanner-hit: Duo",
+  "keys": [
+   "Duo"
+  ]
+ },
+ "scanner-hit:u-350795": {
+  "first_seen": "2026-09-10T11:18:54+00:00",
+  "count": 1,
+  "example": "scanner-hit: 金部长",
+  "keys": [
+   "金部长"
+  ]
+ },
+ "scanner-hit:brian": {
+  "first_seen": "2026-09-10T11:18:58+00:00",
+  "count": 1,
+  "example": "scanner-hit: BRIAN",
+  "keys": [
+   "BRIAN"
   ]
  }
 }

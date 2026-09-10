@@ -1,52 +1,52 @@
 {
  "detector.drift": {
-  "last_ts": 1789014605,
-  "last_at": "2026-09-10T04:30:05+00:00",
-  "count": 248,
+  "last_ts": 1789039089,
+  "last_at": "2026-09-10T11:18:09+00:00",
+  "count": 291,
   "first_ts": 1788782114,
   "detail": "stable"
  },
  "scan.observations": {
-  "last_ts": 1789013241,
-  "last_at": "2026-09-10T04:07:21+00:00",
-  "count": 3049,
+  "last_ts": 1789038441,
+  "last_at": "2026-09-10T11:07:21+00:00",
+  "count": 3599,
   "first_ts": 1788782726,
   "detail": null
  },
  "fieldguard.check": {
-  "last_ts": 1789013241,
-  "last_at": "2026-09-10T04:07:21+00:00",
-  "count": 39,
+  "last_ts": 1789038441,
+  "last_at": "2026-09-10T11:07:21+00:00",
+  "count": 46,
   "first_ts": 1788782815,
   "detail": null
  },
  "news.freshness": {
-  "last_ts": 1789014604,
-  "last_at": "2026-09-10T04:30:04+00:00",
-  "count": 252,
+  "last_ts": 1789039087,
+  "last_at": "2026-09-10T11:18:07+00:00",
+  "count": 295,
   "first_ts": 1788782822,
   "detail": "0 stale outlet(s)"
  },
  "outcome.recorded": {
-  "last_ts": 1789014631,
-  "last_at": "2026-09-10T04:30:31+00:00",
-  "count": 15313,
+  "last_ts": 1789039084,
+  "last_at": "2026-09-10T11:18:04+00:00",
+  "count": 16382,
   "first_ts": 1788782831,
   "detail": null
  },
  "milestone.mcap": {
-  "last_ts": 1789014564,
-  "last_at": "2026-09-10T04:29:24+00:00",
-  "count": 649,
+  "last_ts": 1789038720,
+  "last_at": "2026-09-10T11:12:00+00:00",
+  "count": 701,
   "first_ts": 1788782876,
-  "detail": "mcap_1m 81agRNoLBDj3DQwhyd2iH9NqwiaJgK1bM6ysaT1pump"
+  "detail": "mcap_100k 4NDQA5RFhftwCdqCQEGvgshV17yBErkb6vQxTKoiyzHE"
  },
  "milestone.realizable": {
-  "last_ts": 1789014441,
-  "last_at": "2026-09-10T04:27:21+00:00",
-  "count": 21,
+  "last_ts": 1789034948,
+  "last_at": "2026-09-10T10:09:08+00:00",
+  "count": 27,
   "first_ts": 1788783020,
-  "detail": "realizable_10x A5FE7dLoFJWXNGqaLn9G7Ln6bJhACMDe5Y8pPguu2Buu"
+  "detail": "realizable_2x 7qLAEk2qxCfBkADcx1TG3nLD5svCRFmax3cb3GDVMdxz"
  },
  "watchlist.sweep": {
   "last_ts": 1789010206,
@@ -77,10 +77,10 @@
   "detail": "target"
  },
  "paper.open": {
-  "last_ts": 1789014419,
-  "last_at": "2026-09-10T04:26:59+00:00",
-  "count": 30,
+  "last_ts": 1789038415,
+  "last_at": "2026-09-10T11:06:55+00:00",
+  "count": 39,
   "first_ts": 1788999700,
-  "detail": "B"
+  "detail": "Misfor"
  }
 }
