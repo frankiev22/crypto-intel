@@ -1,8 +1,8 @@
 {
  "detector.drift": {
-  "last_ts": 1788999710,
-  "last_at": "2026-09-10T00:21:50+00:00",
-  "count": 206,
+  "last_ts": 1788999950,
+  "last_at": "2026-09-10T00:25:50+00:00",
+  "count": 208,
   "first_ts": 1788782114,
   "detail": "stable"
  },
@@ -21,16 +21,16 @@
   "detail": null
  },
  "news.freshness": {
-  "last_ts": 1788999708,
-  "last_at": "2026-09-10T00:21:48+00:00",
-  "count": 209,
+  "last_ts": 1788999948,
+  "last_at": "2026-09-10T00:25:48+00:00",
+  "count": 211,
   "first_ts": 1788782822,
   "detail": "0 stale outlet(s)"
  },
  "outcome.recorded": {
-  "last_ts": 1788999791,
-  "last_at": "2026-09-10T00:23:11+00:00",
-  "count": 14128,
+  "last_ts": 1788999947,
+  "last_at": "2026-09-10T00:25:47+00:00",
+  "count": 14212,
   "first_ts": 1788782831,
   "detail": null
  },
@@ -77,9 +77,9 @@
   "detail": "unpriceable"
  },
  "paper.open": {
-  "last_ts": 1788999700,
-  "last_at": "2026-09-10T00:21:40+00:00",
-  "count": 8,
+  "last_ts": 1789000239,
+  "last_at": "2026-09-10T00:30:39+00:00",
+  "count": 17,
   "first_ts": 1788999700,
   "detail": "B"
  }

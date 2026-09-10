@@ -329,7 +329,14 @@ def record(kind, key, summary, detail=None, allow_discord=True, always_ping=None
     new_file = not os.path.exists(path)
     with open(path, "a", encoding="utf-8") as f:
         if new_file:
-            f.write(f"# Findings {now.strftime('%Y-%m-%d')}\n\n")
+            # STATE THE TIMEZONE IN THE FILE. The filename, the header and every
+            # entry here are UTC. A daily summary written against ET counted
+            # CWINK's 6h ping (2026-09-07 13:17 UTC) and its 24h ping
+            # (2026-09-08 05:36 UTC) as two separate clean wins.
+            f.write(f"# Findings {now.strftime('%Y-%m-%d')} (UTC)" + chr(10) + chr(10))
+            f.write("All timestamps in this file, and the filename, are UTC. "
+                    "Count wins by CONTRACT ADDRESS, not by entry: one token "
+                    "pings once per horizon and each ping says which." + chr(10) + chr(10))
         f.write(f"## {now.strftime('%H:%M:%S')} UTC · {kind} · {key}\n\n")
         f.write(f"{summary}\n\n")
         if detail:

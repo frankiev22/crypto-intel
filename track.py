@@ -17,7 +17,22 @@ whether it was real, 168h catches whether anything survived a week.
 import math, os, time, statistics as st
 import journal, pricecheck, resolve, sources as S
 
-HORIZONS = [1, 6, 24, 168]
+# 168h IS RETIRED, AND RETIRED NOW MEANS RETIRED.
+#
+# It resolves at 2.7-5.1% - measured 2026-09-08, n=9,242 - because the pools
+# are gone by then, and it has been described as retired for days while still
+# being scored every pass. 1,088 rows sit pending at 168h against 283 at 24h,
+# and under the new 150-call staging budget those two compete for the same
+# calls. Spending them on a horizon that answers 3% of the time starves the
+# one the model actually learns from.
+#
+# The rows are NOT deleted and the horizon constant stays, so every historical
+# 168h outcome remains readable. It is simply no longer scheduled. Anything
+# still pending at 168h ages out of pending()'s window deliberately, which is
+# the explicit drop rather than the silent one.
+HORIZONS_ALL = [1, 6, 24, 168]
+HORIZONS_RETIRED = [168]
+HORIZONS = [h for h in HORIZONS_ALL if h not in HORIZONS_RETIRED]
 MIN_WINS_TO_TRUST = 10            # wins, not rows. Rows are cheap; wins are scarce.
 
 
@@ -41,6 +56,7 @@ HORIZON_HEALTH = {}
 # days looking like quiet market conditions.
 LAST_STOP = {}
 MIN_LOOKUPS_TO_JUDGE = 10  # do not cry outage over three lookups
+SIGNIFICANCE_FLOOR = float(os.environ.get('CRYPTO_SIGNIFICANCE_ALWAYS', '3.0'))
 
 # ONE GLOBAL FLOOR WAS WRONG, AND IT WAS FIRING 21 TIMES BY MIDDAY.
 #
@@ -96,6 +112,30 @@ HORIZON_SLICE = int(os.environ.get("CRYPTO_HORIZON_SLICE", "120"))
 # A validated realizable multiple at or above this is announced by the runner
 # itself. Matches findings.SIGNIFICANCE_ALWAYS so it is never rationed.
 WIN_ANNOUNCE_MULT = float(os.environ.get("CRYPTO_WIN_ANNOUNCE_MULT", "3.0"))
+
+
+
+def _nth_ordinal(n):
+    return {1: "1st", 2: "2nd", 3: "3rd"}.get(n, f"{n}th")
+
+
+def _prior_win_horizons(token, horizon_h):
+    """How many EARLIER horizons already cleared the gate at >= the announce
+    threshold for this contract. Keyed on contract address, never on ticker."""
+    if not token:
+        return 0
+    try:
+        n = 0
+        for r in journal.outcomes(days=14):
+            if r.get("token") != token or r.get("realizable") is not True:
+                continue
+            if (r.get("mult") or 0) < WIN_ANNOUNCE_MULT:
+                continue
+            if (r.get("horizon_h") or 0) < horizon_h:
+                n += 1
+        return n
+    except Exception:
+        return 0
 
 
 def score_horizon(horizon_h, limit=None, verbose=True):
@@ -228,7 +268,7 @@ def score_horizon(horizon_h, limit=None, verbose=True):
         except (TypeError, ValueError):
             _pn_exit = None
 
-        status, mult = journal.record_outcome(
+        status, mult, gate_ok, gate_failed = journal.record_outcome(
             o["pair"], o["ts"], horizon_h, price, liq, vol24,
             o.get("price_usd"), o.get("liq"), o.get("symbol", ""),
             token=o.get("token", ""), reasons=reasons, source=src,
@@ -247,8 +287,28 @@ def score_horizon(horizon_h, limit=None, verbose=True):
         # Only a validated one goes out: realizable, and not quarantined by the
         # cross-source check. Significance is the multiple itself, so the ping
         # budget ranks it by value instead of arrival order.
-        if (mult is not None and mult >= WIN_ANNOUNCE_MULT
-                and journal.realizable(status, liq, mult, exit_depth=depth)[0]
+        # ANNOUNCE ONLY WHAT THE ROW RECORDED. This used to call the old
+        # three-check journal.realizable() while the row was gated by the
+        # eight-check verify_win() - so the alert path, the part Frank
+        # actually sees, was looser than the record. Four of one day's twelve
+        # pinged wins came through that gap. `gate_ok` IS the row's verdict.
+        # ONE TOKEN, ONE WIN - COUNTED, NOT ONE PER HORIZON.
+        #
+        # CWINK pinged three times: 3.05x at 1h, 4.08x at 6h, 4.08x at 24h.
+        # The 6h ping landed on 2026-09-07 and the 24h ping on 2026-09-08, both
+        # reading 4.08x, so it was counted as a clean win on two consecutive
+        # days. That was diagnosed as a UTC-vs-ET boundary problem; it is not.
+        # It is one token measured at three horizons, straddling a midnight.
+        # Measured across the record: 54 ping events for 46 distinct
+        # contracts, so daily win counts have run 1.17x inflated (1.29x on
+        # 2026-09-07). Same row-vs-token shape that killed the low-score
+        # inversion and the "record six-win day" - third time.
+        #
+        # The ping still fires per horizon, because reaching 4.08x at 24h is
+        # genuinely different news from 3.05x at 1h. What changes is that the
+        # ping now SAYS which it is, so nothing downstream has to guess.
+        _prior = _prior_win_horizons(o.get("token"), horizon_h)
+        if (mult is not None and mult >= WIN_ANNOUNCE_MULT and gate_ok
                 and (verdict is None or verdict.get("trustworthy"))):
             try:
                 import findings
@@ -264,7 +324,10 @@ def score_horizon(horizon_h, limit=None, verbose=True):
                     "outcome-win", o.get("token") or o.get("symbol", "?"),
                     f"{o.get('symbol','?')} {mult:,.2f}x, realizable, at the "
                     f"{horizon_h}h horizon (measured {_elapsed:.2f}h after "
-                    f"observation)",
+                    f"observation) "
+                    + (f"[{_nth_ordinal(_prior + 1)} horizon to clear for this "
+                       f"contract - COUNT IT ONCE]" if _prior
+                       else "[first horizon to clear for this contract]"),
                     detail=(
                         "contract " + str(o.get("token")) + chr(10)
                         + "pair     " + str(o["pair"]) + chr(10)
@@ -280,11 +343,11 @@ def score_horizon(horizon_h, limit=None, verbose=True):
             except Exception as e:
                 print(f"    win announcement failed (non-fatal): {type(e).__name__}")
         if verbose and mult and mult >= 2:
-            ok, why = journal.realizable(status, liq, mult)
-            if ok:
+            if gate_ok:
                 print(f"    {o.get('symbol','?'):<12} {mult:>6.2f}x  ({status})")
             else:
-                print(f"    {o.get('symbol','?'):<12} {mult:>6.2f}x  NOT REALIZABLE - {why}")
+                print(f"    {o.get('symbol','?'):<12} {mult:>6.2f}x  NOT REALIZABLE - "
+                      f"failed {', '.join(gate_failed)}")
         S.pace()
 
     # A lookup class failing at ~100% inside one pass is not weather, it is an
@@ -327,7 +390,21 @@ def score_horizon(horizon_h, limit=None, verbose=True):
                             f"the fallback or failed entirely. Outcomes at this "
                             f"horizon are being priced off a fallback or not at "
                             f"all, which is how a scoring model dies quietly.",
-                            always_ping=True)
+                            always_ping=True,
+                            # SIGNIFICANCE, NOT JUST always_ping.
+                            #
+                            # always_ping only clears the DEDUPE. The finding
+                            # still entered the routine budget lane carrying
+                            # significance=None, and a None cannot displace
+                            # anything when the 4-per-hour budget is spent - so
+                            # a persistent outage lost to any four routine
+                            # findings and stopped pinging. That is the
+                            # alert-suppression failure mode for the third
+                            # time. An outage is now ranked the way a win is:
+                            # a total outage scores 4.0, a marginal one just
+                            # over 3.0, and SIGNIFICANCE_ALWAYS is 3.0, so it
+                            # is never rationed.
+                            significance=float(SIGNIFICANCE_FLOOR + (1.0 - rate)))
         except Exception as e:
             print(f"    (could not raise the outage finding: {e})")
     if stopped_early:

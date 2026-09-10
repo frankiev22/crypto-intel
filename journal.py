@@ -51,8 +51,35 @@ MIN_EXIT_LIQ_USD = _SCAN_CFG["min_liquidity_usd"]
 MAX_PLAUSIBLE_MULT = 1000
 
 
-def realizable(status, liq, mult, exit_depth=None):
-    """(bool, reason_if_not). Could this multiple actually have been taken?
+def realizable(*a, **k):
+    """SEALED. This was a door beside the gate. Use verify_win().
+
+    Kept as a raising shim rather than deleted, and rather than merely renamed:
+
+      - deleting it turns an external call into a NameError with no
+        explanation of what to use instead;
+      - renaming it alone leaves the name free for someone to reintroduce
+        under the old meaning, which is how it got called from the ping path
+        in the first place;
+      - a shim that raises converts a silent bypass into a loud failure AT the
+        call site, names the replacement, and stays greppable forever.
+
+    The three checks it performed (alive, depth floor, plausibility) are a
+    strict subset of verify_win's eight. Anything it passed and verify_win
+    fails was never a win.
+    """
+    raise RuntimeError(
+        "journal.realizable() is sealed: it applied 3 of the 8 checks and was "
+        "being used to announce wins that the recorded gate had rejected. Use "
+        "verify_win(...) for the gate, or read the row's own `realizable` "
+        "field, which is what the gate decided.")
+
+
+def _exit_liquidity_ok(status, liq, mult, exit_depth=None):
+    """INTERNAL. Alive + depth floor + plausibility only - NOT the gate.
+
+    Three of verify_win's eight checks. Only for backfilling rows that predate
+    the fields the other five need; never for deciding that something counts.
 
     `exit_depth` is the quote side of the pool. Prefer it over `liq` whenever
     it is known: `liq` counts the base token valued at its own price, so a pool
@@ -604,8 +631,19 @@ def outcomes(days=None):
     rows = _read(OUT, days)
     for o in rows:
         if "realizable" not in o:
-            ok, why = realizable(o.get("status"), o.get("liq"), o.get("mult"))
-            o["realizable"], o["unrealizable_reason"] = ok, why
+            # THE GATE, not the three-check subset. Currently unreachable -
+            # 0 of 100,504 rows lack the field - but a door nobody walks
+            # through is still a door, and this one used to answer differently
+            # from the gate that wrote the rows.
+            ok, failed = verify_win(
+                o.get("status"), o.get("liq"), o.get("mult"),
+                exit_depth=o.get("exit_depth_usd"), pair=o.get("pair"),
+                exit_pair=o.get("exit_pair"), elapsed_h=o.get("actual_elapsed_h"),
+                reasons=o.get("reasons"), sells_h24=o.get("sells_h24"),
+                buys_h24=o.get("buys_h24"))
+            o["realizable"] = ok
+            o["unrealizable_reason"] = None if ok else "failed " + ", ".join(failed)
+            o["realizable_basis"] = "backfilled_on_read"
         # Depth provenance, derived on read so the whole archive carries it
         # immediately and nothing is rewritten. Every input has been on every
         # row since the field existed; where it never existed the answer is
@@ -791,7 +829,16 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
     except Exception as e:
         obj["new_milestones"] = []
         print(f"    milestone check failed (non-fatal): {type(e).__name__}")
-    return status, mult
+    # RETURN THE GATE VERDICT THAT WAS RECORDED, not just status/mult.
+    #
+    # track.py used to decide whether to ANNOUNCE a win by calling the old
+    # three-check journal.realizable() - status alive, depth floor,
+    # plausibility - while the row itself was gated by the eight-check
+    # verify_win(). Two computations, two answers, and the looser one drove
+    # the alerts Frank actually sees. Four of one day's twelve pinged wins
+    # went through that door. A caller cannot diverge from the row if it is
+    # handed the row's own verdict.
+    return status, mult, ok, failed
 
 
 # How far back a pair stays ELIGIBLE after its horizon comes due. This is not a
@@ -857,8 +904,16 @@ def mark_outcomes():
             except json.JSONDecodeError:
                 out.append(l.rstrip()); continue
             if isinstance(rec, dict) and "horizon_h" in rec and "realizable" not in rec:
-                ok, why = realizable(rec.get("status"), rec.get("liq"), rec.get("mult"))
-                rec["realizable"], rec["unrealizable_reason"] = ok, why
+                ok, failed = verify_win(
+                    rec.get("status"), rec.get("liq"), rec.get("mult"),
+                    exit_depth=rec.get("exit_depth_usd"), pair=rec.get("pair"),
+                    exit_pair=rec.get("exit_pair"),
+                    elapsed_h=rec.get("actual_elapsed_h"),
+                    reasons=rec.get("reasons"), sells_h24=rec.get("sells_h24"),
+                    buys_h24=rec.get("buys_h24"))
+                rec["realizable"] = ok
+                rec["unrealizable_reason"] = None if ok else "failed " + ", ".join(failed)
+                rec["realizable_basis"] = "backfilled_on_read"
                 hit += 1
             out.append(json.dumps(rec, separators=(",", ":")))
         total += len(lines)
