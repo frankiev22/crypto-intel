@@ -28,18 +28,18 @@
   "detail": "0 stale outlet(s)"
  },
  "outcome.recorded": {
-  "last_ts": 1789039084,
-  "last_at": "2026-09-10T11:18:04+00:00",
-  "count": 16382,
+  "last_ts": 1789040980,
+  "last_at": "2026-09-10T11:49:40+00:00",
+  "count": 16463,
   "first_ts": 1788782831,
   "detail": null
  },
  "milestone.mcap": {
-  "last_ts": 1789038720,
-  "last_at": "2026-09-10T11:12:00+00:00",
-  "count": 701,
+  "last_ts": 1789040976,
+  "last_at": "2026-09-10T11:49:36+00:00",
+  "count": 709,
   "first_ts": 1788782876,
-  "detail": "mcap_100k 4NDQA5RFhftwCdqCQEGvgshV17yBErkb6vQxTKoiyzHE"
+  "detail": "mcap_100k A8MBypeT4NR4LVJehfbMU56N66n72oshthNXXHTJqwST"
  },
  "milestone.realizable": {
   "last_ts": 1789034948,
@@ -77,10 +77,10 @@
   "detail": "target"
  },
  "paper.open": {
-  "last_ts": 1789038415,
-  "last_at": "2026-09-10T11:06:55+00:00",
-  "count": 39,
+  "last_ts": 1789040993,
+  "last_at": "2026-09-10T11:49:53+00:00",
+  "count": 48,
   "first_ts": 1788999700,
-  "detail": "Misfor"
+  "detail": "B"
  }
 }

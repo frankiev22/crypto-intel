@@ -2528,3 +2528,11 @@
 {"token":"321fwiAJhmwo5SzEvtEMZ5HGaJFkikRDCpSmbqhoT358","milestone":"mcap_100k","crossed_ts":1789022867,"crossed_at":"2026-09-10T06:47:47+00:00","symbol":"LUCKY","value":1265936.0,"kind":"mcap"}
 {"token":"321fwiAJhmwo5SzEvtEMZ5HGaJFkikRDCpSmbqhoT358","milestone":"mcap_200k","crossed_ts":1789022867,"crossed_at":"2026-09-10T06:47:47+00:00","symbol":"LUCKY","value":1265936.0,"kind":"mcap"}
 {"token":"321fwiAJhmwo5SzEvtEMZ5HGaJFkikRDCpSmbqhoT358","milestone":"mcap_1m","crossed_ts":1789022867,"crossed_at":"2026-09-10T06:47:47+00:00","symbol":"LUCKY","value":1265936.0,"kind":"mcap"}
+{"token":"7bfuURWhyqLggmqjqF5p4CnL9o6fJ5tjyPbMZaLnbonk","milestone":"mcap_100k","crossed_ts":1789040649,"crossed_at":"2026-09-10T11:44:09+00:00","symbol":"ESAFIRE","value":39174866.0,"kind":"mcap"}
+{"token":"7bfuURWhyqLggmqjqF5p4CnL9o6fJ5tjyPbMZaLnbonk","milestone":"mcap_200k","crossed_ts":1789040649,"crossed_at":"2026-09-10T11:44:09+00:00","symbol":"ESAFIRE","value":39174866.0,"kind":"mcap"}
+{"token":"7bfuURWhyqLggmqjqF5p4CnL9o6fJ5tjyPbMZaLnbonk","milestone":"mcap_1m","crossed_ts":1789040649,"crossed_at":"2026-09-10T11:44:09+00:00","symbol":"ESAFIRE","value":39174866.0,"kind":"mcap"}
+{"token":"7bfuURWhyqLggmqjqF5p4CnL9o6fJ5tjyPbMZaLnbonk","milestone":"mcap_5m","crossed_ts":1789040649,"crossed_at":"2026-09-10T11:44:09+00:00","symbol":"ESAFIRE","value":39174866.0,"kind":"mcap"}
+{"token":"8aN3fXVsL4mcyxQTnkWnsKgKSEkmaZrQS5LcE1ZLjiZd","milestone":"mcap_100k","crossed_ts":1789040711,"crossed_at":"2026-09-10T11:45:11+00:00","symbol":"HOOD","value":292833.0,"kind":"mcap"}
+{"token":"8aN3fXVsL4mcyxQTnkWnsKgKSEkmaZrQS5LcE1ZLjiZd","milestone":"mcap_200k","crossed_ts":1789040711,"crossed_at":"2026-09-10T11:45:11+00:00","symbol":"HOOD","value":292833.0,"kind":"mcap"}
+{"token":"BABANGA4JE7Kkam4nTrALAwAVgsNJUuFJnnkF7S16BZp","milestone":"mcap_100k","crossed_ts":1789040967,"crossed_at":"2026-09-10T11:49:27+00:00","symbol":"BABA","value":170399.0,"kind":"mcap"}
+{"token":"A8MBypeT4NR4LVJehfbMU56N66n72oshthNXXHTJqwST","milestone":"mcap_100k","crossed_ts":1789040976,"crossed_at":"2026-09-10T11:49:36+00:00","symbol":"BRIAN","value":152051.0,"kind":"mcap"}
