@@ -119,28 +119,73 @@ def _nth_ordinal(n):
     return {1: "1st", 2: "2nd", 3: "3rd"}.get(n, f"{n}th")
 
 
+# ---------------------------------------------------------------------------
+# THE WIN INDEX IS BUILT ONCE PER PASS, NOT ONCE PER PAIR.
+#
+# _prior_win_horizons() called journal.outcomes(days=14) inside the per-pair
+# loop, and each call re-parsed the whole 14-day outcomes corpus: 1,267,263
+# json.loads for a twelve-pair pass, ~2.7s per pair, 66% of the pass's wall
+# clock spent re-reading files that had not changed since the pass began.
+#
+# Measured 2026-09-10, with pacing removed so only real work is counted:
+#   HTTP        0.216s/call    6%
+#   pace()      1.000s/call   28%
+#   this        2.350s/call   66%
+# That is the whole "2.5x latency regression". It is not the network and it is
+# not the 1.0s rate limit: at 0.216s the network is FASTER than the 1.116s
+# budget assumed. The cost is O(pairs x corpus), so it grows every day the log
+# grows, which is exactly the shape observed - 1.116s -> 2.77s -> 3.59s per
+# call while the corpus went from ~40k to ~100k rows.
+# ---------------------------------------------------------------------------
+_WIN_INDEX = None
+_WIN_INDEX_TS = 0.0
+_WIN_INDEX_TTL = float(os.environ.get("CRYPTO_WIN_INDEX_TTL_S", "300"))
+
+
+def _win_index(force=False):
+    """contract address -> [horizons that already cleared the gate at >= the
+    announce multiple]. Keyed on contract address, never on ticker."""
+    global _WIN_INDEX, _WIN_INDEX_TS
+    now = time.time()
+    if _WIN_INDEX is not None and not force and now - _WIN_INDEX_TS < _WIN_INDEX_TTL:
+        return _WIN_INDEX
+    idx = {}
+    for r in journal.outcomes(days=14):
+        if r.get("realizable") is not True:
+            continue
+        tok = r.get("token")
+        if not tok or (r.get("mult") or 0) < WIN_ANNOUNCE_MULT:
+            continue
+        idx.setdefault(tok, []).append(r.get("horizon_h") or 0)
+    _WIN_INDEX, _WIN_INDEX_TS = idx, now
+    return idx
+
+
 def _prior_win_horizons(token, horizon_h):
-    """How many EARLIER horizons already cleared the gate at >= the announce
-    threshold for this contract. Keyed on contract address, never on ticker."""
+    """How many EARLIER horizons already cleared the gate for this contract.
+
+    This used to be wrapped in `except Exception: return 0`, which is the
+    absence-of-evidence shape again (instance 8): an unreadable corpus would
+    have reported zero prior wins, relabelling a 3rd ping as a 1st. It now
+    reuses the last good index rather than inventing a zero, and if there has
+    never been a good index it raises rather than answering.
+    """
     if not token:
         return 0
     try:
-        n = 0
-        for r in journal.outcomes(days=14):
-            if r.get("token") != token or r.get("realizable") is not True:
-                continue
-            if (r.get("mult") or 0) < WIN_ANNOUNCE_MULT:
-                continue
-            if (r.get("horizon_h") or 0) < horizon_h:
-                n += 1
-        return n
+        idx = _win_index()
     except Exception:
-        return 0
+        if _WIN_INDEX is None:
+            raise
+        idx = _WIN_INDEX
+    return sum(1 for h in idx.get(token, ()) if h < horizon_h)
 
 
 def score_horizon(horizon_h, limit=None, verbose=True):
     limit = limit or HORIZON_LIMIT.get(horizon_h, HORIZON_SLICE)
     """Re-check pairs first seen ~horizon_h ago and record what happened."""
+    # Built once here, then reused by every pair in this pass.
+    _win_index(force=True)
     queue = journal.pending(horizon_h)
     todo = queue[:limit]
     if verbose:

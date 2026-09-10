@@ -104,6 +104,50 @@ check("and the win announcement gates on it",
           "# three-check journal.realizable()", ""))
 
 print()
+print("=" * 70)
+print("5. the win index is built once per pass, and never invents a zero")
+print("=" * 70)
+import track
+calls = {"n": 0}
+_real = journal.outcomes
+
+
+def counting(*a, **k):
+    calls["n"] += 1
+    return _real(*a, **k)
+
+
+journal.outcomes = counting
+track._WIN_INDEX = None
+track._win_index(force=True)
+before = calls["n"]
+for _ in range(50):
+    track._prior_win_horizons("SOMEcontract1111111111111111111111111111111", 24)
+check("50 lookups re-read the corpus zero extra times",
+      calls["n"] == before, f"{calls['n'] - before} extra reads")
+
+# The old shape returned 0 on any exception, which would relabel an Nth ping
+# as a 1st. With a good index held, a failing rebuild must reuse it.
+track._WIN_INDEX = {"TOKENaaa": [1, 6]}
+track._WIN_INDEX_TS = 0.0
+
+
+def boom(*a, **k):
+    raise OSError("corpus unreadable")
+
+
+journal.outcomes = boom
+check("a failed rebuild reuses the last good index, not 0",
+      track._prior_win_horizons("TOKENaaa", 24) == 2,
+      str(track._prior_win_horizons("TOKENaaa", 24)))
+track._WIN_INDEX = None
+try:
+    track._prior_win_horizons("TOKENaaa", 24)
+    check("with NO index ever built, it raises instead of answering 0", False, "returned")
+except OSError:
+    check("with NO index ever built, it raises instead of answering 0", True)
+journal.outcomes = _real
+
 bad = [r for r in R if not r[1]]
 print(f"{len(R) - len(bad)}/{len(R)} passed")
 sys.exit(1 if bad else 0)
