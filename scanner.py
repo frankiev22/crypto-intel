@@ -14,6 +14,7 @@ import plausibility
 import sources as S
 import namecheck
 import paper
+import paperv2
 import watchlist
 import onchain
 import weights
@@ -329,6 +330,23 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
                               f"depth ${row.get('exit_depth_usd'):,.0f}")
         except Exception as e:
             print(f"  [paper] {type(e).__name__}: {str(e)[:90]}")
+        # RULE_V2 IN PARALLEL, over the same row, in the same pass. Sequential
+        # would have confounded the filter change with the market change; this
+        # is the same market, the same hour, two filters. v1 above is untouched
+        # and stays pinned - a v2 failure can never affect a v1 entry, which is
+        # why this is its own try block and its own ledger.
+        try:
+            _v2, _v2why = paperv2.open_entry(row)
+            if _v2 is not None:
+                row["paper_v2_entry"] = _v2["hash"][:12]
+                row["paper_v2_arm"] = _v2["arm"]
+                if verbose:
+                    print(f"  [v2/{_v2['arm']}] entered {row.get('name')} "
+                          f"{str(row.get('addr'))[:12]} "
+                          f"(score {row.get('score')}, "
+                          f"{'also v1' if _v2['also_qualifies_v1'] else 'v1 REJECTED: ' + str(_v2['v1_reason'])[:40]})")
+        except Exception as e:
+            print(f"  [v2] {type(e).__name__}: {str(e)[:90]}")
         rows.append(row)
         LAST_SCAN["enriched"] += 1
         if on_row:

@@ -528,6 +528,54 @@ def _pair_for(entry):
     return (best or {}).get("pair")
 
 
+# ---------------------------------------------------------------------------
+# THE CLOSE DECISION, as a pure function shared by v1 and v2.
+#
+# Extracted 2026-09-10 when RULE_V2 began running in parallel. Both ledgers must
+# close on IDENTICAL logic or the comparison measures the closer instead of the
+# filter, and a divergence would be invisible - two plausible numbers that were
+# never computed the same way. So there is one implementation and both sweeps
+# call it. No I/O, no writes, no globals beyond the pinned constants.
+# ---------------------------------------------------------------------------
+def close_decision(entry, pair, elapsed_h, target_mult=None, min_depth=None,
+                   max_hold_h=None):
+    """(action, price, depth, reason_code, detail).
+
+    action is one of: "target", "expiry", "unpriceable", "hold".
+    `pair` is None when the lookup SUCCEEDED and returned nothing - a failed
+    lookup must never reach here; that is a hold, decided by the caller.
+    """
+    target = float(target_mult if target_mult is not None
+                   else entry.get("target_mult") or TARGET_MULT)
+    floor = float(min_depth if min_depth is not None else MIN_EXIT_DEPTH)
+    hold = float(max_hold_h if max_hold_h is not None
+                 else entry.get("max_hold_h") or MAX_HOLD_H)
+    expired = elapsed_h >= hold
+    if not pair:
+        if expired:
+            return ("unpriceable", None, None, CLOSE_UNPRICEABLE,
+                    "source dropped the pair before the hold expired; "
+                    "no exit price is knowable and none is invented")
+        return ("hold", None, None, None, "")
+    try:
+        px = float(pair.get("priceUsd")) if pair.get("priceUsd") else None
+    except (TypeError, ValueError):
+        px = None
+    depth = _exit_depth(pair)
+    ep = entry.get("entry_price_usd")
+    mult = (px / ep) if (px and ep) else None
+    # A multiple without depth is a price on a corpse. Both are required, and
+    # this is the check that stopped Grogu's 6.144x on $0.0000007 of depth.
+    if mult is not None and mult >= target and depth is not None and depth >= floor:
+        return ("target", px, depth, CLOSE_TARGET,
+                f"reached {mult:.3f}x with ${depth:,.0f} of quote-side depth")
+    if expired:
+        return ("expiry", px, depth, CLOSE_EXPIRY,
+                f"max hold {elapsed_h:.1f}h elapsed at "
+                f"{('%.3fx' % mult) if mult is not None else 'no price'}")
+    return ("hold", px, depth, None, "")
+
+
 def sweep(fetch_pair, verbose=True):
     """Close every open position whose declared exit rule has been met.
 
@@ -574,48 +622,16 @@ def sweep(fetch_pair, verbose=True):
             stats["still_open"] += 1
             continue
 
-        if not pair:
-            if expired:
-                _close(e, None, None, CLOSE_UNPRICEABLE,
-                       "source dropped the pair before the hold expired; "
-                       "no exit price is knowable and none is invented")
-                stats["closed"] += 1; stats["unpriceable"] += 1
-                if verbose:
-                    print(f"  [paper] CLOSED {e.get('symbol')} unpriceable "
-                          f"after {elapsed_h:.1f}h")
-            else:
-                stats["still_open"] += 1
-            continue
-
-        try:
-            px = float(pair.get("priceUsd")) if pair.get("priceUsd") else None
-        except (TypeError, ValueError):
-            px = None
-        depth = _exit_depth(pair)
-        ep = e.get("entry_price_usd")
-        mult = (px / ep) if (px and ep) else None
-        target = float(e.get("target_mult") or TARGET_MULT)
-
-        hit = (mult is not None and mult >= target
-               and depth is not None and depth >= MIN_EXIT_DEPTH)
-        if hit:
-            _close(e, px, depth, CLOSE_TARGET,
-                   f"reached {mult:.3f}x with ${depth:,.0f} of quote-side depth")
-            stats["closed"] += 1; stats["target"] += 1
-            if verbose:
-                print(f"  [paper] CLOSED {e.get('symbol')} TARGET {mult:.2f}x "
-                      f"depth ${depth:,.0f} after {elapsed_h:.1f}h")
-        elif expired:
-            _close(e, px, depth, CLOSE_EXPIRY,
-                   f"max hold {elapsed_h:.1f}h elapsed at "
-                   f"{('%.3fx' % mult) if mult is not None else 'no price'}")
-            stats["closed"] += 1; stats["expiry"] += 1
-            if verbose:
-                m = f"{mult:.3f}x" if mult is not None else "unpriced"
-                print(f"  [paper] CLOSED {e.get('symbol')} expiry {m} "
-                      f"depth ${(depth or 0):,.0f} after {elapsed_h:.1f}h")
-        else:
+        action, px, depth, code, detail = close_decision(e, pair, elapsed_h)
+        if action == "hold":
             stats["still_open"] += 1
+        else:
+            _close(e, px, depth, code, detail)
+            stats["closed"] += 1
+            stats["unpriceable" if action == "unpriceable" else action] += 1
+            if verbose:
+                print(f"  [paper] CLOSED {e.get('symbol')} {action} "
+                      f"depth ${(depth or 0):,.0f} after {elapsed_h:.1f}h - {detail[:60]}")
     if verbose and stats["checked"]:
         print(f"  [paper] {stats['checked']} open checked, {stats['closed']} closed "
               f"({stats['target']} target, {stats['expiry']} expiry, "

@@ -178,6 +178,13 @@ def one_pass(networks=("solana",), verbose=True):
     # rule is closed here, whatever the number says, including to zero.
     try:
         paper.sweep(sources.dexscreener_pair, verbose=verbose)
+        # v2 sweeps in the same pass, on the same shared close_decision, so the
+        # two ledgers close on identical logic at the same moment.
+        try:
+            import paperv2
+            paperv2.sweep(sources.dexscreener_pair, verbose=verbose)
+        except Exception as e:
+            print(f"  v2 sweep failed: {e}")
     except Exception as e:
         print(f"  paper sweep failed: {e}")
     # LABEL THE UNAMBIGUOUSLY DEAD. A close whose pool was last seen rugged or
