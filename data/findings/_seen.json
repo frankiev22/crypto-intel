@@ -5642,14 +5642,14 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 50,
+  "count": 51,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h",
    "24h"
   ],
-  "last_seen": "2026-09-10T15:22:08+00:00",
+  "last_seen": "2026-09-10T18:50:03+00:00",
   "last_escalated": "2026-09-10T15:22:08+00:00",
   "escalations": 9
  },
@@ -8607,10 +8607,19 @@
  },
  "collector-error:field-guard": {
   "first_seen": "2026-09-10T15:17:49+00:00",
-  "count": 1,
+  "count": 2,
   "example": "collector-error: field-guard",
   "keys": [
    "field-guard"
+  ],
+  "last_seen": "2026-09-10T18:45:04+00:00"
+ },
+ "outcome-win:wrmlkqnnxfejwuncqbqddnqhjkadwjbfraufpump": {
+  "first_seen": "2026-09-10T18:45:38+00:00",
+  "count": 1,
+  "example": "outcome-win: 3wRMLKQN1NXfEJWUnCq5BqdDNQhj6kADWJBfRAufpump",
+  "keys": [
+   "3wRMLKQN1NXfEJWUnCq5BqdDNQhj6kADWJBfRAufpump"
   ]
  }
 }
