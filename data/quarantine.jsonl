@@ -122,3 +122,7 @@
 {"token": "ER4Qpn4maQRyLFFA27jbAZdHCxxkNwtKd7kCqLpfZnz7", "ts": 1789011054, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "exit depth $0.0384 is below the $100 floor; no quote is meaningful"}
 {"token": "ENj5SSvP9NZTpHzAJaETxb877MR1bo69MEpndgnXJKuT", "ts": 1789011164, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "exit depth $0.1511 is below the $100 floor; no quote is meaningful"}
 {"token": "DZPgEtvVeoHbfswijoHkV31x5trzryubQQ9ThzSUqcfP", "ts": 1789011183, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "exit depth $0.1497 is below the $100 floor; no quote is meaningful"}
+{"token": "ByCYk27eCmkNAz9Mt7PBWnVpNFr4UdW2x7wz8dKgjtTd", "ts": 1789004529, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "total reserve $0.0419 is below the $100 floor; no quote is meaningful"}
+{"token": "DFrayWaxEvU5gEJG7rM8VBqRJtX4M3e7gTR1g6s8tPw7", "ts": 1789004597, "confidence": "quarantined_unresolved", "horizon_h": 24, "detail": "neither source resolved the token"}
+{"token": "DRRpW1yjtxxCBzrKBBSXEMqh5N11tMu8BynjUBp3SHdY", "ts": 1789004605, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "exit depth $0.0215 is below the $100 floor; no quote is meaningful"}
+{"token": "2Fognodi7B4bWPSbjgQNvEHDDZW4khGRyMuB2FVdUuYq", "ts": 1789014630, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "total reserve $0.1596 is below the $100 floor; no quote is meaningful"}

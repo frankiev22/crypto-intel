@@ -780,7 +780,7 @@
   "detail": "exit depth $0.0485 is below the $100 floor; no quote is meaningful",
   "first_ts": 1789003366,
   "first_horizon_h": 24,
-  "last_ts": 1789003366,
+  "last_ts": 1789004529,
   "hits": 1
  },
  "DRRpW1yjtxxCBzrKBBSXEMqh5N11tMu8BynjUBp3SHdY": {
@@ -788,7 +788,7 @@
   "detail": "exit depth $0.0215 is below the $100 floor; no quote is meaningful",
   "first_ts": 1789003531,
   "first_horizon_h": 24,
-  "last_ts": 1789003531,
+  "last_ts": 1789004605,
   "hits": 1
  },
  "G84n4WnpwUd3gdpuc6yiR8VNZ4u3yURyvUTA3MyZgvWQ": {
@@ -909,6 +909,22 @@
   "first_ts": 1789011183,
   "first_horizon_h": 24,
   "last_ts": 1789011183,
+  "hits": 1
+ },
+ "DFrayWaxEvU5gEJG7rM8VBqRJtX4M3e7gTR1g6s8tPw7": {
+  "confidence": "quarantined_unresolved",
+  "detail": "neither source resolved the token",
+  "first_ts": 1789004597,
+  "first_horizon_h": 24,
+  "last_ts": 1789004597,
+  "hits": 1
+ },
+ "2Fognodi7B4bWPSbjgQNvEHDDZW4khGRyMuB2FVdUuYq": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "total reserve $0.1596 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789014630,
+  "first_horizon_h": 24,
+  "last_ts": 1789014630,
   "hits": 1
  }
 }

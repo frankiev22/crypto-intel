@@ -8072,7 +8072,9 @@
   "example": "scanner-hit: LEPTEP",
   "keys": [
    "LEPTEP"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:u-0285bb": {
   "first_seen": "2026-09-08T12:15:51+00:00",
@@ -8080,7 +8082,9 @@
   "example": "scanner-hit: 呱比",
   "keys": [
    "呱比"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "outcome-win:xdotdgiygjhzgrsubgnluefxmtmqqcgnpuzcg": {
   "first_seen": "2026-09-08T13:10:23+00:00",
@@ -8088,7 +8092,9 @@
   "example": "outcome-win: 96xdotdgiy29GJHzG5R57suBgNLUEFXmTMQqcgnPuzCG",
   "keys": [
    "96xdotdgiy29GJHzG5R57suBgNLUEFXmTMQqcgnPuzCG"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:ozempig": {
   "first_seen": "2026-09-08T13:31:02+00:00",
@@ -8096,7 +8102,9 @@
   "example": "scanner-hit: Ozempig",
   "keys": [
    "Ozempig"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:pumpers": {
   "first_seen": "2026-09-08T13:31:03+00:00",
@@ -8104,7 +8112,9 @@
   "example": "scanner-hit: Pumpers",
   "keys": [
    "Pumpers"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:spcx": {
   "first_seen": "2026-09-08T13:31:04+00:00",
@@ -8112,7 +8122,9 @@
   "example": "scanner-hit: SPCX",
   "keys": [
    "SPCX"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:hood-ajuzm": {
   "first_seen": "2026-09-08T13:31:05+00:00",
@@ -8120,7 +8132,9 @@
   "example": "scanner-hit: HOOD-3AjUZm",
   "keys": [
    "HOOD-3AjUZm"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:hood-djtur": {
   "first_seen": "2026-09-08T13:31:06+00:00",
@@ -8128,7 +8142,9 @@
   "example": "scanner-hit: HOOD-DJtur3",
   "keys": [
    "HOOD-DJtur3"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:chaos": {
   "first_seen": "2026-09-08T13:31:06+00:00",
@@ -8136,7 +8152,9 @@
   "example": "scanner-hit: CHAOS",
   "keys": [
    "CHAOS"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:dogbob": {
   "first_seen": "2026-09-08T13:31:07+00:00",
@@ -8144,7 +8162,9 @@
   "example": "scanner-hit: DogBob",
   "keys": [
    "DogBob"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "reporting-path:stagedrunbooknolongerfits": {
   "first_seen": "2026-09-08T13:31:29+00:00",
@@ -8163,7 +8183,9 @@
   "example": "outcome-win: FNVedKFtWQUV3oK3pcd3hHpne4nfVUycKeP5FSvrW7Fv",
   "keys": [
    "FNVedKFtWQUV3oK3pcd3hHpne4nfVUycKeP5FSvrW7Fv"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "outcome-win:fqwtmuxbmqpappxeasyayuazwcizizhwjpuldkeg": {
   "first_seen": "2026-09-08T15:11:56+00:00",
@@ -8171,7 +8193,9 @@
   "example": "outcome-win: FQwt9MUX3bMqpAPp1XeAsyaYUAzWCiziZhWjpuL6dkEg",
   "keys": [
    "FQwt9MUX3bMqpAPp1XeAsyaYUAzWCiziZhWjpuL6dkEg"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "reporting-path:announcepathbypasseswingate": {
   "first_seen": "2026-09-08T15:17:27+00:00",
@@ -8179,7 +8203,9 @@
   "example": "reporting-path: AnnouncePathBypassesWinGate",
   "keys": [
    "AnnouncePathBypassesWinGate"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:uranus": {
   "first_seen": "2026-09-08T16:26:29+00:00",
@@ -8187,7 +8213,9 @@
   "example": "scanner-hit: URANUS",
   "keys": [
    "URANUS"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:cpu": {
   "first_seen": "2026-09-08T16:26:33+00:00",
@@ -8195,7 +8223,9 @@
   "example": "scanner-hit: CPU",
   "keys": [
    "CPU"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:just": {
   "first_seen": "2026-09-08T16:26:37+00:00",
@@ -8203,7 +8233,9 @@
   "example": "scanner-hit: JUST",
   "keys": [
    "JUST"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:ascbot": {
   "first_seen": "2026-09-08T16:26:43+00:00",
@@ -8211,7 +8243,9 @@
   "example": "scanner-hit: ASCBOT",
   "keys": [
    "ASCBOT"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:crumbs": {
   "first_seen": "2026-09-09T02:17:54+00:00",
@@ -8219,7 +8253,9 @@
   "example": "scanner-hit: CRUMBS",
   "keys": [
    "CRUMBS"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:useless": {
   "first_seen": "2026-09-09T02:17:55+00:00",
@@ -8227,7 +8263,9 @@
   "example": "scanner-hit: USELESS",
   "keys": [
    "USELESS"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:blogy": {
   "first_seen": "2026-09-09T02:17:56+00:00",
@@ -8235,7 +8273,9 @@
   "example": "scanner-hit: BLOGY",
   "keys": [
    "BLOGY"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:whuf": {
   "first_seen": "2026-09-09T03:13:57+00:00",
@@ -8243,7 +8283,9 @@
   "example": "scanner-hit: WHUF",
   "keys": [
    "WHUF"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:stonkszn": {
   "first_seen": "2026-09-09T03:14:03+00:00",
@@ -8251,7 +8293,9 @@
   "example": "scanner-hit: STONKSZN",
   "keys": [
    "STONKSZN"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:incorgnito": {
   "first_seen": "2026-09-09T03:14:14+00:00",
@@ -8259,7 +8303,9 @@
   "example": "scanner-hit: incorgnito",
   "keys": [
    "incorgnito"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:namekcoin": {
   "first_seen": "2026-09-09T03:14:25+00:00",
@@ -8267,7 +8313,9 @@
   "example": "scanner-hit: NamekCoin",
   "keys": [
    "NamekCoin"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:yinma": {
   "first_seen": "2026-09-09T03:14:26+00:00",
@@ -8275,7 +8323,9 @@
   "example": "scanner-hit: YINMA",
   "keys": [
    "YINMA"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:giko": {
   "first_seen": "2026-09-09T03:14:26+00:00",
@@ -8283,7 +8333,9 @@
   "example": "scanner-hit: GIKO",
   "keys": [
    "GIKO"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "liveness:outcome-recorded": {
   "first_seen": "2026-09-10T00:07:38+00:00",
@@ -8292,7 +8344,8 @@
   "keys": [
    "outcome.recorded"
   ],
-  "last_seen": "2026-09-10T00:07:59+00:00"
+  "last_seen": "2026-09-10T00:07:59+00:00",
+  "last_escalated": null
  },
  "liveness:paper-open": {
   "first_seen": "2026-09-09T15:02:17+00:00",
@@ -8311,7 +8364,8 @@
   "keys": [
    "paper.sweep"
   ],
-  "last_seen": "2026-09-10T00:08:00+00:00"
+  "last_seen": "2026-09-10T00:08:00+00:00",
+  "last_escalated": null
  },
  "liveness:watchlist-sweep": {
   "first_seen": "2026-09-10T00:07:41+00:00",
@@ -8320,7 +8374,8 @@
   "keys": [
    "watchlist.sweep"
   ],
-  "last_seen": "2026-09-10T00:08:00+00:00"
+  "last_seen": "2026-09-10T00:08:00+00:00",
+  "last_escalated": null
  },
  "collector-error:stagebudgetoverrun": {
   "first_seen": "2026-09-10T01:53:35+00:00",
