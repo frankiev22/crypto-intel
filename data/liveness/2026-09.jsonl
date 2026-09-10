@@ -23781,3 +23781,12 @@
 {"name": "paper.open", "ts": 1789047943, "n": 1, "detail": "TESTONLY2"}
 {"name": "paper.open", "ts": 1789047943, "n": 1, "detail": "A"}
 {"name": "paper.open", "ts": 1789047943, "n": 1, "detail": "B"}
+{"name": "paper.open", "ts": 1789048146, "n": 1, "detail": "DEADRUG"}
+{"name": "paper.open", "ts": 1789048146, "n": 1, "detail": "DEADDED"}
+{"name": "paper.open", "ts": 1789048146, "n": 1, "detail": "STILLUP"}
+{"name": "paper.open", "ts": 1789048146, "n": 1, "detail": "HASLIQ"}
+{"name": "paper.open", "ts": 1789048146, "n": 1, "detail": "NOWIT"}
+{"name": "paper.open", "ts": 1789048147, "n": 1, "detail": "TESTONLY"}
+{"name": "paper.open", "ts": 1789048147, "n": 1, "detail": "TESTONLY2"}
+{"name": "paper.open", "ts": 1789048147, "n": 1, "detail": "A"}
+{"name": "paper.open", "ts": 1789048147, "n": 1, "detail": "B"}
