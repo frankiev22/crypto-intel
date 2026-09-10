@@ -211,6 +211,14 @@ def main():
         del argv[i:i + 2]
     elif stage != "full":
         max_calls = DEFAULT_STAGE_CALLS
+    elif not os.environ.get("GITHUB_ACTIONS"):
+        # An UNSTAGED pass off the GitHub runner is still a sandbox pass, and
+        # a full pass is ~607 calls against a 178s cap. 10 of the 57 recent
+        # aborts were exactly this: stage=full, killed at the cap. Budgeting
+        # them makes the pass short-and-recorded instead of dead-and-inferred.
+        # GITHUB_ACTIONS is set by Actions itself, so the hosted runner keeps
+        # its unlimited full pass unchanged.
+        max_calls = DEFAULT_STAGE_CALLS
     sources.set_call_budget(max_calls)
 
     nets = ("solana",)
