@@ -343,7 +343,16 @@ actionable at all.</p>""")
     # 2 GRADUATED + APPROACHING
     P.append('<h2>2 · Graduated, and approaching</h2>')
     lo, hi = d["band"]
-    P.append('<p class="sub">Post-graduation is the one door still open — launch sniping '
+    # "Graduated" here means the WATCHLIST MILESTONE - a contract we were
+    # already tracking in the approach band that later crossed, with a before
+    # and an after. It is NOT the per-row venue flag, which only ever meant
+    # "has a two-sided pool" and was renamed has_amm_pool on 2026-09-10 for
+    # exactly that reason: 95% of the AMM contracts we have seen were never
+    # observed on a curve at all, so the flag could not have witnessed a
+    # graduation. Only these milestone crossings did.
+    P.append('<p class="sub">Graduated = a contract tracked in the approach band that '
+             'later crossed, observed by us. Not a venue label. '
+             'Post-graduation is the one door still open &mdash; launch sniping '
              'is closed (>50% of tokens are taken in the genesis block, sub-400ms). '
              f'Approaching = FDV between {usd(lo)} and {usd(hi)}. Newest first.</p>')
     if d["graduated"]:

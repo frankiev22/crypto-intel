@@ -342,3 +342,78 @@ structurally suppresses 2x hits (fewer pools reach 2x in 6h than in 24h). Three
 costs to buy information we can get for free by labelling instead.
 
 **Revisit after n=200 closes on 2026-09-13, not before.**
+
+---
+
+# Discovery is a ~1%-wide window at birth, and we never look again
+
+*Filed 2026-09-10, from the attempt to build an approach band.*
+
+## The finding
+
+The pre-committed approach band — bonding-curve tokens at 75% or more of the
+$69,000 graduation mcap — is **empty in practice**. 21 contracts across five
+days, and zero on 9/09 and 9/10.
+
+It is not a band-placement problem, and the FDV distribution says so plainly:
+
+| bonding-curve observations | n=7,033 |
+|---|---|
+| median FDV | $2,938 |
+| p25 / p75 | $2,832 / $3,147 |
+| p95 | $42,616 |
+| inside the $51,750–$69,000 band | **0.54%** |
+
+We see curve tokens clustered tightly at ~$2,900 — that is, minutes after
+launch — and essentially never on the way up. **The window is roughly 1% wide
+and it sits at birth.** GeckoTerminal's new-pools feed spans about 37 seconds
+of launches per page and dies at page 10, so one pass reaches ~5 minutes back
+at best. A token that graduates six hours later does so unobserved.
+
+**So an approach band is not currently buildable.** Not because the threshold
+is wrong, but because we have no capability to re-observe a token we have
+already seen. The band would work; the sampling cannot feed it.
+
+## What it would cost to fix — measured, not estimated
+
+Dexscreener's token endpoint accepts **30 comma-separated addresses per call**.
+Verified live on 2026-09-10 with 30 real curve contracts: one call, 0.380s, 28
+of 30 resolved (the 2 that did not are delisted, which is itself the signal).
+
+1,615 distinct bonding-curve contracts were seen in the last 48h → **54 calls
+per full sweep.**
+
+| cadence | calls/day | budget/day |
+|---|---|---|
+| every 6h | 216 | 4.4 min |
+| every 4h | 324 | 6.6 min |
+| every 2h | 648 | 13.1 min |
+| every 1h | 1,296 | 26.3 min |
+
+Against ~2,200 observations/day at one call each, a 6-hourly re-poll is a **~10%
+increase in call volume** and 4.4 minutes of wall clock. This is cheap.
+
+## Why it is filed and not built
+
+It is a new capability, not a fix, and it was not asked for. Filing the price
+so the decision is a decision. Two things to weigh before building it:
+
+1. It would create a second observation stream with different cadence from the
+   discovery stream. Every rate computed across both would need its
+   denominator stated, or we get the row-vs-token double-count a fourth time.
+2. Re-polling tells us a curve token's FDV rose. It does **not** tell us it
+   will graduate, and graduation would not tell us it appreciates. This buys a
+   *universe*, not a signal.
+
+## Related, and already fixed
+
+The same shape one level down: `is_graduated` was a venue flag wearing a
+graduation name. Renamed `has_amm_pool` on 2026-09-10. Only **86 of 1,730**
+AMM contracts (5.0%) were ever observed on a curve first, so the flag could not
+have witnessed a graduation in 95% of cases. `graduated` now means the
+watchlist milestone only: a contract tracked in the approach band that later
+crossed, with a before and an after.
+
+**Those 86 observed curve→AMM transitions are a real graduation detector we
+have not built.** n=86 is thin but it is honest, and it is the only graduation
+evidence in the corpus that we witnessed rather than inferred.

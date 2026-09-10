@@ -542,7 +542,13 @@ def record(rows, network, pass_score=70):
             "txns_h1": r.get("txns_h1"), "buys_h1": r.get("buys_h1"),
             "sells_h1": r.get("sells_h1"),
             "dex_id": r.get("dex_id"), "venue_type": r.get("venue_type"),
-            "is_graduated": r.get("is_graduated"),
+            # A VENUE FACT, not a graduation event - see venue.assess. The old
+            # key is still written because 100,000+ rows carry it and nothing
+            # is ever deleted; readers use venue.has_pool(row), which takes
+            # either. Both are added to this whitelist deliberately: a field
+            # computed and not persisted is a field that does not exist.
+            "has_amm_pool": r.get("has_amm_pool", r.get("is_graduated")),
+            "is_graduated": r.get("is_graduated", r.get("has_amm_pool")),
             "liq_base": r.get("liq_base"), "liq_quote": r.get("liq_quote"),
             "price_native": r.get("price_native"),
             "exit_depth_usd": r.get("exit_depth_usd"),

@@ -91,12 +91,26 @@ def from_discovery(record):
 
 
 def assess(dex=None, liq=None, liq_base=None, liq_quote=None, fdv=None):
-    """{venue, venue_type, is_graduated}.
+    """{venue, venue_type, has_amm_pool, is_graduated}.
 
-    `is_graduated` is deliberately conservative and means "there is a real
-    two-sided pool here", not "it crossed a threshold at some point". A token
-    can be on an AMM with nothing in it; that is not graduated in any sense
-    that matters to an exit.
+    `has_amm_pool` means exactly what it says: there is a real two-sided pool
+    here right now. It is a VENUE FACT, not a graduation event.
+
+    IT WAS CALLED `is_graduated` UNTIL 2026-09-10, AND THAT NAME WAS FALSE.
+    Of 1,730 contracts we have ever seen on an AMM, only 86 - 5.0% - were first
+    seen on a bonding curve, which is the only way we could have watched one
+    graduate. The other 95% appeared already on an AMM and were never on a curve
+    in our data at all. So the flag was overwhelmingly answering "does this have
+    a pool", while its name claimed the market's 1-2% graduation filter had been
+    applied. Anything reasoning from the name was reasoning from a fiction.
+
+    `graduated` now means one thing only, and it is the watchlist milestone: a
+    contract we were already tracking in the approach band that later crossed.
+    That is an observed transition with a before and an after.
+
+    `is_graduated` is still returned, with the same value, because 100,000+
+    persisted rows carry that key and nothing is ever deleted. New readers use
+    `has_amm_pool`; `has_pool()` below accepts either.
     """
     vt = venue_type(dex)
     has_pool = bool(liq_base is not None and liq_quote is not None
@@ -109,7 +123,20 @@ def assess(dex=None, liq=None, liq_base=None, liq_quote=None, fdv=None):
         # No venue label. Fall back to the shape of the payload: a curve pair
         # comes back with zero liquidity and no reserve split.
         grad = has_pool if (liq is not None) else None
-    return {"venue": _norm(dex) or None, "venue_type": vt, "is_graduated": grad}
+    return {"venue": _norm(dex) or None, "venue_type": vt,
+            "has_amm_pool": grad,
+            # Same value under the old key: the archive is written in it.
+            "is_graduated": grad}
+
+
+def has_pool(row):
+    """Does this row have a real two-sided pool? Reads either key.
+
+    Rows written before 2026-09-10 carry `is_graduated`; rows after carry
+    `has_amm_pool`. Both mean the same thing and always did.
+    """
+    v = row.get("has_amm_pool")
+    return row.get("is_graduated") if v is None else v
 
 
 def annotate(row, dex=None):

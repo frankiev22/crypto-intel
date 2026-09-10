@@ -43,7 +43,7 @@ TRANSIENT = {
     "watchlisted",      # membership lives in data/watchlist, not the journal
     "liquidity_plausible", "template_suspect", "liq_to_fdv_ratio",
     "integrity_flags",  # all four are DERIVED ON READ by plausibility.annotate
-    "venue", "is_graduated",   # venue.annotate re-derives these on read
+    "venue", "is_graduated", "has_amm_pool",   # venue.annotate re-derives these on read
 }
 
 # Renames: scanner key -> journal key. Listed so a rename is not mistaken for
