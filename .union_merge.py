@@ -68,6 +68,25 @@ for f in files:
         w=min(cands,key=lambda c:c.get("crossed_ts",1<<62))
         io.open(f,"w",encoding="utf-8",newline="").write(json.dumps(w))
         print(f"{f.split('/')[-1]}: kept the earlier crossing {w.get('crossed_at')}")
+    elif f.endswith("_ping_budget.json"):
+        # A rolling window of ping timestamps per channel, used as a rate
+        # limiter. Union both sides: recording MORE pings can only throttle
+        # harder, which is the fail-safe direction for a notifier. Bounded so
+        # the file cannot grow without limit.
+        v=stages(f); m={}
+        for side in ("ours","theirs"):
+            try: d=json.loads(v[side]) or {}
+            except ValueError: d={}
+            for k,lst in d.items():
+                m.setdefault(k,[]).extend(lst or [])
+        for k in m:
+            seen2,keep=set(),[]
+            for item in sorted(m[k], key=lambda x: x[0] if isinstance(x,(list,tuple)) else 0):
+                key=json.dumps(item,sort_keys=True)
+                if key not in seen2: seen2.add(key); keep.append(item)
+            m[k]=keep[-16:]
+        io.open(f,"w",encoding="utf-8",newline="").write(json.dumps(m))
+        print(f"{f}: {sum(len(x) for x in m.values())} ping stamps after union")
     elif f.endswith("quarantine.json"):
         # per contract. A quarantine is a fact about the pair, so the EARLIEST
         # rejection wins and its original reason is preserved; hits add up.

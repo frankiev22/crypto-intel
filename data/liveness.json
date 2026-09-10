@@ -28,18 +28,18 @@
   "detail": "0 stale outlet(s)"
  },
  "outcome.recorded": {
-  "last_ts": 1788998933,
-  "last_at": "2026-09-10T00:08:53+00:00",
-  "count": 13840,
+  "last_ts": 1788998999,
+  "last_at": "2026-09-10T00:09:59+00:00",
+  "count": 13848,
   "first_ts": 1788782831,
   "detail": null
  },
  "milestone.mcap": {
-  "last_ts": 1788920621,
-  "last_at": "2026-09-09T02:23:41+00:00",
-  "count": 584,
+  "last_ts": 1788998986,
+  "last_at": "2026-09-10T00:09:46+00:00",
+  "count": 587,
   "first_ts": 1788782876,
-  "detail": "mcap_5m 9DA62aB939EMPy4QhjxrSj5mvX5ihC6n2S9MQhzFJ32n"
+  "detail": "mcap_1m ER4Qpn4maQRyLFFA27jbAZdHCxxkNwtKd7kCqLpfZnz7"
  },
  "milestone.realizable": {
   "last_ts": 1788876999,
@@ -49,30 +49,30 @@
   "detail": "realizable_2x donmiNZzBtwWVfjN8zX84MYtxNG6eBnNtamsGqH2Haz"
  },
  "watchlist.sweep": {
-  "last_ts": 1788921375,
-  "last_at": "2026-09-09T02:36:15+00:00",
-  "count": 13,
+  "last_ts": 1788996952,
+  "last_at": "2026-09-09T23:35:52+00:00",
+  "count": 15,
   "first_ts": 1788786917,
   "detail": null
  },
  "milestone.graduated": {
-  "last_ts": 1788866244,
-  "last_at": "2026-09-08T11:17:24+00:00",
-  "count": 6,
+  "last_ts": 1788977074,
+  "last_at": "2026-09-09T18:04:34+00:00",
+  "count": 7,
   "first_ts": 1788786923,
   "detail": "graduated 4gKsXcvfGPQuCHngi8bKhqjcDHz2s2XSscQfcPdk49aG"
  },
  "paper.sweep": {
-  "last_ts": 1788921383,
-  "last_at": "2026-09-09T02:36:23+00:00",
-  "count": 13,
+  "last_ts": 1788996953,
+  "last_at": "2026-09-09T23:35:53+00:00",
+  "count": 15,
   "first_ts": 1788786927,
   "detail": null
  },
  "paper.close": {
-  "last_ts": 1788921387,
-  "last_at": "2026-09-09T02:36:27+00:00",
-  "count": 51,
+  "last_ts": 1788948792,
+  "last_at": "2026-09-09T10:13:12+00:00",
+  "count": 61,
   "first_ts": 1788786929,
   "detail": "unpriceable"
  }
