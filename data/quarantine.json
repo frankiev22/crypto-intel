@@ -774,5 +774,29 @@
   "first_horizon_h": 6,
   "last_ts": 1788999037,
   "hits": 1
+ },
+ "ByCYk27eCmkNAz9Mt7PBWnVpNFr4UdW2x7wz8dKgjtTd": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "total reserve $0.0419 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789004529,
+  "first_horizon_h": 24,
+  "last_ts": 1789004529,
+  "hits": 1
+ },
+ "DFrayWaxEvU5gEJG7rM8VBqRJtX4M3e7gTR1g6s8tPw7": {
+  "confidence": "quarantined_unresolved",
+  "detail": "neither source resolved the token",
+  "first_ts": 1789004597,
+  "first_horizon_h": 24,
+  "last_ts": 1789004597,
+  "hits": 1
+ },
+ "DRRpW1yjtxxCBzrKBBSXEMqh5N11tMu8BynjUBp3SHdY": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0215 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789004605,
+  "first_horizon_h": 24,
+  "last_ts": 1789004605,
+  "hits": 1
  }
 }
