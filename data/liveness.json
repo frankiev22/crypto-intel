@@ -1,8 +1,8 @@
 {
  "detector.drift": {
-  "last_ts": 1789014219,
-  "last_at": "2026-09-10T04:23:39+00:00",
-  "count": 246,
+  "last_ts": 1789014605,
+  "last_at": "2026-09-10T04:30:05+00:00",
+  "count": 248,
   "first_ts": 1788782114,
   "detail": "stable"
  },
@@ -21,25 +21,25 @@
   "detail": null
  },
  "news.freshness": {
-  "last_ts": 1789014479,
-  "last_at": "2026-09-10T04:27:59+00:00",
-  "count": 250,
+  "last_ts": 1789014604,
+  "last_at": "2026-09-10T04:30:04+00:00",
+  "count": 252,
   "first_ts": 1788782822,
   "detail": "0 stale outlet(s)"
  },
  "outcome.recorded": {
-  "last_ts": 1789014522,
-  "last_at": "2026-09-10T04:28:42+00:00",
-  "count": 15295,
+  "last_ts": 1789014589,
+  "last_at": "2026-09-10T04:29:49+00:00",
+  "count": 15310,
   "first_ts": 1788782831,
   "detail": null
  },
  "milestone.mcap": {
-  "last_ts": 1789014518,
-  "last_at": "2026-09-10T04:28:38+00:00",
-  "count": 646,
+  "last_ts": 1789014564,
+  "last_at": "2026-09-10T04:29:24+00:00",
+  "count": 649,
   "first_ts": 1788782876,
-  "detail": "mcap_200k AZ1skq3Cx5t98F9kdQgPpBVmdfPYvw51y3nszs2RkfXD"
+  "detail": "mcap_1m 81agRNoLBDj3DQwhyd2iH9NqwiaJgK1bM6ysaT1pump"
  },
  "milestone.realizable": {
   "last_ts": 1789014441,

@@ -21140,3 +21140,25 @@
 {"name": "milestone.mcap", "ts": 1789014518, "n": 1, "detail": "mcap_100k AZ1skq3Cx5t98F9kdQgPpBVmdfPYvw51y3nszs2RkfXD"}
 {"name": "milestone.mcap", "ts": 1789014518, "n": 1, "detail": "mcap_200k AZ1skq3Cx5t98F9kdQgPpBVmdfPYvw51y3nszs2RkfXD"}
 {"name": "outcome.recorded", "ts": 1789014522, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1789014526, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1789014531, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1789014539, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1789014543, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1789014547, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1789014551, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1789014556, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1789014559, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1789014564, "n": 1, "detail": null}
+{"name": "milestone.mcap", "ts": 1789014564, "n": 1, "detail": "mcap_100k 81agRNoLBDj3DQwhyd2iH9NqwiaJgK1bM6ysaT1pump"}
+{"name": "milestone.mcap", "ts": 1789014564, "n": 1, "detail": "mcap_200k 81agRNoLBDj3DQwhyd2iH9NqwiaJgK1bM6ysaT1pump"}
+{"name": "milestone.mcap", "ts": 1789014564, "n": 1, "detail": "mcap_1m 81agRNoLBDj3DQwhyd2iH9NqwiaJgK1bM6ysaT1pump"}
+{"name": "outcome.recorded", "ts": 1789014569, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1789014572, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1789014577, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1789014581, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1789014584, "n": 1, "detail": null}
+{"name": "outcome.recorded", "ts": 1789014589, "n": 1, "detail": null}
+{"name": "news.freshness", "ts": 1789014592, "n": 1, "detail": "0 stale outlet(s)"}
+{"name": "detector.drift", "ts": 1789014594, "n": 1, "detail": "stable"}
+{"name": "news.freshness", "ts": 1789014604, "n": 1, "detail": "0 stale outlet(s)"}
+{"name": "detector.drift", "ts": 1789014605, "n": 1, "detail": "stable"}
