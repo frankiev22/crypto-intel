@@ -233,7 +233,10 @@ def open_entry(contract, symbol=None, price=None, exit_depth=None, liq=None,
         raise ValueError("contract address is required - never key on ticker")
     if has_open(contract):
         return None
-    return _append({
+    # `return _append({...})` put the liveness beat below it beyond reach: 69
+    # entries were written while paper.open reported `never fired`, and
+    # paper.close logged 94. The registry was right; the beat was dead code.
+    rec = _append({
         "type": "entry",
         "ts": _now(),
         "contract": contract,
@@ -257,6 +260,7 @@ def open_entry(contract, symbol=None, price=None, exit_depth=None, liq=None,
         "note": note,
     })
     liveness.beat("paper.open", detail=str(symbol or contract)[:24])
+    return rec
 
 
 def close_entry(entry_id, price=None, exit_depth=None, reason=None, void=None,
@@ -683,6 +687,42 @@ def _witness(entry):
     return best
 
 
+
+def closes(rows=None):
+    """One exit per entry: the EARLIEST. Concurrent sweeps double-close.
+
+    Two writers run sweep() - this session and the hosted runner - and each
+    computes `closed_ids` from its own view of the ledger. When the two
+    histories are unioned, a position closed by one writer gets closed AGAIN by
+    the other, which did not see the first. Measured 2026-09-09: 95 exits
+    against 69 entries, 34 entries closed twice, giving a nonsensical -26 open
+    positions and inflating n on a log whose whole purpose is a denominator.
+
+    The earliest close is kept because it is the one a single writer would have
+    produced; the later row exists only because a concurrent writer could not
+    see it. In all 9 cases where the two disagree, the earliest carries a price
+    and the later is `unpriceable` - the pool was still indexed at the real
+    close and gone an hour later. Keeping the later row would be discarding a
+    measured exit in favour of "we lost track of it".
+
+    STATED PLAINLY: this rule yields one MORE win than keeping the latest (3 vs
+    2). The rule is chosen on that structural argument, not on the count, and
+    the count is reported so the choice can be checked.
+
+    Deduplication happens on READ. The ledger is append-only and hash-chained,
+    so nothing is removed - both rows stay on the record forever.
+    """
+    rows = _read() if rows is None else rows
+    best = {}
+    for r in rows:
+        if r.get("type") != "exit" or r.get("void"):
+            continue
+        k = r.get("entry_id")
+        if k not in best or str(r.get("ts") or "") < str(best[k].get("ts") or ""):
+            best[k] = r
+    return list(best.values())
+
+
 def labelled_exits():
     """exit hash -> its label record. Labels never overwrite; the first stands."""
     out = {}
@@ -698,9 +738,7 @@ def label_unpriceable(dry_run=True, verbose=True):
     entries = {r["hash"]: r for r in rows if r.get("type") == "entry"}
     already = labelled_exits()
     made, skipped = [], []
-    for r in rows:
-        if r.get("type") != "exit" or r.get("void"):
-            continue
+    for r in closes(rows):
         if not str(r.get("reason", "")).startswith(CLOSE_UNPRICEABLE):
             continue
         if r.get("hash") in already:
@@ -760,8 +798,10 @@ def summary(include_inferred=False):
     """
     rows = _read()
     entries = [r for r in rows if r.get("type") == "entry"]
-    exits = [r for r in rows if r.get("type") == "exit" and not r.get("void")]
+    exits = closes(rows)
     voids = [r for r in rows if r.get("type") == "exit" and r.get("void")]
+    dup = sum(1 for r in rows
+              if r.get("type") == "exit" and not r.get("void")) - len(exits)
     labels = labelled_exits()
     mults = sorted(r["mult"] for r in exits if r.get("mult") is not None)
     measured_n = len(mults)
@@ -771,7 +811,27 @@ def summary(include_inferred=False):
                 and labels[r["hash"]].get("label") == LABEL_INFERRED_LOSS]
     if include_inferred:
         mults = sorted(mults + [0.0] * len(inferred))
-    wins = [m for m in mults if m >= TARGET_MULT]
+    # A WIN NEEDS A POOL TO SELL INTO, NOT JUST A PRICE.
+    #
+    # The target close path already requires depth: `mult >= target AND depth
+    # >= MIN_EXIT_DEPTH`. The EXPIRY path does not - it closes at whatever the
+    # last print says, including zero-liquidity prints. summary() then counted
+    # those as wins on the multiple alone.
+    #
+    # Grogu, 2026-09-09: closed at expiry at 6.144x with an exit depth of
+    # $0.0000007 and realizable_usd 0.00. It was the largest multiple in the
+    # log and it was the top of the win column. Nothing could have been sold.
+    # This is the rug-that-pumps-on-the-way-out shape for the sixth time.
+    #
+    # Both counts are reported so the gap stays visible; `wins` is the
+    # realizable one and it is the one that means anything.
+    def _realizable(r):
+        d = r.get("exit_depth_usd")
+        return d is not None and d >= MIN_EXIT_DEPTH
+    win_rows = [r for r in exits
+                if r.get("mult") is not None and r["mult"] >= TARGET_MULT]
+    wins = [r["mult"] for r in win_rows if _realizable(r)]
+    wins_price_only = [r["mult"] for r in win_rows]
     n = len(mults)
     # THE FLOOR COUNTS DISTINCT TOKENS, NOT ROWS. Declared 2026-09-07 after the
     # low-score inversion was found to rest on 9 rows that were 6 tokens. The
@@ -788,7 +848,10 @@ def summary(include_inferred=False):
            "priceable": measured_n, "inferred_losses": len(inferred),
            "unpriceable_unlabelled": len(exits) - measured_n - len(inferred),
            "basis": ("measured + inferred" if include_inferred else "measured only"),
-           "n": n, "n_tokens": n_tokens, "wins": len(wins), "min_n": MIN_N,
+           "duplicate_closes_ignored": dup,
+           "n": n, "n_tokens": n_tokens, "wins": len(wins),
+           "wins_price_only": len(wins_price_only),
+           "wins_unexitable": len(wins_price_only) - len(wins), "min_n": MIN_N,
            "conclusive": n_tokens >= MIN_N}
     if n:
         out["median_mult"] = mults[n // 2] if n % 2 else (mults[n // 2 - 1] + mults[n // 2]) / 2

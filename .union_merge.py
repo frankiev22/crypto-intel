@@ -1,5 +1,7 @@
 """Resolve append-only conflicts as unions. Never picks a side."""
 import io,json,re,subprocess,sys
+
+import safeload   # atomic writes; a torn registry cost a repair on 2026-09-09
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 def _n(x,d=0):
@@ -66,7 +68,7 @@ for f in files:
             try: cands.append(json.loads(v[side]))
             except ValueError: pass
         w=min(cands,key=lambda c:c.get("crossed_ts",1<<62))
-        io.open(f,"w",encoding="utf-8",newline="").write(json.dumps(w))
+        safeload.save_json(f, w, allow_empty=True)
         print(f"{f.split('/')[-1]}: kept the earlier crossing {w.get('crossed_at')}")
     elif f.endswith("_ping_budget.json"):
         # A rolling window of ping timestamps per channel, used as a rate
@@ -85,7 +87,7 @@ for f in files:
                 key=json.dumps(item,sort_keys=True)
                 if key not in seen2: seen2.add(key); keep.append(item)
             m[k]=keep[-16:]
-        io.open(f,"w",encoding="utf-8",newline="").write(json.dumps(m))
+        safeload.save_json(f, m, allow_empty=True)
         print(f"{f}: {sum(len(x) for x in m.values())} ping stamps after union")
     elif f.endswith("quarantine.json"):
         # per contract. A quarantine is a fact about the pair, so the EARLIEST
@@ -104,7 +106,7 @@ for f in files:
                       "first_horizon_h": first.get("first_horizon_h"),
                       "last_ts": int(max(_n(a.get("last_ts")),_n(r.get("last_ts")))),
                       "hits": int(max(_n(a.get("hits"),1),_n(r.get("hits"),1)))}
-        io.open(f,"w",encoding="utf-8",newline="").write(json.dumps(m,indent=1,ensure_ascii=False))
+        safeload.save_json(f, m, allow_empty=True)
         print(f"{f}: {len(m)} quarantined contracts after union")
     elif f.endswith("liveness.json"):
         # per component: counts are per-writer so max is a lower bound; the
@@ -122,7 +124,7 @@ for f in files:
                       "count": int(max(_n(a.get("count")),_n(r.get("count")))),
                       "first_ts": int(min(ts)) if ts else None,
                       "detail": a.get("detail") if a.get("detail") is not None else r.get("detail")}
-        io.open(f,"w",encoding="utf-8",newline="").write(json.dumps(m,indent=1,ensure_ascii=False))
+        safeload.save_json(f, m, allow_empty=True)
         print(f"{f}: {len(m)} components after union")
     elif f.endswith("active.json"):
         # per contract: keep the side that watched it longer, then repair the
@@ -150,7 +152,7 @@ for f in files:
                 else:
                     mg["checks"]=max(_nc(ac),_nc(rc))
                 m[k]=mg
-        io.open(f,"w",encoding="utf-8",newline="").write(json.dumps(m,indent=1,sort_keys=True,ensure_ascii=False))
+        safeload.save_json(f, m, allow_empty=True)
         print(f"{f}: {len(m)} positions after union")
     else:
         print(f"{f}: UNHANDLED - needs a look")

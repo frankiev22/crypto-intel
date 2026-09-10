@@ -96,3 +96,22 @@ def save_json(path, data, allow_empty=False, indent=1):
         json.dump(data, f, indent=indent, ensure_ascii=False)
     os.replace(tmp, path)
     return path
+
+
+def save_text(path, text):
+    """Atomic whole-file text write, for append-only records that are not JSON.
+
+    A non-atomic truncating write racing an atomic one left 6 stray bytes on
+    the tail of data/liveness.json on 2026-09-09 - a short write over a longer
+    previous version. Nothing was lost, because load_json refused to read the
+    result and save_json refused to overwrite it, but the repair was manual.
+    Every whole-file writer goes through tmp+replace now.
+    """
+    d = os.path.dirname(path)
+    if d:
+        os.makedirs(d, exist_ok=True)
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8", newline="") as f:
+        f.write(text)
+    os.replace(tmp, path)
+    return path
