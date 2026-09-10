@@ -5168,7 +5168,7 @@
    "168h"
   ],
   "last_seen": "2026-09-10T10:18:07+00:00",
-  "last_escalated": "2026-09-10T04:32:08+00:00",
+  "last_escalated": "2026-09-10T06:56:16+00:00",
   "escalations": 13
  },
  "scanner-hit:patience": {
@@ -5649,8 +5649,8 @@
    "6h",
    "24h"
   ],
-  "last_seen": "2026-09-10T04:38:24+00:00",
-  "last_escalated": "2026-09-10T04:36:26+00:00",
+  "last_seen": "2026-09-10T06:47:57+00:00",
+  "last_escalated": "2026-09-10T06:47:57+00:00",
   "escalations": 8
  },
  "scanner-hit:pomp": {
@@ -8389,7 +8389,9 @@
   "example": "collector-error: StageBudgetOverrun",
   "keys": [
    "StageBudgetOverrun"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:u-7929aa": {
   "first_seen": "2026-09-10T03:38:23+00:00",
@@ -8397,7 +8399,9 @@
   "example": "scanner-hit: 巫师蛙",
   "keys": [
    "巫师蛙"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:kimchi": {
   "first_seen": "2026-09-10T03:38:24+00:00",
@@ -8405,7 +8409,9 @@
   "example": "scanner-hit: KIMCHI",
   "keys": [
    "KIMCHI"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:duuue": {
   "first_seen": "2026-09-10T03:38:25+00:00",
@@ -8413,7 +8419,9 @@
   "example": "scanner-hit: DUUUE",
   "keys": [
    "DUUUE"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "outcome-win:afedlofjwxngqalnglnbjhacmdeyppguubuu": {
   "first_seen": "2026-09-10T04:27:24+00:00",
@@ -8421,7 +8429,9 @@
   "example": "outcome-win: A5FE7dLoFJWXNGqaLn9G7Ln6bJhACMDe5Y8pPguu2Buu",
   "keys": [
    "A5FE7dLoFJWXNGqaLn9G7Ln6bJhACMDe5Y8pPguu2Buu"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "outcome-win:ndqarfhftwcdqcqegvgshvyberkbvqxtkoiyzhe": {
   "first_seen": "2026-09-10T06:09:54+00:00",
@@ -8519,6 +8529,14 @@
   "example": "scanner-hit: BRIAN",
   "keys": [
    "BRIAN"
+  ]
+ },
+ "outcome-win:qsadsfpmsrpssuwvjbbbfgnmukzwzmqthwjapump": {
+  "first_seen": "2026-09-10T06:44:04+00:00",
+  "count": 1,
+  "example": "outcome-win: qSa1dSFPMSrPss4UWVJBBBFGNmUkZWzmQ5ThWJapump",
+  "keys": [
+   "qSa1dSFPMSrPss4UWVJBBBFGNmUkZWzmQ5ThWJapump"
   ]
  }
 }

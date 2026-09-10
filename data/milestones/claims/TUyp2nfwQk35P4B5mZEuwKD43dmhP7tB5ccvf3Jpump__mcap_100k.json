@@ -1,1 +1,9 @@
-{"token": "TUyp2nfwQk35P4B5mZEuwKD43dmhP7tB5ccvf3Jpump", "milestone": "mcap_100k", "crossed_ts": 1789016994, "crossed_at": "2026-09-10T05:09:54+00:00", "symbol": "PONS", "value": 1184339.0, "kind": "mcap"}
+{
+ "token": "TUyp2nfwQk35P4B5mZEuwKD43dmhP7tB5ccvf3Jpump",
+ "milestone": "mcap_100k",
+ "crossed_ts": 1789016994,
+ "crossed_at": "2026-09-10T05:09:54+00:00",
+ "symbol": "PONS",
+ "value": 1184339.0,
+ "kind": "mcap"
+}

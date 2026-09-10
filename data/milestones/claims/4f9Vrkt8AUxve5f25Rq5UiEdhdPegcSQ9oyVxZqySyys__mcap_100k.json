@@ -1,1 +1,9 @@
-{"token": "4f9Vrkt8AUxve5f25Rq5UiEdhdPegcSQ9oyVxZqySyys", "milestone": "mcap_100k", "crossed_ts": 1789016871, "crossed_at": "2026-09-10T05:07:51+00:00", "symbol": "WCAT", "value": 116174.0, "kind": "mcap"}
+{
+ "token": "4f9Vrkt8AUxve5f25Rq5UiEdhdPegcSQ9oyVxZqySyys",
+ "milestone": "mcap_100k",
+ "crossed_ts": 1789016871,
+ "crossed_at": "2026-09-10T05:07:51+00:00",
+ "symbol": "WCAT",
+ "value": 116174.0,
+ "kind": "mcap"
+}

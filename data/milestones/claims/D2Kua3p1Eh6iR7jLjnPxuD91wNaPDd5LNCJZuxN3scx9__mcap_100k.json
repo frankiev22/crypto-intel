@@ -1,1 +1,9 @@
-{"token": "D2Kua3p1Eh6iR7jLjnPxuD91wNaPDd5LNCJZuxN3scx9", "milestone": "mcap_100k", "crossed_ts": 1789017342, "crossed_at": "2026-09-10T05:15:42+00:00", "symbol": "BITFART", "value": 108562.0, "kind": "mcap"}
+{
+ "token": "D2Kua3p1Eh6iR7jLjnPxuD91wNaPDd5LNCJZuxN3scx9",
+ "milestone": "mcap_100k",
+ "crossed_ts": 1789017342,
+ "crossed_at": "2026-09-10T05:15:42+00:00",
+ "symbol": "BITFART",
+ "value": 108562.0,
+ "kind": "mcap"
+}
