@@ -130,6 +130,47 @@ check("an edited row still FAILS verification", ok2 is False, msg2[:70])
 check("and says it was edited in place", "hash" in msg2, msg2[:70])
 
 print()
+print("=" * 70)
+print("5. the score must never gate the authority lookup")
+print("=" * 70)
+import ast
+import io
+import scanner
+
+# The predicate itself may not read `score`, at the AST level - a comment
+# saying so is not enforcement.
+fn = next(n for n in ast.walk(ast.parse(io.open("paper.py", encoding="utf-8").read()))
+          if isinstance(n, ast.FunctionDef) and n.name == "wants_authority_check")
+names = {n.value for n in ast.walk(fn) if isinstance(n, ast.Constant)
+         and isinstance(n.value, str)}
+attrs = {n.attr for n in ast.walk(fn) if isinstance(n, ast.Attribute)}
+check("wants_authority_check never mentions score",
+      "score" not in names and "score" not in attrs, str(names | attrs))
+
+row = {"venue_type": "amm", "exit_depth_usd": 50000.0,
+       "sells_h1": 40, "buys_h1": 60}
+verdicts = set()
+for sc in (0, 10, 44, 69, 70, 100, None):
+    verdicts.add(paper.wants_authority_check(dict(row, score=sc)))
+check("the verdict is identical at every score", verdicts == {True}, str(verdicts))
+check("a curve row still earns no lookup",
+      paper.wants_authority_check(dict(row, venue_type="bonding_curve")) is False)
+check("a row under the depth floor earns no lookup",
+      paper.wants_authority_check(dict(row, exit_depth_usd=999.0)) is False)
+check("a row with no sell side earns no lookup",
+      paper.wants_authority_check(dict(row, sells_h1=0, buys_h1=10)) is False)
+
+# and the scanner must actually use it, with no score comparison left behind
+ssrc = io.open("scanner.py", encoding="utf-8").read()
+check("scanner calls the predicate",
+      "paper.wants_authority_check(row)" in ssrc)
+check("the dead `or paper.qualifies(row)[0]` branch is gone",
+      "AUTHORITY_CHECK_SCORE) or paper.qualifies(row)[0]" not in ssrc)
+
+# The gate itself must be untouched by all of this.
+check("gate constants still match RULE_V1", not paper.gate_drift(),
+      str(paper.gate_drift()))
+
 bad = [r for r in R if not r[1]]
 print(f"{len(R) - len(bad)}/{len(R)} passed")
 sys.exit(1 if bad else 0)

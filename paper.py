@@ -216,6 +216,44 @@ def qualifies(row):
     return True, "qualifies"
 
 
+# ---------------------------------------------------------------------------
+# WHICH ROWS EARN AN AUTHORITY LOOKUP. Deliberately independent of the score.
+#
+# The scanner used to decide this with:
+#     _act = (row.get("score", 0) >= 70) or paper.qualifies(row)[0]
+# and the second branch could never fire, because qualifies() fails closed on
+# can_mint/can_freeze - precisely the fields the call it guarded would fetch.
+# So the authority lookup ran if and only if the score cleared 70.
+#
+# That made the score gate the EVIDENCE, not just the decision. A low-scoring
+# token never got its authorities read, so it read as "unverified contract" and
+# could never qualify, whatever else was true about it. Self-fulfilling: 328 of
+# the 457 known false negatives scored 0-44 and were structurally incapable of
+# passing, and 67 of 73 we resolved live on 2026-09-10 had BOTH authorities
+# revoked - they were clean all along and we never looked.
+#
+# The predicate below uses only facts already in hand before any RPC call, and
+# never the score. It CANNOT loosen the gate: it moves rows from "unknown, so
+# rejected" to "known, so decided", which is strictly more verification. Cost
+# measured 2026-09-10: +29 lookups/day, about one per pass.
+# ---------------------------------------------------------------------------
+def wants_authority_check(row):
+    """True when a row is worth an on-chain authority lookup.
+
+    Mirrors the fraud gate's cheap, already-known checks. Must never consult
+    `score` - that is the bug this function exists to make impossible.
+    """
+    if (row.get("venue_type") or "") != "amm":
+        return False
+    depth = row.get("exit_depth_usd")
+    if depth is None or float(depth) < MIN_EXIT_DEPTH:
+        return False
+    sells, buys = row.get("sells_h1"), row.get("buys_h1")
+    if sells is not None and buys is not None and sells == 0 and buys >= 10:
+        return False
+    return True
+
+
 def has_open(contract):
     return any(r.get("contract") == contract for r in open_positions())
 

@@ -116,14 +116,14 @@
  },
  "scanner-hit:unknown": {
   "first_seen": "2026-08-24T07:09:37+00:00",
-  "count": 42,
+  "count": 43,
   "example": "scanner-hit: 牛来",
-  "last_seen": "2026-09-06T09:11:41+00:00",
+  "last_seen": "2026-09-10T12:16:18+00:00",
   "keys": [
    "$1"
   ],
-  "last_escalated": "2026-09-06T09:11:41+00:00",
-  "escalations": 1
+  "last_escalated": "2026-09-10T12:16:18+00:00",
+  "escalations": 2
  },
  "scanner-hit:giggle": {
   "first_seen": "2026-08-24T07:09:37+00:00",
@@ -6278,13 +6278,14 @@
  },
  "scanner-hit:openai": {
   "first_seen": "2026-09-05T21:10:19+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: OpenAI",
   "keys": [
    "OpenAI"
   ],
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-10T13:17:59+00:00",
+  "last_escalated": "2026-09-10T13:17:59+00:00",
+  "escalations": 1
  },
  "scanner-hit:siloapl": {
   "first_seen": "2026-09-05T21:10:25+00:00",
@@ -8537,6 +8538,70 @@
   "example": "outcome-win: qSa1dSFPMSrPss4UWVJBBBFGNmUkZWzmQ5ThWJapump",
   "keys": [
    "qSa1dSFPMSrPss4UWVJBBBFGNmUkZWzmQ5ThWJapump"
+  ]
+ },
+ "scanner-hit:googles": {
+  "first_seen": "2026-09-10T12:16:11+00:00",
+  "count": 1,
+  "example": "scanner-hit: Googles",
+  "keys": [
+   "Googles"
+  ]
+ },
+ "outcome-win:lxcagdnbotkbmmujkdneaokdvxhnzvfsw": {
+  "first_seen": "2026-09-10T13:12:25+00:00",
+  "count": 1,
+  "example": "outcome-win: 7LxC96Ag4DnBotK6bMMUj4kdneAo1kdV1xHnzVF5s7W2",
+  "keys": [
+   "7LxC96Ag4DnBotK6bMMUj4kdneAo1kdV1xHnzVF5s7W2"
+  ]
+ },
+ "scanner-hit:groyper": {
+  "first_seen": "2026-09-10T13:17:35+00:00",
+  "count": 1,
+  "example": "scanner-hit: Groyper",
+  "keys": [
+   "Groyper"
+  ]
+ },
+ "scanner-hit:apel": {
+  "first_seen": "2026-09-10T13:17:55+00:00",
+  "count": 1,
+  "example": "scanner-hit: APEL",
+  "keys": [
+   "APEL"
+  ]
+ },
+ "scanner-hit:u-a33888": {
+  "first_seen": "2026-09-10T13:17:57+00:00",
+  "count": 1,
+  "example": "scanner-hit: 混混猫",
+  "keys": [
+   "混混猫"
+  ]
+ },
+ "scanner-hit:nike": {
+  "first_seen": "2026-09-10T13:18:02+00:00",
+  "count": 1,
+  "example": "scanner-hit: NIKE",
+  "keys": [
+   "NIKE"
+  ]
+ },
+ "scanner-hit:zenocoin": {
+  "first_seen": "2026-09-10T13:18:02+00:00",
+  "count": 1,
+  "example": "scanner-hit: ZenoCoin",
+  "keys": [
+   "ZenoCoin"
+  ]
+ },
+ "scanner-hit:duaserp": {
+  "first_seen": "2026-09-10T13:18:03+00:00",
+  "count": 1,
+  "example": "scanner-hit: DUASERP",
+  "keys": [
+   "DUASERP"
   ]
  }
 }

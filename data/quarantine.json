@@ -1006,5 +1006,61 @@
   "first_horizon_h": 6,
   "last_ts": 1789040976,
   "hits": 1
+ },
+ "5YY7jdUveArP2Q35Nk6cREVJwEw9YGW4V7QosCcVSKVj": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0106 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789042132,
+  "first_horizon_h": 1,
+  "last_ts": 1789042132,
+  "hits": 1
+ },
+ "H44vkY8bh2ko5mpmUYWh9RXdg8egZj2hY5uHdDz1LjCm": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0035 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789042139,
+  "first_horizon_h": 1,
+  "last_ts": 1789042139,
+  "hits": 1
+ },
+ "5cpgQd4RjQZMFXV6C5CjovF1ySbZzbe7hjfB3Gybpump": {
+  "confidence": "quarantined_liquidity_divergent",
+  "detail": "dexscreener liquidity $0 vs geckoterminal $2,460; the sources do not agree that there is a pool to exit into",
+  "first_ts": 1789042167,
+  "first_horizon_h": 1,
+  "last_ts": 1789042167,
+  "hits": 1
+ },
+ "DUYUT8NLVLjBNUY7J9oDZNxDPur26WkNTuQTngQdyYdW": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $3.8318 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789042173,
+  "first_horizon_h": 1,
+  "last_ts": 1789042173,
+  "hits": 1
+ },
+ "FFZKFdFFksNtrhudFKd85sT56Et2uZsL6YVv4xdMVwCu": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0000 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789045899,
+  "first_horizon_h": 6,
+  "last_ts": 1789045899,
+  "hits": 1
+ },
+ "DpSULhJHBuLdJnci46duyZsPxXBRx4VswymDdTwSaGEs": {
+  "confidence": "quarantined_liquidity_divergent",
+  "detail": "dexscreener liquidity $1,252,597 vs geckoterminal $39,869; the sources do not agree that there is a pool to exit into",
+  "first_ts": 1789045968,
+  "first_horizon_h": 6,
+  "last_ts": 1789045968,
+  "hits": 1
+ },
+ "GPXBV7ZD6sFHFKxq7iWwixkUz5p7YEgrt3xQf1RjvGZa": {
+  "confidence": "quarantined_unresolved",
+  "detail": "neither source resolved the token",
+  "first_ts": 1789046045,
+  "first_horizon_h": 168,
+  "last_ts": 1789046045,
+  "hits": 1
  }
 }

@@ -269,7 +269,10 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
         # Run only on rows we would actually act on - anything clearing the pass
         # score or eligible for the paper log - which is ~2-8 per pass rather
         # than ~75, and keeps the public RPC well inside its limits.
-        _act = (row.get("score", 0) >= AUTHORITY_CHECK_SCORE) or paper.qualifies(row)[0]
+        # Decided on facts, never on the score. See paper.wants_authority_check:
+        # the old rule let the score gate the evidence, so a low-scoring token
+        # could never be verified and therefore could never qualify.
+        _act = paper.wants_authority_check(row)
         if _act and row.get("addr"):
             try:
                 _a = onchain.authorities(row["addr"])
