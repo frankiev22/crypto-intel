@@ -864,9 +864,9 @@
  },
  "scanner-hit:anthropic": {
   "first_seen": "2026-08-27T06:08:10+00:00",
-  "count": 9,
+  "count": 10,
   "example": "scanner-hit: Anthropic",
-  "last_seen": "2026-09-08T10:17:20+00:00",
+  "last_seen": "2026-09-08T13:31:07+00:00",
   "keys": [
    "Anthropic"
   ],
@@ -3696,13 +3696,14 @@
  },
  "scanner-hit:bitcat": {
   "first_seen": "2026-09-02T06:09:34+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: BITCAT",
   "keys": [
    "BITCAT"
   ],
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-09T02:17:53+00:00",
+  "last_escalated": "2026-09-09T02:17:53+00:00",
+  "escalations": 1
  },
  "scanner-hit:captain-x": {
   "first_seen": "2026-09-02T06:09:39+00:00",
@@ -5150,15 +5151,15 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 149,
+  "count": 156,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-08T11:24:12+00:00",
-  "last_escalated": "2026-09-08T09:14:52+00:00",
-  "escalations": 11
+  "last_seen": "2026-09-09T02:43:04+00:00",
+  "last_escalated": "2026-09-09T01:42:40+00:00",
+  "escalations": 12
  },
  "scanner-hit:patience": {
   "first_seen": "2026-09-04T05:11:20+00:00",
@@ -5630,15 +5631,15 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 25,
+  "count": 34,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h"
   ],
-  "last_seen": "2026-09-08T11:52:26+00:00",
-  "last_escalated": "2026-09-08T06:40:27+00:00",
-  "escalations": 5
+  "last_seen": "2026-09-09T01:29:54+00:00",
+  "last_escalated": "2026-09-09T01:09:52+00:00",
+  "escalations": 7
  },
  "scanner-hit:pomp": {
   "first_seen": "2026-09-05T05:11:36+00:00",
@@ -7529,13 +7530,14 @@
  },
  "outcome-win:itzegagcsudzbdgxedgfqbvmurjpddwfshudg": {
   "first_seen": "2026-09-07T14:08:42+00:00",
-  "count": 2,
+  "count": 3,
   "example": "outcome-win: 4itze1gA35GCSUDZbDGxeDg1fqbVMURJpDdWFSH4U3Dg",
   "keys": [
    "4itze1gA35GCSUDZbDGxeDg1fqbVMURJpDdWFSH4U3Dg"
   ],
-  "last_seen": "2026-09-07T19:10:38+00:00",
-  "last_escalated": null
+  "last_seen": "2026-09-08T13:25:36+00:00",
+  "last_escalated": "2026-09-08T13:25:36+00:00",
+  "escalations": 1
  },
  "scanner-hit:laptop": {
   "first_seen": "2026-09-07T15:13:25+00:00",
@@ -7825,11 +7827,14 @@
  },
  "scanner-hit:stock": {
   "first_seen": "2026-09-08T05:50:05+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: 4Stock",
   "keys": [
    "4Stock"
-  ]
+  ],
+  "last_seen": "2026-09-09T03:14:13+00:00",
+  "last_escalated": "2026-09-09T03:14:13+00:00",
+  "escalations": 1
  },
  "scanner-hit:runner": {
   "first_seen": "2026-09-08T05:50:13+00:00",
@@ -8006,5 +8011,260 @@
   "keys": [
    "DdTNdhMHReC78yhUgq6pWRrGabBNJfeMYXBvQ8vMZNC2"
   ]
+ },
+ "scanner-hit:leptep": {
+  "first_seen": "2026-09-08T12:15:45+00:00",
+  "count": 1,
+  "example": "scanner-hit: LEPTEP",
+  "keys": [
+   "LEPTEP"
+  ]
+ },
+ "scanner-hit:u-0285bb": {
+  "first_seen": "2026-09-08T12:15:51+00:00",
+  "count": 1,
+  "example": "scanner-hit: 呱比",
+  "keys": [
+   "呱比"
+  ]
+ },
+ "outcome-win:xdotdgiygjhzgrsubgnluefxmtmqqcgnpuzcg": {
+  "first_seen": "2026-09-08T13:10:23+00:00",
+  "count": 1,
+  "example": "outcome-win: 96xdotdgiy29GJHzG5R57suBgNLUEFXmTMQqcgnPuzCG",
+  "keys": [
+   "96xdotdgiy29GJHzG5R57suBgNLUEFXmTMQqcgnPuzCG"
+  ]
+ },
+ "scanner-hit:ozempig": {
+  "first_seen": "2026-09-08T13:31:02+00:00",
+  "count": 1,
+  "example": "scanner-hit: Ozempig",
+  "keys": [
+   "Ozempig"
+  ]
+ },
+ "scanner-hit:pumpers": {
+  "first_seen": "2026-09-08T13:31:03+00:00",
+  "count": 1,
+  "example": "scanner-hit: Pumpers",
+  "keys": [
+   "Pumpers"
+  ]
+ },
+ "scanner-hit:spcx": {
+  "first_seen": "2026-09-08T13:31:04+00:00",
+  "count": 1,
+  "example": "scanner-hit: SPCX",
+  "keys": [
+   "SPCX"
+  ]
+ },
+ "scanner-hit:hood-ajuzm": {
+  "first_seen": "2026-09-08T13:31:05+00:00",
+  "count": 1,
+  "example": "scanner-hit: HOOD-3AjUZm",
+  "keys": [
+   "HOOD-3AjUZm"
+  ]
+ },
+ "scanner-hit:hood-djtur": {
+  "first_seen": "2026-09-08T13:31:06+00:00",
+  "count": 1,
+  "example": "scanner-hit: HOOD-DJtur3",
+  "keys": [
+   "HOOD-DJtur3"
+  ]
+ },
+ "scanner-hit:chaos": {
+  "first_seen": "2026-09-08T13:31:06+00:00",
+  "count": 1,
+  "example": "scanner-hit: CHAOS",
+  "keys": [
+   "CHAOS"
+  ]
+ },
+ "scanner-hit:dogbob": {
+  "first_seen": "2026-09-08T13:31:07+00:00",
+  "count": 1,
+  "example": "scanner-hit: DogBob",
+  "keys": [
+   "DogBob"
+  ]
+ },
+ "reporting-path:stagedrunbooknolongerfits": {
+  "first_seen": "2026-09-08T13:31:29+00:00",
+  "count": 3,
+  "example": "reporting-path: StagedRunbookNoLongerFits",
+  "keys": [
+   "StagedRunbookNoLongerFits"
+  ],
+  "last_seen": "2026-09-09T02:48:10+00:00",
+  "last_escalated": "2026-09-09T02:48:10+00:00",
+  "escalations": 1
+ },
+ "outcome-win:fnvedkftwquvokpcdhhpnenfvuyckepfsvrwfv": {
+  "first_seen": "2026-09-08T14:10:52+00:00",
+  "count": 1,
+  "example": "outcome-win: FNVedKFtWQUV3oK3pcd3hHpne4nfVUycKeP5FSvrW7Fv",
+  "keys": [
+   "FNVedKFtWQUV3oK3pcd3hHpne4nfVUycKeP5FSvrW7Fv"
+  ]
+ },
+ "outcome-win:fqwtmuxbmqpappxeasyayuazwcizizhwjpuldkeg": {
+  "first_seen": "2026-09-08T15:11:56+00:00",
+  "count": 1,
+  "example": "outcome-win: FQwt9MUX3bMqpAPp1XeAsyaYUAzWCiziZhWjpuL6dkEg",
+  "keys": [
+   "FQwt9MUX3bMqpAPp1XeAsyaYUAzWCiziZhWjpuL6dkEg"
+  ]
+ },
+ "reporting-path:announcepathbypasseswingate": {
+  "first_seen": "2026-09-08T15:17:27+00:00",
+  "count": 1,
+  "example": "reporting-path: AnnouncePathBypassesWinGate",
+  "keys": [
+   "AnnouncePathBypassesWinGate"
+  ]
+ },
+ "scanner-hit:uranus": {
+  "first_seen": "2026-09-08T16:26:29+00:00",
+  "count": 1,
+  "example": "scanner-hit: URANUS",
+  "keys": [
+   "URANUS"
+  ]
+ },
+ "scanner-hit:cpu": {
+  "first_seen": "2026-09-08T16:26:33+00:00",
+  "count": 1,
+  "example": "scanner-hit: CPU",
+  "keys": [
+   "CPU"
+  ]
+ },
+ "scanner-hit:just": {
+  "first_seen": "2026-09-08T16:26:37+00:00",
+  "count": 1,
+  "example": "scanner-hit: JUST",
+  "keys": [
+   "JUST"
+  ]
+ },
+ "scanner-hit:ascbot": {
+  "first_seen": "2026-09-08T16:26:43+00:00",
+  "count": 1,
+  "example": "scanner-hit: ASCBOT",
+  "keys": [
+   "ASCBOT"
+  ]
+ },
+ "scanner-hit:crumbs": {
+  "first_seen": "2026-09-09T02:17:54+00:00",
+  "count": 1,
+  "example": "scanner-hit: CRUMBS",
+  "keys": [
+   "CRUMBS"
+  ]
+ },
+ "scanner-hit:useless": {
+  "first_seen": "2026-09-09T02:17:55+00:00",
+  "count": 1,
+  "example": "scanner-hit: USELESS",
+  "keys": [
+   "USELESS"
+  ]
+ },
+ "scanner-hit:blogy": {
+  "first_seen": "2026-09-09T02:17:56+00:00",
+  "count": 1,
+  "example": "scanner-hit: BLOGY",
+  "keys": [
+   "BLOGY"
+  ]
+ },
+ "scanner-hit:whuf": {
+  "first_seen": "2026-09-09T03:13:57+00:00",
+  "count": 1,
+  "example": "scanner-hit: WHUF",
+  "keys": [
+   "WHUF"
+  ]
+ },
+ "scanner-hit:stonkszn": {
+  "first_seen": "2026-09-09T03:14:03+00:00",
+  "count": 1,
+  "example": "scanner-hit: STONKSZN",
+  "keys": [
+   "STONKSZN"
+  ]
+ },
+ "scanner-hit:incorgnito": {
+  "first_seen": "2026-09-09T03:14:14+00:00",
+  "count": 1,
+  "example": "scanner-hit: incorgnito",
+  "keys": [
+   "incorgnito"
+  ]
+ },
+ "scanner-hit:namekcoin": {
+  "first_seen": "2026-09-09T03:14:25+00:00",
+  "count": 1,
+  "example": "scanner-hit: NamekCoin",
+  "keys": [
+   "NamekCoin"
+  ]
+ },
+ "scanner-hit:yinma": {
+  "first_seen": "2026-09-09T03:14:26+00:00",
+  "count": 1,
+  "example": "scanner-hit: YINMA",
+  "keys": [
+   "YINMA"
+  ]
+ },
+ "scanner-hit:giko": {
+  "first_seen": "2026-09-09T03:14:26+00:00",
+  "count": 1,
+  "example": "scanner-hit: GIKO",
+  "keys": [
+   "GIKO"
+  ]
+ },
+ "liveness:outcome-recorded": {
+  "first_seen": "2026-09-10T00:07:38+00:00",
+  "count": 2,
+  "example": "liveness: outcome.recorded",
+  "keys": [
+   "outcome.recorded"
+  ],
+  "last_seen": "2026-09-10T00:07:59+00:00"
+ },
+ "liveness:paper-open": {
+  "first_seen": "2026-09-10T00:07:39+00:00",
+  "count": 2,
+  "example": "liveness: paper.open",
+  "keys": [
+   "paper.open"
+  ],
+  "last_seen": "2026-09-10T00:08:00+00:00"
+ },
+ "liveness:paper-sweep": {
+  "first_seen": "2026-09-10T00:07:40+00:00",
+  "count": 2,
+  "example": "liveness: paper.sweep",
+  "keys": [
+   "paper.sweep"
+  ],
+  "last_seen": "2026-09-10T00:08:00+00:00"
+ },
+ "liveness:watchlist-sweep": {
+  "first_seen": "2026-09-10T00:07:41+00:00",
+  "count": 2,
+  "example": "liveness: watchlist.sweep",
+  "keys": [
+   "watchlist.sweep"
+  ],
+  "last_seen": "2026-09-10T00:08:00+00:00"
  }
 }
