@@ -2968,3 +2968,10 @@
 {"token":"6N7VdM6eThLjyJ1oZc8fiBBhN1a34mhweoPRwLgwwH5F","milestone":"mcap_200k","crossed_ts":1789152608,"crossed_at":"2026-09-11T18:50:08+00:00","symbol":"STONK","value":1277325.0,"kind":"mcap"}
 {"token":"6N7VdM6eThLjyJ1oZc8fiBBhN1a34mhweoPRwLgwwH5F","milestone":"mcap_1m","crossed_ts":1789152608,"crossed_at":"2026-09-11T18:50:08+00:00","symbol":"STONK","value":1277325.0,"kind":"mcap"}
 {"token":"CAgFApfeQHaMi2nKe8mMmhSmaq2p5Yb9qKgKZo6ZvZVA","milestone":"mcap_100k","crossed_ts":1789152618,"crossed_at":"2026-09-11T18:50:18+00:00","symbol":"dadad","value":141349.0,"kind":"mcap"}
+{"token":"12sUZ1hAxEoaXv7x4J7db3VAPBEeRDbnkQ65qNy4EdzB","milestone":"mcap_100k","crossed_ts":1789161916,"crossed_at":"2026-09-11T21:25:16+00:00","symbol":"BREW","value":21220847.0,"kind":"mcap"}
+{"token":"12sUZ1hAxEoaXv7x4J7db3VAPBEeRDbnkQ65qNy4EdzB","milestone":"mcap_200k","crossed_ts":1789161916,"crossed_at":"2026-09-11T21:25:16+00:00","symbol":"BREW","value":21220847.0,"kind":"mcap"}
+{"token":"12sUZ1hAxEoaXv7x4J7db3VAPBEeRDbnkQ65qNy4EdzB","milestone":"mcap_1m","crossed_ts":1789161916,"crossed_at":"2026-09-11T21:25:16+00:00","symbol":"BREW","value":21220847.0,"kind":"mcap"}
+{"token":"12sUZ1hAxEoaXv7x4J7db3VAPBEeRDbnkQ65qNy4EdzB","milestone":"mcap_5m","crossed_ts":1789161916,"crossed_at":"2026-09-11T21:25:16+00:00","symbol":"BREW","value":21220847.0,"kind":"mcap"}
+{"token":"Hp77fxoTo3fVoFJqNW1y22qYB6W6CwTus1kEjiKxrcRb","milestone":"mcap_100k","crossed_ts":1789161936,"crossed_at":"2026-09-11T21:25:36+00:00","symbol":"10%","value":138204.0,"kind":"mcap"}
+{"token":"DBAdwr64umFBbctYhL7h1PZqR2aAXyEWFqYF7eezzoXf","milestone":"mcap_100k","crossed_ts":1789161967,"crossed_at":"2026-09-11T21:26:07+00:00","symbol":"MEME","value":110555.0,"kind":"mcap"}
+{"token":"1FrTPYoRnHqvTuj5PbdzSKLmrjGix9rstXm6Z5KeQdD","milestone":"mcap_100k","crossed_ts":1789161975,"crossed_at":"2026-09-11T21:26:15+00:00","symbol":"PORNHUB","value":122643.0,"kind":"mcap"}

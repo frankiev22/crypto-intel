@@ -5656,14 +5656,14 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 59,
+  "count": 60,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h",
    "24h"
   ],
-  "last_seen": "2026-09-11T18:50:46+00:00",
+  "last_seen": "2026-09-11T21:26:30+00:00",
   "last_escalated": "2026-09-11T18:50:46+00:00",
   "escalations": 10
  },
