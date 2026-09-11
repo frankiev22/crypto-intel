@@ -209,6 +209,39 @@ check("closes are attributed to the right arms",
       sum(v["closed_priceable"] for v in s2["arms"].values()) == len(exits),
       str({k: v["closed_priceable"] for k, v in s2["arms"].items()}))
 
+
+print()
+print("=" * 70)
+print("6. a rate is never quoted on entries - only on CLOSES")
+print("=" * 70)
+# 75 entries with 2 closes printed "100.00%" on 2026-09-11. Entering is not an
+# outcome, and MIN_N has always meant closed distinct tokens.
+s6 = paperv2.summary()
+for arm, a in s6["arms"].items():
+    if a["closed_tokens"] < paperv2.MIN_N:
+        check(f"{arm}: rate WITHHELD while closed tokens < {paperv2.MIN_N}",
+              "WITHHELD" in a["rate"],
+              f"closed={a['closed_tokens']} entered={a['distinct_tokens']} rate={a['rate']}")
+check("conclusiveness is computed from CLOSED tokens, not entered",
+      all(a["conclusive"] == (a["closed_tokens"] >= paperv2.MIN_N)
+          for a in s6["arms"].values()),
+      str({k: (v["conclusive"], v["closed_tokens"], v["distinct_tokens"])
+           for k, v in s6["arms"].items()}))
+check("the withheld message names the CLOSED count first",
+      all("CLOSED" in a["rate"] for a in s6["arms"].values() if not a["conclusive"]))
+
+# The live ledger is the case that actually shipped the leak.
+import importlib
+live = importlib.import_module("paperv2")
+saved = live.LEDGER
+live.LEDGER = "data/paper/ledger_v2.jsonl"
+ls = live.summary()
+leaks = {k: v["rate"] for k, v in ls["arms"].items()
+         if v["closed_tokens"] < live.MIN_N and "WITHHELD" not in v["rate"]}
+check("the LIVE v2 ledger quotes no rate below MIN_N closed tokens",
+      not leaks, str(leaks))
+live.LEDGER = saved
+
 bad = [r for r in R if not r[1]]
 print(f"{len(R) - len(bad)}/{len(R)} passed")
 sys.exit(1 if bad else 0)

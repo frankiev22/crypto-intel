@@ -297,17 +297,27 @@ def summary():
         mults = sorted(exits[e["hash"]]["mult"] for e in ents
                        if e["hash"] in exits and exits[e["hash"]].get("mult") is not None)
         tokens = {e.get("contract") for e in ents}
+        # CLOSED distinct tokens, which is what the rate is actually computed
+        # over. Gating on ENTERED tokens printed "100.00%" on two closes out of
+        # 75 entries - the hit-rate leak this project has had twice before, and
+        # PRECOMMIT_rule_v2.md says "n >= 30 CLOSED distinct tokens per arm".
+        # An entry is not an outcome.
+        closed_tokens = {e.get("contract") for e in ents
+                         if e["hash"] in exits
+                         and exits[e["hash"]].get("mult") is not None}
         n = len(mults)
         wins = [m for m in mults if m >= TARGET_MULT]
         a = {"label": LABELS[arm],
              "entries": len(ents), "distinct_tokens": len(tokens),
              "closed_priceable": n, "wins": len(wins), "min_n": MIN_N,
-             "conclusive": len(tokens) >= MIN_N}
+             "closed_tokens": len(closed_tokens),
+             "conclusive": len(closed_tokens) >= MIN_N}
         if n:
             a["median_mult"] = mults[n // 2] if n % 2 else (mults[n // 2 - 1] + mults[n // 2]) / 2
             a["max_mult"] = mults[-1]
         a["rate"] = (f"{100.0 * len(wins) / n:.2f}%" if a["conclusive"] and n
-                     else f"WITHHELD - {len(tokens)} distinct tokens, need {MIN_N}")
+                     else f"WITHHELD - {len(closed_tokens)} CLOSED tokens "
+                          f"({len(tokens)} entered), need {MIN_N}")
         out["arms"][arm] = a
     return out
 
