@@ -49,30 +49,30 @@
   "detail": "realizable_2x D5gyjYieynMBa194zQ5fKmxUEzLfVA6HG8jKfESd3oP"
  },
  "watchlist.sweep": {
-  "last_ts": 1789090566,
-  "last_at": "2026-09-11T01:36:06+00:00",
-  "count": 24,
+  "last_ts": 1789127614,
+  "last_at": "2026-09-11T11:53:34+00:00",
+  "count": 26,
   "first_ts": 1788786917,
   "detail": null
  },
  "milestone.graduated": {
-  "last_ts": 1789083055,
-  "last_at": "2026-09-10T23:30:55+00:00",
-  "count": 15,
+  "last_ts": 1789108981,
+  "last_at": "2026-09-11T06:43:01+00:00",
+  "count": 21,
   "first_ts": 1788786923,
   "detail": "graduated 4gKsXcvfGPQuCHngi8bKhqjcDHz2s2XSscQfcPdk49aG"
  },
  "paper.sweep": {
-  "last_ts": 1789090571,
-  "last_at": "2026-09-11T01:36:11+00:00",
-  "count": 24,
+  "last_ts": 1789127620,
+  "last_at": "2026-09-11T11:53:40+00:00",
+  "count": 26,
   "first_ts": 1788786927,
   "detail": null
  },
  "paper.close": {
-  "last_ts": 1789053481,
-  "last_at": "2026-09-10T15:18:01+00:00",
-  "count": 72,
+  "last_ts": 1789127646,
+  "last_at": "2026-09-11T11:54:06+00:00",
+  "count": 87,
   "first_ts": 1788786929,
   "detail": "target"
  },

@@ -1,1 +1,9 @@
-{"token": "GapiHBddRGCgBapqjCNNm4H6G3VRR9edQA87y6Bwbonk", "milestone": "mcap_100k", "crossed_ts": 1789121587, "crossed_at": "2026-09-11T10:13:07+00:00", "symbol": "Xraygho", "value": 24517946.0, "kind": "mcap"}
+{
+ "token": "GapiHBddRGCgBapqjCNNm4H6G3VRR9edQA87y6Bwbonk",
+ "milestone": "mcap_100k",
+ "crossed_ts": 1789109255,
+ "crossed_at": "2026-09-11T06:47:35+00:00",
+ "symbol": "Xraygho",
+ "value": 24517946.0,
+ "kind": "mcap"
+}

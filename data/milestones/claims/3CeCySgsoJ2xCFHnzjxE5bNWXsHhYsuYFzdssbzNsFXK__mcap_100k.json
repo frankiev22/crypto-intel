@@ -1,1 +1,9 @@
-{"token": "3CeCySgsoJ2xCFHnzjxE5bNWXsHhYsuYFzdssbzNsFXK", "milestone": "mcap_100k", "crossed_ts": 1789125078, "crossed_at": "2026-09-11T11:11:18+00:00", "symbol": "MSTR", "value": 1245523.0, "kind": "mcap"}
+{
+ "token": "3CeCySgsoJ2xCFHnzjxE5bNWXsHhYsuYFzdssbzNsFXK",
+ "milestone": "mcap_100k",
+ "crossed_ts": 1789109291,
+ "crossed_at": "2026-09-11T06:48:11+00:00",
+ "symbol": "MSTR",
+ "value": 1245523.0,
+ "kind": "mcap"
+}

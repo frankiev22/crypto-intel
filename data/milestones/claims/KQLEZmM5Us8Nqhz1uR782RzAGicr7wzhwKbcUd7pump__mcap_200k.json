@@ -1,1 +1,9 @@
-{"token": "KQLEZmM5Us8Nqhz1uR782RzAGicr7wzhwKbcUd7pump", "milestone": "mcap_200k", "crossed_ts": 1789103459, "crossed_at": "2026-09-11T05:10:59+00:00", "symbol": "HOOD", "value": 1053724.0, "kind": "mcap"}
+{
+ "token": "KQLEZmM5Us8Nqhz1uR782RzAGicr7wzhwKbcUd7pump",
+ "milestone": "mcap_200k",
+ "crossed_ts": 1789103459,
+ "crossed_at": "2026-09-11T05:10:59+00:00",
+ "symbol": "HOOD",
+ "value": 1053724.0,
+ "kind": "mcap"
+}

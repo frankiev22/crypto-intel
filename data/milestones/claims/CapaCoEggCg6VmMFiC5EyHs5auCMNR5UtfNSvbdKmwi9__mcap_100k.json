@@ -1,1 +1,9 @@
-{"token": "CapaCoEggCg6VmMFiC5EyHs5auCMNR5UtfNSvbdKmwi9", "milestone": "mcap_100k", "crossed_ts": 1789103317, "crossed_at": "2026-09-11T05:08:37+00:00", "symbol": "Mod", "value": 113069.0, "kind": "mcap"}
+{
+ "token": "CapaCoEggCg6VmMFiC5EyHs5auCMNR5UtfNSvbdKmwi9",
+ "milestone": "mcap_100k",
+ "crossed_ts": 1789103317,
+ "crossed_at": "2026-09-11T05:08:37+00:00",
+ "symbol": "Mod",
+ "value": 113069.0,
+ "kind": "mcap"
+}
