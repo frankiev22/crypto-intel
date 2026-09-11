@@ -5642,14 +5642,14 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 54,
+  "count": 55,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h",
    "24h"
   ],
-  "last_seen": "2026-09-10T23:35:03+00:00",
+  "last_seen": "2026-09-11T01:37:45+00:00",
   "last_escalated": "2026-09-10T23:32:27+00:00",
   "escalations": 10
  },
@@ -8607,12 +8607,12 @@
  },
  "collector-error:field-guard": {
   "first_seen": "2026-09-10T15:17:49+00:00",
-  "count": 4,
+  "count": 5,
   "example": "collector-error: field-guard",
   "keys": [
    "field-guard"
   ],
-  "last_seen": "2026-09-10T23:30:48+00:00",
+  "last_seen": "2026-09-11T01:36:03+00:00",
   "last_escalated": "2026-09-10T23:30:48+00:00",
   "escalations": 1
  },
@@ -8624,5 +8624,13 @@
    "3wRMLKQN1NXfEJWUnCq5BqdDNQhj6kADWJBfRAufpump"
   ],
   "last_seen": "2026-09-10T21:18:33+00:00"
+ },
+ "outcome-win:cpghrruhobrpidrqrdsxktkkxpdvtejuddda": {
+  "first_seen": "2026-09-11T01:36:46+00:00",
+  "count": 1,
+  "example": "outcome-win: Cpg8HrruhobRpiDRqRdSXktkKx6pDvt7Ej27UDd552DA",
+  "keys": [
+   "Cpg8HrruhobRpiDRqRdSXktkKx6pDvt7Ej27UDd552DA"
+  ]
  }
 }
