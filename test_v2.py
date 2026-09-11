@@ -89,6 +89,12 @@ check("a token v1 rejects on score is ARM B", b and b["arm"] == "B", str(b and b
 check("and records WHY v1 rejected it", b and "score" in str(b["v1_reason"]), str(b and b["v1_reason"]))
 check("the score is kept as an observed fact, not a decision",
       b and b["score_at_entry"] == 10)
+check("a below-band rejection is stamped B_low at entry",
+      b and b["sub_arm"] == "B_low", str(b and b.get("sub_arm")))
+hi, _ = paperv2.open_entry(row(token="H" * 43, score=100))
+check("a score-100 rejection is stamped B_high at entry",
+      hi and hi["sub_arm"] == "B_high", str(hi and hi.get("sub_arm")))
+check("...and it is arm B, since v1 still rejects it", hi and hi["arm"] == "B")
 c, why = paperv2.open_entry(row(token="C" * 43, can_mint=True))
 check("a token BOTH rules reject is not entered at all", c is None, str(why))
 
@@ -122,14 +128,29 @@ print("=" * 70)
 print("4. summary reports the arms separately and withholds below MIN_N")
 print("=" * 70)
 s = paperv2.summary()
-check("both arms are reported", set(s["arms"]) == {"A", "B"})
+check("three arms are reported, not two",
+      set(s["arms"]) == {"A", "B_high", "B_low"}, str(sorted(s["arms"])))
 check("arm A is labelled as the score's acceptances",
       "accepted" in s["arms"]["A"]["label"])
-check("arm B is labelled as the score's rejections",
-      "rejected" in s["arms"]["B"]["label"])
+check("B_high is labelled as ABOVE the band",
+      "ABOVE" in s["arms"]["B_high"]["label"], s["arms"]["B_high"]["label"])
+check("B_low is labelled as BELOW the band",
+      "BELOW" in s["arms"]["B_low"]["label"], s["arms"]["B_low"]["label"])
 check("rates are WITHHELD below MIN_N distinct tokens",
-      "WITHHELD" in s["arms"]["A"]["rate"] and "WITHHELD" in s["arms"]["B"]["rate"],
-      f"{s['arms']['A']['rate']} / {s['arms']['B']['rate']}")
+      all("WITHHELD" in v["rate"] for v in s["arms"].values()),
+      str({k: v["rate"] for k, v in s["arms"].items()}))
+
+# The split must be recoverable for the 90 entries written before the field
+# existed - otherwise the amendment would have cost the sample.
+old_row = {"arm": "B", "score_at_entry": 100}
+check("a pre-amendment score-100 row recovers as B_high",
+      paperv2._sub_arm(old_row) == "B_high", str(paperv2._sub_arm(old_row)))
+check("a pre-amendment score-50 row recovers as B_low",
+      paperv2._sub_arm({"arm": "B", "score_at_entry": 50}) == "B_low")
+check("an arm-A row has no sub-arm",
+      paperv2._sub_arm({"arm": "A", "score_at_entry": 85}) is None)
+check("B_high and B_low are never pooled in the summary",
+      s["arms"]["B_high"] is not s["arms"]["B_low"])
 check("no pooled rate is reported anywhere", "rate" not in s and "hit_rate" not in s,
       str(sorted(s)))
 
@@ -185,8 +206,8 @@ check("v1's ledger STILL does not exist", not os.path.exists(V1_LEDGER),
       "a v2 close wrote into v1")
 s2 = paperv2.summary()
 check("closes are attributed to the right arms",
-      s2["arms"]["A"]["closed_priceable"] + s2["arms"]["B"]["closed_priceable"] == len(exits),
-      str(s2["arms"]))
+      sum(v["closed_priceable"] for v in s2["arms"].values()) == len(exits),
+      str({k: v["closed_priceable"] for k, v in s2["arms"].items()}))
 
 bad = [r for r in R if not r[1]]
 print(f"{len(R) - len(bad)}/{len(R)} passed")

@@ -138,6 +138,125 @@ def _skips(node):
             if isinstance(n, (ast.Continue, ast.Break, ast.Return))]
 
 
+# Fields whose NAME asserts a measurement. A stand-in must never be returned
+# where one of these is expected - the caller reads the answer as "this was
+# read from the world", and a fallback silently changes what the word means.
+MEASURED = {"exit_depth", "exit_depth_usd", "depth", "liq_quote", "liq_base",
+            "can_mint", "can_freeze", "mint_authority", "freeze_authority",
+            "price_usd", "price_native", "actual_elapsed_h", "chain_depth_usd"}
+
+
+# Substitutions that are ACCEPTED, each with the reason and the field that
+# records which measurement actually stood behind the answer. A fallback is
+# tolerable only when the caller can tell it happened; the journal one was not,
+# because nothing downstream could distinguish it.
+ACCEPTED_SUBSTITUTIONS = {
+    ("resolve.py", "judged"): (
+        "GeckoTerminal's pool payload carries only reserve_in_usd, a combined "
+        "total - confirmed against a live response 2026-09-06 - so a "
+        "GT-resolved row CANNOT have a split. Failing closed here would "
+        "discard 84.2% of outcome rows. Provenance is recorded on the row as "
+        "depth_unmeasured, the gate requires a real reading regardless, and "
+        "0 of 36 post-epoch wins ride on a substituted depth."),
+    ("pricecheck.py", "floor_on"): (
+        "Dust check only, and it says which figure it used in its own detail "
+        "string ('exit depth' vs 'total reserve'). Its verdict can only make a "
+        "quote LESS trusted, never more."),
+}
+
+
+def audit_substitutions(paths=None):
+    """A computed stand-in returned where a measurement is named.
+
+        judged = exit_depth if exit_depth is not None else liq
+
+    journal._exit_liquidity_ok, until 2026-09-11. A $1,000 exit-DEPTH floor
+    silently became a $1,000 reported-LIQUIDITY check. depth/liq is ~0.496 on a
+    healthy pool, so the substitution understated by 2x there - but 15.4% of
+    rows sit below 0.10, where it overstates exitable size by up to 125x, and
+    those are exactly the one-sided template pools the floor exists to catch.
+
+    Catches `A if A is not None else B` and `A or B` where A is a measured
+    field and B is a DIFFERENT name. A literal default (0, None, "", []) is not
+    a substitution - it is an absence, honestly expressed.
+    """
+    out = []
+    for path in (paths or SCAN_PATH):
+        if not os.path.exists(path):
+            continue
+        src = io.open(path, encoding="utf-8").read()
+        lines = src.splitlines()
+        tree = ast.parse(src)
+        # Which local name each expression is assigned to, from the SAME tree -
+        # re-parsing gives different node objects and `is` never matches.
+        assigned = {}
+        for anc in ast.walk(tree):
+            if isinstance(anc, ast.Assign) and isinstance(anc.targets[0], ast.Name):
+                assigned[id(anc.value)] = anc.targets[0].id
+        for node in ast.walk(tree):
+            measured = fallback = None
+            if isinstance(node, ast.IfExp):
+                # A if <A is not None> else B
+                names = _names(node.test) & MEASURED
+                body = _names(node.body) & MEASURED
+                if names and body & names:
+                    measured = sorted(body & names)
+                    fallback = sorted(_names(node.orelse) - set(measured))
+            elif isinstance(node, ast.BoolOp) and isinstance(node.op, ast.Or):
+                # `if A is None or A < FLOOR` is a CONDITION, not a value. A
+                # substitution has to produce a value where a measurement was
+                # expected, so anything built out of comparisons is not one.
+                if any(isinstance(v, ast.Compare) for v in node.values):
+                    continue
+                first = _names(node.values[0]) & MEASURED
+                if first:
+                    rest = set()
+                    for v in node.values[1:]:
+                        if isinstance(v, ast.Constant):
+                            continue          # a literal default is an absence
+                        rest |= _names(v)
+                    if rest - first:
+                        measured = sorted(first)
+                        fallback = sorted(rest - first)
+            if not measured or not fallback:
+                continue
+            target = assigned.get(id(node))
+            reason = ACCEPTED_SUBSTITUTIONS.get((path, target))
+            out.append({"file": path, "line": node.lineno, "target": target,
+                        "measured": measured, "fallback": fallback,
+                        "accepted": reason is not None, "reason": reason,
+                        "source": lines[node.lineno - 1].strip()[:96]})
+    return out
+
+
+# A check whose BEHAVIOUR turns on a score value rather than on evidence.
+# scanner.py:273 gated the authority lookup on score >= 70; paper.qualifies
+# rejected a perfect 100 as out-of-band. Both are the score deciding something
+# it was never meant to decide.
+def audit_score_dependence(paths=None):
+    """Any comparison against a `score` outside the scorer itself."""
+    out = []
+    for path in (paths or SCAN_PATH):
+        if not os.path.exists(path) or path in ("scanner.py",):
+            # scanner.py DEFINES the score; comparisons inside score() are the
+            # scorer doing its job. Its decision sites are covered by audit().
+            pass
+        if not os.path.exists(path):
+            continue
+        src = io.open(path, encoding="utf-8").read()
+        lines = src.splitlines()
+        for node in ast.walk(ast.parse(src)):
+            if not isinstance(node, ast.Compare):
+                continue
+            names = _names(node)
+            if not ({"score", "SCORE_LO", "SCORE_HI", "AUTHORITY_CHECK_SCORE",
+                     "score_at_entry", "pass_score"} & names):
+                continue
+            out.append({"file": path, "line": node.lineno,
+                        "source": lines[node.lineno - 1].strip()[:96]})
+    return out
+
+
 def audit_skips(paths=None):
     """The same defect wearing an early exit.
 

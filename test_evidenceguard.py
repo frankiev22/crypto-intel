@@ -123,6 +123,72 @@ print(f"  ({len(skips)} BUDGET early-exit site(s) remain - resource decisions, "
       f"reported separately)")
 
 print()
+print("=" * 70)
+print("6. a computed stand-in where a measurement is named")
+print("=" * 70)
+SUB = """
+MIN = 1000
+def ok(exit_depth, liq):
+    judged = exit_depth if exit_depth is not None else liq
+    return judged >= MIN
+"""
+hits = EG.audit_substitutions([write("sub.py", SUB)])
+check("journal._exit_liquidity_ok as it was, is flagged", len(hits) == 1, str(hits))
+if hits:
+    check("it names the measurement and the stand-in",
+          hits[0]["measured"] == ["exit_depth"] and hits[0]["fallback"] == ["liq"],
+          str(hits[0]))
+    check("and it is NOT on the accepted list", hits[0]["accepted"] is False)
+
+COND = """
+MIN = 1000
+def ok(depth):
+    if depth is None or float(depth) < MIN:
+        return False
+    return True
+"""
+check("`if A is None or A < FLOOR` is a condition, not a substitution",
+      EG.audit_substitutions([write("cond.py", COND)]) == [],
+      str(EG.audit_substitutions([write("cond.py", COND)])))
+
+DEFAULT = """
+def f(liq_quote):
+    q = liq_quote or 0
+    return q
+"""
+check("a literal default is an absence, not a substitution",
+      EG.audit_substitutions([write("default.py", DEFAULT)]) == [])
+
+live = EG.audit_substitutions()
+unaccepted = [f for f in live if not f["accepted"]]
+check("no UNACCEPTED substitution in the live scan path", unaccepted == [],
+      "; ".join(f"{f['file']}:{f['line']}" for f in unaccepted))
+check("every accepted one carries a written reason",
+      all(f["reason"] for f in live), str([f["file"] for f in live if not f["reason"]]))
+
+# the sealed one must stay sealed
+import journal
+ok_, why = journal._exit_liquidity_ok("alive", 5_000_000.0, 4.0)
+check("journal._exit_liquidity_ok fails closed on missing depth, at $5M of liq",
+      ok_ is False and "never measured" in why, f"{ok_} {why}")
+ok2, _ = journal.verify_win("alive", 5_000_000.0, 4.0, exit_depth=None,
+                            pair="P", exit_pair="P", elapsed_h=24.0)
+check("and the gate itself still fails closed too", ok2 is False)
+
+print()
+print("=" * 70)
+print("7. behaviour that turns on a score value")
+print("=" * 70)
+sd = EG.audit_score_dependence()
+sites = {f"{f['file']}:{f['line']}" for f in sd}
+check("the sweep finds score comparisons at all", len(sd) >= 3, str(len(sd)))
+check("paper.qualifies' band check is among them",
+      any(f["file"] == "paper.py" and "SCORE_LO" in f["source"] for f in sd),
+      str([f["source"] for f in sd if f["file"] == "paper.py"]))
+check("paperv2 has NO score comparison anywhere",
+      not any(f["file"] == "paperv2.py" for f in sd),
+      str([f["source"] for f in sd if f["file"] == "paperv2.py"]))
+
 bad = [r for r in R if not r[1]]
 print(f"{len(R) - len(bad)}/{len(R)} passed")
 sys.exit(1 if bad else 0)
