@@ -82,3 +82,70 @@ what happens, and it was written before the data.
 Not an appreciation claim. Removing a filter that was demonstrably suppressing
 evidence does not make the surviving tokens go up. v2 is a cleaner measurement,
 not a better signal.
+
+---
+
+# AMENDMENT 1 — 2026-09-11, arm B splits into B_high and B_low
+
+**Made with 90 entries and ZERO closes on the v2 ledger.** No outcome has been
+observed, so no result could have motivated this. That is the only condition
+under which an analysis plan may be amended, and it is stated here rather than
+edited into the text above, which stands as originally written.
+
+## Why
+
+Arm B was defined as "qualifies under v2 but not v1". I treated that as one
+population. It is two, and they sit at opposite ends of the outcome
+distribution. v1 rejects a token either for scoring **below** its 70-99 band or
+for scoring exactly **100**, which is above it.
+
+Measured post-epoch, distinct tokens, gate-applied >=3x:
+
+| band | n | wins | rate | 95% CI | lift |
+|---|---|---|---|---|---|
+| 0-44 | 3,188 | 3 | 0.09% | [0.03, 0.28] | 0.40x |
+| 45-69 | 2,385 | 4 | 0.17% | [0.07, 0.43] | 0.71x |
+| 70-99 | 73 | 1 | 1.37% | [0.24, 7.36] | 5.82x |
+| **100** | **307** | **6** | **1.95%** | **[0.90, 4.20]** | **8.31x** |
+| all | 5,953 | 14 | 0.24% | [0.14, 0.39] | base |
+
+Arm B's 73 entries are **53 scoring 100 and 20 scoring below 70**. Pooling them
+would have averaged the best-performing bucket with the worst and reported a
+number describing neither.
+
+## The correction this carries
+
+The project has been working from "score 100 is our worst band at 1.5%, and the
+model's lift was 0.9x". **Post-epoch that is not what the data says.** 100 is
+the best-performing band by rate and by lift, and the score as a whole is not
+inert: 0-69 sits below the base rate and 70+ sits well above it.
+
+The old figure is not necessarily wrong — it is pre-epoch, and the 74,281
+excluded rows are excluded for cause. But it must not be quoted as current, and
+v1's exclusion of score 100 was chosen on the strength of it.
+
+**What is established:** 100 beats 0-69. Its lower bound (0.90%) clears the
+45-69 upper bound (0.43%).
+**What is NOT established:** that 100 beats 70-99. Those intervals overlap
+heavily, on n=73 with a single win.
+
+## v1 is NOT being changed
+
+v1 keeps SCORE_HI=99 and stays pinned. It is the control, and a control that
+gets corrected mid-run is not a control. `RULE_V1` encodes `score70-99` in its
+own name; changing it produces a different rule, not a fixed one.
+
+The exclusion costs v1 nothing that is being lost, because **v2 already enters
+every score-100 token** — 53 of them so far, in B_high. The comparison that
+answers the question is B_high vs A, and it is already running.
+
+## Reading, unchanged in discipline
+
+At n >= 30 **closed** distinct tokens per arm, Wilson intervals, stated with n:
+
+- **B_high vs A** — does the band's upper exclusion cost anything? This is the
+  question P1 raised and it is now directly measurable.
+- **B_low vs A** — was the lower bound doing real work? The lift table predicts
+  yes; the pre-committed rule says the intervals decide, not the prediction.
+
+Entries are not closes. All three arms are at zero closes today.

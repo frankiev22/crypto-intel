@@ -92,6 +92,28 @@ def qualifies(row):
     return True, "qualifies under RULE_V2"
 
 
+LABELS = {
+    "A": "qualified under BOTH - the score accepted these (70-99)",
+    "B_high": "v2 only - v1 rejected for scoring 100, ABOVE its band",
+    "B_low": "v2 only - v1 rejected for scoring BELOW 70",
+}
+
+
+def _sub_arm(entry):
+    """B_high / B_low, derived from the row if it predates the field.
+
+    The 90 entries written on 2026-09-10/11 carry `score_at_entry` but not
+    `sub_arm`, so the split is recoverable without re-entering anything and
+    without rewriting an append-only ledger.
+    """
+    sa = entry.get("sub_arm")
+    if sa:
+        return sa
+    if entry.get("arm") != "B":
+        return None
+    return "B_high" if (entry.get("score_at_entry") or 0) > 99 else "B_low"
+
+
 def _read():
     if not os.path.exists(LEDGER):
         return []
@@ -153,6 +175,18 @@ def open_entry(row):
         "also_qualifies_v1": bool(v1_ok),
         "v1_reason": None if v1_ok else v1_why,
         "arm": "A" if v1_ok else "B",
+        # ARM B IS HETEROGENEOUS AND MUST BE SPLIT. v1 rejects a token either
+        # for scoring BELOW the 70-99 band or for scoring exactly 100, which is
+        # ABOVE it - and post-epoch those are opposite ends of the outcome
+        # distribution, not one population:
+        #     0-44   0.09% [0.03, 0.28]  lift 0.40x
+        #     45-69  0.17% [0.07, 0.43]  lift 0.71x
+        #     70-99  1.37% [0.24, 7.36]  lift 5.82x
+        #     100    1.95% [0.90, 4.20]  lift 8.31x   <- the best bucket
+        # Pooling them would average the best band with the worst and report a
+        # number describing neither. Recorded at entry, from the score only.
+        "sub_arm": (None if v1_ok else
+                    "B_high" if (row.get("score") or 0) > 99 else "B_low"),
         # Kept as an observed FACT, never as an input to the decision.
         "score_at_entry": row.get("score"),
         "target_mult": TARGET_MULT, "max_hold_h": MAX_HOLD_H,
@@ -254,15 +288,18 @@ def summary():
     exits = {r.get("entry_id"): r for r in rows if r.get("type") == "exit"}
     out = {"rule": "v2", "epoch": EPOCH, "entries": len(entries),
            "closed": len(exits), "open": len(entries) - len(exits), "arms": {}}
-    for arm in ("A", "B"):
-        ents = [e for e in entries if e.get("arm") == arm]
+    for arm in ("A", "B_high", "B_low"):
+        if arm == "A":
+            ents = [e for e in entries if e.get("arm") == "A"]
+        else:
+            ents = [e for e in entries
+                    if e.get("arm") == "B" and _sub_arm(e) == arm]
         mults = sorted(exits[e["hash"]]["mult"] for e in ents
                        if e["hash"] in exits and exits[e["hash"]].get("mult") is not None)
         tokens = {e.get("contract") for e in ents}
         n = len(mults)
         wins = [m for m in mults if m >= TARGET_MULT]
-        a = {"label": ("qualified under BOTH - the score accepted these" if arm == "A"
-                       else "qualified under v2 ONLY - the score rejected these"),
+        a = {"label": LABELS[arm],
              "entries": len(ents), "distinct_tokens": len(tokens),
              "closed_priceable": n, "wins": len(wins), "min_n": MIN_N,
              "conclusive": len(tokens) >= MIN_N}

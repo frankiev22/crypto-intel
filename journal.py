@@ -81,17 +81,33 @@ def _exit_liquidity_ok(status, liq, mult, exit_depth=None):
     Three of verify_win's eight checks. Only for backfilling rows that predate
     the fields the other five need; never for deciding that something counts.
 
-    `exit_depth` is the quote side of the pool. Prefer it over `liq` whenever
-    it is known: `liq` counts the base token valued at its own price, so a pool
-    holding a billion of its own token and $10k of SOL reports $1.28M of
-    "liquidity" and clears any floor set against it.
+    `exit_depth` is the quote side of the pool, and it is REQUIRED.
+
+    UNTIL 2026-09-11 THIS SUBSTITUTED `liq` WHEN DEPTH WAS MISSING:
+
+        judged = exit_depth if exit_depth is not None else liq
+
+    which silently turned a $1,000 exit-depth floor into a $1,000 reported-
+    liquidity check. `liq` counts the base token valued at its own price, so a
+    pool holding a billion of its own token and $10k of SOL reports $1.28M of
+    "liquidity" and clears any floor set against it. On the measured
+    distribution (n=104) depth/liq is ~0.496 for a healthy pool, so the
+    substitution understates by ~2x there - tolerable - but 15.4% of rows sit
+    below 0.10, where it overstates exitable size by up to 125x. Those are
+    exactly the one-sided template pools the floor exists to catch.
+
+    It now fails closed instead. A computed stand-in must never be returned
+    from something whose answer is read as a measurement: if the quote side was
+    never read, the honest answer is "not measured", not "here is the other
+    number". verify_win() has always failed closed on this; this subset had not.
     """
     if status != "alive":
         return False, f"status is {status}, not alive"
-    judged = exit_depth if exit_depth is not None else liq
-    if judged is None or judged < MIN_EXIT_LIQ_USD:
-        which = "exit depth" if exit_depth is not None else "exit liquidity"
-        return False, (f"{which} ${(judged or 0):,.0f} is below the "
+    if exit_depth is None:
+        return False, ("exit depth was never measured - refusing to judge "
+                       "exitability from `liq`, which counts the base side")
+    if exit_depth < MIN_EXIT_LIQ_USD:
+        return False, (f"exit depth ${exit_depth:,.0f} is below the "
                        f"${MIN_EXIT_LIQ_USD:,.0f} exit floor")
     if mult is not None and mult > MAX_PLAUSIBLE_MULT:
         return False, (f"{mult:,.0f}x exceeds the {MAX_PLAUSIBLE_MULT}x plausibility "
@@ -573,6 +589,15 @@ def record(rows, network, pass_score=70):
             # A non-attempt is a fact and it gets persisted like any other.
             "authorities_checked": r.get("authorities_checked"),
             "authorities_skipped": r.get("authorities_skipped"),
+            # THE PARALLEL V2 ARM, computed every pass and dropped by this very
+            # whitelist for 14 hours on 2026-09-10/11 - the fourth field lost
+            # this way, after vol_to_liq, vol_burst and the news NameError.
+            # The experiment itself never lost anything: `arm` is written on
+            # the v2 LEDGER row, which is the system of record. What was
+            # missing was the back-reference that makes the split queryable
+            # from an observation row.
+            "paper_v2_entry": r.get("paper_v2_entry"),
+            "paper_v2_arm": r.get("paper_v2_arm"),
             "reasons": r.get("reasons", []), "flags": r.get("flags", []),
             # which weight set produced this score. Without it a 66 from v2 and
             # a 66 from v5 look identical in the scoreboard and are not.

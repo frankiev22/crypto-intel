@@ -1,52 +1,52 @@
 {
  "detector.drift": {
-  "last_ts": 1789046173,
-  "last_at": "2026-09-10T13:16:13+00:00",
-  "count": 301,
+  "last_ts": 1789100305,
+  "last_at": "2026-09-11T04:18:25+00:00",
+  "count": 376,
   "first_ts": 1788782114,
   "detail": "stable"
  },
  "scan.observations": {
-  "last_ts": 1789045661,
-  "last_at": "2026-09-10T13:07:41+00:00",
-  "count": 3727,
+  "last_ts": 1789099645,
+  "last_at": "2026-09-11T04:07:25+00:00",
+  "count": 4899,
   "first_ts": 1788782726,
   "detail": null
  },
  "fieldguard.check": {
-  "last_ts": 1789045661,
-  "last_at": "2026-09-10T13:07:41+00:00",
-  "count": 48,
+  "last_ts": 1789099645,
+  "last_at": "2026-09-11T04:07:25+00:00",
+  "count": 63,
   "first_ts": 1788782815,
   "detail": null
  },
  "news.freshness": {
-  "last_ts": 1789046171,
-  "last_at": "2026-09-10T13:16:11+00:00",
-  "count": 305,
+  "last_ts": 1789100304,
+  "last_at": "2026-09-11T04:18:24+00:00",
+  "count": 380,
   "first_ts": 1788782822,
   "detail": "0 stale outlet(s)"
  },
  "outcome.recorded": {
-  "last_ts": 1789046170,
-  "last_at": "2026-09-10T13:16:10+00:00",
-  "count": 16907,
+  "last_ts": 1789100302,
+  "last_at": "2026-09-11T04:18:22+00:00",
+  "count": 21017,
   "first_ts": 1788782831,
   "detail": null
  },
  "milestone.mcap": {
-  "last_ts": 1789046116,
-  "last_at": "2026-09-10T13:15:16+00:00",
-  "count": 742,
+  "last_ts": 1789099723,
+  "last_at": "2026-09-11T04:08:43+00:00",
+  "count": 869,
   "first_ts": 1788782876,
-  "detail": "mcap_5m Gv1pNcKCvWQz3DrMTavUtW3YcrEN81Hhua4BafqQEwAC"
+  "detail": "mcap_100k BzisBkQnZAjoJ26mBpKASRGFgNcWeqYezDaRpbfdzvm2"
  },
  "milestone.realizable": {
-  "last_ts": 1789045945,
-  "last_at": "2026-09-10T13:12:25+00:00",
-  "count": 29,
+  "last_ts": 1789093110,
+  "last_at": "2026-09-11T02:18:30+00:00",
+  "count": 40,
   "first_ts": 1788783020,
-  "detail": "realizable_3x 7LxC96Ag4DnBotK6bMMUj4kdneAo1kdV1xHnzVF5s7W2"
+  "detail": "realizable_3x HLAWrmE9KZrTHnSd4GZ6P5sx5P8g2d94ewCwCoapump"
  },
  "watchlist.sweep": {
   "last_ts": 1789022573,
@@ -77,10 +77,10 @@
   "detail": "target"
  },
  "paper.open": {
-  "last_ts": 1789048147,
-  "last_at": "2026-09-10T13:49:07+00:00",
-  "count": 102,
+  "last_ts": 1789099634,
+  "last_at": "2026-09-11T04:07:14+00:00",
+  "count": 119,
   "first_ts": 1788999700,
-  "detail": "B"
+  "detail": "NIKEY"
  }
 }

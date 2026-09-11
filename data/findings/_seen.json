@@ -969,10 +969,14 @@
  },
  "scanner-hit:sol": {
   "first_seen": "2026-08-27T18:22:17+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: SOL",
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-11T01:20:19+00:00",
+  "last_escalated": "2026-09-11T01:20:19+00:00",
+  "keys": [
+   "SOL"
+  ],
+  "escalations": 1
  },
  "scanner-hit:pengu": {
   "first_seen": "2026-08-27T22:07:57+00:00",
@@ -1177,14 +1181,14 @@
  },
  "scanner-hit:beast": {
   "first_seen": "2026-08-28T14:10:21+00:00",
-  "count": 4,
+  "count": 5,
   "example": "scanner-hit: BEAST",
-  "last_seen": "2026-09-07T23:16:57+00:00",
-  "last_escalated": "2026-09-07T23:16:57+00:00",
+  "last_seen": "2026-09-10T14:16:30+00:00",
+  "last_escalated": "2026-09-10T14:16:30+00:00",
   "keys": [
    "BEAST"
   ],
-  "escalations": 2
+  "escalations": 3
  },
  "scanner-hit:gta-coin": {
   "first_seen": "2026-08-28T16:08:32+00:00",
@@ -1234,10 +1238,14 @@
  },
  "scanner-hit:tsla": {
   "first_seen": "2026-08-28T17:08:37+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: TSLA",
-  "last_seen": "2026-08-30T19:08:41+00:00",
-  "last_escalated": null
+  "last_seen": "2026-09-10T20:17:04+00:00",
+  "last_escalated": "2026-09-10T20:17:04+00:00",
+  "keys": [
+   "TSLA"
+  ],
+  "escalations": 1
  },
  "scanner-hit:cat": {
   "first_seen": "2026-08-28T17:08:37+00:00",
@@ -2518,14 +2526,14 @@
  },
  "scanner-hit:hood": {
   "first_seen": "2026-08-31T09:09:19+00:00",
-  "count": 6,
+  "count": 8,
   "example": "scanner-hit: HOOD",
   "keys": [
    "HOOD"
   ],
-  "last_seen": "2026-09-10T07:18:57+00:00",
-  "last_escalated": "2026-09-10T07:18:57+00:00",
-  "escalations": 2
+  "last_seen": "2026-09-11T00:18:40+00:00",
+  "last_escalated": "2026-09-10T23:17:19+00:00",
+  "escalations": 3
  },
  "scanner-hit:starcas": {
   "first_seen": "2026-08-31T09:09:24+00:00",
@@ -4157,14 +4165,14 @@
  },
  "scanner-hit:u-5815f4": {
   "first_seen": "2026-09-02T23:09:21+00:00",
-  "count": 7,
+  "count": 8,
   "example": "scanner-hit: 牛来",
   "keys": [
    "牛来"
   ],
-  "last_seen": "2026-09-10T07:19:20+00:00",
-  "last_escalated": "2026-09-10T07:19:20+00:00",
-  "escalations": 1
+  "last_seen": "2026-09-10T21:17:56+00:00",
+  "last_escalated": "2026-09-10T21:17:56+00:00",
+  "escalations": 2
  },
  "scanner-hit:solbull": {
   "first_seen": "2026-09-02T23:09:25+00:00",
@@ -5161,15 +5169,15 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 177,
+  "count": 180,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-10T11:46:43+00:00",
-  "last_escalated": "2026-09-10T06:56:16+00:00",
-  "escalations": 13
+  "last_seen": "2026-09-10T22:17:57+00:00",
+  "last_escalated": "2026-09-10T19:16:24+00:00",
+  "escalations": 14
  },
  "scanner-hit:patience": {
   "first_seen": "2026-09-04T05:11:20+00:00",
@@ -5467,13 +5475,14 @@
  },
  "scanner-hit:u-7c277a": {
   "first_seen": "2026-09-04T14:11:18+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: 孙小圣",
   "keys": [
    "孙小圣"
   ],
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-10T19:18:22+00:00",
+  "last_escalated": "2026-09-10T19:18:22+00:00",
+  "escalations": 1
  },
  "scanner-hit:agi": {
   "first_seen": "2026-09-04T15:10:46+00:00",
@@ -6148,13 +6157,14 @@
  },
  "scanner-hit:memefi": {
   "first_seen": "2026-09-05T15:10:14+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: memefi",
   "keys": [
    "memefi"
   ],
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-11T03:20:31+00:00",
+  "last_escalated": "2026-09-11T03:20:31+00:00",
+  "escalations": 1
  },
  "scanner-hit:timeless": {
   "first_seen": "2026-09-05T16:10:42+00:00",
@@ -7995,13 +8005,14 @@
  },
  "scanner-hit:niulai": {
   "first_seen": "2026-09-08T10:18:10+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: NIULAI",
   "keys": [
    "NIULAI"
   ],
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-10T14:17:02+00:00",
+  "last_escalated": "2026-09-10T14:17:02+00:00",
+  "escalations": 1
  },
  "scanner-hit:build-soyuz": {
   "first_seen": "2026-09-08T10:18:13+00:00",
@@ -8015,13 +8026,14 @@
  },
  "scanner-hit:stonk": {
   "first_seen": "2026-09-08T10:18:13+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: STONK",
   "keys": [
    "STONK"
   ],
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-11T03:20:38+00:00",
+  "last_escalated": "2026-09-11T03:20:38+00:00",
+  "escalations": 1
  },
  "scanner-hit:dip": {
   "first_seen": "2026-09-08T10:18:14+00:00",
@@ -8366,23 +8378,25 @@
  },
  "liveness:paper-sweep": {
   "first_seen": "2026-09-10T00:07:40+00:00",
-  "count": 2,
+  "count": 52,
   "example": "liveness: paper.sweep",
   "keys": [
    "paper.sweep"
   ],
-  "last_seen": "2026-09-10T00:08:00+00:00",
-  "last_escalated": null
+  "last_seen": "2026-09-11T04:18:25+00:00",
+  "last_escalated": "2026-09-11T01:08:22+00:00",
+  "escalations": 2
  },
  "liveness:watchlist-sweep": {
   "first_seen": "2026-09-10T00:07:41+00:00",
-  "count": 2,
+  "count": 52,
   "example": "liveness: watchlist.sweep",
   "keys": [
    "watchlist.sweep"
   ],
-  "last_seen": "2026-09-10T00:08:00+00:00",
-  "last_escalated": null
+  "last_seen": "2026-09-11T04:18:26+00:00",
+  "last_escalated": "2026-09-11T01:08:23+00:00",
+  "escalations": 2
  },
  "collector-error:stagebudgetoverrun": {
   "first_seen": "2026-09-10T01:53:35+00:00",
@@ -8518,11 +8532,14 @@
  },
  "scanner-hit:u-350795": {
   "first_seen": "2026-09-10T11:18:54+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: 金部长",
   "keys": [
    "金部长"
-  ]
+  ],
+  "last_seen": "2026-09-11T02:22:59+00:00",
+  "last_escalated": "2026-09-11T02:22:59+00:00",
+  "escalations": 1
  },
  "scanner-hit:brian": {
   "first_seen": "2026-09-10T11:18:58+00:00",
@@ -8550,11 +8567,12 @@
  },
  "outcome-win:lxcagdnbotkbmmujkdneaokdvxhnzvfsw": {
   "first_seen": "2026-09-10T13:12:25+00:00",
-  "count": 1,
+  "count": 2,
   "example": "outcome-win: 7LxC96Ag4DnBotK6bMMUj4kdneAo1kdV1xHnzVF5s7W2",
   "keys": [
    "7LxC96Ag4DnBotK6bMMUj4kdneAo1kdV1xHnzVF5s7W2"
-  ]
+  ],
+  "last_seen": "2026-09-10T19:10:42+00:00"
  },
  "scanner-hit:groyper": {
   "first_seen": "2026-09-10T13:17:35+00:00",
@@ -8602,6 +8620,334 @@
   "example": "scanner-hit: DUASERP",
   "keys": [
    "DUASERP"
+  ]
+ },
+ "collector-error:field-guard": {
+  "first_seen": "2026-09-10T14:07:05+00:00",
+  "count": 15,
+  "example": "collector-error: field-guard",
+  "keys": [
+   "field-guard"
+  ],
+  "last_seen": "2026-09-11T04:07:25+00:00",
+  "last_escalated": "2026-09-11T02:10:27+00:00",
+  "escalations": 2
+ },
+ "scanner-hit:vc": {
+  "first_seen": "2026-09-10T14:16:35+00:00",
+  "count": 1,
+  "example": "scanner-hit: VC",
+  "keys": [
+   "VC"
+  ]
+ },
+ "scanner-hit:grnd": {
+  "first_seen": "2026-09-10T14:16:44+00:00",
+  "count": 2,
+  "example": "scanner-hit: GRND",
+  "keys": [
+   "GRND"
+  ],
+  "last_seen": "2026-09-11T01:20:21+00:00",
+  "last_escalated": "2026-09-11T01:20:21+00:00",
+  "escalations": 1
+ },
+ "scanner-hit:resigned": {
+  "first_seen": "2026-09-10T14:16:50+00:00",
+  "count": 1,
+  "example": "scanner-hit: resigned",
+  "keys": [
+   "resigned"
+  ]
+ },
+ "scanner-hit:apezcat": {
+  "first_seen": "2026-09-10T14:16:55+00:00",
+  "count": 1,
+  "example": "scanner-hit: APEZCAT",
+  "keys": [
+   "APEZCAT"
+  ]
+ },
+ "scanner-hit:everything": {
+  "first_seen": "2026-09-10T16:17:08+00:00",
+  "count": 1,
+  "example": "scanner-hit: EVERYTHING",
+  "keys": [
+   "EVERYTHING"
+  ]
+ },
+ "scanner-hit:fatty": {
+  "first_seen": "2026-09-10T16:17:16+00:00",
+  "count": 1,
+  "example": "scanner-hit: FATTY",
+  "keys": [
+   "FATTY"
+  ]
+ },
+ "scanner-hit:egregore": {
+  "first_seen": "2026-09-10T17:16:43+00:00",
+  "count": 1,
+  "example": "scanner-hit: egregore",
+  "keys": [
+   "egregore"
+  ]
+ },
+ "scanner-hit:suitdog": {
+  "first_seen": "2026-09-10T17:16:48+00:00",
+  "count": 1,
+  "example": "scanner-hit: suitdog",
+  "keys": [
+   "suitdog"
+  ]
+ },
+ "scanner-hit:mario": {
+  "first_seen": "2026-09-10T17:16:53+00:00",
+  "count": 1,
+  "example": "scanner-hit: MARIO",
+  "keys": [
+   "MARIO"
+  ]
+ },
+ "outcome-win:ajbhnkpartgzoxsszhjrdjssfotzkynmyteqwtu": {
+  "first_seen": "2026-09-10T18:08:39+00:00",
+  "count": 1,
+  "example": "outcome-win: AjBhNK3PaRtGZoxsSZhJRd6jSS5fo8TZKYNMyTe8qWtu",
+  "keys": [
+   "AjBhNK3PaRtGZoxsSZhJRd6jSS5fo8TZKYNMyTe8qWtu"
+  ]
+ },
+ "scanner-hit:sirius": {
+  "first_seen": "2026-09-10T18:18:12+00:00",
+  "count": 1,
+  "example": "scanner-hit: Sirius",
+  "keys": [
+   "Sirius"
+  ]
+ },
+ "scanner-hit:synd": {
+  "first_seen": "2026-09-10T19:17:51+00:00",
+  "count": 1,
+  "example": "scanner-hit: SYND",
+  "keys": [
+   "SYND"
+  ]
+ },
+ "scanner-hit:cat-coin": {
+  "first_seen": "2026-09-10T19:17:58+00:00",
+  "count": 2,
+  "example": "scanner-hit: Cat coin",
+  "keys": [
+   "Cat coin"
+  ],
+  "last_seen": "2026-09-10T20:17:08+00:00"
+ },
+ "scanner-hit:starbucks": {
+  "first_seen": "2026-09-10T19:18:08+00:00",
+  "count": 1,
+  "example": "scanner-hit: Starbucks",
+  "keys": [
+   "Starbucks"
+  ]
+ },
+ "scanner-hit:mert": {
+  "first_seen": "2026-09-10T19:18:09+00:00",
+  "count": 1,
+  "example": "scanner-hit: MERT",
+  "keys": [
+   "MERT"
+  ]
+ },
+ "scanner-hit:wynn": {
+  "first_seen": "2026-09-10T19:18:22+00:00",
+  "count": 1,
+  "example": "scanner-hit: WYNN",
+  "keys": [
+   "WYNN"
+  ]
+ },
+ "scanner-hit:wif": {
+  "first_seen": "2026-09-10T19:18:24+00:00",
+  "count": 1,
+  "example": "scanner-hit: WIF2",
+  "keys": [
+   "WIF2"
+  ]
+ },
+ "outcome-win:fommmzjvafqcxagnsgyeqjnksepgfdlvhbxw": {
+  "first_seen": "2026-09-10T20:08:46+00:00",
+  "count": 1,
+  "example": "outcome-win: FoM4mMzjvAfq2Cx6aGNsGyE1QJNkSEpg8f2DLvHBX6w6",
+  "keys": [
+   "FoM4mMzjvAfq2Cx6aGNsGyE1QJNkSEpg8f2DLvHBX6w6"
+  ]
+ },
+ "scanner-hit:memefactory": {
+  "first_seen": "2026-09-10T21:17:50+00:00",
+  "count": 1,
+  "example": "scanner-hit: MEMEFACTORY",
+  "keys": [
+   "MEMEFACTORY"
+  ]
+ },
+ "scanner-hit:wendy": {
+  "first_seen": "2026-09-10T21:18:02+00:00",
+  "count": 1,
+  "example": "scanner-hit: WENDY",
+  "keys": [
+   "WENDY"
+  ]
+ },
+ "outcome-win:hdeawmyocggjdeyyqrcawpdihhvdts": {
+  "first_seen": "2026-09-10T22:13:29+00:00",
+  "count": 1,
+  "example": "outcome-win: HDEA1wMyocGGj9De8yY51qrCAWp7di3h7h12v2941dts",
+  "keys": [
+   "HDEA1wMyocGGj9De8yY51qrCAWp7di3h7h12v2941dts"
+  ]
+ },
+ "scanner-hit:meme": {
+  "first_seen": "2026-09-10T22:18:48+00:00",
+  "count": 1,
+  "example": "scanner-hit: 1 Meme",
+  "keys": [
+   "1 Meme"
+  ]
+ },
+ "scanner-hit:nomu": {
+  "first_seen": "2026-09-10T23:17:07+00:00",
+  "count": 1,
+  "example": "scanner-hit: NOMU",
+  "keys": [
+   "NOMU"
+  ]
+ },
+ "scanner-hit:ride": {
+  "first_seen": "2026-09-10T23:17:13+00:00",
+  "count": 1,
+  "example": "scanner-hit: RIDE",
+  "keys": [
+   "RIDE"
+  ]
+ },
+ "scanner-hit:xrpcat": {
+  "first_seen": "2026-09-11T00:18:30+00:00",
+  "count": 1,
+  "example": "scanner-hit: XRPCAT",
+  "keys": [
+   "XRPCAT"
+  ]
+ },
+ "scanner-hit:stonkat": {
+  "first_seen": "2026-09-11T00:18:35+00:00",
+  "count": 1,
+  "example": "scanner-hit: STONKAT",
+  "keys": [
+   "STONKAT"
+  ]
+ },
+ "scanner-hit:mistake": {
+  "first_seen": "2026-09-11T01:20:20+00:00",
+  "count": 2,
+  "example": "scanner-hit: MISTAKE",
+  "keys": [
+   "MISTAKE"
+  ],
+  "last_seen": "2026-09-11T01:20:22+00:00"
+ },
+ "scanner-hit:u-77d197": {
+  "first_seen": "2026-09-11T01:20:23+00:00",
+  "count": 1,
+  "example": "scanner-hit: 曙宝",
+  "keys": [
+   "曙宝"
+  ]
+ },
+ "scanner-hit:kirk": {
+  "first_seen": "2026-09-11T01:20:24+00:00",
+  "count": 1,
+  "example": "scanner-hit: KIRK",
+  "keys": [
+   "KIRK"
+  ]
+ },
+ "outcome-win:hlawrmekzrthnsdgzpsxpgdewcwcoapump": {
+  "first_seen": "2026-09-11T02:18:30+00:00",
+  "count": 1,
+  "example": "outcome-win: HLAWrmE9KZrTHnSd4GZ6P5sx5P8g2d94ewCwCoapump",
+  "keys": [
+   "HLAWrmE9KZrTHnSd4GZ6P5sx5P8g2d94ewCwCoapump"
+  ]
+ },
+ "scanner-hit:ara": {
+  "first_seen": "2026-09-11T02:22:57+00:00",
+  "count": 1,
+  "example": "scanner-hit: Ara",
+  "keys": [
+   "Ara"
+  ]
+ },
+ "scanner-hit:toge": {
+  "first_seen": "2026-09-11T02:23:00+00:00",
+  "count": 1,
+  "example": "scanner-hit: TOGE",
+  "keys": [
+   "TOGE"
+  ]
+ },
+ "scanner-hit:flybrain": {
+  "first_seen": "2026-09-11T02:23:01+00:00",
+  "count": 1,
+  "example": "scanner-hit: FLYBRAIN",
+  "keys": [
+   "FLYBRAIN"
+  ]
+ },
+ "scanner-hit:cokecat": {
+  "first_seen": "2026-09-11T02:23:03+00:00",
+  "count": 1,
+  "example": "scanner-hit: cokecat",
+  "keys": [
+   "cokecat"
+  ]
+ },
+ "scanner-hit:nema": {
+  "first_seen": "2026-09-11T02:23:04+00:00",
+  "count": 1,
+  "example": "scanner-hit: NEMA",
+  "keys": [
+   "NEMA"
+  ]
+ },
+ "scanner-hit:swiftiephylus": {
+  "first_seen": "2026-09-11T02:23:05+00:00",
+  "count": 1,
+  "example": "scanner-hit: SWIFTIEPHYLUS",
+  "keys": [
+   "SWIFTIEPHYLUS"
+  ]
+ },
+ "scanner-hit:lowpoly": {
+  "first_seen": "2026-09-11T03:20:51+00:00",
+  "count": 1,
+  "example": "scanner-hit: LowPoly",
+  "keys": [
+   "LowPoly"
+  ]
+ },
+ "scanner-hit:polycat": {
+  "first_seen": "2026-09-11T03:20:56+00:00",
+  "count": 1,
+  "example": "scanner-hit: POLYCAT",
+  "keys": [
+   "POLYCAT"
+  ]
+ },
+ "scanner-hit:nikey": {
+  "first_seen": "2026-09-11T04:20:02+00:00",
+  "count": 1,
+  "example": "scanner-hit: NIKEY",
+  "keys": [
+   "NIKEY"
   ]
  }
 }
