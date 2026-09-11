@@ -1,45 +1,45 @@
 {
  "detector.drift": {
-  "last_ts": 1789140619,
-  "last_at": "2026-09-11T15:30:19+00:00",
-  "count": 417,
+  "last_ts": 1789152979,
+  "last_at": "2026-09-11T18:56:19+00:00",
+  "count": 418,
   "first_ts": 1788782114,
   "detail": "stable"
  },
  "scan.observations": {
-  "last_ts": 1789139971,
-  "last_at": "2026-09-11T15:19:31+00:00",
-  "count": 5569,
+  "last_ts": 1789152506,
+  "last_at": "2026-09-11T18:48:26+00:00",
+  "count": 5635,
   "first_ts": 1788782726,
   "detail": null
  },
  "fieldguard.check": {
-  "last_ts": 1789139971,
-  "last_at": "2026-09-11T15:19:31+00:00",
-  "count": 72,
+  "last_ts": 1789152506,
+  "last_at": "2026-09-11T18:48:26+00:00",
+  "count": 73,
   "first_ts": 1788782815,
   "detail": null
  },
  "news.freshness": {
-  "last_ts": 1789140619,
-  "last_at": "2026-09-11T15:30:19+00:00",
-  "count": 421,
+  "last_ts": 1789152979,
+  "last_at": "2026-09-11T18:56:19+00:00",
+  "count": 422,
   "first_ts": 1788782822,
   "detail": "0 stale outlet(s)"
  },
  "outcome.recorded": {
-  "last_ts": 1789140616,
-  "last_at": "2026-09-11T15:30:16+00:00",
-  "count": 24118,
+  "last_ts": 1789152976,
+  "last_at": "2026-09-11T18:56:16+00:00",
+  "count": 24435,
   "first_ts": 1788782831,
   "detail": null
  },
  "milestone.mcap": {
-  "last_ts": 1789140241,
-  "last_at": "2026-09-11T15:24:01+00:00",
-  "count": 965,
+  "last_ts": 1789152618,
+  "last_at": "2026-09-11T18:50:18+00:00",
+  "count": 971,
   "first_ts": 1788782876,
-  "detail": "mcap_100k 8XDxfod3hWZqWbn5vCqVyrcsm46VyKi28AWcaDBVttfX"
+  "detail": "mcap_100k CAgFApfeQHaMi2nKe8mMmhSmaq2p5Yb9qKgKZo6ZvZVA"
  },
  "milestone.realizable": {
   "last_ts": 1789103404,
@@ -49,9 +49,9 @@
   "detail": "realizable_2x D5gyjYieynMBa194zQ5fKmxUEzLfVA6HG8jKfESd3oP"
  },
  "watchlist.sweep": {
-  "last_ts": 1789139974,
-  "last_at": "2026-09-11T15:19:34+00:00",
-  "count": 27,
+  "last_ts": 1789152509,
+  "last_at": "2026-09-11T18:48:29+00:00",
+  "count": 28,
   "first_ts": 1788786917,
   "detail": null
  },
@@ -63,24 +63,24 @@
   "detail": "graduated 5QSLdgmMbsG1E4tcBEiHG5PGti6w2mn9RSi6squiWHze"
  },
  "paper.sweep": {
-  "last_ts": 1789139984,
-  "last_at": "2026-09-11T15:19:44+00:00",
-  "count": 27,
+  "last_ts": 1789152514,
+  "last_at": "2026-09-11T18:48:34+00:00",
+  "count": 28,
   "first_ts": 1788786927,
   "detail": null
  },
  "paper.close": {
-  "last_ts": 1789140011,
-  "last_at": "2026-09-11T15:20:11+00:00",
-  "count": 92,
+  "last_ts": 1789152520,
+  "last_at": "2026-09-11T18:48:40+00:00",
+  "count": 95,
   "first_ts": 1788786929,
-  "detail": "target"
+  "detail": "expiry"
  },
  "paper.open": {
-  "last_ts": 1789139922,
-  "last_at": "2026-09-11T15:18:42+00:00",
-  "count": 163,
+  "last_ts": 1789152469,
+  "last_at": "2026-09-11T18:47:49+00:00",
+  "count": 165,
   "first_ts": 1788999700,
-  "detail": "FLYMICHI"
+  "detail": "minecat"
  }
 }

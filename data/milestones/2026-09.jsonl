@@ -2962,3 +2962,9 @@
 {"token":"HDiCK3EUEBaQFcCGvapfVmDMCu7mzVsxfJuQk8KuBAGS","milestone":"mcap_1m","crossed_ts":1789140220,"crossed_at":"2026-09-11T15:23:40+00:00","symbol":"Sparad","value":13369054.0,"kind":"mcap"}
 {"token":"HDiCK3EUEBaQFcCGvapfVmDMCu7mzVsxfJuQk8KuBAGS","milestone":"mcap_5m","crossed_ts":1789140220,"crossed_at":"2026-09-11T15:23:40+00:00","symbol":"Sparad","value":13369054.0,"kind":"mcap"}
 {"token":"8XDxfod3hWZqWbn5vCqVyrcsm46VyKi28AWcaDBVttfX","milestone":"mcap_100k","crossed_ts":1789140241,"crossed_at":"2026-09-11T15:24:01+00:00","symbol":"AMZN","value":137657.0,"kind":"mcap"}
+{"token":"EJHE8vnkgBvfZuNYpPooG3dacfHRvHaLAmgfKMb5142v","milestone":"mcap_100k","crossed_ts":1789152543,"crossed_at":"2026-09-11T18:49:03+00:00","symbol":"\u5b59\u5c0f\u5723","value":126132.0,"kind":"mcap"}
+{"token":"DPGfqiEPiY141G8wCv3ZqPSRp1ZkmtxH5AsuBoQrpURJ","milestone":"mcap_100k","crossed_ts":1789152552,"crossed_at":"2026-09-11T18:49:12+00:00","symbol":"GETSTONKED","value":170546.0,"kind":"mcap"}
+{"token":"6N7VdM6eThLjyJ1oZc8fiBBhN1a34mhweoPRwLgwwH5F","milestone":"mcap_100k","crossed_ts":1789152608,"crossed_at":"2026-09-11T18:50:08+00:00","symbol":"STONK","value":1277325.0,"kind":"mcap"}
+{"token":"6N7VdM6eThLjyJ1oZc8fiBBhN1a34mhweoPRwLgwwH5F","milestone":"mcap_200k","crossed_ts":1789152608,"crossed_at":"2026-09-11T18:50:08+00:00","symbol":"STONK","value":1277325.0,"kind":"mcap"}
+{"token":"6N7VdM6eThLjyJ1oZc8fiBBhN1a34mhweoPRwLgwwH5F","milestone":"mcap_1m","crossed_ts":1789152608,"crossed_at":"2026-09-11T18:50:08+00:00","symbol":"STONK","value":1277325.0,"kind":"mcap"}
+{"token":"CAgFApfeQHaMi2nKe8mMmhSmaq2p5Yb9qKgKZo6ZvZVA","milestone":"mcap_100k","crossed_ts":1789152618,"crossed_at":"2026-09-11T18:50:18+00:00","symbol":"dadad","value":141349.0,"kind":"mcap"}

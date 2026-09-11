@@ -5656,16 +5656,16 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 58,
+  "count": 59,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h",
    "24h"
   ],
-  "last_seen": "2026-09-11T15:24:40+00:00",
-  "last_escalated": "2026-09-11T11:12:03+00:00",
-  "escalations": 9
+  "last_seen": "2026-09-11T18:50:46+00:00",
+  "last_escalated": "2026-09-11T18:50:46+00:00",
+  "escalations": 10
  },
  "scanner-hit:pomp": {
   "first_seen": "2026-09-05T05:11:36+00:00",
