@@ -915,3 +915,4 @@
 {"ts":1789140619,"dexscreener_ok":9,"dexscreener_dropped":29,"geckoterminal_ok":9,"geckoterminal_fail":20,"onchain_ok":38,"onchain_fail":0,"unresolved":20}
 {"ts":1789152978,"dexscreener_ok":1,"dexscreener_dropped":39,"geckoterminal_ok":9,"geckoterminal_fail":30,"onchain_ok":40,"onchain_fail":0,"unresolved":30}
 {"ts":1789162324,"dexscreener_ok":6,"dexscreener_dropped":32,"geckoterminal_ok":16,"geckoterminal_fail":16,"onchain_ok":38,"onchain_fail":0,"unresolved":16}
+{"ts":1789170237,"dexscreener_ok":3,"dexscreener_dropped":35,"geckoterminal_ok":8,"geckoterminal_fail":27,"onchain_ok":38,"onchain_fail":0,"unresolved":27}
