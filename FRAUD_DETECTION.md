@@ -196,3 +196,48 @@ reading like a quiet day.
 to 2026-09-10 00:00Z). The hosted runner kept collecting throughout — 444
 distinct new pairs in that window. That is Frank turning his machine off, and it
 is not filed as an outage.
+
+---
+
+# The fluxbeam template, caught a second way (2026-09-11)
+
+Flagged as "four tokens quarantined on a near-identical 1.25M-vs-40k
+Dexscreener pair — smells like an API artifact". It is **14 tokens, not four**,
+and it is **not an artifact**. It is the known fluxbeam template, now being
+caught by a second, independent detector.
+
+## What they are
+
+| | |
+|---|---|
+| venue | **fluxbeam, 14 of 14** |
+| liq_base | median **993,537,120** tokens |
+| liq_quote | median **22.36 SOL** (13.8–42.0 across the set) |
+| real quote-side depth | **$1,393 – $4,293** |
+| depth/liq | median **0.00804** |
+
+The established template constant is **0.00796**. These sit on it.
+
+## Why both sources are wrong, and ours is not
+
+    Dexscreener liquidity.usd   $1,252,597     both sides, base at its own price
+    GeckoTerminal reserve_usd   $   39,869     a combined total, no split
+    our quote-side reading      $    1,772     what you could actually sell into
+
+Dexscreener overstates by **~540x**. GeckoTerminal, which cannot supply a
+reserve split at all, still overstates by **~17x**. The only figure that
+survives contact with the pool is the one we compute ourselves from the quote
+reserve — which is the whole reason `exit_depth_usd` exists.
+
+## The point worth keeping
+
+These were caught by **source disagreement**, not by the depth floor. Two
+independent detectors now fire on the same template from different evidence:
+one reads the reserve split, the other notices that two vendors cannot agree a
+pool exists. Neither was built for the other's job.
+
+The quarantine reason distribution, all time: 145 dust floor, 25 liquidity
+disagreement, 11 neither source resolved. The disagreement detector accounts
+for 14% of all quarantines and it is the only one that would have caught a
+template pool holding **$4,293** of genuinely exitable depth — above the $1,000
+entry floor, and therefore invisible to it.
