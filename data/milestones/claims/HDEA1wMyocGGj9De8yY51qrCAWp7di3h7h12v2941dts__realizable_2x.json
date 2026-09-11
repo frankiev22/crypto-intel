@@ -1,1 +1,9 @@
-{"token": "HDEA1wMyocGGj9De8yY51qrCAWp7di3h7h12v2941dts", "milestone": "realizable_2x", "crossed_ts": 1789078408, "crossed_at": "2026-09-10T22:13:28+00:00", "symbol": "QCAT", "value": 3.8407, "kind": "multiple"}
+{
+ "token": "HDEA1wMyocGGj9De8yY51qrCAWp7di3h7h12v2941dts",
+ "milestone": "realizable_2x",
+ "crossed_ts": 1789075284,
+ "crossed_at": "2026-09-10T21:21:24+00:00",
+ "symbol": "QCAT",
+ "value": 2.5091,
+ "kind": "multiple"
+}

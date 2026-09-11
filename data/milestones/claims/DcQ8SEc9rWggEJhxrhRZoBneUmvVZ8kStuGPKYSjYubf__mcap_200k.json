@@ -1,1 +1,9 @@
-{"token": "DcQ8SEc9rWggEJhxrhRZoBneUmvVZ8kStuGPKYSjYubf", "milestone": "mcap_200k", "crossed_ts": 1789071181, "crossed_at": "2026-09-10T20:13:01+00:00", "symbol": "VAGINA", "value": 1273691.0, "kind": "mcap"}
+{
+ "token": "DcQ8SEc9rWggEJhxrhRZoBneUmvVZ8kStuGPKYSjYubf",
+ "milestone": "mcap_200k",
+ "crossed_ts": 1789066146,
+ "crossed_at": "2026-09-10T18:49:06+00:00",
+ "symbol": "VAGINA",
+ "value": 1273691.0,
+ "kind": "mcap"
+}

@@ -1,1 +1,9 @@
-{"token": "tz82UGjht2yVdUttbh37jbjhE2ZSy39UW1fYBVApump", "milestone": "mcap_200k", "crossed_ts": 1789049323, "crossed_at": "2026-09-10T14:08:43+00:00", "symbol": "OpenAI", "value": 1863788.0, "kind": "mcap"}
+{
+ "token": "tz82UGjht2yVdUttbh37jbjhE2ZSy39UW1fYBVApump",
+ "milestone": "mcap_200k",
+ "crossed_ts": 1789049323,
+ "crossed_at": "2026-09-10T14:08:43+00:00",
+ "symbol": "OpenAI",
+ "value": 1863788.0,
+ "kind": "mcap"
+}

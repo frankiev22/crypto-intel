@@ -1,1 +1,9 @@
-{"token": "AVWZXs4PLGvjUnYbypcum9eoKda3zwLqnzhRC2c3g7dy", "milestone": "mcap_100k", "crossed_ts": 1789049291, "crossed_at": "2026-09-10T14:08:11+00:00", "symbol": "ZVP", "value": 129920180.0, "kind": "mcap"}
+{
+ "token": "AVWZXs4PLGvjUnYbypcum9eoKda3zwLqnzhRC2c3g7dy",
+ "milestone": "mcap_100k",
+ "crossed_ts": 1789049291,
+ "crossed_at": "2026-09-10T14:08:11+00:00",
+ "symbol": "ZVP",
+ "value": 129920180.0,
+ "kind": "mcap"
+}

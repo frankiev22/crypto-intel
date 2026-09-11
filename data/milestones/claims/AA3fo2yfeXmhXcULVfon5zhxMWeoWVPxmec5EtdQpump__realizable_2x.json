@@ -1,1 +1,9 @@
-{"token": "AA3fo2yfeXmhXcULVfon5zhxMWeoWVPxmec5EtdQpump", "milestone": "realizable_2x", "crossed_ts": 1789063879, "crossed_at": "2026-09-10T18:11:19+00:00", "symbol": "$1", "value": 2.2458, "kind": "multiple"}
+{
+ "token": "AA3fo2yfeXmhXcULVfon5zhxMWeoWVPxmec5EtdQpump",
+ "milestone": "realizable_2x",
+ "crossed_ts": 1789063879,
+ "crossed_at": "2026-09-10T18:11:19+00:00",
+ "symbol": "$1",
+ "value": 2.2458,
+ "kind": "multiple"
+}

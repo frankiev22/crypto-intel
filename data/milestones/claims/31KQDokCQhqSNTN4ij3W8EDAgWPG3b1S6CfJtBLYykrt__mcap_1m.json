@@ -1,1 +1,9 @@
-{"token": "31KQDokCQhqSNTN4ij3W8EDAgWPG3b1S6CfJtBLYykrt", "milestone": "mcap_1m", "crossed_ts": 1789063915, "crossed_at": "2026-09-10T18:11:55+00:00", "symbol": "CUM", "value": 1271472.0, "kind": "mcap"}
+{
+ "token": "31KQDokCQhqSNTN4ij3W8EDAgWPG3b1S6CfJtBLYykrt",
+ "milestone": "mcap_1m",
+ "crossed_ts": 1789053725,
+ "crossed_at": "2026-09-10T15:22:05+00:00",
+ "symbol": "CUM",
+ "value": 1271472.0,
+ "kind": "mcap"
+}

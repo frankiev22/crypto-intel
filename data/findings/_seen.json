@@ -5651,15 +5651,15 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 49,
+  "count": 55,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h",
    "24h"
   ],
-  "last_seen": "2026-09-10T11:49:28+00:00",
-  "last_escalated": "2026-09-10T06:47:57+00:00",
+  "last_seen": "2026-09-11T01:37:45+00:00",
+  "last_escalated": "2026-09-10T23:32:27+00:00",
   "escalations": 8
  },
  "scanner-hit:pomp": {
@@ -8454,7 +8454,9 @@
   "example": "outcome-win: 4NDQA5RFhftwCdqCQEGvgshV17yBErkb6vQxTKoiyzHE",
   "keys": [
    "4NDQA5RFhftwCdqCQEGvgshV17yBErkb6vQxTKoiyzHE"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:nazgul": {
   "first_seen": "2026-09-10T07:19:02+00:00",
@@ -8462,7 +8464,9 @@
   "example": "scanner-hit: Nazgul",
   "keys": [
    "Nazgul"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:uponly": {
   "first_seen": "2026-09-10T07:19:06+00:00",
@@ -8470,7 +8474,9 @@
   "example": "scanner-hit: UPONLY",
   "keys": [
    "UPONLY"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:antfun": {
   "first_seen": "2026-09-10T07:19:13+00:00",
@@ -8478,7 +8484,9 @@
   "example": "scanner-hit: ANTFUN",
   "keys": [
    "ANTFUN"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "outcome-win:ffzkfdffksntrhudfkdstetuzslyvvxdmvwcu": {
   "first_seen": "2026-09-10T08:09:30+00:00",
@@ -8487,7 +8495,8 @@
   "keys": [
    "FFZKFdFFksNtrhudFKd85sT56Et2uZsL6YVv4xdMVwCu"
   ],
-  "last_seen": "2026-09-10T08:16:56+00:00"
+  "last_seen": "2026-09-10T08:16:56+00:00",
+  "last_escalated": null
  },
  "scanner-hit:evilt": {
   "first_seen": "2026-09-10T08:16:31+00:00",
@@ -8496,7 +8505,8 @@
   "keys": [
    "EvilT"
   ],
-  "last_seen": "2026-09-10T09:16:35+00:00"
+  "last_seen": "2026-09-10T09:16:35+00:00",
+  "last_escalated": null
  },
  "scanner-hit:wcat": {
   "first_seen": "2026-09-10T08:16:35+00:00",
@@ -8504,7 +8514,9 @@
   "example": "scanner-hit: WCAT",
   "keys": [
    "WCAT"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:meeko": {
   "first_seen": "2026-09-10T08:16:39+00:00",
@@ -8512,7 +8524,9 @@
   "example": "scanner-hit: MEEKO",
   "keys": [
    "MEEKO"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:niu-lai": {
   "first_seen": "2026-09-10T09:16:30+00:00",
@@ -8520,7 +8534,9 @@
   "example": "scanner-hit: Niu Lai",
   "keys": [
    "Niu Lai"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:duo": {
   "first_seen": "2026-09-10T09:16:39+00:00",
@@ -8528,7 +8544,9 @@
   "example": "scanner-hit: Duo",
   "keys": [
    "Duo"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:u-350795": {
   "first_seen": "2026-09-10T11:18:54+00:00",
@@ -8547,7 +8565,9 @@
   "example": "scanner-hit: BRIAN",
   "keys": [
    "BRIAN"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "outcome-win:qsadsfpmsrpssuwvjbbbfgnmukzwzmqthwjapump": {
   "first_seen": "2026-09-10T06:44:04+00:00",
@@ -8555,7 +8575,9 @@
   "example": "outcome-win: qSa1dSFPMSrPss4UWVJBBBFGNmUkZWzmQ5ThWJapump",
   "keys": [
    "qSa1dSFPMSrPss4UWVJBBBFGNmUkZWzmQ5ThWJapump"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:googles": {
   "first_seen": "2026-09-10T12:16:11+00:00",
@@ -8563,7 +8585,9 @@
   "example": "scanner-hit: Googles",
   "keys": [
    "Googles"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "outcome-win:lxcagdnbotkbmmujkdneaokdvxhnzvfsw": {
   "first_seen": "2026-09-10T13:12:25+00:00",
@@ -8572,7 +8596,8 @@
   "keys": [
    "7LxC96Ag4DnBotK6bMMUj4kdneAo1kdV1xHnzVF5s7W2"
   ],
-  "last_seen": "2026-09-10T19:10:42+00:00"
+  "last_seen": "2026-09-10T19:10:42+00:00",
+  "last_escalated": null
  },
  "scanner-hit:groyper": {
   "first_seen": "2026-09-10T13:17:35+00:00",
@@ -8580,7 +8605,9 @@
   "example": "scanner-hit: Groyper",
   "keys": [
    "Groyper"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:apel": {
   "first_seen": "2026-09-10T13:17:55+00:00",
@@ -8588,7 +8615,9 @@
   "example": "scanner-hit: APEL",
   "keys": [
    "APEL"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:u-a33888": {
   "first_seen": "2026-09-10T13:17:57+00:00",
@@ -8596,7 +8625,9 @@
   "example": "scanner-hit: 混混猫",
   "keys": [
    "混混猫"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:nike": {
   "first_seen": "2026-09-10T13:18:02+00:00",
@@ -8604,7 +8635,9 @@
   "example": "scanner-hit: NIKE",
   "keys": [
    "NIKE"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:zenocoin": {
   "first_seen": "2026-09-10T13:18:02+00:00",
@@ -8612,7 +8645,9 @@
   "example": "scanner-hit: ZenoCoin",
   "keys": [
    "ZenoCoin"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "scanner-hit:duaserp": {
   "first_seen": "2026-09-10T13:18:03+00:00",
@@ -8620,7 +8655,9 @@
   "example": "scanner-hit: DUASERP",
   "keys": [
    "DUASERP"
-  ]
+  ],
+  "last_seen": null,
+  "last_escalated": null
  },
  "collector-error:field-guard": {
   "first_seen": "2026-09-10T14:07:05+00:00",
@@ -8948,6 +8985,23 @@
   "example": "scanner-hit: NIKEY",
   "keys": [
    "NIKEY"
+  ]
+ },
+ "outcome-win:wrmlkqnnxfejwuncqbqddnqhjkadwjbfraufpump": {
+  "first_seen": "2026-09-10T18:45:38+00:00",
+  "count": 2,
+  "example": "outcome-win: 3wRMLKQN1NXfEJWUnCq5BqdDNQhj6kADWJBfRAufpump",
+  "keys": [
+   "3wRMLKQN1NXfEJWUnCq5BqdDNQhj6kADWJBfRAufpump"
+  ],
+  "last_seen": "2026-09-10T21:18:33+00:00"
+ },
+ "outcome-win:cpghrruhobrpidrqrdsxktkkxpdvtejuddda": {
+  "first_seen": "2026-09-11T01:36:46+00:00",
+  "count": 1,
+  "example": "outcome-win: Cpg8HrruhobRpiDRqRdSXktkKx6pDvt7Ej27UDd552DA",
+  "keys": [
+   "Cpg8HrruhobRpiDRqRdSXktkKx6pDvt7Ej27UDd552DA"
   ]
  }
 }

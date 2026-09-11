@@ -1,1 +1,9 @@
-{"token": "9HFumxjygJLnBuB81j62kcKZRor3aSE8fjwxmv7QeMMy", "milestone": "mcap_100k", "crossed_ts": 1789063945, "crossed_at": "2026-09-10T18:12:25+00:00", "symbol": "GARAGE", "value": 141047.0, "kind": "mcap"}
+{
+ "token": "9HFumxjygJLnBuB81j62kcKZRor3aSE8fjwxmv7QeMMy",
+ "milestone": "mcap_100k",
+ "crossed_ts": 1789063945,
+ "crossed_at": "2026-09-10T18:12:25+00:00",
+ "symbol": "GARAGE",
+ "value": 141047.0,
+ "kind": "mcap"
+}

@@ -1,1 +1,9 @@
-{"token": "3o85YrcbYGvtXeJYRDyWtByPwNW5McsPfZztEJkSw5RZ", "milestone": "mcap_100k", "crossed_ts": 1789049526, "crossed_at": "2026-09-10T14:12:06+00:00", "symbol": "TripleT", "value": 176994.0, "kind": "mcap"}
+{
+ "token": "3o85YrcbYGvtXeJYRDyWtByPwNW5McsPfZztEJkSw5RZ",
+ "milestone": "mcap_100k",
+ "crossed_ts": 1789049526,
+ "crossed_at": "2026-09-10T14:12:06+00:00",
+ "symbol": "TripleT",
+ "value": 176994.0,
+ "kind": "mcap"
+}
