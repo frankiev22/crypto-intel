@@ -33893,3 +33893,5 @@
 {"name": "outcome.recorded", "ts": 1789128117, "n": 1, "detail": null}
 {"name": "news.freshness", "ts": 1789128120, "n": 1, "detail": "0 stale outlet(s)"}
 {"name": "detector.drift", "ts": 1789128120, "n": 1, "detail": "stable"}
+{"name": "scan.observations", "ts": 1789131958, "n": 10, "detail": null}
+{"name": "scan.observations", "ts": 1789131972, "n": 10, "detail": null}

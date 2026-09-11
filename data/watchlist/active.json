@@ -943,5 +943,35 @@
   "last_fdv": 65029.0,
   "last_vol_h1": 1652.26,
   "peak_fdv": 65029.0
+ },
+ "99r3tzm6Yumvcj3eoeM8F5Pm2EKoXhkeurWrgGrxy2pR": {
+  "contract": "99r3tzm6Yumvcj3eoeM8F5Pm2EKoXhkeurWrgGrxy2pR",
+  "pair": "2RGX9koDWDQpa5JuU5kPmRT9DMuafkxc53SW6dYrrvEF",
+  "symbol": "Lemon",
+  "network": "solana",
+  "added_ts": 1789131947,
+  "added_fdv": 48083.0,
+  "added_vol_h1": 2396.76,
+  "added_liq": 0.0,
+  "added_venue": "bonding_curve",
+  "checks": 0,
+  "last_fdv": 48083.0,
+  "last_vol_h1": 2396.76,
+  "peak_fdv": 48083.0
+ },
+ "2LnLaqVDXJKxQXwvW3KNR9scuGEZU8aBqKUq7ySoL5md": {
+  "contract": "2LnLaqVDXJKxQXwvW3KNR9scuGEZU8aBqKUq7ySoL5md",
+  "pair": "3NsKoc5ycvuVoGMhz9hu2GkkxYEJmHys3AU8d3YwiKgq",
+  "symbol": "Bob",
+  "network": "solana",
+  "added_ts": 1789131950,
+  "added_fdv": 62423.0,
+  "added_vol_h1": 2931.14,
+  "added_liq": 2464.49,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 62423.0,
+  "last_vol_h1": 2931.14,
+  "peak_fdv": 62423.0
  }
 }

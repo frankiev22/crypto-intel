@@ -7,9 +7,9 @@
   "detail": "stable"
  },
  "scan.observations": {
-  "last_ts": 1789128456,
-  "last_at": "2026-09-11T12:07:36+00:00",
-  "count": 5472,
+  "last_ts": 1789131972,
+  "last_at": "2026-09-11T13:06:12+00:00",
+  "count": 5492,
   "first_ts": 1788782726,
   "detail": null
  },
