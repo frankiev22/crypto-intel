@@ -116,14 +116,15 @@
  },
  "scanner-hit:unknown": {
   "first_seen": "2026-08-24T07:09:37+00:00",
-  "count": 43,
+  "count": 44,
   "example": "scanner-hit: 牛来",
-  "last_seen": "2026-09-10T12:16:18+00:00",
+  "last_seen": "2026-09-11T07:19:14+00:00",
   "keys": [
-   "$1"
+   "$1",
+   "$500"
   ],
-  "last_escalated": "2026-09-10T12:16:18+00:00",
-  "escalations": 2
+  "last_escalated": "2026-09-11T07:19:14+00:00",
+  "escalations": 3
  },
  "scanner-hit:giggle": {
   "first_seen": "2026-08-24T07:09:37+00:00",
@@ -1941,10 +1942,14 @@
  },
  "scanner-hit:fish": {
   "first_seen": "2026-08-30T16:10:16+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: $FISH",
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-11T05:20:23+00:00",
+  "last_escalated": "2026-09-11T05:20:23+00:00",
+  "keys": [
+   "fish"
+  ],
+  "escalations": 1
  },
  "scanner-hit:googl": {
   "first_seen": "2026-08-30T16:10:16+00:00",
@@ -5169,15 +5174,15 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 180,
+  "count": 182,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-10T22:17:57+00:00",
-  "last_escalated": "2026-09-10T19:16:24+00:00",
-  "escalations": 14
+  "last_seen": "2026-09-11T12:17:36+00:00",
+  "last_escalated": "2026-09-11T10:18:37+00:00",
+  "escalations": 15
  },
  "scanner-hit:patience": {
   "first_seen": "2026-09-04T05:11:20+00:00",
@@ -5651,16 +5656,16 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 55,
+  "count": 56,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h",
    "24h"
   ],
-  "last_seen": "2026-09-11T01:37:45+00:00",
-  "last_escalated": "2026-09-10T23:32:27+00:00",
-  "escalations": 8
+  "last_seen": "2026-09-11T11:12:03+00:00",
+  "last_escalated": "2026-09-11T11:12:03+00:00",
+  "escalations": 9
  },
  "scanner-hit:pomp": {
   "first_seen": "2026-09-05T05:11:36+00:00",
@@ -7714,13 +7719,14 @@
  },
  "scanner-hit:amd": {
   "first_seen": "2026-09-07T23:16:31+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: AMD",
   "keys": [
    "AMD"
   ],
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-11T09:19:19+00:00",
+  "last_escalated": "2026-09-11T09:19:19+00:00",
+  "escalations": 1
  },
  "scanner-hit:naswif": {
   "first_seen": "2026-09-07T23:16:37+00:00",
@@ -7764,13 +7770,14 @@
  },
  "scanner-hit:coca-cola": {
   "first_seen": "2026-09-07T23:17:08+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: Coca Cola",
   "keys": [
    "Coca Cola"
   ],
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-11T09:19:00+00:00",
+  "last_escalated": "2026-09-11T09:19:00+00:00",
+  "escalations": 1
  },
  "scanner-hit:nas": {
   "first_seen": "2026-09-08T00:15:22+00:00",
@@ -8591,13 +8598,14 @@
  },
  "outcome-win:lxcagdnbotkbmmujkdneaokdvxhnzvfsw": {
   "first_seen": "2026-09-10T13:12:25+00:00",
-  "count": 2,
+  "count": 3,
   "example": "outcome-win: 7LxC96Ag4DnBotK6bMMUj4kdneAo1kdV1xHnzVF5s7W2",
   "keys": [
    "7LxC96Ag4DnBotK6bMMUj4kdneAo1kdV1xHnzVF5s7W2"
   ],
-  "last_seen": "2026-09-10T19:10:42+00:00",
-  "last_escalated": null
+  "last_seen": "2026-09-11T07:14:40+00:00",
+  "last_escalated": "2026-09-11T07:14:40+00:00",
+  "escalations": 1
  },
  "scanner-hit:groyper": {
   "first_seen": "2026-09-10T13:17:35+00:00",
@@ -8680,12 +8688,12 @@
  },
  "scanner-hit:grnd": {
   "first_seen": "2026-09-10T14:16:44+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: GRND",
   "keys": [
    "GRND"
   ],
-  "last_seen": "2026-09-11T01:20:21+00:00",
+  "last_seen": "2026-09-11T07:19:02+00:00",
   "last_escalated": "2026-09-11T01:20:21+00:00",
   "escalations": 1
  },
@@ -8933,11 +8941,12 @@
  },
  "scanner-hit:flybrain": {
   "first_seen": "2026-09-11T02:23:01+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: FLYBRAIN",
   "keys": [
    "FLYBRAIN"
-  ]
+  ],
+  "last_seen": "2026-09-11T08:18:44+00:00"
  },
  "scanner-hit:cokecat": {
   "first_seen": "2026-09-11T02:23:03+00:00",
@@ -9002,6 +9011,209 @@
   "example": "outcome-win: Cpg8HrruhobRpiDRqRdSXktkKx6pDvt7Ej27UDd552DA",
   "keys": [
    "Cpg8HrruhobRpiDRqRdSXktkKx6pDvt7Ej27UDd552DA"
+  ]
+ },
+ "outcome-win:grakskvekpuaxqbxkpnqhgapdswjviaigjbpiqk": {
+  "first_seen": "2026-09-11T05:08:27+00:00",
+  "count": 1,
+  "example": "outcome-win: GR51AKSkVE9KPUax6QbXkpnqhGaPDsWjviai8gJBPiQk",
+  "keys": [
+   "GR51AKSkVE9KPUax6QbXkpnqhGaPDsWjviai8gJBPiQk"
+  ]
+ },
+ "scanner-hit:stonker": {
+  "first_seen": "2026-09-11T05:20:21+00:00",
+  "count": 1,
+  "example": "scanner-hit: Stonker",
+  "keys": [
+   "Stonker"
+  ]
+ },
+ "scanner-hit:troll": {
+  "first_seen": "2026-09-11T05:20:24+00:00",
+  "count": 1,
+  "example": "scanner-hit: TROLL",
+  "keys": [
+   "TROLL"
+  ]
+ },
+ "scanner-hit:anoninu": {
+  "first_seen": "2026-09-11T05:20:35+00:00",
+  "count": 1,
+  "example": "scanner-hit: ANONINU",
+  "keys": [
+   "ANONINU"
+  ]
+ },
+ "scanner-hit:claudeai": {
+  "first_seen": "2026-09-11T05:20:36+00:00",
+  "count": 1,
+  "example": "scanner-hit: ClaudeAI",
+  "keys": [
+   "ClaudeAI"
+  ]
+ },
+ "scanner-hit:qcat": {
+  "first_seen": "2026-09-11T05:20:37+00:00",
+  "count": 1,
+  "example": "scanner-hit: Qcat",
+  "keys": [
+   "Qcat"
+  ]
+ },
+ "scanner-hit:discat": {
+  "first_seen": "2026-09-11T05:20:38+00:00",
+  "count": 1,
+  "example": "scanner-hit: discat",
+  "keys": [
+   "discat"
+  ]
+ },
+ "scanner-hit:rich": {
+  "first_seen": "2026-09-11T06:19:10+00:00",
+  "count": 1,
+  "example": "scanner-hit: RICH",
+  "keys": [
+   "RICH"
+  ]
+ },
+ "scanner-hit:adell": {
+  "first_seen": "2026-09-11T06:19:15+00:00",
+  "count": 1,
+  "example": "scanner-hit: ADELL",
+  "keys": [
+   "ADELL"
+  ]
+ },
+ "scanner-hit:pisscoin": {
+  "first_seen": "2026-09-11T07:19:08+00:00",
+  "count": 1,
+  "example": "scanner-hit: pisscoin",
+  "keys": [
+   "pisscoin"
+  ]
+ },
+ "scanner-hit:inu": {
+  "first_seen": "2026-09-11T08:18:50+00:00",
+  "count": 1,
+  "example": "scanner-hit: INU",
+  "keys": [
+   "INU"
+  ]
+ },
+ "scanner-hit:gcat": {
+  "first_seen": "2026-09-11T09:19:09+00:00",
+  "count": 1,
+  "example": "scanner-hit: GCAT",
+  "keys": [
+   "GCAT"
+  ]
+ },
+ "scanner-hit:peg": {
+  "first_seen": "2026-09-11T09:19:10+00:00",
+  "count": 1,
+  "example": "scanner-hit: PEG",
+  "keys": [
+   "PEG"
+  ]
+ },
+ "scanner-hit:robcoon": {
+  "first_seen": "2026-09-11T09:19:18+00:00",
+  "count": 1,
+  "example": "scanner-hit: ROBCOON",
+  "keys": [
+   "ROBCOON"
+  ]
+ },
+ "scanner-hit:u-e71d19": {
+  "first_seen": "2026-09-11T10:19:51+00:00",
+  "count": 1,
+  "example": "scanner-hit: 币安城",
+  "keys": [
+   "币安城"
+  ]
+ },
+ "scanner-hit:narc": {
+  "first_seen": "2026-09-11T10:19:57+00:00",
+  "count": 2,
+  "example": "scanner-hit: narc",
+  "keys": [
+   "narc"
+  ],
+  "last_seen": "2026-09-11T10:20:08+00:00"
+ },
+ "scanner-hit:nut": {
+  "first_seen": "2026-09-11T10:20:02+00:00",
+  "count": 2,
+  "example": "scanner-hit: NUT",
+  "keys": [
+   "NUT"
+  ],
+  "last_seen": "2026-09-11T11:20:56+00:00"
+ },
+ "scanner-hit:pumpfly": {
+  "first_seen": "2026-09-11T10:20:13+00:00",
+  "count": 1,
+  "example": "scanner-hit: pumpfly",
+  "keys": [
+   "pumpfly"
+  ]
+ },
+ "scanner-hit:binancetow": {
+  "first_seen": "2026-09-11T10:20:19+00:00",
+  "count": 1,
+  "example": "scanner-hit: BinanceTow",
+  "keys": [
+   "BinanceTow"
+  ]
+ },
+ "scanner-hit:flame": {
+  "first_seen": "2026-09-11T11:20:50+00:00",
+  "count": 1,
+  "example": "scanner-hit: FLAME",
+  "keys": [
+   "FLAME"
+  ]
+ },
+ "scanner-hit:flydoom": {
+  "first_seen": "2026-09-11T11:21:03+00:00",
+  "count": 1,
+  "example": "scanner-hit: FLYDOOM",
+  "keys": [
+   "FLYDOOM"
+  ]
+ },
+ "scanner-hit:launchcat": {
+  "first_seen": "2026-09-11T12:18:28+00:00",
+  "count": 1,
+  "example": "scanner-hit: Launchcat",
+  "keys": [
+   "Launchcat"
+  ]
+ },
+ "scanner-hit:ember": {
+  "first_seen": "2026-09-11T12:18:34+00:00",
+  "count": 2,
+  "example": "scanner-hit: EMBER",
+  "keys": [
+   "EMBER"
+  ],
+  "last_seen": "2026-09-11T12:18:52+00:00"
+ },
+ "scanner-hit:solcoin": {
+  "first_seen": "2026-09-11T12:18:40+00:00",
+  "count": 1,
+  "example": "scanner-hit: SOLCOIN",
+  "keys": [
+   "SOLCOIN"
+  ]
+ },
+ "scanner-hit:openraise": {
+  "first_seen": "2026-09-11T12:18:52+00:00",
+  "count": 1,
+  "example": "scanner-hit: Openraise",
+  "keys": [
+   "Openraise"
   ]
  }
 }

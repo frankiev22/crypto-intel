@@ -1,52 +1,52 @@
 {
  "detector.drift": {
-  "last_ts": 1789100305,
-  "last_at": "2026-09-11T04:18:25+00:00",
-  "count": 376,
+  "last_ts": 1789129059,
+  "last_at": "2026-09-11T12:17:39+00:00",
+  "count": 416,
   "first_ts": 1788782114,
   "detail": "stable"
  },
  "scan.observations": {
-  "last_ts": 1789099645,
-  "last_at": "2026-09-11T04:07:25+00:00",
-  "count": 4899,
+  "last_ts": 1789128456,
+  "last_at": "2026-09-11T12:07:36+00:00",
+  "count": 5472,
   "first_ts": 1788782726,
   "detail": null
  },
  "fieldguard.check": {
-  "last_ts": 1789099645,
-  "last_at": "2026-09-11T04:07:25+00:00",
-  "count": 63,
+  "last_ts": 1789128456,
+  "last_at": "2026-09-11T12:07:36+00:00",
+  "count": 71,
   "first_ts": 1788782815,
   "detail": null
  },
  "news.freshness": {
-  "last_ts": 1789100304,
-  "last_at": "2026-09-11T04:18:24+00:00",
-  "count": 380,
+  "last_ts": 1789129057,
+  "last_at": "2026-09-11T12:17:37+00:00",
+  "count": 420,
   "first_ts": 1788782822,
   "detail": "0 stale outlet(s)"
  },
  "outcome.recorded": {
-  "last_ts": 1789100302,
-  "last_at": "2026-09-11T04:18:22+00:00",
-  "count": 21017,
+  "last_ts": 1789129055,
+  "last_at": "2026-09-11T12:17:35+00:00",
+  "count": 23697,
   "first_ts": 1788782831,
   "detail": null
  },
  "milestone.mcap": {
-  "last_ts": 1789099723,
-  "last_at": "2026-09-11T04:08:43+00:00",
-  "count": 869,
+  "last_ts": 1789128733,
+  "last_at": "2026-09-11T12:12:13+00:00",
+  "count": 939,
   "first_ts": 1788782876,
-  "detail": "mcap_100k BzisBkQnZAjoJ26mBpKASRGFgNcWeqYezDaRpbfdzvm2"
+  "detail": "mcap_200k Cpg8HrruhobRpiDRqRdSXktkKx6pDvt7Ej27UDd552DA"
  },
  "milestone.realizable": {
-  "last_ts": 1789093110,
-  "last_at": "2026-09-11T02:18:30+00:00",
-  "count": 40,
+  "last_ts": 1789103404,
+  "last_at": "2026-09-11T05:10:04+00:00",
+  "count": 43,
   "first_ts": 1788783020,
-  "detail": "realizable_3x HLAWrmE9KZrTHnSd4GZ6P5sx5P8g2d94ewCwCoapump"
+  "detail": "realizable_2x D5gyjYieynMBa194zQ5fKmxUEzLfVA6HG8jKfESd3oP"
  },
  "watchlist.sweep": {
   "last_ts": 1789090566,
@@ -77,10 +77,10 @@
   "detail": "target"
  },
  "paper.open": {
-  "last_ts": 1789101715,
-  "last_at": "2026-09-11T04:41:55+00:00",
-  "count": 150,
+  "last_ts": 1789128356,
+  "last_at": "2026-09-11T12:05:56+00:00",
+  "count": 160,
   "first_ts": 1788999700,
-  "detail": "B"
+  "detail": "ROBINJAK"
  }
 }
