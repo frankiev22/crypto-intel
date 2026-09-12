@@ -3032,3 +3032,9 @@
 {"token":"2qY1xT6pLdMCksuKWtzWP8acec7qjE7iXLrdKvshY6F9","milestone":"mcap_200k","crossed_ts":1789223380,"crossed_at":"2026-09-12T14:29:40+00:00","symbol":"POOL","value":17075347.0,"kind":"mcap"}
 {"token":"2qY1xT6pLdMCksuKWtzWP8acec7qjE7iXLrdKvshY6F9","milestone":"mcap_1m","crossed_ts":1789223380,"crossed_at":"2026-09-12T14:29:40+00:00","symbol":"POOL","value":17075347.0,"kind":"mcap"}
 {"token":"2qY1xT6pLdMCksuKWtzWP8acec7qjE7iXLrdKvshY6F9","milestone":"mcap_5m","crossed_ts":1789223380,"crossed_at":"2026-09-12T14:29:40+00:00","symbol":"POOL","value":17075347.0,"kind":"mcap"}
+{"token":"3Q848s5vP8HPHnsdpqVBE6StNnfN9F3pi7x3DzyBpump","milestone":"mcap_100k","crossed_ts":1789234282,"crossed_at":"2026-09-12T17:31:22+00:00","symbol":"HAMCRASH","value":390351.0,"kind":"mcap"}
+{"token":"3Q848s5vP8HPHnsdpqVBE6StNnfN9F3pi7x3DzyBpump","milestone":"mcap_200k","crossed_ts":1789234282,"crossed_at":"2026-09-12T17:31:22+00:00","symbol":"HAMCRASH","value":390351.0,"kind":"mcap"}
+{"token":"G4HepwnpgGsZ3EBxegRPdhjUH7AB9P8tGkCMjEfuxhAG","milestone":"mcap_100k","crossed_ts":1789234323,"crossed_at":"2026-09-12T17:32:03+00:00","symbol":"FRONTIER","value":138428.0,"kind":"mcap"}
+{"token":"9g9Gkgn9YVtbj1AzxwmGAusyWHypDT4y7FfrbTSJZTb9","milestone":"mcap_100k","crossed_ts":1789234326,"crossed_at":"2026-09-12T17:32:06+00:00","symbol":"MSFT","value":404414.0,"kind":"mcap"}
+{"token":"9g9Gkgn9YVtbj1AzxwmGAusyWHypDT4y7FfrbTSJZTb9","milestone":"mcap_200k","crossed_ts":1789234326,"crossed_at":"2026-09-12T17:32:06+00:00","symbol":"MSFT","value":404414.0,"kind":"mcap"}
+{"token":"Buy1bMbX9iiXFZpteRjhUZd3GVzj5rS7T8giS6DtaAZo","milestone":"mcap_100k","crossed_ts":1789234393,"crossed_at":"2026-09-12T17:33:13+00:00","symbol":"\u3164","value":129794.0,"kind":"mcap"}

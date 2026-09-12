@@ -1,45 +1,45 @@
 {
  "detector.drift": {
-  "last_ts": 1789223692,
-  "last_at": "2026-09-12T14:34:52+00:00",
-  "count": 424,
+  "last_ts": 1789234611,
+  "last_at": "2026-09-12T17:36:51+00:00",
+  "count": 425,
   "first_ts": 1788782114,
   "detail": "stable"
  },
  "scan.observations": {
-  "last_ts": 1789223278,
-  "last_at": "2026-09-12T14:27:58+00:00",
-  "count": 6056,
+  "last_ts": 1789234209,
+  "last_at": "2026-09-12T17:30:09+00:00",
+  "count": 6136,
   "first_ts": 1788782726,
   "detail": null
  },
  "fieldguard.check": {
-  "last_ts": 1789223278,
-  "last_at": "2026-09-12T14:27:58+00:00",
-  "count": 79,
+  "last_ts": 1789234210,
+  "last_at": "2026-09-12T17:30:10+00:00",
+  "count": 80,
   "first_ts": 1788782815,
   "detail": null
  },
  "news.freshness": {
-  "last_ts": 1789223691,
-  "last_at": "2026-09-12T14:34:51+00:00",
-  "count": 428,
+  "last_ts": 1789234611,
+  "last_at": "2026-09-12T17:36:51+00:00",
+  "count": 429,
   "first_ts": 1788782822,
   "detail": "0 stale outlet(s)"
  },
  "outcome.recorded": {
-  "last_ts": 1789223688,
-  "last_at": "2026-09-12T14:34:48+00:00",
-  "count": 26238,
+  "last_ts": 1789234607,
+  "last_at": "2026-09-12T17:36:47+00:00",
+  "count": 26478,
   "first_ts": 1788782831,
   "detail": null
  },
  "milestone.mcap": {
-  "last_ts": 1789223380,
-  "last_at": "2026-09-12T14:29:40+00:00",
-  "count": 1032,
+  "last_ts": 1789234393,
+  "last_at": "2026-09-12T17:33:13+00:00",
+  "count": 1038,
   "first_ts": 1788782876,
-  "detail": "mcap_5m 2qY1xT6pLdMCksuKWtzWP8acec7qjE7iXLrdKvshY6F9"
+  "detail": "mcap_100k Buy1bMbX9iiXFZpteRjhUZd3GVzj5rS7T8giS6DtaAZo"
  },
  "milestone.realizable": {
   "last_ts": 1789195184,
@@ -49,9 +49,9 @@
   "detail": "realizable_2x 8LstZpZuR9Dy7JCZC3YwPEWtbYhuDVFAYV37r6ZAcuHz"
  },
  "watchlist.sweep": {
-  "last_ts": 1789223281,
-  "last_at": "2026-09-12T14:28:01+00:00",
-  "count": 34,
+  "last_ts": 1789234213,
+  "last_at": "2026-09-12T17:30:13+00:00",
+  "count": 35,
   "first_ts": 1788786917,
   "detail": null
  },
@@ -63,24 +63,24 @@
   "detail": "graduated 2qY1xT6pLdMCksuKWtzWP8acec7qjE7iXLrdKvshY6F9"
  },
  "paper.sweep": {
-  "last_ts": 1789223284,
-  "last_at": "2026-09-12T14:28:04+00:00",
-  "count": 34,
+  "last_ts": 1789234218,
+  "last_at": "2026-09-12T17:30:18+00:00",
+  "count": 35,
   "first_ts": 1788786927,
   "detail": null
  },
  "paper.close": {
-  "last_ts": 1789223311,
-  "last_at": "2026-09-12T14:28:31+00:00",
-  "count": 121,
+  "last_ts": 1789234225,
+  "last_at": "2026-09-12T17:30:25+00:00",
+  "count": 123,
   "first_ts": 1788786929,
-  "detail": "unpriceable"
+  "detail": "expiry"
  },
  "paper.open": {
-  "last_ts": 1789223241,
-  "last_at": "2026-09-12T14:27:21+00:00",
-  "count": 170,
+  "last_ts": 1789234204,
+  "last_at": "2026-09-12T17:30:04+00:00",
+  "count": 173,
   "first_ts": 1788999700,
-  "detail": "HAMCRASH"
+  "detail": "Yanbat"
  }
 }
