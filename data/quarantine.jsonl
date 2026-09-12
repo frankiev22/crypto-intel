@@ -277,3 +277,8 @@
 {"token": "69yyjmWYNurK2r6y4tkXrJnS95ex1GQPvsECDL1ZSpBA", "ts": 1789169975, "confidence": "quarantined_no_liquidity", "horizon_h": 6, "detail": "exit depth $0.0079 is below the $100 floor; no quote is meaningful"}
 {"token": "Df1vuhREmb2bS9ZzUdvQBwhwchPDDw4m6eVrfWFsVLke", "ts": 1789170079, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "total reserve $0.3181 is below the $100 floor; no quote is meaningful"}
 {"token": "7xnee2TXLzSASusR5S6MTJtiYATRp1o2qNknyw81vUzU", "ts": 1789170123, "confidence": "quarantined_unresolved", "horizon_h": 24, "detail": "neither source resolved the token"}
+{"token": "8mmNiynPbU3xQPUm6kJBcUahka9V6rY7mFfs8mJupump", "ts": 1789177466, "confidence": "quarantined_liquidity_divergent", "horizon_h": 1, "detail": "dexscreener liquidity $0 vs geckoterminal $81,785; the sources do not agree that there is a pool to exit into"}
+{"token": "BpB1i2kA9i4GcvZegFwfStkoTx1CBpMn7X5TTWLNZudE", "ts": 1789177685, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "exit depth $0.0000 is below the $100 floor; no quote is meaningful"}
+{"token": "Ed2TpUabP44nsTsyVi46dTrWUy3mGvbwHU3xR9dyyj2E", "ts": 1789177696, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "exit depth $0.0184 is below the $100 floor; no quote is meaningful"}
+{"token": "6S3MNHwfBTYUwT2Q2zrJcBuf8GX7aBs7wt9wyVR3F4fA", "ts": 1789177728, "confidence": "quarantined_no_liquidity", "horizon_h": 24, "detail": "exit depth $0.1813 is below the $100 floor; no quote is meaningful"}
+{"token": "9T7VysaNBf9v9BnD2pzWAqvbFVfsaPNnkwgpRFGXNYWn", "ts": 1789177742, "confidence": "quarantined_unresolved", "horizon_h": 24, "detail": "neither source resolved the token"}

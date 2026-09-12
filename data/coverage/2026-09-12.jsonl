@@ -1,0 +1,2 @@
+{"ts":1789177384,"network":"solana","kind":"discovery_window","pools_returned":100,"oldest":"2026-09-12T01:35:18+00:00","newest":"2026-09-12T01:39:01+00:00","span_s":223.0,"pages_lost":0,"suspected_cause":null,"scanned":93,"passed":5,"pass_score":70}
+{"ts":1789177840,"network":"solana","kind":"pass_complete","stage":"full","started_ts":1789177259,"ran_for_s":581,"complete":true,"stop_reason":null,"call_budget":null,"progress":{"calls":685,"phase":"full","budget_s":null,"per_call_s":1.25,"elapsed_s":580.3,"noted_ts":1789177840}}
