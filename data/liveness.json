@@ -1,57 +1,57 @@
 {
  "detector.drift": {
-  "last_ts": 1789177838,
-  "last_at": "2026-09-12T01:50:38+00:00",
-  "count": 421,
+  "last_ts": 1789195456,
+  "last_at": "2026-09-12T06:44:16+00:00",
+  "count": 422,
   "first_ts": 1788782114,
   "detail": "stable"
  },
  "scan.observations": {
-  "last_ts": 1789177384,
-  "last_at": "2026-09-12T01:43:04+00:00",
-  "count": 5864,
+  "last_ts": 1789194955,
+  "last_at": "2026-09-12T06:35:55+00:00",
+  "count": 5936,
   "first_ts": 1788782726,
   "detail": null
  },
  "fieldguard.check": {
-  "last_ts": 1789177384,
-  "last_at": "2026-09-12T01:43:04+00:00",
-  "count": 76,
+  "last_ts": 1789194955,
+  "last_at": "2026-09-12T06:35:55+00:00",
+  "count": 77,
   "first_ts": 1788782815,
   "detail": null
  },
  "news.freshness": {
-  "last_ts": 1789177837,
-  "last_at": "2026-09-12T01:50:37+00:00",
-  "count": 425,
+  "last_ts": 1789195456,
+  "last_at": "2026-09-12T06:44:16+00:00",
+  "count": 426,
   "first_ts": 1788782822,
   "detail": "0 stale outlet(s)"
  },
  "outcome.recorded": {
-  "last_ts": 1789177834,
-  "last_at": "2026-09-12T01:50:34+00:00",
-  "count": 25357,
+  "last_ts": 1789195453,
+  "last_at": "2026-09-12T06:44:13+00:00",
+  "count": 25690,
   "first_ts": 1788782831,
   "detail": null
  },
  "milestone.mcap": {
-  "last_ts": 1789177471,
-  "last_at": "2026-09-12T01:44:31+00:00",
-  "count": 997,
+  "last_ts": 1789195116,
+  "last_at": "2026-09-12T06:38:36+00:00",
+  "count": 1009,
   "first_ts": 1788782876,
-  "detail": "mcap_200k 8LstZpZuR9Dy7JCZC3YwPEWtbYhuDVFAYV37r6ZAcuHz"
+  "detail": "mcap_1m C8WKgAxkuv9VaXj8JYsat6PspPza4GtRwAAL9bGaAnL8"
  },
  "milestone.realizable": {
-  "last_ts": 1789103404,
-  "last_at": "2026-09-11T05:10:04+00:00",
-  "count": 43,
+  "last_ts": 1789195184,
+  "last_at": "2026-09-12T06:39:44+00:00",
+  "count": 44,
   "first_ts": 1788783020,
-  "detail": "realizable_2x D5gyjYieynMBa194zQ5fKmxUEzLfVA6HG8jKfESd3oP"
+  "detail": "realizable_2x 8LstZpZuR9Dy7JCZC3YwPEWtbYhuDVFAYV37r6ZAcuHz"
  },
  "watchlist.sweep": {
-  "last_ts": 1789177387,
-  "last_at": "2026-09-12T01:43:07+00:00",
-  "count": 31,
+  "last_ts": 1789194958,
+  "last_at": "2026-09-12T06:35:58+00:00",
+  "count": 32,
   "first_ts": 1788786917,
   "detail": null
  },
@@ -63,24 +63,24 @@
   "detail": "graduated 5QSLdgmMbsG1E4tcBEiHG5PGti6w2mn9RSi6squiWHze"
  },
  "paper.sweep": {
-  "last_ts": 1789177390,
-  "last_at": "2026-09-12T01:43:10+00:00",
-  "count": 31,
+  "last_ts": 1789194961,
+  "last_at": "2026-09-12T06:36:01+00:00",
+  "count": 32,
   "first_ts": 1788786927,
   "detail": null
  },
  "paper.close": {
-  "last_ts": 1789177394,
-  "last_at": "2026-09-12T01:43:14+00:00",
-  "count": 105,
+  "last_ts": 1789194990,
+  "last_at": "2026-09-12T06:36:30+00:00",
+  "count": 111,
   "first_ts": 1788786929,
-  "detail": "unpriceable"
+  "detail": "expiry"
  },
  "paper.open": {
-  "last_ts": 1789177365,
-  "last_at": "2026-09-12T01:42:45+00:00",
-  "count": 167,
+  "last_ts": 1789194895,
+  "last_at": "2026-09-12T06:34:55+00:00",
+  "count": 168,
   "first_ts": 1788999700,
-  "detail": "copium"
+  "detail": "TSKPUP"
  }
 }
