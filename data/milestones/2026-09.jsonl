@@ -3038,3 +3038,8 @@
 {"token":"9g9Gkgn9YVtbj1AzxwmGAusyWHypDT4y7FfrbTSJZTb9","milestone":"mcap_100k","crossed_ts":1789234326,"crossed_at":"2026-09-12T17:32:06+00:00","symbol":"MSFT","value":404414.0,"kind":"mcap"}
 {"token":"9g9Gkgn9YVtbj1AzxwmGAusyWHypDT4y7FfrbTSJZTb9","milestone":"mcap_200k","crossed_ts":1789234326,"crossed_at":"2026-09-12T17:32:06+00:00","symbol":"MSFT","value":404414.0,"kind":"mcap"}
 {"token":"Buy1bMbX9iiXFZpteRjhUZd3GVzj5rS7T8giS6DtaAZo","milestone":"mcap_100k","crossed_ts":1789234393,"crossed_at":"2026-09-12T17:33:13+00:00","symbol":"\u3164","value":129794.0,"kind":"mcap"}
+{"token":"BkhKd3R5hhWDivxwR5C8JHfYSaykSdcRqLgd2oFVHXWa","milestone":"realizable_2x","crossed_ts":1789242277,"crossed_at":"2026-09-12T19:44:37+00:00","symbol":"UNKNOWN","value":5.1488,"kind":"multiple"}
+{"token":"BkhKd3R5hhWDivxwR5C8JHfYSaykSdcRqLgd2oFVHXWa","milestone":"realizable_3x","crossed_ts":1789242277,"crossed_at":"2026-09-12T19:44:37+00:00","symbol":"UNKNOWN","value":5.1488,"kind":"multiple"}
+{"token":"DTww9nMQbn3fukgMbFFmfydyunvzjE64hiQu65P5MqJp","milestone":"mcap_100k","crossed_ts":1789242296,"crossed_at":"2026-09-12T19:44:56+00:00","symbol":"\u200b","value":1277121.0,"kind":"mcap"}
+{"token":"DTww9nMQbn3fukgMbFFmfydyunvzjE64hiQu65P5MqJp","milestone":"mcap_200k","crossed_ts":1789242296,"crossed_at":"2026-09-12T19:44:56+00:00","symbol":"\u200b","value":1277121.0,"kind":"mcap"}
+{"token":"DTww9nMQbn3fukgMbFFmfydyunvzjE64hiQu65P5MqJp","milestone":"mcap_1m","crossed_ts":1789242296,"crossed_at":"2026-09-12T19:44:56+00:00","symbol":"\u200b","value":1277121.0,"kind":"mcap"}

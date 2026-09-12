@@ -5656,14 +5656,14 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 69,
+  "count": 70,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h",
    "24h"
   ],
-  "last_seen": "2026-09-12T17:32:15+00:00",
+  "last_seen": "2026-09-12T19:46:17+00:00",
   "last_escalated": "2026-09-12T17:32:15+00:00",
   "escalations": 13
  },
@@ -9290,6 +9290,14 @@
   "example": "scanner-hit: Openraise",
   "keys": [
    "Openraise"
+  ]
+ },
+ "outcome-win:bkhkdrhhwdivxwrcjhfysayksdcrqlgdofvhxwa": {
+  "first_seen": "2026-09-12T19:44:37+00:00",
+  "count": 1,
+  "example": "outcome-win: BkhKd3R5hhWDivxwR5C8JHfYSaykSdcRqLgd2oFVHXWa",
+  "keys": [
+   "BkhKd3R5hhWDivxwR5C8JHfYSaykSdcRqLgd2oFVHXWa"
   ]
  }
 }
