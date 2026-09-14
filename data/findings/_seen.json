@@ -6915,13 +6915,15 @@
  },
  "scanner-hit:airdrop": {
   "first_seen": "2026-09-06T13:12:45+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: Airdrop",
   "keys": [
-   "Airdrop"
+   "Airdrop",
+   "AIRDROP"
   ],
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-14T20:12:11+00:00",
+  "last_escalated": "2026-09-14T20:12:11+00:00",
+  "escalations": 1
  },
  "outcome-win:fhvpmegqkwvkuxskhhhrdikncxemdpsfeumfikws": {
   "first_seen": "2026-09-06T14:09:15+00:00",
@@ -8397,12 +8399,12 @@
  },
  "liveness:watchlist-sweep": {
   "first_seen": "2026-09-10T00:07:41+00:00",
-  "count": 55,
+  "count": 60,
   "example": "liveness: watchlist.sweep",
   "keys": [
    "watchlist.sweep"
   ],
-  "last_seen": "2026-09-14T19:49:38+00:00",
+  "last_seen": "2026-09-14T20:11:40+00:00",
   "last_escalated": "2026-09-14T19:45:51+00:00",
   "escalations": 3
  },
@@ -9374,21 +9376,21 @@
  },
  "liveness:milestone-mcap": {
   "first_seen": "2026-09-14T19:45:44+00:00",
-  "count": 3,
+  "count": 8,
   "example": "liveness: milestone.mcap",
   "keys": [
    "milestone.mcap"
   ],
-  "last_seen": "2026-09-14T19:49:37+00:00"
+  "last_seen": "2026-09-14T20:11:40+00:00"
  },
  "liveness:milestone-realizable": {
   "first_seen": "2026-09-14T19:45:45+00:00",
-  "count": 3,
+  "count": 8,
   "example": "liveness: milestone.realizable",
   "keys": [
    "milestone.realizable"
   ],
-  "last_seen": "2026-09-14T19:49:37+00:00"
+  "last_seen": "2026-09-14T20:11:40+00:00"
  },
  "liveness:paper-close": {
   "first_seen": "2026-09-14T19:45:47+00:00",
@@ -9405,6 +9407,38 @@
   "example": "outcome-win: BkhKd3R5hhWDivxwR5C8JHfYSaykSdcRqLgd2oFVHXWa",
   "keys": [
    "BkhKd3R5hhWDivxwR5C8JHfYSaykSdcRqLgd2oFVHXWa"
+  ]
+ },
+ "scanner-hit:bunny": {
+  "first_seen": "2026-09-14T19:50:28+00:00",
+  "count": 1,
+  "example": "scanner-hit: BUNNY",
+  "keys": [
+   "BUNNY"
+  ]
+ },
+ "scanner-hit:krill": {
+  "first_seen": "2026-09-14T19:50:33+00:00",
+  "count": 1,
+  "example": "scanner-hit: KRILL",
+  "keys": [
+   "KRILL"
+  ]
+ },
+ "scanner-hit:bc": {
+  "first_seen": "2026-09-14T19:50:37+00:00",
+  "count": 1,
+  "example": "scanner-hit: BC",
+  "keys": [
+   "BC"
+  ]
+ },
+ "scanner-hit:ptn": {
+  "first_seen": "2026-09-14T20:12:16+00:00",
+  "count": 1,
+  "example": "scanner-hit: PTN",
+  "keys": [
+   "PTN"
   ]
  }
 }

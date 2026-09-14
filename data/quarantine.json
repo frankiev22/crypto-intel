@@ -2214,5 +2214,13 @@
   "first_horizon_h": 24,
   "last_ts": 1789242478,
   "hits": 1
+ },
+ "Aoe2GRB6YxDWyR5miJu7NLX8fK98D7Kt1M1UwTDH7SwV": {
+  "confidence": "quarantined_unresolved",
+  "detail": "neither source resolved the token",
+  "first_ts": 1789416564,
+  "first_horizon_h": 168,
+  "last_ts": 1789416564,
+  "hits": 1
  }
 }

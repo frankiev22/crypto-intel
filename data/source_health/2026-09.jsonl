@@ -940,3 +940,8 @@
 {"ts":1789223691,"dexscreener_ok":7,"dexscreener_dropped":31,"geckoterminal_ok":8,"geckoterminal_fail":23,"onchain_ok":38,"onchain_fail":0,"unresolved":23}
 {"ts":1789234610,"dexscreener_ok":5,"dexscreener_dropped":33,"geckoterminal_ok":9,"geckoterminal_fail":24,"onchain_ok":38,"onchain_fail":0,"unresolved":24}
 {"ts":1789242565,"dexscreener_ok":3,"dexscreener_dropped":36,"geckoterminal_ok":11,"geckoterminal_fail":25,"onchain_ok":39,"onchain_fail":0,"unresolved":25}
+{"ts":1789416491,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
+{"ts":1789416507,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
+{"ts":1789416522,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
+{"ts":1789416537,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
+{"ts":1789416697,"dexscreener_ok":0,"dexscreener_dropped":7,"geckoterminal_ok":5,"geckoterminal_fail":2,"onchain_ok":7,"onchain_fail":0,"unresolved":2}
