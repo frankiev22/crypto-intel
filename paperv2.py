@@ -306,10 +306,24 @@ def summary():
                          if e["hash"] in exits
                          and exits[e["hash"]].get("mult") is not None}
         n = len(mults)
-        wins = [m for m in mults if m >= TARGET_MULT]
+        # THE GATE, as v1 applies it. A multiple on a pool with no exit depth is
+        # a price on a corpse - the Grogu shape - and v1's summary has refused
+        # to count one since 2026-09-08. This summary did not: GAY and MARIO
+        # (arm A) and SOL GRND, POLLY and a CJK token (B_high) printed >=2x at
+        # expiry on $0 of depth and were counted, turning B_high's 4 gated wins
+        # into "7 wins, 14.89%". Price-only is kept, beside it, never instead.
+        def _gated(x):
+            d = x.get("exit_depth_usd")
+            return d is not None and d >= MIN_EXIT_DEPTH
+        closed_rows = [exits[e["hash"]] for e in ents
+                       if e["hash"] in exits and exits[e["hash"]].get("mult") is not None]
+        wins = [x["mult"] for x in closed_rows if x["mult"] >= TARGET_MULT and _gated(x)]
+        wins_price_only = [m for m in mults if m >= TARGET_MULT]
         a = {"label": LABELS[arm],
              "entries": len(ents), "distinct_tokens": len(tokens),
              "closed_priceable": n, "wins": len(wins), "min_n": MIN_N,
+             "wins_price_only": len(wins_price_only),
+             "wins_unexitable": len(wins_price_only) - len(wins),
              "closed_tokens": len(closed_tokens),
              "conclusive": len(closed_tokens) >= MIN_N}
         if n:

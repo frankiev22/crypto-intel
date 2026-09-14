@@ -242,6 +242,38 @@ check("the LIVE v2 ledger quotes no rate below MIN_N closed tokens",
       not leaks, str(leaks))
 live.LEDGER = saved
 
+
+print()
+print("=" * 70)
+print("7. a v2 win requires exit depth, exactly as v1's does")
+print("=" * 70)
+import json as _json
+_saved = paperv2.LEDGER
+paperv2.LEDGER = "data/paper/ledger_v2.jsonl"
+_rows = [_json.loads(l) for l in open(paperv2.LEDGER, encoding="utf-8") if l.strip()]
+_ents = {r["hash"]: r for r in _rows if r.get("type") == "entry"}
+_s7 = paperv2.summary()
+for _arm in ("A", "B_high", "B_low"):
+    _gated = 0
+    _price = 0
+    for _x in _rows:
+        if _x.get("type") != "exit" or _x.get("mult") is None:
+            continue
+        _e = _ents.get(_x.get("entry_id"))
+        if not _e or (paperv2._sub_arm(_e) or _e.get("arm")) != _arm:
+            continue
+        if _x["mult"] >= paperv2.TARGET_MULT:
+            _price += 1
+            if (_x.get("exit_depth_usd") is not None
+                    and _x["exit_depth_usd"] >= paperv2.MIN_EXIT_DEPTH):
+                _gated += 1
+    check(f"{_arm}: counted wins equal DEPTH-GATED wins on the live ledger",
+          _s7["arms"][_arm]["wins"] == _gated,
+          f"summary={_s7['arms'][_arm]['wins']} gated={_gated} price_only={_price}")
+    check(f"{_arm}: price-only wins are reported beside, never instead",
+          _s7["arms"][_arm]["wins_price_only"] == _price)
+paperv2.LEDGER = _saved
+
 bad = [r for r in R if not r[1]]
 print(f"{len(R) - len(bad)}/{len(R)} passed")
 sys.exit(1 if bad else 0)
