@@ -5174,13 +5174,13 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 182,
+  "count": 183,
   "example": "lookup-outage: 24h",
   "keys": [
    "24h",
    "168h"
   ],
-  "last_seen": "2026-09-11T12:17:36+00:00",
+  "last_seen": "2026-09-11T14:18:55+00:00",
   "last_escalated": "2026-09-11T10:18:37+00:00",
   "escalations": 15
  },
@@ -8365,13 +8365,14 @@
  },
  "liveness:outcome-recorded": {
   "first_seen": "2026-09-10T00:07:38+00:00",
-  "count": 2,
+  "count": 3,
   "example": "liveness: outcome.recorded",
   "keys": [
    "outcome.recorded"
   ],
-  "last_seen": "2026-09-10T00:07:59+00:00",
-  "last_escalated": null
+  "last_seen": "2026-09-14T19:45:46+00:00",
+  "last_escalated": "2026-09-14T19:45:46+00:00",
+  "escalations": 1
  },
  "liveness:paper-open": {
   "first_seen": "2026-09-09T15:02:17+00:00",
@@ -8385,25 +8386,25 @@
  },
  "liveness:paper-sweep": {
   "first_seen": "2026-09-10T00:07:40+00:00",
-  "count": 52,
+  "count": 53,
   "example": "liveness: paper.sweep",
   "keys": [
    "paper.sweep"
   ],
-  "last_seen": "2026-09-11T04:18:25+00:00",
-  "last_escalated": "2026-09-11T01:08:22+00:00",
-  "escalations": 2
+  "last_seen": "2026-09-14T19:45:51+00:00",
+  "last_escalated": "2026-09-14T19:45:51+00:00",
+  "escalations": 3
  },
  "liveness:watchlist-sweep": {
   "first_seen": "2026-09-10T00:07:41+00:00",
-  "count": 52,
+  "count": 53,
   "example": "liveness: watchlist.sweep",
   "keys": [
    "watchlist.sweep"
   ],
-  "last_seen": "2026-09-11T04:18:26+00:00",
-  "last_escalated": "2026-09-11T01:08:23+00:00",
-  "escalations": 2
+  "last_seen": "2026-09-14T19:45:51+00:00",
+  "last_escalated": "2026-09-14T19:45:51+00:00",
+  "escalations": 3
  },
  "collector-error:stagebudgetoverrun": {
   "first_seen": "2026-09-10T01:53:35+00:00",
@@ -9269,12 +9270,12 @@
  },
  "scanner-hit:ember": {
   "first_seen": "2026-09-11T12:18:34+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: EMBER",
   "keys": [
    "EMBER"
   ],
-  "last_seen": "2026-09-11T12:18:52+00:00"
+  "last_seen": "2026-09-11T13:19:13+00:00"
  },
  "scanner-hit:solcoin": {
   "first_seen": "2026-09-11T12:18:40+00:00",
@@ -9290,6 +9291,62 @@
   "example": "scanner-hit: Openraise",
   "keys": [
    "Openraise"
+  ]
+ },
+ "scanner-hit:files": {
+  "first_seen": "2026-09-11T14:20:05+00:00",
+  "count": 1,
+  "example": "scanner-hit: 9/11Files",
+  "keys": [
+   "9/11Files"
+  ]
+ },
+ "scanner-hit:opai": {
+  "first_seen": "2026-09-11T14:20:15+00:00",
+  "count": 1,
+  "example": "scanner-hit: OPAI",
+  "keys": [
+   "OPAI"
+  ]
+ },
+ "scanner-hit:microfly": {
+  "first_seen": "2026-09-11T15:19:32+00:00",
+  "count": 1,
+  "example": "scanner-hit: MICROFLY",
+  "keys": [
+   "MICROFLY"
+  ]
+ },
+ "scanner-hit:bullfly": {
+  "first_seen": "2026-09-11T15:19:38+00:00",
+  "count": 1,
+  "example": "scanner-hit: BULLFLY",
+  "keys": [
+   "BULLFLY"
+  ]
+ },
+ "liveness:milestone-mcap": {
+  "first_seen": "2026-09-14T19:45:44+00:00",
+  "count": 1,
+  "example": "liveness: milestone.mcap",
+  "keys": [
+   "milestone.mcap"
+  ]
+ },
+ "liveness:milestone-realizable": {
+  "first_seen": "2026-09-14T19:45:45+00:00",
+  "count": 1,
+  "example": "liveness: milestone.realizable",
+  "keys": [
+   "milestone.realizable"
+  ]
+ },
+ "liveness:paper-close": {
+  "first_seen": "2026-09-14T19:45:47+00:00",
+  "count": 1,
+  "example": "liveness: paper.close",
+  "keys": [
+   "paper.close"
   ]
  }
 }
