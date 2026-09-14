@@ -1,1 +1,9 @@
-{"token": "a7YQ6ms79yaSKxbyQJXD483FyT6VMcFsvD56ZuVVxVA", "milestone": "mcap_100k", "crossed_ts": 1789132205, "crossed_at": "2026-09-11T13:10:05+00:00", "symbol": "Openraise", "value": 184532.0, "kind": "mcap"}
+{
+ "token": "a7YQ6ms79yaSKxbyQJXD483FyT6VMcFsvD56ZuVVxVA",
+ "milestone": "mcap_100k",
+ "crossed_ts": 1789132205,
+ "crossed_at": "2026-09-11T13:10:05+00:00",
+ "symbol": "Openraise",
+ "value": 184532.0,
+ "kind": "mcap"
+}

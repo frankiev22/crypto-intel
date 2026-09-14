@@ -1,1 +1,9 @@
-{"token": "9SCz6jhgTA8CGz9GtwgLGv3LRyha3xRtWLJcuvCQpump", "milestone": "mcap_100k", "crossed_ts": 1789132117, "crossed_at": "2026-09-11T13:08:37+00:00", "symbol": "Tokcrb", "value": 177958.0, "kind": "mcap"}
+{
+ "token": "9SCz6jhgTA8CGz9GtwgLGv3LRyha3xRtWLJcuvCQpump",
+ "milestone": "mcap_100k",
+ "crossed_ts": 1789132117,
+ "crossed_at": "2026-09-11T13:08:37+00:00",
+ "symbol": "Tokcrb",
+ "value": 177958.0,
+ "kind": "mcap"
+}

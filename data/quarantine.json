@@ -1820,7 +1820,7 @@
   "detail": "exit depth $0.0102 is below the $100 floor; no quote is meaningful",
   "first_ts": 1789132201,
   "first_horizon_h": 1,
-  "last_ts": 1789132201,
+  "last_ts": 1789140162,
   "hits": 1
  },
  "a7YQ6ms79yaSKxbyQJXD483FyT6VMcFsvD56ZuVVxVA": {
@@ -1828,7 +1828,7 @@
   "detail": "exit depth $0.0045 is below the $100 floor; no quote is meaningful",
   "first_ts": 1789132204,
   "first_horizon_h": 1,
-  "last_ts": 1789132204,
+  "last_ts": 1789140163,
   "hits": 1
  },
  "D3UYbY9S9qooVMV2DxABx7o2EMDKvorYKKR6Sk47tEQX": {
@@ -1861,6 +1861,358 @@
   "first_ts": 1789139765,
   "first_horizon_h": 168,
   "last_ts": 1789139765,
+  "hits": 1
+ },
+ "5QSLdgmMbsG1E4tcBEiHG5PGti6w2mn9RSi6squiWHze": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0159 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789140205,
+  "first_horizon_h": 1,
+  "last_ts": 1789140205,
+  "hits": 1
+ },
+ "Cbb6svREmN2Jh3odC58EgivJPGSVd7ZrSTLrU67HLwNY": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.2036 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789140452,
+  "first_horizon_h": 24,
+  "last_ts": 1789140452,
+  "hits": 1
+ },
+ "RxvV4EEPW29wXeeuYJin6ZhP75z5tFzCoopVvg5JEp2": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0228 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789140526,
+  "first_horizon_h": 24,
+  "last_ts": 1789140526,
+  "hits": 1
+ },
+ "EJHE8vnkgBvfZuNYpPooG3dacfHRvHaLAmgfKMb5142v": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0000 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789152543,
+  "first_horizon_h": 1,
+  "last_ts": 1789152543,
+  "hits": 1
+ },
+ "DLZuA4XTZBspyUXpJAUeRnBY2t16GRf1a78sdhM8NPwg": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0231 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789152550,
+  "first_horizon_h": 1,
+  "last_ts": 1789152550,
+  "hits": 1
+ },
+ "DNsXwX2unxVVYoZqBdie8HUPBJgztHPzgN7Cp8DDDRH3": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0238 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789152555,
+  "first_horizon_h": 1,
+  "last_ts": 1789152555,
+  "hits": 1
+ },
+ "6N7VdM6eThLjyJ1oZc8fiBBhN1a34mhweoPRwLgwwH5F": {
+  "confidence": "quarantined_liquidity_divergent",
+  "detail": "dexscreener liquidity $1,264,342 vs geckoterminal $40,257; the sources do not agree that there is a pool to exit into",
+  "first_ts": 1789152608,
+  "first_horizon_h": 1,
+  "last_ts": 1789152608,
+  "hits": 1
+ },
+ "CAgFApfeQHaMi2nKe8mMmhSmaq2p5Yb9qKgKZo6ZvZVA": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.2566 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789152617,
+  "first_horizon_h": 1,
+  "last_ts": 1789152617,
+  "hits": 1
+ },
+ "DzWcQ9uSngca3GBoC4TxcpswFcARxHHDypfQ1jMApump": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $10.5762 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789152635,
+  "first_horizon_h": 1,
+  "last_ts": 1789152635,
+  "hits": 1
+ },
+ "AgQoqLgtRzvShj31BmDZHh2gbcn2Bbg9N1oG9m36pump": {
+  "confidence": "quarantined_liquidity_divergent",
+  "detail": "dexscreener liquidity $0 vs geckoterminal $2,380; the sources do not agree that there is a pool to exit into",
+  "first_ts": 1789152644,
+  "first_horizon_h": 1,
+  "last_ts": 1789152644,
+  "hits": 1
+ },
+ "6M9bHabKLR5C16boTkxZK3pjpQCU1jSgaHEuJRKWGQgm": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0451 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789152799,
+  "first_horizon_h": 6,
+  "last_ts": 1789152799,
+  "hits": 1
+ },
+ "DBAdwr64umFBbctYhL7h1PZqR2aAXyEWFqYF7eezzoXf": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0000 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789161967,
+  "first_horizon_h": 1,
+  "last_ts": 1789161967,
+  "hits": 1
+ },
+ "CBM7Z1VYVszJK1azSdE2wThrerQ9km7Fhs1eCaHkpump": {
+  "confidence": "quarantined_liquidity_divergent",
+  "detail": "dexscreener liquidity $0 vs geckoterminal $7,107; the sources do not agree that there is a pool to exit into",
+  "first_ts": 1789161973,
+  "first_horizon_h": 1,
+  "last_ts": 1789161973,
+  "hits": 1
+ },
+ "HCwcwc41yC7UeBUmo6q7Lag25Jt6ZsxdomPpqzytSGSA": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.2027 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789162194,
+  "first_horizon_h": 24,
+  "last_ts": 1789162194,
+  "hits": 1
+ },
+ "589fSz6kNyBcCtnQn7rJCsMwaU7GkCMtaDvk3reS7ZMp": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.1949 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789162206,
+  "first_horizon_h": 24,
+  "last_ts": 1789162206,
+  "hits": 1
+ },
+ "6ZGUWZdBurB5j6Cj3KFwMEh4FrE9S6D2sGeycyMnCX2U": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $13.0754 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789169861,
+  "first_horizon_h": 1,
+  "last_ts": 1789169861,
+  "hits": 1
+ },
+ "FGiZanoG4tMdwVNjrsgeDDtBv53vKiNDZVcD5wpb27fb": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0000 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789169878,
+  "first_horizon_h": 1,
+  "last_ts": 1789169878,
+  "hits": 1
+ },
+ "2voQQthrHj4bXKqY4WqbyBj64uqMW2a8nKE4JVYsnw2y": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0036 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789169889,
+  "first_horizon_h": 1,
+  "last_ts": 1789169889,
+  "hits": 1
+ },
+ "69yyjmWYNurK2r6y4tkXrJnS95ex1GQPvsECDL1ZSpBA": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0079 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789169975,
+  "first_horizon_h": 6,
+  "last_ts": 1789169975,
+  "hits": 1
+ },
+ "Df1vuhREmb2bS9ZzUdvQBwhwchPDDw4m6eVrfWFsVLke": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "total reserve $0.3181 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789170079,
+  "first_horizon_h": 24,
+  "last_ts": 1789170079,
+  "hits": 1
+ },
+ "7xnee2TXLzSASusR5S6MTJtiYATRp1o2qNknyw81vUzU": {
+  "confidence": "quarantined_unresolved",
+  "detail": "neither source resolved the token",
+  "first_ts": 1789170123,
+  "first_horizon_h": 24,
+  "last_ts": 1789170123,
+  "hits": 1
+ },
+ "8mmNiynPbU3xQPUm6kJBcUahka9V6rY7mFfs8mJupump": {
+  "confidence": "quarantined_liquidity_divergent",
+  "detail": "dexscreener liquidity $0 vs geckoterminal $81,785; the sources do not agree that there is a pool to exit into",
+  "first_ts": 1789177466,
+  "first_horizon_h": 1,
+  "last_ts": 1789177466,
+  "hits": 1
+ },
+ "BpB1i2kA9i4GcvZegFwfStkoTx1CBpMn7X5TTWLNZudE": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0000 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789177685,
+  "first_horizon_h": 24,
+  "last_ts": 1789177685,
+  "hits": 1
+ },
+ "Ed2TpUabP44nsTsyVi46dTrWUy3mGvbwHU3xR9dyyj2E": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0184 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789177696,
+  "first_horizon_h": 24,
+  "last_ts": 1789177696,
+  "hits": 1
+ },
+ "6S3MNHwfBTYUwT2Q2zrJcBuf8GX7aBs7wt9wyVR3F4fA": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.1813 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789177728,
+  "first_horizon_h": 24,
+  "last_ts": 1789177728,
+  "hits": 1
+ },
+ "9T7VysaNBf9v9BnD2pzWAqvbFVfsaPNnkwgpRFGXNYWn": {
+  "confidence": "quarantined_unresolved",
+  "detail": "neither source resolved the token",
+  "first_ts": 1789177742,
+  "first_horizon_h": 24,
+  "last_ts": 1789177742,
+  "hits": 1
+ },
+ "3WTUe5Ac35MXbs8Dywrjzbu8GLrkPsZB3rr6wyX7pump": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $1.7569 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789195019,
+  "first_horizon_h": 1,
+  "last_ts": 1789195019,
+  "hits": 1
+ },
+ "3pUKKGHJDjPPAtb1LShB71zgDijYgc6t54jAyGuvSQed": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $3.8625 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789195054,
+  "first_horizon_h": 1,
+  "last_ts": 1789195054,
+  "hits": 1
+ },
+ "AJoGa7Ra2Pcm3QNGvKriCKk9ivHZ7arecmRtmb4ptVTZ": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0004 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789195080,
+  "first_horizon_h": 1,
+  "last_ts": 1789195080,
+  "hits": 1
+ },
+ "FXJr9JnBiU2Entc1s2rBYsdDcD3GLiB1fsFc6FtApump": {
+  "confidence": "quarantined_liquidity_divergent",
+  "detail": "dexscreener liquidity $0 vs geckoterminal $62,649; the sources do not agree that there is a pool to exit into",
+  "first_ts": 1789212120,
+  "first_horizon_h": 1,
+  "last_ts": 1789212120,
+  "hits": 1
+ },
+ "HWwzf965P6P1MEMYpP9A2iDxUBmMSyWXoeCC43jNsV1J": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.4229 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789212124,
+  "first_horizon_h": 1,
+  "last_ts": 1789212124,
+  "hits": 1
+ },
+ "5Vei6iZmEk5kY19MbvQRF3uRfSvs3jytieks9G6Ua4mT": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0073 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789212134,
+  "first_horizon_h": 1,
+  "last_ts": 1789212134,
+  "hits": 1
+ },
+ "GGTAvW8SfTjYVWQJ45Tek2yANUyTpGPDKwywabUxGgzD": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0532 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789212338,
+  "first_horizon_h": 24,
+  "last_ts": 1789212338,
+  "hits": 1
+ },
+ "FDjacSFMJBTFh5RTmPzudBYKrf39ygzENwbGBK9spump": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $11.5705 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789223344,
+  "first_horizon_h": 1,
+  "last_ts": 1789223344,
+  "hits": 1
+ },
+ "2g6QTQpFgZ7UyvQuEtDo1xybaXkYE7z1X3eYMtQqCU9f": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0006 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789223370,
+  "first_horizon_h": 1,
+  "last_ts": 1789223370,
+  "hits": 1
+ },
+ "2qY1xT6pLdMCksuKWtzWP8acec7qjE7iXLrdKvshY6F9": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0003 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789223380,
+  "first_horizon_h": 1,
+  "last_ts": 1789223380,
+  "hits": 1
+ },
+ "DBRZaRoUf34uvBdhMnxJArUzmocRqBUF5HhW796dXSL5": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0140 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789223552,
+  "first_horizon_h": 24,
+  "last_ts": 1789223552,
+  "hits": 1
+ },
+ "DX5xutjy5pzVuA3r5paZ3oHZbCB3LdAgRAmE66Xxi8Kg": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0343 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789223577,
+  "first_horizon_h": 24,
+  "last_ts": 1789223577,
+  "hits": 1
+ },
+ "HvNfNfB86AiX1ydfVQtdBcys4CBsqKoXJMovxAW6TZmt": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $2.6070 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789234299,
+  "first_horizon_h": 1,
+  "last_ts": 1789234299,
+  "hits": 1
+ },
+ "9fiueavUfB1pKZRRimspzgyTF3RMApY6UtfoQhoRgTrM": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.1668 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789234467,
+  "first_horizon_h": 24,
+  "last_ts": 1789234467,
+  "hits": 1
+ },
+ "EFTZChd1yXMCcaa3BxPtms2No4C7n4G7sBmDMGtnfZFD": {
+  "confidence": "quarantined_unresolved",
+  "detail": "neither source resolved the token",
+  "first_ts": 1789234490,
+  "first_horizon_h": 24,
+  "last_ts": 1789234490,
+  "hits": 1
+ },
+ "DTww9nMQbn3fukgMbFFmfydyunvzjE64hiQu65P5MqJp": {
+  "confidence": "quarantined_liquidity_divergent",
+  "detail": "dexscreener liquidity $1,264,142 vs geckoterminal $40,226; the sources do not agree that there is a pool to exit into",
+  "first_ts": 1789242296,
+  "first_horizon_h": 1,
+  "last_ts": 1789242296,
+  "hits": 1
+ },
+ "4yfUe79RS2wPq8t2zi974NJ8C6UDxjX7WPFhomy1pump": {
+  "confidence": "quarantined_liquidity_divergent",
+  "detail": "dexscreener liquidity $0 vs geckoterminal $2,026; the sources do not agree that there is a pool to exit into",
+  "first_ts": 1789242304,
+  "first_horizon_h": 1,
+  "last_ts": 1789242304,
+  "hits": 1
+ },
+ "1FrTPYoRnHqvTuj5PbdzSKLmrjGix9rstXm6Z5KeQdD": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.2156 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789242478,
+  "first_horizon_h": 24,
+  "last_ts": 1789242478,
   "hits": 1
  }
 }

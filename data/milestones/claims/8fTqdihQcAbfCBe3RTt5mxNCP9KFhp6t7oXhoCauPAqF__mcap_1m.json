@@ -1,1 +1,9 @@
-{"token": "8fTqdihQcAbfCBe3RTt5mxNCP9KFhp6t7oXhoCauPAqF", "milestone": "mcap_1m", "crossed_ts": 1789132202, "crossed_at": "2026-09-11T13:10:02+00:00", "symbol": "KNOTS", "value": 329931756.0, "kind": "mcap"}
+{
+ "token": "8fTqdihQcAbfCBe3RTt5mxNCP9KFhp6t7oXhoCauPAqF",
+ "milestone": "mcap_1m",
+ "crossed_ts": 1789132202,
+ "crossed_at": "2026-09-11T13:10:02+00:00",
+ "symbol": "KNOTS",
+ "value": 329931756.0,
+ "kind": "mcap"
+}

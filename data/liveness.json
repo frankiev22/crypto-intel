@@ -9,14 +9,14 @@
  "scan.observations": {
   "last_ts": 1789415129,
   "last_at": "2026-09-14T19:45:29+00:00",
-  "count": 5784,
+  "count": 6204,
   "first_ts": 1788782726,
   "detail": null
  },
  "fieldguard.check": {
   "last_ts": 1789415129,
   "last_at": "2026-09-14T19:45:29+00:00",
-  "count": 75,
+  "count": 81,
   "first_ts": 1788782815,
   "detail": null
  },
@@ -30,56 +30,56 @@
  "outcome.recorded": {
   "last_ts": 1789415373,
   "last_at": "2026-09-14T19:49:33+00:00",
-  "count": 24765,
+  "count": 26678,
   "first_ts": 1788782831,
   "detail": null
  },
  "milestone.mcap": {
-  "last_ts": 1789139394,
-  "last_at": "2026-09-11T15:09:54+00:00",
-  "count": 963,
+  "last_ts": 1789242296,
+  "last_at": "2026-09-12T19:44:56+00:00",
+  "count": 1041,
   "first_ts": 1788782876,
   "detail": "mcap_200k 8xrQrNP7KMjwb5ETMoVJhwnUu3s17zscHsCtg5yH7sG7"
  },
  "milestone.realizable": {
-  "last_ts": 1789103404,
-  "last_at": "2026-09-11T05:10:04+00:00",
-  "count": 43,
+  "last_ts": 1789242277,
+  "last_at": "2026-09-12T19:44:37+00:00",
+  "count": 46,
   "first_ts": 1788783020,
   "detail": "realizable_2x D5gyjYieynMBa194zQ5fKmxUEzLfVA6HG8jKfESd3oP"
  },
  "watchlist.sweep": {
-  "last_ts": 1789127614,
-  "last_at": "2026-09-11T11:53:34+00:00",
-  "count": 26,
+  "last_ts": 1789242250,
+  "last_at": "2026-09-12T19:44:10+00:00",
+  "count": 36,
   "first_ts": 1788786917,
   "detail": null
  },
  "milestone.graduated": {
-  "last_ts": 1789108981,
-  "last_at": "2026-09-11T06:43:01+00:00",
-  "count": 21,
+  "last_ts": 1789223284,
+  "last_at": "2026-09-12T14:28:04+00:00",
+  "count": 25,
   "first_ts": 1788786923,
   "detail": "graduated 4gKsXcvfGPQuCHngi8bKhqjcDHz2s2XSscQfcPdk49aG"
  },
  "paper.sweep": {
-  "last_ts": 1789127620,
-  "last_at": "2026-09-11T11:53:40+00:00",
-  "count": 26,
+  "last_ts": 1789242254,
+  "last_at": "2026-09-12T19:44:14+00:00",
+  "count": 36,
   "first_ts": 1788786927,
   "detail": null
  },
  "paper.close": {
-  "last_ts": 1789127646,
-  "last_at": "2026-09-11T11:54:06+00:00",
-  "count": 87,
+  "last_ts": 1789242262,
+  "last_at": "2026-09-12T19:44:22+00:00",
+  "count": 125,
   "first_ts": 1788786929,
   "detail": "target"
  },
  "paper.open": {
   "last_ts": 1789415054,
   "last_at": "2026-09-14T19:44:14+00:00",
-  "count": 167,
+  "count": 175,
   "first_ts": 1788999700,
   "detail": "CHILLBIKE"
  }
