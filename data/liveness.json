@@ -1,8 +1,8 @@
 {
  "detector.drift": {
-  "last_ts": 1789415143,
-  "last_at": "2026-09-14T19:45:43+00:00",
-  "count": 432,
+  "last_ts": 1789415215,
+  "last_at": "2026-09-14T19:46:55+00:00",
+  "count": 433,
   "first_ts": 1788782114,
   "detail": "stable"
  },
@@ -21,9 +21,9 @@
   "detail": null
  },
  "news.freshness": {
-  "last_ts": 1789415175,
-  "last_at": "2026-09-14T19:46:15+00:00",
-  "count": 437,
+  "last_ts": 1789415213,
+  "last_at": "2026-09-14T19:46:53+00:00",
+  "count": 438,
   "first_ts": 1788782822,
   "detail": "0 stale outlet(s)"
  },
