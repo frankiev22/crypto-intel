@@ -8386,23 +8386,23 @@
  },
  "liveness:paper-sweep": {
   "first_seen": "2026-09-10T00:07:40+00:00",
-  "count": 54,
+  "count": 55,
   "example": "liveness: paper.sweep",
   "keys": [
    "paper.sweep"
   ],
-  "last_seen": "2026-09-14T19:46:56+00:00",
+  "last_seen": "2026-09-14T19:49:38+00:00",
   "last_escalated": "2026-09-14T19:45:51+00:00",
   "escalations": 3
  },
  "liveness:watchlist-sweep": {
   "first_seen": "2026-09-10T00:07:41+00:00",
-  "count": 54,
+  "count": 55,
   "example": "liveness: watchlist.sweep",
   "keys": [
    "watchlist.sweep"
   ],
-  "last_seen": "2026-09-14T19:46:56+00:00",
+  "last_seen": "2026-09-14T19:49:38+00:00",
   "last_escalated": "2026-09-14T19:45:51+00:00",
   "escalations": 3
  },
@@ -9327,29 +9327,29 @@
  },
  "liveness:milestone-mcap": {
   "first_seen": "2026-09-14T19:45:44+00:00",
-  "count": 2,
+  "count": 3,
   "example": "liveness: milestone.mcap",
   "keys": [
    "milestone.mcap"
   ],
-  "last_seen": "2026-09-14T19:46:55+00:00"
+  "last_seen": "2026-09-14T19:49:37+00:00"
  },
  "liveness:milestone-realizable": {
   "first_seen": "2026-09-14T19:45:45+00:00",
-  "count": 2,
+  "count": 3,
   "example": "liveness: milestone.realizable",
   "keys": [
    "milestone.realizable"
   ],
-  "last_seen": "2026-09-14T19:46:55+00:00"
+  "last_seen": "2026-09-14T19:49:37+00:00"
  },
  "liveness:paper-close": {
   "first_seen": "2026-09-14T19:45:47+00:00",
-  "count": 2,
+  "count": 3,
   "example": "liveness: paper.close",
   "keys": [
    "paper.close"
   ],
-  "last_seen": "2026-09-14T19:46:56+00:00"
+  "last_seen": "2026-09-14T19:49:37+00:00"
  }
 }
