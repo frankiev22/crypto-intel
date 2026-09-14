@@ -417,3 +417,59 @@ crossed, with a before and an after.
 **Those 86 observed curve→AMM transitions are a real graduation detector we
 have not built.** n=86 is thin but it is honest, and it is the only graduation
 evidence in the corpus that we witnessed rather than inferred.
+
+---
+
+# The closer does not consult the quarantine (v1 and v2, shared)
+
+*Filed 2026-09-14, while auditing v2's B_high wins before reporting them.*
+
+## The finding
+
+`paper.close_decision` prices an exit from the pool as Dexscreener reports it.
+It never asks `pricecheck` whether that contract has already been quarantined.
+So a contract flagged for **price divergence** can still close as a target, on
+the very price that was flagged.
+
+**WIF2** (`HpuPG7dTVXaYf9a2WMJMFkoJ8XqNNiRE9R5vQjLRpQPX`, v2 arm B_high):
+
+| | |
+|---|---|
+| entered | 2026-09-10 19:07:29Z at $1.46e-05 |
+| quarantined `divergent` | 2026-09-10 20:08:50Z — Dexscreener $7.714e-05 vs GeckoTerminal $2.298e-05, **3.36x apart** |
+| closed `target` | 2026-09-11 06:44:01Z at $9.287e-05 = **6.361x** — **10.6h after** the quarantine |
+| same exit on GeckoTerminal's scale | **1.895x — under the 2.0x target** |
+
+## What it is not
+
+Two other B_high wins sit on quarantined contracts, and they are a different
+thing. **RUSH** (+5.2h) and **NeMo** (+3.1h) were quarantined *after* they
+closed, both for exit depth falling to dust. They closed on $38,525 and $11,077
+of real quote-side depth. The pool draining afterwards does not reach back and
+unmake an exit that was available.
+
+## Blast radius
+
+- **v1: none.** None of its six counted wins is on a quarantined contract.
+- **v2 B_high: 1 of 4 gated wins.** 4/47 → 3/47 without it.
+- v2 A and B_low: none.
+
+## Why it is filed and not fixed
+
+`close_decision` is the pinned exit rule, shared by both ledgers, mid-run.
+Adding a quarantine check now changes how positions close after outcomes
+exist — tuning, however well-motivated. It is reported both ways instead, and
+belongs in the next rule version, pre-committed before that version's first
+close.
+
+## A second, related gap: a two-minute target is a quote, not a fill
+
+Three target closes happened within about two minutes of entry: **OPAI** in v1
+(5.375x in 1m56s) and v2 (7.890x in 2m25s), and **NeMo** in v2 (2.026x in
+1m40s). OPAI's pool held $2,948 of liquidity and $1,475 of quote depth at
+entry. A $100 notional is ~7% of that quote side, so the entry price moves
+against a real buyer, and a $537 exit is ~16% of the $3,416 exit depth. The
+depth floor ($1,000) was sized for a $100 exit, not for a 5x one. Both prints
+are genuine, since two independent sweeps saw them minutes apart. What they
+cannot show is what a trade would have realised. Same reasoning: disclosed, not
+changed mid-run.
