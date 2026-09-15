@@ -116,15 +116,16 @@
  },
  "scanner-hit:unknown": {
   "first_seen": "2026-08-24T07:09:37+00:00",
-  "count": 44,
+  "count": 45,
   "example": "scanner-hit: 牛来",
-  "last_seen": "2026-09-11T07:19:14+00:00",
+  "last_seen": "2026-09-14T21:14:45+00:00",
   "keys": [
    "$1",
-   "$500"
+   "$500",
+   "0"
   ],
-  "last_escalated": "2026-09-11T07:19:14+00:00",
-  "escalations": 3
+  "last_escalated": "2026-09-14T21:14:45+00:00",
+  "escalations": 4
  },
  "scanner-hit:giggle": {
   "first_seen": "2026-08-24T07:09:37+00:00",
@@ -679,10 +680,14 @@
  },
  "scanner-hit:cate": {
   "first_seen": "2026-08-26T09:07:29+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: CATE",
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-14T22:15:13+00:00",
+  "last_escalated": "2026-09-14T22:15:13+00:00",
+  "keys": [
+   "CATE"
+  ],
+  "escalations": 1
  },
  "scanner-hit:ymtc": {
   "first_seen": "2026-08-26T09:07:29+00:00",
@@ -3859,13 +3864,14 @@
  },
  "scanner-hit:titcoin": {
   "first_seen": "2026-09-02T09:09:55+00:00",
-  "count": 1,
+  "count": 2,
   "example": "scanner-hit: titcoin",
   "keys": [
    "titcoin"
   ],
-  "last_seen": null,
-  "last_escalated": null
+  "last_seen": "2026-09-15T05:18:15+00:00",
+  "last_escalated": "2026-09-15T05:18:15+00:00",
+  "escalations": 1
  },
  "outcome-x:xcc": {
   "first_seen": "2026-09-02T09:10:01+00:00",
@@ -5656,16 +5662,16 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 70,
+  "count": 71,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h",
    "24h"
   ],
-  "last_seen": "2026-09-12T19:46:17+00:00",
-  "last_escalated": "2026-09-12T17:32:15+00:00",
-  "escalations": 9
+  "last_seen": "2026-09-14T23:12:32+00:00",
+  "last_escalated": "2026-09-14T23:12:32+00:00",
+  "escalations": 10
  },
  "scanner-hit:pomp": {
   "first_seen": "2026-09-05T05:11:36+00:00",
@@ -5910,14 +5916,14 @@
  },
  "scanner-hit:nex-ai": {
   "first_seen": "2026-09-05T08:10:15+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: NEX Ai",
   "keys": [
    "NEX Ai"
   ],
-  "last_seen": "2026-09-07T10:16:36+00:00",
-  "last_escalated": "2026-09-07T10:16:36+00:00",
-  "escalations": 1
+  "last_seen": "2026-09-15T05:18:14+00:00",
+  "last_escalated": "2026-09-15T05:18:14+00:00",
+  "escalations": 2
  },
  "scanner-hit:stocker": {
   "first_seen": "2026-09-05T08:10:29+00:00",
@@ -6293,14 +6299,14 @@
  },
  "scanner-hit:openai": {
   "first_seen": "2026-09-05T21:10:19+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: OpenAI",
   "keys": [
    "OpenAI"
   ],
-  "last_seen": "2026-09-10T13:17:59+00:00",
-  "last_escalated": "2026-09-10T13:17:59+00:00",
-  "escalations": 1
+  "last_seen": "2026-09-15T05:17:55+00:00",
+  "last_escalated": "2026-09-15T05:17:55+00:00",
+  "escalations": 2
  },
  "scanner-hit:siloapl": {
   "first_seen": "2026-09-05T21:10:25+00:00",
@@ -8399,14 +8405,14 @@
  },
  "liveness:watchlist-sweep": {
   "first_seen": "2026-09-10T00:07:41+00:00",
-  "count": 60,
+  "count": 91,
   "example": "liveness: watchlist.sweep",
   "keys": [
    "watchlist.sweep"
   ],
-  "last_seen": "2026-09-14T20:11:40+00:00",
-  "last_escalated": "2026-09-14T19:45:51+00:00",
-  "escalations": 3
+  "last_seen": "2026-09-15T02:15:15+00:00",
+  "last_escalated": "2026-09-15T02:07:46+00:00",
+  "escalations": 4
  },
  "collector-error:stagebudgetoverrun": {
   "first_seen": "2026-09-10T01:53:35+00:00",
@@ -9376,21 +9382,23 @@
  },
  "liveness:milestone-mcap": {
   "first_seen": "2026-09-14T19:45:44+00:00",
-  "count": 8,
+  "count": 9,
   "example": "liveness: milestone.mcap",
   "keys": [
    "milestone.mcap"
   ],
-  "last_seen": "2026-09-14T20:11:40+00:00"
+  "last_seen": "2026-09-14T21:07:55+00:00"
  },
  "liveness:milestone-realizable": {
   "first_seen": "2026-09-14T19:45:45+00:00",
-  "count": 8,
+  "count": 40,
   "example": "liveness: milestone.realizable",
   "keys": [
    "milestone.realizable"
   ],
-  "last_seen": "2026-09-14T20:11:40+00:00"
+  "last_seen": "2026-09-15T03:16:45+00:00",
+  "last_escalated": "2026-09-15T02:07:46+00:00",
+  "escalations": 1
  },
  "liveness:paper-close": {
   "first_seen": "2026-09-14T19:45:47+00:00",
@@ -9439,6 +9447,295 @@
   "example": "scanner-hit: PTN",
   "keys": [
    "PTN"
+  ]
+ },
+ "scanner-hit:stunk": {
+  "first_seen": "2026-09-14T21:14:51+00:00",
+  "count": 1,
+  "example": "scanner-hit: Stunk",
+  "keys": [
+   "Stunk"
+  ]
+ },
+ "scanner-hit:u-2de749": {
+  "first_seen": "2026-09-14T21:14:57+00:00",
+  "count": 1,
+  "example": "scanner-hit: 火花",
+  "keys": [
+   "火花"
+  ]
+ },
+ "scanner-hit:brain": {
+  "first_seen": "2026-09-14T22:15:20+00:00",
+  "count": 2,
+  "example": "scanner-hit: BRAIN",
+  "keys": [
+   "BRAIN"
+  ],
+  "last_seen": "2026-09-15T00:14:23+00:00"
+ },
+ "scanner-hit:shark": {
+  "first_seen": "2026-09-14T23:16:39+00:00",
+  "count": 1,
+  "example": "scanner-hit: Shark",
+  "keys": [
+   "Shark"
+  ]
+ },
+ "scanner-hit:niarbylf": {
+  "first_seen": "2026-09-14T23:16:46+00:00",
+  "count": 1,
+  "example": "scanner-hit: niarbylf",
+  "keys": [
+   "niarbylf"
+  ]
+ },
+ "scanner-hit:oil": {
+  "first_seen": "2026-09-14T23:16:52+00:00",
+  "count": 1,
+  "example": "scanner-hit: OIL",
+  "keys": [
+   "OIL"
+  ]
+ },
+ "scanner-hit:perps": {
+  "first_seen": "2026-09-14T23:17:01+00:00",
+  "count": 1,
+  "example": "scanner-hit: PERPS",
+  "keys": [
+   "PERPS"
+  ]
+ },
+ "scanner-hit:llmos": {
+  "first_seen": "2026-09-15T00:14:08+00:00",
+  "count": 1,
+  "example": "scanner-hit: LLMOS",
+  "keys": [
+   "LLMOS"
+  ]
+ },
+ "scanner-hit:seaz": {
+  "first_seen": "2026-09-15T00:14:18+00:00",
+  "count": 1,
+  "example": "scanner-hit: seaz",
+  "keys": [
+   "seaz"
+  ]
+ },
+ "scanner-hit:jinbuzhang": {
+  "first_seen": "2026-09-15T00:14:31+00:00",
+  "count": 1,
+  "example": "scanner-hit: JINBUZHANG",
+  "keys": [
+   "JINBUZHANG"
+  ]
+ },
+ "scanner-hit:bikepepe": {
+  "first_seen": "2026-09-15T00:14:32+00:00",
+  "count": 1,
+  "example": "scanner-hit: BIKEPEPE",
+  "keys": [
+   "BIKEPEPE"
+  ]
+ },
+ "scanner-hit:seaz-fprmmae": {
+  "first_seen": "2026-09-15T00:14:43+00:00",
+  "count": 1,
+  "example": "scanner-hit: seaz-7fpRmMaE",
+  "keys": [
+   "seaz-7fpRmMaE"
+  ]
+ },
+ "scanner-hit:llmos-rddfxf": {
+  "first_seen": "2026-09-15T00:14:44+00:00",
+  "count": 1,
+  "example": "scanner-hit: LLMOS-98rDdFxF",
+  "keys": [
+   "LLMOS-98rDdFxF"
+  ]
+ },
+ "scanner-hit:ten-ev": {
+  "first_seen": "2026-09-15T01:12:45+00:00",
+  "count": 1,
+  "example": "scanner-hit: TEN-EV",
+  "keys": [
+   "TEN-EV"
+  ]
+ },
+ "scanner-hit:kiba": {
+  "first_seen": "2026-09-15T02:16:42+00:00",
+  "count": 1,
+  "example": "scanner-hit: KIBA",
+  "keys": [
+   "KIBA"
+  ]
+ },
+ "scanner-hit:snoopdoge-dqlofn": {
+  "first_seen": "2026-09-15T02:16:48+00:00",
+  "count": 1,
+  "example": "scanner-hit: SNOOPDOGE-DQ9Lofn3",
+  "keys": [
+   "SNOOPDOGE-DQ9Lofn3"
+  ]
+ },
+ "scanner-hit:lipump-ozidug": {
+  "first_seen": "2026-09-15T02:16:53+00:00",
+  "count": 1,
+  "example": "scanner-hit: LiPump-2oZidUG",
+  "keys": [
+   "LiPump-2oZidUG"
+  ]
+ },
+ "scanner-hit:snoopdoge-aewdns": {
+  "first_seen": "2026-09-15T02:16:58+00:00",
+  "count": 1,
+  "example": "scanner-hit: SNOOPDOGE-AEWDNs6",
+  "keys": [
+   "SNOOPDOGE-AEWDNs6"
+  ]
+ },
+ "outcome-win:ozidugiwfmnpavpbhjfuydtgukiupesgfmnntpa": {
+  "first_seen": "2026-09-15T03:18:20+00:00",
+  "count": 1,
+  "example": "outcome-win: 2oZidUGiWfM8npavpbhj1fu49ydtGuKiuPeSGfMNnTPa",
+  "keys": [
+   "2oZidUGiWfM8npavpbhj1fu49ydtGuKiuPeSGfMNnTPa"
+  ]
+ },
+ "scanner-hit:huhcat-xkxr": {
+  "first_seen": "2026-09-15T03:24:37+00:00",
+  "count": 1,
+  "example": "scanner-hit: HUHCAT-31Xkxr",
+  "keys": [
+   "HUHCAT-31Xkxr"
+  ]
+ },
+ "scanner-hit:hodl-veqi": {
+  "first_seen": "2026-09-15T03:24:38+00:00",
+  "count": 1,
+  "example": "scanner-hit: HODL-2veq2i",
+  "keys": [
+   "HODL-2veq2i"
+  ]
+ },
+ "scanner-hit:criptoe-zdarx": {
+  "first_seen": "2026-09-15T03:24:39+00:00",
+  "count": 1,
+  "example": "scanner-hit: CRIPTOE-3ZdArx",
+  "keys": [
+   "CRIPTOE-3ZdArx"
+  ]
+ },
+ "scanner-hit:huhcat-sabn": {
+  "first_seen": "2026-09-15T03:24:40+00:00",
+  "count": 1,
+  "example": "scanner-hit: HUHCAT-6SA2Bn",
+  "keys": [
+   "HUHCAT-6SA2Bn"
+  ]
+ },
+ "scanner-hit:tianming-efphz": {
+  "first_seen": "2026-09-15T03:24:41+00:00",
+  "count": 1,
+  "example": "scanner-hit: TIANMING-EFPh2Z",
+  "keys": [
+   "TIANMING-EFPh2Z"
+  ]
+ },
+ "scanner-hit:huhcat-zsb": {
+  "first_seen": "2026-09-15T03:24:42+00:00",
+  "count": 1,
+  "example": "scanner-hit: HUHCAT-7ZS2b1",
+  "keys": [
+   "HUHCAT-7ZS2b1"
+  ]
+ },
+ "scanner-hit:flygram-kjsss": {
+  "first_seen": "2026-09-15T03:24:42+00:00",
+  "count": 1,
+  "example": "scanner-hit: flygram-kjS1Ss",
+  "keys": [
+   "flygram-kjS1Ss"
+  ]
+ },
+ "scanner-hit:tianming-hagmj": {
+  "first_seen": "2026-09-15T04:16:14+00:00",
+  "count": 1,
+  "example": "scanner-hit: TIANMING-H8AGMj",
+  "keys": [
+   "TIANMING-H8AGMj"
+  ]
+ },
+ "scanner-hit:tianming-cufpoe": {
+  "first_seen": "2026-09-15T04:16:21+00:00",
+  "count": 1,
+  "example": "scanner-hit: TIANMING-CuFPoE",
+  "keys": [
+   "TIANMING-CuFPoE"
+  ]
+ },
+ "scanner-hit:usdf-hvmfrv": {
+  "first_seen": "2026-09-15T04:16:28+00:00",
+  "count": 1,
+  "example": "scanner-hit: USDF-hvmfRv",
+  "keys": [
+   "USDF-hvmfRv"
+  ]
+ },
+ "scanner-hit:disney-mbr": {
+  "first_seen": "2026-09-15T04:16:36+00:00",
+  "count": 1,
+  "example": "scanner-hit: DISNEY-m84b4r",
+  "keys": [
+   "DISNEY-m84b4r"
+  ]
+ },
+ "scanner-hit:fly": {
+  "first_seen": "2026-09-15T05:17:56+00:00",
+  "count": 1,
+  "example": "scanner-hit: FLY",
+  "keys": [
+   "FLY"
+  ]
+ },
+ "scanner-hit:tokjoy": {
+  "first_seen": "2026-09-15T05:18:10+00:00",
+  "count": 1,
+  "example": "scanner-hit: TOKJOY",
+  "keys": [
+   "TOKJOY"
+  ]
+ },
+ "scanner-hit:samsung": {
+  "first_seen": "2026-09-15T05:18:12+00:00",
+  "count": 1,
+  "example": "scanner-hit: Samsung",
+  "keys": [
+   "Samsung"
+  ]
+ },
+ "scanner-hit:parker": {
+  "first_seen": "2026-09-15T05:18:13+00:00",
+  "count": 1,
+  "example": "scanner-hit: Parker",
+  "keys": [
+   "Parker"
+  ]
+ },
+ "scanner-hit:lsd": {
+  "first_seen": "2026-09-15T05:18:16+00:00",
+  "count": 1,
+  "example": "scanner-hit: LSD",
+  "keys": [
+   "LSD"
+  ]
+ },
+ "scanner-hit:huhcat": {
+  "first_seen": "2026-09-15T05:18:17+00:00",
+  "count": 1,
+  "example": "scanner-hit: HUHCAT",
+  "keys": [
+   "HUHCAT"
   ]
  }
 }
