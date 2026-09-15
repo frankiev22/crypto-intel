@@ -122,18 +122,47 @@ def _load():
     return safeload.load_json(REG)
 
 
+# WHO CALLED. A beat proves a code path ran, not that the SYSTEM ran it.
+# On 2026-09-14 a hand-run sweep beat paper.sweep and put this registry back to
+# ok for twelve hours while the scheduled collector still never called it; on
+# 9/15 a killed ad-hoc full pass did the same for watchlist.sweep. A registry
+# turned green by manual runs is the quiet-period failure one level up. So each
+# beat records its origin and staleness is judged ONLY on unattended beats: the
+# GitHub runner, or the scheduled task, which sets CRYPTO_ORIGIN=scheduled on
+# every staged command. Anything else is "manual" - shown, never counted.
+UNATTENDED = ("runner", "scheduled")
+
+
+def origin():
+    if os.environ.get("GITHUB_ACTIONS"):
+        return "runner"
+    return os.environ.get("CRYPTO_ORIGIN") or "manual"
+
+
 def beat(name, n=1, detail=None):
     """Record that `name` just fired, live. Never raises - a health probe that
     can break the pass it is measuring is worse than no probe."""
     try:
         reg = _load()
         now = int(time.time())
+        at = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+        who = origin()
         cur = reg.get(name) or {}
-        reg[name] = {"last_ts": now,
-                     "last_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-                     "count": (cur.get("count") or 0) + n,
-                     "first_ts": cur.get("first_ts") or now,
-                     "detail": detail}
+        new = {"last_ts": now, "last_at": at,
+               "count": (cur.get("count") or 0) + n,
+               "first_ts": cur.get("first_ts") or now,
+               "detail": detail, "last_origin": who}
+        if who in UNATTENDED:
+            new["last_unattended_ts"], new["last_unattended_at"] = now, at
+        elif "last_origin" not in cur and cur.get("last_ts"):
+            # A row from before origins were recorded. Its origin is unknowable,
+            # so it is carried as unattended once; every beat after is classified.
+            new["last_unattended_ts"] = cur.get("last_ts")
+            new["last_unattended_at"] = cur.get("last_at")
+        elif cur.get("last_unattended_ts"):
+            new["last_unattended_ts"] = cur["last_unattended_ts"]
+            new["last_unattended_at"] = cur.get("last_unattended_at")
+        reg[name] = new
         # atomic, and refuses to write empty over a populated registry
         safeload.save_json(REG, reg)
         os.makedirs(LEDGER_DIR, exist_ok=True)
@@ -141,7 +170,8 @@ def beat(name, n=1, detail=None):
                             dt.datetime.now(dt.timezone.utc).strftime("%Y-%m") + ".jsonl")
         with open(path, "a", encoding="utf-8", newline="\n") as f:
             f.write(json.dumps({"name": name, "ts": now, "n": n,
-                                "detail": detail}, ensure_ascii=False) + "\n")
+                                "detail": detail, "origin": who},
+                               ensure_ascii=False) + "\n")
         return True
     except safeload.LoadFailed as e:
         # Ahead of the blanket handler: the registry is there but unreadable,
@@ -165,7 +195,12 @@ def status():
     out = []
     for name, (max_age_h, declared, basis, what) in sorted(COMPONENTS.items()):
         r = reg.get(name) or {}
-        last = r.get("last_ts")
+        # Judged on unattended beats only; a pre-origin row counts as it did.
+        last = r.get("last_unattended_ts") if "last_origin" in r else r.get("last_ts")
+        manual_h = None
+        if (r.get("last_origin") not in (None,) + UNATTENDED and r.get("last_ts")
+                and r.get("last_ts") != last):
+            manual_h = (now - r["last_ts"]) / 3600.0
         try:
             decl_ts = dt.datetime.strptime(
                 declared, "%Y-%m-%dT%H:%M:%SZ").replace(
@@ -187,7 +222,9 @@ def status():
                     "max_age_h": max_age_h, "count": r.get("count") or 0,
                     "declared": declared, "declared_h": declared_h,
                     "basis": basis, "what": what,
-                    "last_at": r.get("last_at")})
+                    "last_at": r.get("last_at"),
+                    "last_origin": r.get("last_origin"),
+                    "manual_age_h": manual_h})
     # Drift the other way: beating without being declared.
     for name in reg:
         if name not in COMPONENTS:
@@ -218,7 +255,9 @@ def line(st=None):
             else:
                 age = f"NEVER, {s['declared_h']:.0f}h since declared"
             ls.append(f"  {v.upper():<10} {s['name']:<22} {age}"
-                      + (f" (limit {s['max_age_h']}h)" if s["max_age_h"] else ""))
+                      + (f" (limit {s['max_age_h']}h)" if s["max_age_h"] else "")
+                      + (f" [manual beat {s['manual_age_h']:.1f}h ago - not counted]"
+                         if s.get("manual_age_h") is not None else ""))
     return "\n".join(ls)
 
 

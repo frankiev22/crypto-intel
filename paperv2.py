@@ -211,8 +211,11 @@ def close_entry(entry, price, depth, code, detail, elapsed_h):
     })
 
 
-def sweep(fetch_pair, verbose=True):
+def sweep(fetch_pair, verbose=True, should_stop=None):
     """Close every open v2 position, on EXACTLY v1's decision logic.
+
+    `should_stop` has the same contract as in paper.sweep: a position not
+    reached before the stage budget stays open and is counted as deferred.
 
     Calls paper.close_decision so the two ledgers cannot diverge in how they
     close. If they diverged, the comparison would be measuring the closer
@@ -221,8 +224,11 @@ def sweep(fetch_pair, verbose=True):
     """
     now = dt.datetime.now(dt.timezone.utc)
     stats = {"checked": 0, "closed": 0, "target": 0, "expiry": 0,
-             "unpriceable": 0, "still_open": 0}
+             "unpriceable": 0, "still_open": 0, "deferred": 0}
     for e in open_positions():
+        if should_stop is not None and should_stop():
+            stats["deferred"] += 1
+            continue
         stats["checked"] += 1
         try:
             t0 = dt.datetime.strptime(e["ts"], "%Y-%m-%dT%H:%M:%SZ").replace(
@@ -263,6 +269,9 @@ def sweep(fetch_pair, verbose=True):
         print(f"  [v2] {stats['checked']} open checked, {stats['closed']} closed "
               f"({stats['target']} target, {stats['expiry']} expiry, "
               f"{stats['unpriceable']} unpriceable), {stats['still_open']} still open")
+    if stats["deferred"]:
+        print(f"  [v2] {stats['deferred']} open positions NOT checked - stage budget "
+              f"reached; they stay open and the next sweep reaches them")
     return stats
 
 

@@ -576,11 +576,17 @@ def close_decision(entry, pair, elapsed_h, target_mult=None, min_depth=None,
     return ("hold", px, depth, None, "")
 
 
-def sweep(fetch_pair, verbose=True):
+def sweep(fetch_pair, verbose=True, should_stop=None):
     """Close every open position whose declared exit rule has been met.
 
     `fetch_pair(network, pair_address) -> pair or None`, injected so this stays
     testable without network and free of a circular import.
+
+    `should_stop() -> bool` is asked before each position. A staged run has a
+    hard kill behind its budget: a position not reached stays OPEN, is counted
+    as `deferred`, and the next sweep reaches it. The ledger is in entry order,
+    so the oldest positions - the ones nearest expiry - are visited first.
+    Unbudgeted callers (the GitHub runner) pass nothing and behave as before.
     """
     import datetime as _dt
     liveness.beat("paper.sweep")
@@ -590,8 +596,11 @@ def sweep(fetch_pair, verbose=True):
              and r.get("hash") not in closed_ids]
     now = dt.datetime.now(dt.timezone.utc)
     stats = {"checked": 0, "closed": 0, "target": 0, "expiry": 0,
-             "unpriceable": 0, "still_open": 0}
+             "unpriceable": 0, "still_open": 0, "deferred": 0}
     for e in opens:
+        if should_stop is not None and should_stop():
+            stats["deferred"] += 1
+            continue
         stats["checked"] += 1
         try:
             t0 = dt.datetime.strptime(e["ts"], "%Y-%m-%dT%H:%M:%SZ").replace(
@@ -636,6 +645,9 @@ def sweep(fetch_pair, verbose=True):
         print(f"  [paper] {stats['checked']} open checked, {stats['closed']} closed "
               f"({stats['target']} target, {stats['expiry']} expiry, "
               f"{stats['unpriceable']} unpriceable), {stats['still_open']} still open")
+    if stats["deferred"]:
+        print(f"  [paper] {stats['deferred']} open positions NOT checked - stage budget "
+              f"reached; they stay open and the next sweep reaches them")
     return stats
 
 

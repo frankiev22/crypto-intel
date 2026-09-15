@@ -202,7 +202,7 @@ def _graduated(pair_obj, fdv, liq, liq_quote, dex_id, depth=None):
     return fdv_cross, real_pool
 
 
-def sweep(fetch_pair, on_observation=None, verbose=True):
+def sweep(fetch_pair, on_observation=None, verbose=True, should_stop=None):
     """Re-check every active member. One call per contract, never batched.
 
     `fetch_pair(network, pair_address) -> pair dict or None` is injected so this
@@ -218,12 +218,18 @@ def sweep(fetch_pair, on_observation=None, verbose=True):
                           capped=False, error="state unreadable")
         return LAST_SWEEP
     liveness.beat("watchlist.sweep")
-    LAST_SWEEP.update(checked=0, graduated=0, retired=0, added=0, capped=False)
+    LAST_SWEEP.update(checked=0, graduated=0, retired=0, added=0, capped=False,
+                      deferred=0)
     if not state:
         return LAST_SWEEP
     now = _now()
     drop = []
     for ca, m in list(state.items()):
+        # Same contract as paper.sweep: a member not reached before the stage
+        # budget is left exactly as it is and re-checked by the next sweep.
+        if should_stop is not None and should_stop():
+            LAST_SWEEP["deferred"] += 1
+            continue
         # Added moments ago by this same pass's scan - we already have a fresh
         # read of it. Re-fetching costs a call and produces a trajectory row
         # over a ~60s gap, which is noise, not a trend.

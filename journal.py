@@ -280,7 +280,7 @@ def record_coverage(network, window, scanned, pass_score=70, passed=0):
 PASS_STATE = os.path.join(BASE, "data", ".pass_state.json")
 
 
-def pass_begin(network, stage="full", budget=None):
+def pass_begin(network, stage="full", budget=None, origin=None):
     """Claim the pass. Returns the previous pass's marker if it never finished."""
     stale = None
     try:
@@ -296,7 +296,7 @@ def pass_begin(network, stage="full", budget=None):
     safeload.save_json(PASS_STATE,
                        {"started_ts": int(time.time()), "network": network,
                         "stage": stage, "pid": os.getpid(),
-                        "call_budget": budget, "progress": {}},
+                        "call_budget": budget, "origin": origin, "progress": {}},
                        allow_empty=True)
     return stale
 
@@ -341,6 +341,7 @@ def pass_end(complete=True, reason=None, **counters):
            "ran_for_s": (int(time.time()) - started) if started else None,
            "complete": bool(complete), "stop_reason": reason,
            "call_budget": st.get("call_budget"),
+           "origin": st.get("origin"),
            "progress": prog}
     _append(COV, obj)
     try:
@@ -366,6 +367,7 @@ def record_aborted(stale, cause="killed - no clean exit"):
            "complete": False,
            "suspected_cause": (stale.get("unreadable") or cause),
            "call_budget": stale.get("call_budget"),
+           "origin": stale.get("origin"),
            "progress": prog,
            "last_phase": prog.get("phase"),
            "calls_made": prog.get("calls"),

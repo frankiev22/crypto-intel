@@ -67,6 +67,64 @@ import scanner, journal, track, notify, macro, sources, findings, resolve
 STAGE_SECONDS = float(os.environ.get('CRYPTO_STAGE_SECONDS', '155'))
 DEFAULT_STAGE_CALLS = None      # no fixed call count; see STAGE_SECONDS
 
+# THE KILL IS THE FIXED POINT, NOT THE BUDGET.
+#
+# 2026-09-15: --stage scan was killed at the sandbox cap under a 155s budget.
+# The budget was working - it is a deadline with per-call cost measured as it
+# runs, not the old 1.116s constant - but a stage does not stop the instant its
+# deadline passes. It finishes the row in hand (several calls, plus an on-chain
+# authority read the call budget never sees) and then does its bookkeeping.
+# Scan has overrun its deadline by up to 28s, and 155 + 28 is past 178. So the
+# deadline is derived from the kill, less 1.25x the worst overrun this stage
+# has actually recorded, and moves when latency does. --max-seconds, when given,
+# is a ceiling the calibration can only lower.
+KILL_S = float(os.environ.get("CRYPTO_KILL_S", "178"))
+MIN_RESERVE_S = 15.0
+MIN_BUDGET_S = 30.0
+
+
+def _recent_overruns(stage, lookback=20):
+    """(ran_for_s - budget_s) for this stage's most recent recorded passes."""
+    import glob, json
+    paths = sorted(glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                          "data", "coverage", "*.jsonl")))[-4:]
+    out = []
+    for p in paths:
+        try:
+            with open(p, encoding="utf-8") as f:
+                for line in f:
+                    try:
+                        r = json.loads(line)
+                    except ValueError:
+                        continue
+                    if r.get("kind") not in ("pass_complete", "pass_short"):
+                        continue
+                    if str(r.get("stage")) != str(stage):
+                        continue
+                    b = r.get("budget_s") or (r.get("progress") or {}).get("budget_s")
+                    ran = r.get("ran_for_s")
+                    if b and ran is not None:
+                        out.append(float(ran) - float(b))
+        except OSError:
+            continue
+    return out[-lookback:]
+
+
+def calibrated_budget(stage, ceiling, overruns=None):
+    """(seconds, basis). min(ceiling, KILL_S - reserve), floored at MIN_BUDGET_S."""
+    over = _recent_overruns(stage) if overruns is None else list(overruns)
+    if over:
+        worst = max(over)
+        reserve = max(MIN_RESERVE_S, 1.25 * worst)
+        why = f"worst overrun {worst:.0f}s in {len(over)} recorded {stage} passes"
+    else:
+        reserve = MIN_RESERVE_S
+        why = f"no recorded {stage} passes yet"
+    derived = max(MIN_BUDGET_S, KILL_S - reserve)
+    budget = min(float(ceiling), derived)
+    return budget, (f"{budget:.0f}s = min(ceiling {float(ceiling):.0f}s, kill "
+                    f"{KILL_S:.0f}s - reserve {reserve:.0f}s); {why}")
+
 import watchlist
 import news
 import paper
@@ -76,6 +134,39 @@ import liveness
 
 PASS_SCORE = 70
 JOURNAL_BATCH = 10
+
+# THE STAGED COMMAND LIST IS CODE, NOT ONLY A SKILL FILE.
+#
+# Until 2026-09-15 the hourly task ran scan/1/6/24/168 and nothing else, while
+# paper.sweep, paperv2.sweep, the unpriceable labeller and watchlist.sweep were
+# called only from one_pass() - the unstaged full pass, which the sandbox kills.
+# On the host they never ran. The GitHub runner was the only thing closing
+# positions, and when it stopped on 9/12 the paper log stopped with it; liveness
+# fired and escalated, and nobody acted. Declared, tested, never invoked.
+#
+# test_stages.py fails if any liveness component is unreachable from STAGES, or
+# if the skill file's commands drift from staged_commands().
+STAGES = ("scan", "sweep", "watchlist", "1", "6", "24", "168")
+STAGED_MAX_SECONDS = 110
+# What each stage can fire. Bookkeeping at the end of main() fires on every
+# invocation, whatever the stage.
+STAGE_FIRES = {
+    "scan": {"scan.observations", "fieldguard.check", "paper.open"},
+    "sweep": {"paper.sweep", "paper.close"},
+    "watchlist": {"watchlist.sweep", "milestone.graduated"},
+    "1": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
+    "6": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
+    "24": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
+    "168": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
+}
+EVERY_INVOCATION_FIRES = {"news.freshness", "detector.drift"}
+STAGE_STOPS = {}
+
+
+def staged_commands(net="solana"):
+    """The exact commands the scheduled task must run, in order."""
+    return [f"CRYPTO_ORIGIN=scheduled python3 collect.py {net} --stage {s} "
+            f"--max-seconds {STAGED_MAX_SECONDS}" for s in STAGES]
 
 
 def scan_stage(networks=("solana",), verbose=True):
@@ -161,6 +252,70 @@ def scan_stage(networks=("solana",), verbose=True):
     return total_seen, total_passed
 
 
+def _stage_stop():
+    return sources.over_budget(headroom=2)
+
+
+def _memo_fetch(fetch):
+    """One read per pool per stage, paced.
+
+    v1 and v2 hold many of the same pools - every arm-A position is in both. One
+    read serves both ledgers, so they close on the SAME price at the same
+    moment instead of on two reads seconds apart, and a staged sweep spends
+    roughly half the calls. A lookup that RAISED is not cached and is retried.
+    """
+    cache = {}
+
+    def f(chain, pair):
+        k = (chain, pair)
+        if k not in cache:
+            cache[k] = fetch(chain, pair)
+            sources.pace()
+        return cache[k]
+    return f
+
+
+def watchlist_stage(verbose=True):
+    """The approach band, re-checked. Its own stage so it runs on the host."""
+    try:
+        s = watchlist.sweep(sources.dexscreener_pair, verbose=verbose,
+                            should_stop=_stage_stop)
+        if (s or {}).get("deferred"):
+            STAGE_STOPS["watchlist"] = (f"time budget reached with {s['deferred']} "
+                                        f"members unchecked")
+    except Exception as e:
+        print(f"  watchlist sweep failed: {e}")
+
+
+def sweep_stage(verbose=True):
+    """Close the paper log - both ledgers - then label the unambiguously dead."""
+    fetch = _memo_fetch(sources.dexscreener_pair)
+    deferred = 0
+    try:
+        s1 = paper.sweep(fetch, verbose=verbose, should_stop=_stage_stop)
+        deferred += (s1 or {}).get("deferred", 0)
+        # v2 sweeps in the same stage, on the same shared close_decision and
+        # the same read of each pool, so the two ledgers close identically.
+        try:
+            import paperv2
+            s2 = paperv2.sweep(fetch, verbose=verbose, should_stop=_stage_stop)
+            deferred += (s2 or {}).get("deferred", 0)
+        except Exception as e:
+            print(f"  v2 sweep failed: {e}")
+    except Exception as e:
+        print(f"  paper sweep failed: {e}")
+    if deferred:
+        STAGE_STOPS["sweep"] = (f"time budget reached with {deferred} open "
+                                f"positions unchecked")
+    try:
+        _made, _left = paper.label_unpriceable(dry_run=False, verbose=verbose)
+        if _made:
+            print(f"  [paper] labelled {len(_made)} inferred total losses, "
+                  f"{len(_left)} left honestly unpriceable")
+    except Exception as e:
+        print(f"  paper labelling failed: {e}")
+
+
 def one_pass(networks=("solana",), verbose=True):
     total_seen, total_passed = scan_stage(networks, verbose=verbose)
     # APPROACH BAND, every pass. Tokens between $45k and $69k of FDV are the
@@ -169,37 +324,18 @@ def one_pass(networks=("solana",), verbose=True):
     # minutes. Costs Dexscreener calls only - it spends none of the scarce
     # GeckoTerminal budget. Runs before outcome scoring so a graduation is
     # claimed on the freshest possible read.
-    try:
-        watchlist.sweep(sources.dexscreener_pair, verbose=verbose)
-    except Exception as e:
-        print(f"  watchlist sweep failed: {e}")
+    watchlist_stage(verbose=verbose)
     # CLOSE THE PAPER LOG. A log of open positions is a wishlist; the losers
     # are what make it evidence. Every position that has met its declared exit
     # rule is closed here, whatever the number says, including to zero.
-    try:
-        paper.sweep(sources.dexscreener_pair, verbose=verbose)
-        # v2 sweeps in the same pass, on the same shared close_decision, so the
-        # two ledgers close on identical logic at the same moment.
-        try:
-            import paperv2
-            paperv2.sweep(sources.dexscreener_pair, verbose=verbose)
-        except Exception as e:
-            print(f"  v2 sweep failed: {e}")
-    except Exception as e:
-        print(f"  paper sweep failed: {e}")
+    sweep_stage(verbose=verbose)
     # LABEL THE UNAMBIGUOUSLY DEAD. A close whose pool was last seen rugged or
     # dead holding ~$0 did not have an unknown outcome, and leaving 65% of
     # closes unmeasurable would hand 2026-09-13 a sample too thin to read.
     # Asserts a multiple of ZERO from liquidity - never the last-known price,
     # which on these pools medians 0.967x and would manufacture wins. Appended
     # as its own record type, so the log is still derivable both ways.
-    try:
-        _made, _left = paper.label_unpriceable(dry_run=False, verbose=verbose)
-        if _made:
-            print(f"  [paper] labelled {len(_made)} inferred total losses, "
-                  f"{len(_left)} left honestly unpriceable")
-    except Exception as e:
-        print(f"  paper labelling failed: {e}")
+    # (the labelling now runs inside sweep_stage, straight after the closes)
     try:
         track.score_all(verbose=verbose)
     except Exception as e:
@@ -253,6 +389,18 @@ def main():
         # GITHUB_ACTIONS is set by Actions itself, so the hosted runner keeps
         # its unlimited full pass unchanged.
         pass
+    if not (stage in STAGES or stage in ("full", "outcomes") or stage.isdigit()):
+        # A typo in the skill file used to fall through to one_pass(): an
+        # unstaged full pass, which the sandbox kills. Refuse it instead.
+        print(f"  unknown stage {stage!r}; known: {', '.join(STAGES)}, outcomes, full")
+        return 2
+    os.environ["CRYPTO_ORIGIN"] = liveness.origin()
+    if max_seconds and not os.environ.get("GITHUB_ACTIONS"):
+        try:
+            max_seconds, _basis = calibrated_budget(stage, max_seconds)
+            print(f"  budget calibration: {_basis}")
+        except Exception as e:
+            print(f"  budget calibration failed, keeping {max_seconds:.0f}s: {e}")
     sources.set_time_budget(max_seconds, call_cap=max_calls)
     if max_seconds:
         print(f"  budget: {max_seconds:.0f}s wall"
@@ -270,7 +418,8 @@ def main():
     # Claim the pass before doing any work. If the previous one left its marker
     # behind it was killed, and that hour needs to be on the record as broken
     # rather than quiet.
-    stale = journal.pass_begin(",".join(nets), stage, budget=max_calls)
+    stale = journal.pass_begin(",".join(nets), stage, budget=max_calls,
+                               origin=os.environ.get("CRYPTO_ORIGIN"))
     if stale:
         ab = journal.record_aborted(stale)
         print(f"  PREVIOUS PASS NEVER FINISHED: stage={ab['stage']} "
@@ -284,6 +433,12 @@ def main():
             if stage == "outcomes":
                 track.score_all()
                 journal.pass_note(phase="outcomes", calls=sources.calls_made())
+            elif stage == "sweep":
+                sweep_stage()
+                journal.pass_note(phase="sweep", calls=sources.calls_made())
+            elif stage == "watchlist":
+                watchlist_stage()
+                journal.pass_note(phase="watchlist", calls=sources.calls_made())
             elif stage.isdigit():
                 track.score_horizon(int(stage))
                 journal.pass_note(phase=f"{stage}h", calls=sources.calls_made())
@@ -400,10 +555,12 @@ def main():
         # Completeness is RECORDED, not inferred. A budgeted stop is a
         # deliberate short pass; a kill leaves the marker for the next run.
         _stops = {k: v for k, v in track.LAST_STOP.items()}
+        _stops.update(STAGE_STOPS)
         _short = bool(_stops) or sources.over_budget()
         journal.pass_end(
             complete=not _short,
-            reason=("; ".join(f"{k}h: {v}" for k, v in _stops.items())
+            reason=("; ".join(f"{k}{'h' if isinstance(k, int) else ''}: {v}"
+                              for k, v in _stops.items())
                     if _stops else ("call budget spent" if _short else None)),
             calls=sources.calls_made(), phase=stage,
             budget_s=max_seconds, per_call_s=sources.per_call_estimate(),
