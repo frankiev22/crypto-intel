@@ -197,7 +197,11 @@ def scan_stage(networks=("solana",), verbose=True):
             print(f"  [{net}] scan failed after {done[0]} journalled: {e}")
         _flush()          # keep the tail, and anything a raise left behind
         n = done[0]
+        # `passed` is the recorded series (score, unchanged). What is SENT to a
+        # human is `surfaced`: grade, so a live or unverified authority can never
+        # go out as a pass. PRECOMMIT_surface_grade.md.
         passed = [r for r in rows if r["score"] >= PASS_SCORE]
+        surfaced = [r for r in rows if r.get("grade", 0) >= PASS_SCORE]
         # FIELD GUARD. Three silent-drop bugs in two days - vol_to_liq/vol_burst,
         # the news freshness check, and mint/freeze authority - all the same
         # shape: a field computed and never added to journal.record()'s
@@ -232,11 +236,12 @@ def scan_stage(networks=("solana",), verbose=True):
         total_seen += n
         total_passed += len(passed)
         if verbose:
-            print(f"  [{net}] {n} journalled, {len(passed)} cleared {PASS_SCORE}")
-        if passed:
+            print(f"  [{net}] {n} journalled, {len(passed)} scored {PASS_SCORE}+, "
+                  f"{len(surfaced)} surfaced (grade {PASS_SCORE}+, authorities verified)")
+        if surfaced:
             # the same token often shows up as several pools; one line each
             seen, uniq = set(), []
-            for r in passed:
+            for r in surfaced:
                 k = r.get("addr") or r.get("name")
                 if k in seen:
                     continue
@@ -246,8 +251,9 @@ def scan_stage(networks=("solana",), verbose=True):
             noun = "token" if len(uniq) == 1 else "tokens"
             notify.send(
                 content=(f"**{len(uniq)} new {chain} {noun}** passed the launch filter\n"
-                         f"_Scored {PASS_SCORE}+ of 100 on liquidity, real turnover and "
-                         f"buy/sell balance. This is a screen, not a recommendation._"),
+                         f"_Graded {PASS_SCORE}+ of 100 on liquidity, real turnover and "
+                         f"buy/sell balance, with mint and freeze authority checked and "
+                         f"revoked. This is a screen, not a recommendation._"),
                 embeds=[notify.candidate_embed(r) for r in uniq[:8]])
     return total_seen, total_passed
 

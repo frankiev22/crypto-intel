@@ -206,7 +206,15 @@ for k, val in _env.items():
     else:
         os.environ[k] = val
 
-section("8. the skill file runs exactly staged_commands()")
+section("8. the scan loop obeys the stage deadline, not only its own constant")
+import scanner
+_scan_src = inspect.getsource(scanner.scan)
+check("scanner.scan checks the stage deadline every row",
+      "S.seconds_left()" in _scan_src and "row_s.append(" in _scan_src)
+check("...and still keeps its own ceiling for unbudgeted callers",
+      "time.time() - started > budget" in _scan_src)
+
+section("9. the skill file runs exactly staged_commands()")
 SKILL = os.environ.get("CRYPTO_SKILL_FILE") or os.path.join(
     os.path.expanduser("~"), "Documents", "Claude", "Scheduled",
     "crypto-collect-hourly", "SKILL.md")

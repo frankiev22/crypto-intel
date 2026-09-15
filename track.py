@@ -189,7 +189,13 @@ def score_horizon(horizon_h, limit=None, verbose=True):
     queue = journal.pending(horizon_h)
     todo = queue[:limit]
     if verbose:
-        extra = f", {len(queue) - len(todo)} deferred to the next pass" if len(queue) > len(todo) else ""
+        # A STANDING QUEUE, NOT A GROWTH RATE. On 2026-09-14 four passes read this
+        # number as "growing faster than it drains" while it fell 1,882 -> 989:
+        # rows unscored PENDING_WINDOW_H after coming due leave the queue unscored,
+        # so it shrinks by expiry, not by work. Say which.
+        extra = (f", {len(queue) - len(todo)} not reached this pass (standing queue; "
+                 f"rows still unscored {journal.PENDING_WINDOW_H:.0f}h after coming due "
+                 f"age out unscored)") if len(queue) > len(todo) else ""
         print(f"  {horizon_h}h horizon: {len(todo)} pairs due{extra}")
     done = 0
     fallbacks = 0
@@ -420,7 +426,9 @@ def score_horizon(horizon_h, limit=None, verbose=True):
             "horizon-drift", f"{horizon_h}h",
             f"{horizon_h}h horizon checked at a median {med_drift:.2f}x its label "
             f"({med_drift * horizon_h:.2f}h elapsed) across {len(elapsed_seen)} rows",
-            detail=(f"{len(queue) - len(todo)} rows were deferred to a later pass. "
+            detail=(f"{len(queue) - len(todo)} rows were not reached this pass; a row "
+                    f"still unscored {journal.PENDING_WINDOW_H:.0f}h after coming due "
+                    f"ages out unscored. "
                     f"Nominal horizon_h is a label, not a measurement - read "
                     f"actual_elapsed_h instead. Anything bucketed on the label "
                     f"is measuring a variable window."))

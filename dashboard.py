@@ -123,6 +123,23 @@ def addr(a):
 
 
 # --------------------------------------------------------------------------
+def graduated_split(crossings, now, days=7):
+    """(graduated, fdv_only), newest first.
+
+    A GRADUATION NEEDS A POOL, NOT JUST A PRICE. On 2026-09-15, 21 of the 31
+    live graduation claims were FDV-only crossings - real_pool False, under $1k
+    of exit depth - including Minecraft at 05:10Z: FDV $135,771 on $0.49 of
+    liquidity and $0.26 of exit depth. That is the price of a drained pool read
+    as legitimacy, the Grogu shape again. The claim keeps both signatures by
+    design; this surface shows only the one that means an exit exists, and
+    counts the rest where they can be seen.
+    """
+    recent = [c for c in crossings if (c.get("crossed_ts") or 0) > now - days * 86400]
+    recent.sort(key=lambda c: -(c.get("crossed_ts") or 0))
+    return ([c for c in recent if c.get("real_pool")],
+            [c for c in recent if not c.get("real_pool")])
+
+
 def gather():
     import journal
     import clusters
@@ -152,15 +169,13 @@ def gather():
         data["warnings"].append(f"clusters failed: {type(e).__name__}")
 
     # 2. graduated (live only - the backfill is not a detection) + approaching
-    grad = []
+    grad, fdv_only = [], []
     try:
-        for c in milestones.live_crossings("graduated"):
-            if (c.get("crossed_ts") or 0) > now - 7 * 86400:
-                grad.append(c)
-        grad.sort(key=lambda c: -(c.get("crossed_ts") or 0))
+        grad, fdv_only = graduated_split(milestones.live_crossings("graduated"), now)
     except Exception as e:
         data["warnings"].append(f"graduated failed: {type(e).__name__}")
     data["graduated"] = grad
+    data["fdv_only"] = fdv_only
     try:
         st = watchlist._load()
         appr = sorted(st.values(), key=lambda m: -(m.get("last_fdv") or 0))
@@ -351,7 +366,8 @@ actionable at all.</p>""")
     # observed on a curve at all, so the flag could not have witnessed a
     # graduation. Only these milestone crossings did.
     P.append('<p class="sub">Graduated = a contract tracked in the approach band that '
-             'later crossed, observed by us. Not a venue label. '
+             'later crossed into a real two-sided pool with exit depth, observed by us. '
+             'Not a venue label, and not an FDV print on its own. '
              'Post-graduation is the one door still open &mdash; launch sniping '
              'is closed (>50% of tokens are taken in the genesis block, sub-400ms). '
              f'Approaching = FDV between {usd(lo)} and {usd(hi)}. Newest first.</p>')
@@ -368,6 +384,10 @@ actionable at all.</p>""")
         P.append('<p class="empty">No live graduations recorded in the last 7 days. '
                  '(The 1,329 historical mcap crossings are a one-off backfill, not '
                  'detections, and are excluded.)</p>')
+    if d.get("fdv_only"):
+        P.append(f'<p class="note">Not counted as graduated: {len(d["fdv_only"])} '
+                 'FDV-only crossings in 7 days with no real pool behind them. A price '
+                 'on a pool nobody can sell into is not a graduation.</p>')
     if d["approaching"]:
         P.append('<div class="card"><div class="chead"><span class="root">Approaching</span>'
                  f'<span class="tag">{len(d["approaching"])} on the watchlist</span></div>')

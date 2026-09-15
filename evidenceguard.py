@@ -193,6 +193,22 @@ def audit_substitutions(paths=None):
         for anc in ast.walk(tree):
             if isinstance(anc, ast.Assign) and isinstance(anc.targets[0], ast.Name):
                 assigned[id(anc.value)] = anc.targets[0].id
+        # A BoolOp that only feeds an if / while / assert / ternary / filter TEST
+        # is a condition: its value is read for truth and never stored where a
+        # measurement is named. `if row.get("can_mint") or row.get("can_freeze"):`
+        # asks whether EITHER authority is live (scanner.surface_grade,
+        # 2026-09-15) and was flagged as mint "substituted" by freeze.
+        conditions = set()
+        for anc in ast.walk(tree):
+            tests = []
+            if isinstance(anc, (ast.If, ast.While, ast.Assert, ast.IfExp)):
+                tests = [anc.test]
+            elif isinstance(anc, ast.comprehension):
+                tests = list(anc.ifs)
+            for t in tests:
+                for sub in ast.walk(t):
+                    if isinstance(sub, ast.BoolOp):
+                        conditions.add(id(sub))
         for node in ast.walk(tree):
             measured = fallback = None
             if isinstance(node, ast.IfExp):
@@ -203,6 +219,8 @@ def audit_substitutions(paths=None):
                     measured = sorted(body & names)
                     fallback = sorted(_names(node.orelse) - set(measured))
             elif isinstance(node, ast.BoolOp) and isinstance(node.op, ast.Or):
+                if id(node) in conditions:
+                    continue
                 # `if A is None or A < FLOOR` is a CONDITION, not a value. A
                 # substitution has to produce a value where a measurement was
                 # expected, so anything built out of comparisons is not one.

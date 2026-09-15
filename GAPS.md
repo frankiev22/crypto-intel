@@ -473,3 +473,106 @@ depth floor ($1,000) was sized for a $100 exit, not for a 5x one. Both prints
 are genuine, since two independent sweeps saw them minutes apart. What they
 cannot show is what a trade would have realised. Same reasoning: disclosed, not
 changed mid-run.
+
+# Liveness: the registry was right, and it was still ignored (2026-09-15)
+
+`paper.sweep` and `watchlist.sweep` ran only inside the unstaged full pass,
+which the host sandbox kills. The GitHub runner was their only caller, so they
+went dark when it stopped on 9/12. The registry caught this. It failed in three
+ways anyway:
+
+1. **It fired and escalated, and nobody acted.** `watchlist.sweep`: 91 stale
+   findings and 4 duration escalations. `paper.sweep`: 55 findings and 3
+   escalations (`data/findings/_seen.json`). The hourly task is told to stay
+   silent, so the only readers were Discord and the findings file.
+2. **It cried wolf first.** All 104 stale findings for these two components on
+   9/10–9/11 were false. The runner had swept within 12h, but a runner beat
+   reaches this machine only when the runner's commits are merged. The 42 on
+   9/14–9/15 were real, and by then the alarm had taught its readers to ignore
+   it.
+3. **A manual run silenced it.** The 9/14 20:04Z hand sweep put `paper.sweep`
+   back to ok for 12h. A killed ad-hoc full pass at 9/15 03:12Z did the same
+   for both components. Meanwhile the staged list still called neither.
+
+**Fixed (57e4608):**
+- (3): every beat records its origin, and staleness is judged on unattended
+  beats only.
+- (2), for these components: the host now runs `--stage sweep` and
+  `--stage watchlist` itself every hour, so their health no longer depends on
+  unmerged runner commits.
+
+**Not fixed:**
+- The registry still cannot see beats from a runner whose commits have not been
+  merged, so any component that only the runner exercises is still exposed.
+- (1) is a gap in how people act on alerts, not in the code.
+
+# 168h: a retired horizon still spends a stage every hour
+
+`track.py` declares 168h retired (`HORIZONS_RETIRED`), and `score_all` skips
+it. But `--stage 168` calls `score_horizon(168)` directly, which bypasses the
+retirement, so it still spends ~155s and ~100 calls every hour. It resolves at
+2.7–5.1% (n=9,242).
+
+**The contradiction, settled.** From 9/14 18:00Z to ~04:50Z on 9/15:
+
+| | rows |
+|---|---|
+| arrived into the 168h window | 1,120 |
+| scored | 771 |
+| aged out of the 18h pending window unscored | 1,618 |
+| queue | 2,095 → 826 |
+
+(2,095 + 1,120 − 771 − 1,618 = 826.) Both readings were true. Per pass,
+arrivals did outrun scoring. Across the day, the queue fell by expiry, not by
+drain. The collector's "N deferred to the next pass" is a standing queue, not a
+growth rate, and most of those rows are never reached.
+
+**Recommendation, not action:** stop computing it.
+
+# Two three-minute targets whose pools were drained ten minutes later (2026-09-15)
+
+The first unattended sweep closed two positions in both ledgers, each 2m49s
+after entry:
+- **Oiled** (`cF343mQ4vkgBuaB2Q4BN4HSbNuxfqcHr292CtbKzZhv`) at 2.918x, on $2,973
+  of quote depth.
+- **titcoin** (`615SfRNhtqQzM2XzMscSpeq4tNtteq3XuDpQG2AAQyWY`) at 3.353x, on
+  $2,000.
+
+Nine minutes later, at 05:17:58Z:
+- Oiled's entered pool held $0.67. GeckoTerminal's token read, $33,856, is a
+  different pool.
+- titcoin's pool held $0.74 on Dexscreener and $0.28 on GeckoTerminal. The two
+  sources agree on price.
+
+Both prints were real, and both passed the depth gate. Both were a pump before a
+pull. The exits they record, $292 and $335, are ~10% and ~17% of a quote side
+that was gone minutes later.
+
+This is the two-minute-target gap above, now with its ending attached. Three of
+v1's nine gated wins closed within three minutes of entry: OPAI, Oiled and
+titcoin.
+
+| v1 | with them | without them |
+|---|---|---|
+| measured | 9/76 = 11.84% [6.36, 21.00] | 6/73 = 8.22% [3.82, 16.79] |
+| + inferred losses | 9/123 = 7.32% [3.90, 13.32] | 6/120 = 5.00% [2.31, 10.48] |
+
+Reported both ways, and not changed mid-run.
+
+# "Graduated" on the dashboard meant an FDV print, not a pool (fixed 2026-09-15)
+
+A graduation claim fires on `fdv_cross OR real_pool`, and both signatures are
+recorded by design. The dashboard listed every live claim without reading
+`real_pool`. The result: 21 of 31 claims on record, and 17 of the 24 in the last
+seven days, were shown as graduations with no real pool behind them. Most of
+those pools held under $1. The first unattended claim, Minecraft
+(`4cUCNc1q2fadRdhDgyHpRR7trj63NFDFBebzVTd9zNTG`, 05:10:55Z), was FDV $135,771 on
+$0.49 of liquidity and $0.26 of exit depth. Both sources agree on the price and
+on a dead pool.
+
+The fix is at the surface: `dashboard.graduated_split` shows only `real_pool`
+claims and counts the rest beside them as not graduated. Claim records are
+unchanged. The stage is left in the
+list because removing a Claude-side stage is not mine to do. To remove it, take
+`"168"` out of `collect.STAGES` and delete the matching skill-file line in the
+same change; `test_stages.py` checks both.

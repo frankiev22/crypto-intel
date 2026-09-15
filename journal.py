@@ -591,6 +591,8 @@ def record(rows, network, pass_score=70):
             # A non-attempt is a fact and it gets persisted like any other.
             "authorities_checked": r.get("authorities_checked"),
             "authorities_skipped": r.get("authorities_skipped"),
+            # What was SHOWN, beside what was scored. PRECOMMIT_surface_grade.md.
+            "grade": r.get("grade"), "grade_label": r.get("grade_label"),
             # THE PARALLEL V2 ARM, computed every pass and dropped by this very
             # whitelist for 14 hours on 2026-09-10/11 - the fourth field lost
             # this way, after vol_to_liq, vol_burst and the news NameError.

@@ -151,6 +151,24 @@ check("`if A is None or A < FLOOR` is a condition, not a substitution",
       EG.audit_substitutions([write("cond.py", COND)]) == [],
       str(EG.audit_substitutions([write("cond.py", COND)])))
 
+IFOR = """
+def grade(row):
+    if row.get("can_mint") or row.get("can_freeze"):
+        return 0
+    return 1
+"""
+check("`if A or B` on two measurements is a condition, not a substitution",
+      EG.audit_substitutions([write("ifor.py", IFOR)]) == [],
+      str(EG.audit_substitutions([write("ifor.py", IFOR)])))
+VALOR = """
+def pick(row):
+    live = row.get("can_mint") or row.get("can_freeze")
+    return live
+"""
+check("...but the same `A or B` STORED as a value is still flagged",
+      len(EG.audit_substitutions([write("valor.py", VALOR)])) == 1,
+      str(EG.audit_substitutions([write("valor.py", VALOR)])))
+
 DEFAULT = """
 def f(liq_quote):
     q = liq_quote or 0

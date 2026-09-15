@@ -169,7 +169,26 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
     started = time.time()
     LAST_SCAN.update(pools=len(pools), enriched=0, failed=0, budget_hit=False)
     rows = []
+    row_s, _t_prev = [], None       # measured cost of a row, this pass
     for i, p in enumerate(pools):
+        # THE STAGE DEADLINE, NOT ONLY THIS FUNCTION'S OWN CONSTANT. On
+        # 2026-09-15 the unattended scan enriched for ~140s under a 110s stage
+        # budget, because this loop only knew SCAN_BUDGET_S (150); it ran 164s
+        # against a ~178s kill. Stop when there is not time for another row of
+        # what rows have actually cost this pass. No deadline (the runner) means
+        # no change.
+        if _t_prev is not None:
+            row_s.append(time.time() - _t_prev)
+        _t_prev = time.time()
+        _left = S.seconds_left()
+        _row = (sorted(row_s)[int(0.75 * (len(row_s) - 1))] if row_s
+                else 3 * S.per_call_estimate())
+        if _left is not None and _left <= 1.5 * _row:
+            LAST_SCAN["budget_hit"] = True
+            if verbose:
+                print(f"  stage deadline: {_left:.0f}s left and a row costs ~{_row:.1f}s "
+                      f"- stopping after {i}/{len(pools)} pools, keeping what we have")
+            break
         if time.time() - started > budget:
             LAST_SCAN["budget_hit"] = True
             if verbose:
@@ -305,6 +324,13 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
             except Exception as e:
                 row["authorities_error"] = f"{type(e).__name__}"
 
+        # WHAT SURFACES IS THE GRADE, NOT THE SCORE. PTN scored 100 on 2026-09-14
+        # with mint AND freeze authority live and went out as "scored 100". The
+        # score is left exactly as the scorer made it - v1's pinned gate and v2's
+        # B_high/B_low split both read it - and every human-facing surface reads
+        # `grade` instead. PRECOMMIT_surface_grade.md.
+        row["grade"], row["grade_label"] = surface_grade(row)
+
         # FORWARD PAPER LOG. The one place in this codebase where a decision is
         # recorded with no knowledge of what happens next. Every retrospective
         # finding here has died of leakage - a feature read after the outcome
@@ -352,26 +378,48 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
         if on_row:
             on_row(row)          # journal NOW, not after the loop
         S.pace()
-    rows.sort(key=lambda r: r["score"], reverse=True)
+    rows.sort(key=lambda r: (r.get("grade", 0), r["score"]), reverse=True)
     return rows
 
 
+# PASS_SCORE - 1 (collect.PASS_SCORE is 70), so an unverified contract can never
+# "pass the launch filter". Derived from the existing constant, not tuned.
+GRADE_UNVERIFIED_CEILING = 69
+LABEL_TRAP = "TRAP - authority live"
+LABEL_UNVERIFIED = "authorities unverified"
+
+
+def surface_grade(row):
+    """(grade, label): the only number a human is shown. Never changes `score`.
+
+    Live mint or freeze authority is a capability, not a statistic - grade 0.
+    Unknown authority (never checked, or the check failed) is capped below the
+    pass line. Both revoked: the grade is the score.
+    """
+    score = row.get("score") or 0
+    if row.get("can_mint") or row.get("can_freeze"):
+        return 0, LABEL_TRAP
+    if row.get("can_mint") is None or row.get("can_freeze") is None:
+        return min(score, GRADE_UNVERIFIED_CEILING), LABEL_UNVERIFIED
+    return score, None
+
+
 def report(rows, min_score=70, show=10):
-    passed = [r for r in rows if r["score"] >= min_score]
+    passed = [r for r in rows if r.get("grade", 0) >= min_score]
     print(f"\n{len(rows)} scanned -> {len(passed)} cleared {min_score}\n")
     for r in passed[:show]:
-        print(f"  [{r['score']:3d}] {r['name']:<14} liq {r['liq']:>10,.0f}  "
+        print(f"  [{r.get('grade', 0):3d}] {r['name']:<14} liq {r['liq']:>10,.0f}  "
               f"24h vol {r['v24']:>12,.0f}  {r['age_h']:.1f}h  1h {r['chg_h1']:+.1f}%")
         print(f"        {', '.join(r['reasons'])}")
         if r["flags"]: print(f"        WARN: {'; '.join(r['flags'])}")
         print(f"        {r['url']}")
     if not passed:
         print("  Nothing cleared the bar. That is the normal result and it is the point.")
-        near = [r for r in rows if r["score"] >= min_score - 20][:5]
+        near = [r for r in rows if r.get("grade", 0) >= min_score - 20][:5]
         if near:
             print(f"\n  Closest misses:")
             for r in near:
-                print(f"   [{r['score']:3d}] {r['name']:<14} rejected: {r['flags'][0] if r['flags'] else '-'}")
+                print(f"   [{r.get('grade', 0):3d}] {r['name']:<14} rejected: {r['flags'][0] if r['flags'] else '-'}")
     return passed
 
 if __name__ == "__main__":
