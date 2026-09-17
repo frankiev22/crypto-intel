@@ -94,6 +94,15 @@ fees. Any path that depends on a track record has nothing to sell yet.
     by construction. **Before quoting any duration, state the sampling interval
     and show it is shorter than what you are measuring.** When Frank's lived
     experience contradicts a measurement, the measurement is the suspect.
+14. ⛔ **A/B measurements on live traffic must run SIMULTANEOUSLY, never in
+    sequence.** Memecoin activity is bursty, so two samples minutes apart are
+    two different populations. Measuring the filtered and unfiltered Helius
+    streams back-to-back made the *filtered* stream look 22% busier than the
+    unfiltered baseline — an impossible result that only resolved when four
+    subscriptions ran concurrently on the same traffic (`docs/LIQUIDITY.md` §7).
+    **If you are comparing two conditions, open both at once and share a start
+    barrier.** Same family as rule 13: a measurement taken at the wrong moment
+    does not describe the moment you care about.
 12. ⚠️ **Any script hitting a Cloudflare-fronted API must set a `User-Agent`.**
     Python's default `Python-urllib/3.x` is blocked with a bare `403 error code:
     1010`, which looks exactly like an auth failure and is not. `sources.py:12`
@@ -142,6 +151,7 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
 | topic | file |
 |---|---|
 | ⭐ **the flagship experiment** — pre-launch social signal | `docs/PRELAUNCH_SIGNAL.md` |
+| ⭐ **liquidity: what to trust, and the plan to replace `liq`** | `docs/LIQUIDITY.md` |
 | the 1M tracker, crossing rates, real-time architecture | `docs/TRACKER_SCOPING.md` (**§5c supersedes §5b**) |
 | buyer and creator rules, rejected ideas | `docs/RULES.md` (§B buyer, §C creator, §O observations) |
 | standing reporting rules | `RULES.md` (root — different file, do not confuse) |
