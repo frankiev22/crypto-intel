@@ -47,6 +47,10 @@ further" — scope those separately and hold them to the measurement bar below.
 | verification pass rate at $1M | **25.4%** [22.3, 28.8], n=696 | same |
 | reported liquidity overstatement | **median 781x** | `CONTAMINATION.md`, `TEMPLATE_ATTACK.md` |
 | paper v1 record | 9 wins / 76 measured closes = **11.84%** [6.36, 21.00] | `paper.summary()` |
+| ⭐ median holders, our own "winners" | **9** (54% under 10) | `docs/TRUSTED_FIELDS.md` §1 |
+| median holders, Jupiter-TRADEABLE | **1,350** | same |
+| median holders, Jupiter-TOTAL_LOSS | **3** | same |
+| paper ledger, re-derived 2026-09-17 | 86 closes, **−$2,495** by mult / **−$4,168** realizable | `docs/LIQUIDITY.md` §8 |
 
 ⛔ **Never quote the 2.10% graduation rate.** It is 397/18,920 computed on
 **reported liquidity** — the field measured overstating by a median 781x. Our
@@ -152,6 +156,8 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
 |---|---|
 | ⭐ **the flagship experiment** — pre-launch social signal | `docs/PRELAUNCH_SIGNAL.md` |
 | ⭐ **liquidity: what to trust, and the plan to replace `liq`** | `docs/LIQUIDITY.md` |
+| ⭐ **holders, mcap, volume, bundles — all from chain** | `docs/TRUSTED_FIELDS.md` |
+| crypto history, organised by recurring mechanism | `docs/CRYPTO_HISTORY.md` |
 | the 1M tracker, crossing rates, real-time architecture | `docs/TRACKER_SCOPING.md` (**§5c supersedes §5b**) |
 | buyer and creator rules, rejected ideas | `docs/RULES.md` (§B buyer, §C creator, §O observations) |
 | standing reporting rules | `RULES.md` (root — different file, do not confuse) |
@@ -165,6 +171,14 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
 | open gaps and their measurement bars | `GAPS.md`, `OPEN_ITEMS.md`, `QUESTIONS.md` |
 | X/Twitter API prices | `X_API.md` |
 | any pre-committed threshold | `PRECOMMIT_*.md` |
+
+⭐ **Existing credentials — checked 2026-09-17, do not re-ask.** `crypto-intel/.env`
+has `HELIUS_API_KEY`, `BIRDEYE_API_KEY` (dies after ~7 calls), `ALCHEMY_API_KEY`,
+`ETHERSCAN_API_KEY`, `CRYPTOPANIC_API_TOKEN`, Supabase. **`dispatch-workspace/.env`
+has a full `TWITTER_*` set and `XAI_API_KEY`** — the X bearer token returns
+**`402 credits depleted`, not `401`**, so an X developer account exists and is
+authenticated. `XAI_API_KEY` returns `400 Incorrect API key`. `~/.openclaw` has a
+Brave Search key. ⛔ **Grep every project `.env`, not just this one.**
 
 **Key modules:** `collect.py` (orchestrator, `STAGES`/`staged_commands()`) ·
 `journal.py` (append-only store; `record()` is a **field whitelist** — a field

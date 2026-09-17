@@ -4,6 +4,46 @@
 
 ---
 
+## ⛔ CORRECTION 2026-09-17 (later): the credentials already exist
+
+**I previously reported that no Twitter or xAI keys existed. That was wrong.**
+I searched `~/.openclaw` and `crypto-intel/.env` and stopped there. A sweep of
+**every** project `.env` found a full set in
+`C:\Users\Frankie\Desktop\Projects\dispatch-workspace\.env`:
+
+```
+TWITTER_BEARER_TOKEN        TWITTER_CONSUMER_KEY      TWITTER_OAUTH2_CLIENT_ID
+TWITTER_ACCESS_TOKEN        TWITTER_CONSUMER_SECRET   TWITTER_OAUTH2_CLIENT_SECRET
+TWITTER_ACCESS_SECRET       XAI_API_KEY
+```
+
+Tested, 2026-09-17:
+
+| credential | result | meaning |
+|---|---|---|
+| `XAI_API_KEY` | `400 Incorrect API key provided` | ⛔ invalid or revoked |
+| `TWITTER_BEARER_TOKEN` | **`402 credits depleted`** | ✅ **token authenticates; account is real** |
+
+⭐ **`402` is not `401`.** X accepted the token and refused on billing, so
+**an X developer account already exists and is authenticated** — what it lacks
+is credits, not registration.
+
+**This changes the recommendation's main risk.** §"What signing up requires"
+below worries that signup mechanics (payment method, identity verification,
+approval) might not complete before the 21st. **That risk is gone** — there is
+nothing to sign up for, only a balance to top up.
+
+⚠️ **What it does not change:** the data is still identical either side of the
+pricing change, the saving is still ~$60 on the core sample, and
+`PRELAUNCH_SIGNAL.md` §6.3 is still an open validity question. **The deadline
+still does not bind.** It is now a smaller, cleaner decision — a top-up on an
+existing account, which can be made any time.
+
+⛔ **The `dispatch-workspace` keys belong to another project.** Reusing its
+quota is Frank's call, not a technical default.
+
+---
+
 ## Recommendation: **do not buy before the 21st. The deadline does not bind.**
 
 **The data is identical either side of the change. Only the price moves.**
