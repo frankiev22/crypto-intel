@@ -4,7 +4,9 @@ Free data sources, no API key required. Every endpoint here was probed live
 
 Deliberately excluded:
   Binance   - HTTP 451 from US infrastructure
-  Jupiter   - DNS blocked in the sandbox, may work from Frank's machine
+  Jupiter   - DNS blocked in the sandbox. CONFIRMED WORKING from Frank's
+              machine 2026-09-17 (lite-api.jup.ag, HTTP 200, p50 181ms) and
+              now the trusted liquidity source. See chainfields.py.
   Reservoir - same
 """
 import json, os, time, datetime as dt, urllib.request, urllib.error
