@@ -129,8 +129,34 @@ def _read():
     return out
 
 
+# --------------------------------------------------------------------------
+# ⛔ QUARANTINED 2026-09-17 — see PRECOMMIT_paper_v3.md section 2.
+#
+# RULE_V2 changed the FILTER, not the pricing. Its fills come from the same
+# Dexscreener mid as v1, so the A/B it was built to answer sits on top of
+# fictional exits and cannot be read. Frozen, not deleted, not merged into v3.
+# --------------------------------------------------------------------------
+QUARANTINED = True
+QUARANTINE_REASON = ("RULE_V2 fills are priced on the same mid as v1; the "
+                     "filter A/B is unreadable on fictional exits. Use paperv3.")
+
+
+QUARANTINED_PATHS = {os.path.abspath(LEDGER)}
+
+
+def _refuse_if_quarantined():
+    """Freeze the FILE, not the module - see paper._refuse_if_quarantined."""
+    if os.environ.get("CRYPTO_PAPER_UNFREEZE") == "1":
+        return
+    if QUARANTINED and os.path.abspath(LEDGER) in QUARANTINED_PATHS:
+        raise RuntimeError("%s is QUARANTINED and refuses appends: %s"
+                           % (LEDGER, QUARANTINE_REASON))
+
+
+
 def _append(rec):
     """Append one record to the V2 chain. The only writer in this module."""
+    _refuse_if_quarantined()
     os.makedirs(LOG_DIR, exist_ok=True)
     rows = _read()
     rec["prev"] = rows[-1].get("hash") if rows else None

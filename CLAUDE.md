@@ -57,6 +57,15 @@ further" — scope those separately and hold them to the measurement bar below.
 clean figure is 0.22%, which agrees with Kamat's 0.198%. **Any lift ever quoted
 against 2.10% needs recomputing.**
 
+⛔ **v1 AND v2 PAPER LEDGERS ARE QUARANTINED (2026-09-17).** Both price fills off
+the Dexscreener mid: `notional_usd` is recorded on every entry and **never
+applied**, so the multiple is a price nobody could obtain at any size. That is
+why the wins do not verify - the exits were fictional, not optimistic. Appends
+raise; reads still work. ⛔ **Never quote their P&L again** - specifically the
+retired **-$3,099 / -$40.78** and my re-derivation **-$2,495 / -$4,168 over 86
+closes**. Honest status: **"no usable P&L"**, not a loss figure. See
+`PRECOMMIT_paper_v3.md` §2.
+
 ⚠️ **The paper log is a SIMULATION.** Frank has **no realized P&L**. Never
 describe paper results as his trading record. `data/paper/ledger.jsonl` (v1) and
 `ledger_v2.jsonl` (v2) contain no transaction signatures, wallets, fills or
@@ -161,6 +170,7 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
 | ⭐ **what already exists — compose, don't rebuild** | `docs/EXISTING_TOOLS.md` |
 | volume manipulation: methods and pre-committed thresholds | `docs/VOLUME_INTEGRITY.md` |
 | ⭐ **dev wallet history, funding graphs, first buyers, LP** | `docs/DEV_WALLET.md` |
+| ⭐ **paper trader v3 — fills priced on real quotes** | `docs/PAPER_V3.md`, `PRECOMMIT_paper_v3.md` |
 | crypto history, organised by recurring mechanism | `docs/CRYPTO_HISTORY.md` |
 | the 1M tracker, crossing rates, real-time architecture | `docs/TRACKER_SCOPING.md` (**§5c supersedes §5b**) |
 | buyer and creator rules, rejected ideas | `docs/RULES.md` (§B buyer, §C creator, §O observations) |

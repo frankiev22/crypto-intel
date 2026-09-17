@@ -148,8 +148,49 @@ def _read():
     return out
 
 
+# --------------------------------------------------------------------------
+# ⛔ QUARANTINED 2026-09-17 — see PRECOMMIT_paper_v3.md section 2.
+#
+# Every fill in this ledger is priced `exit_price_usd / entry_price_usd`: a
+# mid-to-mid ratio. `notional_usd` is recorded on every entry and NEVER APPLIED,
+# so the multiple is a price no one could have obtained at any size. That is why
+# the exits do not survive an integrity check - they were fictional, not merely
+# optimistic.
+#
+# The ledger is NOT deleted (standing rule 8) and is NOT merged into v3. It is
+# frozen: reads work, appends refuse. v3 prices every fill from a real quote.
+#
+# CRYPTO_PAPER_UNFREEZE=1 overrides, and exists only so a future migration can
+# read-modify-write deliberately. It is not an escape hatch for new entries.
+# --------------------------------------------------------------------------
+QUARANTINED = True
+QUARANTINE_REASON = (
+    "fills priced on the Dexscreener mid with notional_usd ignored; "
+    "see PRECOMMIT_paper_v3.md section 2. Use paperv3.")
+
+
+QUARANTINED_PATHS = {os.path.abspath(LEDGER)}
+
+
+def _refuse_if_quarantined():
+    """Freeze the FILE, not the module.
+
+    The quarantine is a property of the poisoned ledger on disk, not of this
+    code - which is still the correct implementation of RULE_V1 and is still how
+    that ledger is read and verified. Keying on the module also broke every test
+    that redirects LEDGER to a temp path, which is exactly what a test should do.
+    """
+    if os.environ.get("CRYPTO_PAPER_UNFREEZE") == "1":
+        return
+    if QUARANTINED and os.path.abspath(LEDGER) in QUARANTINED_PATHS:
+        raise RuntimeError(
+            "%s is QUARANTINED and refuses appends: %s"
+            % (LEDGER, QUARANTINE_REASON))
+
+
 def _append(rec):
     """Append one record, chained to the last. The ONLY writer in this module."""
+    _refuse_if_quarantined()
     os.makedirs(LOG_DIR, exist_ok=True)
     rows = _read()
     rec["prev"] = rows[-1].get("hash") if rows else None
