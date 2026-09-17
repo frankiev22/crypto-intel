@@ -157,6 +157,9 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
 | ⭐ **the flagship experiment** — pre-launch social signal | `docs/PRELAUNCH_SIGNAL.md` |
 | ⭐ **liquidity: what to trust, and the plan to replace `liq`** | `docs/LIQUIDITY.md` |
 | ⭐ **holders, mcap, volume, bundles — all from chain** | `docs/TRUSTED_FIELDS.md` |
+| ⭐ **every killed strategy and whether its killer survives** | `docs/UNKILL.md` |
+| ⭐ **what already exists — compose, don't rebuild** | `docs/EXISTING_TOOLS.md` |
+| volume manipulation: methods and pre-committed thresholds | `docs/VOLUME_INTEGRITY.md` |
 | crypto history, organised by recurring mechanism | `docs/CRYPTO_HISTORY.md` |
 | the 1M tracker, crossing rates, real-time architecture | `docs/TRACKER_SCOPING.md` (**§5c supersedes §5b**) |
 | buyer and creator rules, rejected ideas | `docs/RULES.md` (§B buyer, §C creator, §O observations) |
@@ -187,6 +190,11 @@ not added there does not exist) · `paper.py` / `paperv2.py` (simulation ledgers
 `detector.py` (D1/D2) · `onchain_reserves.py` (quote-side depth) ·
 `liveness.py` (origin tagging; `UNATTENDED = ("runner","scheduled")`) ·
 `dashboard.py` · `sources.py` (all HTTP; sets the UA correctly).
+
+⭐ **`chainfields.py` is the trusted-field source** — `round_trip()` (realizable
+liquidity), `supply()`, `market_cap()`, `holder_count()`, `trusted()`. ⛔ **Unknown
+is None, never 0.** Decision-point only: a process-wide bucket caps Jupiter at
+55/min, so it must never reach the per-row scan path. `test_chainfields.py --live`.
 
 ⚠️ **`journal.record()` is a whitelist and it has silently eaten four fields**
 (`vol_to_liq`, `vol_burst`, the news NameError, `paper_v2_arm`) plus
