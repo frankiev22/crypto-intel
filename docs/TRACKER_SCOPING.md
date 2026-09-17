@@ -684,31 +684,61 @@ because a pool in this range is far busier than intuition suggests.
 100,000. The gap between the advertised ceiling and the affordable one is four
 orders of magnitude.
 
-### ⛔ And then the finding that kills nomination outright
+### ⛔⛔ RETRACTED 2026-09-17 — the dwell finding was an artifact of our own sampler
 
-**Tokens do not sit in the approach band. They cross it.**
+**This section previously claimed "88% of band entrants seen once, median dwell
+~0, max 9 minutes" and concluded that nomination is impossible at any cadence.
+That was wrong. Frank challenged it, and he was right.**
 
-Measured on `data/observations/`, $600k–$1M band:
+**What was actually computed.** Dwell was `max(ts) - min(ts)` over sightings
+where `600k <= fdv < 1M`. But `ts` is written by `journal.record()` as
+`int(time.time())` **for a whole batch**, and the scanner writes ~10 rows per
+batch, ~0.1–0.3 minutes apart, hundreds of times inside a single hourly pass.
 
-| | |
-|---|---|
-| contracts seen in band **only once** | **76 of 86 — 88%** |
-| contracts seen 2+ times in band | 10 |
-| dwell among those 10 | median **0.00 h**, p90 **0.05 h (3 min)**, **max 0.15 h (9 min)** |
+**Inspecting the 10 "multi-sighting" contracts individually settles it. Every
+one is inside a single pass:**
 
-**The longest observed traversal of a 40%-wide band was nine minutes.** Most were
-under the resolution of our own sampling.
+| contract | sightings | gaps |
+|---|---|---|
+| GOOGL, Looprat, CTO, TIKTOK ×2 | 2 | **0 seconds** — same batch, same `ts` |
+| FLORK | 2 | 4s |
+| Coca Cola, CSM | 2 | 62s, 65s |
+| QWEN | 2 | 167s |
+| BILL | 5 | 4s, 16s, 525s, 0s |
 
-⚠️ **Honest confound:** "seen once" conflates short dwell with sparse scanning —
-we only see a token when the scanner reaches it. The 88% is therefore an upper
-bound on how many are genuinely fast. **But the 10 multi-sighted cases are direct
-evidence and they are unambiguous: median dwell ~0, max 9 minutes.**
+**A zero-second "dwell" is two pool pairs for one token written in the same
+batch — not two observations in time at all.** The "max 9 minutes" (545s) is the
+span of one enrichment loop: **a fact about how long our scanner takes to walk
+its list, not about how long a coin sits at a market cap.**
 
-**This is exactly Frank's objection, and it is not an edge case — it is the
-typical case.** A design that nominates on a schedule and then waits for the
-token to cross cannot work when the token is in the band for seconds. Moving
-nomination from hourly to 5-minute does not fix it; the p90 dwell is 3 minutes.
-**You cannot nominate fast enough. The premise is wrong.**
+**And the 88% is guaranteed by construction.** The scanner discovers from
+GeckoTerminal's new-pool stream; it does not systematically re-observe the same
+contract hour after hour. A token is "seen once" because **we looked once.**
+
+**Nothing about coin behaviour can be concluded from any of it. The claim that
+nomination cannot work is withdrawn** — not disproved, simply unsupported.
+
+⛔ **This is the third time this error class has hit this project.** Median
+time-to-bond is ~1 minute and the first outcome checkpoint is 1 hour, so fast
+winners were logged as losses. **You cannot measure a phenomenon with a sampler
+slower than the phenomenon**, and our sampling schedule keeps manufacturing
+conclusions about the market. See `RULES.md`.
+
+### What could measure dwell, since our data cannot
+
+Minute-resolution OHLCV on a sample of contracts, from GeckoTerminal (free) or
+Birdeye — real residency, none of our sampling bias.
+
+⚠️ **I attempted it and it is not yet trustworthy; no number from it is quoted
+here.** Two defects: heavy HTTP 429 rate-limiting truncated the sample to 7, and
+deriving supply as `fdv/price_usd` from our stored row produced impossible peaks
+(one contract "priced" at $659M FDV), which points at candle unit/orientation
+rather than USD. **Resolve the unit question and pace the requests before this
+is re-run.**
+
+**The one thing the candle data did show consistently**, and it points Frank's
+way rather than ours: contracts that reached $1M stayed **above** $1M for
+**33 to 992 minutes** in the sampled windows — hours, not minutes.
 
 For completeness, the cadence costing that was asked for — **it is real, and it
 is affordable, and it still does not work:**

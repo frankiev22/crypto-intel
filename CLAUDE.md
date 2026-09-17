@@ -87,6 +87,13 @@ fees. Any path that depends on a track record has nothing to sell yet.
     not by reading config.
 11. ⛔ **Never hand Frank a manual process.** "Set the alerts by hand" is not an
     answer. If it cannot be automated, say so and say why.
+13. ⛔ **Never measure a phenomenon with a sampler slower than the phenomenon.**
+    Three failures from this one class: fast winners logged as losses (first
+    checkpoint 1h, median time-to-bond ~1min); and the retracted band-dwell
+    finding, where per-batch `ts` and hourly discovery produced "88% seen once"
+    by construction. **Before quoting any duration, state the sampling interval
+    and show it is shorter than what you are measuring.** When Frank's lived
+    experience contradicts a measurement, the measurement is the suspect.
 12. ⚠️ **Any script hitting a Cloudflare-fronted API must set a `User-Agent`.**
     Python's default `Python-urllib/3.x` is blocked with a bare `403 error code:
     1010`, which looks exactly like an auth failure and is not. `sources.py:12`
@@ -194,10 +201,12 @@ you can watch.** Do not tell Frank it is impossible.
 - **Credits are:** a pool at $600k–$1M does a median **206 txns/hour ≈ 4,944
   pushes/day**, so the free 1M credits/month covers only ~7 watched pools;
   $49/mo Developer covers ~66. Webhook **edits cost 100 credits each**.
-- ⛔ **Nomination does not work at any cadence.** 88% of contracts entering the
-  $600k–$1M band were seen there only once; among those seen twice, median
-  dwell was ~0 and the **maximum was 9 minutes**. You cannot nominate fast
-  enough. Hourly, 5-minute and 2-minute cadences all fail.
+- ⛔⛔ **RETRACTED 2026-09-17: the "88% / 9-minute dwell" finding was an
+  artifact and the claim that nomination cannot work is withdrawn.** `ts` is
+  per-batch, not per-token; all 10 "multi-sighting" contracts were inside a
+  single pass (gaps of 0–545s), so it measured our scan loop, not coin
+  behaviour. **Third instance of this error class — see standing rule 13.**
+  Whether nomination works is now an open question, not a settled one.
 - ✅ **The answer is `programSubscribe` on the AMM programs** — watch the
   program, not a list of pools. No nomination, no miss window, no address
   ceiling. Needs an always-on process (**VPS ~$4–6/mo**; a Vercel function caps
