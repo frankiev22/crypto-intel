@@ -177,7 +177,11 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
 | any pre-committed threshold | `PRECOMMIT_*.md` |
 
 ⭐ **Existing credentials — checked 2026-09-17, do not re-ask.** `crypto-intel/.env`
-has `HELIUS_API_KEY`, `BIRDEYE_API_KEY` (dies after ~7 calls), `ALCHEMY_API_KEY`,
+has `HELIUS_API_KEY`, ⭐ **`JUPITER_API_KEY`** (free tier, 25M credits/mo
+then $1/M; verified live 2026-09-17, HTTP 200 in 310ms; **measured ceiling
+~1.1 req/s - the key buys reliability, not speed**; usage tracked in
+`data/_jupiter_usage.json` via `chainfields.usage()`), `BIRDEYE_API_KEY`
+(dies after ~7 calls), `ALCHEMY_API_KEY`,
 `ETHERSCAN_API_KEY`, `CRYPTOPANIC_API_TOKEN`, Supabase. **`dispatch-workspace/.env`
 has a full `TWITTER_*` set and `XAI_API_KEY`** — the X bearer token returns
 **`402 credits depleted`, not `401`**, so an X developer account exists and is

@@ -333,3 +333,162 @@ basis. **B22 in `RULES.md` still carries the old figure and is already flagged
 there as not re-deriving.**
 
 **No decision is being asked for and none has been made.**
+
+
+---
+
+# Part 2 - the Jupiter key, and the head-to-head that settles it
+
+**2026-09-17, later. Frank supplied a Jupiter free-tier key (read-only quote
+access, no funds, no write scope). It is in `.env`, which is gitignored at line
+2, has never been committed and is not staged.** ⛔ **The key value appears in no
+doc, log, commit or report.**
+
+## 9. The key is live, and it does not buy speed
+
+`api.jup.ag/swap/v1/quote` with `x-api-key`: **HTTP 200 in 310 ms**, returning an
+`outAmount` identical to the keyless endpoint on the same token.
+
+⚠️ **Measured rate ceiling, and it is not what I expected:**
+
+| | keyless | **keyed** |
+|---|---|---|
+| burst | ~97 calls, then a **hard 429 on everything** | ~30, then refills |
+| 1.0 req/s | ok | **45/45 (100%)** |
+| 2.0 req/s | - | 30/45 (67%) |
+| 3.0 req/s | - | 23/45 (51%) |
+| effective ceiling | ~1 req/s | **~1.1 req/s** |
+
+⭐ **The key buys reliability and a refilling bucket, not throughput.** The
+keyless endpoint dies completely; this one degrades and recovers. **The
+decision-point-only rule stands - this still must not go on the per-row scan
+path.**
+
+**Usage tracking** is `chainfields.usage()`, persisted to
+`data/_jupiter_usage.json`. Free tier is **25,000,000 credits/month**, then $1/M.
+After all the work in this document: **95 quotes = 0.00038% of the allowance.**
+At 1 req/s we could not exhaust it if we tried - about 2.6M/month is the physical
+ceiling. ⛔ **Flag it if that ever stops being true.**
+
+## 10. ⭐ The depth curve - one number cannot express depth
+
+`chainfields.depth_curve()` quotes a round trip at several notionals:
+
+```
+sym              $10         $100         $500        $1000
+BONK           0.04%        0.11%        0.15%        0.27%
+ROCK           8.28%        8.51%        9.51%       10.51%
+WOFI           3.46%       11.63%  NO_SELL_ROUTE  NO_SELL_ROUTE
+```
+
+⛔ **At $10, WOFI (3.46%) looks CHEAPER than ROCK (8.28%). At $500 WOFI cannot be
+sold at all and ROCK is unchanged.** A single liquidity figure - ours, Birdeye's,
+anyone's - cannot represent that, and the token that looks best at small size is
+the one that traps you at real size.
+
+**BONK scales (0.04% to 0.27%). ROCK is expensive but honest and flat. WOFI is a
+cliff.** Frank trades $100 clips, so $100 is the number that matters - but the
+curve either side of it says whether the price survives sizing up.
+
+## 11. ⭐ Settling "pools under a dollar"
+
+**The claim came from the poisoned field and Frank never believed it. The honest
+answer is that it was mostly right, and wrong in a way nobody predicted.**
+
+Population: **954 distinct contracts with 0 < `liq` < $1**, and **26,780 at
+exactly 0**. Tested the 14 with the largest reported FDV, where a lie shows most:
+
+| verdict | n |
+|---|---|
+| TOTAL_LOSS | 8 |
+| NO_BUY_ROUTE | 3 |
+| NO_SELL_ROUTE | 2 |
+| **TRADEABLE** | **1** |
+
+**13 of 14 confirm the pools really were empty.** The sub-dollar reading was
+correct about them.
+
+⛔ **But the one exception is the important one.** A row recorded at
+**`liq = $0.01`** came back **$99.98 of $100 - TRADEABLE**. Checking the mint
+rather than the ticker, per the standing rule:
+
+- our mint: `2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv`
+- that **is** real PENGU (Pudgy Penguins)
+- on-chain supply **76,722,827,861**, real FDV via `chainfields`: **$557,244,807**
+
+⭐ **The stored field recorded one cent of liquidity for a half-billion-dollar
+token.** Any dust filter keyed on `liq` would have silently discarded one of the
+most liquid assets on Solana.
+
+**So the field is not merely inflated. It is unreliable in BOTH directions**, and
+"low `liq`" was never safe to read as "dust" any more than "high `liq`" was safe
+to read as "deep". ⚠️ Three of the four rows we labelled "PENGU" are
+impersonators on different mints - the ticker problem again.
+
+## 12. ⭐ Head to head: stored vs Helius reserves vs Jupiter
+
+18 random contracts with a non-zero stored `liq`:
+
+```
+Helius reserve reads : 2 ok / 16 FAILED  (89% failure)
+Jupiter              : answered all 18
+Jupiter verdicts     : NO_BUY_ROUTE 7, TOTAL_LOSS 8, NO_SELL_ROUTE 2, TRADEABLE 1
+```
+
+| | |
+|---|---|
+| contracts Jupiter says are unexitable | **17 of 18** |
+| stored liquidity claimed for those | **$7,467,996,005** |
+| actually recoverable, $100 probe each | **$1.68** |
+| stored `liq` of the ONE tradeable token | **$6** |
+
+⭐ **The single tradeable contract had the LOWEST stored liquidity of any of them
+- $6, returning $90.79.** Meanwhile the $7.4 billion claim is the "Fartcoin"
+impersonator, which has no route at all. **In this sample the stored field is not
+merely noisy; it points the wrong way.**
+
+⛔ **Helius direct is not a fallback.** 89% failure here against the 5-of-6
+recorded earlier - worse, not better. **It cannot be the source, and it cannot be
+the cross-check either.**
+
+## 13. Call sites of the poisoned field - inventory before changing anything
+
+**Decision sites (these change behaviour):**
+
+| file:line | what it decides |
+|---|---|
+| `journal.py:88`, `:109`, `:198` | exit floor and `verify_win` - already fails closed |
+| `evidenceguard.py:171` | same expression, same fix |
+| `detector.py:79` | **D1 SILENCE** - `liq/fdv >= 0.95` |
+| `detector.py:85` | **D2 MAGNITUDE** - `liq >= $1M` |
+| `journal.py:864-869` | rug/dead classification, `liq < 1000` |
+| `paper.py:821` | `DEAD_LIQ_USD` on the ledger |
+| `plausibility.py:130`, `:132` | hard and soft liquidity ceilings |
+| `resolve.py:44`, `journal.py:50` | `MIN_EXIT_LIQ_USD` from scanner config |
+| `clusters.py:174` | `funded = liq > 0` |
+| `pricecheck.py:123` | dust floor - **allowlisted, see below** |
+
+**Display only (rename, do not re-key):** `dashboard.py:280`, `check.py:177-291`,
+`findings.py:19`.
+
+✅ **I flagged `pricecheck.py:123` as an unfixed sixth instance of the
+substitution bug. I was wrong.** `evidenceguard.audit_substitutions()` already
+catches the whole class and carries an explicit allowlist entry for it: *"Dust
+check only... Its verdict can only make a quote LESS trusted, never more."*
+Running the audit returns **2 findings, both `accepted: True` with written
+justifications** (`pricecheck.py:123` and `resolve.py:214`). **The guard works.**
+
+### Replacement order
+
+1. **`detector.py` D1 and D2 first.** They are the only sites whose output is
+   shown to Frank as a judgement, and both are keyed directly on `liq`.
+   Re-derive their precision against `round_trip()` before quoting it again.
+2. **`plausibility.py` ceilings** - calibrated against a distribution whose
+   maximum is an impersonator.
+3. **`journal.py` rug classification** - `liq < 1000` should become
+   `exit_verdict in (TOTAL_LOSS, NO_SELL_ROUTE, NO_BUY_ROUTE)`.
+4. **Rename `liq` to `liq_reported` on every display surface.** Nothing is ever
+   deleted; it stops being readable as exitable.
+5. ⛔ **`clusters.py:174` `funded = liq > 0` is the worst of them** - it treats
+   any non-zero reported liquidity as a funded pool, and 82.7% of rows are
+   exactly 0 while real PENGU sat at $0.01.

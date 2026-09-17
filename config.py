@@ -61,6 +61,7 @@ KEYS = {
     "birdeye":   ("BIRDEYE_API_KEY",   "Holder distribution and concentration. No free substitute exists."),
     "etherscan": ("ETHERSCAN_API_KEY", "ETH contract verification, holder counts, proxy detection."),
     "alchemy":   ("ALCHEMY_API_KEY",   "ETH RPC. Falls back to public endpoints with lower limits."),
+    "jupiter":   ("JUPITER_API_KEY",   "Realizable liquidity: what $100 actually returns. Free tier 25M credits/mo, then $1/M. Falls back to the keyless lite-api at a much lower rate limit."),
 }
 DISCORD_WEBHOOK = os.environ.get("CRYPTO_DISCORD_WEBHOOK", "")
 

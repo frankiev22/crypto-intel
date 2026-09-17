@@ -40,11 +40,28 @@ import config
 
 UA = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
 USDC = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
-JUP_QUOTE = "https://lite-api.jup.ag/swap/v1/quote"
 
-# Measured wall: ~97 calls then hard 429. 55/min leaves headroom for the burst
-# allowance to refill and keeps a round trip (2 calls) affordable.
+# Keyed endpoint when a key exists, keyless otherwise. Both return identical
+# quotes - verified 2026-09-17, same outAmount to the unit on the same token.
+JUP_QUOTE_KEYED = "https://api.jup.ag/swap/v1/quote"
+JUP_QUOTE_FREE = "https://lite-api.jup.ag/swap/v1/quote"
+
+# ⚠️ MEASURED 2026-09-17, AND THE KEY DOES NOT BUY SPEED.
+#
+#   keyless : ~97 calls, then a hard 429 on everything. No partial service.
+#   keyed   : 45/45 at 1.0 req/s. At 2 req/s, 30/45. At 3 req/s, 23/45.
+#             Effective ceiling ~1.1 req/s however hard it is pushed.
+#
+# So the key buys RELIABILITY and a refilling bucket, not throughput. The
+# decision-point-only rule below still stands; this must not go on the scan path.
 JUP_PER_MIN = 55
+
+# Free tier is 25,000,000 credits/month. At 1 credit per quote and two quotes
+# per round trip, that is ~12.5M round trips - about 17,000/hour sustained,
+# which we cannot reach anyway at 1 req/s. Tracked so the claim stays checkable.
+USAGE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "data", "_jupiter_usage.json")
+JUP_FREE_CREDITS_MONTH = 25_000_000
 DEFAULT_PROBE_USD = 100
 
 # Round-trip cost bands. Pre-committed here so they cannot be tuned per result.
@@ -118,13 +135,48 @@ def _rpc(method, params, timeout=40, tries=3):
     return None, last
 
 
+def _bump_usage(n=1):
+    """Count quotes against the monthly free allowance. Never fails a call."""
+    try:
+        month = time.strftime("%Y-%m")
+        d = {}
+        if os.path.exists(USAGE_PATH):
+            with open(USAGE_PATH, encoding="utf-8") as fh:
+                d = json.load(fh)
+        if d.get("month") != month:
+            d = {"month": month, "quotes": 0}
+        d["quotes"] = d.get("quotes", 0) + n
+        os.makedirs(os.path.dirname(USAGE_PATH), exist_ok=True)
+        with open(USAGE_PATH, "w", encoding="utf-8") as fh:
+            json.dump(d, fh)
+        return d
+    except Exception:
+        return None
+
+
+def usage():
+    """Quotes used this calendar month, and the share of the free allowance."""
+    try:
+        with open(USAGE_PATH, encoding="utf-8") as fh:
+            d = json.load(fh)
+    except Exception:
+        return {"month": time.strftime("%Y-%m"), "quotes": 0, "pct_of_free": 0.0}
+    q = d.get("quotes", 0)
+    return {"month": d.get("month"), "quotes": q,
+            "pct_of_free": q / JUP_FREE_CREDITS_MONTH * 100.0}
+
+
 def _quote(in_mint, out_mint, amount, slippage_bps=5000, tries=4):
     """One Jupiter quote. Returns (body, error). Backs off on 429."""
+    k = config.key("jupiter")
+    base = JUP_QUOTE_KEYED if k else JUP_QUOTE_FREE
+    hdr = dict(UA, **({"x-api-key": k} if k else {}))
     url = ("%s?inputMint=%s&outputMint=%s&amount=%d&slippageBps=%d"
-           % (JUP_QUOTE, in_mint, out_mint, int(amount), slippage_bps))
+           % (base, in_mint, out_mint, int(amount), slippage_bps))
     for i in range(tries):
         _JUP.take()
-        st, b = _get(url)
+        _bump_usage()
+        st, b = _get(url, headers=hdr)
         if st == 200 and isinstance(b, dict) and b.get("outAmount"):
             return b, None
         if st == 429:
@@ -181,6 +233,25 @@ def round_trip(mint, usd=DEFAULT_PROBE_USD):
     out["verdict"] = ("TRADEABLE" if cost < TRADEABLE_MAX_PCT
                       else "COSTLY" if cost < COSTLY_MAX_PCT
                       else "TOTAL_LOSS")
+    return out
+
+
+def depth_curve(mint, sizes=(10, 100, 500, 1000)):
+    """⭐ Round-trip cost at several notionals. The shape IS the depth.
+
+    A single number cannot express depth: a pool that costs 0.1% on $10 and 60%
+    on $1,000 is a different asset from one that costs 3% at both. Frank trades
+    $100 clips, so $100 is the number that matters - but the curve either side
+    of it says whether that price survives him sizing up.
+
+    Returns a list of dicts, one per size, each carrying the same verdict
+    vocabulary as round_trip(). Costs 2 quotes per size.
+    """
+    out = []
+    for usd in sizes:
+        r = round_trip(mint, usd)
+        out.append({"usd": usd, "verdict": r["verdict"],
+                    "usd_back": r["usd_back"], "rt_cost_pct": r["rt_cost_pct"]})
     return out
 
 
