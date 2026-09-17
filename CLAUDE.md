@@ -160,6 +160,7 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
 | ⭐ **every killed strategy and whether its killer survives** | `docs/UNKILL.md` |
 | ⭐ **what already exists — compose, don't rebuild** | `docs/EXISTING_TOOLS.md` |
 | volume manipulation: methods and pre-committed thresholds | `docs/VOLUME_INTEGRITY.md` |
+| ⭐ **dev wallet history, funding graphs, first buyers, LP** | `docs/DEV_WALLET.md` |
 | crypto history, organised by recurring mechanism | `docs/CRYPTO_HISTORY.md` |
 | the 1M tracker, crossing rates, real-time architecture | `docs/TRACKER_SCOPING.md` (**§5c supersedes §5b**) |
 | buyer and creator rules, rejected ideas | `docs/RULES.md` (§B buyer, §C creator, §O observations) |
@@ -190,6 +191,12 @@ not added there does not exist) · `paper.py` / `paperv2.py` (simulation ledgers
 `detector.py` (D1/D2) · `onchain_reserves.py` (quote-side depth) ·
 `liveness.py` (origin tagging; `UNATTENDED = ("runner","scheduled")`) ·
 `dashboard.py` · `sources.py` (all HTTP; sets the UA correctly).
+
+⭐ **`devwallet.py`** — `deployer()`, `launches()`, `activity_before()`,
+`funding_chain()`, `first_buyers()`, `buyer_funding_overlap()`, `lp_detail()`,
+`track_record()`. ⛔ **Runs, but on n=4 it did NOT separate good from bad** — see
+`docs/DEV_WALLET.md` §5. Never date a wallet by walking its history; ask
+`activity_before()` instead (a walk gave WOFI an age of **minus** 0.1h).
 
 ⭐ **`chainfields.py` is the trusted-field source** — `round_trip()` (realizable
 liquidity), `supply()`, `market_cap()`, `holder_count()`, `trusted()`. ⛔ **Unknown
