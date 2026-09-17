@@ -8373,46 +8373,47 @@
  },
  "liveness:outcome-recorded": {
   "first_seen": "2026-09-10T00:07:38+00:00",
-  "count": 4,
+  "count": 5,
   "example": "liveness: outcome.recorded",
   "keys": [
    "outcome.recorded"
   ],
-  "last_seen": "2026-09-14T19:46:55+00:00",
-  "last_escalated": "2026-09-14T19:45:46+00:00",
-  "escalations": 1
+  "last_seen": "2026-09-17T19:28:32+00:00",
+  "last_escalated": "2026-09-17T19:28:32+00:00",
+  "escalations": 2
  },
  "liveness:paper-open": {
   "first_seen": "2026-09-09T15:02:17+00:00",
-  "count": 7,
+  "count": 8,
   "example": "liveness: paper.open",
   "keys": [
    "paper.open"
   ],
-  "last_seen": "2026-09-10T00:21:12+00:00",
-  "last_escalated": "2026-09-09T21:29:16+00:00"
+  "last_seen": "2026-09-17T19:28:32+00:00",
+  "last_escalated": "2026-09-17T19:28:32+00:00",
+  "escalations": 1
  },
  "liveness:paper-sweep": {
   "first_seen": "2026-09-10T00:07:40+00:00",
-  "count": 55,
+  "count": 56,
   "example": "liveness: paper.sweep",
   "keys": [
    "paper.sweep"
   ],
-  "last_seen": "2026-09-14T19:49:38+00:00",
-  "last_escalated": "2026-09-14T19:45:51+00:00",
-  "escalations": 3
+  "last_seen": "2026-09-17T19:28:33+00:00",
+  "last_escalated": "2026-09-17T19:28:33+00:00",
+  "escalations": 4
  },
  "liveness:watchlist-sweep": {
   "first_seen": "2026-09-10T00:07:41+00:00",
-  "count": 91,
+  "count": 92,
   "example": "liveness: watchlist.sweep",
   "keys": [
    "watchlist.sweep"
   ],
-  "last_seen": "2026-09-15T02:15:15+00:00",
-  "last_escalated": "2026-09-15T02:07:46+00:00",
-  "escalations": 4
+  "last_seen": "2026-09-17T19:28:34+00:00",
+  "last_escalated": "2026-09-17T19:28:34+00:00",
+  "escalations": 5
  },
  "collector-error:stagebudgetoverrun": {
   "first_seen": "2026-09-10T01:53:35+00:00",
@@ -9382,23 +9383,25 @@
  },
  "liveness:milestone-mcap": {
   "first_seen": "2026-09-14T19:45:44+00:00",
-  "count": 9,
+  "count": 10,
   "example": "liveness: milestone.mcap",
   "keys": [
    "milestone.mcap"
   ],
-  "last_seen": "2026-09-14T21:07:55+00:00"
+  "last_seen": "2026-09-17T19:28:30+00:00",
+  "last_escalated": "2026-09-17T19:28:30+00:00",
+  "escalations": 1
  },
  "liveness:milestone-realizable": {
   "first_seen": "2026-09-14T19:45:45+00:00",
-  "count": 40,
+  "count": 41,
   "example": "liveness: milestone.realizable",
   "keys": [
    "milestone.realizable"
   ],
-  "last_seen": "2026-09-15T03:16:45+00:00",
-  "last_escalated": "2026-09-15T02:07:46+00:00",
-  "escalations": 1
+  "last_seen": "2026-09-17T19:28:31+00:00",
+  "last_escalated": "2026-09-17T19:28:31+00:00",
+  "escalations": 2
  },
  "liveness:paper-close": {
   "first_seen": "2026-09-14T19:45:47+00:00",
@@ -9736,6 +9739,38 @@
   "example": "scanner-hit: HUHCAT",
   "keys": [
    "HUHCAT"
+  ]
+ },
+ "liveness:detector-drift": {
+  "first_seen": "2026-09-17T19:28:30+00:00",
+  "count": 1,
+  "example": "liveness: detector.drift",
+  "keys": [
+   "detector.drift"
+  ]
+ },
+ "liveness:fieldguard-check": {
+  "first_seen": "2026-09-17T19:28:30+00:00",
+  "count": 1,
+  "example": "liveness: fieldguard.check",
+  "keys": [
+   "fieldguard.check"
+  ]
+ },
+ "liveness:news-freshness": {
+  "first_seen": "2026-09-17T19:28:31+00:00",
+  "count": 1,
+  "example": "liveness: news.freshness",
+  "keys": [
+   "news.freshness"
+  ]
+ },
+ "liveness:scan-observations": {
+  "first_seen": "2026-09-17T19:28:33+00:00",
+  "count": 1,
+  "example": "liveness: scan.observations",
+  "keys": [
+   "scan.observations"
   ]
  }
 }

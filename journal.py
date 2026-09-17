@@ -537,6 +537,77 @@ def daily_summary(force=False):
             "best_realizable_mult_24h": round(best, 2)}
 
 
+# --------------------------------------------------------------------------
+# THE WHITELIST GUARD.
+#
+# record() below builds its row from an explicit dict of r.get(...) calls. That
+# is the right design - it stops junk reaching the archive - but it fails in one
+# direction silently: a field the scanner COMPUTES and this dict does not READ
+# simply evaporates, and nothing anywhere says so.
+#
+# That has now happened five times: vol_to_liq, vol_burst, the news NameError,
+# paper_v2_arm (14 hours), and info.socials (every row ever written). Each was
+# found by a human noticing an absence months later. The comment "a field
+# computed and not persisted is a field that does not exist" has been sitting
+# in this file through four of the five, which is proof that a comment is not
+# a control.
+#
+# So: track which keys the whitelist actually reads, and shout about the rest.
+# _Tracked needs no maintenance when the whitelist changes - it observes the
+# reads themselves rather than duplicating the list, which is what would have
+# drifted.
+#
+# It does NOT raise. Every append has already happened by the time a pass is
+# in trouble, and a guard that kills the pass it is auditing would destroy the
+# rows it exists to protect - the same reasoning as liveness.beat(). It prints,
+# it records, and test_whitelist.py turns it into a hard failure in CI.
+# --------------------------------------------------------------------------
+
+# Computed for the scanner's own use and deliberately not archived.
+TRANSIENT_ROW_KEYS = {
+    "gt_dex",        # discovery-time venue, superseded by dex_id on the row
+    "url",           # reconstructable from the pair address
+    "gates",         # scorer internals; `reasons` is the persisted form
+    "watchlisted",   # watchlist.py owns its own state file
+    "paper_entry",   # the v1 ledger row is the system of record
+    # venue.assess() echoes the dex id back under this name. `dex_id` is
+    # already persisted and carries the same value; `venue_type` carries the
+    # classification derived from it. Found by this guard on its first real
+    # pass, 2026-09-17, and checked rather than assumed - it is a duplicate,
+    # not a sixth loss.
+    "venue",
+}
+
+# Fields dropped by the most recent record() call. Read by test_whitelist.py
+# and printed by collect.py. Same idiom as sources.LAST_PAIR_MISMATCH.
+LAST_WHITELIST_DROP = set()
+
+
+class _Tracked(dict):
+    """A row that remembers which keys were read out of it."""
+
+    def __init__(self, d):
+        super().__init__(d)
+        self.read = set()
+
+    def get(self, k, default=None):
+        self.read.add(k)
+        return super().get(k, default)
+
+
+def _guard_whitelist(r):
+    """Loudly name anything the scanner computed and record() did not persist."""
+    dropped = set(r) - r.read - TRANSIENT_ROW_KEYS
+    if not dropped:
+        return set()
+    LAST_WHITELIST_DROP.update(dropped)
+    print("  !! WHITELIST DROP - computed but NOT persisted: "
+          + ", ".join(sorted(dropped)))
+    print("     Add them to the dict in journal.record() or to "
+          "journal.TRANSIENT_ROW_KEYS if they are deliberately transient.")
+    return dropped
+
+
 def record(rows, network, pass_score=70):
     """Write every scanned pair, passed AND rejected."""
     now = int(time.time())
@@ -550,7 +621,9 @@ def record(rows, network, pass_score=70):
         tick_idx = tickers._load()
     except Exception:
         tick_idx = {}
+    LAST_WHITELIST_DROP.clear()
     for r in rows:
+        r = _Tracked(r)
         obj = {
             "ts": now, "network": network,
             "pair": r.get("pair"), "token": r.get("addr"), "symbol": r.get("name"),
@@ -602,6 +675,15 @@ def record(rows, network, pass_score=70):
             # from an observation row.
             "paper_v2_entry": r.get("paper_v2_entry"),
             "paper_v2_arm": r.get("paper_v2_arm"),
+            # SOCIALS, added 2026-09-17. The fifth field this whitelist would
+            # have eaten - and the first one caught BEFORE it was lost, by the
+            # guard below rather than by someone noticing months later.
+            # scanner.socials_of() computes them; these four lines are what
+            # make them exist. Forward-only: no historical row has them.
+            "has_telegram": r.get("has_telegram"),
+            "has_twitter": r.get("has_twitter"),
+            "has_website": r.get("has_website"),
+            "social_count": r.get("social_count"),
             "reasons": r.get("reasons", []), "flags": r.get("flags", []),
             # which weight set produced this score. Without it a 66 from v2 and
             # a 66 from v5 look identical in the scoreboard and are not.
@@ -624,6 +706,9 @@ def record(rows, network, pass_score=70):
             obj["template_suspect"] = None
             obj["liquidity_plausible"] = None
         _append(OBS, obj)      # system of record, first and unconditional
+        # AFTER the append, never before: the guard must not be able to cost a
+        # row. By here the data is already safe on disk.
+        _guard_whitelist(r)
         mirror.append(obj)
         n += 1
     try:

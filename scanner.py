@@ -152,6 +152,34 @@ AUTHORITY_CHECK_SCORE = int(os.environ.get("CRYPTO_AUTHORITY_SCORE", "70"))
 LAST_SCAN = {"pools": 0, "enriched": 0, "failed": 0, "budget_hit": False}
 
 
+def socials_of(pair):
+    """Telegram / Twitter / website presence, from the payload we already hold.
+
+    `social_count` counts DISTINCT link kinds, with the website as one kind, so
+    3 means "telegram + twitter + website" - the exact configuration the
+    published 17.4x figure is measured on. Two Telegram links are one kind.
+
+    An absent `info` block and an empty one are not distinguished, and that is
+    deliberate: Dexscreener omits `info` entirely for a token with no links, so
+    "no info" IS "no links". This is the one place in this file where absence is
+    allowed to render as False rather than None.
+    """
+    info = (pair or {}).get("info") or {}
+    kinds = set()
+    for s in (info.get("socials") or []):
+        t = (s or {}).get("type")
+        if t:
+            kinds.add(str(t).strip().lower())
+    has_site = any((w or {}).get("url") for w in (info.get("websites") or []))
+    return {
+        "has_telegram": "telegram" in kinds,
+        # Dexscreener has used both spellings across the rename.
+        "has_twitter": bool(kinds & {"twitter", "x"}),
+        "has_website": has_site,
+        "social_count": len(kinds) + (1 if has_site else 0),
+    }
+
+
 def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None):
     """Pull new pools, enrich and score each one.
 
@@ -251,6 +279,22 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
             reasons= reasons, flags = flags,
             gates  = gates, weights_version = wver,
         )
+        # SOCIALS. `info.socials` and `info.websites` have been in the
+        # Dexscreener payload on every enriched row since the first pass and
+        # were read by nothing until 2026-09-17 - not dropped by the whitelist
+        # like vol_to_liq was, simply never looked at. The published effect is
+        # the largest in this space: a Telegram link in launch metadata carries
+        # an 8.94x lift on graduation (1.485% vs 0.166%, Kamat n=832,941), and
+        # Telegram + Twitter + website together 17.4x.
+        #
+        # Booleans, not URLs. A stored link rots, bloats every row and drags
+        # personal data into an append-only file we never delete. Presence is
+        # the whole signal. The raw blob stays available to the on-demand
+        # analyser, which fetches live.
+        #
+        # THIS IS FORWARD-ONLY. Nothing backfills; rows written before today
+        # have no socials and never will. See docs/PRELAUNCH_SIGNAL.md.
+        row.update(socials_of(pair))
         venue.annotate(row, dex=row.get("dex_id"))
         # VOLUME, DERIVED. vol_h1 and vol_h24 have been stored since day one and
         # used nowhere. Point-in-time volume is a level; these two are the shape.
