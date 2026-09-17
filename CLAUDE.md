@@ -201,9 +201,20 @@ you can watch.** Do not tell Frank it is impossible.
 - ✅ **The answer is `programSubscribe` on the AMM programs** — watch the
   program, not a list of pools. No nomination, no miss window, no address
   ceiling. Needs an always-on process (**VPS ~$4–6/mo**; a Vercel function caps
-  at 300s and cannot hold a subscription). **Two open items before committing:
-  how Helius meters high-volume WSS, and whether one cheap box can decode the
-  stream.**
+  at 300s and cannot hold a subscription).
+- ✅ **Costed by measurement, 2026-09-17.** Helius bills standard WebSockets at
+  **20 credits/MB**. A live 45s `programSubscribe` on pump.fun measured **56
+  notifications/sec, 31 KB/s, 542 B median → 82 GB and 1.64M credits/month**.
+  **Free tier fails (1.6x over); Developer $49/mo fits at 16%, 6x headroom;
+  Business $499 is not needed.** A $4–6 VPS is far more than enough — 56 small
+  JSON messages/sec is trivial. **Total real-time cost ≈ $53–55/month.**
+
+## The one genuinely urgent thing
+
+⛔ **Socials capture (commit `ce0d33a`) is forward-only and no collector is
+running.** Every hour without one is sample that cannot be bought back at any
+price. **Restoring collection outranks every purchase decision on the board** —
+see `docs/DECISION_X_DATA.md`.
 
 ## Knowledge corpus
 

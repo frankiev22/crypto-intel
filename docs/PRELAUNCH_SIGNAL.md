@@ -151,17 +151,49 @@ account could not be resolved.
 
 ## 6. What has to change before this can run
 
-### 6.1 ⛔ We do not store socials
+### 6.1 ✅ SHIPPED 2026-09-17 — socials are now captured
 
-`info.socials` and `info.websites` arrive on every enriched row from Dexscreener
-and are dropped by the `journal.record()` whitelist. **S9 is unmeasurable
-retroactively and S1 is much harder without it** — without a stored handle, each
-winner's account must be found by search rather than looked up.
+`has_telegram`, `has_twitter`, `has_website` and `social_count` are derived by
+`scanner.socials_of()` and persisted by `journal.record()` (commit `ce0d33a`).
+Verified on 67 rows from a real pass, read back from disk: all four present on
+67/67, no nulls.
 
-**This is the blocking dependency, and it is small:** add `has_telegram`,
-`has_twitter`, `has_website`, `social_count` and the raw handle to the whitelist
-(`TRACKER_SCOPING.md` §4.1). **It is forward-only — it will not backfill the
-existing 177 winners.** Every day it is not shipped is a day of sample lost.
+⚠️ **Forward-only. It does not backfill.** The 177 existing verified winners
+have no socials and never will. **The usable sample starts accumulating from
+2026-09-17 and only while a collector is running** — which currently it is not
+(`CLAUDE.md`, blockers). Every day without collection is still sample lost.
+
+### 6.3 ⛔ OPEN VALIDITY QUESTION — does the metadata exist at launch?
+
+**This could invalidate S1, S9 and the cheapest half of the design, so resolve
+it before spending money on section 7.**
+
+First real capture, 67 rows: **0% telegram, 0% twitter, 1% website.** Those rows
+are tokens seconds old, so a near-zero rate is plausible. **But there is a
+second explanation that would be fatal:** Dexscreener's `info` block is
+populated when someone submits or pays for it, not at mint. If it fills in
+*hours or days after launch*, then capturing at scan time measures **"has the
+team filed their Dexscreener metadata yet"**, not **"does this project have a
+Twitter"** — and a real project with a two-year-old account would read as
+`has_twitter: False` at launch.
+
+**That is the same failure class as reading a stale market cap as live**: the
+field is present, it is just not measuring what its name says.
+
+A first probe is suggestive but far too small to conclude: of 20 contracts first
+seen 2026-09-15, only **2 were still listed** two days later, and **1 of those 2
+had acquired a twitter link** it did not have at scan time.
+
+**The test, once a few days of capture exist and costs nothing:** for contracts
+captured at t≈0, re-read `info` at t+24h and t+72h and compare against the
+stored value. **If the fill-in rate is material, S1/S9 must be measured from a
+delayed re-read rather than from the launch-time row**, and the backtest must
+use X directly for the pre-launch window rather than trusting Dexscreener
+metadata as a proxy for account existence.
+
+⚠️ **Do not buy X data until this is resolved.** If Dexscreener metadata cannot
+identify the project's account at launch, the handle-resolution step in section 7
+is harder and more expensive than costed there.
 
 ### 6.2 ⚠️ Historical follower counts probably do not exist
 

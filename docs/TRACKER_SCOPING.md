@@ -737,16 +737,49 @@ compare to the threshold.
 hold (300s max duration, §5b). That means **an always-on process on a VPS at
 ~$4–6/month** — the same box that solves the collector's weekend problem.
 
-⚠️ **Two things to confirm before committing, and I have not confirmed them:**
-1. **How Helius meters standard WebSocket subscriptions.** Helius lists
-   "LaserStream WSS (standard)" on the free tier and gRPC from Business ($499).
-   Whether a high-volume `programSubscribe` is billed per update, per connection,
-   or by bandwidth **changes the cost by orders of magnitude** and is the single
-   open question on this path.
-2. **Throughput.** A busy AMM program emits a very large number of account
-   updates per second. Whether one cheap VPS can decode and filter that stream
-   in real time needs measuring, not assuming. If it cannot, the fallback is to
-   filter server-side by program + account size, or to accept a subset of venues.
+### ✅ Both open items CLOSED by measurement, 2026-09-17
+
+**1. Metering.** Helius bills standard WebSocket methods — `accountSubscribe`,
+`programSubscribe`, `logsSubscribe` — as LaserStream WebSocket at **2 credits
+per 0.1 MB of uncompressed streamed data**, i.e. **20 credits/MB**, on all
+plans. (Sources conflicted; the billing doc is authoritative and this is it.)
+
+**2. Throughput — measured, not estimated.** I subscribed to the pump.fun
+program (`6EF8rre…`, from `sources.py:413`) over `config.helius_ws()` and ran it:
+
+| measured over 45.2s | |
+|---|---|
+| notifications | **2,531 (56.0/sec)** |
+| bandwidth | **31.0 KB/s** |
+| median message | **542 B** (max 1,814 B) |
+| extrapolated | 2.74 GB/day · **82.2 GB/month** |
+| **credits** | **1.64M/month** |
+
+| plan | allowance | verdict |
+|---|---|---|
+| Free | 1M | ⛔ exceeds by 1.6x |
+| **Developer $49/mo** | 10M | ✅ **fits at 16% — 6x headroom** |
+| Business $499/mo | 100M | fits at 2% (**not needed**) |
+
+**So the real-time path costs $49/month, not $499.** LaserStream **gRPC** needs
+Business, but **standard WebSockets do not** and they are what this design uses.
+
+**And a $4–6/month VPS is comfortably enough.** 31 KB/s is nothing — any VPS
+includes terabytes of transfer — and 56 messages/second of 542-byte JSON is
+orders of magnitude below what one core can parse. **The box is not the
+constraint; the Helius credit line is.**
+
+⚠️ **Three honest caveats on those numbers:**
+1. **One program, one 45-second window.** Rates move with market activity; a
+   frantic hour could be several times this. The 6x headroom on Developer is
+   what absorbs that, and it is why Free is not merely "tight" but wrong.
+2. **This is the pump.fun bonding-curve program only.** Full coverage also
+   needs PumpSwap and Raydium. Three programs at similar rates is ~5M
+   credits/month — **still inside Developer's 10M**, but it is the number to
+   re-measure before committing.
+3. **Streamed bytes, not useful bytes.** We pay for everything the program
+   emits, including account updates that are not swaps. Filtering happens after
+   we have been billed.
 
 **Recommendation: price path B properly before building path A.** Path A is
 cheap, deployable today on infrastructure that already exists and is verified
