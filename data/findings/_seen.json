@@ -5662,14 +5662,14 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 75,
+  "count": 76,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h",
    "24h"
   ],
-  "last_seen": "2026-09-18T14:32:30+00:00",
+  "last_seen": "2026-09-18T17:10:48+00:00",
   "last_escalated": "2026-09-18T11:51:49+00:00",
   "escalations": 12
  },
@@ -8384,23 +8384,23 @@
  },
  "liveness:paper-open": {
   "first_seen": "2026-09-09T15:02:17+00:00",
-  "count": 20,
+  "count": 21,
   "example": "liveness: paper.open",
   "keys": [
    "paper.open"
   ],
-  "last_seen": "2026-09-18T15:40:40+00:00",
+  "last_seen": "2026-09-18T17:10:59+00:00",
   "last_escalated": "2026-09-18T11:54:28+00:00",
   "escalations": 3
  },
  "liveness:paper-sweep": {
   "first_seen": "2026-09-10T00:07:40+00:00",
-  "count": 68,
+  "count": 69,
   "example": "liveness: paper.sweep",
   "keys": [
    "paper.sweep"
   ],
-  "last_seen": "2026-09-18T15:40:41+00:00",
+  "last_seen": "2026-09-18T17:10:59+00:00",
   "last_escalated": "2026-09-18T11:54:28+00:00",
   "escalations": 6
  },
@@ -9405,12 +9405,12 @@
  },
  "liveness:paper-close": {
   "first_seen": "2026-09-14T19:45:47+00:00",
-  "count": 6,
+  "count": 7,
   "example": "liveness: paper.close",
   "keys": [
    "paper.close"
   ],
-  "last_seen": "2026-09-18T15:40:40+00:00",
+  "last_seen": "2026-09-18T17:10:59+00:00",
   "last_escalated": "2026-09-18T11:54:28+00:00",
   "escalations": 1
  },
