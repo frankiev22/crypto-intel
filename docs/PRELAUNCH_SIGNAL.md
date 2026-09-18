@@ -195,6 +195,50 @@ metadata as a proxy for account existence.
 identify the project's account at launch, the handle-resolution step in section 7
 is harder and more expensive than costed there.
 
+#### ⭐ FIRST HALF OF THAT TEST, RUN 2026-09-18: no late fill-in at t+24h
+
+**0 of 44** contracts that were captured with `social_count = 0` had acquired any
+social link ~24 hours later. **0.00% [0.00, 8.03], n=44** — every one of the 44
+was still resolvable on Dexscreener, so this is not survivorship.
+
+⭐ **So at t+24h the field measures the token, not our sampling moment**, and the
+fatal explanation above is not supported at that horizon. Standing rule 13 says
+to check that the sampler is not slower than the phenomenon; here it was checked
+and came back clean.
+
+⛔ **It does NOT resolve t+72h, which section 6.3 also asks for.** Capture began
+2026-09-17, so no row is old enough. **Re-run at t+72h before treating this as
+settled.**
+
+⚠️ **And it contradicts the earlier probe in this section — 1 of 2 contracts had
+acquired a twitter link at t+48h.** That probe is n=2 with no interval and a
+different horizon. **The n=44 measurement is the one to act on**, and the n=2 one
+should not have been written down as suggestive of anything.
+
+#### ⚠️ What the capture rate means for the sample clock
+
+Measured over the whole of the capture so far, **n=562 rows, 2026-09-17 to
+2026-09-18**:
+
+| | rate | Wilson 95% |
+|---|---:|---|
+| any social link at scan | **0.89%** | [0.38, 2.07] |
+| ⭐ all three (telegram + twitter + website) | **0.36%** | [0.10, 1.29] |
+
+At the current **~495 rows/day**, that is **~1.8 all-three contracts a day**, so
+organic accrual reaches **n=100 in about 57 days** and the §3 floor of n≥30
+winners *with a resolvable X account* is further out still, because these are
+launch-time rows and not yet winners.
+
+⛔ **This strengthens the case for the bounded historical pull, not the reverse.**
+Waiting is not free — it costs two months of a decision window, against ~$65 for
+the core sample via xAI X Search (§7). ⚠️ **It is not an argument to buy before
+the t+72h half of 6.3 is done.**
+
+⚠️ **The rate scales with pass frequency, not with time.** 495 rows/day is ~8
+unattended passes. If the cron experiment (`docs/BACKLOG.md` C4a) succeeds, the
+accrual clock shortens proportionally; if it fails, it lengthens.
+
 ### 6.2 ⚠️ Historical follower counts probably do not exist
 
 X does not expose a follower-count time series. S3 as specified measures
