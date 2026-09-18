@@ -170,7 +170,7 @@ fees. Any path that depends on a track record has nothing to sell yet.
 | GitHub Actions `collect.yml` | same, hosted | ✅ **ALIVE — the repo went public 2026-09-18, so Actions minutes are free and unlimited.** A scheduled run fired on its own at 11:54Z and collected a full pass |
 | Claude desktop task | same, on the host | ⛔ dead since the 9/15 reboot — sandbox lost its drive mount |
 | `site/api/helius.mjs` on Vercel | Helius webhook receiver → Supabase → Discord | ✅ **deployed and answering**, but watching 0 addresses |
-| `data/dashboard.html` | static phone-first dashboard, built by `dashboard.py` | builds fine; not in the hourly stage list, so it goes stale silently |
+| `data/dashboard.html` | static phone-first dashboard, built by `dashboard.py` | ✅ **rebuilt on every pass from 2026-09-18** (`dashboard.build`, 4.0s, stdlib only, no network). ⛔ Before that it appeared nowhere in `collect.py` and went stale silently |
 
 **State store is git.** `data/` is committed after every run. Supabase is a
 write-only mirror (no SELECT grant), so it cannot serve as state.

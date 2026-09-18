@@ -109,6 +109,12 @@ COMPONENTS = {
                              "produced fields were diffed against stored fields"),
     # ⭐ V3, SCHEDULED FROM 2026-09-18. The sweep runs every pass, so it has a
     # real threshold: 12h matches paper.sweep, which shares the stage.
+    # ⭐ THE ONE ARTIFACT FRANK ACTUALLY LOOKS AT. Rebuilt every pass from
+    # 2026-09-18; before that only when somebody ran dashboard.py by hand, so it
+    # went stale silently while every number behind it stayed current. 12h
+    # matches the collector's own bar - the page is only as fresh as the pass.
+    "dashboard.build":      (12, "2026-09-18T16:00:00Z", "measured",
+                             "data/dashboard.html was rebuilt from the journal"),
     "paperv3.sweep":        (12, "2026-09-18T15:00:00Z", "measured",
                              "the v3 ledger looked for positions to close"),
     # ⛔ AND THESE TWO HAVE NO THRESHOLD, DELIBERATELY.

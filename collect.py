@@ -131,6 +131,7 @@ import paper
 import fieldguard
 import detector
 import liveness
+import dashboard
 
 PASS_SCORE = 70
 JOURNAL_BATCH = 10
@@ -164,7 +165,8 @@ STAGE_FIRES = {
     "24": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
     "168": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
 }
-EVERY_INVOCATION_FIRES = {"news.freshness", "detector.drift"}
+EVERY_INVOCATION_FIRES = {"news.freshness", "detector.drift",
+                          "dashboard.build"}
 STAGE_STOPS = {}
 
 
@@ -582,6 +584,26 @@ def main():
         detector.check_drift(record=findings.record, verbose=True)
     except Exception as e:
         print(f"  drift check failed (non-fatal): {e}")
+
+    # ⭐ REBUILD THE SITE. "The deliverable is a site, not chat output" is the
+    # first line of CLAUDE.md's session protocol, and the dashboard was rebuilt
+    # only when a human ran `python dashboard.py` by hand - `dashboard` appeared
+    # nowhere in this file. So the one artifact Frank actually looks at went
+    # stale silently while every number behind it stayed current.
+    #
+    # It costs 4 seconds, reads the journal and makes NO network calls, so there
+    # is no reason for it to be a manual step. Runs before the liveness check so
+    # a failure to build is itself reported by that check.
+    try:
+        _t0 = time.time()
+        dashboard.build()
+        liveness.beat("dashboard.build", 1)
+        print(f"  dashboard rebuilt in {time.time() - _t0:.1f}s")
+    except Exception as e:
+        # ⛔ Non-fatal: a broken renderer must never cost a pass of collection,
+        # which cannot be bought back. But it beats nothing, so liveness calls
+        # it stale rather than letting a stale page look fresh.
+        print(f"  dashboard build failed (non-fatal): {type(e).__name__}: {e}")
 
     # THE LIVENESS REGISTRY. Runs LAST, after every component has had its
     # chance to fire this pass. Four systems in this repo produced convincing

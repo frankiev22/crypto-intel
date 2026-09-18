@@ -69,6 +69,105 @@ check("the five from 9/15 are all reachable",
       {"paper.close", "paper.sweep", "milestone.mcap", "milestone.realizable",
        "watchlist.sweep"} <= fired)
 
+section("1b. ⛔ and something the COLLECTOR IMPORTS actually beats it")
+
+# ⛔ THE CHECK THAT WOULD HAVE CAUGHT paperv3.
+#
+# Section 1 proves the stage MAP is consistent with COMPONENTS. It cannot see
+# whether any code ever calls liveness.beat() for a name, or whether the module
+# that does is one collect.py can reach. paperv3 had 71 passing tests, a beat in
+# open_entry(), and collect.py did not import it - so the beat could not fire on
+# a pass no matter what the map said.
+#
+# ⚠️ Same family as the other two: `chainfields` was imported only by paperv3,
+# and `devwallet` by nothing at all. "It has tests" is not "it is in the system".
+import ast as _ast
+import glob as _glob
+
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_LOCAL = {os.path.splitext(os.path.basename(f))[0]
+          for f in _glob.glob(os.path.join(_HERE, "*.py"))}
+
+
+def _imports(mod):
+    try:
+        tree = _ast.parse(io.open(os.path.join(_HERE, mod + ".py"),
+                                  encoding="utf-8").read())
+    except Exception:
+        return set()
+    out = set()
+    for n in _ast.walk(tree):
+        if isinstance(n, _ast.Import):
+            out |= {a.name.split(".")[0] for a in n.names}
+        elif isinstance(n, _ast.ImportFrom) and n.module and n.level == 0:
+            out.add(n.module.split(".")[0])
+    return out & _LOCAL
+
+
+# Transitive closure from collect.py - what a pass can actually reach.
+_reach, _todo = set(), ["collect"]
+while _todo:
+    m = _todo.pop()
+    if m in _reach:
+        continue
+    _reach.add(m)
+    _todo.extend(_imports(m))
+
+# Every beat("name") literal, and which module it lives in.
+_beats = {}
+_prefix = {}
+for f in sorted(_glob.glob(os.path.join(_HERE, "*.py"))):
+    mod = os.path.splitext(os.path.basename(f))[0]
+    if mod.startswith("test_"):
+        continue
+    try:
+        tree = _ast.parse(io.open(f, encoding="utf-8").read())
+    except Exception:
+        continue
+    for n in _ast.walk(tree):
+        if not isinstance(n, _ast.Call):
+            continue
+        fn = n.func
+        name = (fn.attr if isinstance(fn, _ast.Attribute)
+                else fn.id if isinstance(fn, _ast.Name) else None)
+        if name != "beat" or not n.args:
+            continue
+        a = n.args[0]
+        if isinstance(a, _ast.Constant) and isinstance(a.value, str):
+            _beats.setdefault(a.value, set()).add(mod)
+        elif isinstance(a, _ast.JoinedStr) and a.values:
+            # ⚠️ A COMPUTED NAME, e.g. beat(f"milestone.{fam}"). The literal
+            # prefix is all that can be checked statically, so these are matched
+            # by prefix and REPORTED as such - a weaker check has to say it is
+            # weaker, or it reads as the strong one and nobody looks again.
+            first = a.values[0]
+            if isinstance(first, _ast.Constant) and isinstance(first.value, str)                     and first.value:
+                _prefix.setdefault(first.value, set()).add(mod)
+
+_nobeat, _by_prefix = [], []
+for c in sorted(liveness.COMPONENTS):
+    if c in _beats:
+        continue
+    hit = [p for p in _prefix if c.startswith(p)]
+    if hit:
+        _by_prefix.append(f"{c} <- f-string {hit[0]!r}")
+        _beats.setdefault(c, set()).update(*(_prefix[p] for p in hit))
+    else:
+        _nobeat.append(c)
+check("⛔ every declared component is beaten by some module", not _nobeat,
+      f"declared but nothing calls beat(): {_nobeat}")
+check(f"⚠️ {len(_by_prefix)} matched only by an f-string PREFIX, not exactly",
+      True, "; ".join(_by_prefix) or "none")
+
+_unreachable = sorted(c for c, mods in _beats.items()
+                      if c in liveness.COMPONENTS and not (mods & _reach))
+check("⛔ and that module is REACHABLE from collect.py", not _unreachable,
+      f"beaten only by modules the collector never imports: {_unreachable}")
+
+check("⭐ the import walk actually found the collector's graph",
+      {"scanner", "journal", "liveness", "paperv3", "dashboard"} <= _reach,
+      f"{len(_reach)} modules reachable")
+
 section("2. the map is backed by the call path, not just asserted")
 src = inspect.getsource
 check("sweep stage calls paper.sweep", "paper.sweep(" in src(collect.sweep_stage))
