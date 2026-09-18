@@ -17,6 +17,18 @@ Run: python test_labels.py    (offline, sandboxed, writes to a temp ledger)
 import json
 import os
 import sys
+
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
+# ⛔ Before anything that writes. A full suite run was appending rows to
+# data/liveness/ - the file that answers "is the collector alive" - so the
+# tests were writing into the health signal they are meant to check.
+# run_tests.py fails if data/ changes at all; this is how a suite complies.
+import testsandbox
+testsandbox.activate()
 import tempfile
 
 import paper

@@ -13,6 +13,11 @@ import ast
 import io
 import sys
 
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 import journal
 
 R = []

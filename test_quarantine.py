@@ -11,6 +11,11 @@ Run: python test_quarantine.py    (offline, sandboxed, writes to a temp dir)
 """
 import os
 import sys
+
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 import tempfile
 
 import pricecheck

@@ -11,6 +11,11 @@ Run: python test_v2.py    (offline, sandboxed, writes to a temp ledger)
 import io
 import os
 import sys
+
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 import tempfile
 
 import paper

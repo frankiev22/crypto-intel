@@ -14,6 +14,11 @@ calls, costs no rate budget, and can run in CI.
 """
 import sys
 
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 import check
 
 
