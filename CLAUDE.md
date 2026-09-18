@@ -308,10 +308,16 @@ python test_stages.py                                     # SKILL.md must match 
 gh run list --workflow=collect.yml --limit 10             # runner state
 ```
 
-**Liveness check that actually means something:** newest `ts` in
-`data/observations/`, or `last_unattended_at` in `data/liveness.json`. **A task
-firing is not the same as a pass running** — the desktop task fired hourly for
-two days while collecting nothing.
+**Liveness check that actually means something:** `python liveness.py`. Its last
+line answers the only question that matters — **when did a pass NOBODY TRIGGERED
+last write rows.** ⛔ **A task firing is not the same as a pass running** (the
+desktop task fired hourly for two days while collecting nothing), and **a hosted
+runner is not the same as unattended**: `origin()` returned `"runner"` for every
+Actions run until 2026-09-18, so a `workflow_dispatch` a human pressed recorded
+identically to a cron fire. It now returns **`scheduled`** for cron and
+**`dispatch`** for a button press, and only `("runner", "scheduled")` count.
+⚠️ **`runner` rows written before 2026-09-18 are a mix of the two and cannot be
+re-derived**, so any unattended figure spanning them is an upper bound.
 
 ---
 

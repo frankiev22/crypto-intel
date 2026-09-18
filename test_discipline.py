@@ -321,6 +321,59 @@ check("⛔ an UNDECLARED component does not crash the report", _ok, _ln2.strip()
 check("...and its age is reported, not thrown away",
       "no age recorded" not in _ln2, _ln2.strip()[:60])
 
+# ⛔ A HOSTED RUNNER IS NOT AUTOMATICALLY UNATTENDED.
+# origin() returned "runner" for every Actions run, so a workflow_dispatch I
+# pressed myself recorded identically to a cron fire - and "did a pass run that
+# nobody triggered" then had to be read off `gh run list` and correlated by
+# timestamp. Taking the answer from somewhere other than the thing that claims
+# it is standing rule 16, and it flattered us in the direction we were already
+# wrong: 87% of passes were manual.
+_saved = {k: os.environ.get(k)
+          for k in ("GITHUB_ACTIONS", "GITHUB_EVENT_NAME", "CRYPTO_ORIGIN")}
+
+
+def _origin(**env):
+    for k in _saved:
+        os.environ.pop(k, None)
+    os.environ.update({k: v for k, v in env.items() if v is not None})
+    return liveness.origin()
+
+
+check("⭐ a cron fire is `scheduled`",
+      _origin(GITHUB_ACTIONS="true", GITHUB_EVENT_NAME="schedule") == "scheduled")
+check("⛔ a workflow_dispatch is NOT - a human pressed it",
+      _origin(GITHUB_ACTIONS="true", GITHUB_EVENT_NAME="workflow_dispatch")
+      == liveness.DISPATCH)
+check("...nor is a push-triggered run",
+      _origin(GITHUB_ACTIONS="true", GITHUB_EVENT_NAME="push") == liveness.DISPATCH)
+check("⛔ and `dispatch` does not count as unattended",
+      liveness.DISPATCH not in liveness.UNATTENDED)
+check("off Actions it is still manual unless told otherwise",
+      _origin() == "manual")
+check("and CRYPTO_ORIGIN still wins off Actions",
+      _origin(CRYPTO_ORIGIN="scheduled") == "scheduled")
+for k, v in _saved.items():
+    os.environ.pop(k, None)
+    if v is not None:
+        os.environ[k] = v
+
+# ⭐ And the question has to be answerable FROM THE JOURNAL.
+_now3 = int(time.time())
+io.open(liveness.REG, "w", encoding="utf-8").write(json.dumps({
+    "a": {"last_ts": _now3, "count": 1, "first_ts": _now3,
+          "last_origin": "manual"},
+    "b": {"last_ts": _now3, "count": 1, "first_ts": _now3,
+          "last_origin": "scheduled", "last_unattended_rows_ts": _now3 - 7200}}))
+_ts, _who, _org = liveness.unattended_rows()
+check("⭐ unattended_rows() finds the newest unattended ROW clock",
+      _who == "b" and _ts == _now3 - 7200, f"{_who} {_ts}")
+io.open(liveness.REG, "w", encoding="utf-8").write(json.dumps({
+    "a": {"last_ts": _now3, "count": 1, "first_ts": _now3,
+          "last_origin": "manual"}}))
+check("⛔ and reports NOTHING rather than a manual beat when there is none",
+      liveness.unattended_rows() == (None, None, None),
+      str(liveness.unattended_rows()))
+
 print()
 print("=" * 70)
 print("E. the rule is written down where the next session will find it")

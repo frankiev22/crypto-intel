@@ -69,10 +69,34 @@ jobs:
 
       # No setup-python and no pip install: the collector is pure stdlib
       # (config.py falls back to its own .env parser when dotenv is absent),
-      # and ubuntu-latest ships Python 3. Asserting the version keeps a runner
-      # image change loud instead of silent.
+      # and ubuntu-latest ships Python 3.
+      #
+      # ⛔ THE OLD COMMENT HERE CLAIMED THIS STEP "asserts the version" SO A
+      # RUNNER IMAGE CHANGE STAYS LOUD. It ran `python3 -VV` and nothing else.
+      # Printing a version is not asserting it: the step passes on any Python 3
+      # ever shipped, and the line scrolls past in a log nobody reads. Standing
+      # rule 16 - we checked that something RAN.
+      #
+      # ⚠️ This matters on a date: the ubuntu-latest label migrates to Ubuntu 26
+      # beginning 2026-10-19 (GitHub notice on every run). An image swap that
+      # moved Python backwards would break the collector silently, which is the
+      # one failure mode this project cannot afford - lost hours of launches
+      # cannot be bought back at any price.
       - name: Python
-        run: python3 -VV
+        run: |
+          python3 -VV
+          python3 - <<'EOF'
+          import sys
+          # 3.9 is the floor the code actually needs. It is deliberately a floor
+          # and not a pin: a NEWER Python is fine and pinning would break the
+          # collector on the very image migration this check exists to survive.
+          need = (3, 9)
+          if sys.version_info[:2] < need:
+              raise SystemExit(
+                  f"::error::runner Python is {sys.version.split()[0]}, "
+                  f"below the {need[0]}.{need[1]} floor this code needs")
+          print(f"python {sys.version.split()[0]} >= {need[0]}.{need[1]} OK")
+          EOF
 
       - name: Collect
         id: collect

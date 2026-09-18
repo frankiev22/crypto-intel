@@ -130,12 +130,36 @@ def _load():
 # beat records its origin and staleness is judged ONLY on unattended beats: the
 # GitHub runner, or the scheduled task, which sets CRYPTO_ORIGIN=scheduled on
 # every staged command. Anything else is "manual" - shown, never counted.
+# ⛔ AND A HOSTED RUNNER IS NOT AUTOMATICALLY UNATTENDED.
+#
+# `origin()` returned "runner" for every GitHub Actions run, which meant a
+# `workflow_dispatch` I pressed myself was recorded identically to a cron fire.
+# The one question that matters - "did a pass run that nobody triggered" - was
+# therefore not answerable from the journal at all; it had to be read off
+# `gh run list` and correlated by timestamp, which is standing rule 16 exactly:
+# taking the answer from somewhere other than the thing that claims it.
+#
+# It also flattered us in the direction we were already wrong. 87% of all passes
+# were manual, every "healthy collector" number was carried by a human pressing
+# a button, and a dispatch tagged "runner" is precisely that human wearing the
+# machine's name.
+#
+# ⚠️ Historical rows tagged "runner" are a MIX of both and stay counted as
+# unattended - they cannot be re-derived, and rule 8 says they are not rewritten.
+# Only rows written from here on carry the distinction.
+DISPATCH = "dispatch"
 UNATTENDED = ("runner", "scheduled")
 
 
 def origin():
     if os.environ.get("GITHUB_ACTIONS"):
-        return "runner"
+        ev = os.environ.get("GITHUB_EVENT_NAME") or ""
+        if ev == "schedule":
+            return "scheduled"          # it fired on its own. This is the bar.
+        if ev in ("workflow_dispatch", "repository_dispatch"):
+            return DISPATCH             # a human pressed the button
+        # push, pull_request, anything else: hosted, but somebody caused it.
+        return DISPATCH if ev else "runner"
     return os.environ.get("CRYPTO_ORIGIN") or "manual"
 
 
@@ -398,10 +422,47 @@ def check(record=None, verbose=True):
     return st
 
 
+def unattended_rows():
+    """⭐ THE ONE QUESTION: when did a pass NOBODY TRIGGERED last write rows?
+
+    Returns (ts, component, origin) or (None, None, None).
+
+    ⛔ Read off the registry, not off `gh run list`. The bar Frank set is "fresh
+    rows written by a run that fired on its own", and until origin() separated
+    `scheduled` from `dispatch` the journal could not answer it - every hosted
+    run said "runner" whether cron fired it or a human did. Answering a question
+    about the data from somewhere other than the data is standing rule 16.
+
+    ⚠️ `runner` rows written before 2026-09-18 are a mix of both and cannot be
+    re-derived. They are still counted, and this figure is therefore an UPPER
+    bound on how recently the system ran itself, until the pre-split rows age
+    out of the window you care about.
+    """
+    reg = _load()
+    best = (None, None, None)
+    for name, r in (reg or {}).items():
+        if not isinstance(r, dict):
+            continue
+        ts = r.get("last_unattended_rows_ts")
+        if ts and (best[0] is None or ts > best[0]):
+            best = (ts, name, r.get("last_origin"))
+    return best
+
+
 if __name__ == "__main__":
     import sys
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     st = status()
     print(line(st))
+    ts, who, org = unattended_rows()
+    if ts:
+        age = (time.time() - ts) / 3600.0
+        print(f"  unattended rows: {who} {age:.1f}h ago"
+              + (f" (origin {org})" if org else "")
+              + ("   ⚠️ pre-split `runner` may mean a human dispatch"
+                 if org == "runner" else ""))
+    else:
+        print("  ⛔ unattended rows: NEVER - no pass that nobody triggered has "
+              "written a row")
     bad = [s for s in st if s["verdict"] in ("never", "stale", "undeclared", "empty")]
     sys.exit(1 if bad else 0)
