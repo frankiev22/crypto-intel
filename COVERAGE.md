@@ -109,3 +109,70 @@ Two consequences, both now handled:
 Net: `CRYPTO_NEW_POOL_PAGES` now defaults to 5, taking the window from ~40-67s
 to ~128s — roughly 1.5% to 3.6% of an hour. Better, and still nowhere near
 enough. The ceiling on this approach is about 9%.
+
+---
+
+## 2026-09-18: measured against the chain, not the clock
+
+⛔ **Every coverage figure before this one was arithmetic** - window per pass ×
+passes per day ÷ 86,400. `coverage_probe.py` checks it against the launch
+stream itself. pump.fun's mint authority signs every create and its migration
+authority every graduation, so paging their signatures over the last complete
+24h enumerates both streams as a **ledger** - nothing ages out of it the way a
+`/new_pools` window does. A seeded sample of each was fetched, kept only when
+the logs show the expected instruction and exactly one non-SOL mint, and looked
+up in every observation the journal has ever recorded.
+
+| stream (24h to 2026-09-18 ~21:00Z) | in 24h | sampled | fetch failed | wrong instr. | ambiguous mint | usable | **seen by us** |
+|---|---:|---:|---:|---:|---:|---:|---|
+| pump.fun creates | 36,568 | 400 | 40 | 4 | 39 | 317 | **4 = 1.26%** [0.49%, 3.20%] |
+| pump.fun graduations | 1,647 txs | 400 | 16 | 108 | 19 | 257 | **5 = 1.95%** [0.83%, 4.47%] |
+
+**Triangulation:** the median pass window is **190s** (n=30, p90 288s, ~81
+pools), and scheduled passes land a median **3.42h** apart (n=134) - about 7 a
+day. 190 × 7 / 86,400 = **1.54%**, inside the measured interval. The 1.9% in
+`docs/CHAINS.md` was the right order of magnitude and slightly high.
+
+⭐ **Graduations are seen no better than random launches.** That is the finding
+that matters: nothing in the pipeline looks for the tokens that go somewhere. A
+token is in our journal only if its creation happened to fall inside one of
+~7 three-minute windows a day.
+
+⚠️ **Not a graduation rate.** ~72% of migration-authority transactions carry
+`CreatePool`, implying ~1,100 graduations a day - ~3% of creates, against a
+published 0.198% (Kamat) and our own 0.22%. Unreconciled. Do not quote it.
+
+### The second half of the scope error
+
+The same day's first market snapshot (`market.py`): **0 of the top 25 24h
+gainers had ever been in our journal**, and 2 of 105 mover rows across all
+lists. The median top-25 24h gainer was **19.3 hours old** - so most of what is
+running is a launch we missed, not an old coin we ignore. Some are old: 27, 9
+and 5.5 days on that snapshot.
+
+### What a good version looks like, and what it costs
+
+⛔ Not a defence of the current pipeline. It sees ~1 launch in 80 and was never
+designed to see what is running. In order of value per dollar:
+
+| # | change | coverage effect | cost | state |
+|---|---|---|---|---|
+| 0 | **market-wide lists every pass** (`market.py`) - movers, volume, trending, clusters, tape | what is running NOW, any age, ~280 most-active tokens | $0 | ✅ **shipped 2026-09-18**, first unattended run pending |
+| 1 | ⭐ **graduation ledger** - page the migration authority's signatures since the last pass, `getTransaction` each, enrich | graduations **~2% -> ~100%**, because a ledger does not expire between passes. Late by up to one pass gap, but complete | **$0** - ~1,100-1,650 calls/day, ~3-5% of Helius free tier, or keyless on public RPC | 🔴 not started. **The single cheapest change that most increases coverage** |
+| 2 | **an always-on box** running the collector every 10-15 min instead of GitHub cron (29% of requested cadence, `docs/BACKLOG.md` C10) | window coverage of launches ~1.3% -> ~20%; every list and crossing fresher | **~$4-6/mo** VPS | 🔴 not started |
+| 3 | **`programSubscribe` on the launch programs** (BACKLOG C5) | **every create and swap, as it happens** | ~$53-55/mo (VPS + Helius Developer $49 - free tier fails 1.6x) | 🔴 not started, costed |
+
+**Why 1 before 3:** 99.8% of creates die and most never trade. Frank's question
+is about the ones that go somewhere, and graduation is the first public
+evidence of that. The ledger captures all of them for nothing; a full firehose
+of creates costs $49/mo to learn mostly about tokens that die in minutes.
+
+**Why raising `pages` is still not it:** measured on 2026-08-28 above -
+pagination re-sorts under the sweep, page 5 duplicated page 1, and the ceiling
+is ~9% at the rate limit.
+
+⚠️ **One option considered and rejected:** a workflow that re-dispatches itself
+at the end of each run would make GitHub run continuously for $0. GitHub's
+Actions terms exclude using it as a long-running service unrelated to building
+the repo's software, and this collector is already the grey edge of that. A
+self-perpetuating loop is past it, and the account is the thing at risk.

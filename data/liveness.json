@@ -240,5 +240,18 @@
   "last_unattended_rows_ts": 1789768644,
   "last_unattended_ts": 1789768644,
   "last_unattended_at": "2026-09-18T21:57:24+00:00"
+ },
+ "market.snapshot": {
+  "last_ts": 1789772134,
+  "last_at": "2026-09-18T22:55:34+00:00",
+  "count": 414,
+  "first_ts": 1789772134,
+  "detail": "414 rows, universe 284, 16 round trips",
+  "last_origin": "manual",
+  "firings": 1,
+  "rows_total": 414,
+  "empty_firings": 0,
+  "last_rows_ts": 1789772134,
+  "last_rows_at": "2026-09-18T22:55:34+00:00"
  }
 }

@@ -3,7 +3,7 @@
 **Handoff file. Read this first, then the two or three `docs/` files your task
 touches. Do not re-derive what is written here.**
 
-Last updated 2026-09-17. ⚠️ **Keep this current. It is the handoff, not a
+Last updated 2026-09-18. ⚠️ **Keep this current. It is the handoff, not a
 one-off** — if you change architecture, numbers, or blockers, update it in the
 same session.
 
@@ -61,6 +61,9 @@ further" — scope those separately and hold them to the measurement bar below.
 | ⭐ median holders, our own "winners" | **9** (54% under 10) | `docs/TRUSTED_FIELDS.md` §1 |
 | median holders, Jupiter-TRADEABLE | **1,350** | same |
 | median holders, Jupiter-TOTAL_LOSS | **3** | same |
+| ⭐ **launch coverage, measured from chain** | **1.26%** [0.49, 3.20], 4/317 creates | `COVERAGE.md`, `coverage_probe.py` |
+| ⭐ **graduation coverage, measured from chain** | **1.95%** [0.83, 4.47], 5/257 | same |
+| top-25 24h gainers ever in our journal | **0/25** (first snapshot, 2026-09-18) | `data/market/index.json` |
 | paper ledger, re-derived 2026-09-17 | 86 closes, **−$2,495** by mult / **−$4,168** realizable | `docs/LIQUIDITY.md` §8 |
 
 ⛔ **Never quote the 2.10% graduation rate.** It is 397/18,920 computed on
@@ -166,6 +169,7 @@ fees. Any path that depends on a track record has nothing to sell yet.
 | component | what it does | state |
 |---|---|---|
 | `collect.py` | hourly staged collector: scan, sweep, watchlist, 1/6/24/168h | ✅ **running again on the hosted runner, 2026-09-18** |
+| ⭐ `market.py` | **what is running NOW** - movers, volume, trending, clusters, the tape → `data/market/` | 🟡 **built 2026-09-18, observed on a manual run** (414 rows, 18/18 sources ok). ⛔ **The pipeline only ever collected tokens at birth; 0 of the top 25 24h gainers were in our journal.** Unattended run pending. Schema for the site: `docs/MARKET_DATA.md` |
 | ⭐ `paperv3.py` | the ledger that prices fills on real quotes | ✅ **SCHEDULED 2026-09-18** — enters in the scan loop beside v1/v2, sweeps in the sweep stage. ⛔ **Nothing called it before that**, despite 71 passing tests |
 | GitHub Actions `collect.yml` | same, hosted | ✅ **ALIVE — the repo went public 2026-09-18, so Actions minutes are free and unlimited.** A scheduled run fired on its own at 11:54Z and collected a full pass |
 | Claude desktop task | same, on the host | ⛔ dead since the 9/15 reboot — sandbox lost its drive mount |
@@ -229,6 +233,8 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
 | ⭐ **dev wallet history, funding graphs, first buyers, LP** | `docs/DEV_WALLET.md` |
 | ⭐ **paper trader v3 — fills priced on real quotes** | `docs/PAPER_V3.md`, `PRECOMMIT_paper_v3.md` |
 | ⛔⛔ **EVERY commitment and its status — read at session start** | `docs/BACKLOG.md` |
+| ⭐ **what is running now: every `data/market/` file, field and rendering rule** | `docs/MARKET_DATA.md` |
+| ⭐ **how much of the launch stream we see, and the costed good version** | `COVERAGE.md` (2026-09-18 section) |
 | ⛔⛔ **how we test: verify output, not execution** | `docs/ENGINEERING_DISCIPLINE.md` |
 | ⛔ **symbols that render as a different token** | `docs/SYMBOL_ATTACKS.md` |
 | ⛔ **why no score may gate an entry, and the AST check** | `test_scoreband.py` |
@@ -304,7 +310,19 @@ not added there does not exist) · `paper.py` / `paperv2.py` (simulation ledgers
 · `check.py` (one CA in, one verdict out — the model for the analyzer) ·
 `detector.py` (D1/D2) · `onchain_reserves.py` (quote-side depth) ·
 `liveness.py` (origin tagging; `UNATTENDED = ("runner","scheduled")`) ·
-`dashboard.py` · `sources.py` (all HTTP; sets the UA correctly).
+`dashboard.py` · `sources.py` (all HTTP; sets the UA correctly) · ⭐ `market.py`
+(market-wide snapshot, keyless) · `crossingdepth.py` (re-links historical
+crossings to the depth measured at them) · `coverage_probe.py` (launch coverage
+from pump.fun's own signers).
+
+⛔ **Jupiter's "organic" volume split is NOT a wash signal.** SOL itself runs
+1.8% organic; a low share is the norm. It is published beside SOL's baseline
+and flags nothing. There is no wash detector in `data/market/`.
+
+⭐ **mcap and multiple milestone claims carry `exit_depth_at_crossing`** from
+2026-09-18 - the same values the outcome row records, measured in the same call.
+History (1,097 crossings, 09-09 onward) is in
+`data/milestones/depth_at_crossing.jsonl`.
 
 ⭐ **`devwallet.py`** — `deployer()`, `launches()`, `activity_before()`,
 `funding_chain()`, `first_buyers()`, `buyer_funding_overlap()`, `lp_detail()`,

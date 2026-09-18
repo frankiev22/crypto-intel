@@ -84,10 +84,22 @@ label each fail it.
 ## What the site needs from the pipeline
 
 See "Not connected yet" on the page. In order of value:
-1. `exit_depth_at_crossing` on mcap milestone rows (graduation rows already
-   carry it). Without it no tier crossing can be verified.
-2. A published cluster output (e.g. `data/clusters.json` with a build timestamp).
+1. ✅ **AVAILABLE 2026-09-18** - `exit_depth_at_crossing` on mcap milestone rows
+   (graduation rows already carry it). Forward: on the claim row itself.
+   History: `data/milestones/depth_at_crossing.jsonl`, 1,097 crossings. Schema
+   in `docs/MARKET_DATA.md`.
+2. ✅ **AVAILABLE 2026-09-18** - `data/market/clusters.json` (ours + Dexscreener
+   metas) with `built_at`. Schema in `docs/MARKET_DATA.md`.
 3. Persisted D1 / D2 detector verdicts per observation.
 4. `analyze(CA)` exposed as a service for the lookup box.
 5. A paper v3 ledger file, once it exists.
 6. A heartbeat from the whale listener, so silence can be told from failure.
+
+### ⭐ New, not asked for by name: what is running now (2026-09-18)
+
+`data/market/` - movers (1h/6h/24h gainers and losers, each vs SOL), volume
+leaders (with SOL/stables removed), trending (Jupiter, GeckoTerminal,
+Dexscreener boosts labelled PAID), clusters, and the tape (SOL/BTC/ETH, market
+and Solana DEX volume). **Read `data/market/index.json` first** - it says which
+sources failed, so an empty panel can say why. Full schema and the rules for
+rendering it: `docs/MARKET_DATA.md`. ⛔ Build panels only for files that exist.

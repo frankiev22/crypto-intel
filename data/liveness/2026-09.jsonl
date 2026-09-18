@@ -42216,3 +42216,4 @@
 {"name": "news.freshness", "ts": 1789768642, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
 {"name": "detector.drift", "ts": 1789768642, "n": 1, "detail": "stable", "origin": "scheduled"}
 {"name": "dashboard.build", "ts": 1789768644, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1789772134, "n": 414, "detail": "414 rows, universe 284, 16 round trips", "origin": "manual"}
