@@ -290,6 +290,15 @@ liquidity), `supply()`, `market_cap()`, `holder_count()`, `trusted()`. ⛔ **Unk
 is None, never 0.** Decision-point only: a process-wide bucket caps Jupiter at
 55/min, so it must never reach the per-row scan path. `test_chainfields.py --live`.
 
+⛔ **The runner has NO `.env`, and two things quietly depend on that.**
+`config.helius_rpc()` falls back to `api.mainnet-beta.solana.com`, which
+serves `getTokenAccounts` but wants **`mintAddress`** where Helius wants
+**`mint`** — `chainfields.holder_count()` switches on the endpoint's own error,
+verified keyless at **977 holders**, the same number the keyed path returns.
+Jupiter falls back to the keyless lite-api and round-tripped BONK at **0.0244%**.
+⭐ **No repo secret is needed.** Without the spelling switch, paperv3 would have
+entered normally by hand and **nothing at all unattended**.
+
 ⭐ **`holders` is on observation rows from 2026-09-18** — fetched at the decision
 point only, for rows that cleared every free condition of RULE_V3 (~7 a pass,
 measured 92 of 1,003 rows over three days). Helius DAS, never Jupiter. Forward

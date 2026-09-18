@@ -365,6 +365,12 @@ def market_cap(mint, usd=DEFAULT_PROBE_USD, rt=None):
     return sup * (10 ** dec) * px
 
 
+# Which spelling this process has found to work. A list so the swap below is a
+# mutation, not a global rebind - and it is deliberately process-wide: paying
+# the wrong-name round trip once per pass, not once per token.
+_HOLDER_MINT_KEY = ["mint"]
+
+
 def holder_count(mint, max_pages=25):
     """⭐ Distinct wallets holding a non-zero balance. None if unreadable.
 
@@ -386,10 +392,37 @@ def holder_count(mint, max_pages=25):
     cursor = None
     pages = 0
     while True:
-        p = {"mint": mint, "limit": 1000}
+        # ⛔ THE PARAMETER NAME DIFFERS BY ENDPOINT, AND THE RUNNER HAS NO KEY.
+        #
+        # config.helius_rpc() falls back to api.mainnet-beta.solana.com when
+        # HELIUS_API_KEY is absent, which is the case on GitHub Actions - .env is
+        # gitignored and stays that way. That endpoint DOES serve
+        # getTokenAccounts, and returns the same token_accounts/amount/owner/
+        # cursor shape, but it wants `mintAddress` where Helius wants `mint` and
+        # rejects the other outright:
+        #
+        #   Helius: unknown field `mintAddress`, expected one of `owner`, `mint`...
+        #   public: unknown field `mint`, expected one of `ownerAddress`,
+        #           `mintAddress`...
+        #
+        # ⚠️ Without this, holder counts return None on every scheduled run, and
+        # paperv3 - whose gate refuses an unknown float - would enter NOTHING on
+        # the runner while entering normally by hand. A capability that works
+        # only when a human runs it is the failure this project keeps paying for.
+        # Probed live 2026-09-18, both endpoints, both spellings.
+        p = {_HOLDER_MINT_KEY[0]: mint, "limit": 1000}
         if cursor:
             p["cursor"] = cursor
         res, err = _rpc("getTokenAccounts", p)
+        if err and "unknown field" in err and _HOLDER_MINT_KEY[0] in err:
+            # Wrong endpoint for this spelling. Switch once, for the process,
+            # and retry this page - never silently return None.
+            _HOLDER_MINT_KEY[0] = ("mintAddress" if _HOLDER_MINT_KEY[0] == "mint"
+                                   else "mint")
+            p.pop("mint", None)
+            p.pop("mintAddress", None)
+            p[_HOLDER_MINT_KEY[0]] = mint
+            res, err = _rpc("getTokenAccounts", p)
         if err:
             return {"holders": None, "truncated": False, "error": err}
         accts = (res or {}).get("token_accounts") or []

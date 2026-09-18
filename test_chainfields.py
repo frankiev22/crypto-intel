@@ -136,6 +136,73 @@ check(cf._impact_pct({"priceImpactPct": "0"}) == 0.0,
       "⚠️ a genuine ZERO is kept as 0.0, not coerced to None")
 
 print()
+print("holder_count survives an endpoint that spells `mint` differently")
+print("-" * 70)
+
+# ⛔ THE RUNNER HAS NO HELIUS KEY - .env is gitignored and stays that way - so
+# config.helius_rpc() falls back to api.mainnet-beta.solana.com. That endpoint
+# serves getTokenAccounts and returns the same shape, but wants `mintAddress`
+# where Helius wants `mint` and REJECTS the other outright. Without the switch,
+# every holder count on a scheduled run comes back None, and paperv3 - which
+# refuses an unknown float by design - enters NOTHING on the runner while
+# entering normally by hand. A capability that only works when a human runs it
+# is precisely the failure this project keeps paying for.
+#
+# Probed live 2026-09-18 against both endpoints, both spellings; replayed here
+# offline so the suite never needs the network.
+_PAGE = {"token_accounts": [{"owner": "W1", "amount": "5"},
+                            {"owner": "W2", "amount": "7"},
+                            {"owner": "W1", "amount": "3"},
+                            {"owner": "W3", "amount": "0"}],
+         "cursor": None}
+
+
+def _fake_endpoint(accepts):
+    """Reject the wrong spelling exactly the way the real endpoints do."""
+    seen = []
+
+    def rpc(method, params, timeout=40, tries=3):
+        seen.append(sorted(k for k in params if "mint" in k.lower()))
+        if accepts not in params:
+            wrong = next(k for k in params if "mint" in k.lower())
+            return None, "{'code': -32602, 'message': 'unknown field `" + wrong + "`'}"
+        return dict(_PAGE), None
+
+    return rpc, seen
+
+
+_real_rpc, _real_key = cf._rpc, cf._HOLDER_MINT_KEY[0]
+try:
+    for accepts, label in (("mint", "Helius"), ("mintAddress", "the public RPC")):
+        cf._HOLDER_MINT_KEY[0] = "mint"          # always start Helius-first
+        cf._rpc, seen = _fake_endpoint(accepts)
+        r = cf.holder_count("MINT111")
+        check(r.get("error") is None, f"{label}: no error", str(r.get("error")))
+        check(r.get("holders") == 2,
+              f"{label}: ⭐ counts DISTINCT owners with a balance",
+              f"got {r.get('holders')} - W1 twice, W3 zero")
+        check(cf._HOLDER_MINT_KEY[0] == accepts,
+              f"{label}: settled on the spelling it accepts",
+              cf._HOLDER_MINT_KEY[0])
+    # ⚠️ And the switch must be paid ONCE, not on every page or every token.
+    cf._HOLDER_MINT_KEY[0] = "mint"
+    cf._rpc, seen = _fake_endpoint("mintAddress")
+    cf.holder_count("MINT111")
+    n_first = len(seen)
+    cf.holder_count("MINT222")
+    check(len(seen) - n_first == 1,
+          "⚠️ the second token costs no extra probe - the switch is process-wide",
+          f"{len(seen) - n_first} call(s) for the second token")
+    # ⛔ A REAL error must still surface as None, never as 0 holders.
+    cf._rpc = lambda *a, **k: (None, "503 Service Unavailable")
+    r = cf.holder_count("MINT111")
+    check(r.get("holders") is None and r.get("error"),
+          "⛔ an unrelated failure is None with the reason, NEVER 0",
+          repr(r.get("holders")))
+finally:
+    cf._rpc, cf._HOLDER_MINT_KEY[0] = _real_rpc, _real_key
+
+print()
 if FAIL:
     print(f"FAILED: {len(FAIL)}")
     for f in FAIL:
