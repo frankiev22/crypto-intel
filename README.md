@@ -5,6 +5,24 @@ probed live before being written in.
 
 **This produces data, not recommendations.** No trade execution anywhere in it.
 
+
+## ⚠️ What this is, honestly
+
+This is a research repository, not a product and not advice. **It produces data,
+not recommendations, and contains no trade execution code.**
+
+The paper-trading ledgers in `data/paper/` are **simulations**. There is no
+realized P&L anywhere in this repo, and v1/v2 are **quarantined**: their fills
+were priced on a mid-price ratio with position size recorded and never applied,
+so their "wins" are prices nobody could have obtained. See
+`PRECOMMIT_paper_v3.md`.
+
+Several findings here have been **retracted** after re-measurement, and the
+retractions are kept in place rather than deleted. If you are reading a number,
+check `CLAUDE.md` for whether it still stands. Security policy: `SECURITY.md`.
+Licence: MIT.
+
+
 ## Run it
 ```
 python config.py     # what keys are set, what each missing one costs you
