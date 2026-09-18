@@ -235,17 +235,40 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
 | X/Twitter API prices | `X_API.md` |
 | any pre-committed threshold | `PRECOMMIT_*.md` |
 
-⭐ **Existing credentials — checked 2026-09-17, do not re-ask.** `crypto-intel/.env`
-has `HELIUS_API_KEY`, ⭐ **`JUPITER_API_KEY`** (free tier, 25M credits/mo
-then $1/M; verified live 2026-09-17, HTTP 200 in 310ms; **measured ceiling
-~1.1 req/s - the key buys reliability, not speed**; usage tracked in
+⭐ **Existing credentials — full disk scan 2026-09-18, do not re-ask.** 62
+distinct credential names across 37 files. **Values are never printed anywhere.**
+
+**crypto-intel/.env:** `HELIUS_API_KEY` (✅ RPC 200, free tier 1M credits/mo),
+⭐ `JUPITER_API_KEY` (free tier, 25M credits/mo then $1/M; **measured ceiling
+~1.1 req/s — the key buys reliability, not speed**; usage in
 `data/_jupiter_usage.json` via `chainfields.usage()`), `BIRDEYE_API_KEY`
-(dies after ~7 calls), `ALCHEMY_API_KEY`,
-`ETHERSCAN_API_KEY`, `CRYPTOPANIC_API_TOKEN`, Supabase. **`dispatch-workspace/.env`
-has a full `TWITTER_*` set and `XAI_API_KEY`** — the X bearer token returns
-**`402 credits depleted`, not `401`**, so an X developer account exists and is
-authenticated. `XAI_API_KEY` returns `400 Incorrect API key`. `~/.openclaw` has a
-Brave Search key. ⛔ **Grep every project `.env`, not just this one.**
+(⛔ **dies after ~7 calls, permanently 401 — do not use**), `ALCHEMY_API_KEY`,
+`ETHERSCAN_API_KEY`, `HELIUS_WEBHOOK_SECRET`, Supabase, 4 × `CRYPTO_*_SECRET`.
+
+⭐ **X / Twitter: SEVEN credentials, and the account is ALIVE.** In
+`dispatch-workspace/.env` **and** `~/Documents/openclaw-review/gateway.cmd` and
+`~/OLD-OC-old/gateway.cmd` (⚠️ bearer is 112 chars in `.env`, 113 in
+`gateway.cmd` — the `.env` one is the one that authenticates):
+`TWITTER_BEARER_TOKEN`, `_ACCESS_TOKEN`, `_ACCESS_SECRET`, `_CONSUMER_KEY`,
+`_CONSUMER_SECRET`, `_OAUTH2_CLIENT_ID`, `_OAUTH2_CLIENT_SECRET`, plus
+`TWITTER_USERNAME`/`_PASSWORD` (account, not API).
+
+**Tier probed live 2026-09-18:**
+```
+GET /2/usage/tweets      200   project_cap 3,000,000   project_usage 0
+                               cap_reset_day 29        x-access-level read
+GET /2/tweets/search/recent 402 "credits depleted"     x-rate-limit 450/15min
+```
+⭐ **The monthly cap is UNTOUCHED — usage is zero. This is a billing lapse, not
+an exhausted quota.** Read access and a 3M/month cap already exist.
+
+⛔ **`XAI_API_KEY` is DEAD** — `400 Incorrect API key` from `api.x.ai/v1/models`.
+Present in the same three files. It needs replacing, not finding.
+
+⛔ **Grep every project `.env` before ever saying a key does not exist.** We lost
+15 days to that once, and I repeated a version of it this session: I "corrected"
+myself to say the Twitter keys were only in `gateway.cmd`, then found they are in
+`dispatch-workspace/.env` too — my scan had printed only the first two locations.
 
 **Key modules:** `collect.py` (orchestrator, `STAGES`/`staged_commands()`) ·
 `journal.py` (append-only store; `record()` is a **field whitelist** — a field
