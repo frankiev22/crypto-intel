@@ -107,10 +107,22 @@ A rule nobody checks is a comment. These are machine-checked:
 | no mid price reaches a P&L | AST walk of `paperv3.close_entry` | `test_paperv3.py` |
 | a symbol cannot render as another token | bidi/homoglyph neutralisation, checked on the built artifact | `test_symbols.py` |
 | unknown never renders as a value | `usd()` contract | `test_gate.py`, `dashboard.py` |
+| ⭐ the suite touched nothing | every file under `data/` hashed before and after; one changed byte fails | `run_tests.py` |
+| the backlog's SHAs still resolve | every cited commit is an **ancestor of HEAD**, not merely an object | `test_backlog.py` |
 
 ⚠️ **The AST checks exist because the score band was "fixed" once and only the
 wording changed.** A comment promising a property is not enforcement; a test that
 reads the source is.
+
+**Run them all with one command:** `python run_tests.py`. There was not one
+before, so *"the suite passes"* was never a fact anybody had checked — and the
+first run of it found that the suites were appending 158 rows to
+`data/liveness/`, the file that answers *"is the collector alive"*.
+
+⭐ **Note what that check asserts.** Not *"did the suite remember to sandbox
+itself"* — that is process. It hashes `data/` before and after and fails on one
+changed byte, which is the **output**. A suite may sandbox itself however it
+likes; it may not leave fingerprints.
 
 ---
 
@@ -120,6 +132,12 @@ reads the source is.
   uses is noise that trains people to ignore assertions.
 - **It does not make a component correct.** Coverage recording proves we know
   what we missed; it does not mean we missed nothing.
+- ⛔ **An alarm that fires when nothing is wrong is worse than no alarm**, because
+  it trains people to ignore the ones that matter. The coverage alarm shipped
+  2026-09-18 printed `processed 80 of 83 pools (100.0%)` on a pass that
+  truncated nothing — it was counting rows produced, not pools reached. **If a
+  metric can be non-alarming and still fall short, that shortfall is a separate
+  number, not a louder alarm.**
 - ⛔ **It does not replace measuring against ground truth.** The 781x liquidity
   error would have passed every self-assertion in this document — the number was
   internally consistent and completely wrong. **Self-assertion catches silent

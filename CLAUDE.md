@@ -303,6 +303,7 @@ python collect.py solana --stage scan --max-seconds 110   # one staged pass
 python check.py <CONTRACT_ADDRESS>                        # fraud check, one CA
 python dashboard.py                                       # rebuild data/dashboard.html
 python -c "import paper; print(paper.summary())"          # paper ledger counts
+python run_tests.py                                       # ⭐ EVERY suite + proves data/ was untouched
 python test_stages.py                                     # SKILL.md must match staged_commands()
 gh run list --workflow=collect.yml --limit 10             # runner state
 ```
