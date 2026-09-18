@@ -1,63 +1,63 @@
 {
  "detector.drift": {
-  "last_ts": 1789704250,
-  "last_at": "2026-09-18T04:04:10+00:00",
-  "count": 497,
+  "last_ts": 1789732468,
+  "last_at": "2026-09-18T11:54:28+00:00",
+  "count": 498,
   "first_ts": 1788782114,
   "detail": "stable",
-  "last_origin": "scheduled",
-  "last_unattended_ts": 1789704250,
-  "last_unattended_at": "2026-09-18T04:04:10+00:00"
+  "last_origin": "runner",
+  "last_unattended_ts": 1789732468,
+  "last_unattended_at": "2026-09-18T11:54:28+00:00"
  },
  "scan.observations": {
-  "last_ts": 1789703888,
-  "last_at": "2026-09-18T03:58:08+00:00",
-  "count": 7336,
+  "last_ts": 1789732046,
+  "last_at": "2026-09-18T11:47:26+00:00",
+  "count": 7408,
   "first_ts": 1788782726,
   "detail": null,
-  "last_origin": "scheduled",
-  "last_unattended_ts": 1789703888,
-  "last_unattended_at": "2026-09-18T03:58:08+00:00"
+  "last_origin": "runner",
+  "last_unattended_ts": 1789732046,
+  "last_unattended_at": "2026-09-18T11:47:26+00:00"
  },
  "fieldguard.check": {
-  "last_ts": 1789703888,
-  "last_at": "2026-09-18T03:58:08+00:00",
-  "count": 96,
+  "last_ts": 1789732046,
+  "last_at": "2026-09-18T11:47:26+00:00",
+  "count": 97,
   "first_ts": 1788782815,
   "detail": null,
-  "last_origin": "scheduled",
-  "last_unattended_ts": 1789703888,
-  "last_unattended_at": "2026-09-18T03:58:08+00:00"
+  "last_origin": "runner",
+  "last_unattended_ts": 1789732046,
+  "last_unattended_at": "2026-09-18T11:47:26+00:00"
  },
  "news.freshness": {
-  "last_ts": 1789704249,
-  "last_at": "2026-09-18T04:04:09+00:00",
-  "count": 502,
+  "last_ts": 1789732467,
+  "last_at": "2026-09-18T11:54:27+00:00",
+  "count": 503,
   "first_ts": 1788782822,
   "detail": "0 stale outlet(s)",
-  "last_origin": "scheduled",
-  "last_unattended_ts": 1789704249,
-  "last_unattended_at": "2026-09-18T04:04:09+00:00"
+  "last_origin": "runner",
+  "last_unattended_ts": 1789732467,
+  "last_unattended_at": "2026-09-18T11:54:27+00:00"
  },
  "outcome.recorded": {
-  "last_ts": 1789704248,
-  "last_at": "2026-09-18T04:04:08+00:00",
-  "count": 28590,
+  "last_ts": 1789732461,
+  "last_at": "2026-09-18T11:54:21+00:00",
+  "count": 28910,
   "first_ts": 1788782831,
   "detail": null,
-  "last_origin": "scheduled",
-  "last_unattended_ts": 1789704248,
-  "last_unattended_at": "2026-09-18T04:04:08+00:00"
+  "last_origin": "runner",
+  "last_unattended_ts": 1789732461,
+  "last_unattended_at": "2026-09-18T11:54:21+00:00"
  },
  "milestone.mcap": {
-  "last_ts": 1789704002,
-  "last_at": "2026-09-18T04:00:02+00:00",
-  "count": 1117,
+  "last_ts": 1789732270,
+  "last_at": "2026-09-18T11:51:10+00:00",
+  "count": 1143,
   "first_ts": 1788782876,
-  "detail": "mcap_100k 8magbwZBRPnNjEjA5tRx6BYnpScZHsxkDKKEvsWAneb",
-  "last_origin": "scheduled",
-  "last_unattended_ts": 1789704002,
-  "last_unattended_at": "2026-09-18T04:00:02+00:00"
+  "detail": "mcap_5m 2GYzAVCLsbdCki5RDZbiYv8Gxpz2aqF5qFkaH7DcBAGS",
+  "last_origin": "runner",
+  "last_unattended_ts": 1789732270,
+  "last_unattended_at": "2026-09-18T11:51:10+00:00"
  },
  "milestone.realizable": {
   "last_ts": 1789442300,
@@ -67,14 +67,14 @@
   "detail": "realizable_3x 2oZidUGiWfM8npavpbhj1fu49ydtGuKiuPeSGfMNnTPa"
  },
  "watchlist.sweep": {
-  "last_ts": 1789703901,
-  "last_at": "2026-09-18T03:58:21+00:00",
-  "count": 39,
+  "last_ts": 1789732049,
+  "last_at": "2026-09-18T11:47:29+00:00",
+  "count": 40,
   "first_ts": 1788786917,
   "detail": null,
-  "last_origin": "scheduled",
-  "last_unattended_ts": 1789703901,
-  "last_unattended_at": "2026-09-18T03:58:21+00:00"
+  "last_origin": "runner",
+  "last_unattended_ts": 1789732049,
+  "last_unattended_at": "2026-09-18T11:47:29+00:00"
  },
  "milestone.graduated": {
   "last_ts": 1789703907,
