@@ -274,9 +274,17 @@ def record_coverage(network, window, scanned, pass_score=70, passed=0,
     # ---------------------------------------------------------------------
     sc = scan or {}
     seen = sc.get("pools")
-    proc = sc.get("enriched")
+    # ⛔ REACHED, NOT ENRICHED. `enriched` counts pools that produced a row; a
+    # pool can be reached and produce none (no address, failed fetch) on a pass
+    # that truncated nothing. Alarming on enriched made a COMPLETE pass print
+    # "processed 80 of 83 pools (100.0%)" - a contradiction, and an alarm that
+    # fires when nothing is wrong is one nobody reads. Both numbers are kept,
+    # because a high failure rate is worth knowing; only truncation alarms.
+    proc = sc.get("reached")
     obj["pools_seen"] = seen
     obj["pools_processed"] = proc
+    obj["pools_enriched"] = sc.get("enriched")
+    obj["pools_failed"] = sc.get("failed")
     obj["pools_fresh"] = sc.get("pools_fresh")
     obj["pools_carried_in"] = sc.get("pools_carried")
     obj["carried_forward"] = sc.get("carried_forward")
@@ -605,9 +613,28 @@ TRANSIENT_ROW_KEYS = {
     "venue",
 }
 
-# Fields dropped by the most recent record() call. Read by test_whitelist.py
-# and printed by collect.py. Same idiom as sources.LAST_PAIR_MISMATCH.
+# Fields dropped by the most recent record() call.
+#
+# ⛔ THE COMMENT HERE USED TO SAY "printed by collect.py". IT WAS NOT.
+# `LAST_WHITELIST_DROP` was written here and read by `test_whitelist.py` and by
+# NOTHING ELSE - so the guard detected a sixth dropped field and told only a
+# test. `_guard_whitelist()` does print at the moment of the drop, but that is
+# one line inside a ~600-line pass log that nobody reads unless already
+# suspicious, which is the definition of silent degradation.
+#
+# ⚠️ And this one is cleared on EVERY record() call, so a pass that calls
+# record() in batches keeps only the last batch's drops. PASS_WHITELIST_DROP
+# accumulates across the whole pass and is cleared only by pass_start(), so
+# collect.py can alarm on the total. See docs/ENGINEERING_DISCIPLINE.md rule C.
 LAST_WHITELIST_DROP = set()
+
+# Accumulates for a whole pass. Cleared by reset_pass_drops(), never by record().
+PASS_WHITELIST_DROP = set()
+
+
+def reset_pass_drops():
+    """Start a fresh pass-level drop tally. Called once per pass, not per batch."""
+    PASS_WHITELIST_DROP.clear()
 
 
 class _Tracked(dict):
@@ -628,6 +655,7 @@ def _guard_whitelist(r):
     if not dropped:
         return set()
     LAST_WHITELIST_DROP.update(dropped)
+    PASS_WHITELIST_DROP.update(dropped)
     print("  !! WHITELIST DROP - computed but NOT persisted: "
           + ", ".join(sorted(dropped)))
     print("     Add them to the dict in journal.record() or to "

@@ -7,6 +7,13 @@ lost. This file makes number six a build failure instead.
 
 Writes to a temp directory. Touches no real data file.
 """
+# ⛔ Before anything that writes. A full suite run was appending rows to
+# data/liveness/ - the file that answers "is the collector alive" - so the
+# tests were writing into the health signal they are meant to check.
+# run_tests.py fails if data/ changes at all; this is how a suite complies.
+import testsandbox
+testsandbox.activate()
+
 import json
 import os
 import sys
@@ -110,6 +117,52 @@ try:
           f"got {len(written)}")
 finally:
     journal.OBS, journal._push = _real_obs, _real_push
+
+# --------------------------------------------------------------------------
+# ⛔ 6. THE ALARM MUST REACH THE RUNTIME, NOT JUST THIS TEST.
+#
+# Backlog A10. Until 2026-09-18 `LAST_WHITELIST_DROP` was written by journal.py
+# and read by THIS FILE AND NOTHING ELSE - the comment beside it claimed
+# "printed by collect.py" and collect.py never referenced it. So the guard that
+# was built to stop a sixth silent drop reported only to a test, which means it
+# could not have stopped number six either. Detection without an alarm is not a
+# guard.
+# --------------------------------------------------------------------------
+print()
+print("6. the alarm reaches collect.py, not just this test")
+csrc = open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                       "collect.py"), encoding="utf-8").read()
+check("journal.PASS_WHITELIST_DROP" in csrc,
+      "collect.py reads the pass-level tally")
+check("journal.reset_pass_drops()" in csrc,
+      "collect.py resets it once per pass")
+check("WHITELIST ALARM" in csrc,
+      "and it alarms by name, not silently")
+check("GITHUB_STEP_SUMMARY" in csrc and "WHITELIST DROP" in csrc,
+      "⭐ and surfaces it where a human looks, not only in the log")
+
+# The pass tally must SURVIVE a second record() call; LAST_WHITELIST_DROP does
+# not, and that difference is the point of having two.
+_o, _p2 = journal.OBS, journal._push
+try:
+    journal.OBS = tempfile.mkdtemp()
+    journal._push = lambda *a, **k: None
+    journal.reset_pass_drops()
+    base = {"addr": "A" * 44, "pair": "P1", "name": "T", "score": 10,
+            "venue_type": "amm", "chain": "solana"}
+    journal.record([dict(base, first_orphan=1)], "solana")
+    journal.record([dict(base, pair="P2", second_orphan=2)], "solana")
+    check({"first_orphan", "second_orphan"} <= journal.PASS_WHITELIST_DROP,
+          "⭐ the PASS tally keeps both drops across two record() calls",
+          str(sorted(journal.PASS_WHITELIST_DROP)))
+    check("first_orphan" not in journal.LAST_WHITELIST_DROP,
+          "⚠️ while LAST_ keeps only the most recent - which is why it was "
+          "the wrong thing to alarm on",
+          str(sorted(journal.LAST_WHITELIST_DROP)))
+    journal.reset_pass_drops()
+    check(journal.PASS_WHITELIST_DROP == set(), "reset_pass_drops() clears it")
+finally:
+    journal.OBS, journal._push = _o, _p2
 
 print()
 if FAIL:

@@ -235,9 +235,33 @@ def scan_stage(networks=("solana",), verbose=True):
         # this project keeps rediscovering: four of the five worst bugs this
         # week were things that ran, reported success, and produced less than
         # they claimed. A pass that looked at 83% of its batch must SAY SO.
+        # ⛔ WHITELIST ALARM. journal.record() is a field whitelist and it has
+        # silently eaten FIVE fields (vol_to_liq, vol_burst, the news NameError,
+        # paper_v2_arm, info.socials). Every one was found by a human noticing an
+        # absence, long after the data was unrecoverable. The guard that detects
+        # number six existed but reported only to a test, so it could not have
+        # stopped number six either. It alarms here now.
+        if journal.PASS_WHITELIST_DROP:
+            _d = ", ".join(sorted(journal.PASS_WHITELIST_DROP))
+            print(f"  ⛔ WHITELIST ALARM [{net}]: computed but NOT PERSISTED: {_d}")
+            print(f"     These are gone. Add them to the dict in "
+                  f"journal.record(), or to journal.TRANSIENT_ROW_KEYS if they "
+                  f"are deliberately transient.")
+            _sum = os.environ.get("GITHUB_STEP_SUMMARY")
+            if _sum:
+                try:
+                    nl = chr(10)
+                    with open(_sum, "a", encoding="utf-8") as _f:
+                        _f.write(nl + "### WHITELIST DROP" + nl
+                                 + "`" + _d + "`" + nl
+                                 + "Computed and not persisted. "
+                                 + "See journal.record()." + nl)
+                except Exception:
+                    pass
+
         if cov.get("coverage_alarm"):
             _sc = cov.get("scan_coverage")
-            print(f"  ⛔ COVERAGE ALARM [{net}]: processed "
+            print(f"  ⛔ COVERAGE ALARM [{net}]: reached "
                   f"{cov.get('pools_processed')} of {cov.get('pools_seen')} pools"
                   + (f" ({100.0 * _sc:.1f}%)" if _sc is not None else "")
                   + f" - {cov.get('truncate_reason') or 'reason not recorded'}")
@@ -449,6 +473,11 @@ def main():
     while True:
         stamp = dt.datetime.now(dt.timezone.utc).strftime("%H:%M:%S")
         print(f"\n=== pass {stamp} UTC · {','.join(nets)} · stage={stage} ===")
+        # ⭐ Pass-level tally, cleared once per pass rather than per record()
+        # batch. journal.record() clears LAST_WHITELIST_DROP on every call, so a
+        # pass that records in batches kept only the last batch's drops - a
+        # total that was wrong in the quiet direction.
+        journal.reset_pass_drops()
         try:
             if stage == "outcomes":
                 track.score_all()

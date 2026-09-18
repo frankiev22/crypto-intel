@@ -16,6 +16,11 @@ import io
 import json
 import os
 import sys
+
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 import tempfile
 import time
 
@@ -40,7 +45,8 @@ _real = journal.COV
 journal.COV = tempfile.mkdtemp()
 
 full = journal.record_coverage("solana", WINDOW, 88, 70, 5,
-                               scan={"pools": 90, "enriched": 90, "coverage": 1.0,
+                               scan={"pools": 90, "reached": 90, "enriched": 90,
+                                     "failed": 0, "coverage": 1.0,
                                      "budget_hit": False, "pools_fresh": 90,
                                      "pools_carried": 0, "carried_forward": 0,
                                      "carry_dropped": 0})
@@ -53,7 +59,8 @@ check("pools_seen is the loop's input", full["pools_seen"] == 90)
 check("pools_processed is the loop's output", full["pools_processed"] == 90)
 
 part = journal.record_coverage("solana", WINDOW, 60, 70, 3,
-                               scan={"pools": 90, "enriched": 69, "coverage": 69 / 90,
+                               scan={"pools": 90, "reached": 69, "enriched": 69,
+                                     "failed": 0, "coverage": 69 / 90,
                                      "budget_hit": True, "pools_fresh": 90,
                                      "pools_carried": 0, "carried_forward": 21,
                                      "carry_dropped": 0,
@@ -64,6 +71,48 @@ check("and records what it owes forward", part["carried_forward"] == 21)
 check("⚠️ `scanned` and `pools_processed` are NOT the same field",
       part["scanned"] == 60 and part["pools_processed"] == 69,
       "rows journalled vs pools reached")
+
+# ⛔ THE FALSE POSITIVE THIS ALARM SHIPPED WITH, 2026-09-18 14:29Z.
+#
+# Run 35356362447 reached every one of 83 pools - the 540s runner budget did
+# its job and truncated nothing - and the alarm still fired:
+#
+#     ⛔ COVERAGE ALARM [solana]: processed 80 of 83 pools (100.0%)
+#                                 - reason not recorded
+#
+# "80 of 83" and "100.0%" in the same line, with budget_hit false. The cause
+# was `pools_processed` reading LAST_SCAN["enriched"], which counts pools that
+# produced a ROW; three pools were reached and produced none (no address, a
+# failed fetch). That is an enrichment failure, not a coverage failure, and it
+# is not what the alarm is for. ⭐ An alarm that fires when nothing is wrong is
+# the "alarm nobody reads" failure docs/ENGINEERING_DISCIPLINE.md §5 warns
+# about - the rule is not a mandate to assert everything.
+clean = journal.record_coverage("solana", WINDOW, 80, 70, 4,
+                                scan={"pools": 83, "reached": 83, "enriched": 80,
+                                      "failed": 3, "coverage": 1.0,
+                                      "budget_hit": False, "pools_fresh": 83,
+                                      "pools_carried": 0, "carried_forward": 0,
+                                      "carry_dropped": 0})
+check("⛔ REGRESSION: reached 83/83 but enriched 80 raises NO alarm",
+      clean["coverage_alarm"] is False,
+      "an alarm that fires when nothing is wrong is one nobody reads")
+check("...because pools_processed is what the LOOP reached",
+      clean["pools_processed"] == 83)
+check("⚠️ and the enrichment shortfall is still recorded, separately",
+      clean["pools_enriched"] == 80 and clean["pools_failed"] == 3,
+      f"enriched={clean['pools_enriched']} failed={clean['pools_failed']}")
+check("⭐ the printed count and the printed percentage agree",
+      clean["pools_processed"] == clean["pools_seen"]
+      and clean["scan_coverage"] == 1.0)
+
+# And the source of that number: `reached` must be the loop counter itself, not
+# anything downstream of whether a pool yielded a row.
+_ssrc = io.open(os.path.join(HERE, "scanner.py"), encoding="utf-8").read()
+check("⛔ scanner sets `reached` from the loop index, not from a row count",
+      'LAST_SCAN["reached"] = i + 1' in _ssrc)
+check("...and journal reads `reached`, never `enriched`, for the alarm",
+      'proc = sc.get("reached")' in
+      io.open(os.path.join(HERE, "journal.py"), encoding="utf-8").read())
 journal.COV = _real
 
 print()
@@ -131,6 +180,14 @@ check("coverage is recorded as the ratio", abs(scanner.LAST_SCAN["coverage"] - 0
       str(scanner.LAST_SCAN["coverage"]))
 check("skipped addresses are recorded", len(scanner.LAST_SCAN["skipped"]) == 40)
 check("the reason is recorded", scanner.LAST_SCAN.get("truncate_reason") == "test")
+# ⛔ OFF BY ONE, IN THE OPTIMISTIC DIRECTION. A pass that breaks at index i has
+# NOT reached pool i - _truncate carries pools[i:], that pool included. Setting
+# the counter at the top of the loop body would have claimed i+1.
+check("⛔ a truncation at 10 reports 10 reached, not 11",
+      scanner.LAST_SCAN.get("reached") == 10,
+      str(scanner.LAST_SCAN.get("reached")))
+check("...which is exactly what is NOT carried",
+      scanner.LAST_SCAN["reached"] + len(rest) == len(pools))
 
 # ⚠️ the cap must DROP LOUDLY, never silently
 _cap = scanner.CARRY_MAX

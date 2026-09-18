@@ -226,6 +226,7 @@ def _truncate(pools, i, why, verbose=True):
     """
     rest = pools[i:]
     LAST_SCAN["budget_hit"] = True
+    LAST_SCAN["reached"] = i          # i pools behind us; pools[i:] carried
     LAST_SCAN["skipped"] = [_addr(q) for q in rest]
     LAST_SCAN["coverage"] = (i / len(pools)) if pools else 1.0
     LAST_SCAN["truncate_reason"] = why
@@ -318,7 +319,7 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
     budget = scan_budget(budget_s)
     started = time.time()
     LAST_SCAN.update(pools=len(pools), pools_fresh=fresh_n, pools_carried=carry_n,
-                     enriched=0, failed=0, budget_hit=False,
+                     enriched=0, failed=0, reached=0, budget_hit=False,
                      skipped=[], coverage=1.0, carried_forward=0, carry_dropped=0)
     rows = []
     row_s, _t_prev = [], None       # measured cost of a row, this pass
@@ -344,6 +345,17 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
             _truncate(pools, i,
                       f"enrichment budget {budget:.0f}s spent", verbose)
             break
+        # ⭐ HOW FAR THE LOOP GOT, which is the ONLY thing truncation changes.
+        # Set AFTER both break checks: a pass that stops at i has NOT reached
+        # pool i - _truncate carries pools[i:] forward, that pool included.
+        #
+        # ⛔ Not `enriched`, which counts pools that produced a ROW. A pool can
+        # be reached and produce none (no address, a failed fetch). Conflating
+        # them made the alarm fire on a complete pass, printing "processed 80
+        # of 83 pools (100.0%)" - a contradiction that trains people to ignore
+        # the alarm. Reached is reached; enrichment failure is a separate
+        # number, recorded separately.
+        LAST_SCAN["reached"] = i + 1
         addr = p.get("attributes", {}).get("address")
         if not addr: continue
         # GeckoTerminal already told us the venue in the discovery payload.
