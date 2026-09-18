@@ -42,6 +42,7 @@ _PATHS = {
     "dashboard":  ["OUT"],
     "chainfields": ["USAGE_PATH"],
     "pricecheck": ["QUARANTINE", "QUARANTINE_LOG"],
+    "market":     ["OUT_DIR", "HISTORY_DIR"],
 }
 
 

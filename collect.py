@@ -132,6 +132,10 @@ import fieldguard
 import detector
 import liveness
 import dashboard
+import market
+
+# When this process started - the pass clock market_stage() reads.
+_PASS_T0 = time.time()
 
 PASS_SCORE = 70
 JOURNAL_BATCH = 10
@@ -147,7 +151,7 @@ JOURNAL_BATCH = 10
 #
 # test_stages.py fails if any liveness component is unreachable from STAGES, or
 # if the skill file's commands drift from staged_commands().
-STAGES = ("scan", "sweep", "watchlist", "1", "6", "24", "168")
+STAGES = ("scan", "sweep", "watchlist", "market", "1", "6", "24", "168")
 STAGED_MAX_SECONDS = 110
 # What each stage can fire. Bookkeeping at the end of main() fires on every
 # invocation, whatever the stage.
@@ -160,6 +164,7 @@ STAGE_FIRES = {
              "paperv3.open"},
     "sweep": {"paper.sweep", "paper.close", "paperv3.sweep", "paperv3.close"},
     "watchlist": {"watchlist.sweep", "milestone.graduated"},
+    "market": {"market.snapshot"},
     "1": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
     "6": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
     "24": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
@@ -338,6 +343,33 @@ def watchlist_stage(verbose=True):
         print(f"  watchlist sweep failed: {e}")
 
 
+# ⭐ WHAT IS RUNNING NOW, NOT ONLY WHAT LAUNCHED (2026-09-18). Every stage above
+# is about tokens at birth. Frank opens the dashboard to see what is moving
+# today, and on the first live snapshot 0 of the top 25 24h gainers had ever
+# been in our journal. See market.py.
+#
+# ⛔ The runner's job timeout is 15 minutes and the longest pass on record took
+# 13.6. The round-trip checks are the only slow part, so they shrink as the pass
+# ages and stop entirely past MARKET_SOFT_LIMIT_S. The snapshot still runs: a
+# row that says "not checked" is honest, and a pass killed by the timeout
+# commits nothing at all - including every row the scan already collected.
+MARKET_SOFT_LIMIT_S = 10 * 60
+
+
+def market_stage(verbose=True):
+    elapsed = time.time() - _PASS_T0
+    verify_s = max(0.0, min(market.VERIFY_SECONDS, MARKET_SOFT_LIMIT_S - elapsed))
+    if verify_s < market.VERIFY_SECONDS:
+        print(f"  market: round-trip checks cut to {verify_s:.0f}s - "
+              f"the pass is already {elapsed:.0f}s old")
+    try:
+        market.build(verbose=verbose, verify_s=verify_s)
+    except Exception as e:
+        # Non-fatal, like the dashboard: a broken snapshot must never cost a
+        # pass of collection. It beats nothing, so liveness reports it stale.
+        print(f"  market snapshot failed (non-fatal): {type(e).__name__}: {e}")
+
+
 def sweep_stage(verbose=True):
     """Close the paper log - both ledgers - then label the unambiguously dead."""
     fetch = _memo_fetch(sources.dexscreener_pair)
@@ -395,6 +427,9 @@ def one_pass(networks=("solana",), verbose=True):
     # are what make it evidence. Every position that has met its declared exit
     # rule is closed here, whatever the number says, including to zero.
     sweep_stage(verbose=verbose)
+    # WHAT IS RUNNING NOW. Before outcome scoring, which is the long, resumable
+    # part of a pass - a snapshot is only worth anything if it is taken.
+    market_stage(verbose=verbose)
     # LABEL THE UNAMBIGUOUSLY DEAD. A close whose pool was last seen rugged or
     # dead holding ~$0 did not have an unknown outcome, and leaving 65% of
     # closes unmeasurable would hand 2026-09-13 a sample too thin to read.
@@ -510,6 +545,9 @@ def main():
             elif stage == "watchlist":
                 watchlist_stage()
                 journal.pass_note(phase="watchlist", calls=sources.calls_made())
+            elif stage == "market":
+                market_stage()
+                journal.pass_note(phase="market", calls=market.CALLS["n"])
             elif stage.isdigit():
                 track.score_horizon(int(stage))
                 journal.pass_note(phase=f"{stage}h", calls=sources.calls_made())

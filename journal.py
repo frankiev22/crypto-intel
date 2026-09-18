@@ -1031,8 +1031,20 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
         # shipped. The 1,329 mcap crossings on record are ONE backfill run
         # written in that same minute; not one has ever fired live. Found and
         # fixed 2026-09-07 - five days of crossings were never detected.
+        #
+        # ⭐ AND THE DEPTH AT THE CROSSING GOES ON THE CROSSING (2026-09-18).
+        # mcap tiers are claimed HERE, on the horizon re-check, and this same
+        # call has just measured exit depth. The claim never carried it, so the
+        # site could only join a scanner reading taken 7.8-16.7 HOURS earlier
+        # and verified 0 of 12 crossings. These are the SAME values written to
+        # the outcome row above - one measurement, recorded in both places.
         obj["new_milestones"] = milestones.check_outcome(
-            token, symbol, mult, ok, mcap=mcap)
+            token, symbol, mult, ok, mcap=mcap,
+            exit_depth_at_crossing=obj["exit_depth_usd"],
+            depth_unmeasured_at_crossing=obj["depth_unmeasured"],
+            realizable_at_crossing=obj["realizable"],
+            exit_pair_at_crossing=obj["exit_pair"],
+            horizon_h=horizon_h, outcome_checked_ts=checked_ts)
     except Exception as e:
         obj["new_milestones"] = []
         print(f"    milestone check failed (non-fatal): {type(e).__name__}")

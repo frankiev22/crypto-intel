@@ -184,18 +184,27 @@ def is_first(milestone):
     return not crossings(milestone)
 
 
-def check_outcome(token, symbol, mult, realizable, mcap=None):
-    """Evaluate every milestone this outcome crosses. Returns the NEW ones."""
+def check_outcome(token, symbol, mult, realizable, mcap=None, **at_crossing):
+    """Evaluate every milestone this outcome crosses. Returns the NEW ones.
+
+    `at_crossing` is what the SAME check measured - exit depth, whether the
+    quote side was seen, the realizable verdict, the pool priced - and is
+    written onto every claim it makes. A crossing that cannot be verified from
+    its own row sends the reader to a join, and the join found a depth read up
+    to 16.7 hours stale (site/api/feed.mjs, 2026-09-18).
+    """
     new = []
     if realizable and mult:
         for name, level in MULT_LEVELS:
             if mult >= level and claim(token, name, symbol=symbol,
-                                       value=round(mult, 4), kind="multiple"):
+                                       value=round(mult, 4), kind="multiple",
+                                       **at_crossing):
                 new.append(name)
     if mcap:
         for name, level in MCAP_LEVELS:
             if mcap >= level and claim(token, name, symbol=symbol,
-                                       value=round(mcap, 2), kind="mcap"):
+                                       value=round(mcap, 2), kind="mcap",
+                                       **at_crossing):
                 new.append(name)
     return new
 

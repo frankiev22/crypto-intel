@@ -117,6 +117,12 @@ COMPONENTS = {
                              "data/dashboard.html was rebuilt from the journal"),
     "paperv3.sweep":        (12, "2026-09-18T15:00:00Z", "measured",
                              "the v3 ledger looked for positions to close"),
+    # ⭐ WHAT IS RUNNING NOW. Rows are counted by READING THE FILES BACK, not
+    # from what market.build() meant to write. Runs in every full pass, so the
+    # collector's own 12h bar applies. A pass whose every source failed beats
+    # with 0 rows and reads `empty`, not healthy.
+    "market.snapshot":      (12, "2026-09-18T23:00:00Z", "measured",
+                             "data/market/*.json rebuilt, rows read back from disk"),
     # ⛔ AND THESE TWO HAVE NO THRESHOLD, DELIBERATELY.
     #
     # An entry is a MARKET event, not a schedule event. RULE_V3 is strictly
