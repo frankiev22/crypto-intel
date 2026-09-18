@@ -109,6 +109,54 @@ check("and the pre-change runs are measured separately",
 
 print()
 print("=" * 70)
+print("4b. ⚠️ it reports OUR OWN interference, scoped to the window")
+print("=" * 70)
+
+# ⛔ collect.yml uses a concurrency group, so a manual dispatch still running
+# when cron fires can cost that scheduled slot. Every hand-run during the
+# measurement window is a thumb on the scale, against the cron. The tool has to
+# say so - and the count has to be scoped, because the first version of it
+# printed "6 scheduled run(s) cancelled" from 09-08 to 09-10 beside a sentence
+# about today. A caveat that is itself unscoped is worse than no caveat.
+import contextlib as _ctx
+import io as _io2
+
+OLD = "2026-09-01T00:00:00Z"                       # well before CHANGE_TS
+NEW = "2026-09-18T15:00:00Z"                       # well after
+
+
+def _say(runs):
+    b = _io2.StringIO()
+    with _ctx.redirect_stdout(b):
+        C.report(runs=runs)
+    return b.getvalue()
+
+out = _say([{"event": "schedule", "createdAt": OLD, "conclusion": "cancelled"},
+            {"event": "schedule", "createdAt": NEW, "conclusion": "success"}])
+# ⚠️ With nothing inside the window the tool takes the clean branch, so the
+# assertion is on that, not on a "0 cancelled" string it never prints.
+check("⛔ a cancellation from BEFORE the change is not contamination",
+      "CONTAMINATION" not in out and "the window is clean" in out,
+      [l.strip() for l in out.splitlines() if "CONTAMINATION" in l
+       or "clean" in l] or "none")
+
+out = _say([{"event": "schedule", "createdAt": NEW, "conclusion": "cancelled"}])
+check("⚠️ one from inside the window IS reported",
+      "1 scheduled run(s) cancelled" in out,
+      [l.strip() for l in out.splitlines() if "CONTAMINATION" in l] or "none")
+
+out = _say([{"event": "workflow_dispatch", "createdAt": NEW, "conclusion": "success"},
+            {"event": "schedule", "createdAt": NEW, "conclusion": "success"}])
+check("⚠️ a manual dispatch inside the window is counted",
+      "1 manual dispatch" in out,
+      [l.strip() for l in out.splitlines() if "CONTAMINATION" in l] or "none")
+
+out = _say([{"event": "schedule", "createdAt": NEW, "conclusion": "success"}])
+check("⭐ and a clean window says so instead of staying silent",
+      "the window is clean" in out)
+
+print()
+print("=" * 70)
 print("5. ⚠️ it says what it cannot say")
 print("=" * 70)
 

@@ -111,14 +111,15 @@ def fetch(limit=200):
         print(f"⛔ gh failed: {(out.stderr or '').strip()[:200]}")
         return []
     try:
-        return [r for r in json.loads(out.stdout) if r.get("event") == "schedule"]
+        return json.loads(out.stdout)
     except Exception as e:
         print(f"⛔ could not parse gh output: {type(e).__name__}")
         return []
 
 
 def report(runs=None):
-    runs = fetch() if runs is None else runs
+    all_runs = fetch() if runs is None else runs
+    runs = [r for r in all_runs if r.get("event") == "schedule"]
     change = _ts(CHANGE_TS)
     # ⛔ Same `is not None` rule as gaps_h(), and parsed ONCE per run rather
     # than three times per run in a comprehension that also hid the bug.
@@ -162,6 +163,34 @@ def report(runs=None):
                   "minutes and re-measure -")
             print("     that turns a pre-commitment into a search. The answer is "
                   "BACKLOG C5, an always-on box.")
+    print()
+    # ⛔ THE EXPERIMENT CAN BE CONTAMINATED BY US, AND IT HAS TO SAY SO.
+    #
+    # collect.yml uses a `concurrency` group. GitHub cancels a SECOND pending
+    # run in the same group, so a manual dispatch that is still running when
+    # cron fires can cost that scheduled slot. Every hand-run during the
+    # measurement window is therefore a thumb on the scale, in the direction of
+    # making the cron look worse. Same family as standing rule 14: a measurement
+    # taken while you are interfering does not describe the thing you care about.
+    disp = [r for r in all_runs
+            if r.get("event") != "schedule" and _ts(r.get("createdAt"))
+            and _ts(r.get("createdAt")) >= change]
+    # ⚠️ AFTER THE CHANGE, not ever. The first version of this line counted all
+    # cancellations in the history and printed "6 scheduled run(s) cancelled"
+    # beside a sentence about the current window - six runs from 09-08 to 09-10,
+    # reported as if they were evidence about today. A caveat that is itself
+    # unscoped is worse than no caveat.
+    cancelled = [r for r in runs if r.get("conclusion") == "cancelled"
+                 and _ts(r.get("createdAt")) and _ts(r.get("createdAt")) >= change]
+    if disp or cancelled:
+        print(f"  ⚠️ CONTAMINATION: {len(disp)} manual dispatch(es) since the "
+              f"change, {len(cancelled)} scheduled run(s) cancelled.")
+        print("     A dispatch still running when cron fires can cost that slot "
+              "(concurrency group).")
+        print("     ⛔ Do not hand-run the workflow during the measurement "
+              "window without recording it.")
+    else:
+        print("  ⭐ no manual dispatches since the change - the window is clean")
     print()
     print("  ⚠️ This measures whether GitHub STARTED runs, not whether they "
           "collected anything.")
