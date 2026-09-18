@@ -27,6 +27,17 @@ expected return.** `dashboard.py` enforces this in code — sections sort by
 recency or size, never by anything readable as a quality ordering, and `score`
 is never displayed.
 
+⛔ **The 70-99 score band is DELETED from the v1 entry gate as of 2026-09-18.**
+It refused a token graded **100** - the cleanest grade the scorer awards - with
+"score 100 outside 70-99", on two intervals that overlap (4.55% [2.62, 7.78] vs
+1.20% [0.64, 2.27]) measured on a population its own gate had hollowed out.
+**It had been "fixed" once before and only the wording changed.** The band now
+survives solely in `paper.qualifies_v1_historical()`, which explains the 409
+frozen rows and defines RULE_V2's arms. ⭐ **`test_scoreband.py` fails if a score
+term reappears in the branch of any entry gate**, checked at the AST level -
+`ENTRY_GATES` there is the list of guarded function names, so a new entry gate
+must be added to it.
+
 **The exception, and it is narrow:** describing something that has **already**
 happened is not predicting. The 1M tracker (`docs/TRACKER_SCOPING.md`) watches
 completed crossings and explains them. Marino does not apply to description.

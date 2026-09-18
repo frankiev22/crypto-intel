@@ -203,7 +203,11 @@ def open_entry(row):
         return None, "no contract address"
     if has_open(contract):
         return None, "already open"
-    v1_ok, v1_why = paper.qualifies(row)
+    # ⭐ The HISTORICAL v1, band included. The arms are defined as what the
+    # 70-99 band accepted vs rejected, so they must keep asking the band even
+    # though paper.qualifies() no longer contains it. Asking the live gate
+    # here would silently collapse every row into arm A and destroy the A/B.
+    v1_ok, v1_why = paper.qualifies_v1_historical(row)
     rec = {
         "type": "entry", "rule": "v2", "epoch": EPOCH,
         "contract": contract, "symbol": row.get("symbol") or row.get("name"),

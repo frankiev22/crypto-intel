@@ -41021,6 +41021,10 @@
 {"name": "outcome.recorded", "ts": 1789732402, "n": 1, "detail": null, "origin": "runner"}
 {"name": "outcome.recorded", "ts": 1789732403, "n": 1, "detail": null, "origin": "runner"}
 {"name": "outcome.recorded", "ts": 1789732404, "n": 1, "detail": null, "origin": "runner"}
+{"name": "paper.open", "ts": 1789732404, "n": 1, "detail": "TESTONLY", "origin": "manual"}
+{"name": "paper.open", "ts": 1789732404, "n": 1, "detail": "TESTONLY2", "origin": "manual"}
+{"name": "paper.open", "ts": 1789732404, "n": 1, "detail": "A", "origin": "manual"}
+{"name": "paper.open", "ts": 1789732404, "n": 1, "detail": "B", "origin": "manual"}
 {"name": "outcome.recorded", "ts": 1789732405, "n": 1, "detail": null, "origin": "runner"}
 {"name": "outcome.recorded", "ts": 1789732407, "n": 1, "detail": null, "origin": "runner"}
 {"name": "outcome.recorded", "ts": 1789732408, "n": 1, "detail": null, "origin": "runner"}

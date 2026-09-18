@@ -45,9 +45,12 @@ measured in this repo, and nothing that has ever failed out of sample:
                                signal in this project that has never been
                                retracted. Reported liquidity is not usable:
                                five measured pools overstated it 125.6-125.8x.
-    70 <= score <= 99          measured within the AMM population: 4.55%
-                               [2.62, 7.78] against 1.20% [0.64, 2.27] at
-                               score 100. The ceiling is where the losers are.
+⛔ A THIRD CLAUSE, `70 <= score <= 99`, WAS DELETED ON 2026-09-18. It refused a
+token graded 100 - the cleanest grade the scorer awards - and it rested on two
+intervals that overlap (4.55% [2.62, 7.78] against 1.20% [0.64, 2.27]) measured
+on a population its own gate had hollowed out. The full reasoning is at the
+deletion site in `qualifies()`; the band itself survives in
+`qualifies_v1_historical()`, which explains the 409 frozen rows and nothing else.
 
 Expected hit rate is therefore ~4.5%, and n will be small for a long time.
 NOTHING IS CONCLUDED FROM THIS LOG UNTIL IT HAS `MIN_N` CLOSED ENTRIES. That
@@ -74,7 +77,12 @@ MIN_N = int(os.environ.get("CRYPTO_PAPER_MIN_N", "30"))
 # Bookkeeping only. No capital is at risk and none is implied.
 NOTIONAL_USD = float(os.environ.get("CRYPTO_PAPER_NOTIONAL", "100"))
 
-RULE_V1 = "amm+depth>=1000+score70-99"
+# ⛔ The score band was deleted from this rule on 2026-09-18 (see qualifies).
+# The 409 frozen rows in ledger.jsonl carry the OLD string and keep it - that
+# is what they were written under. New rows, if v1 is ever unfrozen, carry the
+# honest one. A rule that changed must not claim it did not.
+RULE_V1 = "amm+depth>=1000"
+RULE_V1_HISTORICAL = "amm+depth>=1000+score70-99"
 EXIT_RULE_V1 = "first of: 2.0x on quote-side depth, or 24h elapsed"
 
 MIN_EXIT_DEPTH = float(os.environ.get("CRYPTO_PAPER_MIN_DEPTH", "1000"))
@@ -263,6 +271,66 @@ def qualifies(row):
     _buys = row.get("buys_h1")
     if _sells is not None and _buys is not None and _sells == 0 and _buys >= 10:
         return False, f"no sell side: {_buys} buys, 0 sells - price never tested"
+    # ---------------------------------------------------------------------
+    # ⛔ THE 70-99 SCORE BAND WAS DELETED FROM THIS GATE ON 2026-09-18.
+    #
+    # It used to end:
+    #     score = row.get("score")
+    #     if score is None:                 return False, "no score"
+    #     if not (SCORE_LO <= score <= SCORE_HI):
+    #         return False, f"score {score} outside {SCORE_LO}-{SCORE_HI}"
+    #
+    # ⭐ So a token graded 100 - the CLEANEST grade the scorer can award - failed
+    # `100 <= 99` and was refused with "score 100 outside 70-99". The ceiling was
+    # excluded on purpose, on the theory that "the ceiling is where the losers
+    # are".
+    #
+    # THREE REASONS IT IS GONE, not narrowed, not reworded:
+    #
+    # 1. The evidence never supported it. 4.55% [2.62, 7.78] at 70-99 against
+    #    1.20% [0.64, 2.27] at 100 - the intervals OVERLAP. Post-epoch the
+    #    ordering reversed outright and 100 became the BEST bucket at 1.95%
+    #    [0.90, 4.20] (see paperv2.LABELS). A band built on an overlap is a
+    #    coin flip that was written down.
+    # 2. The sample was hollow. Until 2026-09-10 the authority lookup itself ran
+    #    only when score >= 70, so low-scoring tokens could never be verified and
+    #    therefore could never qualify - 328 of 457 known false negatives scored
+    #    0-44 and were STRUCTURALLY incapable of passing. The band was measured
+    #    against a population its own gate had emptied.
+    # 3. It is the thing CLAUDE.md forbids: a quality ordering deciding whether
+    #    a position is taken. "It does not predict winners" has to bind the code,
+    #    not just the prose.
+    #
+    # ⚠️ It was "fixed" once before and only the WORDING changed. `test_scoreband
+    # .py` now fails if a score term reappears in the branch of ANY entry gate in
+    # this repo, checked at the AST level - because a comment promising it is not
+    # enforcement.
+    #
+    # The band survives verbatim in `qualifies_v1_historical()` below, which is
+    # how the 409 frozen rows carrying rule='amm+depth>=1000+score70-99' are
+    # still explained and how RULE_V2's A/B arms stay defined. It answers "would
+    # the old band have taken this" and nothing acts on the answer.
+    # ---------------------------------------------------------------------
+    return True, "qualifies"
+
+
+def qualifies_v1_historical(row):
+    """⛔ AUDIT ONLY. The original RULE_V1, band included. Never gates an entry.
+
+    `data/paper/ledger.jsonl` holds 409 frozen rows that each carry
+    `rule: "amm+depth>=1000+score70-99"`, and RULE_V2's arms are DEFINED as what
+    that band accepted (A) versus rejected (B). Deleting the band everywhere
+    would leave the repo unable to explain its own append-only record, which
+    standing rule 8 forbids as surely as editing it would.
+
+    ⭐ So the band is preserved here, under a name that cannot be mistaken for a
+    live decision, and `qualifies()` no longer consults a score at all. This
+    function is allowlisted by name in `test_scoreband.py`; nothing else may
+    branch on a score.
+    """
+    ok, why = qualifies(row)
+    if not ok:
+        return False, why
     score = row.get("score")
     if score is None:
         return False, "no score"
@@ -321,6 +389,9 @@ def open_entry(contract, symbol=None, price=None, exit_depth=None, liq=None,
     Returns None if this contract already has an open position. A token that
     keeps qualifying on every hourly pass would otherwise be entered a dozen
     times and dominate the denominator - one position per contract at a time.
+
+    `score` is RECORDED as `entry_score` and never consulted. Recording an
+    observed fact is not the same as deciding on it; see qualifies().
     """
     if not contract:
         raise ValueError("contract address is required - never key on ticker")
