@@ -147,8 +147,8 @@ fees. Any path that depends on a track record has nothing to sell yet.
 
 | component | what it does | state |
 |---|---|---|
-| `collect.py` | hourly staged collector: scan, sweep, watchlist, 1/6/24/168h | ⛔ **dead since 2026-09-15 05:07:59 UTC** |
-| GitHub Actions `collect.yml` | same, hosted | ⛔ dead since 2026-09-12 — free-tier minutes exhausted |
+| `collect.py` | hourly staged collector: scan, sweep, watchlist, 1/6/24/168h | ✅ **running again on the hosted runner, 2026-09-18** |
+| GitHub Actions `collect.yml` | same, hosted | ✅ **ALIVE — the repo went public 2026-09-18, so Actions minutes are free and unlimited.** A scheduled run fired on its own at 11:54Z and collected a full pass |
 | Claude desktop task | same, on the host | ⛔ dead since the 9/15 reboot — sandbox lost its drive mount |
 | `site/api/helius.mjs` on Vercel | Helius webhook receiver → Supabase → Discord | ✅ **deployed and answering**, but watching 0 addresses |
 | `data/dashboard.html` | static phone-first dashboard, built by `dashboard.py` | builds fine; not in the hourly stage list, so it goes stale silently |
@@ -167,13 +167,19 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
    2026-09-17 (`UNRELIABLE READ: scan missed the real vault`, `no USD price for
    quote mint`). **Everything that verifies a number depends on this.** Highest
    leverage fix in the repo.
-2. ⛔ **No collector is running.** Restore it (see `docs/TRACKER_SCOPING.md` §5a
-   — Windows Task Scheduler calling `collect.py` directly; **`CRYPTO_ORIGIN=
-   scheduled` must be set** or every beat logs as `manual` and is never counted).
-3. ⚠️ **GitHub Actions billing** is Frank's to clear. The 2026-09-07 pacing fix
-   (`CRYPTO_HTTP_PACE_S` 0.05 → 1.0, correct and not to be reverted) took runs
-   from 2.6 to 9.9 minutes, i.e. 1,872 → 7,128 min/month against a 2,000-minute
-   free allowance. ~$31/mo to resume, or $0 if the repo goes public.
+2. ✅ **RESOLVED 2026-09-18 — the collector runs on GitHub Actions again.**
+   The repo is **public**, so Actions minutes are free and unlimited and the
+   ~$31/mo question is closed. Runs take ~9-10 min at the 2026-09-07 pacing
+   (`CRYPTO_HTTP_PACE_S` 1.0, correct and not to be reverted).
+   ⚠️ **Windows Task Scheduler is NOT the answer and was deliberately removed**
+   (`479e9cc`). Do not reintroduce it.
+3. ⚠️ **A concurrent push can still cost a pass, and once did.** On 2026-09-18 a
+   scheduled run collected a full pass and then died in `Commit the journal`
+   because a human pushed during its ~10 minutes; `git pull --rebase` stopped at
+   the first conflict and the ephemeral runner was destroyed with the rows on it.
+   Fixed two ways: `*.jsonl merge=union` in `.gitattributes`, and a push loop
+   that resolves conflicts and uploads `data/` as an artifact if it still cannot
+   push. ⛔ **Avoid pushing while a run is in flight anyway.**
 
 ---
 

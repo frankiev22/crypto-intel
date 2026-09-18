@@ -102,11 +102,67 @@ jobs:
             exit 0
           fi
           git commit -q -m "collect: $(date -u '+%Y-%m-%d %H:%M') UTC"
-          for i in 1 2 3; do
-            git push -q && break
-            echo "push rejected, rebasing (attempt $i)"
-            git pull --rebase -q origin "${GITHUB_REF_NAME}"
+
+          # ⛔ A CONFLICT MUST NEVER DISCARD A COMPLETED PASS.
+          #
+          # 2026-09-18: this step collected a full pass, then died on add/add
+          # and content conflicts across nine data files because a human pushed
+          # during the ~10 minutes it was running. The old loop ran
+          # `git pull --rebase`, which stops at the first conflict; the next
+          # iteration pushed from a half-rebased tree, and the step exited with
+          # the rebase's own non-zero status. The runner is ephemeral, so the
+          # rows were LOST - infrastructure breaking standing rule 8 by itself.
+          #
+          # *.jsonl now merges by union (.gitattributes), which handles the logs
+          # automatically. Whatever still conflicts is a whole-document state
+          # file that this run has just recomputed, so this run's version wins.
+          resolve_conflicts() {
+            git diff --name-only --diff-filter=U | while read -r f; do
+              # In a rebase, --theirs is the commit being replayed: ours.
+              git checkout --theirs -- "$f" 2>/dev/null \
+                || git checkout --ours -- "$f" 2>/dev/null || true
+              git add -- "$f"
+            done
+          }
+
+          pushed=""
+          for i in 1 2 3 4 5; do
+            if git push -q; then pushed=1; break; fi
+            echo "push rejected, integrating (attempt $i)"
+            git fetch -q origin "${GITHUB_REF_NAME}"
+            if ! git rebase -q "origin/${GITHUB_REF_NAME}"; then
+              for _ in 1 2 3 4 5 6 7 8 9 10; do
+                git diff --name-only --diff-filter=U | grep -q . || break
+                resolve_conflicts
+                GIT_EDITOR=true git rebase --continue -q >/dev/null 2>&1 || true
+              done
+              # Never leave the tree mid-rebase for the next step to trip over.
+              if [ -d .git/rebase-merge ] || [ -d .git/rebase-apply ]; then
+                echo "rebase still unresolved after 10 rounds - aborting it"
+                git rebase --abort || true
+                break
+              fi
+            fi
           done
+
+          if [ -z "$pushed" ]; then
+            echo "::error::could not push the journal; rows are in the artifact"
+            echo 'PUSH_FAILED=1' >> "$GITHUB_ENV"
+            exit 1
+          fi
+
+      # ⛔ LAST LINE OF DEFENCE FOR STANDING RULE 8. The runner is ephemeral: if
+      # the push cannot be made to work, the rows exist only on a machine that
+      # is about to be destroyed. Uploading them means a failed run costs a
+      # manual recovery, not an hour of collection that cannot be bought back.
+      - name: Keep the rows even when the push failed
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: journal-${{ github.run_id }}
+          path: data/
+          retention-days: 30
+          if-no-files-found: ignore
 
       - name: Summary
         if: always()

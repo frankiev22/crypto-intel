@@ -8,3 +8,27 @@
 # given and stop rewriting them.
 data/** -text
 *.jsonl -text
+
+# ---------------------------------------------------------------------------
+# APPEND-ONLY LOGS MERGE BY UNION, because losing a pass is worse than a
+# duplicate line.
+#
+# 2026-09-18: a scheduled run collected a full pass, then died in "Commit the
+# journal" with add/add and content conflicts across nine data files because a
+# human had pushed during the ~10 minutes it was running. `git pull --rebase`
+# stopped at the first conflict, the retry loop pushed again from a half-rebased
+# tree, and the step exited non-zero. The runner is ephemeral, so THE ROWS WERE
+# DISCARDED - infrastructure breaking standing rule 8 on its own.
+#
+# Every *.jsonl here is a log where each line is independent, so union is the
+# correct merge: keep both sides' lines. It can leave a duplicate line, which is
+# a cosmetic problem, against losing an hour of collection, which is permanent.
+#
+# ⚠️ NOT applied to *.json - those are whole-document state files (watchlist,
+# quarantine, liveness) where concatenating two versions produces invalid JSON.
+# The workflow resolves those by keeping the run's freshly computed version.
+#
+# ⚠️ The paper ledgers are hash-chained, so a union merge can fork the chain.
+# paper.verify() already reports a concurrent-writer fork as OK rather than as
+# tampering, and both ledgers are quarantined against writes anyway.
+*.jsonl merge=union
