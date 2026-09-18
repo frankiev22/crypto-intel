@@ -41319,3 +41319,188 @@
 {"name": "scan.observations", "ts": 1789739764, "n": 1, "detail": null, "origin": "manual"}
 {"name": "scan.observations", "ts": 1789739765, "n": 1, "detail": null, "origin": "manual"}
 {"name": "scan.observations", "ts": 1789739765, "n": 1, "detail": null, "origin": "manual"}
+{"name": "scan.observations", "ts": 1789741693, "n": 10, "detail": null, "origin": "runner"}
+{"name": "scan.observations", "ts": 1789741705, "n": 10, "detail": null, "origin": "runner"}
+{"name": "scan.observations", "ts": 1789741716, "n": 10, "detail": null, "origin": "runner"}
+{"name": "scan.observations", "ts": 1789741727, "n": 10, "detail": null, "origin": "runner"}
+{"name": "scan.observations", "ts": 1789741738, "n": 10, "detail": null, "origin": "runner"}
+{"name": "scan.observations", "ts": 1789741750, "n": 10, "detail": null, "origin": "runner"}
+{"name": "scan.observations", "ts": 1789741761, "n": 10, "detail": null, "origin": "runner"}
+{"name": "scan.observations", "ts": 1789741772, "n": 10, "detail": null, "origin": "runner"}
+{"name": "fieldguard.check", "ts": 1789741773, "n": 1, "detail": null, "origin": "runner"}
+{"name": "watchlist.sweep", "ts": 1789741776, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741781, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741782, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741783, "n": 1, "detail": null, "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741783, "n": 1, "detail": "mcap_100k FYSZZr2kmwEdb3HcCNbcBxdNE9kVYJiKENqHt4gs8CaU", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741783, "n": 1, "detail": "mcap_200k FYSZZr2kmwEdb3HcCNbcBxdNE9kVYJiKENqHt4gs8CaU", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741783, "n": 1, "detail": "mcap_1m FYSZZr2kmwEdb3HcCNbcBxdNE9kVYJiKENqHt4gs8CaU", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741783, "n": 1, "detail": "mcap_5m FYSZZr2kmwEdb3HcCNbcBxdNE9kVYJiKENqHt4gs8CaU", "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741785, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741786, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741787, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741788, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741789, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741790, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741792, "n": 1, "detail": null, "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741792, "n": 1, "detail": "mcap_100k GHdnUTVstwEKQUX5k8iBq5VwBtYrLMvc8emUUX2etk3A", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741792, "n": 1, "detail": "mcap_200k GHdnUTVstwEKQUX5k8iBq5VwBtYrLMvc8emUUX2etk3A", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741792, "n": 1, "detail": "mcap_1m GHdnUTVstwEKQUX5k8iBq5VwBtYrLMvc8emUUX2etk3A", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741792, "n": 1, "detail": "mcap_5m GHdnUTVstwEKQUX5k8iBq5VwBtYrLMvc8emUUX2etk3A", "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741793, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741794, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741795, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741796, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741798, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741799, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741800, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741801, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741803, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741804, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741805, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741806, "n": 1, "detail": null, "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741806, "n": 1, "detail": "mcap_100k CHV9aYbcUT5kgDTp6VfsEPZRQxZhYahGAS4k4nrfrZQZ", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741806, "n": 1, "detail": "mcap_200k CHV9aYbcUT5kgDTp6VfsEPZRQxZhYahGAS4k4nrfrZQZ", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741806, "n": 1, "detail": "mcap_1m CHV9aYbcUT5kgDTp6VfsEPZRQxZhYahGAS4k4nrfrZQZ", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741806, "n": 1, "detail": "mcap_5m CHV9aYbcUT5kgDTp6VfsEPZRQxZhYahGAS4k4nrfrZQZ", "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741807, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741809, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741810, "n": 1, "detail": null, "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741810, "n": 1, "detail": "mcap_100k AXw7Mkwi3nPvjtvzjb26ngNSts7ZJasXneUfXcgNtJ3q", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741810, "n": 1, "detail": "mcap_200k AXw7Mkwi3nPvjtvzjb26ngNSts7ZJasXneUfXcgNtJ3q", "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741811, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741812, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741814, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741815, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741816, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741817, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741818, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741820, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741821, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741822, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741823, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741824, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741826, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741827, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741828, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741829, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741830, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741832, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741833, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741834, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741835, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741836, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741838, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741839, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741840, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741841, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741842, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741844, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741845, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741846, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741847, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741848, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741849, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741851, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741852, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741853, "n": 1, "detail": null, "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741853, "n": 1, "detail": "mcap_100k F4t5Z2KwoDMd8rsekNHZkwKkxxcmD9j6A9sCUkNYQwws", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741853, "n": 1, "detail": "mcap_200k F4t5Z2KwoDMd8rsekNHZkwKkxxcmD9j6A9sCUkNYQwws", "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741854, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741855, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741857, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741858, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741859, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741860, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741862, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741863, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741864, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741865, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741866, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741867, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741868, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741870, "n": 1, "detail": null, "origin": "runner"}
+{"name": "milestone.realizable", "ts": 1789741870, "n": 1, "detail": "realizable_2x 7uMjiTCQiRaKMCrYKaNMQHR6h5Bo9qzd42ycTAWzRhE1", "origin": "runner"}
+{"name": "milestone.realizable", "ts": 1789741870, "n": 1, "detail": "realizable_3x 7uMjiTCQiRaKMCrYKaNMQHR6h5Bo9qzd42ycTAWzRhE1", "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741871, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741873, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741874, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741875, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741876, "n": 1, "detail": null, "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741876, "n": 1, "detail": "mcap_100k 8yJ47YHM7jU6fPdjcw2B9AdgkSzBXtVNhFjmPN9BJSNi", "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741877, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741878, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741880, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741881, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741882, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741883, "n": 1, "detail": null, "origin": "runner"}
+{"name": "milestone.realizable", "ts": 1789741883, "n": 1, "detail": "realizable_2x 2u54YZHjE9ZESKRitarGs1xHpsxCHkzDWfhb7hQF9Qiy", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741883, "n": 1, "detail": "mcap_100k 2u54YZHjE9ZESKRitarGs1xHpsxCHkzDWfhb7hQF9Qiy", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741883, "n": 1, "detail": "mcap_200k 2u54YZHjE9ZESKRitarGs1xHpsxCHkzDWfhb7hQF9Qiy", "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741885, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741886, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741887, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741888, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741889, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741891, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741892, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741893, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741894, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741896, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741897, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741898, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741899, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741900, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741901, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741903, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741904, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741905, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741906, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741907, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741909, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741910, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741911, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741912, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741913, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741914, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741916, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741917, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741918, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741919, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741920, "n": 1, "detail": null, "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741920, "n": 1, "detail": "mcap_100k 68ki9S1mbfvNydTqei2R8Qy1bZaGqyH4VMLkmtaw7su3", "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741922, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741923, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741924, "n": 1, "detail": null, "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741924, "n": 1, "detail": "mcap_100k 52mC6jMCNESTWn7jDbheGammGU8tW359ZCRjqL5v9DY5", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741924, "n": 1, "detail": "mcap_200k 52mC6jMCNESTWn7jDbheGammGU8tW359ZCRjqL5v9DY5", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741924, "n": 1, "detail": "mcap_1m 52mC6jMCNESTWn7jDbheGammGU8tW359ZCRjqL5v9DY5", "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741925, "n": 1, "detail": null, "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741925, "n": 1, "detail": "mcap_100k 7P48QkgheGNX4X5yZM8JCi4bzEyxQf8xE6juCdDau9rw", "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741927, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741928, "n": 1, "detail": null, "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741928, "n": 1, "detail": "mcap_200k 68ki9S1mbfvNydTqei2R8Qy1bZaGqyH4VMLkmtaw7su3", "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741929, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741930, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741932, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741933, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741934, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741935, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741936, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741937, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741939, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741940, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741941, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741942, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741943, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741944, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741946, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741947, "n": 1, "detail": null, "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741948, "n": 1, "detail": null, "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741948, "n": 1, "detail": "mcap_100k 7V2ZcL2Wwt4SYJJ1sgSAncmUmZsh7cFdXJ8vfh4SQ8QW", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741948, "n": 1, "detail": "mcap_200k 7V2ZcL2Wwt4SYJJ1sgSAncmUmZsh7cFdXJ8vfh4SQ8QW", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741948, "n": 1, "detail": "mcap_1m 7V2ZcL2Wwt4SYJJ1sgSAncmUmZsh7cFdXJ8vfh4SQ8QW", "origin": "runner"}
+{"name": "milestone.mcap", "ts": 1789741948, "n": 1, "detail": "mcap_5m 7V2ZcL2Wwt4SYJJ1sgSAncmUmZsh7cFdXJ8vfh4SQ8QW", "origin": "runner"}
+{"name": "outcome.recorded", "ts": 1789741949, "n": 1, "detail": null, "origin": "runner"}
+{"name": "news.freshness", "ts": 1789741958, "n": 1, "detail": "0 stale outlet(s)", "origin": "runner"}
+{"name": "detector.drift", "ts": 1789741959, "n": 1, "detail": "stable", "origin": "runner"}
