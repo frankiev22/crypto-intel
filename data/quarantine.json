@@ -2406,5 +2406,37 @@
   "first_horizon_h": 1,
   "last_ts": 1789449150,
   "hits": 1
+ },
+ "23M82L52yBc1AfCHb8oTdNNQAmuV49BrnG3JpAL1pump": {
+  "confidence": "quarantined_liquidity_divergent",
+  "detail": "dexscreener liquidity $0 vs geckoterminal $1,592; the sources do not agree that there is a pool to exit into",
+  "first_ts": 1789703974,
+  "first_horizon_h": 1,
+  "last_ts": 1789703974,
+  "hits": 1
+ },
+ "HTSKMz6niaSgSJw6jpySCdJUD8JQoJofwYKjhPAvKtaG": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0181 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789703992,
+  "first_horizon_h": 1,
+  "last_ts": 1789703992,
+  "hits": 1
+ },
+ "BnFSXZAVPsULzcKLUxDpEuhcrq2FDyZUZv8gPyFXpump": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $1.4320 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789703996,
+  "first_horizon_h": 1,
+  "last_ts": 1789703996,
+  "hits": 1
+ },
+ "4T53brSCbvMAi9HBtCjSL5xTocYn5F54vTPm28RQppRc": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "total reserve $0.2194 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789704152,
+  "first_horizon_h": 168,
+  "last_ts": 1789704152,
+  "hits": 1
  }
 }
