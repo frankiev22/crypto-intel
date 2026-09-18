@@ -137,6 +137,15 @@ Aged-out rate at each horizon, split at the 2026-09-06 slice fix (`fa972b1`,
 | ⭐ after the fix, collector healthy, 09-06..09-10 (n=10,033) | **1.6%** | **4.3%** | ⭐ **5.8%** |
 | ⛔ after the fix, collector dying/dead, 09-11 on (n=3,326) | 11.2% | 33.2% | ⛔ **76.4%** |
 
+⛔ **CORRECTION 2026-09-18, after measuring the scheduler.** The "collector
+healthy" row below is **not** a measurement of the collector. Those days ran
+38–204 passes each, of which only **6–8 were scheduled** — the rest were mine, by
+hand. **Only 91 of 691 passes in the whole record were unattended (13%).**
+Measured separately: the hourly cron actually fires every **3.24h** (median,
+n=99, and 0 of 99 gaps were under 1.5h), so unattended capacity is ~7 passes/day
+against ~2,300 new pairs — roughly **37% of what the queue needs.** ⚠️ **So 5.8%
+is what the system achieves WITH a human running it, not on its own.**
+
 ⭐ **The slice fix worked. 24h went 19.1% -> 5.8%.** The 20.8% figure recorded in
 `track.py`'s own comment was real, it was fixed, and the fix held for as long as
 the collector ran.

@@ -1,0 +1,4 @@
+# dev and test tooling: not part of the deployed site
+dev.mjs
+test_honest.mjs
+.claude

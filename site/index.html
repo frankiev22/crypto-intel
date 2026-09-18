@@ -3,383 +3,610 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Crypto Intel</title>
-<meta name="description" content="Live regime, whale and alert digest.">
+<title>crypto-intel</title>
+<meta name="description" content="Solana memecoin filter. Shows what the scanner saw, and how old it is.">
 <meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#090b0a">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23090b0a'/%3E%3Crect x='6' y='6' width='5' height='20' fill='%2357d98a'/%3E%3Crect x='14' y='6' width='5' height='20' fill='%23f2b33d'/%3E%3Crect x='22' y='6' width='5' height='20' fill='%23ff6257'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
+  /* TYPE RULES, absolute: nothing on this page is set below 1rem, nothing is
+     uppercased, nothing is letter-spaced wider than normal. test_honest.mjs
+     lints this stylesheet and fails on a violation. */
   :root{
-    --bg:#0b0d10; --card:#151a21; --line:#252c36;
-    --ink:#e8edf4; --muted:#9aa7b8; --dim:#6f7d90;
-    --up:#3fbf7f; --down:#f2585b; --warn:#f0a93b; --accent:#5b9dff;
+    --bg:#090b0a; --panel:#101412; --panel-2:#161b18; --line:#232b26;
+    --ink:#ecf1ec; --ink-2:#b0bbb3; --ink-3:#86948a;
+    --ok:#57d98a; --late:#f2b33d; --down:#ff6257; --off:#75827a; --tap:#7fd6e6;
+    --sans:"Barlow",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    --cond:"Barlow Semi Condensed","Barlow",ui-sans-serif,system-ui,sans-serif;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:106.25%;-webkit-text-size-adjust:100%}
   body{
-    background:var(--bg); color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    font-size:17px; line-height:1.5;
-    padding:20px 16px calc(40px + env(safe-area-inset-bottom));
-    -webkit-font-smoothing:antialiased;
+    background-color:var(--bg);
+    background-image:
+      linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+    background-size:28px 28px;
+    color:var(--ink); font-family:var(--sans); font-size:1rem; line-height:1.45;
+    padding:0 12px calc(48px + env(safe-area-inset-bottom));
+    -webkit-font-smoothing:antialiased; font-variant-numeric:tabular-nums;
   }
-  .wrap{max-width:620px;margin:0 auto}
-  header{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
-  h1{font-size:1.6rem;font-weight:650;letter-spacing:-.02em}
-  .ver{color:var(--dim);font-size:1rem}
-  .updated{font-size:1rem;color:var(--muted);margin-bottom:22px}
-  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle;background:var(--dim)}
-  .fresh .dot{background:var(--up)} .stale .dot{background:var(--warn)} .old .dot{background:var(--down)}
-  .stale .age{color:var(--warn)} .old .age{color:var(--down)}
+  .wrap{max-width:720px;margin:0 auto}
+  a{color:var(--tap)}
+  button{font:inherit;color:inherit}
 
-  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;margin-bottom:14px}
-  h2{font-size:1.05rem;font-weight:600;color:var(--muted);margin-bottom:12px}
-  h2 .n{color:var(--dim);font-weight:400}
+  [data-rail="ok"]{--rail:var(--ok)} [data-rail="late"]{--rail:var(--late)}
+  [data-rail="down"]{--rail:var(--down)} [data-rail="off"]{--rail:var(--off)}
 
-  .rows{display:flex;flex-direction:column;gap:10px}
-  .row{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
-  .row .k{color:var(--muted);font-size:1rem}
-  .row .v{font-size:1.05rem;font-variant-numeric:tabular-nums}
-  .asset{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
-         padding:9px 0;border-bottom:1px solid var(--line)}
-  .asset:last-child{border-bottom:0}
-  .asset .sym{font-size:1.05rem;font-weight:600;min-width:52px}
-  .asset .px{font-size:1.1rem;font-variant-numeric:tabular-nums;flex:1;text-align:right}
-  .asset .ch{font-size:1.05rem;font-variant-numeric:tabular-nums;min-width:78px;text-align:right}
-  .up{color:var(--up)} .down{color:var(--down)}
+  .top{display:flex;justify-content:space-between;align-items:baseline;padding:14px 2px 10px}
+  .brand{font-family:var(--cond);font-weight:700;font-size:1.25rem}
+  .clock{color:var(--ink-3);font-size:1rem}
 
-  .alerts{background:rgba(240,169,59,.09);border-color:rgba(240,169,59,.35)}
-  .alerts h2{color:var(--warn)}
-  .alert{display:flex;gap:10px;align-items:flex-start;padding:7px 0;font-size:1.05rem}
-  .alert .mk{color:var(--warn);font-size:.85rem;line-height:1.7}
+  /* annunciator: the first thing on the screen says whether to trust the rest */
+  .ann{background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--rail);
+       border-radius:4px;padding:14px 14px 12px}
+  .ann__word{font-family:var(--cond);font-weight:700;font-size:1.9rem;line-height:1.1;
+             color:var(--rail);display:flex;align-items:center;gap:10px}
+  .beat{width:12px;height:12px;border-radius:50%;background:var(--rail);flex:none}
+  .ann[data-rail="ok"] .beat{animation:beat 2.4s ease-in-out infinite}
+  @keyframes beat{0%,100%{box-shadow:0 0 0 0 rgba(87,217,138,.55)}60%{box-shadow:0 0 0 9px rgba(87,217,138,0)}}
+  @media (prefers-reduced-motion:reduce){.ann .beat{animation:none}}
+  .ann__line{margin-top:6px;font-size:1.06rem;font-weight:500}
+  .ann__sub{margin-top:4px;color:var(--ink-2);font-size:1rem}
+  .banner{margin-top:10px;background:rgba(255,98,87,.12);border:1px solid rgba(255,98,87,.5);
+          border-radius:4px;padding:10px 12px;color:#ffd2ce;font-weight:500}
 
-  .whale{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
-         padding:9px 0;border-bottom:1px solid var(--line)}
-  .whale:last-child{border-bottom:0}
-  .addr{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:1rem;color:var(--accent)}
-  .act{color:var(--muted);font-size:1rem;text-align:right;flex:1}
-  .count{color:var(--dim);font-size:1rem;min-width:30px;text-align:right}
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+  .tile{display:block;text-decoration:none;color:inherit;background:var(--panel);
+        border:1px solid var(--line);border-top:4px solid var(--rail);border-radius:4px;
+        padding:9px 11px 10px}
+  .tile__n{font-family:var(--cond);font-weight:700;font-size:2.7rem;line-height:1;letter-spacing:-.01em}
+  .tile__n--raw{color:transparent;-webkit-text-stroke:1.5px var(--late)}
+  .tile__n--words{font-size:1.45rem;line-height:1.15;color:var(--rail);padding:6px 0 5px}
+  .tile__label{margin-top:6px;font-weight:600;line-height:1.25}
+  .tile__sub{color:var(--ink-2);line-height:1.3;margin-top:2px}
+  .tile__asof{color:var(--ink-3);margin-top:4px;line-height:1.3}
+  .tile[data-rail="late"] .tile__asof,.tile[data-rail="down"] .tile__asof{color:var(--rail);font-weight:500}
 
-  .off{color:var(--dim);font-size:1.02rem}
-  .off strong{color:var(--muted);font-weight:600}
-  .note{color:var(--dim);font-size:1rem;margin-top:10px}
-  footer{color:var(--dim);font-size:.98rem;text-align:center;margin-top:26px;line-height:1.7}
-  .err{color:var(--down)}
-  a{color:var(--accent)}
+  .cabox{margin-top:8px;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:12px}
+  .cabox label{display:block;font-weight:600;margin-bottom:8px}
+  .cabox__row{display:flex;gap:8px}
+  .cabox input{flex:1;min-width:0;height:48px;background:var(--bg);border:1px solid #33403a;border-radius:4px;
+               color:var(--ink);font-family:var(--mono);font-size:1rem;padding:0 12px}
+  .cabox input:focus{outline:2px solid var(--tap);outline-offset:1px}
+  .cabox input::placeholder{color:var(--ink-3);font-family:var(--sans)}
+  .btn{height:48px;padding:0 18px;background:var(--tap);color:#04211f;border:0;border-radius:4px;font-weight:700;cursor:pointer}
+  .btn[disabled]{opacity:.5}
+  .cabox__hint{color:var(--ink-3);margin-top:8px}
+  #caresult:empty{display:none}
+  #caresult{margin-top:12px;border-top:1px solid var(--line);padding-top:12px}
+  .caaddr{font-family:var(--mono);word-break:break-all;color:var(--ink-2);margin:4px 0 2px}
+
+  .sec{margin-top:14px;background:var(--panel);border:1px solid var(--line);
+       border-left:4px solid var(--rail);border-radius:4px;padding:13px 13px 6px;scroll-margin-top:8px}
+  .sec[data-rail="off"]{border-left-style:dashed}
+  .sec__head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  h2{font-family:var(--cond);font-weight:700;font-size:1.3rem;line-height:1.2}
+  .chip{flex:none;border:1px solid var(--rail);color:var(--rail);border-radius:3px;padding:1px 8px;font-weight:600;white-space:nowrap}
+  .sec__asof{color:var(--ink-2);margin-top:4px}
+  .sec[data-rail="late"] .sec__asof,.sec[data-rail="down"] .sec__asof{color:var(--rail);font-weight:500}
+  .sec__note{color:var(--ink-3);margin-top:6px}
+  .sec__note strong{color:var(--ink-2);font-weight:600}
+
+  /* empty states: three looks, never interchangeable */
+  .empty{margin:10px 0 8px;padding:11px 12px;border-radius:4px;border:1px solid var(--line);color:var(--ink-2)}
+  .empty--quiet{background:var(--panel-2)}
+  .empty--outage{background:rgba(255,98,87,.10);border-color:rgba(255,98,87,.55);color:#ffd2ce;font-weight:500}
+  .empty--off{border-style:dashed;color:var(--ink-3)}
+
+  .rows{margin-top:8px}
+  .row{padding:11px 0;border-top:1px solid var(--line)}
+  .row.is-old{opacity:.58}
+  .row__top,.row__mid{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .sym{font-weight:700;font-size:1.12rem;overflow-wrap:anywhere}
+  .symwarns{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin:4px 0 2px}
+  .symwarn{background:var(--down);color:#1d0503;border-radius:3px;padding:1px 7px;font-weight:600;line-height:1.3}
+  .row__event{font-weight:600;white-space:nowrap}
+  .row__event--raw{color:var(--late)}
+  .stalefact{color:var(--late);font-weight:400}
+  .row__age{color:var(--ink-3);white-space:nowrap}
+  .cabtn{background:none;border:0;padding:6px 0;min-height:36px;font-family:var(--mono);color:var(--tap);cursor:pointer;text-align:left}
+  .lookup{background:none;border:0;padding:6px 0 6px 12px;min-height:36px;color:var(--ink-2);text-decoration:underline;cursor:pointer}
+  .facts{margin-top:2px;line-height:1.5}
+  .fact{white-space:nowrap} .fact+.fact::before{content:"·";color:var(--ink-3);margin:0 7px;white-space:normal}
+  .fact .k{color:var(--ink-3)} .fact .v{font-weight:500}
+  .fact--wrap{white-space:normal}
+  .unk{font-style:italic;color:var(--ink-3);font-weight:400}
+  .rt.good{color:var(--ok)} .rt.ok{color:#c9e27a} .rt.bad{color:var(--late)} .rt.worst{color:var(--down)}
+  .warnline{color:var(--late);margin-top:3px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+  .tag{border:1px solid rgba(255,98,87,.6);color:#ffb3ad;border-radius:3px;padding:0 7px}
+  .tag--plain{border-color:var(--line);color:var(--ink-2)}
+  details.more{border-top:1px solid var(--line)}
+  details.more>summary{list-style:none;cursor:pointer;padding:13px 0;color:var(--tap);font-weight:600}
+  details.more>summary::-webkit-details-marker{display:none}
+
+  .band{position:relative;height:6px;background:var(--panel-2);border:1px solid var(--line);border-radius:3px;margin:8px 0 2px}
+  .band i{position:absolute;top:-4px;width:3px;height:12px;background:var(--ink);border-radius:1px}
+
+  .kv{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
+  .kv .k{color:var(--ink-2)} .kv .v{font-weight:600;text-align:right}
+  .up{color:var(--ok)} .dn{color:var(--down)}
+  .news{padding:10px 0;border-top:1px solid var(--line)}
+  .news a{color:var(--ink);text-decoration:none;font-weight:500}
+  .news .meta{color:var(--ink-3);margin-top:2px}
+  .offitem{padding:11px 0;border-top:1px solid var(--line)}
+  .offitem b{font-weight:600} .offitem p{color:var(--ink-3);margin-top:2px}
+  footer{color:var(--ink-3);margin:22px 2px 0;line-height:1.5}
+  .skel{color:var(--ink-3);padding:12px 0}
+  @media (min-width:640px){.tiles{grid-template-columns:repeat(4,1fr)} body{padding-left:20px;padding-right:20px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header><h1>Crypto Intel</h1><span class="ver" id="ver"></span></header>
-  <div class="updated" id="updated"><span class="dot"></span>Loading…</div>
-  <div id="body"><section><div class="off">Fetching the latest digest…</div></section></div>
+  <div class="top"><div class="brand">crypto-intel</div><div class="clock" id="clock"></div></div>
+
+  <section class="ann" id="ann" data-rail="off">
+    <div class="ann__word"><span class="beat"></span>Loading</div>
+    <p class="ann__line">Reading the collector's last snapshot. Nothing below is data yet.</p>
+  </section>
+  <div id="banner"></div>
+  <div class="tiles" id="tiles"></div>
+
+  <form class="cabox" id="caform" autocomplete="off">
+    <label for="cainput">Look up a contract address</label>
+    <div class="cabox__row">
+      <input id="cainput" name="ca" inputmode="text" enterkeyhint="search" autocapitalize="off" autocorrect="off" spellcheck="false"
+             placeholder="Paste a Solana contract address">
+      <button class="btn" id="cabtn" type="submit">Look up</button>
+    </div>
+    <p class="cabox__hint">Shows what the scanner already recorded for this address. It is not a live analysis.</p>
+    <div id="caresult" aria-live="polite"></div>
+  </form>
+
+  <div id="body"><p class="skel">Loading sections.</p></div>
+
   <footer>
-    Collected in the cloud on a schedule. Independent of any desktop.<br>
-    Public data only. Not advice.
+    Descriptions of things that already happened. Not predictions, not recommendations, not advice.
+    This system has no validated way to predict price. Exit depth is the quote side only, from on-chain reserves:
+    what a seller could actually be paid. Reported liquidity counts both sides and has been measured overstating
+    by a median of 781x. Round trip assumes constant product impact both ways plus a 0.25% pool fee each way.
+    Paper results are a simulation, never a trading record.
   </footer>
+  <noscript><p class="banner">This page needs JavaScript to read the collector's data. Nothing is shown without it.</p></noscript>
 </div>
 
-<script>
-var SUPABASE_URL = "https://rxofejxostyqlgjlzqmk.supabase.co";
-var SUPABASE_KEY = "sb_publishable_i2C_gUarAGmkgF7DmOdvLw_WlXPnm1r";
+<script type="module">
+import * as hx from "./honest.mjs";
 
-function $(id){ return document.getElementById(id); }
+// Publishable key, already public, SELECT limited to a few aggregate views.
+const SUPABASE_URL = "https://rxofejxostyqlgjlzqmk.supabase.co";
+const SUPABASE_KEY = "sb_publishable_i2C_gUarAGmkgF7DmOdvLw_WlXPnm1r";
 
-function esc(s){
-  var map = {"&":"&amp;", "<":"&lt;", ">":"&gt;"};
-  map['"'] = "&quot;";
-  map["'"] = "&#39;";
-  return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return map[c]; });
+const $ = (id) => document.getElementById(id);
+const esc = hx.esc;
+let FEED = null, FEED_ERR = null, FEED_AT = 0, SKEW = 0;
+const SB = { digest: null, news: null, whales: null, err: {} };
+const OPEN = new Set();
+
+// Ages are measured against the server's clock when the phone's clock is off
+// by more than two minutes, so a wrong device time cannot make stale data look new.
+const now = () => Date.now() + SKEW;
+
+// ---------- formatting --------------------------------------------------------
+const money = (v) => { const s = hx.usd(v); return s == null ? '<span class="unk">unknown</span>' : esc(s); };
+const pct = (v) => (v == null || !Number.isFinite(+v)) ? '<span class="unk">unknown</span>'
+  : `<span class="${+v >= 0 ? "up" : "dn"}">${+v >= 0 ? "+" : ""}${(+v).toFixed(1)}%</span>`;
+const shortCa = (a) => (a && a.length > 12) ? `${a.slice(0, 6)}…${a.slice(-4)}` : (a || "");
+const tier = (n) => n >= 1e6 ? `$${n / 1e6}M` : `$${n / 1e3}k`;
+
+function symHtml(sym) {
+  const s = hx.safeSym(sym);
+  return s.unknown ? '<span class="unk">unknown</span>' : esc(s.text);
 }
 
-// Wallet addresses are truncated for display. The full value is never rendered.
-function shortAddr(a){
-  if (!a) return "";
-  return a.length <= 12 ? a : a.slice(0,4) + "…" + a.slice(-4);
+// Shown on its own line under the name, so the deception is the thing you notice.
+function symWarn(sym) {
+  const s = hx.safeSym(sym), w = [];
+  if (s.bidi) w.push("hidden direction control: this name displays as something else");
+  if (s.mixed) w.push(`mixed alphabets (${s.scripts.join(" + ")}): letters may be lookalikes`);
+  return w.length ? `<div class="symwarns">${w.map((x) => `<span class="symwarn">${esc(x)}</span>`).join("")}</div>` : "";
 }
 
-function num(v, d){
-  if (v == null) return null;
-  return v.toLocaleString("en-US", {minimumFractionDigits: d||0, maximumFractionDigits: d||0});
-}
-function pct(v){ return v == null ? null : (v >= 0 ? "+" : "") + v.toFixed(1) + "%"; }
-function cls(v){ return v == null ? "" : (v >= 0 ? "up" : "down"); }
-
-function money(usd){
-  if (usd == null) return null;
-  var a = Math.abs(usd);
-  if (a >= 1e6) return "$" + (usd/1e6).toFixed(1) + "M";
-  if (a >= 1e3) return "$" + (usd/1e3).toFixed(1) + "k";
-  if (a >= 1) return "$" + Math.round(usd).toLocaleString("en-US");
-  return "$" + usd.toFixed(2);
+function rtHtml(depth) {
+  const rt = hx.roundTrip(depth);
+  if (rt == null) return '<span class="unk">unknown</span>';
+  // The constant product estimate passes 100% on a drained pool. A cost above
+  // the whole clip is not a percentage, it is the absence of an exit.
+  if (rt >= 100) return '<span class="rt worst">no exit at $100</span>';
+  return `<span class="rt ${hx.roundTripClass(rt)}">${rt.toFixed(1)}%</span>`;
 }
 
-function ago(then){
-  var s = Math.max(0, (Date.now() - then.getTime())/1000);
-  if (s < 90) return Math.round(s) + " seconds ago";
-  if (s < 5400) return Math.round(s/60) + " minutes ago";
-  if (s < 172800) return Math.round(s/3600) + " hours ago";
-  return Math.round(s/86400) + " days ago";
+const fact = (k, vHtml, wrap) => `<span class="fact${wrap ? " fact--wrap" : ""}"><span class="k">${esc(k)}</span> <span class="v">${vHtml}</span></span> `;
+
+function caButtons(ca) {
+  if (!ca) return '<span class="unk">address unknown</span>';
+  return `<span><button type="button" class="cabtn" data-copy="${esc(ca)}" title="Copy the full contract address">${esc(shortCa(ca))}</button>` +
+         `<button type="button" class="lookup" data-lookup="${esc(ca)}">look up</button></span>`;
 }
 
-function renderUpdated(capturedAt){
-  var d = new Date(capturedAt);
-  var mins = (Date.now() - d.getTime())/60000;
-  var state = mins < 90 ? "fresh" : (mins < 360 ? "stale" : "old");
-  var label = state === "fresh" ? ""
-            : state === "stale" ? " — the collector may not be running"
-            : " — this page is out of date";
-  $("updated").className = "updated " + state;
-  $("updated").innerHTML =
-    '<span class="dot"></span>Last updated <span class="age">' + esc(ago(d)) + '</span>' + esc(label) +
-    '<br><span style="color:var(--dim)">' + esc(d.toUTCString().replace("GMT","UTC")) + '</span>';
-}
+const isOld = (iso) => { const a = hx.ageMs(iso, now()); return a == null || a > hx.LATE_H * 3600000; };
 
-function regime(m){
-  if (!m) return '<section><h2>Regime</h2><div class="off">Not present in this digest.</div></section>';
-  function asset(sym, px, ch, dp){
-    return '<div class="asset"><span class="sym">' + sym + '</span>' +
-           '<span class="px">$' + esc(num(px, dp)) + '</span>' +
-           '<span class="ch ' + cls(ch) + '">' + esc(pct(ch)) + '</span></div>';
+// ---------- section frame -------------------------------------------------------
+// A section supplies a title, a noun, and rows. It never writes its own empty
+// state: that sentence comes from hx.emptySentence(), which needs coverage.
+function frame({ id, title, sec, noun, note, rowsHtml, count, extra }) {
+  const st = hx.stateOf(sec, now());
+  const rail = hx.RAIL[st.kind];
+  const outage = st.kind === "unreadable" || st.kind === "never" || st.kind === "blind";
+  let asof = "";
+  if (!outage) {
+    const looks = sec.window_h != null && st.looks
+      ? ` · ${st.looks} pass${st.looks === 1 ? "" : "es"} in the last ${hx.spanText(sec.window_h)}` : "";
+    asof = `<p class="sec__asof">${sec.coverage ? "Last looked" : "Newest"} ${esc(hx.ageText(sec.as_of, now()))}${looks}</p>`;
   }
-  var dom = m.btc_dominance == null ? "" : m.btc_dominance.toFixed(1) + "%";
-  var mcap = m.total_mcap_usd == null ? "" : (m.total_mcap_usd/1e12).toFixed(2);
-  var stb = m.stablecoin_chg_24h == null ? "" :
-            (m.stablecoin_chg_24h >= 0 ? "+" : "") + m.stablecoin_chg_24h.toFixed(2) + "%";
-  return '<section><h2>Regime</h2>' +
-    asset("BTC", m.btc, m.btc_24h, 0) +
-    asset("ETH", m.eth, m.eth_24h, 0) +
-    asset("SOL", m.sol, m.sol_24h, 2) +
-    '<div class="rows" style="margin-top:14px">' +
-      '<div class="row"><span class="k">Fear &amp; Greed</span><span class="v">' + esc(m.fear_greed) +
-        ' <span style="color:var(--muted)">' + esc(m.fear_greed_label) + '</span></span></div>' +
-      '<div class="row"><span class="k">BTC dominance</span><span class="v">' + esc(dom) + '</span></div>' +
-      '<div class="row"><span class="k">Total market cap</span><span class="v">$' + esc(mcap) +
-        'T <span class="' + cls(m.mcap_change_24h) + '">' + esc(pct(m.mcap_change_24h)) + '</span></span></div>' +
-      '<div class="row"><span class="k">Stablecoin supply</span><span class="v">$' +
-        esc(num(m.stablecoin_supply/1e9)) + 'B <span class="' + cls(m.stablecoin_chg_24h) + '">' +
-        esc(stb) + '</span></span></div>' +
-    '</div></section>';
-}
-
-function alertsBlock(list){
-  if (!list || !list.length)
-    return '<section><h2>Alerts</h2><div class="off">Nothing crossed a threshold on this run.</div></section>';
-  var out = '<section class="alerts"><h2>Alerts <span class="n">' + list.length + '</span></h2>';
-  for (var i=0;i<list.length;i++){
-    // v0.0.2+ alerts are {key, text}; older digests stored plain strings.
-    // Handle both, or an object renders as "[object Object]".
-    var a = list[i];
-    var txt = (a && typeof a === "object") ? (a.text || a.key || "") : a;
-    out += '<div class="alert"><span class="mk">▲</span><span>' + esc(txt) + '</span></div>';
-  }
-  return out + '</section>';
-}
-
-function whalesBlock(events, d){
-  // Real rows from crypto_whale_events_public. The digest payload is only used
-  // for the "how many are we watching" context line, never for the moves
-  // themselves - that is what made this card show stale sampled data.
-  var n = d.watchlist_n || 0;
-  var st = d.whale_stats || {};
-  var h;
-
-  if (events && events.length){
-    var total = 0;
-    for (var k=0;k<events.length;k++) total += (events[k].usd || 0);
-    h = '<section><h2>Whales <span class="n">' + events.length + ' move' +
-        (events.length===1?'':'s') + ' · ' + money(total) + '</span></h2>';
-    for (var i=0;i<Math.min(6,events.length);i++){
-      var e = events[i];
-      var where = e.venue ? ' on ' + e.venue : '';
-      var link = e.signature ? 'https://solscan.io/tx/' + e.signature : null;
-      var when = ago(new Date(e.occurred_at));
-      h += '<div class="whale" style="display:block">' +
-           '<div><span class="addr">' + esc(e.wallet_short) + '</span> ' +
-           '<span style="color:var(--ink)">' + esc(e.description + where) + '</span>' +
-           (e.usd != null ? ' <span class="up">' + esc(money(e.usd)) + '</span>' : '') +
-           (e.alerted ? ' <span style="color:var(--warn)">alerted</span>' : '') + '</div>' +
-           '<div style="color:var(--dim);font-size:1rem;margin-top:3px">' + esc(when) +
-           (link ? ' · <a href="' + esc(link) + '" target="_blank" rel="noopener noreferrer nofollow">tx</a>' : '') +
-           '</div></div>';
-    }
+  let bodyHtml;
+  if (outage) {
+    bodyHtml = `<div class="empty empty--outage">${esc(hx.emptySentence(sec, noun, now()))}</div>`;
+  } else if (!count) {
+    const cls = st.kind === "down" ? "empty--outage" : "empty--quiet";
+    bodyHtml = `<div class="empty ${cls}">${esc(hx.emptySentence(sec, noun, now()))}</div>`;
   } else {
-    h = '<section><h2>Whales <span class="n">' + n + ' tracked</span></h2>' +
-        '<div class="off">No decoded moves recorded yet. The webhook is live; ' +
-        'this fills in when a tracked wallet does something we can read.</div>';
+    bodyHtml = rowsHtml;
   }
-
-  var quiet = [];
-  if (n) quiet.push(n + ' wallets watched');
-  if (st.undecoded) quiet.push(st.undecoded + ' Helius could not decode');
-  if (st.bystander) quiet.push(st.bystander + ' where the wallet only appeared, did not act');
-  if (quiet.length) h += '<div class="note">' + esc(quiet.join('; ')) + '.</div>';
-  return h + '</section>';
+  return `<section class="sec" id="${id}" data-rail="${rail}">
+    <div class="sec__head"><h2>${esc(title)}</h2><span class="chip">${esc(hx.STATE_WORD[st.kind])}</span></div>
+    ${asof}${note ? `<p class="sec__note">${note}</p>` : ""}${bodyHtml}${outage ? "" : (extra || "")}</section>`;
 }
 
-function sentimentBlock(d){
-  // The cloud digest does not carry a sentiment axis: it is still CryptoPanic-only
-  // and that token is unset, so this renders an honest "off" rather than a zero.
-  var s = d.sentiment || {};
-  var h = '<section><h2>Sentiment</h2>';
-  if (s.score == null){
-    var why = [];
-    (s.readings || []).forEach(function(r){ if (r.detail) why.push(r.detail); });
-    return h + '<div class="off"><strong>Off.</strong> ' +
-           esc(why.join("; ") || "No source configured. Needs CRYPTOPANIC_API_TOKEN.") +
-           '</div></section>';
-  }
-  var label = s.score >= .5 ? "Euphoric" : s.score >= .15 ? "Positive"
-            : s.score > -.15 ? "Mixed" : s.score > -.5 ? "Negative" : "Hostile";
-  h += '<div class="row"><span class="k">' + esc(label) + '</span><span class="v ' + cls(s.score) +
-       '">' + esc((s.score >= 0 ? "+" : "") + s.score.toFixed(2)) + '</span></div>';
-  (s.readings || []).forEach(function(r){
-    h += '<div class="note">' + esc(r.source) + ': ' + esc(r.detail) + '</div>';
-  });
-  return h + '</section>';
+function rowsWithMore(key, items, render, first = 5) {
+  const head = items.slice(0, first).map(render).join("");
+  const rest = items.slice(first);
+  if (!rest.length) return `<div class="rows">${head}</div>`;
+  return `<div class="rows">${head}</div><details class="more" data-k="${key}"${OPEN.has(key) ? " open" : ""}>
+    <summary>Show ${rest.length} more</summary><div class="rows">${rest.map(render).join("")}</div></details>`;
 }
 
-function scoreboardBlock(bands, lift, hits){
-  var h = '<section><h2>Scoreboard <span class="n">what the scores actually did · 1h</span></h2>';
-  if (!bands || !bands.length)
-    return h + '<div class="off">No scored outcomes yet.</div></section>';
-
-  // Sample size sits next to every rate on purpose. A 22% win rate on n=9 is
-  // not a finding and must not be able to look like one.
-  for (var i=0;i<bands.length;i++){
-    var b = bands[i];
-    if (!b.closed) continue;
-    var thin = b.closed < 20;
-    h += '<div class="whale" style="display:block">' +
-         '<div><span style="font-weight:600">Score ' + esc(b.band) + '</span> ' +
-         '<span style="color:var(--dim)">n=' + b.closed + (thin ? ' (thin)' : '') + '</span></div>' +
-         '<div style="color:var(--muted);font-size:1rem;margin-top:2px">' +
-         (b.win_rate_2x_pct == null ? "no closed outcomes" :
-            esc(b.win_rate_2x_pct) + '% hit 2x' +
-            (b.best_mult ? ' · best ' + esc(b.best_mult) + 'x' : '') +
-            ' · ' + b.total_loss + ' went to zero') +
-         '</div></div>';
-  }
-
-  var p = null, r = null;
-  for (var j=0;j<(lift||[]).length;j++){
-    if (lift[j].cohort === 'passed filter') p = lift[j]; else r = lift[j];
-  }
-  if (p && r && r.win_rate_2x_pct > 0){
-    var mult = (p.win_rate_2x_pct / r.win_rate_2x_pct).toFixed(0);
-    h += '<div class="note"><strong style="color:var(--up)">Passed ' + esc(p.win_rate_2x_pct) +
-         '% vs rejected ' + esc(r.win_rate_2x_pct) + '% — ' + mult + 'x lift</strong> ' +
-         '(n=' + p.closed + ' vs ' + r.closed + ')</div>';
-  }
-  h += '<div class="note">Median outcome is 0x in every band: more than half of everything ' +
-       'goes to zero. Liquidity-gated, so a multiple off a drained pool is counted as the ' +
-       'total loss it was.</div>';
-
-  if (hits && hits.length){
-    h += '<div class="note" style="margin-top:14px;color:var(--muted)">Recent flags</div>';
-    for (var k=0;k<hits.length;k++){
-      var x = hits[k];
-      var leg = function(res, m){
-        if (res === 'realized') return (m != null ? m + 'x' : 'held');
-        if (res === 'total_loss') return 'zero';
-        if (res === 'illiquid') return 'stuck';
-        if (res === 'too_early') return '–';
-        return '…';
-      };
-      h += '<div class="whale" style="display:block">' +
-           '<div><span class="addr">' + esc(x.symbol || '?') + '</span> ' +
-           '<span style="color:var(--dim)">scored ' + esc(x.score) + '</span></div>' +
-           '<div style="color:var(--muted);font-size:1rem;margin-top:2px">1h ' +
-           esc(leg(x.r1, x.m1)) + ' · 6h ' + esc(leg(x.r6, x.m6)) +
-           ' · 24h ' + esc(leg(x.r24, x.m24)) + '</div></div>';
-    }
-  }
-  return h + '</section>';
+// ---------- pipeline sections ---------------------------------------------------
+function secGraduated(s) {
+  const row = (r) => `<div class="row${isOld(r.crossed_at) ? " is-old" : ""}">
+    <div class="row__top"><span class="sym">${symHtml(r.symbol)}</span><span class="row__event">graduated${r.venue ? " on " + esc(r.venue) : ""}</span></div>${symWarn(r.symbol)}
+    <div class="row__mid">${caButtons(r.token)}<span class="row__age">${esc(hx.ageText(r.crossed_at, now()))}</span></div>
+    <div class="facts">${fact("FDV", money(r.fdv_at_crossing))}${fact("exit depth at crossing", money(r.exit_depth_at_crossing))}${fact("$100 round trip", rtHtml(r.exit_depth_at_crossing))}</div></div>`;
+  const fdvOnly = s && s.fdv_only_n
+    ? `<details class="more" data-k="fdvonly"${OPEN.has("fdvonly") ? " open" : ""}><summary>${s.fdv_only_n} more crossed on price only, with no real pool</summary>
+       <p class="sec__note">A price printed on a pool nobody can sell into is not a graduation. Listed so they are visible, not counted.</p>
+       <div class="rows">${s.fdv_only.map(row).join("")}</div></details>` : "";
+  return frame({ id: "sec-grad", title: "Graduated into a real pool", sec: s, noun: "graduations into a real pool",
+    note: "A contract tracked in the approach band that crossed into a two sided pool with at least $500 of exit depth, measured by the pipeline at the crossing.",
+    count: s && s.rows.length, rowsHtml: s ? rowsWithMore("grad", s.rows, row) : "", extra: fdvOnly });
 }
 
-function newsBlock(items, status){
-  var h = '<section><h2>News <span class="n">' +
-          (items && items.length ? items.length + ' recent' : '') + '</span></h2>';
-  if (!items || !items.length)
-    return h + '<div class="off"><strong>No items yet.</strong> ' + esc(status || '') + '</div></section>';
-  for (var i=0;i<Math.min(8,items.length);i++){
-    var n = items[i];
-    var when = ago(new Date(n.published_at));
-    var also = (n.also_in && n.also_in.length) ? ' + ' + n.also_in.length + ' more' : '';
-    var flag = n.alert_reason ? '<span style="color:var(--warn)">' + esc(n.alert_reason.split(' · ')[0]) + '</span> · ' : '';
-    h += '<div class="whale" style="display:block">' +
-         '<div style="font-size:1.02rem"><a href="' + esc(n.url) + '" target="_blank" rel="noopener noreferrer nofollow">' +
-         esc(n.title) + '</a></div>' +
-         '<div style="color:var(--dim);font-size:1rem;margin-top:3px">' + flag +
-         esc(n.outlet + also) + ' · ' + esc(when) + '</div></div>';
-  }
-  return h + '</section>';
-}
-
-var NEWS = { items: [], status: "loading" };
-var WHALES = [];
-var BANDS = [], LIFT = [], HITS = [];
-
-function loadScoreboard(){
-  var q = function(path){
-    return fetch(SUPABASE_URL + "/rest/v1/" + path,
-        {headers:{apikey:SUPABASE_KEY, Authorization:"Bearer " + SUPABASE_KEY}, cache:"no-store"})
-      .then(function(r){ if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); });
+function secCrossings(s) {
+  const gapText = (r) => {
+    const h = (Date.parse(r.crossed_at) - Date.parse(r.depth_at)) / 3600000;
+    return h >= 1 ? `${h.toFixed(1)}h` : `${Math.max(1, Math.round(h * 60))} min`;
   };
-  return Promise.all([
-    q("crypto_score_bands?horizon_h=eq.1&order=band_order.desc"),
-    q("crypto_scoreboard_lift?horizon_h=eq.1"),
-    q("crypto_scoreboard_hits?passed=is.true&order=observed_at.desc&limit=8")
-  ]).then(function(r){ BANDS = r[0]; LIFT = r[1]; HITS = r[2]; })
-    .catch(function(){ BANDS = []; LIFT = []; HITS = []; });
+  const row = (r) => {
+    const depth = r.remeasured
+      ? fact("exit depth", money(r.exit_depth_usd)) + fact("$100 round trip", rtHtml(r.exit_depth_usd))
+      : r.joined
+        ? fact("exit depth", `${money(r.exit_depth_usd)} <span class="stalefact">read ${esc(gapText(r))} before the crossing</span>`, true)
+        : fact("exit depth", '<span class="unk">never read</span>');
+    return `<div class="row${isOld(r.crossed_at) ? " is-old" : ""}">
+    <div class="row__top"><span class="sym">${symHtml(r.symbol)}</span><span class="row__event row__event--raw">crossed ${esc(tier(r.tier_usd))}, raw</span></div>${symWarn(r.symbol)}
+    <div class="row__mid">${caButtons(r.token)}<span class="row__age">${esc(hx.ageText(r.crossed_at, now()))}</span></div>
+    <div class="facts">${fact("FDV", money(r.fdv_at_crossing))}${depth}</div></div>`;
+  };
+  // How many of these had their exit depth read AT OR AFTER the crossing. An
+  // older reading cannot bless a newer price, so the count is stated outright.
+  const gapNote = !s || !s.raw_n ? ""
+    : ` <strong>Exit depth measured since the crossing: ${s.remeasured_n} of ${s.raw_n}.</strong>`
+      + (s.remeasured_n < s.raw_n ? " For the rest, any depth shown is an older reading and does not verify the price." : "");
+  return frame({ id: "sec-cross", title: "Crossed a market cap tier", sec: s, noun: "market cap tier crossings",
+    note: `<strong>Raw and unverified.</strong> Only 25.4% [22.3, 28.8] of $1M crossings survive an integrity check (n=696). Newest first.` + gapNote,
+    count: s && s.rows.length, rowsHtml: s ? rowsWithMore("cross", s.rows, row) : "" });
 }
 
-function loadWhales(){
-  return fetch(SUPABASE_URL +
-      "/rest/v1/crypto_whale_events_public?select=*&order=occurred_at.desc&limit=8",
-      {headers:{apikey:SUPABASE_KEY, Authorization:"Bearer " + SUPABASE_KEY}, cache:"no-store"})
-    .then(function(r){ if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-    .then(function(rows){ WHALES = rows; })
-    .catch(function(){ WHALES = []; });
+function secApproaching(s) {
+  const row = (r) => {
+    const lo = s.band.lo, hi = s.band.hi;
+    const pos = r.fdv == null ? null : Math.max(0, Math.min(100, ((r.fdv - lo) / (hi - lo)) * 100));
+    return `<div class="row">
+    <div class="row__top"><span class="sym">${symHtml(r.symbol)}</span><span class="row__event">FDV ${money(r.fdv)}</span></div>${symWarn(r.symbol)}
+    <div class="row__mid">${caButtons(r.token)}<span class="row__age">added ${esc(hx.ageText(r.added_at, now()))}</span></div>
+    ${pos == null ? "" : `<div class="band" title="Position inside the approach band"><i style="left:calc(${pos.toFixed(1)}% - 1px)"></i></div>`}
+    <div class="facts">${fact("exit depth", r.joined ? `${money(r.exit_depth_usd)} <span class="k">read ${esc(hx.ageText(r.depth_at, now()))}</span>` : '<span class="unk">never read</span>', true)}${fact("$100 round trip", rtHtml(r.exit_depth_usd))}${fact("1h volume", money(r.vol_h1))}</div></div>`;
+  };
+  return frame({ id: "sec-appr", title: "In the approach band", sec: s, noun: "contracts in the approach band",
+    note: s ? `FDV between ${money(s.band.lo)} and ${money(s.band.hi)}, the zone just under graduation. Largest first. Size is a description, not a ranking.` : "",
+    count: s && s.rows.length, rowsHtml: s ? rowsWithMore("appr", s.rows, row) : "" });
 }
 
-function loadNews(){
-  return fetch(SUPABASE_URL +
-      "/rest/v1/crypto_news?select=title,url,outlet,published_at,alert_reason,also_in&order=published_at.desc&limit=8",
-      {headers:{apikey:SUPABASE_KEY, Authorization:"Bearer " + SUPABASE_KEY}, cache:"no-store"})
-    .then(function(r){ if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-    .then(function(rows){ NEWS = { items: rows, status: "ok" }; })
-    .catch(function(e){ NEWS = { items: [], status: "could not load news: " + e.message }; });
+const FLAG_WORDS = {
+  supply_is_the_liquidity: "the token supply is the liquidity", no_sell_side: "no sell side",
+  liq_implausible_for_age: "liquidity implausible for its age", template_suspect: "matches a known scam template",
+};
+const flagWord = (f) => FLAG_WORDS[f] || String(f).replace(/^claims_incumbent_name:/, "claims the name ").replace(/_/g, " ");
+
+function secFlags(s) {
+  const row = (r) => `<div class="row${isOld(r.seen_at) ? " is-old" : ""}">
+    <div class="row__top"><span class="sym">${symHtml(r.symbol)}</span><span class="row__age">${esc(hx.ageText(r.seen_at, now()))}</span></div>${symWarn(r.symbol)}
+    <div class="row__mid">${caButtons(r.token)}</div>
+    <div class="tags">${r.why.map((w) => `<span class="tag">${esc(flagWord(w))}</span>`).join("")}</div>
+    <div class="facts" style="margin-top:6px">${fact("reported liquidity", money(r.liq))}${fact("exit depth", money(r.exit_depth_usd))}${fact("1h sells", r.sells_h1 == null ? '<span class="unk">unknown</span>' : esc(r.sells_h1))}</div></div>`;
+  return frame({ id: "sec-flags", title: "Integrity flags", sec: s, noun: "flagged contracts",
+    note: s ? `Flags the scanner stored on ${esc(s.contracts_examined)} contracts. <strong>Not flagged is not a safety signal.</strong> The detector's own verdicts are not published to the site, so this is a subset.` : "",
+    count: s && s.rows.length, rowsHtml: s ? rowsWithMore("flags", s.rows, row) : "" });
 }
 
-function load(){
-  Promise.all([loadNews(), loadWhales(), loadScoreboard()]).then(function(){
-  return fetch(SUPABASE_URL + "/rest/v1/crypto_digests?select=captured_at,version,payload&order=captured_at.desc&limit=1",
-        {headers:{apikey:SUPABASE_KEY, Authorization:"Bearer " + SUPABASE_KEY}, cache:"no-store"})
-  .then(function(r){
-    if (!r.ok) throw new Error("Supabase returned HTTP " + r.status);
-    return r.json();
-  })
-  .then(function(rows){
-    if (!rows.length){
-      $("updated").innerHTML = '<span class="dot"></span>No digest published yet.';
-      $("body").innerHTML = '<section><div class="off">The collector has not published a run yet.</div></section>';
-      return;
-    }
-    var row = rows[0], d = row.payload || {};
-    $("ver").textContent = "v" + (row.version || d.version || "");
-    renderUpdated(row.captured_at);
-    $("body").innerHTML = alertsBlock(d.alerts) + regime(d.macro) + whalesBlock(WHALES, d) +
-                          scoreboardBlock(BANDS, LIFT, HITS) + newsBlock(NEWS.items, NEWS.status) + sentimentBlock(d);
-  })
-  .catch(function(e){
-    $("updated").className = "updated old";
-    $("updated").innerHTML = '<span class="dot"></span><span class="err">Could not load: ' +
-                             esc(e.message) + '</span>';
-  });
-  });
+// ---------- Supabase sections: macro digest, news, whale events ---------------------
+function sbSec(rows, err, asOf, lateH, downH) {
+  // These sources publish no pass history. window_h stays null so the frame
+  // prints only the age of the newest item and never a pass count it cannot know.
+  const s = { readable: !err && Array.isArray(rows), error: err || null, as_of: asOf || null,
+              window_h: null, coverage: null };
+  if (lateH) { s.late_h = lateH; s.down_h = downH; }
+  return s;
 }
 
-load();
-setInterval(load, 60000);
-document.addEventListener("visibilitychange", function(){ if (!document.hidden) load(); });
+function secBackdrop() {
+  const d = SB.digest && SB.digest[0];
+  // The digest runs every 30 min (measured: 11:30, 12:00, 12:30Z on 2026-09-18).
+  // Late after three missed cycles, stale after 6h: the old page's own thresholds.
+  const s = sbSec(SB.digest, SB.err.digest, d && d.captured_at, 1.5, 6);
+  const m = (d && d.payload && d.payload.macro) || {};
+  const kv = (k, v) => `<div class="kv"><span class="k">${esc(k)}</span><span class="v">${v}</span></div>`;
+  const notes = ((d && d.payload && d.payload.alerts) || []).map((a) => esc(typeof a === "object" ? (a.text || a.key) : a));
+  const rowsHtml = `<div class="rows">
+    ${kv("Pump.fun volume, 24h", `${money(m.pumpfun_vol_24h)}${m.pumpfun_share_pct == null ? "" : ` · ${(+m.pumpfun_share_pct).toFixed(1)}% of Solana DEX`}`)}
+    ${kv("Solana DEX volume, 24h", `${money(m.sol_dex_vol_24h)} ${pct(m.sol_dex_vol_chg)}`)}
+    ${kv("SOL", `${money(m.sol)} ${pct(m.sol_24h)}`)}
+    ${kv("BTC", `${money(m.btc)} ${pct(m.btc_24h)}`)}
+    ${kv("ETH", `${money(m.eth)} ${pct(m.eth_24h)}`)}
+    ${kv("Fear and Greed", m.fear_greed == null ? '<span class="unk">unknown</span>' : `${esc(m.fear_greed)} ${esc(m.fear_greed_label || "")}`)}
+    ${notes.length ? kv("Digest notes", notes.join("<br>")) : ""}</div>`;
+  return frame({ id: "sec-macro", title: "Market backdrop", sec: s, noun: "market digest",
+    note: "From the cloud digest, which runs on its own schedule and is independent of the memecoin collector above.",
+    count: d ? 1 : 0, rowsHtml });
+}
+
+function secNews() {
+  const rows = SB.news || [];
+  const s = sbSec(SB.news, SB.err.news, rows[0] && rows[0].published_at);
+  const rowsHtml = `<div class="rows">${rows.slice(0, 6).map((n) => `<div class="news">
+    <a href="${esc(n.url)}" target="_blank" rel="noopener noreferrer nofollow">${esc(n.title)}</a>
+    <div class="meta">${esc(n.outlet || "")} · ${esc(hx.ageText(n.published_at, now()))}</div></div>`).join("")}</div>`;
+  return frame({ id: "sec-news", title: "Headlines", sec: s, noun: "headlines", count: rows.length, rowsHtml });
+}
+
+function secWhales() {
+  const rows = SB.whales || [];
+  const newest = rows[0] && rows[0].occurred_at;
+  if (SB.err.whales || !Array.isArray(SB.whales)) {
+    return frame({ id: "sec-whales", title: "Whale wallet moves", sec: sbSec(SB.whales, SB.err.whales || "not loaded", null), noun: "moves", count: 0, rowsHtml: "" });
+  }
+  // A recent event proves the listener is alive, so it renders as a normal section.
+  const age = hx.ageMs(newest, now());
+  if (age != null && age <= hx.DOWN_H * 3600000) {
+    const rowsHtml = `<div class="rows">${rows.map((e) => `<div class="news">
+      <span style="font-family:var(--mono);color:var(--tap)">${esc(e.wallet_short || "")}</span> ${esc(e.description || "")}${e.venue ? " on " + esc(e.venue) : ""} ${e.usd == null ? "" : money(e.usd)}
+      <div class="meta">${esc(hx.ageText(e.occurred_at, now()))}</div></div>`).join("")}</div>`;
+    return frame({ id: "sec-whales", title: "Whale wallet moves", sec: sbSec(SB.whales, null, newest), noun: "moves", count: rows.length, rowsHtml });
+  }
+  // Otherwise: the webhook publishes no heartbeat, so silence cannot be told
+  // from a dead listener. That is its own state and it says so, not "no moves".
+  const last = newest ? `The last recorded move was ${hx.ageText(newest, now())}.` : "No move has ever been recorded.";
+  return `<section class="sec" id="sec-whales" data-rail="late">
+    <div class="sec__head"><h2>Whale wallet moves</h2><span class="chip">${esc(hx.STATE_WORD.unverifiable)}</span></div>
+    <div class="empty empty--off">${esc(last)} The listener publishes no heartbeat, so the site cannot tell a quiet wallet from a dead listener. Treat this as not working until it reports one.</div></section>`;
+}
+
+function secOff() {
+  const items = [
+    ["Narrative clusters", "The cluster finder runs inside the pipeline and publishes no output. Nothing is shown here, rather than an empty list that would read as a quiet day."],
+    ["Verified crossings", "Market cap tier rows carry no exit depth at the crossing, so the site cannot confirm any of them. They appear above as raw and unverified."],
+    ["Detector verdicts", "The D1 and D2 fraud detectors run at build time inside the pipeline and their verdicts are not published."],
+    ["Live contract analysis", "The lookup box reads what the journal already recorded. Analysing any address on demand needs the pipeline's analyzer exposed as a service."],
+    ["Paper ledger", "Ledgers v1 and v2 are quarantined as of 2026-09-17. They priced fills at a mid price and never applied trade size, so their results were prices nobody could obtain. There is no usable P&L. Paper v3 prices fills on real quotes and has not published a ledger yet. All of it is simulation."],
+  ];
+  return `<section class="sec" id="sec-off" data-rail="off">
+    <div class="sec__head"><h2>Not connected yet</h2><span class="chip">${esc(hx.STATE_WORD.off)}</span></div>
+    <p class="sec__note">These are planned. Each one is absent because its data does not reach the site, not because nothing happened.</p>
+    <div class="rows">${items.map(([t, p]) => `<div class="offitem"><b>${esc(t)}</b><p>${esc(p)}</p></div>`).join("")}</div></section>`;
+}
+
+// ---------- top of screen -------------------------------------------------------------
+function renderAnn() {
+  const el = $("ann");
+  if (!FEED) {
+    el.dataset.rail = FEED_ERR ? "down" : "off";
+    el.innerHTML = FEED_ERR
+      ? `<div class="ann__word"><span class="beat"></span>Could not load</div><p class="ann__line">The collector's data feed did not answer (${esc(FEED_ERR)}). Every collector section is unavailable. Sections further down come from a separate source and state their own age.</p>`
+      : `<div class="ann__word"><span class="beat"></span>Loading</div><p class="ann__line">Reading the collector's last snapshot. Nothing below is data yet.</p>`;
+    return;
+  }
+  const c = hx.collectorState(FEED.collector, now());
+  el.dataset.rail = hx.RAIL[c.kind];
+  const n24 = hx.passesIn(FEED.collector, 24, now());
+  const snap = FEED.snapshot || {};
+  const snapTxt = snap.sha
+    ? `Snapshot ${esc(snap.sha.slice(0, 7))}, committed ${esc(hx.ageText(snap.committed_at, now()))}.`
+    : "Read from the branch tip, files may be from different passes.";
+  el.innerHTML = `<div class="ann__word"><span class="beat"></span>${esc(c.word)}</div>
+    <p class="ann__line">${esc(c.line)}</p>
+    <p class="ann__sub">${n24} pass${n24 === 1 ? "" : "es"} in the last 24h. ${snapTxt}</p>`;
+}
+
+function renderBanner() {
+  const parts = [];
+  const sinceFetch = FEED_AT ? Date.now() - FEED_AT : null;
+  if (FEED && FEED_ERR) parts.push(`Could not refresh (${esc(FEED_ERR)}). Showing what was fetched ${esc(hx.ageText(new Date(FEED_AT + SKEW).toISOString(), now()))}.`);
+  else if (FEED && sinceFetch > 5 * 60000) parts.push("This page has not refreshed for over 5 minutes. Ages below are still counted from the original timestamps.");
+  if (Math.abs(SKEW) > 0) parts.push("This device's clock is off by more than two minutes. Ages are measured against the server clock instead.");
+  $("banner").innerHTML = parts.map((p) => `<div class="banner">${p}</div>`).join("");
+}
+
+function tile({ href, sec, n, raw, label, win, detail }) {
+  const st = hx.stateOf(sec, now());
+  const rail = hx.RAIL[st.kind];
+  // A number is printed only when the section was looked at recently. Otherwise
+  // the tile prints a word, and drops every count from its small print too, so
+  // neither an outage nor a three day old reading can be glanced as a zero.
+  const show = hx.mayShowNumber(sec, now());
+  const numeral = show
+    ? `<div class="tile__n${raw ? " tile__n--raw" : ""}">${esc(n)}</div>`
+    : `<div class="tile__n tile__n--words">${esc(hx.TILE_WORD[st.kind] || "no data")}</div>`;
+  const asof = st.kind === "unreadable" ? "could not be read"
+    : st.kind === "never" ? "never looked" : `looked ${hx.ageText(sec.as_of, now())}`;
+  return `<a class="tile" href="${href}" data-rail="${rail}">${numeral}
+    <div class="tile__label">${esc(label)}</div><div class="tile__sub">${esc(show && detail ? `${win} · ${detail}` : win)}</div>
+    <div class="tile__asof">${esc(asof)}</div></a>`;
+}
+
+function renderTiles() {
+  if (!FEED) { $("tiles").innerHTML = ""; return; }
+  const S = FEED.sections;
+  $("tiles").innerHTML = [
+    tile({ href: "#sec-grad", sec: S.graduated, n: S.graduated.rows.length, label: "real graduations",
+           win: "7 days", detail: `${S.graduated.fdv_only_n} more were price only` }),
+    tile({ href: "#sec-cross", sec: S.crossings, n: S.crossings.raw_n, raw: true, label: "tier crossings, raw",
+           win: "24h", detail: `${S.crossings.over_1m_raw_n} over $1M · ${S.crossings.with_exit_n} with exit depth confirmed` }),
+    tile({ href: "#sec-appr", sec: S.approaching, n: S.approaching.total_n, label: "in approach band",
+           win: "just under graduation", detail: "" }),
+    tile({ href: "#sec-flags", sec: S.flags, n: S.flags.total_n, label: "contracts flagged",
+           win: "48h", detail: `of ${S.flags.contracts_examined} examined` }),
+  ].join("");
+}
+
+function render() {
+  const d = new Date(now());
+  $("clock").textContent = `${String(d.getUTCHours()).padStart(2, "0")}:${String(d.getUTCMinutes()).padStart(2, "0")} UTC`;
+  renderAnn(); renderBanner(); renderTiles();
+  const S = FEED ? FEED.sections : null;
+  const pipeline = S
+    ? secGraduated(S.graduated) + secCrossings(S.crossings) + secApproaching(S.approaching) + secFlags(S.flags)
+    : (FEED_ERR ? "" : '<p class="skel">Loading sections.</p>');
+  $("body").innerHTML = pipeline + secBackdrop() + secNews() + secWhales() + secOff();
+}
+
+// ---------- loading --------------------------------------------------------------------
+async function loadFeed() {
+  try {
+    const r = await fetch("/api/feed", { cache: "no-store" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const srv = Date.parse(r.headers.get("date") || "");
+    if (Number.isFinite(srv)) { const sk = srv - Date.now(); SKEW = Math.abs(sk) > 120000 ? sk : 0; }
+    FEED = await r.json(); FEED_ERR = null; FEED_AT = Date.now();
+  } catch (e) { FEED_ERR = e.message || "network error"; }
+}
+
+async function sb(key, path) {
+  try {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/${path}`,
+      { headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + SUPABASE_KEY }, cache: "no-store" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    SB[key] = await r.json(); delete SB.err[key];
+  } catch (e) { SB.err[key] = e.message || "network error"; }
+}
+
+async function loadAll() {
+  await Promise.all([
+    loadFeed(),
+    sb("digest", "crypto_digests?select=captured_at,payload&order=captured_at.desc&limit=1"),
+    sb("news", "crypto_news?select=title,url,outlet,published_at&order=published_at.desc&limit=6"),
+    sb("whales", "crypto_whale_events_public?select=occurred_at,wallet_short,description,venue,usd&order=occurred_at.desc&limit=5"),
+  ]);
+  render();
+}
+
+// ---------- contract lookup ---------------------------------------------------------------
+function caResultHtml(j) {
+  const links = `<p class="sec__note"><a href="https://solscan.io/token/${esc(j.token)}" target="_blank" rel="noopener noreferrer nofollow">Solscan</a> · <a href="https://dexscreener.com/solana/${esc(j.token)}" target="_blank" rel="noopener noreferrer nofollow">Dexscreener</a></p>`;
+  if (!j.searched.complete) {
+    return `<div class="empty empty--outage">Could not search everything (${esc(j.searched.read_errors.join("; "))}). Not finding this address means nothing right now.</div>${links}`;
+  }
+  if (!j.found) {
+    return `<div class="empty empty--off">Not in the journal. Searched ${esc(j.searched.obs_rows)} scanner rows from ${esc(j.searched.obs_days.slice().reverse().join(", "))}, plus milestones, the approach band and the quarantine list. This only means our scanner did not record it in that period. It says nothing about whether the token is safe. Live analysis is not connected yet.</div>
+      <div class="caaddr">${esc(j.ca)}</div>${links}`;
+  }
+  const o = j.latest;
+  let h = "";
+  if (o) {
+    const old = isOld(j.last_seen_at);
+    const auth = (v) => !o.authorities_checked ? '<span class="unk">not checked</span>' : v === true ? '<span class="dn">active</span>' : v === false ? "revoked" : '<span class="unk">unknown</span>';
+    const tags = [...(o.integrity_flags || []), ...(o.impersonation || []), ...(o.template_suspect ? ["template_suspect"] : [])];
+    h += `<div class="row__top"><span class="sym">${symHtml(o.symbol)}</span><span class="row__age">seen ${esc(j.sightings)} time${j.sightings === 1 ? "" : "s"}</span></div>${symWarn(o.symbol)}
+      <div class="caaddr">${esc(j.token)}</div>
+      <button type="button" class="cabtn" data-copy="${esc(j.token)}">copy address</button>
+      <p class="${old ? "warnline" : "sec__asof"}">Recorded ${esc(hx.ageText(j.last_seen_at, now()))}${old ? ". This reading is old. Treat every number below as history." : "."}${j.matched_on === "pair" ? " Matched on the pool address, shown here by its token." : ""}</p>
+      ${tags.length ? `<div class="tags">${tags.map((w) => `<span class="tag">${esc(flagWord(w))}</span>`).join("")}</div>` : ""}
+      <div class="rows" style="margin-top:10px">
+      <div class="kv"><span class="k">Exit depth, quote side</span><span class="v">${money(o.exit_depth_usd)}</span></div>
+      <div class="kv"><span class="k">$100 round trip cost</span><span class="v">${rtHtml(o.exit_depth_usd)}</span></div>
+      <div class="kv"><span class="k">FDV</span><span class="v">${money(o.fdv)}</span></div>
+      <div class="kv"><span class="k">Reported liquidity, unreliable</span><span class="v">${money(o.liq)}</span></div>
+      <div class="kv"><span class="k">1h volume</span><span class="v">${money(o.vol_h1)}</span></div>
+      <div class="kv"><span class="k">1h buys and sells</span><span class="v">${o.buys_h1 == null || o.sells_h1 == null ? '<span class="unk">unknown</span>' : `${esc(o.buys_h1)} / ${esc(o.sells_h1)}`}</span></div>
+      <div class="kv"><span class="k">Venue</span><span class="v">${o.dex_id ? esc(o.dex_id) : '<span class="unk">unknown</span>'}</span></div>
+      <div class="kv"><span class="k">Mint authority</span><span class="v">${auth(o.can_mint)}</span></div>
+      <div class="kv"><span class="k">Freeze authority</span><span class="v">${auth(o.can_freeze)}</span></div>
+      </div>`;
+  } else {
+    h += `<div class="caaddr">${esc(j.token)}</div><p class="sec__asof">No scanner row in the last 3 days, but it appears in the records below.</p>`;
+  }
+  if (j.quarantine) h += `<div class="empty empty--outage" style="margin-top:10px">Quarantined by the pipeline: ${esc(j.quarantine.detail || j.quarantine.reason || "no detail")}</div>`;
+  if (j.watchlist) h += `<p class="sec__note" style="margin-top:8px">In the approach band since ${esc(hx.ageText(j.watchlist.added_at, now()))}, FDV ${money(j.watchlist.fdv)}.</p>`;
+  if (j.milestones.length) h += `<p class="sec__note" style="margin-top:8px"><strong>Recorded crossings:</strong> ${j.milestones.map((m) => `${esc(m.milestone.replace("mcap_", "$").replace("graduated", "graduated" + (m.real_pool ? ", real pool" : ", price only")))} ${esc(hx.ageText(m.crossed_at, now()))}`).join("; ")}.</p>`;
+  return h + `<p class="sec__note" style="margin-top:10px">This is what the scanner wrote down at the time shown. It is not a live read and it is not a verdict.</p>${links}`;
+}
+
+async function lookup(ca) {
+  const out = $("caresult"), btn = $("cabtn");
+  ca = (ca || "").trim();
+  if (!ca) return;
+  $("cainput").value = ca;
+  btn.disabled = true; out.innerHTML = '<p class="skel">Searching the journal.</p>';
+  try {
+    const r = await fetch("/api/ca?ca=" + encodeURIComponent(ca), { cache: "no-store" });
+    const j = await r.json();
+    out.innerHTML = j.ok ? caResultHtml(j) : `<div class="empty empty--outage">${esc(j.message || j.error)}</div>`;
+  } catch (e) {
+    out.innerHTML = `<div class="empty empty--outage">The lookup did not answer (${esc(e.message || "network error")}). Nothing was searched.</div>`;
+  }
+  btn.disabled = false;
+}
+
+$("caform").addEventListener("submit", (e) => { e.preventDefault(); lookup($("cainput").value); });
+// Some mobile keyboards send Enter without triggering implicit form submission.
+$("cainput").addEventListener("keydown", (e) => { if (e.key === "Enter" || e.keyCode === 13) { e.preventDefault(); lookup($("cainput").value); } });
+document.addEventListener("click", (e) => {
+  const c = e.target.closest("[data-copy]");
+  if (c) {
+    const full = c.dataset.copy, label = c.textContent;
+    (navigator.clipboard ? navigator.clipboard.writeText(full) : Promise.reject()).then(
+      () => { c.textContent = "copied"; setTimeout(() => { c.textContent = label; }, 1200); },
+      () => { $("cainput").value = full; $("cainput").select(); });
+    return;
+  }
+  const l = e.target.closest("[data-lookup]");
+  if (l) { lookup(l.dataset.lookup); $("caform").scrollIntoView({ block: "start" }); }
+});
+document.addEventListener("toggle", (e) => {
+  const k = e.target && e.target.dataset && e.target.dataset.k;
+  if (k) { if (e.target.open) OPEN.add(k); else OPEN.delete(k); }
+}, true);
+
+render();
+loadAll();
+setInterval(loadAll, 60000);
+setInterval(render, 20000);               // ages keep counting between fetches
+document.addEventListener("visibilitychange", () => { if (!document.hidden) loadAll(); });
 </script>
 </body>
 </html>

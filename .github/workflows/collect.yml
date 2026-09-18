@@ -18,11 +18,35 @@ name: collect
 
 on:
   schedule:
-    # Hourly, UTC. GitHub schedules are best-effort and can run late or, rarely,
-    # be skipped under load. That is tolerable here: journal.pending() looks
-    # back over a 6h window, so a late or missed hour is picked up by the next
-    # run rather than lost.
-    - cron: '0 * * * *'
+    # ⛔ THE HOURLY CRON HAS NEVER BEEN HOURLY. MEASURED 2026-09-18 over 100
+    # scheduled runs, 09-03 to 09-18:
+    #
+    #     median gap between scheduled runs   3.24 h
+    #     gaps <= 1.5h                        0 of 99   - not one
+    #     minute-of-hour actually fired       median :30, max :58
+    #     before the billing block            median 3.23h
+    #     after  the billing block            median 3.81h
+    #
+    # So the failures did not cause it - the cadence was already ~3.2h while
+    # runs were succeeding. GitHub's scheduler is best-effort and drops runs
+    # under load; the old comment called that "rare" and it is the norm.
+    #
+    # ⛔ THE CONSEQUENCE WE MISSED: only 91 of 691 recorded passes were
+    # scheduled. 87% were manual. Every "healthy collector" number in this repo
+    # was carried by a human running it by hand. At ~7 unattended passes/day
+    # against ~2,300 new pairs/day, the outcome queue gets ~37% of the capacity
+    # it needs, so the rest ages out unscored.
+    #
+    # ⭐ FOUR ENTRIES PER HOUR IS THE FREE MITIGATION: four chances to be
+    # serviced instead of one. It cannot force GitHub to run on time, and it is
+    # an EXPERIMENT, not a fix - see docs/BACKLOG.md C4 for the pre-committed
+    # measurement. Overlap is safe: the `concurrency` group below queues rather
+    # than collides, and GitHub cancels a second pending run in the same group,
+    # which self-limits the pile-up.
+    #
+    # ⚠️ Deliberately NOT on the hour. :00 is the most contended minute on the
+    # whole platform, and the observed median fire time was already :30.
+    - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
 
 # Never let two passes write the journal at once. Queue, do not cancel: a

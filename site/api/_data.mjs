@@ -127,14 +127,17 @@ export function fileReport(files) {
 // What an observation row is allowed to say to the browser. A whitelist, the
 // same discipline as journal.record(): a field not listed here does not leave.
 // ⛔ score, grade, grade_label, passed, weights_version and paper_v2_* are
-// deliberately absent. See CLAUDE.md, "What this is NOT".
+// deliberately absent. See CLAUDE.md, "What this is NOT". So is `flags`: it is
+// the retired scorer's reasons list ("move likely already happened", "no real
+// interest"), which is forward-looking editorial from a retracted model. The
+// fraud-relevant facts arrive separately as integrity_flags and impersonation.
 const OBS_FIELDS = [
   "token", "pair", "symbol", "ts", "network", "dex_id", "venue_type", "has_amm_pool",
   "fdv", "liq", "liq_quote", "exit_depth_usd", "price_usd", "age_hours",
   "vol_h1", "vol_h24", "txns_h1", "buys_h1", "sells_h1", "chg_h1", "chg_h24",
   "can_mint", "can_freeze", "authorities_checked", "authorities_error",
   "integrity_flags", "impersonation", "template_suspect", "liquidity_plausible",
-  "has_twitter", "has_telegram", "has_website", "flags",
+  "has_twitter", "has_telegram", "has_website",
 ];
 
 export function publicObs(o) {
