@@ -41073,3 +41073,7 @@
 {"name": "outcome.recorded", "ts": 1789732461, "n": 1, "detail": null, "origin": "runner"}
 {"name": "news.freshness", "ts": 1789732467, "n": 1, "detail": "0 stale outlet(s)", "origin": "runner"}
 {"name": "detector.drift", "ts": 1789732468, "n": 1, "detail": "stable", "origin": "runner"}
+{"name": "paper.open", "ts": 1789732577, "n": 1, "detail": "TESTONLY", "origin": "manual"}
+{"name": "paper.open", "ts": 1789732577, "n": 1, "detail": "TESTONLY2", "origin": "manual"}
+{"name": "paper.open", "ts": 1789732577, "n": 1, "detail": "A", "origin": "manual"}
+{"name": "paper.open", "ts": 1789732577, "n": 1, "detail": "B", "origin": "manual"}
