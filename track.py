@@ -55,6 +55,12 @@ HORIZON_HEALTH = {}
 # sentinel - the failure mode that let a 76% collection decline run for three
 # days looking like quiet market conditions.
 LAST_STOP = {}
+
+# Per-pass outcome-queue coverage, keyed by horizon. Populated by
+# score_horizon() and reported by collect.py. See docs/SAMPLING_BIAS.md §5:
+# 21.0% of due outcome checks age out unscored, 48% at the 168h horizon, and
+# that was invisible until the queue was measured directly.
+LAST_COVERAGE = {}
 MIN_LOOKUPS_TO_JUDGE = 10  # do not cry outage over three lookups
 SIGNIFICANCE_FLOOR = float(os.environ.get('CRYPTO_SIGNIFICANCE_ALWAYS', '3.0'))
 
@@ -188,6 +194,38 @@ def score_horizon(horizon_h, limit=None, verbose=True):
     _win_index(force=True)
     queue = journal.pending(horizon_h)
     todo = queue[:limit]
+    # ---------------------------------------------------------------------
+    # ⛔ RECORD WHAT THIS SLICE IS ABOUT TO LOSE. A row not reached stays due
+    # only until PENDING_WINDOW_H passes, then ages out PERMANENTLY - pending()
+    # never offers it again, so the label is gone and cannot be backfilled.
+    #
+    # Measured 2026-09-18 (docs/SAMPLING_BIAS.md section 5). The 80->120 slice
+    # fix in fa972b1 WORKED - 24h aged-out fell 19.1% -> 5.8% - and everything
+    # since is the collector being down, not this budget:
+    #
+    #     period                          1h     6h    24h
+    #     before the fix, to 09-05       4.5%  13.9%  19.1%
+    #     after, collector healthy       1.6%   4.3%   5.8%
+    #     after, collector dead 09-11+  11.2%  33.2%  76.4%
+    #
+    # ⭐ This block does not fix anything. It makes the loss COUNTABLE, which is
+    # what was missing - it stayed invisible for weeks and only surfaced when the
+    # queue was measured directly. `expiring_before_next_pass` is the leading
+    # indicator: rows that will be past the window by the next pass.
+    _cut = time.time() - horizon_h * 3600 - journal.PENDING_WINDOW_H * 3600
+    _expiring = sum(1 for o in queue[limit:] if o.get("ts", 0) <= _cut + 3600)
+    LAST_COVERAGE[horizon_h] = {
+        "due": len(queue),
+        "scored_this_pass": len(todo),
+        "not_reached": len(queue) - len(todo),
+        "expiring_before_next_pass": _expiring,
+        "slice_limit": limit,
+        "window_h": journal.PENDING_WINDOW_H,
+        "coverage": (len(todo) / len(queue)) if queue else 1.0,
+    }
+    if verbose and _expiring:
+        print(f"    ⛔ {_expiring} rows will age out UNSCORED before the next "
+              f"pass ({horizon_h}h horizon, slice {limit} of {len(queue)} due)")
     if verbose:
         # A STANDING QUEUE, NOT A GROWTH RATE. On 2026-09-14 four passes read this
         # number as "growing faster than it drains" while it fell 1,882 -> 989:
