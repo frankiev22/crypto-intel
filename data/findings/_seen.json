@@ -5662,16 +5662,16 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 76,
+  "count": 77,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h",
    "24h"
   ],
-  "last_seen": "2026-09-18T17:10:48+00:00",
-  "last_escalated": "2026-09-18T11:51:49+00:00",
-  "escalations": 12
+  "last_seen": "2026-09-18T19:38:30+00:00",
+  "last_escalated": "2026-09-18T19:38:30+00:00",
+  "escalations": 13
  },
  "scanner-hit:pomp": {
   "first_seen": "2026-09-05T05:11:36+00:00",
@@ -8384,25 +8384,25 @@
  },
  "liveness:paper-open": {
   "first_seen": "2026-09-09T15:02:17+00:00",
-  "count": 21,
+  "count": 22,
   "example": "liveness: paper.open",
   "keys": [
    "paper.open"
   ],
-  "last_seen": "2026-09-18T17:10:59+00:00",
-  "last_escalated": "2026-09-18T11:54:28+00:00",
-  "escalations": 3
+  "last_seen": "2026-09-18T19:42:52+00:00",
+  "last_escalated": "2026-09-18T19:42:52+00:00",
+  "escalations": 4
  },
  "liveness:paper-sweep": {
   "first_seen": "2026-09-10T00:07:40+00:00",
-  "count": 69,
+  "count": 70,
   "example": "liveness: paper.sweep",
   "keys": [
    "paper.sweep"
   ],
-  "last_seen": "2026-09-18T17:10:59+00:00",
-  "last_escalated": "2026-09-18T11:54:28+00:00",
-  "escalations": 6
+  "last_seen": "2026-09-18T19:42:53+00:00",
+  "last_escalated": "2026-09-18T19:42:53+00:00",
+  "escalations": 7
  },
  "liveness:watchlist-sweep": {
   "first_seen": "2026-09-10T00:07:41+00:00",
@@ -9405,14 +9405,14 @@
  },
  "liveness:paper-close": {
   "first_seen": "2026-09-14T19:45:47+00:00",
-  "count": 7,
+  "count": 8,
   "example": "liveness: paper.close",
   "keys": [
    "paper.close"
   ],
-  "last_seen": "2026-09-18T17:10:59+00:00",
-  "last_escalated": "2026-09-18T11:54:28+00:00",
-  "escalations": 1
+  "last_seen": "2026-09-18T19:42:52+00:00",
+  "last_escalated": "2026-09-18T19:42:52+00:00",
+  "escalations": 2
  },
  "outcome-win:bkhkdrhhwdivxwrcjhfysayksdcrqlgdofvhxwa": {
   "first_seen": "2026-09-12T19:44:37+00:00",
@@ -9785,10 +9785,11 @@
  },
  "outcome-win:umjitcqirakmcrykanmqhrhboqzdyctawzrhe": {
   "first_seen": "2026-09-18T14:31:10+00:00",
-  "count": 1,
+  "count": 2,
   "example": "outcome-win: 7uMjiTCQiRaKMCrYKaNMQHR6h5Bo9qzd42ycTAWzRhE1",
   "keys": [
    "7uMjiTCQiRaKMCrYKaNMQHR6h5Bo9qzd42ycTAWzRhE1"
-  ]
+  ],
+  "last_seen": "2026-09-18T19:40:07+00:00"
  }
 }
