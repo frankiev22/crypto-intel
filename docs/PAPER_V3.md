@@ -214,10 +214,43 @@ errs toward refusing. ⚠️ **But it feeds pre-commit §7 failure condition 3**
 (fewer than 30 contracts through the gate in 60 days). **Recorded here as a known
 flaw so that if v3 fails on volume, this is a named suspect and not a surprise.**
 
-## 10. Not yet wired in
+## 10. ✅ WIRED IN, 2026-09-18 — and the first four entries are instructive
 
-⬜ **`paperv3` is not called by `collect.py`.** It runs, it is tested, and it has
-been exercised live, but nothing schedules it. Wiring it into the hourly stages
-is a separate change with its own cost (each entry decision needs a round trip
-plus a holder count, and `chainfields` caps Jupiter at 55/min — it must stay off
-the per-row scan path and run only at the decision point).
+⭐ **`collect.py` calls it.** Entries happen inside the enrichment loop beside v1
+and v2 — same row, same pass, three filters — and the sweep runs in the sweep
+stage. `holders` is fetched at the decision point for rows that have already
+cleared every free condition (~7 a pass), and the round trip only for rows that
+clear holders. Details and the pre-committed liveness thresholds are in
+`PRECOMMIT_paper_v3.md` §10; `test_v3wiring.py` asserts a ledger row comes out
+of a real `scanner.scan()` with the network stubbed.
+
+### ⛔ First four entries, run 35363483201, 15:37Z — and two rugged within the hour
+
+| symbol | entry round trip | holders at entry | state at 16:35Z |
+|---|---:|---:|---|
+| LUCKYDOG | 3.70% | 921 | liq **$30,465**, 3,943 buys / 3,211 sells |
+| BURNED | 4.68% | 496 | liq **$4,596**, 493 / 539 |
+| ⛔ ELON | **0.61%** | 984 | liq **$52**, Jupiter `NO_ROUTES_FOUND` |
+| ⛔ Zcoins | **0.99%** | 1,666 | liq **$39**, **0 buys / 0 sells** |
+
+⛔ **The two with the CHEAPEST round trip at entry are the two that were
+drained.** ELON entered at 0.61% — the best of the four — and had no buy route
+45 minutes later. Two independent sources agree: Jupiter returns
+`NO_ROUTES_FOUND`, and the Dexscreener quote side reads $0.0003.
+
+⭐ **This is the ledger doing its job, not failing at it.** A cheap round trip
+says *"you could get out right now, at $100"*. It says nothing about whether the
+pool will exist in an hour, and v3 never claimed otherwise. The sweep will close
+both as `NO_SELL_ROUTE` at **$0 recovered** — recorded as a total loss, never
+skipped and never voided. ⚠️ **v1's failure was the opposite:** it priced exits
+off a mid that nobody could obtain, so drained pools printed wins.
+
+⚠️ **The holder gate did not prevent this.** ELON had 984 holders and Zcoins
+1,666, both far above the pre-committed floor of 100 — and Zcoins' 1,666 is above
+the 1,350 median of Jupiter-TRADEABLE contracts. **`MIN_HOLDERS` is an
+unvalidated candidate and this is the first evidence against it.**
+
+⛔ **n=4. No rate, no interval, and no tuning.** The rule is frozen and gets
+decided at the pre-committed point — 30 entries — not on the first afternoon.
+Writing this down now is the point: it cannot be quietly forgotten if the next
+four all survive.
