@@ -10,12 +10,17 @@
   "last_unattended_at": "2026-09-18T12:11:18+00:00"
  },
  "scan.observations": {
-  "last_ts": 1789733342,
-  "last_at": "2026-09-18T12:09:02+00:00",
-  "count": 7477,
+  "last_ts": 1789735394,
+  "last_at": "2026-09-18T12:43:14+00:00",
+  "count": 7485,
   "first_ts": 1788782726,
   "detail": null,
-  "last_origin": "runner",
+  "last_origin": "manual",
+  "firings": 8,
+  "rows_total": 8,
+  "empty_firings": 0,
+  "last_rows_ts": 1789735394,
+  "last_rows_at": "2026-09-18T12:43:14+00:00",
   "last_unattended_ts": 1789733342,
   "last_unattended_at": "2026-09-18T12:09:02+00:00"
  },
@@ -107,29 +112,44 @@
   "last_unattended_at": "2026-09-15T05:08:53+00:00"
  },
  "paper.open": {
-  "last_ts": 1789734416,
-  "last_at": "2026-09-18T12:26:56+00:00",
-  "count": 280,
+  "last_ts": 1789735388,
+  "last_at": "2026-09-18T12:43:08+00:00",
+  "count": 298,
   "first_ts": 1788999700,
   "detail": "B",
   "last_origin": "manual",
+  "firings": 18,
+  "rows_total": 18,
+  "empty_firings": 0,
+  "last_rows_ts": 1789735388,
+  "last_rows_at": "2026-09-18T12:43:08+00:00",
   "last_unattended_ts": 1789448836,
   "last_unattended_at": "2026-09-15T05:07:16+00:00"
  },
  "paperv3.open": {
-  "last_ts": 1789734413,
-  "last_at": "2026-09-18T12:26:53+00:00",
-  "count": 38,
+  "last_ts": 1789735389,
+  "last_at": "2026-09-18T12:43:09+00:00",
+  "count": 50,
   "first_ts": 1789733795,
   "detail": "BBB222222222222222222222",
-  "last_origin": "manual"
+  "last_origin": "manual",
+  "firings": 12,
+  "rows_total": 12,
+  "empty_firings": 0,
+  "last_rows_ts": 1789735389,
+  "last_rows_at": "2026-09-18T12:43:09+00:00"
  },
  "paperv3.close": {
-  "last_ts": 1789734413,
-  "last_at": "2026-09-18T12:26:53+00:00",
-  "count": 20,
+  "last_ts": 1789735389,
+  "last_at": "2026-09-18T12:43:09+00:00",
+  "count": 26,
   "first_ts": 1789733795,
   "detail": "T FORCED",
-  "last_origin": "manual"
+  "last_origin": "manual",
+  "firings": 6,
+  "rows_total": 6,
+  "empty_firings": 0,
+  "last_rows_ts": 1789735389,
+  "last_rows_at": "2026-09-18T12:43:09+00:00"
  }
 }

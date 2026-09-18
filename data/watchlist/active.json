@@ -283,5 +283,20 @@
   "last_fdv": 52379.76,
   "last_vol_h1": 1737.95,
   "peak_fdv": 52379.76
+ },
+ "VbcwsVBHh8yhHKStcz9NmSio83f1un72KxC5rNSfTAG": {
+  "contract": "VbcwsVBHh8yhHKStcz9NmSio83f1un72KxC5rNSfTAG",
+  "pair": "2AAojGefMXQnuYqSYFYVVy2S1Q6aBp7b7HyX4PZ53qLo",
+  "symbol": "TAG",
+  "network": "solana",
+  "added_ts": 1789734989,
+  "added_fdv": 54494.0,
+  "added_vol_h1": 20754.99,
+  "added_liq": 18313.9,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 54494.0,
+  "last_vol_h1": 20754.99,
+  "peak_fdv": 54494.0
  }
 }

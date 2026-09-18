@@ -8,7 +8,7 @@ is worthless. The job is to throw away 99% and be honest about the survivors.
 
 Nothing here is a recommendation. It is a filter over public data.
 """
-import os, time, math, datetime as dt
+import os, time, math, json, datetime as dt
 import venue
 import plausibility
 import sources as S
@@ -146,6 +146,106 @@ def score(pair):
 # enormously more than a lost hour.
 SCAN_BUDGET_S = float(os.environ.get("CRYPTO_SCAN_BUDGET_S", "150"))
 
+# ---------------------------------------------------------------------------
+# ⛔ THE SCANNER MUST NOT STOP EARLY ON THE HOSTED RUNNER. "The scanner cannot
+# be stopping." - Frank, 2026-09-18.
+#
+# The 150s above was sized for the Claude dispatch sandbox's ~178s command cap.
+# That cap does not exist on GitHub Actions - `sources.seconds_left()` returns
+# None there, so the STAGE-deadline break never fires. But SCAN_BUDGET_S is a
+# scanner-local constant with no such condition, so it kept truncating anyway.
+#
+# ⚠️ MEASURED, and this is why the sandbox explanation was not enough: today's
+# two hosted runs covered 87.8% (72/82) and 83.1% (69/83). The truncation on
+# Actions was NEVER the sandbox. It was this constant.
+#
+# The job has a 15-minute timeout and the two runs took 533s and 602s end to
+# end, so there is ~300s of headroom. A row costs ~2.2s, so a 90-pool batch
+# needs ~200s. RUNNER_SCAN_BUDGET_S is generous enough to finish every batch
+# seen so far and still bounded, because an unbounded loop inside a job with a
+# hard timeout is how you lose the whole pass instead of part of it.
+# ---------------------------------------------------------------------------
+RUNNER_SCAN_BUDGET_S = float(os.environ.get("CRYPTO_RUNNER_SCAN_BUDGET_S", "540"))
+
+
+def scan_budget(budget_s=None):
+    """Seconds this scan may spend. The runner gets the generous one."""
+    if budget_s is not None:
+        return budget_s
+    if os.environ.get("GITHUB_ACTIONS"):
+        return RUNNER_SCAN_BUDGET_S
+    return SCAN_BUDGET_S
+
+
+# ---------------------------------------------------------------------------
+# ⛔ NOTHING IS SILENTLY DISCARDED. If a batch still cannot finish, the pools it
+# did not reach are CARRIED to the next pass, not dropped.
+#
+# Before this, a truncated pass lost its tail permanently - and because
+# `new_pools` is newest-first, the tail was always the oldest pools in the
+# batch, so the loss was systematic rather than random. Shuffling would have
+# made it unbiased and would still have lost it. Carrying loses nothing.
+#
+# Bounded on purpose: a carry that grows without limit turns one slow pass into
+# a permanent backlog that never drains. At the cap the OLDEST carried entries
+# are dropped, and that drop is recorded and alarmed rather than silent.
+# ---------------------------------------------------------------------------
+CARRY_PATH = os.path.join("data", "_scan_carry.json")
+CARRY_MAX = int(os.environ.get("CRYPTO_SCAN_CARRY_MAX", "400"))
+
+
+def _carry_load():
+    try:
+        with open(CARRY_PATH, encoding="utf-8") as f:
+            d = json.load(f)
+        return d.get("pools") or []
+    except Exception:
+        return []
+
+
+def _carry_save(pools, dropped=0):
+    try:
+        os.makedirs(os.path.dirname(CARRY_PATH), exist_ok=True)
+        with open(CARRY_PATH, "w", encoding="utf-8") as f:
+            json.dump({"ts": int(time.time()), "n": len(pools),
+                       "dropped_at_cap": dropped, "pools": pools}, f)
+    except Exception as e:
+        print(f"  [carry] could not persist {len(pools)} pools: {e}")
+
+
+def _addr(p):
+    return (p.get("attributes") or {}).get("address")
+
+
+def _truncate(pools, i, why, verbose=True):
+    """Record a truncation AND carry the unreached pools to the next pass.
+
+    ⛔ The only place either break site may stop the loop. Both used to drop the
+    remainder on the floor; a pass that cannot finish now owes the rest forward
+    rather than losing it.
+    """
+    rest = pools[i:]
+    LAST_SCAN["budget_hit"] = True
+    LAST_SCAN["skipped"] = [_addr(q) for q in rest]
+    LAST_SCAN["coverage"] = (i / len(pools)) if pools else 1.0
+    LAST_SCAN["truncate_reason"] = why
+    dropped = 0
+    if len(rest) > CARRY_MAX:
+        # Drop the OLDEST (the tail), keep what we can still act on. Recorded,
+        # never silent - LAST_SCAN carries it and collect.py alarms on it.
+        dropped = len(rest) - CARRY_MAX
+        rest = rest[:CARRY_MAX]
+    LAST_SCAN["carried_forward"] = len(rest)
+    LAST_SCAN["carry_dropped"] = dropped
+    _carry_save(rest, dropped)
+    if verbose:
+        print(f"  ⛔ TRUNCATED at {i}/{len(pools)} ({100.0 * LAST_SCAN['coverage']:.1f}%): {why}")
+        print(f"     {len(rest)} pools CARRIED to the next pass"
+              + (f", {dropped} dropped at the {CARRY_MAX} cap" if dropped else ""))
+    return rest
+
+
+
 # Only rows at or above this score get an authority check, plus anything the
 # paper log would enter. Bounds the RPC spend to the rows we would act on.
 AUTHORITY_CHECK_SCORE = int(os.environ.get("CRYPTO_AUTHORITY_SCORE", "70"))
@@ -200,11 +300,26 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
     # pages=None defers to sources.PAGES, the CRYPTO_NEW_POOL_PAGES dial.
     # Hard-coding it here is what kept the funnel at 2 pages.
     pools = S.new_pools(network, pages=pages)
-    if verbose: print(f"pulled {len(pools)} new pools on {network}")
-    budget = SCAN_BUDGET_S if budget_s is None else budget_s
+    fresh_n = len(pools)
+    # ⭐ CARRIED POOLS GO FIRST. They are already the oldest thing we owe, and
+    # putting them at the front is what stops a backlog from forming: if this
+    # pass truncates again, it truncates the NEW tail, which is carried in turn.
+    carried = _carry_load()
+    carry_n = 0
+    if carried:
+        have = {_addr(p) for p in pools}
+        carried = [p for p in carried if _addr(p) and _addr(p) not in have]
+        carry_n = len(carried)
+        pools = carried + pools
+        if verbose and carry_n:
+            print(f"  [carry] {carry_n} pools owed from a previous pass, processed first")
+    if verbose: print(f"pulled {fresh_n} new pools on {network}"
+                      + (f" (+{carry_n} carried)" if carry_n else ""))
+    budget = scan_budget(budget_s)
     started = time.time()
-    LAST_SCAN.update(pools=len(pools), enriched=0, failed=0, budget_hit=False,
-                     skipped=[], coverage=1.0)
+    LAST_SCAN.update(pools=len(pools), pools_fresh=fresh_n, pools_carried=carry_n,
+                     enriched=0, failed=0, budget_hit=False,
+                     skipped=[], coverage=1.0, carried_forward=0, carry_dropped=0)
     rows = []
     row_s, _t_prev = [], None       # measured cost of a row, this pass
     for i, p in enumerate(pools):
@@ -221,22 +336,13 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
         _row = (sorted(row_s)[int(0.75 * (len(row_s) - 1))] if row_s
                 else 3 * S.per_call_estimate())
         if _left is not None and _left <= 1.5 * _row:
-            LAST_SCAN["budget_hit"] = True
-            LAST_SCAN["skipped"] = [((q.get("attributes") or {}).get("address"))
-                                    for q in pools[i:]]
-            LAST_SCAN["coverage"] = (i / len(pools)) if pools else 1.0
-            if verbose:
-                print(f"  stage deadline: {_left:.0f}s left and a row costs ~{_row:.1f}s "
-                      f"- stopping after {i}/{len(pools)} pools, keeping what we have")
+            _truncate(pools, i,
+                      f"stage deadline: {_left:.0f}s left, a row costs ~{_row:.1f}s",
+                      verbose)
             break
         if time.time() - started > budget:
-            LAST_SCAN["budget_hit"] = True
-            LAST_SCAN["skipped"] = [((q.get("attributes") or {}).get("address"))
-                                    for q in pools[i:]]
-            LAST_SCAN["coverage"] = (i / len(pools)) if pools else 1.0
-            if verbose:
-                print(f"  enrichment budget {budget:.0f}s spent after {i}/{len(pools)} "
-                      f"pools - stopping and keeping what we have")
+            _truncate(pools, i,
+                      f"enrichment budget {budget:.0f}s spent", verbose)
             break
         addr = p.get("attributes", {}).get("address")
         if not addr: continue
@@ -437,6 +543,11 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
         if on_row:
             on_row(row)          # journal NOW, not after the loop
         S.pace()
+    # ⭐ A pass that finished owes nothing. Clearing is as important as saving:
+    # a carry file left behind would be re-processed every pass forever.
+    if not LAST_SCAN.get("budget_hit"):
+        LAST_SCAN["carried_forward"] = 0
+        _carry_save([], 0)
     rows.sort(key=lambda r: (r.get("grade", 0), r["score"]), reverse=True)
     return rows
 

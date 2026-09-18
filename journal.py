@@ -241,7 +241,8 @@ OUT  = os.path.join(BASE, "data", "outcomes")
 COV  = os.path.join(BASE, "data", "coverage")
 
 
-def record_coverage(network, window, scanned, pass_score=70, passed=0):
+def record_coverage(network, window, scanned, pass_score=70, passed=0,
+                    scan=None):
     """One row per pass: how wide the discovery window actually was.
 
     Coverage is the honest health metric for this system - of everything that
@@ -260,6 +261,32 @@ def record_coverage(network, window, scanned, pass_score=70, passed=0):
            "pages_lost": window.get("pages_lost", 0),
            "suspected_cause": None,
            "scanned": scanned, "passed": passed, "pass_score": pass_score}
+    # ---------------------------------------------------------------------
+    # ⭐ pools_seen vs pools_processed, ON EVERY PASS, ALWAYS.
+    #
+    # "We should never again be unable to answer 'what fraction did we actually
+    # look at.'" - Frank, 2026-09-18. Recorded even when they are equal, because
+    # a field that only appears on failure cannot be used to prove health, and
+    # a missing field is indistinguishable from a field nobody wrote.
+    #
+    # `scanned` above counts rows JOURNALLED, which is not the same thing - a
+    # pool can be reached and still produce no row. These two count the LOOP.
+    # ---------------------------------------------------------------------
+    sc = scan or {}
+    seen = sc.get("pools")
+    proc = sc.get("enriched")
+    obj["pools_seen"] = seen
+    obj["pools_processed"] = proc
+    obj["pools_fresh"] = sc.get("pools_fresh")
+    obj["pools_carried_in"] = sc.get("pools_carried")
+    obj["carried_forward"] = sc.get("carried_forward")
+    obj["carry_dropped"] = sc.get("carry_dropped")
+    obj["truncated"] = bool(sc.get("budget_hit"))
+    obj["truncate_reason"] = sc.get("truncate_reason")
+    obj["scan_coverage"] = sc.get("coverage")
+    # The alarm condition, evaluated here so every writer gets it identically.
+    obj["coverage_alarm"] = bool(
+        seen is not None and proc is not None and proc < seen)
     _append(COV, obj)
     return obj
 

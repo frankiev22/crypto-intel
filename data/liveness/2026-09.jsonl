@@ -41253,3 +41253,47 @@
 {"name": "paper.open", "ts": 1789734416, "n": 1, "detail": "TESTONLY2", "origin": "manual"}
 {"name": "paper.open", "ts": 1789734416, "n": 1, "detail": "A", "origin": "manual"}
 {"name": "paper.open", "ts": 1789734416, "n": 1, "detail": "B", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735238, "n": 1, "detail": "TESTONLY", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735238, "n": 1, "detail": "TESTONLY2", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735238, "n": 1, "detail": "A", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735238, "n": 1, "detail": "B", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789735240, "n": 1, "detail": "So1111111111111111111111", "origin": "manual"}
+{"name": "paperv3.close", "ts": 1789735240, "n": 1, "detail": "T NO_SELL_ROUTE", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789735240, "n": 1, "detail": "So1111111111111111111111", "origin": "manual"}
+{"name": "paperv3.close", "ts": 1789735240, "n": 1, "detail": "T TARGET", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789735240, "n": 1, "detail": "So1111111111111111111111", "origin": "manual"}
+{"name": "paperv3.close", "ts": 1789735240, "n": 1, "detail": "T FORCED", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789735240, "n": 1, "detail": "So1111111111111111111111", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789735240, "n": 1, "detail": "AAA111111111111111111111", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789735240, "n": 1, "detail": "BBB222222222222222222222", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735259, "n": 1, "detail": "DEADRUG", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735259, "n": 1, "detail": "DEADDED", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735259, "n": 1, "detail": "STILLUP", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735259, "n": 1, "detail": "HASLIQ", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735259, "n": 1, "detail": "NOWIT", "origin": "manual"}
+{"name": "scan.observations", "ts": 1789735259, "n": 1, "detail": null, "origin": "manual"}
+{"name": "scan.observations", "ts": 1789735260, "n": 1, "detail": null, "origin": "manual"}
+{"name": "scan.observations", "ts": 1789735260, "n": 1, "detail": null, "origin": "manual"}
+{"name": "scan.observations", "ts": 1789735260, "n": 1, "detail": null, "origin": "manual"}
+{"name": "paper.open", "ts": 1789735387, "n": 1, "detail": "DEADRUG", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735387, "n": 1, "detail": "DEADDED", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735387, "n": 1, "detail": "STILLUP", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735387, "n": 1, "detail": "HASLIQ", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735387, "n": 1, "detail": "NOWIT", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735388, "n": 1, "detail": "TESTONLY", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735388, "n": 1, "detail": "TESTONLY2", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735388, "n": 1, "detail": "A", "origin": "manual"}
+{"name": "paper.open", "ts": 1789735388, "n": 1, "detail": "B", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789735389, "n": 1, "detail": "So1111111111111111111111", "origin": "manual"}
+{"name": "paperv3.close", "ts": 1789735389, "n": 1, "detail": "T NO_SELL_ROUTE", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789735389, "n": 1, "detail": "So1111111111111111111111", "origin": "manual"}
+{"name": "paperv3.close", "ts": 1789735389, "n": 1, "detail": "T TARGET", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789735389, "n": 1, "detail": "So1111111111111111111111", "origin": "manual"}
+{"name": "paperv3.close", "ts": 1789735389, "n": 1, "detail": "T FORCED", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789735389, "n": 1, "detail": "So1111111111111111111111", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789735389, "n": 1, "detail": "AAA111111111111111111111", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789735389, "n": 1, "detail": "BBB222222222222222222222", "origin": "manual"}
+{"name": "scan.observations", "ts": 1789735394, "n": 1, "detail": null, "origin": "manual"}
+{"name": "scan.observations", "ts": 1789735394, "n": 1, "detail": null, "origin": "manual"}
+{"name": "scan.observations", "ts": 1789735394, "n": 1, "detail": null, "origin": "manual"}
+{"name": "scan.observations", "ts": 1789735394, "n": 1, "detail": null, "origin": "manual"}

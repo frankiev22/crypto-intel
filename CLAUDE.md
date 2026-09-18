@@ -141,6 +141,19 @@ fees. Any path that depends on a track record has nothing to sell yet.
     single pass I happened to watch - an 8x overstatement, and the same
     generalise-from-one-observation error this rule exists to catch.** Small-n
     findings are the exposed ones; see `docs/SAMPLING_BIAS.md`.
+16. ⛔⛔ **VERIFY THE OUTPUT, NEVER THE EXECUTION.** Every failure this week is
+    the same mistake: socials dropped (we checked the field was *computed*, not
+    that it *landed in a row*), the score band (we checked the *changelog*, not
+    the *source*), pool truncation (we checked the pass *completed*, not what
+    fraction it *processed*), liquidity off 781x (we checked a number *came
+    back*, not that it was *true*), the collector dead 4 days (we checked the
+    task *fired*, not that *rows appeared*). **Four of those five were silent.**
+    ⭐ **A component that cannot tell us it is broken is worse than one that is
+    obviously broken.** Every component asserts its own output; the liveness
+    registry counts **rows, not beats**; every headline number carries its n and
+    its provenance. **Read `docs/ENGINEERING_DISCIPLINE.md` before adding any
+    component**, and `test_discipline.py` enforces what can be enforced.
+
 12. ⚠️ **Any script hitting a Cloudflare-fronted API must set a `User-Agent`.**
     Python's default `Python-urllib/3.x` is blocked with a bare `403 error code:
     1010`, which looks exactly like an auth failure and is not. `sources.py:12`
@@ -202,6 +215,7 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
 | volume manipulation: methods and pre-committed thresholds | `docs/VOLUME_INTEGRITY.md` |
 | ⭐ **dev wallet history, funding graphs, first buyers, LP** | `docs/DEV_WALLET.md` |
 | ⭐ **paper trader v3 — fills priced on real quotes** | `docs/PAPER_V3.md`, `PRECOMMIT_paper_v3.md` |
+| ⛔⛔ **how we test: verify output, not execution** | `docs/ENGINEERING_DISCIPLINE.md` |
 | ⛔ **symbols that render as a different token** | `docs/SYMBOL_ATTACKS.md` |
 | ⛔ **why no score may gate an entry, and the AST check** | `test_scoreband.py` |
 | outcome-queue expiry: 21% of checks, and why | `docs/SAMPLING_BIAS.md` §5 |

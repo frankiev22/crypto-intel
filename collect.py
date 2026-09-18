@@ -229,7 +229,21 @@ def scan_stage(networks=("solana",), verbose=True):
         # What the discovery window actually covered. Recorded every pass,
         # because it cannot be reconstructed afterwards.
         cov = journal.record_coverage(net, sources.LAST_WINDOW, n,
-                                      PASS_SCORE, len(passed))
+                                      PASS_SCORE, len(passed),
+                                      scan=dict(scanner.LAST_SCAN))
+        # ⛔ LOUD ON PARTIAL COVERAGE. Silent degradation is the failure mode
+        # this project keeps rediscovering: four of the five worst bugs this
+        # week were things that ran, reported success, and produced less than
+        # they claimed. A pass that looked at 83% of its batch must SAY SO.
+        if cov.get("coverage_alarm"):
+            _sc = cov.get("scan_coverage")
+            print(f"  ⛔ COVERAGE ALARM [{net}]: processed "
+                  f"{cov.get('pools_processed')} of {cov.get('pools_seen')} pools"
+                  + (f" ({100.0 * _sc:.1f}%)" if _sc is not None else "")
+                  + f" - {cov.get('truncate_reason') or 'reason not recorded'}")
+            print(f"     {cov.get('carried_forward') or 0} carried to the next pass"
+                  + (f", {cov['carry_dropped']} DROPPED at the carry cap"
+                     if cov.get("carry_dropped") else ""))
         if verbose and cov.get("span_s") is not None:
             print(f"  [{net}] discovery window {cov['span_s']:.0f}s of launch "
                   f"stream from {cov['pools_returned']} pools")

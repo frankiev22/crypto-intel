@@ -141,17 +141,45 @@ def origin():
 
 def beat(name, n=1, detail=None):
     """Record that `name` just fired, live. Never raises - a health probe that
-    can break the pass it is measuring is worse than no probe."""
+    can break the pass it is measuring is worse than no probe.
+
+    ⛔ `n` IS THE ROW COUNT, AND FIRING IS NOT THE SAME AS PRODUCING.
+    "The liveness registry counts ROWS, not beats. A heartbeat with zero rows
+    behind it is a failure, and right now it reads as health." - Frank,
+    2026-09-18. He is describing a real defect: this function used to refresh
+    `last_ts` on every call, so a scan that journalled NOTHING still looked
+    alive. The Claude desktop task fired hourly for two days while collecting
+    zero rows and read as healthy the whole time.
+
+    So a beat now records TWO clocks. `last_ts` is when it fired; `last_rows_ts`
+    is when it last fired WITH ROWS BEHIND IT. `status()` judges on the second.
+    A component that fires empty is reported as producing nothing, which is what
+    it is doing.
+    """
     try:
         reg = _load()
         now = int(time.time())
         at = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
         who = origin()
         cur = reg.get(name) or {}
+        rows = int(n or 0)
         new = {"last_ts": now, "last_at": at,
                "count": (cur.get("count") or 0) + n,
                "first_ts": cur.get("first_ts") or now,
-               "detail": detail, "last_origin": who}
+               "detail": detail, "last_origin": who,
+               # ⭐ Firings and rows, counted separately and never conflated.
+               "firings": (cur.get("firings") or 0) + 1,
+               "rows_total": (cur.get("rows_total") or 0) + rows,
+               "empty_firings": (cur.get("empty_firings") or 0)
+                                + (0 if rows > 0 else 1)}
+        if rows > 0:
+            new["last_rows_ts"], new["last_rows_at"] = now, at
+            if who in UNATTENDED:
+                new["last_unattended_rows_ts"] = now
+        else:
+            for k in ("last_rows_ts", "last_rows_at", "last_unattended_rows_ts"):
+                if cur.get(k) is not None:
+                    new[k] = cur[k]
         if who in UNATTENDED:
             new["last_unattended_ts"], new["last_unattended_at"] = now, at
         elif "last_origin" not in cur and cur.get("last_ts"):
@@ -195,8 +223,26 @@ def status():
     out = []
     for name, (max_age_h, declared, basis, what) in sorted(COMPONENTS.items()):
         r = reg.get(name) or {}
-        # Judged on unattended beats only; a pre-origin row counts as it did.
+        # ⛔ JUDGED ON ROWS, NOT FIRINGS. `last_fired` is kept alongside so a
+        # component that is running but producing nothing is visibly distinct
+        # from one that is not running at all - those need different fixes and
+        # conflating them is how a dead collector read as healthy for two days.
         last = r.get("last_unattended_ts") if "last_origin" in r else r.get("last_ts")
+        _rows_clock = (r.get("last_unattended_rows_ts") if "last_origin" in r
+                       else r.get("last_rows_ts"))
+        # ⚠️ FALL BACK when the rows clock is absent - BUT NOT when the entry has
+        # fired and produced nothing. `last_unattended_rows_ts` is new, so an
+        # entry that produced rows before this change has none, and reporting it
+        # dead because a FIELD is young is the same mislabelling in a new
+        # costume. A component with firings and rows_total 0, though, has been
+        # measured and came back empty: falling back there would let the firing
+        # clock rescue exactly the case this whole change exists to expose.
+        never_produced = (r.get("firings") is not None
+                          and not r.get("rows_total"))
+        if _rows_clock is not None:
+            last = _rows_clock
+        elif never_produced:
+            last = None
         manual_h = None
         if (r.get("last_origin") not in (None,) + UNATTENDED and r.get("last_ts")
                 and r.get("last_ts") != last):
@@ -209,17 +255,41 @@ def status():
             decl_ts = now
         age_h = ((now - last) / 3600.0) if last else None
         declared_h = (now - decl_ts) / 3600.0
+        # ⭐ "EMPTY" IS A DISTINCT VERDICT FROM "STALE", and the distinction is
+        # the whole point of tracking rows: a component that is firing on time
+        # and producing nothing is BROKEN DIFFERENTLY from one that is not
+        # firing. The desktop task fired hourly for two days while collecting
+        # zero rows; under the old logic that read "ok".
+        # ⚠️ THE FIRING CLOCK MUST BE THE UNATTENDED ONE, for the same reason
+        # the rows clock is. A component only ever run BY HAND is not "running
+        # but producing nothing" - it is not running. Using last_ts here made a
+        # manual beat on a 30h-stale component report `empty`, which would have
+        # let a hand-run rescue a dead component's verdict. That is the exact
+        # mislabelling this module exists to prevent (test_stages.py catches it).
+        _fired = (r.get("last_unattended_ts") if "last_origin" in r
+                  else r.get("last_ts"))
+        fired_h = ((now - _fired) / 3600.0) if _fired else None
+        firing_ok = fired_h is not None and fired_h <= max_age_h
+        # ⭐ EMPTY means "fired unattended and produced NOTHING", which is only
+        # knowable when rows have actually been tracked for this entry.
         if last is None:
-            # Never fired. Only an alarm once it has had longer than its own
-            # threshold to do so - otherwise a new declaration screams on day
-            # one and gets muted, which is how alerts die.
-            verdict = "never" if declared_h > max_age_h else "pending"
+            if firing_ok and never_produced:
+                verdict = "empty"      # it runs; it has never produced a row
+            else:
+                # Never fired. Only an alarm once it has had longer than its own
+                # threshold to do so - otherwise a new declaration screams on day
+                # one and gets muted, which is how alerts die.
+                verdict = "never" if declared_h > max_age_h else "pending"
         elif age_h > max_age_h:
-            verdict = "stale"
+            verdict = "empty" if firing_ok else "stale"
         else:
             verdict = "ok"
         out.append({"name": name, "verdict": verdict, "age_h": age_h,
                     "max_age_h": max_age_h, "count": r.get("count") or 0,
+                    "firings": r.get("firings"),
+                    "rows_total": r.get("rows_total"),
+                    "empty_firings": r.get("empty_firings"),
+                    "fired_age_h": fired_h,
                     "declared": declared, "declared_h": declared_h,
                     "basis": basis, "what": what,
                     "last_at": r.get("last_at"),
