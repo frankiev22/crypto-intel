@@ -154,9 +154,70 @@ be bought back at any price.**
 
 1. ✅ `PRECOMMIT_paper_v3.md` — committed first, before any code.
 2. ✅ Quarantine v1 and v2 in code; tests still pass.
-3. ⬜ `paperv3.py` — entry/exit on real quotes, own hash chain,
+3. ✅ **`paperv3.py`** — entry/exit on real quotes, own hash chain,
    `data/paper/ledger_v3.jsonl`, `PINNED_GATE_V3` drift check.
-4. ⬜ `test_paperv3.py` — the $0-recovered close, the no-route exit, the drift
-   refusal, and **that no mid price can reach the P&L**.
-5. ⬜ Restart collection (§7). **Until this lands, v3 records nothing** and the
-   epoch in the pre-commit is aspirational.
+4. ✅ **`test_paperv3.py`, 71 checks** — the $0-recovered close, the no-route
+   exit, the drift refusal on all five constants, and **that no mid price can
+   reach the P&L**, checked at the AST level.
+5. ✅ **Collection restarted 2026-09-18** on the hosted runner. The epoch is no
+   longer aspirational.
+
+## 9. ⭐ Run live on real contracts, 2026-09-18
+
+⛔ **Not a code diff. Real mints, real Jupiter quotes, temp ledger.**
+
+```
+sym             verdict     rt_cost%   jup_impact%  holders   gate
+OpenClaw        TRADEABLE     0.7719       unknown     1858   ✅ ENTER
+BONK            TRADEABLE     0.0216           0.0    24916   refuse: truncated
+USDC-imposter   TRADEABLE       0.02       unknown       10   refuse: 10 < 100
+NTDA            COSTLY       11.2735             -       10   refuse: not TRADEABLE
+Arc             TOTAL_LOSS   99.9989             -       31   refuse: not TRADEABLE
+
+OpenClaw fill:  $100.00 in -> $99.2692 out = 0.992692x
+shadow quotes:  $250 -> 1.0182%   $500 -> 1.4352%   (recorded, never traded)
+```
+
+⭐ **The holder gate earned itself on the first live run.** The USDC impersonator
+(`docs/SYMBOL_ATTACKS.md`) is `TRADEABLE` at a **0.02%** round trip — it would
+sail through any pure liquidity check — and it has **10 holders**. Liquidity said
+yes; holders said no. That is exactly the separation Frank asked for.
+
+### ⛔ Three bugs the live run found that the unit tests could not
+
+**1. Jupiter's `priceImpactPct` is a sentinel, not a number.** It returned `'1'`
+(100% impact) for a pool our own round trip measured at **0.7643%** in the same
+second. Those cannot both be true. Reference-priced tokens return real fractions
+(SOL $100 → 0.004%, SOL $50k → 0.012%, BONK → 0.149%); longtail memecoins return
+exactly `1`. ⭐ **Anything ≥ 1 is now recorded as `None`** — a token with genuine
+100% impact would return the same value and be indistinguishable, so it cannot
+be trusted in either direction. ⚠️ **The trustworthy impact number is our own
+`rt_cost_pct`**, computed from two quoted legs, which needs no reference price
+and cannot be a sentinel.
+
+**2. `close_entry` fabricated its own exit reason.** Any close that was not
+TARGET or MAX_HOLD was labelled `DEGRADED` — a claim about the pool that nothing
+had observed. **A recorded reason that was never measured is the same class of
+error as a fabricated fill.** The caller now states the reason; only the two
+conditions the module can see for itself are inferred, and an unexplained close
+is `FORCED`, not a diagnosis.
+
+**3. ⚠️ `holders_truncated is False` is over-strict, and it is FROZEN.**
+`holder_count` pages 25 × 1,000, so `truncated` means **≥25,000 holders**. A
+truncated count is a *floor*, and a floor above the threshold is perfectly sound
+evidence: 24,916 ≥ 100 whether or not the walk finished. BONK was refused anyway.
+
+⛔ **Not changed, because the rule was pre-committed and changing it means v4.**
+The practical cost is small — it only ever excludes tokens with ≥25,000 holders,
+which are established coins rather than the new launches this targets, and it
+errs toward refusing. ⚠️ **But it feeds pre-commit §7 failure condition 3**
+(fewer than 30 contracts through the gate in 60 days). **Recorded here as a known
+flaw so that if v3 fails on volume, this is a named suspect and not a surprise.**
+
+## 10. Not yet wired in
+
+⬜ **`paperv3` is not called by `collect.py`.** It runs, it is tested, and it has
+been exercised live, but nothing schedules it. Wiring it into the hourly stages
+is a separate change with its own cost (each entry decision needs a round trip
+plus a holder count, and `chainfields` caps Jupiter at 55/min — it must stay off
+the per-row scan path and run only at the decision point).

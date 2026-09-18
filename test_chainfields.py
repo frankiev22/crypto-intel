@@ -108,6 +108,33 @@ if LIVE:
 else:
     print("\n5. LIVE tests skipped (pass --live to run them)")
 
+# ---------------------------------------------------------------------------
+# ⛔ Jupiter's priceImpactPct is a SENTINEL for longtail tokens, not a number.
+# Measured live 2026-09-18: OpenClaw round-tripped at 0.7643% while Jupiter
+# reported priceImpactPct '1', i.e. 100% impact. Those cannot both be true.
+# Real reference-priced tokens return small fractions:
+#     SOL $100    '0.0000425409323578214859860615'
+#     SOL $50,000 '0.0001166599206688746226102528'
+#     BONK $100   '0.0014902943073434322217160682'
+# ---------------------------------------------------------------------------
+print()
+print("6. the price-impact sentinel")
+check(cf._impact_pct({"priceImpactPct": "1"}) is None,
+      "⛔ exactly 1 is UNKNOWN, never recorded as 100%",
+      repr(cf._impact_pct({"priceImpactPct": "1"})))
+check(cf._impact_pct({"priceImpactPct": "1.0"}) is None, "'1.0' likewise")
+check(cf._impact_pct({"priceImpactPct": "2"}) is None, "anything >= 1 likewise")
+check(cf._impact_pct({"priceImpactPct": None}) is None, "missing -> None")
+check(cf._impact_pct({}) is None, "absent -> None")
+check(cf._impact_pct({"priceImpactPct": "not-a-number"}) is None, "garbage -> None")
+check(cf._impact_pct({"priceImpactPct": "0.0000425409323578214859860615"}) == 0.004254,
+      "⭐ a real SOL reading survives as 0.004254%",
+      repr(cf._impact_pct({"priceImpactPct": "0.0000425409323578214859860615"})))
+check(cf._impact_pct({"priceImpactPct": "0.0014902943073434322217160682"}) == 0.149029,
+      "⭐ a real BONK reading survives as 0.149029%")
+check(cf._impact_pct({"priceImpactPct": "0"}) == 0.0,
+      "⚠️ a genuine ZERO is kept as 0.0, not coerced to None")
+
 print()
 if FAIL:
     print(f"FAILED: {len(FAIL)}")

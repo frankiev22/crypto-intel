@@ -107,9 +107,9 @@
   "last_unattended_at": "2026-09-15T05:08:53+00:00"
  },
  "paper.open": {
-  "last_ts": 1789734087,
-  "last_at": "2026-09-18T12:21:27+00:00",
-  "count": 276,
+  "last_ts": 1789734416,
+  "last_at": "2026-09-18T12:26:56+00:00",
+  "count": 280,
   "first_ts": 1788999700,
   "detail": "B",
   "last_origin": "manual",
@@ -117,19 +117,19 @@
   "last_unattended_at": "2026-09-15T05:07:16+00:00"
  },
  "paperv3.open": {
-  "last_ts": 1789734086,
-  "last_at": "2026-09-18T12:21:26+00:00",
-  "count": 24,
+  "last_ts": 1789734413,
+  "last_at": "2026-09-18T12:26:53+00:00",
+  "count": 38,
   "first_ts": 1789733795,
   "detail": "BBB222222222222222222222",
   "last_origin": "manual"
  },
  "paperv3.close": {
-  "last_ts": 1789734086,
-  "last_at": "2026-09-18T12:21:26+00:00",
-  "count": 12,
+  "last_ts": 1789734413,
+  "last_at": "2026-09-18T12:26:53+00:00",
+  "count": 20,
   "first_ts": 1789733795,
-  "detail": "T DEGRADED",
+  "detail": "T FORCED",
   "last_origin": "manual"
  }
 }

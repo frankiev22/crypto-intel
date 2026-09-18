@@ -284,7 +284,7 @@ def _elapsed_h(entry, now=None):
     return (now - t0).total_seconds() / 3600.0
 
 
-def close_entry(entry, sq=None, shadows=True, now=None):
+def close_entry(entry, sq=None, shadows=True, now=None, reason=None):
     """Close one open position against a live sell quote for the exact holding.
 
     ⛔ A position whose exit route has vanished closes at $0 RECOVERED and is
@@ -309,12 +309,19 @@ def close_entry(entry, sq=None, shadows=True, now=None):
     elapsed = _elapsed_h(entry, now=now)
 
     if exit_reason is None:
+        # ⛔ THE CALLER SAYS WHY, and only the two conditions this module can see
+        # for itself are inferred. The first version labelled every other close
+        # "DEGRADED", which is a claim about the pool - so a position closed for
+        # any other reason carried a fabricated cause. A recorded reason that
+        # was never observed is the same class of error as a fabricated fill.
         if mult is not None and mult >= TARGET_MULT:
             exit_reason = "TARGET"
         elif elapsed >= MAX_HOLD_H:
             exit_reason = "MAX_HOLD"
+        elif reason:
+            exit_reason = str(reason)
         else:
-            exit_reason = "DEGRADED"
+            exit_reason = "FORCED"      # closed by a caller that gave no cause
 
     rec = _append({
         "type": "exit",

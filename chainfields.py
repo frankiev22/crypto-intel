@@ -188,6 +188,41 @@ def _quote(in_mint, out_mint, amount, slippage_bps=5000, tries=4):
     return None, "rate limited"
 
 
+# ---------------------------------------------------------------------------
+# ⛔ JUPITER'S priceImpactPct IS A SENTINEL FOR LONGTAIL TOKENS, NOT A NUMBER.
+#
+# Measured 2026-09-18. For tokens it can reference-price it returns a small
+# decimal fraction:
+#     SOL   $100    '0.0000425409323578214859860615'   = 0.004%
+#     SOL   $50,000 '0.0001166599206688746226102528'   = 0.012%
+#     BONK  $100    '0.0014902943073434322217160682'   = 0.149%
+#
+# For memecoins it returns the string '1' - EXACTLY 1, meaning 100% impact -
+# even when our own round trip on the same pool in the same second costs 0.76%.
+# OpenClaw: verdict TRADEABLE, rt_cost_pct 0.7643, priceImpactPct '1'. Those
+# cannot both be true. '1' means "no reference price", not "you lose everything".
+#
+# ⭐ So exactly 1.0 is UNKNOWN and is recorded as None (standing rule 5: unknown
+# never renders as a value). A token that genuinely had 100% impact would return
+# the same 1 and be indistinguishable, which is precisely why it cannot be
+# trusted as a measurement either way.
+#
+# ⚠️ THE TRUSTWORTHY IMPACT NUMBER IS OUR OWN `rt_cost_pct`, computed from the
+# two quoted legs: buy $100, sell back what it returned, compare. It needs no
+# reference price and cannot be a sentinel. paperv3 records both and its
+# pre-committed failure condition is written against the round-trip cost.
+# ---------------------------------------------------------------------------
+def _impact_pct(q):
+    """Jupiter's price impact as a percent, or None when it did not compute one."""
+    try:
+        v = float(q.get("priceImpactPct"))
+    except (TypeError, ValueError):
+        return None
+    if v >= 1.0:
+        return None                      # sentinel, not a measurement
+    return round(v * 100.0, 6)
+
+
 def round_trip(mint, usd=DEFAULT_PROBE_USD):
     """⭐ What you actually get back if you buy $usd and sell it again, now.
 
@@ -229,10 +264,7 @@ def round_trip(mint, usd=DEFAULT_PROBE_USD):
     # market_cap() never has to spend a third quote to recover it.
     out["px_per_raw"] = usd / float(buy["outAmount"])
     out["token_qty_raw"] = int(buy["outAmount"])
-    try:
-        out["price_impact_pct"] = round(float(buy.get("priceImpactPct")) * 100.0, 6)
-    except (TypeError, ValueError):
-        out["price_impact_pct"] = None      # unknown stays None, never 0
+    out["price_impact_pct"] = _impact_pct(buy)
     sell, err = _quote(mint, USDC, int(buy["outAmount"]))
     if not sell:
         out["verdict"] = "NO_SELL_ROUTE"
@@ -275,10 +307,7 @@ def sell_quote(mint, raw_qty):
     out["usd_out"] = round(int(sell["outAmount"]) / 1e6, 6)
     out["venues"] = [((h.get("swapInfo") or {}).get("label") or "?")
                      for h in (sell.get("routePlan") or [])]
-    try:
-        out["price_impact_pct"] = round(float(sell.get("priceImpactPct")) * 100.0, 6)
-    except (TypeError, ValueError):
-        out["price_impact_pct"] = None
+    out["price_impact_pct"] = _impact_pct(sell)
     out["verdict"] = "QUOTED"
     return out
 

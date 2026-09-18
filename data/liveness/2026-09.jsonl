@@ -41227,3 +41227,29 @@
 {"name": "paper.open", "ts": 1789734087, "n": 1, "detail": "TESTONLY2", "origin": "manual"}
 {"name": "paper.open", "ts": 1789734087, "n": 1, "detail": "A", "origin": "manual"}
 {"name": "paper.open", "ts": 1789734087, "n": 1, "detail": "B", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789734177, "n": 1, "detail": "68ki9S1mbfvNydTqei2R8Qy1", "origin": "manual"}
+{"name": "paperv3.close", "ts": 1789734177, "n": 1, "detail": "OpenClaw DEGRADED", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789734257, "n": 1, "detail": "So1111111111111111111111", "origin": "manual"}
+{"name": "paperv3.close", "ts": 1789734257, "n": 1, "detail": "T NO_SELL_ROUTE", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789734257, "n": 1, "detail": "So1111111111111111111111", "origin": "manual"}
+{"name": "paperv3.close", "ts": 1789734257, "n": 1, "detail": "T TARGET", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789734257, "n": 1, "detail": "So1111111111111111111111", "origin": "manual"}
+{"name": "paperv3.close", "ts": 1789734257, "n": 1, "detail": "T FORCED", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789734257, "n": 1, "detail": "So1111111111111111111111", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789734257, "n": 1, "detail": "AAA111111111111111111111", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789734257, "n": 1, "detail": "BBB222222222222222222222", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789734346, "n": 1, "detail": "68ki9S1mbfvNydTqei2R8Qy1", "origin": "manual"}
+{"name": "paperv3.close", "ts": 1789734346, "n": 1, "detail": "OpenClaw LIVE_SMOKE_TEST", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789734413, "n": 1, "detail": "So1111111111111111111111", "origin": "manual"}
+{"name": "paperv3.close", "ts": 1789734413, "n": 1, "detail": "T NO_SELL_ROUTE", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789734413, "n": 1, "detail": "So1111111111111111111111", "origin": "manual"}
+{"name": "paperv3.close", "ts": 1789734413, "n": 1, "detail": "T TARGET", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789734413, "n": 1, "detail": "So1111111111111111111111", "origin": "manual"}
+{"name": "paperv3.close", "ts": 1789734413, "n": 1, "detail": "T FORCED", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789734413, "n": 1, "detail": "So1111111111111111111111", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789734413, "n": 1, "detail": "AAA111111111111111111111", "origin": "manual"}
+{"name": "paperv3.open", "ts": 1789734413, "n": 1, "detail": "BBB222222222222222222222", "origin": "manual"}
+{"name": "paper.open", "ts": 1789734416, "n": 1, "detail": "TESTONLY", "origin": "manual"}
+{"name": "paper.open", "ts": 1789734416, "n": 1, "detail": "TESTONLY2", "origin": "manual"}
+{"name": "paper.open", "ts": 1789734416, "n": 1, "detail": "A", "origin": "manual"}
+{"name": "paper.open", "ts": 1789734416, "n": 1, "detail": "B", "origin": "manual"}
