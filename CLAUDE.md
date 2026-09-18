@@ -266,14 +266,29 @@ distinct credential names across 37 files. **Values are never printed anywhere.*
 `_CONSUMER_SECRET`, `_OAUTH2_CLIENT_ID`, `_OAUTH2_CLIENT_SECRET`, plus
 `TWITTER_USERNAME`/`_PASSWORD` (account, not API).
 
-**Tier probed live 2026-09-18:**
+⛔ **ALL FOUR AUTH PATHS PROBED 2026-09-18** (`scratchpad/xprobe.py`; it prints
+status codes only, never a key). The seven names are ONE app's credential set in
+four flavours, plus a second bearer that is not a copy of the first:
+
 ```
-GET /2/usage/tweets      200   project_cap 3,000,000   project_usage 0
-                               cap_reset_day 29        x-access-level read
-GET /2/tweets/search/recent 402 "credits depleted"     x-rate-limit 450/15min
+bearer A (.env, 112 ch)   /2/usage/tweets          200  cap 3,000,000  usage 0
+                          /2/tweets/search/recent  402  credits depleted
+                          /2/tweets/search/all     402  credits depleted  <- historical
+                          /2/users/by/username/..  402  credits depleted
+                          /2/users/me              403
+bearer B (gateway.cmd)    every endpoint           500
+OAuth 1.0a user context   usage 403, all data      401  Unauthorized
+OAuth2 client_credentials /2/oauth2/token          400  invalid_request
 ```
-⭐ **The monthly cap is UNTOUCHED — usage is zero. This is a billing lapse, not
-an exhausted quota.** Read access and a 3M/month cap already exist.
+
+⭐ **CORRECTION: this is a DEPLETED CREDIT BALANCE, not a lapsed subscription.**
+X's own problem URI is `.../problems/credits-depleted`. Frank remembered buying
+credits and not paying for a developer account, and the error matches his
+account, not the earlier "billing lapse" reading.
+⚠️ **Two different meters, and both statements are true:** the 3M/month POST cap
+is untouched (`project_usage 0`), and the consumable read credits are at zero.
+⛔ **No credential unlocks full-archive search.** The ask is a **credit top-up**,
+not a subscription — and it is Frank's call alone.
 
 ⛔ **`XAI_API_KEY` is DEAD** — `400 Incorrect API key` from `api.x.ai/v1/models`.
 Present in the same three files. It needs replacing, not finding.
