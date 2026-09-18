@@ -237,7 +237,8 @@ padding:13px 14px;margin:10px 0}
 .root{font-size:18px;font-weight:600}
 .tag{font-size:14px;color:var(--dim);background:#1e222b;border:1px solid var(--line);
 border-radius:20px;padding:1px 10px}
-.tag.warn{color:#ffb86b;border-color:#4a3b23}
+.warn-inline{color:#ff5f56;font-weight:700;font-size:.72em;letter-spacing:.04em;margin-left:.35em;white-space:nowrap}
+.warn{color:#ffb86b;border-color:#4a3b23}
 .row{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;
 padding:8px 0;border-top:1px solid var(--line)}
 .row:first-of-type{border-top:none}
@@ -272,9 +273,73 @@ document.addEventListener('click',function(e){
 """
 
 
+# ---------------------------------------------------------------------------
+# ⛔ SYMBOLS ARE HOSTILE INPUT. html.escape() IS NOT ENOUGH.
+#
+# Found live in data/observations/2026-09-18.jsonl: a token whose symbol is
+# 'U‮CDЅ' - U, then RIGHT-TO-LEFT OVERRIDE, then "CD", then CYRILLIC
+# CAPITAL DZE. ⭐ A browser renders that as "USDC". It claimed the highest
+# liquidity of the day ($35,028,013) with ZERO sells in an hour. A second token
+# used '‮EKOP', which renders as "POKE".
+#
+# html.escape() handles < > & and quotes. It does nothing to U+202E, so this
+# row displayed as USDC in Frank's own dashboard - standing rule 2 ("key on the
+# contract address, never the ticker") defeated at the one place a human reads.
+#
+# Two separate abuses, both neutralised here:
+#   1. BIDI AND ZERO-WIDTH CONTROLS - stripped and shown as a visible marker, so
+#      the deception becomes the thing you notice.
+#   2. HOMOGLYPHS - Cyrillic/Greek letters mixed into Latin text. Not stripped,
+#      because the symbol is what it is; FLAGGED, because "USDС" with a Cyrillic
+#      es is a different token from USDC and nothing else will tell you.
+# ---------------------------------------------------------------------------
+_BIDI = {0x202A, 0x202B, 0x202C, 0x202D, 0x202E,   # embedding / override
+         0x2066, 0x2067, 0x2068, 0x2069,           # isolates
+         0x200E, 0x200F,                           # LRM / RLM
+         0x200B, 0x200C, 0x200D, 0xFEFF}           # zero-width
+
+
+def _script(ch):
+    o = ord(ch)
+    if 0x0400 <= o <= 0x04FF:
+        return "Cyrillic"
+    if 0x0370 <= o <= 0x03FF:
+        return "Greek"
+    if ("a" <= ch <= "z") or ("A" <= ch <= "Z"):
+        return "Latin"
+    return None
+
+
+def safe_sym(sym):
+    """Render a token symbol without letting it lie about what it is.
+
+    Returns escaped HTML. ⛔ Never returns the raw symbol, and never silently
+    drops a control character - a removed character that leaves no trace is the
+    same deception with our fingerprints on it.
+    """
+    raw = str(sym or "")
+    if not raw:
+        return html.escape("unknown")
+    stripped = "".join(c for c in raw if ord(c) not in _BIDI)
+    had_bidi = len(stripped) != len(raw)
+    scripts = {s for s in (_script(c) for c in stripped) if s}
+    mixed = len(scripts) > 1
+    out = html.escape(stripped[:22]) or html.escape("unknown")
+    if had_bidi:
+        out += ('<span class="warn-inline" title="symbol contains a '
+                'text-direction override; it renders as something else">'
+                ' ⛔BIDI</span>')
+    if mixed:
+        out += ('<span class="warn-inline" title="symbol mixes alphabets: '
+                + html.escape("+".join(sorted(scripts)))
+                + '; letters may be homoglyphs">'
+                + ' ⛔MIXED-SCRIPT</span>')
+    return out
+
+
 def coin_row(sym, contract, depth, mcap=None, liq=None, ts=None, extra=""):
     return f"""<div class="row {stale_class(ts)}">
-  <span class="sym">{html.escape(str(sym or 'unknown')[:22])}</span>
+  <span class="sym">{safe_sym(sym)}</span>
   {addr(contract)}
   <span><span class="k">mcap</span> <span class="v">{usd(mcap)}</span></span>
   <span><span class="k">liq</span> <span class="v">{usd(liq)}</span></span>
@@ -325,7 +390,7 @@ actionable at all.</p>""")
         if c["swarm"]:
             tags.append('<span class="tag warn">also looks like a mint swarm</span>')
         P.append('<div class="card"><div class="chead">'
-                 f'<span class="root">{html.escape(c["root"])}</span>{"".join(tags)}'
+                 f'<span class="root">{safe_sym(c["root"])}</span>{"".join(tags)}'
                  f'<span class="k">first seen {ago(c["first_seen"])}</span></div>')
         for m in c["members"][:14]:
             cur = latest.get(m.get("token"), m)
@@ -344,7 +409,7 @@ actionable at all.</p>""")
                  'mint spam rather than a story. Listed so they are visible and out '
                  'of the way &mdash; expand only if something looks familiar.</p>')
         for c in swarms[:14]:
-            sym = html.escape(str(c["members"][0].get("symbol"))[:22])
+            sym = safe_sym(c["members"][0].get("symbol"))
             P.append(f'<div class="row {stale_class(c["last_seen"])}">'
                      f'<span class="sym">{sym}</span>'
                      f'<span><span class="k">contracts</span> <span class="v">{c["size"]}</span></span>'

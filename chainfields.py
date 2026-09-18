@@ -210,7 +210,14 @@ def round_trip(mint, usd=DEFAULT_PROBE_USD):
     """
     out = {"mint": mint, "probe_usd": usd, "ts": int(time.time()),
            "usd_back": None, "rt_cost_pct": None, "verdict": None,
-           "venues": None, "px_per_raw": None, "error": None}
+           "venues": None, "px_per_raw": None, "error": None,
+           # ⭐ Added 2026-09-18 for paperv3, which needs the FILL, not just the
+           # verdict: the exact raw token quantity $usd bought, so the exit can
+           # be quoted for that same quantity, and Jupiter's own price-impact
+           # number for the buy leg. PRECOMMIT_paper_v3.md section 4 requires
+           # both on every recorded fill - impact is "the number that was
+           # invisible and killed the edge".
+           "token_qty_raw": None, "price_impact_pct": None}
     buy, err = _quote(USDC, mint, usd * 1_000_000)
     if not buy:
         out["verdict"] = "NO_BUY_ROUTE"
@@ -221,6 +228,11 @@ def round_trip(mint, usd=DEFAULT_PROBE_USD):
     # Price implied by the BUY leg, in USD per raw token unit. Kept here so
     # market_cap() never has to spend a third quote to recover it.
     out["px_per_raw"] = usd / float(buy["outAmount"])
+    out["token_qty_raw"] = int(buy["outAmount"])
+    try:
+        out["price_impact_pct"] = round(float(buy.get("priceImpactPct")) * 100.0, 6)
+    except (TypeError, ValueError):
+        out["price_impact_pct"] = None      # unknown stays None, never 0
     sell, err = _quote(mint, USDC, int(buy["outAmount"]))
     if not sell:
         out["verdict"] = "NO_SELL_ROUTE"
@@ -233,6 +245,41 @@ def round_trip(mint, usd=DEFAULT_PROBE_USD):
     out["verdict"] = ("TRADEABLE" if cost < TRADEABLE_MAX_PCT
                       else "COSTLY" if cost < COSTLY_MAX_PCT
                       else "TOTAL_LOSS")
+    return out
+
+
+def sell_quote(mint, raw_qty):
+    """⭐ USD returned for selling exactly `raw_qty` raw token units, right now.
+
+    The exit half of a paperv3 fill. round_trip() sells back exactly what its
+    own buy leg returned; this sells a quantity bought EARLIER, which is the
+    only way to price an exit against the position actually held.
+
+    Returns a dict. ⛔ `usd_out` is None when no route exists - that is an
+    ANSWER, not an error, and paperv3 records it as a total loss rather than
+    skipping the close. Never coerce it to 0 at the call site; the distinction
+    between "no route" and "zero recovered" is preserved in `verdict`.
+    """
+    out = {"mint": mint, "raw_qty": int(raw_qty), "ts": int(time.time()),
+           "usd_out": None, "venues": None, "price_impact_pct": None,
+           "verdict": None, "error": None}
+    if int(raw_qty) <= 0:
+        out["verdict"] = "NO_POSITION"
+        out["error"] = "raw_qty must be positive"
+        return out
+    sell, err = _quote(mint, USDC, int(raw_qty))
+    if not sell:
+        out["verdict"] = "NO_SELL_ROUTE"
+        out["error"] = err
+        return out
+    out["usd_out"] = round(int(sell["outAmount"]) / 1e6, 6)
+    out["venues"] = [((h.get("swapInfo") or {}).get("label") or "?")
+                     for h in (sell.get("routePlan") or [])]
+    try:
+        out["price_impact_pct"] = round(float(sell.get("priceImpactPct")) * 100.0, 6)
+    except (TypeError, ValueError):
+        out["price_impact_pct"] = None
+    out["verdict"] = "QUOTED"
     return out
 
 

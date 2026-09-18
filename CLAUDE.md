@@ -90,7 +90,12 @@ fees. Any path that depends on a track record has nothing to sell yet.
    when it is stale or wrong. **Lead with the correction.**
 2. **Key on the contract address, never the ticker.** Tickers are display only.
    398 contracts in our data impersonate an incumbent name; one "DOGE" showed
-   $86.5B FDV against $0.0002 of real sellable depth.
+   $86.5B FDV against $0.0002 of real sellable depth. ⛔ **And a ticker can
+   render as a name it does not contain:** 112 contracts carry a bidi control in
+   the symbol (`'U‮CDЅ'` displays as **USDC**, and claimed the highest
+   liquidity of 2026-09-18 with zero sells), 48 more mix Cyrillic into Latin.
+   `html.escape()` does NOT neutralise this - use `dashboard.safe_sym()`. See
+   `docs/SYMBOL_ATTACKS.md`.
 3. **Liquidity-gate every headline number.** Reported liquidity overstates by a
    median 781x. A market cap, a multiple or a win is not real until it is
    checked against **quote-side depth from on-chain reserves**.
@@ -197,6 +202,9 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
 | volume manipulation: methods and pre-committed thresholds | `docs/VOLUME_INTEGRITY.md` |
 | ⭐ **dev wallet history, funding graphs, first buyers, LP** | `docs/DEV_WALLET.md` |
 | ⭐ **paper trader v3 — fills priced on real quotes** | `docs/PAPER_V3.md`, `PRECOMMIT_paper_v3.md` |
+| ⛔ **symbols that render as a different token** | `docs/SYMBOL_ATTACKS.md` |
+| ⛔ **why no score may gate an entry, and the AST check** | `test_scoreband.py` |
+| outcome-queue expiry: 21% of checks, and why | `docs/SAMPLING_BIAS.md` §5 |
 | crypto history, organised by recurring mechanism | `docs/CRYPTO_HISTORY.md` |
 | the 1M tracker, crossing rates, real-time architecture | `docs/TRACKER_SCOPING.md` (**§5c supersedes §5b**) |
 | buyer and creator rules, rejected ideas | `docs/RULES.md` (§B buyer, §C creator, §O observations) |
