@@ -96,6 +96,12 @@ def _sell_quote(mint, qty):
             "ts": "2026-09-18T15:10:00Z", "verdict": "TRADEABLE", "error": None}
 
 
+def _low_quote(mint, qty):
+    CALLS["sell_quote"] += 1
+    return {"usd_out": 61.0, "price_impact_pct": 2.2, "venues": ["Raydium"],
+            "ts": "2026-09-19T15:10:00Z", "verdict": "TRADEABLE", "error": None}
+
+
 S.new_pools = lambda network, pages=None: [_pool(CA), _pool(DEAD)]
 S.dexscreener_pair = _pair
 S.pace = lambda *a, **k: None
@@ -181,17 +187,68 @@ check("the reason is TARGET, not a fabricated one",
       sw["reasons"].get("TARGET") == 1, str(sw["reasons"]))
 check("⛔ nothing is left open", len(paperv3.open_positions()) == 0)
 
+
+# ⛔ AND THE MAX_HOLD PATH MUST USE THE INJECTED QUOTE TOO. close_entry() will
+# reach for chainfields.sell_quote itself when handed sq=None, walking straight
+# past the injection point sweep() advertises - an offline suite that silently
+# hits the network, which this project paid for once already today.
+_ROW = dict(venue_type="amm", can_mint=False, can_freeze=False, sells_h1=3,
+            buys_h1=12, token=CA + "X", holders=500, name="OLD")
+_rt = _round_trip(CA + "X")
+_old_entry, _ = paperv3.open_entry(_ROW, _rt, shadows=False)
+check("a second position was opened for the MAX_HOLD case", _old_entry is not None)
+if _old_entry:
+    # age it past the hold limit by rewriting the ledger's entry timestamp
+    import datetime as dt
+    _stale = (dt.datetime.now(dt.timezone.utc)
+              - dt.timedelta(hours=paperv3.MAX_HOLD_H + 1)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    _lines = [json.loads(l) for l in io.open(paperv3.LEDGER, encoding="utf-8") if l.strip()]
+    for _l in _lines:
+        if _l.get("hash") == _old_entry["hash"]:
+            _l["ts"] = _stale
+    with io.open(paperv3.LEDGER, "w", encoding="utf-8") as _f:
+        for _l in _lines:
+            _f.write(json.dumps(_l) + chr(10))
+
+    _before = CALLS["sell_quote"]
+    # $61 back on $100 in: a loss, well under the 2.0x target.
+    _net = {"hit": False}
+    _real_sq = chainfields.sell_quote
+    chainfields.sell_quote = lambda *a, **k: _net.update(hit=True) or _real_sq(*a, **k)
+    try:
+        sw2 = paperv3.sweep(verbose=False, sell_quote=_low_quote)
+    finally:
+        chainfields.sell_quote = _real_sq
+    check("⭐ the aged position closed", sw2["closed"] == 1, str(sw2["reasons"]))
+    check("⛔ and the reason is MAX_HOLD, not a target it never hit",
+          sw2["reasons"].get("MAX_HOLD") == 1, str(sw2["reasons"]))
+    check("⛔ and it used the INJECTED quote, never chainfields directly",
+          CALLS["sell_quote"] > _before and not _net["hit"],
+          "close_entry must not fetch its own")
+
 led = [json.loads(l) for l in io.open(paperv3.LEDGER, encoding="utf-8")
        if l.strip()]
 ex = [r for r in led if r.get("type") == "exit"]
-check("an exit row was written", len(ex) == 1, str(len(ex)))
-if ex:
+check("two exit rows were written - one per close", len(ex) == 2, str(len(ex)))
+by = {r.get("exit_reason"): r for r in ex}
+check("⛔ both reasons are recorded, and they differ",
+      set(by) == {"TARGET", "MAX_HOLD"}, str(sorted(by)))
+if "TARGET" in by:
     check("⭐ the multiple is a ratio of two real quoted dollar amounts",
-          abs(ex[0]["realizable_multiple"] - 2.5) < 1e-6,
-          str(ex[0].get("realizable_multiple")))
+          abs(by["TARGET"]["realizable_multiple"] - 2.5) < 1e-6,
+          str(by["TARGET"].get("realizable_multiple")))
     check("and it records the exit quote's own impact and venues",
-          ex[0].get("exit_price_impact_pct") == 0.6
-          and ex[0].get("exit_route_venues") == ["Raydium"])
+          by["TARGET"].get("exit_price_impact_pct") == 0.6
+          and by["TARGET"].get("exit_route_venues") == ["Raydium"])
+if "MAX_HOLD" in by:
+    # ⚠️ A LOSS IS RECORDED AS A LOSS. $61 back on $100 in is 0.61x, and it is
+    # written down - the v1 ledger's problem was never that it was pessimistic.
+    check("⛔ a losing close records 0.61x, not a void and not a skip",
+          abs(by["MAX_HOLD"]["realizable_multiple"] - 0.61) < 1e-6,
+          str(by["MAX_HOLD"].get("realizable_multiple")))
+    check("⚠️ and it is flagged as past its hold window",
+          by["MAX_HOLD"].get("on_time") is False,
+          str(by["MAX_HOLD"].get("elapsed_h")))
 
 print()
 print("=" * 70)

@@ -433,6 +433,15 @@ def sweep(verbose=True, should_stop=None, sell_quote=None):
         try:
             due, why = should_close(entry)
             sq = None
+            if due:
+                # ⛔ FETCH IT HERE, NOT IN close_entry. A MAX_HOLD close still
+                # has to be priced, and close_entry would reach for
+                # chainfields.sell_quote itself - straight past the injection
+                # point this function advertises. An offline suite that silently
+                # hits the network is a bug this project already paid for once
+                # today; a parameter that only isolates SOME paths is the same
+                # thing with a promise attached.
+                sq = sq_fn(entry["contract"], int(entry["token_qty_raw"]))
             if not due:
                 # The only way to know whether the target is hit or the route is
                 # gone is to ask what the holding sells for, right now.
