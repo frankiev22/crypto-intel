@@ -281,6 +281,46 @@ check("⭐ status() has a distinct 'empty' verdict", '"empty"' in lsrc)
 check("...used when the component is firing but not producing",
       "firing_ok" in lsrc and 'verdict = "empty" if firing_ok else "stale"' in lsrc)
 
+# ⛔ AND IT MUST REACH A HUMAN. status() gained `empty` on 2026-09-18 and
+# line(), check() and the __main__ exit code all still listed the four OLD
+# verdicts - so the new signal was computed correctly and shown to nobody, for
+# the whole day it existed. Computing and surfacing are two separate steps;
+# this is the journal.record() whitelist bug in a second place on the same day.
+_now2 = int(time.time())
+io.open(liveness.REG, "w", encoding="utf-8").write(json.dumps({
+    _name: {"last_ts": _now2, "last_at": "x", "count": 5, "first_ts": _now2,
+            "last_origin": "scheduled", "last_unattended_ts": _now2,
+            "firings": 5, "rows_total": 0, "empty_firings": 5}}))
+_st = liveness.status()
+_ln = liveness.line(_st)
+check("⛔ an EMPTY component appears in the daily line at all",
+      "EMPTY" in _ln, _ln.splitlines()[0])
+check("...and in the summary counts, not only the detail",
+      "1 empty" in _ln, _ln.splitlines()[0])
+_emitted = []
+liveness.check(record=lambda *a, **k: _emitted.append(a), verbose=False)
+check("⛔ and check() emits a finding for it",
+      any(_name in str(a) for a in _emitted), str(_emitted[:1]))
+check("...saying the trigger works and the WORK produces nothing",
+      any("producing NO ROWS" in str(a) for a in _emitted))
+check("⭐ the exit-code list includes it, or a red run reads green",
+      '("never", "stale", "undeclared", "empty")' in lsrc)
+
+# ⚠️ And the report must not crash on a component with no declaration date.
+# An undeclared beat made line() raise TypeError on None and took the whole
+# health report down - the one tool whose job is to tell you something is wrong.
+io.open(liveness.REG, "w", encoding="utf-8").write(json.dumps({
+    "nobody.declared.this": {"last_ts": _now2, "last_at": "x", "count": 1,
+                             "first_ts": _now2}}))
+try:
+    _ln2 = liveness.line(liveness.status())
+    _ok = "UNDECLARED" in _ln2
+except Exception as e:
+    _ln2, _ok = f"{type(e).__name__}: {e}", False
+check("⛔ an UNDECLARED component does not crash the report", _ok, _ln2.strip()[:60])
+check("...and its age is reported, not thrown away",
+      "no age recorded" not in _ln2, _ln2.strip()[:60])
+
 print()
 print("=" * 70)
 print("E. the rule is written down where the next session will find it")

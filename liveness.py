@@ -298,12 +298,19 @@ def status():
     # Drift the other way: beating without being declared.
     for name in reg:
         if name not in COMPONENTS:
-            out.append({"name": name, "verdict": "undeclared", "age_h": None,
+            r = reg[name] or {}
+            # ⚠️ The age was thrown away here and reported as "no age recorded"
+            # while sitting in the registry. Undeclared means "nobody set a
+            # threshold", not "nothing is known" - and the age is the first
+            # thing you want when deciding whether to declare it or delete it.
+            _lt = r.get("last_rows_ts") or r.get("last_ts")
+            out.append({"name": name, "verdict": "undeclared",
+                        "age_h": ((now - _lt) / 3600.0) if _lt else None,
                         "max_age_h": None,
-                        "count": (reg[name] or {}).get("count") or 0,
+                        "count": r.get("count") or 0,
                         "declared": None, "declared_h": None, "basis": None,
                         "what": "beats but is not in COMPONENTS - declare it or remove it",
-                        "last_at": (reg[name] or {}).get("last_at")})
+                        "last_at": r.get("last_at")})
     return out
 
 
@@ -313,13 +320,32 @@ def line(st=None):
     by = {}
     for s in st:
         by.setdefault(s["verdict"], []).append(s)
+    # ⛔ `empty` WAS MISSING FROM THIS LINE FOR THE WHOLE DAY IT EXISTED.
+    #
+    # status() gained the verdict on 2026-09-18 - "it fires on time and produces
+    # nothing", the entire point of counting rows instead of beats - and then
+    # line(), check() and the __main__ exit code all still listed the four old
+    # verdicts. So the new signal was computed correctly and shown to nobody.
+    # That is the whitelist bug in a second place on the same day: compute and
+    # surface are two separate steps, and doing only the first is silent.
     ls = [f"liveness: {len(by.get('ok', []))} ok, {len(by.get('stale', []))} stale, "
+          f"{len(by.get('empty', []))} empty, "
           f"{len(by.get('never', []))} never, {len(by.get('pending', []))} pending, "
           f"{len(by.get('undeclared', []))} undeclared"]
-    for v in ("never", "stale", "undeclared", "pending"):
+    for v in ("empty", "never", "stale", "undeclared", "pending"):
         for s in by.get(v, []):
-            if s["age_h"] is not None:
+            if v == "empty":
+                # The age here is the ROWS clock, which is the whole distinction.
+                age = (f"fired {s['age_h']:.1f}h ago with NO ROWS"
+                       if s["age_h"] is not None else "fires, produces nothing")
+            elif s["age_h"] is not None:
                 age = f"{s['age_h']:.1f}h ago"
+            elif s["declared_h"] is None:
+                # ⚠️ undeclared components have no declaration date, so there is
+                # no "since declared" to print. This used to crash the whole
+                # report with a TypeError on None - the health tool itself going
+                # down, loudly but uselessly, the moment a beat was undeclared.
+                age = "no age recorded"
             elif v == "pending":
                 age = f"not fired yet, {max(0.0, s['declared_h']):.1f}h into grace"
             else:
@@ -337,7 +363,7 @@ def check(record=None, verbose=True):
     if verbose:
         print("  " + line(st).replace("\n", "\n  "))
     for s in st:
-        if s["verdict"] not in ("never", "stale", "undeclared"):
+        if s["verdict"] not in ("never", "stale", "undeclared", "empty"):
             continue
         if not record:
             continue
@@ -353,6 +379,17 @@ def check(record=None, verbose=True):
                    f"{s['max_age_h']}h threshold")
             detail = (f"Expected: {s['what']}. It has fired {s['count']} times "
                       f"before, so the path works and something stopped it.")
+        elif s["verdict"] == "empty":
+            # ⛔ A DIFFERENT FAILURE FROM stale, NEEDING A DIFFERENT FIX. Stale
+            # means the trigger stopped. Empty means the trigger is fine and the
+            # work produces nothing - the desktop task fired hourly for two days
+            # while collecting zero rows and read as healthy the whole time.
+            msg = (f"{s['name']} is firing on schedule and producing NO ROWS"
+                   + (f" - last row {s['age_h']:.1f}h ago" if s["age_h"] is not None
+                      else " - it has never produced one"))
+            detail = (f"Expected: {s['what']}. The trigger works, so this is not "
+                      f"a scheduling problem: the work inside it is returning "
+                      f"nothing. Threshold {s['max_age_h']}h ({s['basis']}).")
         else:
             msg = f"{s['name']} is recording beats but is not declared in COMPONENTS"
             detail = ("Declare it with a threshold, or remove the beat. An "
@@ -366,5 +403,5 @@ if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     st = status()
     print(line(st))
-    bad = [s for s in st if s["verdict"] in ("never", "stale", "undeclared")]
+    bad = [s for s in st if s["verdict"] in ("never", "stale", "undeclared", "empty")]
     sys.exit(1 if bad else 0)
