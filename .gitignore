@@ -33,3 +33,4 @@ data/tickers/index.json
 # between write and os.replace, and a `git add -A` that lands in that window
 # fails outright - which blocked a merge with the runner on 2026-09-07.
 *.tmp
+data/_launcher/

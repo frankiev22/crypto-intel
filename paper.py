@@ -172,6 +172,20 @@ QUARANTINE_REASON = (
 QUARANTINED_PATHS = {os.path.abspath(LEDGER)}
 
 
+def frozen():
+    """True when this ledger refuses writes. Callers skip; they do not crash.
+
+    The quarantine must not turn the collector's paper stage into a stack trace
+    on every row. It did exactly that on the first scheduled pass - one
+    RuntimeError per candidate, caught and printed, which is noise pretending to
+    be a failure. A frozen ledger is a STATE, and the honest response to it is to
+    skip with a reason, once.
+    """
+    if os.environ.get("CRYPTO_PAPER_UNFREEZE") == "1":
+        return False
+    return bool(QUARANTINED) and os.path.abspath(LEDGER) in QUARANTINED_PATHS
+
+
 def _refuse_if_quarantined():
     """Freeze the FILE, not the module.
 
@@ -310,6 +324,8 @@ def open_entry(contract, symbol=None, price=None, exit_depth=None, liq=None,
     """
     if not contract:
         raise ValueError("contract address is required - never key on ticker")
+    if frozen():
+        return None
     if has_open(contract):
         return None
     # `return _append({...})` put the liveness beat below it beyond reach: 69
@@ -349,6 +365,8 @@ def close_entry(entry_id, price=None, exit_depth=None, reason=None, void=None,
     `void` closes a row entered in error. The entry stays on the chain; the
     void is a new record saying why. Nothing is ever deleted.
     """
+    if frozen():
+        return None
     rows = _read()
     ent = next((r for r in rows if r.get("hash") == entry_id
                 and r.get("type") == "entry"), None)
@@ -629,6 +647,8 @@ def sweep(fetch_pair, verbose=True, should_stop=None):
     so the oldest positions - the ones nearest expiry - are visited first.
     Unbudgeted callers (the GitHub runner) pass nothing and behave as before.
     """
+    if frozen():
+        return (0, 0)
     import datetime as _dt
     liveness.beat("paper.sweep")
     rows = _read()
@@ -841,6 +861,8 @@ def labelled_exits():
 
 def label_unpriceable(dry_run=True, verbose=True):
     """Append `total_loss_inferred` labels for unambiguously dead positions."""
+    if frozen():
+        return (0, 0)
     rows = _read()
     entries = {r["hash"]: r for r in rows if r.get("type") == "entry"}
     already = labelled_exits()

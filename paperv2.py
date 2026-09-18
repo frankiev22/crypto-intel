@@ -144,6 +144,20 @@ QUARANTINE_REASON = ("RULE_V2 fills are priced on the same mid as v1; the "
 QUARANTINED_PATHS = {os.path.abspath(LEDGER)}
 
 
+def frozen():
+    """True when this ledger refuses writes. Callers skip; they do not crash.
+
+    The quarantine must not turn the collector's paper stage into a stack trace
+    on every row. It did exactly that on the first scheduled pass - one
+    RuntimeError per candidate, caught and printed, which is noise pretending to
+    be a failure. A frozen ledger is a STATE, and the honest response to it is to
+    skip with a reason, once.
+    """
+    if os.environ.get("CRYPTO_PAPER_UNFREEZE") == "1":
+        return False
+    return bool(QUARANTINED) and os.path.abspath(LEDGER) in QUARANTINED_PATHS
+
+
 def _refuse_if_quarantined():
     """Freeze the FILE, not the module - see paper._refuse_if_quarantined."""
     if os.environ.get("CRYPTO_PAPER_UNFREEZE") == "1":
@@ -179,6 +193,8 @@ def has_open(contract):
 
 def open_entry(row):
     """Enter one observation into the v2 ledger, recording which arm it is in."""
+    if frozen():
+        return (None, "frozen")
     ok, why = qualifies(row)
     if not ok:
         return None, why
@@ -224,6 +240,8 @@ def open_entry(row):
 
 def close_entry(entry, price, depth, code, detail, elapsed_h):
     """Append a v2 exit. Mirrors v1's record shape so the two are comparable."""
+    if frozen():
+        return None
     ep = entry.get("entry_price_usd")
     mult = (price / ep) if (price and ep) else None
     return _append({
@@ -248,6 +266,8 @@ def sweep(fetch_pair, verbose=True, should_stop=None):
     rather than the filter, and the divergence would be invisible - two
     plausible numbers that were never computed the same way.
     """
+    if frozen():
+        return (0, 0)
     now = dt.datetime.now(dt.timezone.utc)
     stats = {"checked": 0, "closed": 0, "target": 0, "expiry": 0,
              "unpriceable": 0, "still_open": 0, "deferred": 0}
