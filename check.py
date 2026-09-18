@@ -85,6 +85,15 @@ def _pick_pair(pairs):
     return scored
 
 
+# Injection point so the offline suite stays offline. `test_check.py` says
+# "offline by construction - sources are monkeypatched, so this makes no network
+# calls"; wiring chainfields in directly broke that promise silently, which is
+# its own small version of standing rule 16.
+def _round_trip(contract, usd):
+    import chainfields
+    return chainfields.round_trip(contract, usd)
+
+
 def analyse(contract):
     """Returns a dict. Never raises, never guesses a missing input."""
     out = {"contract": contract, "verdict": None, "reasons": [],
@@ -92,7 +101,12 @@ def analyse(contract):
            "exit_depth_usd": None, "liq_usd": None, "fdv_usd": None,
            "pools_seen": 0, "d1": None, "d2": None, "authorities": None,
            "max_size_5pct": None, "round_trip_pct": None,
-           "clip_usd": DEFAULT_CLIP_USD, "concentration": None}
+           "clip_usd": DEFAULT_CLIP_USD, "concentration": None,
+           # ⭐ THE REALIZABLE MEASUREMENT. Backlog A4: chainfields is the
+           # trusted-field source and until now NOTHING in the production path
+           # used it. Unknown stays None throughout - never 0.
+           "realizable": None, "realizable_usd_back": None,
+           "realizable_cost_pct": None, "realizable_venues": None}
 
     if not contract or len(contract) < 32:
         out["verdict"] = "REFUSED"
@@ -120,17 +134,61 @@ def analyse(contract):
         return out
 
     depth, pair = scored[0]
+    out["symbol"] = ((pair.get("baseToken") or {}).get("symbol") or "")[:16]
+
+    # ---------------------------------------------------------------------
+    # ⭐ ASK THE SELLER'S QUESTION BEFORE REFUSING. Backlog A4 + A13.
+    #
+    # ⛔ FOUND BY RUNNING THIS ON A REAL CONTRACT, 2026-09-18. `check.py`
+    # refused OpenClaw as "dead or drained - $0 on the quote side" while
+    # Jupiter round-tripped the same token at 0.77% in the same minute. The
+    # refusal was firing on `resolve.exit_depth_usd()`, which failed 5 of 6
+    # reads on 2026-09-17, and it returned BEFORE any trusted measurement ran.
+    #
+    # A refusal is the right output when nothing can be measured. It is the
+    # WRONG output when something can be measured and we did not look. So the
+    # realizable check now runs first, and a live route overrides a reserve
+    # scan that found nothing.
+    #
+    # ⚠️ The override is one-directional. A working route can rescue a failed
+    # reserve read; it can never suppress a refusal when BOTH say dead.
+    # ---------------------------------------------------------------------
+    try:
+        rt = _round_trip(contract, DEFAULT_CLIP_USD)
+        out["realizable"] = rt.get("verdict")
+        out["realizable_usd_back"] = rt.get("usd_back")
+        out["realizable_cost_pct"] = rt.get("rt_cost_pct")
+        out["realizable_venues"] = rt.get("venues")
+    except Exception as e:
+        out["warnings"].append(
+            f"realizable check unavailable ({type(e).__name__}) - the reported "
+            f"and reserve-derived figures below are NOT corroborated.")
+
+    _routable = out["realizable"] in ("TRADEABLE", "COSTLY")
     if depth is None or depth < MIN_CHECKABLE_DEPTH:
-        out["verdict"] = "REFUSED"
-        out["symbol"] = ((pair.get("baseToken") or {}).get("symbol") or "")[:16]
-        out["exit_depth_usd"] = depth
-        out["refusals"].append(
-            f"the deepest pool holds ${depth:,.0f} on the quote side. That is "
-            f"below ${MIN_CHECKABLE_DEPTH:,.0f} and cannot be exited at any "
-            f"size - the pool is dead or drained. Both detectors were "
-            f"characterised on pools with measurable depth, so neither has "
-            f"anything to say here. This is NOT a clean result.")
-        return out
+        if not _routable:
+            out["verdict"] = "REFUSED"
+            out["exit_depth_usd"] = depth
+            out["refusals"].append(
+                f"the deepest pool holds ${depth:,.0f} on the quote side, below "
+                f"${MIN_CHECKABLE_DEPTH:,.0f}"
+                + (f", and a live ${DEFAULT_CLIP_USD:,.0f} round trip returns "
+                   f"{out['realizable']}" if out["realizable"]
+                   else ", and no live quote could be obtained either")
+                + ". Two independent measurements agree there is no exit. Both "
+                  "detectors were characterised on pools with measurable depth, "
+                  "so neither has anything to say here. NOT a clean result.")
+            return out
+        # ⭐ The reserve scan found nothing and Jupiter can route it anyway.
+        out["warnings"].append(
+            f"RESERVE SCAN DISAGREES WITH THE MARKET: exit_depth_usd read "
+            f"${depth:,.0f} but a live ${DEFAULT_CLIP_USD:,.0f} round trip "
+            f"returns {out['realizable']}"
+            + (f" (${out['realizable_usd_back']:,.2f} back, "
+               f"{out['realizable_cost_pct']:.2f}% cost)"
+               if out["realizable_usd_back"] is not None else "")
+            + ". Trusting the live route. ⛔ Every depth-derived number below is "
+              "unreliable for this token - see docs/BACKLOG.md A13.")
     out["pair"] = pair.get("pairAddress")
     out["symbol"] = ((pair.get("baseToken") or {}).get("symbol") or "")[:16]
     out["exit_depth_usd"] = depth
@@ -244,6 +302,48 @@ def analyse(contract):
         except Exception as e:
             out["warnings"].append(f"concentration check failed ({type(e).__name__}).")
 
+    # ---------------------------------------------------------------------
+    # ⭐ REALIZABLE LIQUIDITY - the only measure that asks the seller's question.
+    #
+    # Everything above this point rests on `resolve.exit_depth_usd()`, which
+    # infers the quote side from pool reserves and FAILED 5 OF 6 READS on
+    # 2026-09-17 ("scan missed the real vault", "no USD price for quote mint").
+    # This asks Jupiter instead: buy $100 of the token, sell back exactly what
+    # that returned, and report what comes back. No reserves, no pool layout,
+    # no price feed - and nothing is executed.
+    #
+    # ⚠️ AFFORDABLE HERE AND NOWHERE ELSE. check.py is ONE contract per
+    # invocation, which is a decision point. chainfields caps Jupiter at 55/min
+    # process-wide, so this must never be copied into the per-row scan path.
+    #
+    # ⛔ A failure here NEVER becomes a number. If the quote cannot be had, the
+    # field stays None and renders as "cannot be measured" (standing rule 5).
+    # ---------------------------------------------------------------------
+    # ⭐ Already measured above, BEFORE the refusal gate, so a live route can
+    # rescue a failed reserve read. This block only turns that measurement into
+    # a reason.
+    if out["realizable"] in ("TOTAL_LOSS", "NO_SELL_ROUTE", "NO_BUY_ROUTE"):
+        _b = out["realizable_usd_back"]
+        out["reasons"].append(
+            f"NOT EXITABLE: a live round trip at ${DEFAULT_CLIP_USD:,.0f} "
+            f"returns {out['realizable']}"
+            + (f" - ${_b:,.2f} back on ${DEFAULT_CLIP_USD:,.0f} in"
+               if _b is not None else "")
+            + ". This is what a seller actually experiences, measured now, "
+              "not inferred from reserves.")
+    # ⛔ NO "OVERSTATEMENT RATIO" HERE, and the reason is worth keeping. My
+    # first version computed liq_usd / usd_back and flagged anything over 100x.
+    # That is not a finding, it is arithmetic: usd_back from a $100 probe is
+    # ~$100 for ANY healthy token, so the ratio is just liq/100 and it fires on
+    # every pool above $10k. test_check.py caught it immediately by flagging two
+    # deliberately-clean fixtures.
+    #
+    # The real 781x result compares reported liquidity against EXITABLE DEPTH -
+    # the most that can be taken out - which a fixed $100 probe cannot measure.
+    # Getting it right needs chainfields.depth_curve() and a defensible
+    # definition of "exitable"; until then there is no number here, which is the
+    # correct amount of number to have.
+
     # ---- the depth sanity check, independent of either detector
     if out["liq_usd"] and depth is not None and out["liq_usd"] > 0:
         share = depth / out["liq_usd"]
@@ -259,9 +359,24 @@ def analyse(contract):
     return out
 
 
+def _safe_sym(sym):
+    """Strip bidi/zero-width controls and mark them. See docs/SYMBOL_ATTACKS.md.
+
+    ⛔ 112 contracts in our corpus carry a text-direction override in the symbol;
+    one renders as "USDC" and claimed $35M of liquidity with zero sells. A
+    terminal honours U+202E exactly like a browser does, so this output is as
+    exposed as the dashboard was.
+    """
+    BIDI = {0x202A, 0x202B, 0x202C, 0x202D, 0x202E, 0x2066, 0x2067, 0x2068,
+            0x2069, 0x200E, 0x200F, 0x200B, 0x200C, 0x200D, 0xFEFF}
+    raw = str(sym or "")
+    clean = "".join(c for c in raw if ord(c) not in BIDI)
+    return clean + ("  [!BIDI]" if len(clean) != len(raw) else "")
+
+
 def render(r):
     L = []
-    sym = f" {r['symbol']}" if r.get("symbol") else ""
+    sym = f" {_safe_sym(r['symbol'])}" if r.get("symbol") else ""
     L.append(f"CONTRACT {r['contract'][:20]}...{sym}")
     L.append("")
     if r["verdict"] == "REFUSED":
@@ -289,6 +404,19 @@ def render(r):
                  + (f"   ({100*r['depth_over_liq']:.1f}% is really exitable)"
                     if (r.get("depth_over_liq") is not None
                         and (r.get("liq_usd") or 0) >= 1000) else ""))
+    # ⭐ The realizable line goes ABOVE the inferred ones: it is the only one
+    # that asks what a seller gets, and it should be read first.
+    _rv = r.get("realizable")
+    if _rv is None:
+        L.append("  realizable (Jupiter)  CANNOT BE MEASURED - no quote")
+    else:
+        _b, _c = r.get("realizable_usd_back"), r.get("realizable_cost_pct")
+        L.append(f"  realizable (Jupiter)  {_rv}"
+                 + (f"   ${_b:,.2f} back on ${r.get('clip_usd', 100):,.0f}"
+                    f"  ({_c:.2f}% cost)" if _b is not None and _c is not None
+                    else "   - no sell route at any size")
+                 + (f"   via {'+'.join(r['realizable_venues'][:3])}"
+                    if r.get("realizable_venues") else ""))
     rt = r.get("round_trip_pct")
     if rt is None:
         L.append(f"  ${r.get('clip_usd', 100):,.0f} round trip     CANNOT BE MEASURED"

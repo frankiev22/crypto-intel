@@ -32,9 +32,25 @@ def _pair(depth_quote=5000.0, price_usd=0.001, price_native=0.00001,
 RESULTS = []
 
 
-def case(name, pairs, expect_verdict, must_contain=None, forbid=None):
+# ⭐ The realizable stub is part of the FIXTURE now, because the two
+# measurements are independent and a test has to say what each one found.
+# A genuinely drained pool is not routable either; a pool where only the
+# RESERVE READ failed is. Those are different scenarios and check.py is
+# supposed to tell them apart - see the OpenClaw false refusal, 2026-09-18.
+RT_OK = {"verdict": "TRADEABLE", "usd_back": 97.0, "rt_cost_pct": 3.0,
+         "venues": ["StubAMM"], "token_qty_raw": 1_000_000, "error": None}
+RT_DEAD = {"verdict": "NO_SELL_ROUTE", "usd_back": None, "rt_cost_pct": None,
+           "venues": None, "token_qty_raw": None, "error": "no route"}
+
+
+def case(name, pairs, expect_verdict, must_contain=None, forbid=None, rt=None):
     check.S.dexscreener_token = lambda c: pairs
     check.onchain = None                    # no RPC in tests
+    # ⛔ OFFLINE BY CONSTRUCTION, and that now has to be enforced rather than
+    # assumed: wiring chainfields into analyse() made this suite hit Jupiter
+    # without anyone noticing. Stubbed to a realistic TRADEABLE response so the
+    # fixtures below test the DETECTORS, not the network.
+    check._round_trip = lambda c, usd, _r=(rt or RT_OK): _r
     r = check.analyse("So11111111111111111111111111111111111111112")
     txt = check.render(r)
     ok = r["verdict"] == expect_verdict
@@ -60,16 +76,31 @@ print("=" * 72)
 
 # A pool whose quote side is empty. This is the exact shape that returned
 # "NOT FLAGGED" / exit 0 before the fix.
-case("drained pool ($0 quote side) refuses, never 'not flagged'",
+case("drained pool ($0 quote side, no route) refuses, never 'not flagged'",
      [_pair(depth_quote=0.0, liq_usd=0.0)],
-     "REFUSED",
+     "REFUSED", rt=RT_DEAD,
      must_contain=["refused", "not a clean result"],
      forbid=["not flagged"])
 
-case("dust pool ($40 quote side, under the $100 floor) refuses",
+case("dust pool ($40 quote side, no route) refuses",
      [_pair(depth_quote=40.0, liq_usd=80.0)],
-     "REFUSED",
+     "REFUSED", rt=RT_DEAD,
      forbid=["not flagged"])
+
+# ⛔ THE FALSE REFUSAL THIS FIXED, 2026-09-18. check.py refused OpenClaw as
+# "dead or drained - $0 on the quote side" while Jupiter round-tripped the same
+# token at 0.77% in the same minute. resolve.exit_depth_usd() failed 5 of 6
+# reads on 09-17; the refusal ran before anything trusted was consulted.
+case("⭐ $0 reserve read but a LIVE ROUTE is assessed, not refused",
+     [_pair(depth_quote=0.0, liq_usd=0.0)],
+     "not flagged", rt=RT_OK,
+     must_contain=["reserve scan disagrees", "trusting the live route"],
+     forbid=["dead or drained"])
+
+case("⚠️ and the disagreement is stated, never silently papered over",
+     [_pair(depth_quote=0.0, liq_usd=0.0)],
+     "not flagged", rt=RT_OK,
+     must_contain=["unreliable for this token"])
 
 case("pool just over the floor ($150) is assessed, not refused",
      [_pair(depth_quote=150.0, liq_usd=300.0)],
@@ -159,6 +190,82 @@ r = check.analyse("So11111111111111111111111111111111111111112")
 ok = r["verdict"] == "REFUSED" and "not flagged" not in check.render(r).lower()
 RESULTS.append(("an unreachable source refuses, never 'not flagged'", ok, ""))
 print(f"  {'PASS' if ok else 'FAIL'}  an unreachable source refuses, never 'not flagged'")
+
+# ---------------------------------------------------------------------------
+# ⭐ THE REALIZABLE CHECK (backlog A4). check.py is the FIRST production call
+# site to use chainfields; before this, the trusted-field module was imported
+# only by paperv3 and its own test.
+# ---------------------------------------------------------------------------
+def _rt_case(name, rt_stub, expect_verdict, must_contain=None, forbid=None):
+    check.S.dexscreener_token = lambda c: [_pair()]
+    check.onchain = None
+    check._round_trip = lambda c, usd: rt_stub
+    r = check.analyse("So11111111111111111111111111111111111111112")
+    txt = check.render(r)
+    ok = r["verdict"] == expect_verdict
+    why = "" if ok else f"verdict={r['verdict']} expected={expect_verdict}"
+    for m in (must_contain or []):
+        if ok and m.lower() not in txt.lower():
+            ok, why = False, f"missing {m!r}"
+    for m in (forbid or []):
+        if ok and m.lower() in txt.lower():
+            ok, why = False, f"forbidden {m!r} present"
+    RESULTS.append((name, ok, why))
+    print(f"  {'PASS' if ok else 'FAIL'}  {name}" + (f"  <- {why}" if why else ""))
+
+
+print()
+print("realizable liquidity")
+_rt_case("⛔ NO_SELL_ROUTE flags as NOT EXITABLE",
+         {"verdict": "NO_SELL_ROUTE", "usd_back": None, "rt_cost_pct": None,
+          "venues": None, "error": "no route"},
+         "FLAGGED", must_contain=["NOT EXITABLE", "NO_SELL_ROUTE"])
+_rt_case("⛔ TOTAL_LOSS flags",
+         {"verdict": "TOTAL_LOSS", "usd_back": 0.4, "rt_cost_pct": 99.6,
+          "venues": ["X"], "error": None},
+         "FLAGGED", must_contain=["NOT EXITABLE"])
+_rt_case("a TRADEABLE pool is not flagged by this check",
+         {"verdict": "TRADEABLE", "usd_back": 97.0, "rt_cost_pct": 3.0,
+          "venues": ["Meteora"], "error": None},
+         "not flagged", must_contain=["realizable", "TRADEABLE", "Meteora"],
+         forbid=["NOT EXITABLE"])
+_rt_case("⚠️ COSTLY is reported but does NOT flag on its own",
+         {"verdict": "COSTLY", "usd_back": 70.0, "rt_cost_pct": 30.0,
+          "venues": ["Y"], "error": None},
+         "not flagged", must_contain=["COSTLY"], forbid=["NOT EXITABLE"])
+
+# ⛔ unknown must never render as a number, and must never flag
+def _explode(c, usd):
+    raise OSError("jupiter down")
+
+
+check.S.dexscreener_token = lambda c: [_pair()]
+check.onchain = None
+check._round_trip = _explode
+r = check.analyse("So11111111111111111111111111111111111111112")
+txt = check.render(r)
+_conds = {
+    "realizable is None": r["realizable"] is None,
+    "usd_back is None": r["realizable_usd_back"] is None,
+    "renders CANNOT BE MEASURED": "CANNOT BE MEASURED" in txt,
+    "not FLAGGED": r["verdict"] != "FLAGGED",
+    "warns not corroborated": any("not corroborated" in w.lower()
+                                  for w in r["warnings"]),
+}
+ok = all(_conds.values())
+if not ok:
+    print("      sub-conditions:", {k: v for k, v in _conds.items()})
+    print("      verdict:", r["verdict"], "| warnings:", r["warnings"][:1])
+RESULTS.append(("⛔ a dead quote API renders 'cannot be measured', never 0", ok, ""))
+print(f"  {'PASS' if ok else 'FAIL'}  ⛔ a dead quote API renders 'cannot be measured', never 0")
+
+# and the suite must stay OFFLINE - analyse() may not import the network module
+# on its own account during these tests.
+import inspect
+_src = inspect.getsource(check.analyse)
+ok = "chainfields.round_trip(" not in _src and "_round_trip(" in _src
+RESULTS.append(("⭐ analyse() goes through the injection point, so tests stay offline", ok, ""))
+print(f"  {'PASS' if ok else 'FAIL'}  ⭐ analyse() goes through the injection point, so tests stay offline")
 
 print()
 failed = [r for r in RESULTS if not r[1]]
