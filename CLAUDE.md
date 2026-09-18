@@ -182,10 +182,22 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
 
 ### Current blockers, in order
 
-1. ⛔ **`onchain_reserves.exit_depth()` is unreliable** — 5 of 6 reads failed on
-   2026-09-17 (`UNRELIABLE READ: scan missed the real vault`, `no USD price for
-   quote mint`). **Everything that verifies a number depends on this.** Highest
-   leverage fix in the repo.
+1. ⚠️ **`onchain_reserves.exit_depth()` is unreliable — but it is NO LONGER what
+   everything depends on, and the old wording here conflated two functions with
+   similar names.** Re-derived 2026-09-18:
+
+   - **`onchain_reserves.exit_depth(pool, base, quote)`** — the real on-chain
+     read, 5 of 6 failed on 09-17. ⭐ **It has exactly ONE live caller:**
+     `paper.py:810`, inside the **quarantined** v1 close path, where it fills a
+     supplementary `chain_depth` field. Nothing else in the repo imports it.
+   - **`resolve.exit_depth_usd(pair)`** — computed from the Dexscreener
+     `liquidity` payload. **This is the one on the hot path**, with ⛔ **four
+     copies**: `resolve`, `scanner`, `watchlist`, `paper`. It gates
+     `paper.wants_authority_check()` and therefore the whole v3 funnel.
+
+   ⭐ **What verifies a number today is `chainfields.round_trip()`** — Jupiter,
+   realizable, used by `check.py` and `paperv3`. The leverage moved with it.
+   See `test_depth.py` for the two divergences between the four copies.
 2. ✅ **RESOLVED 2026-09-18 — the collector runs on GitHub Actions again.**
    The repo is **public**, so Actions minutes are free and unlimited and the
    ~$31/mo question is closed. Runs take ~9-10 min at the 2026-09-07 pacing

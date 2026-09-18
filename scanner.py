@@ -45,13 +45,37 @@ def age_hours(pair):
 
 def resolve_exit_depth(pair):
     """Quote-side USD for one pool. Local copy of resolve.exit_depth_usd() to
-    keep the scanner free of a circular import."""
+    keep the scanner free of a circular import.
+
+    ⛔ EVERY _f HERE PASSES None EXPLICITLY, AND THAT IS THE WHOLE POINT.
+    This module's `_f` defaults to 0.0 while resolve's and watchlist's default
+    to None, so this copy - the one that writes `exit_depth_usd` onto every
+    journalled row - was turning a MISSING field into a measured zero. Measured
+    2026-09-18: 11,490 of 15,222 rows (75.5%) carry exactly 0.0, essentially all
+    bonding-curve pools, and live re-reads confirm those pairs ship no
+    `liquidity` block at all - no usd, no quote, no base, 30 of 30.
+
+    ⚠️ So the honest answer was "not measured" and we wrote "measured, empty".
+    Standing rule 5, in the module that produces the permanent record: five
+    separate failures in this project came from an absent measurement rendering
+    as a real value.
+
+    ⛔ No gate changed - 0.0 and None both fail MIN_EXIT_DEPTH, and a
+    bonding-curve row is refused on venue anyway - and no number was lost: 0 of
+    30 pairs had a depth that resolve could compute and this returned 0.0 for.
+    What was wrong was the KIND of the recorded value, on three quarters of the
+    journal. Rule 8 means those rows stay; this stops new ones.
+
+    ⚠️ `_f`'s 0.0 default is left alone elsewhere in this file. It is load-
+    bearing for scoring, where a missing volume genuinely is zero for the
+    arithmetic, and changing it globally would move scores.
+    """
     liq = pair.get("liquidity") or {}
-    q = _f(liq.get("quote"))
-    pu, pn = _f(pair.get("priceUsd")), _f(pair.get("priceNative"))
+    q = _f(liq.get("quote"), None)
+    pu, pn = _f(pair.get("priceUsd"), None), _f(pair.get("priceNative"), None)
     if q is not None and pu and pn:
         return q * (pu / pn)
-    total, base = _f(liq.get("usd")), _f(liq.get("base"))
+    total, base = _f(liq.get("usd"), None), _f(liq.get("base"), None)
     if total is not None and base is not None and pu:
         return max(0.0, total - base * pu)
     return None
