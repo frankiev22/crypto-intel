@@ -149,7 +149,15 @@ SCAN_BUDGET_S = float(os.environ.get("CRYPTO_SCAN_BUDGET_S", "150"))
 # Only rows at or above this score get an authority check, plus anything the
 # paper log would enter. Bounds the RPC spend to the rows we would act on.
 AUTHORITY_CHECK_SCORE = int(os.environ.get("CRYPTO_AUTHORITY_SCORE", "70"))
-LAST_SCAN = {"pools": 0, "enriched": 0, "failed": 0, "budget_hit": False}
+# `skipped` carries the ADDRESSES we never looked at, not just a count.
+# Measured 2026-09-18 across 399 passes: coverage is 97.0% overall and 99% at the
+# median, but 55% of passes truncate and the worst saw 19%. The drop is always
+# the TAIL, and sources.new_pools() returns newest-first, so the pools we skip
+# are systematically the OLDEST in the batch. A truncated pass that records only
+# a count is indistinguishable from a complete one at analysis time - which is
+# how a 3% directional bias becomes invisible. See docs/SAMPLING_BIAS.md.
+LAST_SCAN = {"pools": 0, "enriched": 0, "failed": 0, "budget_hit": False,
+             "skipped": [], "coverage": 1.0}
 
 
 def socials_of(pair):
@@ -195,7 +203,8 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
     if verbose: print(f"pulled {len(pools)} new pools on {network}")
     budget = SCAN_BUDGET_S if budget_s is None else budget_s
     started = time.time()
-    LAST_SCAN.update(pools=len(pools), enriched=0, failed=0, budget_hit=False)
+    LAST_SCAN.update(pools=len(pools), enriched=0, failed=0, budget_hit=False,
+                     skipped=[], coverage=1.0)
     rows = []
     row_s, _t_prev = [], None       # measured cost of a row, this pass
     for i, p in enumerate(pools):
@@ -213,12 +222,18 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
                 else 3 * S.per_call_estimate())
         if _left is not None and _left <= 1.5 * _row:
             LAST_SCAN["budget_hit"] = True
+            LAST_SCAN["skipped"] = [((q.get("attributes") or {}).get("address"))
+                                    for q in pools[i:]]
+            LAST_SCAN["coverage"] = (i / len(pools)) if pools else 1.0
             if verbose:
                 print(f"  stage deadline: {_left:.0f}s left and a row costs ~{_row:.1f}s "
                       f"- stopping after {i}/{len(pools)} pools, keeping what we have")
             break
         if time.time() - started > budget:
             LAST_SCAN["budget_hit"] = True
+            LAST_SCAN["skipped"] = [((q.get("attributes") or {}).get("address"))
+                                    for q in pools[i:]]
+            LAST_SCAN["coverage"] = (i / len(pools)) if pools else 1.0
             if verbose:
                 print(f"  enrichment budget {budget:.0f}s spent after {i}/{len(pools)} "
                       f"pools - stopping and keeping what we have")

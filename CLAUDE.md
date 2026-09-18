@@ -116,6 +116,15 @@ fees. Any path that depends on a track record has nothing to sell yet.
     **If you are comparing two conditions, open both at once and share a start
     barrier.** Same family as rule 13: a measurement taken at the wrong moment
     does not describe the moment you care about.
+15. ⛔ **A truncated sample must record WHAT it missed, not just how much.**
+    The scanner enriches `pools` newest-first and `break`s on a time budget, so
+    the rows it drops are always the tail - systematically the oldest pools in
+    the batch. Measured across 399 passes: 97.0% coverage overall, 99% median,
+    but 55% of passes truncate and the worst saw 19%. `LAST_SCAN["skipped"]` now
+    carries the addresses. ⚠️ **I first reported this as "24% dropped" from a
+    single pass I happened to watch - an 8x overstatement, and the same
+    generalise-from-one-observation error this rule exists to catch.** Small-n
+    findings are the exposed ones; see `docs/SAMPLING_BIAS.md`.
 12. ⚠️ **Any script hitting a Cloudflare-fronted API must set a `User-Agent`.**
     Python's default `Python-urllib/3.x` is blocked with a bare `403 error code:
     1010`, which looks exactly like an auth failure and is not. `sources.py:12`
