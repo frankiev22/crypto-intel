@@ -151,8 +151,13 @@ STAGED_MAX_SECONDS = 110
 # What each stage can fire. Bookkeeping at the end of main() fires on every
 # invocation, whatever the stage.
 STAGE_FIRES = {
-    "scan": {"scan.observations", "fieldguard.check", "paper.open"},
-    "sweep": {"paper.sweep", "paper.close"},
+    "scan": {"scan.observations", "fieldguard.check", "paper.open",
+             # ⭐ v3 enters in the SAME loop as v1 and v2 - same row, same pass,
+             # three filters. A forward log moved into a later stage becomes a
+             # retrospective one, and every retrospective finding here has died
+             # of leakage.
+             "paperv3.open"},
+    "sweep": {"paper.sweep", "paper.close", "paperv3.sweep", "paperv3.close"},
     "watchlist": {"watchlist.sweep", "milestone.graduated"},
     "1": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
     "6": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
@@ -351,6 +356,21 @@ def sweep_stage(verbose=True):
     if deferred:
         STAGE_STOPS["sweep"] = (f"time budget reached with {deferred} open "
                                 f"positions unchecked")
+    # ⭐ V3, THE LEDGER THAT PRICES ITS FILLS ON REAL QUOTES. Nothing scheduled
+    # it until 2026-09-18: 71 passing tests, a pre-committed rule, one hand-run
+    # entry, and collect.py never called it. ⛔ Its own try block and its own
+    # ledger - a v3 failure can never touch a v1 or v2 close.
+    try:
+        import paperv3
+        s3 = paperv3.sweep(verbose=verbose, should_stop=_stage_stop)
+        if (s3 or {}).get("deferred"):
+            STAGE_STOPS["sweep"] = (f"time budget reached with {s3['deferred']} "
+                                    f"v3 positions unchecked")
+        if verbose and (s3 or {}).get("checked"):
+            print(f"  [v3] swept {s3['checked']} open, closed {s3['closed']}"
+                  + (f", {s3['errors']} recording errors" if s3.get("errors") else ""))
+    except Exception as e:
+        print(f"  v3 sweep failed: {e}")
     try:
         _made, _left = paper.label_unpriceable(dry_run=False, verbose=verbose)
         if _made:

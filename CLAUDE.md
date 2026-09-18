@@ -166,6 +166,7 @@ fees. Any path that depends on a track record has nothing to sell yet.
 | component | what it does | state |
 |---|---|---|
 | `collect.py` | hourly staged collector: scan, sweep, watchlist, 1/6/24/168h | ✅ **running again on the hosted runner, 2026-09-18** |
+| ⭐ `paperv3.py` | the ledger that prices fills on real quotes | ✅ **SCHEDULED 2026-09-18** — enters in the scan loop beside v1/v2, sweeps in the sweep stage. ⛔ **Nothing called it before that**, despite 71 passing tests |
 | GitHub Actions `collect.yml` | same, hosted | ✅ **ALIVE — the repo went public 2026-09-18, so Actions minutes are free and unlimited.** A scheduled run fired on its own at 11:54Z and collected a full pass |
 | Claude desktop task | same, on the host | ⛔ dead since the 9/15 reboot — sandbox lost its drive mount |
 | `site/api/helius.mjs` on Vercel | Helius webhook receiver → Supabase → Discord | ✅ **deployed and answering**, but watching 0 addresses |
@@ -288,6 +289,11 @@ not added there does not exist) · `paper.py` / `paperv2.py` (simulation ledgers
 liquidity), `supply()`, `market_cap()`, `holder_count()`, `trusted()`. ⛔ **Unknown
 is None, never 0.** Decision-point only: a process-wide bucket caps Jupiter at
 55/min, so it must never reach the per-row scan path. `test_chainfields.py --live`.
+
+⭐ **`holders` is on observation rows from 2026-09-18** — fetched at the decision
+point only, for rows that cleared every free condition of RULE_V3 (~7 a pass,
+measured 92 of 1,003 rows over three days). Helius DAS, never Jupiter. Forward
+only: no historical row has it. `holders_truncated` means the number is a FLOOR.
 
 ⚠️ **`journal.record()` is a whitelist and it has silently eaten four fields**
 (`vol_to_liq`, `vol_burst`, the news NameError, `paper_v2_arm`) plus

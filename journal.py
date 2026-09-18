@@ -285,6 +285,13 @@ def record_coverage(network, window, scanned, pass_score=70, passed=0,
     obj["pools_processed"] = proc
     obj["pools_enriched"] = sc.get("enriched")
     obj["pools_failed"] = sc.get("failed")
+    # ⭐ What v3 cost and what it refused, per pass. Without this, an empty v3
+    # ledger is indistinguishable from v3 never running.
+    obj["holders_fetched"] = sc.get("holders_fetched")
+    obj["holders_deferred"] = sc.get("holders_deferred")
+    obj["v3_quotes"] = sc.get("v3_quotes")
+    obj["v3_deferred"] = sc.get("v3_deferred")
+    obj["v3_refusals"] = sc.get("v3_refusals")
     obj["pools_fresh"] = sc.get("pools_fresh")
     obj["pools_carried_in"] = sc.get("pools_carried")
     obj["carried_forward"] = sc.get("carried_forward")
@@ -719,6 +726,16 @@ def record(rows, network, pass_score=70):
             # A non-attempt is a fact and it gets persisted like any other.
             "authorities_checked": r.get("authorities_checked"),
             "authorities_skipped": r.get("authorities_skipped"),
+            # ⭐ THE SHARPEST SEPARATOR WE HAVE MEASURED, and it was on zero of
+            # the last 400 rows. Median 1,350 holders on contracts that can be
+            # sold, 3 on contracts that return nothing. Fetched only for rows
+            # that already cleared every free condition of RULE_V3, so most rows
+            # carry holders_checked=False and no count - which is a fact, not a
+            # gap. ⛔ truncated means the number is a FLOOR, never a count.
+            "holders": r.get("holders"),
+            "holders_truncated": r.get("holders_truncated"),
+            "holders_checked": r.get("holders_checked"),
+            "holders_error": r.get("holders_error"),
             # What was SHOWN, beside what was scored. PRECOMMIT_surface_grade.md.
             "grade": r.get("grade"), "grade_label": r.get("grade_label"),
             # THE PARALLEL V2 ARM, computed every pass and dropped by this very
@@ -730,6 +747,13 @@ def record(rows, network, pass_score=70):
             # from an observation row.
             "paper_v2_entry": r.get("paper_v2_entry"),
             "paper_v2_arm": r.get("paper_v2_arm"),
+            # ⭐ V3, THE SAME BACK-REFERENCE, plus the reason a row we PAID to
+            # evaluate was refused. Set only for rows that cleared every free
+            # condition - those are the ones a call was spent on. "The v3 ledger
+            # is empty" is not a finding until the refusal distribution is
+            # beside it; the per-pass tally lives on the coverage row.
+            "paper_v3_entry": r.get("paper_v3_entry"),
+            "paper_v3_skipped": r.get("paper_v3_skipped"),
             # SOCIALS, added 2026-09-17. The fifth field this whitelist would
             # have eaten - and the first one caught BEFORE it was lost, by the
             # guard below rather than by someone noticing months later.

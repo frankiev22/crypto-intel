@@ -182,3 +182,70 @@ single row until that is fixed, and this is the gating item, not a footnote.
    or `last_unattended_at` in `data/liveness.json`.
 
 ⚠️ **This is a Task Scheduler entry, not a migration, and needs no spend.**
+
+---
+
+## 10. ⭐ SCHEDULED, 2026-09-18 — and what had to be true first
+
+⛔ **Until today nothing called this module.** 71 passing tests, a frozen rule, a
+live hand-run entry, and `collect.py` did not reference `paperv3` anywhere. The
+ledger recorded nothing automatically for the entire time it existed. **Passing
+tests are not evidence that a module is in the system** — the same pattern as
+`chainfields` (imported only by paperv3) and `devwallet` (imported by nothing).
+
+⚠️ **And wiring it in alone would have produced a gate that could never pass.**
+`holders` was on **zero of the last 400 observation rows**, and RULE_V3 refuses
+an unknown float by design. v3 would have entered nothing, for ever, and read
+exactly like a quiet market. Three things were required together:
+
+1. **`holders` on the row.** Fetched at the decision point in `scanner.py` for
+   rows that already cleared every free condition — measured **92 of 1,003 rows
+   over three days**, roughly 7 a pass. Helius DAS, not Jupiter.
+2. **`holders` in `journal.record()`'s whitelist**, or it is computed and does
+   not exist. That whitelist has eaten five fields.
+3. **v3 entry inside the enrichment loop**, beside v1 and v2 — same row, same
+   pass, three filters. ⛔ Moving it to a later stage would turn a forward log
+   into a retrospective one, and every retrospective finding in this project has
+   died of leakage. It is also standing rule 14: conditions opened
+   simultaneously, never in sequence.
+
+**Cost per pass, stated:** ~7 holder counts; one round trip (2 Jupiter calls)
+for each row clearing `holders>=100`; and **an entry costs three round trips,
+not one** — the $100 gate quote plus shadow quotes at $250 and $500, six Jupiter
+calls, against a 55/min bucket and a 540s scan budget. Ceilings are
+`CRYPTO_HOLDER_BUDGET` (25) and `CRYPTO_V3_QUOTE_BUDGET` (15), and both record
+what they deferred rather than skipping silently.
+
+### ⛔ The liveness thresholds, pre-committed here rather than invented
+
+`paperv3.sweep` is a **schedule** event: it runs every pass, so it carries a real
+**12h** threshold matching `paper.sweep`, which shares the stage.
+
+`paperv3.open` and `paperv3.close` are **market** events. RULE_V3 is strictly
+stricter than v1 and its entry rate **has never been observed**, because nothing
+ever ran it. Any staleness bar set today would be invented, and an alarm that
+fires when nothing is wrong is the failure this repo documented and shipped
+again on the morning of 2026-09-18.
+
+⭐ **So they are declared `unmetered`: counted and printed, never alarmed.** This
+is not a way to silence a component — the verdict appears in every
+`python liveness.py` line with the reason attached.
+
+**The threshold gets set from data at whichever comes first:**
+
+- **30 v3 entries**, or
+- **14 days of unattended collection** from the first scheduled pass that runs
+  this code.
+
+⛔ **Written before the data, so it cannot be moved to fit a result.** If the
+observed rate makes a useful threshold impossible — for example if entries are
+so rare that any bar is either always-firing or never-firing — that is a finding
+about RULE_V3, and it gets recorded as one rather than being tuned away.
+
+### Verified, not assumed
+
+`test_v3wiring.py` drives the real `scanner.scan()` loop with the network stubbed
+and asserts a **ledger row** comes out: the entry lands, the refused row records
+why, the per-pass refusal tally reaches the coverage row, and the sweep closes
+the position at **2.5x** against a live sell quote for the exact holding. **32
+checks on the output, not on whether the code ran.**

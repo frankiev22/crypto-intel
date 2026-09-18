@@ -107,6 +107,27 @@ COMPONENTS = {
                              "per-outlet news staleness was checked"),
     "fieldguard.check":     (12, "2026-09-07T12:05:00Z", "measured",
                              "produced fields were diffed against stored fields"),
+    # ⭐ V3, SCHEDULED FROM 2026-09-18. The sweep runs every pass, so it has a
+    # real threshold: 12h matches paper.sweep, which shares the stage.
+    "paperv3.sweep":        (12, "2026-09-18T15:00:00Z", "measured",
+                             "the v3 ledger looked for positions to close"),
+    # ⛔ AND THESE TWO HAVE NO THRESHOLD, DELIBERATELY.
+    #
+    # An entry is a MARKET event, not a schedule event. RULE_V3 is strictly
+    # stricter than v1 - amm, both authorities dead, a sell side, holders>=100
+    # AND a TRADEABLE $100 round trip - and the entry rate under it has never
+    # been observed, because nothing ever ran it. Any staleness bar I set today
+    # would be invented, and an alarm that fires when nothing is wrong is the
+    # failure this repo documented and I shipped again this morning.
+    #
+    # `None` means DECLARED AND COUNTED, NEVER ALARMED. It is not a way to
+    # silence a component: the verdict is `unmetered`, which is printed, and the
+    # threshold gets set from data once there are 30 entries or 14 days,
+    # whichever comes first. Recorded in PRECOMMIT_paper_v3.md.
+    "paperv3.open":         (None, "2026-09-18T15:00:00Z", "unmetered",
+                             "a v3 position was opened at a real quoted fill"),
+    "paperv3.close":        (None, "2026-09-18T15:00:00Z", "unmetered",
+                             "a v3 position was closed against a live sell quote"),
 }
 
 
@@ -293,6 +314,16 @@ def status():
         _fired = (r.get("last_unattended_ts") if "last_origin" in r
                   else r.get("last_ts"))
         fired_h = ((now - _fired) / 3600.0) if _fired else None
+        if max_age_h is None:
+            # ⭐ DECLARED, COUNTED, NEVER ALARMED. There is no honest bar yet.
+            out.append({"name": name, "verdict": "unmetered", "age_h": age_h,
+                        "max_age_h": None, "count": r.get("count") or 0,
+                        "declared": declared, "declared_h": declared_h,
+                        "basis": basis, "what": what,
+                        "last_at": r.get("last_at"),
+                        "last_origin": r.get("last_origin"),
+                        "manual_age_h": manual_h})
+            continue
         firing_ok = fired_h is not None and fired_h <= max_age_h
         # ⭐ EMPTY means "fired unattended and produced NOTHING", which is only
         # knowable when rows have actually been tracked for this entry.
@@ -355,10 +386,14 @@ def line(st=None):
     ls = [f"liveness: {len(by.get('ok', []))} ok, {len(by.get('stale', []))} stale, "
           f"{len(by.get('empty', []))} empty, "
           f"{len(by.get('never', []))} never, {len(by.get('pending', []))} pending, "
+          f"{len(by.get('unmetered', []))} unmetered, "
           f"{len(by.get('undeclared', []))} undeclared"]
-    for v in ("empty", "never", "stale", "undeclared", "pending"):
+    for v in ("empty", "never", "stale", "undeclared", "unmetered", "pending"):
         for s in by.get(v, []):
-            if v == "empty":
+            if v == "unmetered":
+                age = (f"last {s['age_h']:.1f}h ago" if s["age_h"] is not None
+                       else "never yet") + ", no threshold set - market event"
+            elif v == "empty":
                 # The age here is the ROWS clock, which is the whole distinction.
                 age = (f"fired {s['age_h']:.1f}h ago with NO ROWS"
                        if s["age_h"] is not None else "fires, produces nothing")

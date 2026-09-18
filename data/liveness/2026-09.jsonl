@@ -41504,3 +41504,4 @@
 {"name": "outcome.recorded", "ts": 1789741949, "n": 1, "detail": null, "origin": "runner"}
 {"name": "news.freshness", "ts": 1789741958, "n": 1, "detail": "0 stale outlet(s)", "origin": "runner"}
 {"name": "detector.drift", "ts": 1789741959, "n": 1, "detail": "stable", "origin": "runner"}
+{"name": "scan.observations", "ts": 1789744158, "n": 1, "detail": null, "origin": "manual"}

@@ -86,6 +86,19 @@ PINNED_GATE_V3 = {"NOTIONAL_USD": 100.0, "TARGET_MULT": 2.0, "MAX_HOLD_H": 24.0,
 
 DEGRADED = ("TOTAL_LOSS", "NO_SELL_ROUTE", "NO_BUY_ROUTE")
 
+# ⭐ THE TWO REFUSALS THAT MEAN "EVERYTHING CHEAPER PASSED, GO AND MEASURE".
+#
+# A caller escalates: run qualifies() for free, and only when it comes back with
+# one of these spend the call it names. That keeps the gate in ONE place - the
+# caller never re-implements a condition and so cannot drift from it - and stops
+# us buying a holder count or a quote for a row that fails on something free.
+#
+# ⛔ They are exact strings, so test_paperv3.py asserts qualifies() actually
+# returns them. A silently reworded reason would turn the escalation into a
+# permanent no-op that enters nothing and looks like a quiet market.
+NEEDS_HOLDERS = "holder count unknown - not entering on an unknown float"
+NEEDS_QUOTE = "no round_trip measurement supplied"
+
 
 def gate_drift():
     """[(name, pinned, actual)] for every constant that has moved. Empty = ok."""
@@ -181,27 +194,33 @@ def qualifies(row, rt=None):
     if sells is not None and buys is not None and sells == 0 and buys >= 10:
         return False, f"no sell side: {buys} buys, 0 sells - price never tested"
 
+    # HOLDERS BEFORE THE QUOTE. ⚠️ The decision is identical either way - every
+    # condition is required - but the ORDER decides what we pay for a refusal.
+    # A round trip is two Jupiter quotes; a holder count is one Helius page. Ask
+    # the cheaper question first, and never buy a quote for a row that fails on
+    # the float. ⛔ This changes no threshold: PINNED_GATE_V3 is about values.
+    #
+    # The rule itself is an unvalidated candidate, pre-committed precisely so it
+    # gets TESTED rather than tuned. If it is wrong, v3 fails and that is a
+    # result. Median holders on our own past "winners" was 9; on
+    # Jupiter-TRADEABLE contracts it is 1,350.
+    h = row.get("holders")
+    if h is None:
+        return False, NEEDS_HOLDERS
+    if row.get("holders_truncated"):
+        return False, f"holder count truncated at {h} - a bound is not a count"
+    if int(h) < MIN_HOLDERS:
+        return False, f"{h} holders < {MIN_HOLDERS}"
+
     # ⭐ THE REALIZABLE CHECK. Not reported liquidity, which overstates by a
     # median 781x, and not a mid price. Can $100 round-trip for under 10% now?
     if not rt:
-        return False, "no round_trip measurement supplied"
+        return False, NEEDS_QUOTE
     if rt.get("verdict") != ENTRY_VERDICT:
         return False, (f"exit verdict {rt.get('verdict')}, need {ENTRY_VERDICT}"
                        + (f" ({rt.get('error')})" if rt.get("error") else ""))
     if not rt.get("token_qty_raw"):
         return False, "round_trip returned no token quantity - cannot size a fill"
-
-    # HOLDERS. ⚠️ An unvalidated candidate, pre-committed as part of the rule
-    # precisely so it gets TESTED rather than tuned. If it is wrong, v3 fails
-    # and that is a result. Median holders on our own past "winners" was 9;
-    # on Jupiter-TRADEABLE contracts it is 1,350.
-    h = row.get("holders")
-    if h is None:
-        return False, "holder count unknown - not entering on an unknown float"
-    if row.get("holders_truncated"):
-        return False, f"holder count truncated at {h} - a bound is not a count"
-    if int(h) < MIN_HOLDERS:
-        return False, f"{h} holders < {MIN_HOLDERS}"
     return True, "qualifies under RULE_V3"
 
 
@@ -379,6 +398,74 @@ def should_close(entry, rt=None):
     if rt and rt.get("verdict") in DEGRADED:
         return True, "DEGRADED"
     return False, "open"
+
+
+def sweep(verbose=True, should_stop=None, sell_quote=None):
+    """Close every position that is due, against a live quote for the holding.
+
+    ⛔ NOTHING SCHEDULED THIS MODULE UNTIL 2026-09-18. paperv3 had 71 passing
+    tests, a pre-committed rule and a live hand-run entry, and `collect.py` did
+    not call it - so the ledger recorded nothing automatically and the one asset
+    with a route to being worth money was a thing you could run by hand. Passing
+    tests are not evidence that something is in the system.
+
+    ⭐ ONE QUOTE PER OPEN POSITION, and the same quote is reused for the close.
+    `should_close()` answers MAX_HOLD for free; the target and the degraded route
+    both need a live sell quote of the EXACT holding - not a $100 round trip,
+    which says nothing about what this position is worth.
+
+    `sell_quote` is an injection point so the offline suite can exercise this
+    without touching the network. Returns a dict of counts; never raises.
+    """
+    sq_fn = sell_quote or chainfields.sell_quote
+    out = {"checked": 0, "closed": 0, "deferred": 0, "errors": 0, "reasons": {}}
+    # ⭐ Beat FIRST and with the count, so "the sweep ran" is recorded even on a
+    # pass with nothing open - that is the difference between `stale` and a
+    # quiet market, and n is the row count so an empty sweep cannot read as
+    # health. See docs/ENGINEERING_DISCIPLINE.md rule B.
+    liveness.beat("paperv3.sweep", len(open_positions()))
+    for entry in open_positions():
+        if should_stop and should_stop():
+            # ⛔ Recorded, not silent - the caller reports it as a stage stop.
+            out["deferred"] += 1
+            continue
+        out["checked"] += 1
+        try:
+            due, why = should_close(entry)
+            sq = None
+            if not due:
+                # The only way to know whether the target is hit or the route is
+                # gone is to ask what the holding sells for, right now.
+                sq = sq_fn(entry["contract"], int(entry["token_qty_raw"]))
+                usd_out = sq.get("usd_out")
+                if usd_out is None:
+                    due, why = True, "NO_SELL_ROUTE"
+                else:
+                    usd_in = float(entry["usd_in"])
+                    if usd_in and (usd_out / usd_in) >= TARGET_MULT:
+                        due, why = True, "TARGET"
+            if not due:
+                continue
+            rec = close_entry(entry, sq=sq, reason=why)
+            out["closed"] += 1
+            r = (rec or {}).get("exit_reason") or why
+            out["reasons"][r] = out["reasons"].get(r, 0) + 1
+            if verbose:
+                print(f"  [v3] closed {entry.get('symbol')} "
+                      f"{str(entry.get('contract'))[:12]} {r} at "
+                      f"{rec.get('realizable_multiple')}x")
+        except Exception as e:
+            # ⛔ A recording failure is a VOID with a reason, never a skip that
+            # leaves the position silently open for ever.
+            out["errors"] += 1
+            try:
+                close_void(entry, f"sweep failed: {type(e).__name__}")
+            except Exception:
+                pass
+            if verbose:
+                print(f"  [v3] sweep error on {entry.get('symbol')}: "
+                      f"{type(e).__name__}: {str(e)[:80]}")
+    return out
 
 
 def verify():

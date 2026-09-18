@@ -296,6 +296,49 @@ check("the degraded set is the three the pre-commit names",
       set(paperv3.DEGRADED) == {"TOTAL_LOSS", "NO_SELL_ROUTE", "NO_BUY_ROUTE"})
 
 print()
+print("=" * 70)
+print("ESCALATION: the two refusals a caller is allowed to act on")
+print("=" * 70)
+
+# ⛔ collect.py escalates on these EXACT strings: run the gate for free, and buy
+# only the measurement the refusal names. A silently reworded reason turns that
+# escalation into a permanent no-op - it would enter nothing, for ever, and look
+# exactly like a quiet market. So the contract is asserted, not assumed.
+_base = dict(venue_type="amm", can_mint=False, can_freeze=False,
+             sells_h1=3, buys_h1=12, token="CA1")
+_ok, _why = paperv3.qualifies(dict(_base))
+check("⛔ no holders -> the exact NEEDS_HOLDERS sentinel",
+      (_ok, _why) == (False, paperv3.NEEDS_HOLDERS), repr(_why))
+_ok, _why = paperv3.qualifies(dict(_base, holders=500))
+check("⛔ holders present, no quote -> the exact NEEDS_QUOTE sentinel",
+      (_ok, _why) == (False, paperv3.NEEDS_QUOTE), repr(_why))
+
+# ⭐ ORDER: the cheap question first. A row that fails on venue must NOT come
+# back asking for a holder count, or we pay Helius for rows we would refuse.
+for _bad, _label in ((dict(_base, venue_type="curve"), "not amm"),
+                     (dict(_base, can_mint=None), "authority unknown"),
+                     (dict(_base, can_mint=True), "mint authority live"),
+                     (dict(_base, sells_h1=0, buys_h1=20), "no sell side")):
+    _o, _w = paperv3.qualifies(_bad)
+    check(f"⭐ {_label} refuses BEFORE asking for a holder count",
+          not _o and _w not in (paperv3.NEEDS_HOLDERS, paperv3.NEEDS_QUOTE), _w)
+
+# ⭐ And a row failing on holders must not ask for a quote - two Jupiter calls
+# for a decision one Helius page already settled.
+_o, _w = paperv3.qualifies(dict(_base, holders=4))
+check("⭐ too few holders refuses BEFORE asking for a quote",
+      not _o and _w != paperv3.NEEDS_QUOTE, _w)
+_o, _w = paperv3.qualifies(dict(_base, holders=900, holders_truncated=True))
+check("⭐ a truncated count refuses BEFORE asking for a quote",
+      not _o and _w != paperv3.NEEDS_QUOTE, _w)
+
+# ⚠️ Reordering must not change WHICH rows qualify - only what a refusal costs.
+_full = dict(_base, holders=500)
+_rt = {"verdict": "TRADEABLE", "token_qty_raw": "123", "rt_cost_pct": 1.0}
+check("⚠️ and with both supplied it still qualifies",
+      paperv3.qualifies(_full, _rt)[0] is True, str(paperv3.qualifies(_full, _rt)))
+
+print()
 bad = [r for r in R if not r[1]]
 print(f"{len(R) - len(bad)}/{len(R)} passed")
 if bad:

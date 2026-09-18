@@ -18,6 +18,8 @@ import paperv2
 import watchlist
 import onchain
 import weights
+import paperv3
+import chainfields
 
 # ---- thresholds. tune these; they are the whole product ----
 CFG = dict(
@@ -193,6 +195,26 @@ def scan_budget(budget_s=None):
 CARRY_PATH = os.path.join("data", "_scan_carry.json")
 CARRY_MAX = int(os.environ.get("CRYPTO_SCAN_CARRY_MAX", "400"))
 
+# ⭐ HOLDER COUNTS, AT THE DECISION POINT ONLY.
+#
+# `holders` is the sharpest separator this project has measured - median 1,350
+# on contracts that can actually be sold against 3 on contracts that return
+# nothing (docs/TRUSTED_FIELDS.md section 1) - and it was on ZERO of the last
+# 400 observation rows. paperv3's gate requires it, so with no holder count on
+# the row that gate could never pass: wiring v3 into the collector without this
+# would have entered nothing, for ever, and looked like a quiet market.
+#
+# ⚠️ It is not free, so it is not per-row. Only rows that have already cleared
+# every free condition of RULE_V3 get one, which measured 92 of 1,003 rows over
+# three days - roughly 7 a pass, the same order as the authority checks beside
+# it. Helius DAS, not Jupiter: the 55/min bucket never comes near this path.
+HOLDER_BUDGET = int(os.environ.get("CRYPTO_HOLDER_BUDGET", "25"))
+
+# ⚠️ And the same for the v3 round trip, which costs two Jupiter quotes. Only
+# rows that already cleared holders>=100 ever reach it, so this is a ceiling on
+# a pathological pass rather than a normal-day limit.
+V3_QUOTE_BUDGET = int(os.environ.get("CRYPTO_V3_QUOTE_BUDGET", "15"))
+
 
 def _carry_load():
     try:
@@ -320,7 +342,9 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
     started = time.time()
     LAST_SCAN.update(pools=len(pools), pools_fresh=fresh_n, pools_carried=carry_n,
                      enriched=0, failed=0, reached=0, budget_hit=False,
-                     skipped=[], coverage=1.0, carried_forward=0, carry_dropped=0)
+                     skipped=[], coverage=1.0, carried_forward=0, carry_dropped=0,
+                     holders_fetched=0, holders_deferred=0,
+                     v3_quotes=0, v3_deferred=0, v3_refusals={})
     rows = []
     row_s, _t_prev = [], None       # measured cost of a row, this pass
     for i, p in enumerate(pools):
@@ -501,6 +525,41 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
             except Exception as e:
                 row["authorities_error"] = f"{type(e).__name__}"
 
+        # ⭐ HOLDER COUNT, ONLY WHEN EVERY FREE CONDITION HAS ALREADY PASSED.
+        #
+        # The gate is not re-implemented here. paperv3.qualifies() is run for
+        # nothing and asked what it wants next; NEEDS_HOLDERS means the row
+        # cleared venue, both authorities and the sell side, and the float is
+        # the only thing left that is free to check. A caller that copied the
+        # conditions instead would drift from the rule the day the rule moved.
+        row["holders_checked"] = False
+        if row.get("addr"):
+            try:
+                _ok3, _why3 = paperv3.qualifies(row)
+            except Exception:
+                _ok3, _why3 = False, ""
+            if _why3 == paperv3.NEEDS_HOLDERS:
+                if LAST_SCAN.get("holders_fetched", 0) >= HOLDER_BUDGET:
+                    # ⛔ NOT SILENT. Standing rule 15: a truncated sample records
+                    # WHAT it missed, not just that it stopped.
+                    LAST_SCAN["holders_deferred"] =                         LAST_SCAN.get("holders_deferred", 0) + 1
+                    row["holders_error"] = "holder budget spent this pass"
+                else:
+                    LAST_SCAN["holders_fetched"] =                         LAST_SCAN.get("holders_fetched", 0) + 1
+                    row["holders_checked"] = True
+                    try:
+                        _h = chainfields.holder_count(row["addr"])
+                        row["holders"] = _h.get("holders")
+                        row["holders_truncated"] = bool(_h.get("truncated"))
+                        row["holders_error"] = _h.get("error")
+                    except Exception as e:
+                        # Unknown stays unknown. ⛔ Never 0 - a failed read that
+                        # renders as a real count is standing rule 5, and v3
+                        # fails closed on None by design.
+                        row["holders"] = None
+                        row["holders_truncated"] = None
+                        row["holders_error"] = f"{type(e).__name__}"
+
         # WHAT SURFACES IS THE GRADE, NOT THE SCORE. PTN scored 100 on 2026-09-14
         # with mint AND freeze authority live and went out as "scored 100". The
         # score is left exactly as the scorer made it - v1's pinned gate and v2's
@@ -550,6 +609,64 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
                           f"{'also v1' if _v2['also_qualifies_v1'] else 'v1 REJECTED: ' + str(_v2['v1_reason'])[:40]})")
         except Exception as e:
             print(f"  [v2] {type(e).__name__}: {str(e)[:90]}")
+        # ⭐ RULE_V3, IN THE SAME LOOP, ON THE SAME ROW, IN THE SAME PASS.
+        #
+        # ⛔ It belongs HERE and not in a later stage, for the reason written
+        # above v1: a forward paper log records a decision with no knowledge of
+        # what happens next, and every retrospective finding in this project has
+        # died of leakage. Three filters, one market, one hour - which is also
+        # standing rule 14, two conditions opened simultaneously rather than in
+        # sequence.
+        #
+        # ⚠️ This is the ONE place Jupiter touches the scan loop, and it is a
+        # decision point, not a per-row call: the round trip is bought only for
+        # a row that has already cleared venue, both authorities, the sell side
+        # and holders>=100. Measured at ~7 candidates a pass against a 55/min
+        # bucket and a 540s budget. The budget below is the hard stop, and it
+        # is RECORDED when it bites - never a silent skip.
+        try:
+            _ok3, _why3 = paperv3.qualifies(row)
+            if _why3 == paperv3.NEEDS_QUOTE and row.get("addr"):
+                if LAST_SCAN.get("v3_quotes", 0) >= V3_QUOTE_BUDGET:
+                    LAST_SCAN["v3_deferred"] = LAST_SCAN.get("v3_deferred", 0) + 1
+                    row["paper_v3_skipped"] = "v3 quote budget spent this pass"
+                else:
+                    LAST_SCAN["v3_quotes"] = LAST_SCAN.get("v3_quotes", 0) + 1
+                    _rt3 = chainfields.round_trip(row["addr"], paperv3.SIZE_TRADED)
+                    _ok3, _why3 = paperv3.qualifies(row, _rt3)
+                    if _ok3:
+                        _v3, _v3why = paperv3.open_entry(row, _rt3)
+                        if _v3 is not None:
+                            row["paper_v3_entry"] = _v3["hash"][:12]
+                            if verbose:
+                                print(f"  [v3] entered {row.get('name')} "
+                                      f"{str(row.get('addr'))[:12]} at a REAL "
+                                      f"fill: {_rt3.get('rt_cost_pct')}% round trip, "
+                                      f"{row.get('holders')} holders")
+                        else:
+                            row["paper_v3_skipped"] = str(_v3why)[:120]
+                    else:
+                        row["paper_v3_skipped"] = str(_why3)[:120]
+            elif not _ok3 and row.get("holders_checked"):
+                # ⭐ ON THE ROW ONLY FOR ROWS THAT GOT PAST THE FREE CHECKS.
+                # Those are the interesting refusals - we spent a call on them.
+                # Writing a reason onto all ~80 rows a pass would bloat every
+                # row with "venue=curve, not amm" and teach nobody anything.
+                row["paper_v3_skipped"] = str(_why3)[:120]
+            if not _ok3:
+                # ⭐ BUT THE TALLY IS KEPT FOR EVERY ROW, ONCE PER PASS.
+                # "The v3 ledger is empty" is not a finding until it comes with
+                # the reason distribution behind it. Bucketed on a prefix
+                # because the reasons carry counts ("4 holders < 100").
+                _b = str(_why3).split(":")[0].strip()
+                _b = _b.split(" - ")[0].strip()
+                if _b[:1].isdigit():
+                    _b = "holders below the floor"
+                LAST_SCAN.setdefault("v3_refusals", {})
+                LAST_SCAN["v3_refusals"][_b] =                     LAST_SCAN["v3_refusals"].get(_b, 0) + 1
+        except Exception as e:
+            print(f"  [v3] {type(e).__name__}: {str(e)[:90]}")
+            row["paper_v3_skipped"] = f"{type(e).__name__}"
         rows.append(row)
         LAST_SCAN["enriched"] += 1
         if on_row:
