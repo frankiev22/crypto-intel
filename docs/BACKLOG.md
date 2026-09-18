@@ -1,0 +1,117 @@
+# BACKLOG — every commitment, one list
+
+**⭐ Two rules for this file:**
+
+1. **It is APPEND-ONLY for commitments.** An item is never deleted. If it turns
+   out to be a bad idea, it is marked `DROPPED` **with the reason**, and stays.
+2. ⛔ **Nothing leaves NOT STARTED without verification evidence.** A SHA alone
+   is not evidence — the row must say what was *observed*, not what was written.
+
+**⛔ Review this at the start of every session.** It is the first file after
+`CLAUDE.md`.
+
+**Status is one of: `SHIPPED` · `IN PROGRESS` · `BLOCKED` · `NOT STARTED`.**
+⛔ **There is no "designed", "specced", "ready" or "written up". Those are
+NOT STARTED.** A design document is not a shipped feature; several rows below
+have a doc and a spec and are still NOT STARTED, which is the point.
+
+**Assembled 2026-09-18** from the full session history and `CLAUDE.md`.
+
+---
+
+## A. Data integrity
+
+| # | item | status | evidence |
+|---|---|---|---|
+| A1 | **Trusted liquidity via Jupiter round-trip** — `chainfields.round_trip()`, buy $100 and sell back exactly what it returned | ✅ **SHIPPED** `8aa2587`, `cc26650` | Run live on 18 contracts; separated 8 tradeable from 126 unexitable in the old "wins". `docs/LIQUIDITY.md` |
+| A2 | **Holder count from chain** — deduped by owner, `truncated` flag, unknown is `None` | ✅ **SHIPPED** `2b85aa4` | Live: ROCK 1,466 · WOFI 43 · BONK 24,916 (truncated). Median 1,350 TRADEABLE vs 3 TOTAL_LOSS |
+| A3 | **Market cap / FDV from chain** — `chainfields.supply()`, `market_cap()` off the round-trip price | ✅ **SHIPPED** `8aa2587` | `test_chainfields.py`; live values in `docs/TRUSTED_FIELDS.md` |
+| A4 | ⛔ **Replace the 781x-overstating `liq` field at EVERY call site** | 🔴 **NOT STARTED** | ⛔ **Verified 2026-09-18 and it is worse than I first wrote here.** `chainfields` is imported by **`paperv3.py` and its own test, and nothing else**. `check.py`, `scanner.py`, `track.py` and `dashboard.py` import it **zero** times and still read `liq` 9/21/7/6 times respectively. **Not one production call site has been migrated. This is the largest open integrity item in the repo.** |
+| A5 | **Score band deleted from the v1 entry gate** | ✅ **SHIPPED** `a55f405` | `paper.qualifies()` no longer reads a score; 100-grade token now passes. `test_scoreband.py` 25 checks + negative control that fails when the band is smuggled back |
+| A6 | **Pool truncation: stop discarding, carry forward** | ✅ **SHIPPED** `a1cbca9` | Live: pass 1 truncated 7/82 and carried 75; pass 2 loaded them, deduped 20, processed owed first |
+| A7 | **Permanent coverage recording** — `pools_seen`/`pools_processed` every pass + alarm | ✅ **SHIPPED** `a1cbca9` | `test_discipline.py` asserts both present even at 100%; `COVERAGE ALARM` prints on mismatch |
+| A8 | **Output-assertion discipline as a standing rule** | ✅ **SHIPPED** `a1cbca9` | `docs/ENGINEERING_DISCIPLINE.md`, CLAUDE.md standing rule 16, `test_discipline.py` 50 checks |
+| A9 | **Liveness counts ROWS, not beats** | ✅ **SHIPPED** `a1cbca9` | Two clocks; new `empty` verdict distinct from `stale`. Three boundary bugs found and locked in as tests |
+| A10 | ⛔ **Whitelist guard so a sixth field cannot silently drop** | 🟡 **BLOCKED — needs verification** | `test_whitelist.py` exists and passes, and `journal.record()` is still a whitelist that has eaten 5 fields. **I have never verified it catches a NEW field added downstream.** Per rule 2 this stays unverified until that test exists |
+| A11 | **Phantom-crossing verification at $1M** | ✅ **SHIPPED** (pre-session) | 25.4% [22.3, 28.8] pass rate, n=696, `docs/TRACKER_SCOPING.md` §2 |
+| A12 | **Symbols that render as another token** (bidi + homoglyph) | ✅ **SHIPPED** `902bd43` | 112 bidi + 48 mixed-script contracts found; `dashboard.safe_sym()`; verified zero bidi chars in the built `data/dashboard.html`. `docs/SYMBOL_ATTACKS.md` |
+| A13 | ⚠️ **`onchain_reserves.exit_depth()` is unreliable** — 5 of 6 reads failed 2026-09-17 | 🔴 **NOT STARTED** | Listed as blocker #1 in CLAUDE.md for two days. **Superseded in practice by A1** (Jupiter needs no vault scan), but `exit_depth` is still on the hot path and still wrong |
+
+## B. Detection
+
+| # | item | status | evidence |
+|---|---|---|---|
+| B1 | **Dev wallet history + funding-graph traversal** | 🟡 **BLOCKED on a labelled sample** | `devwallet.py` SHIPPED `31c5fd4`, run live on 4 CAs. ⛔ **On n=4 it did NOT separate good from bad** — both bad tokens got the same verdict. Needs serial launchers and n≥30/arm. ⛔ **Also: `devwallet` is imported by NOTHING — not even a test.** It is a module you can run by hand, not a part of the system |
+| B2 | **Wallet age distribution of early buyers** | 🔴 **NOT STARTED** | `activity_before()` exists (SHIPPED, after a walk gave WOFI age **−0.1h**). The distribution across first buyers was never computed |
+| B3 | **First-buyer shared-funding analysis** | 🟡 **IN PROGRESS** | Runs; found TPAID 4 buyers / 2 funders. ⛔ **`buyer_funding_overlap()` discards the `exact` flag, so `SHARED=True` is a candidate, not a finding.** Fix before quoting |
+| B4 | **LP burned vs locked, unlock date, % of supply** | 🟡 **IN PROGRESS** | `lp_detail()` SHIPPED; returns lockers/providers/liquidity. ⚠️ **`lpLockedPct` was 100 for all 4 tested — discriminates nothing.** Unlock DATE and % of supply not implemented |
+| B5 | **Volume-manipulation detection with thresholds** | 🔴 **NOT STARTED** | `docs/VOLUME_INTEGRITY.md` written with pre-committed thresholds. **No code.** A doc is not a detector |
+| B6 | **Bundle detection benchmarked against existing tools** | 🔴 **NOT STARTED** | `docs/EXISTING_TOOLS.md` surveyed them and found **RugCheck beats our detector, free and keyless**. The benchmark itself was never run |
+| B7 | **Holder-count quality gate** | ✅ **SHIPPED** `902bd43` | In `paperv3.qualifies()` as `holders >= 100`. ⭐ Earned itself live: refused a USDC impersonator that was TRADEABLE at 0.02% with 10 holders |
+| B8 | **Bond-as-threshold + the non-curve equivalent** | 🔴 **NOT STARTED** | Attention threshold discussed; graduation per chain never defined for non-curve venues |
+| B9 | **Un-kill list, each killer marked as surviving correction or not** | ✅ **SHIPPED** `46f9543` | `docs/UNKILL.md`. Honest finding: **the labels were poisoned (94.2%), so the negatives don't stand either** |
+
+## C. Infrastructure
+
+| # | item | status | evidence |
+|---|---|---|---|
+| C1 | **Repo public** | ✅ **SHIPPED** `13b3255` | `{"isPrivate":false,"visibility":"PUBLIC"}`. Full git-history secret audit run first; LICENSE + SECURITY.md added |
+| C2 | **Actions collector running, free** | ✅ **SHIPPED** `c82411f` | `billable UBUNTU total_ms 0` against 533,000ms and 602,000ms of runtime. Scheduled run fired unaided 11:54:15Z and collected a full pass |
+| C3 | ⛔ **Fresh rows from a run NOBODY triggered** | 🟡 **IN PROGRESS** | The 11:54Z scheduled run collected but **lost its rows** to a commit conflict I caused. Conflict fixed and verified under the real condition (`c82411f`). **Waiting on the next scheduled run. Today's committed rows are still from manual dispatches.** |
+| C4 | ⚠️ **Scheduler cadence** — hourly cron is firing at ~5h intervals, 40–55 min late | 🔴 **NOT STARTED — under observation** | 01:40, 06:43, 11:54 against `0 * * * *`. May be GitHub backing off 138 consecutive failures. **If it does not tighten, "hourly" collection is not hourly** |
+| C5 | **`programSubscribe` crossing detector** | 🔴 **NOT STARTED** | Fully costed: 56 notif/sec, 31 KB/s → 1.64M credits/mo. Free tier fails 1.6x; Developer $49/mo fits at 16%. Needs an always-on box (~$4–6 VPS). **Costed is not built** |
+| C6 | **`chainId` on every row so Arc is config, not a rewrite** | 🔴 **NOT STARTED** | Discussed as "chains as config". No schema change made |
+| C7 | **Graduation thresholds per chain** | 🔴 **NOT STARTED** | Solana-only today |
+| C8 | ⛔ **Webhook receiver watching actual addresses** | 🟡 **BLOCKED** | Deployed and answering at `/api/helius`, but **`accountAddresses: []`** — watching nothing. **This is why whale alerts have never fired** |
+| C9 | **Windows Task Scheduler** | ⛔ **DROPPED** `479e9cc` | Frank reversed it: *"didn't we decide windows task scheduler wasn't the right move? Delete all of that."* Task and launcher removed. **Do not reintroduce** |
+
+## D. Analysis
+
+| # | item | status | evidence |
+|---|---|---|---|
+| D1 | **CA analyzer at a 30-second budget** | 🔴 **NOT STARTED** | `check.py` has the right shape (`analyze(CA) -> report`) but was never held to a time budget or wired to `chainfields` |
+| D2 | **Paper trader on real quotes** | 🟡 **IN PROGRESS** | `paperv3.py` + 71 tests SHIPPED `902bd43`, run live `d341d3b`. ⛔ **Nothing schedules it — `collect.py` does not call it, so the ledger has zero rows.** v1/v2 quarantined `4676ce3` |
+| D3 | **Pre-launch social signal backtest** | 🟡 **BLOCKED on X credits** | The flagship experiment. ~$65 at core sample via xAI X Search. **Blocked: X bearer returns 402 credits depleted, `XAI_API_KEY` returns 400 invalid** |
+| D4 | **Re-verify the 165 "wins" against real liquidity** | ✅ **SHIPPED** `71abd83` | Of 141 checked, **8 tradeable, 126 not exitable**. The wins did not survive |
+| D5 | **Outcome-queue expiry measured** | ✅ **SHIPPED** `4949874` | 21% of due checks age out. Slice fix worked (24h: 19.1%→5.8%); the rest is downtime |
+
+## E. Knowledge
+
+| # | item | status | evidence |
+|---|---|---|---|
+| E1 | **Crypto history corpus** | 🟡 **IN PROGRESS** | `docs/CRYPTO_HISTORY.md` SHIPPED, organised by recurring mechanism. ⚠️ **Zcash and XRP narrative depth not written** — the "recognise a reference before others" use case is unserved |
+| E2 | **Glossary** | ✅ **SHIPPED** | `docs/GLOSSARY.md` |
+| E3 | **Rules file** | ✅ **SHIPPED** | `docs/RULES.md` (§B buyer, §C creator, §O observations) + root `RULES.md` |
+| E4 | **Existing-tracker survey** | ✅ **SHIPPED** `9519f4a` | `docs/EXISTING_TOOLS.md`: bubblemaps, rugcheck, solsniffer, GMGN, TrenchRadar. **RugCheck beats ours** |
+| E5 | **Grok / X access decision** | 🟡 **BLOCKED on Frank** | Priced. ⛔ **Never sign up — his call alone.** See the key list below |
+| E6 | `docs/RUNNERS.md`, `SECTORS.md`, `NEWSFLOW.md`, `NEW_CHAINS.md`, `UPCOMING.md` | 🔴 **NOT STARTED** | Declared in CLAUDE.md as "create on first substantive finding, do not scaffold empty" |
+
+---
+
+## Scoreboard
+
+| status | count |
+|---|---:|
+| ✅ SHIPPED | **18** |
+| 🟡 IN PROGRESS / BLOCKED | **9** |
+| 🔴 NOT STARTED | **12** |
+| ⛔ DROPPED | **1** |
+
+⚠️ **A4 moved from IN PROGRESS to NOT STARTED while writing this file**, because
+I checked instead of remembering. That is the file working.
+
+### ⛔ The pattern this list exposes
+
+**Three of the most-discussed modules are wired to nothing.** `chainfields`
+(the trusted-field source) is used only by `paperv3`; `devwallet` is imported by
+no file at all; `paperv3` itself is scheduled by nothing. **We have been
+building components and counting them as done because the tests pass.**
+
+⚠️ That is standing rule 16 applied one level up: *a module that runs when you
+call it by hand, and that nothing calls, has not shipped.* **`test_*.py` passing
+is not evidence that a component is in the system.** Rows A4, B1 and D2 are all
+the same failure.
+
+⭐ **The three that unblock the most:** **A4** (the poisoned field is still read at
+four call sites), **C3** (an unattended row landing), **D2** (nothing schedules
+paperv3, so the one asset with a route to being worth money records nothing).

@@ -215,6 +215,7 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
 | volume manipulation: methods and pre-committed thresholds | `docs/VOLUME_INTEGRITY.md` |
 | ⭐ **dev wallet history, funding graphs, first buyers, LP** | `docs/DEV_WALLET.md` |
 | ⭐ **paper trader v3 — fills priced on real quotes** | `docs/PAPER_V3.md`, `PRECOMMIT_paper_v3.md` |
+| ⛔⛔ **EVERY commitment and its status — read at session start** | `docs/BACKLOG.md` |
 | ⛔⛔ **how we test: verify output, not execution** | `docs/ENGINEERING_DISCIPLINE.md` |
 | ⛔ **symbols that render as a different token** | `docs/SYMBOL_ATTACKS.md` |
 | ⛔ **why no score may gate an entry, and the AST check** | `test_scoreband.py` |
@@ -353,6 +354,19 @@ pull.** Via xAI X Search: **$5 per 1,000 posts, $10 per 1,000 profiles**, which
 makes the flagship backtest ~$65 at the core sample and ~$361 at full size.
 ⚠️ **Pricing changes 2026-09-21 12:00 PT** — before then it is $5 per 1,000
 *calls*, which is materially cheaper for bulk history.
+
+## ⛔ The backlog is the promise
+
+`docs/BACKLOG.md` holds **every commitment made to Frank, with a status of
+SHIPPED / IN PROGRESS / BLOCKED / NOT STARTED and verification evidence on each**.
+⭐ **Append-only for commitments; nothing leaves NOT STARTED without evidence of
+what was OBSERVED, not what was written.** There is no "designed" or "specced" —
+those are NOT STARTED. **Read it at the start of every session.**
+
+⚠️ **It exposed a pattern worth keeping in mind:** `chainfields` is imported only
+by `paperv3`, `devwallet` by nothing at all, and `paperv3` is scheduled by
+nothing. **A module that only runs when called by hand has not shipped**, and
+passing tests are not evidence that it is in the system.
 
 ## Session protocol
 
