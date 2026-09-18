@@ -5662,14 +5662,14 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 73,
+  "count": 74,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h",
    "24h"
   ],
-  "last_seen": "2026-09-18T11:51:49+00:00",
+  "last_seen": "2026-09-18T12:09:23+00:00",
   "last_escalated": "2026-09-18T11:51:49+00:00",
   "escalations": 12
  },
@@ -8384,23 +8384,23 @@
  },
  "liveness:paper-open": {
   "first_seen": "2026-09-09T15:02:17+00:00",
-  "count": 18,
+  "count": 19,
   "example": "liveness: paper.open",
   "keys": [
    "paper.open"
   ],
-  "last_seen": "2026-09-18T11:54:28+00:00",
+  "last_seen": "2026-09-18T12:11:18+00:00",
   "last_escalated": "2026-09-18T11:54:28+00:00",
   "escalations": 3
  },
  "liveness:paper-sweep": {
   "first_seen": "2026-09-10T00:07:40+00:00",
-  "count": 66,
+  "count": 67,
   "example": "liveness: paper.sweep",
   "keys": [
    "paper.sweep"
   ],
-  "last_seen": "2026-09-18T11:54:28+00:00",
+  "last_seen": "2026-09-18T12:11:18+00:00",
   "last_escalated": "2026-09-18T11:54:28+00:00",
   "escalations": 6
  },
@@ -9394,23 +9394,23 @@
  },
  "liveness:milestone-realizable": {
   "first_seen": "2026-09-14T19:45:45+00:00",
-  "count": 51,
+  "count": 52,
   "example": "liveness: milestone.realizable",
   "keys": [
    "milestone.realizable"
   ],
-  "last_seen": "2026-09-18T11:54:28+00:00",
+  "last_seen": "2026-09-18T12:11:18+00:00",
   "last_escalated": "2026-09-18T11:54:28+00:00",
   "escalations": 4
  },
  "liveness:paper-close": {
   "first_seen": "2026-09-14T19:45:47+00:00",
-  "count": 4,
+  "count": 5,
   "example": "liveness: paper.close",
   "keys": [
    "paper.close"
   ],
-  "last_seen": "2026-09-18T11:54:28+00:00",
+  "last_seen": "2026-09-18T12:11:18+00:00",
   "last_escalated": "2026-09-18T11:54:28+00:00",
   "escalations": 1
  },

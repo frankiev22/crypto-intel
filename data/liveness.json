@@ -1,63 +1,63 @@
 {
  "detector.drift": {
-  "last_ts": 1789732468,
-  "last_at": "2026-09-18T11:54:28+00:00",
-  "count": 498,
+  "last_ts": 1789733478,
+  "last_at": "2026-09-18T12:11:18+00:00",
+  "count": 499,
   "first_ts": 1788782114,
   "detail": "stable",
   "last_origin": "runner",
-  "last_unattended_ts": 1789732468,
-  "last_unattended_at": "2026-09-18T11:54:28+00:00"
+  "last_unattended_ts": 1789733478,
+  "last_unattended_at": "2026-09-18T12:11:18+00:00"
  },
  "scan.observations": {
-  "last_ts": 1789732046,
-  "last_at": "2026-09-18T11:47:26+00:00",
-  "count": 7408,
+  "last_ts": 1789733342,
+  "last_at": "2026-09-18T12:09:02+00:00",
+  "count": 7477,
   "first_ts": 1788782726,
   "detail": null,
   "last_origin": "runner",
-  "last_unattended_ts": 1789732046,
-  "last_unattended_at": "2026-09-18T11:47:26+00:00"
+  "last_unattended_ts": 1789733342,
+  "last_unattended_at": "2026-09-18T12:09:02+00:00"
  },
  "fieldguard.check": {
-  "last_ts": 1789732046,
-  "last_at": "2026-09-18T11:47:26+00:00",
-  "count": 97,
+  "last_ts": 1789733342,
+  "last_at": "2026-09-18T12:09:02+00:00",
+  "count": 98,
   "first_ts": 1788782815,
   "detail": null,
   "last_origin": "runner",
-  "last_unattended_ts": 1789732046,
-  "last_unattended_at": "2026-09-18T11:47:26+00:00"
+  "last_unattended_ts": 1789733342,
+  "last_unattended_at": "2026-09-18T12:09:02+00:00"
  },
  "news.freshness": {
-  "last_ts": 1789732467,
-  "last_at": "2026-09-18T11:54:27+00:00",
-  "count": 503,
+  "last_ts": 1789733478,
+  "last_at": "2026-09-18T12:11:18+00:00",
+  "count": 504,
   "first_ts": 1788782822,
   "detail": "0 stale outlet(s)",
   "last_origin": "runner",
-  "last_unattended_ts": 1789732467,
-  "last_unattended_at": "2026-09-18T11:54:27+00:00"
+  "last_unattended_ts": 1789733478,
+  "last_unattended_at": "2026-09-18T12:11:18+00:00"
  },
  "outcome.recorded": {
-  "last_ts": 1789732461,
-  "last_at": "2026-09-18T11:54:21+00:00",
-  "count": 28910,
+  "last_ts": 1789733472,
+  "last_at": "2026-09-18T12:11:12+00:00",
+  "count": 29007,
   "first_ts": 1788782831,
   "detail": null,
   "last_origin": "runner",
-  "last_unattended_ts": 1789732461,
-  "last_unattended_at": "2026-09-18T11:54:21+00:00"
+  "last_unattended_ts": 1789733472,
+  "last_unattended_at": "2026-09-18T12:11:12+00:00"
  },
  "milestone.mcap": {
-  "last_ts": 1789732270,
-  "last_at": "2026-09-18T11:51:10+00:00",
-  "count": 1143,
+  "last_ts": 1789733359,
+  "last_at": "2026-09-18T12:09:19+00:00",
+  "count": 1144,
   "first_ts": 1788782876,
-  "detail": "mcap_5m 2GYzAVCLsbdCki5RDZbiYv8Gxpz2aqF5qFkaH7DcBAGS",
+  "detail": "mcap_100k 6SRFvhC2yd381nTNinhHPiKd82MgZ1MFKThhNYuopTut",
   "last_origin": "runner",
-  "last_unattended_ts": 1789732270,
-  "last_unattended_at": "2026-09-18T11:51:10+00:00"
+  "last_unattended_ts": 1789733359,
+  "last_unattended_at": "2026-09-18T12:09:19+00:00"
  },
  "milestone.realizable": {
   "last_ts": 1789442300,
@@ -67,24 +67,24 @@
   "detail": "realizable_3x 2oZidUGiWfM8npavpbhj1fu49ydtGuKiuPeSGfMNnTPa"
  },
  "watchlist.sweep": {
-  "last_ts": 1789732049,
-  "last_at": "2026-09-18T11:47:29+00:00",
-  "count": 40,
+  "last_ts": 1789733345,
+  "last_at": "2026-09-18T12:09:05+00:00",
+  "count": 41,
   "first_ts": 1788786917,
   "detail": null,
   "last_origin": "runner",
-  "last_unattended_ts": 1789732049,
-  "last_unattended_at": "2026-09-18T11:47:29+00:00"
+  "last_unattended_ts": 1789733345,
+  "last_unattended_at": "2026-09-18T12:09:05+00:00"
  },
  "milestone.graduated": {
-  "last_ts": 1789703907,
-  "last_at": "2026-09-18T03:58:27+00:00",
-  "count": 28,
+  "last_ts": 1789733347,
+  "last_at": "2026-09-18T12:09:07+00:00",
+  "count": 29,
   "first_ts": 1788786923,
-  "detail": "graduated 6SRFvhC2yd381nTNinhHPiKd82MgZ1MFKThhNYuopTut",
-  "last_origin": "scheduled",
-  "last_unattended_ts": 1789703907,
-  "last_unattended_at": "2026-09-18T03:58:27+00:00"
+  "detail": "graduated 7V2ZcL2Wwt4SYJJ1sgSAncmUmZsh7cFdXJ8vfh4SQ8QW",
+  "last_origin": "runner",
+  "last_unattended_ts": 1789733347,
+  "last_unattended_at": "2026-09-18T12:09:07+00:00"
  },
  "paper.sweep": {
   "last_ts": 1789448910,
