@@ -150,7 +150,7 @@ one, never put a `service_role` key anywhere a browser can reach it.
 **18. Report the cost before building.** Passes, API calls, latency, and monthly
 price where money is involved — so the decision is made with a number.
 
-**19. Every third-party crypto tool is UNTRUSTED BY DEFAULT.** *Frank,
+**24. Every third-party crypto tool is UNTRUSTED BY DEFAULT.** *Frank,
 2026-09-19, permanent:* "Treat everything as unsafe and something we would want
 to rebuild as a feature of our site. Or something we can use externally for
 aggregation."

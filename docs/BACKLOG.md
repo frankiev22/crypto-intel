@@ -160,6 +160,7 @@ lookup and does not call it.
 | D3 | **Pre-launch social signal backtest** | 🟡 **BLOCKED on X credits** | The flagship experiment. ~$65 at core sample via xAI X Search. **Blocked: X bearer returns 402 credits depleted, `XAI_API_KEY` returns 400 invalid** |
 | D4 | **Re-verify the 165 "wins" against real liquidity** | ✅ **SHIPPED** `71abd83` | Of 141 checked, **8 tradeable, 126 not exitable**. The wins did not survive |
 | D5 | **Outcome-queue expiry measured** | ✅ **SHIPPED** `4949874` | 21% of due checks age out. Slice fix worked (24h: 19.1%→5.8%); the rest is downtime. ⛔ **CORRECTED 2026-09-18: the 5.8% "healthy period" figure was achieved on days with 38–204 passes of which only 6–8 were scheduled — it was carried by MANUAL runs, not by the collector.** Unattended-only capacity is ~37% of arrivals. See C4 |
+| D6 | ⭐ **Test the wallet-cluster rule (3+ wallets, one token, 10 min, ≥ $1,500) against our base rate** — relay priority 1, 2026-09-19 | 🔴 **NOT STARTED — pre-committed `bd45a18` before any data; arm D's data source found and verified** | `PRECOMMIT_cluster_rule.md`: arms U (any wallet), D (degentape's tracked wallets), S (trenchscope's 90-day PnL list), B (base rate); bar = arm's Wilson lower > B's Wilson upper at n ≥ 30 distinct tokens. ⛔ **Our journal has no per-wallet buy data** (pool-level `txns_h1` only). Arm U from chain ≈ 200k `getTransaction` calls, not run until agreed. ⭐ **Arm D is free**: degentape's public tape carries wallet + signature + USD for 905 wallets, and **182 / 182 sampled fills verified on chain** (`docs/EXISTING_TOOLS.md` §4a). Overlap with our 493-row sample unknown; may be inconclusive at n < 30. Arm S needs 90 days of every candidate wallet's swaps - unpriced. |
 
 ## E. Knowledge
 
@@ -172,6 +173,7 @@ lookup and does not call it.
 | E5 | **Grok / X access decision** | 🟡 **BLOCKED on Frank** | Priced. ⛔ **Never sign up — his call alone.** See the key list below |
 | E6 | `docs/RUNNERS.md`, `SECTORS.md`, `NEWSFLOW.md`, `NEW_CHAINS.md`, `UPCOMING.md` | 🔴 **NOT STARTED** | Declared in CLAUDE.md as "create on first substantive finding, do not scaffold empty" |
 | E7 | ⛔ **Nova (`tradeonnova.net`) researched — its OWN docs contradict its OWN terms on who holds the keys** | ✅ **SHIPPED — research only. ⛔ NO INTEGRATION, NO KEYS, NO APPROVAL FLOW** | Frank raised it when he first described the dashboard (*"something like Nova, if that even works anymore"*) and it was never routed. **It exists and is maintained**: Telegram bots `@TradeonNovaBot`/`@TradeonNova2Bot`, a Chrome extension (`agegahikpkeljmhlggpipmepoigaimdk`), a web app, active channel. ⛔ **Three statements in Nova's own documentation cannot all be true.** (1) ToS: *"Nova Bot does not ask for or store private keys."* (2) Getting Started: *"the bot will give you a wallet address and a private key"* — **a bot that GENERATES your keypair and shows you the secret had that secret.** (3) `wallets/security-pin`: a PIN plus a **recovery email** are required *"to make withdrawals and changes to your wallets"* — ⛔ **you cannot PIN-gate a withdrawal from a key you do not hold, and you cannot "recover" a wallet you never had.** Sniper, AFK mode and copy-trading all execute while the user is offline, which requires a signer server-side. **Verdict: custodial in practice, marketed as non-custodial.** ⚠️ **Track record:** a **$500k–576k drain on 2025-09-16 11:21 UTC** hit trader @Cupseyy, whose wallet was connected to Jupiter, Axiom, Photon and Nova; characterised as a *manual* drain, ~$200k deliberately left behind, no browser extensions in use. ⛔ **Nova was never established as the cause and I am not claiming it was** — four platforms shared that wallet. (Not to be confused with Solareum, $523k, March 2024, a different bot that shut down.) ⛔ **The affiliate review ecosystem is unreliable:** several "reviews" state Nova has had *"no major security incidents"* while that drain is documented. **No independent audit exists.** ToS: *"provided 'as is' without warranties of any kind. We are not responsible for losses"*, **no named legal entity**, and jurisdiction is *"the laws of your region"* — which is the absence of a jurisdiction clause, not one. ⛔ **Recommendation: do not connect a funded wallet. Research and design only, per Frank's standing rule.** |
+| E8 | ⛔ **Every third-party crypto tool untrusted by default: REBUILD or AGGREGATE, never a wallet, never auth** — Frank, 2026-09-19, permanent | ✅ **SHIPPED — the policy and the register. Research only; nothing integrated** | Policy in `CLAUDE.md` standing rule 17 and `RULES.md` rule 24 (`bd45a18`; first numbered 19, which was taken - renumbered). Register in `docs/EXISTING_TOOLS.md` §4, eight tools assessed over plain HTTP, no login, no wallet, no browser: **degentape AGGREGATE** (fills 182/182 verified on chain), **trenchscope REBUILD**, **hogen fomo-helper REBUILD**, **fomolens REBUILD**, **fomowalletfinder REBUILD**, **copyfomo neither** (two different wallet pairs for one handle), **nockterminal neither** (no Solana path), **985monitor not assessed** (the ISP's filter blocks it as suspicious). Three of eight make a claim their own public output contradicts. `AgmLJBMD…`: a co-signer, not a labeller; absent from all 182 fills, and the Fomo traders' 37 fills carry no co-signer at all. ⚠️ The assessment sent 4 requests to robots-disallowed `/api/` paths (fomolens 3, copyfomo 1); AGGREGATE never will. |
 
 ---
 
@@ -184,12 +186,12 @@ row C4a had never been parsed at all (the row pattern was `[A-E]\d+`).
 
 | status | count |
 |---|---:|
-| ✅ SHIPPED | **35** |
+| ✅ SHIPPED | **36** |
 | 🟡 IN PROGRESS | **33** |
 | 🟡 BLOCKED | **5** |
-| 🔴 NOT STARTED | **8** |
+| 🔴 NOT STARTED | **9** |
 | ⛔ DROPPED | **1** |
-| **total** | **80** |
+| **total** | **82** |
 
 ⚠️ **The scoreboard said "18 SHIPPED" while the table held 48 SHIPPED rows.** It
 had not been recounted since it was written. It is now counted from the rows,

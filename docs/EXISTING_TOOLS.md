@@ -130,3 +130,137 @@ means an outage or a pricing change breaks the analyzer. Mitigations: cache
 every response to the journal (append-only, so we keep the history even if the
 service dies), and keep `chainfields` — which depends only on Helius and
 Jupiter — as the floor that still works alone.
+
+---
+
+## 4. ⛔ The untrusted register — `RULES.md` rule 24 (2026-09-19)
+
+Frank, permanent: every third-party crypto tool is untrusted. Two relationships
+only: **REBUILD** (the capability becomes a feature of our site) or **AGGREGATE**
+(read its public output over plain HTTP, never depend on it, never authenticate).
+⛔ No wallet is ever connected to any of them. ⛔ No dependency that needs auth.
+⚠️ Their numbers are marketing until our own data or the chain agrees.
+
+**Method, 2026-09-19:** plain HTTP only (browser User-Agent, 20s timeout, no
+browser, nothing installed, no login, no wallet), by two background agents; raw
+responses kept in the session scratchpad. ⚠️ **Assessment touched paths that
+robots.txt disallows**: 3 requests under fomolens `/api/` and 1 to copyfomo
+`/api/find`, each the page's own call with its own example input. From here on
+**AGGREGATE never reads a robots-disallowed path**, which rules both out as
+sources regardless of label.
+
+| tool | what it demonstrably does | public, keyless output | label | why |
+|---|---|---|---|---|
+| **degentape.com** | a tape of tracked traders' calls and closes across Robinhood, Base, ARC, Solana, BNB; publishes its own 37% win rate on 9,979 closes | the tape | **AGGREGATE** (relay, established) | ⛔ do not rebuild a tape. ⭐ **182 / 182 sampled fills verify on chain**; the 37% is a different quantity from ours (§4a). Its public tape is the per-wallet buy data we lack |
+| **trenchscope.live** | alerts when 3+ top-PnL wallets buy one token inside 10 min for ≥ $1,500 combined; wallets re-ranked nightly on 90-day realized PnL; Helius gRPC | none worth reading; record shows winners only, fine print calls figures illustrative | **REBUILD** (relay, established) | the rule is pre-committed as a test before it becomes a feature: `PRECOMMIT_cluster_rule.md`, **NOT RUN** |
+| **hogen.pro/fomo-helper** | an MIT-licensed Chrome extension ("Fomo Lens" v0.9.26), no server of its own; one card from Fomo (user's login), DeBot, FxTwitter, Dexscreener | none of its own | **REBUILD** | holders card = Helius holders + swap parsing (`chainfields.holder_count`, `devwallet.first_buyers` cover part); pools we already read. ⛔ Installs unpacked outside any store and runs script on GMGN/XXYY pages where trading wallets are logged in. Fomo holder theses are behind a login: not rebuildable |
+| ↳ **DeBot story endpoint** (`app.debot.ai/api/v1/nitter/story/latest?ca_address=`) | AI-written token narrative, background, developer info | ✅ 200 without login (BONK, entry 24 days old) | **AGGREGATE candidate, not adopted** | terms not found (`robots.txt` 404). ⛔ carries `rating.score` - a quality score, which the site may never display. Needs its own terms check first |
+| **fomolens.app** | claims an unofficial fomo.family API: handle ↔ wallet, profiles, graph, "sampled PnL" | `/api/public/coverage` (aggregate counts: 427,186 users, 328,055 Solana mappings); free lookup 1 req/10s site-wide | **REBUILD** | robots.txt disallows `/api/`; terms forbid extracting the dataset; paid tiers $49 / $549 / $1,399 per 30 days in USDC; operator unnamed; PnL is sampled from Fomo, not chain. Identity map needs Fomo login data: not rebuildable under rule 15 |
+| **copyfomo.com/find** | finds a Fomo trader's wallet, then copy-trades it through a Telegram bot | truncated addresses only; full ones in Telegram | **neither** | ⛔ **the same handle returns two different wallet pairs** (API/home vs `/traders/unipcs`, different follower and trade counts); custody contradicts itself; a token, referrals, ad pixels despite a no-tracking policy; executes trades. robots.txt disallows `/api/` |
+| **fomowalletfinder.com** | paste a Fomo handle, get "verified" wallets | `api-production-9541.up.railway.app/get-user/{handle}`, no auth | **REBUILD** | ⛔ **every address came back null with status "verified"**, on all three of its own example handles. Backend is FomoScan (paid, $79-$1,395/mo); its public spec says Fomo's fee/referral payment is recorded on Solana, so Fomo trades are identifiable from chain by fee recipient. Rebuild = index that recipient with Helius; needs one confirmed Fomo trade to read the address off |
+| **nockterminal.com** (+ `/scout`) | Telegram trading/copy bot and a wallet leaderboard | leaderboard sits in a Supabase table needing the site's embedded key (401 without); Base path is a Blockscout pass-through (429) | **neither** | Robinhood Chain and Base only, **no Solana path**; paid trending placement (49/89/149); ranks wallets by simulated copy profit; "non-custodial" bot that holds keys. No terms page |
+| **985monitor.xyz/fomo** | unknown | unknown | **not assessed** | ⛔ the ISP's own filter (Spectrum Security Shield) blocks it as "Suspicious Site Blocked"; HTTPS resets, no Wayback copy. DNS resolves (Cloudflare). Assessable only from another network (the runner) or if Frank allowlists it - his call |
+
+⚠️ **`AgmLJBMDCqWynYnQiPCuj9ewsNNsBJXyzoUhD9LJzN51` - the alleged "Fomo co-sign
+wallet that marks scams and farms".** From chain (2026-09-19): a high-volume app
+**fee payer / co-signer**, ~73k transactions an hour, fee payer on 60/60 sampled,
+2 signers per transaction, routing through DFlow. It **signs** users' swaps; nothing
+in any sampled transaction labels, flags or refuses a token. fomolens has no
+Fomo user mapped to it, and none of the three Fomo tools names it or any co-signer.
+⭐ **And the Fomo traders' own fills do not carry it:** in the degentape sample (§4a)
+the 3 fomo.family-sourced traders' **37 fills have no co-signer at all** (the
+wallet signs alone), and AgmLJ appears in **0 of 182** fills. The only recurring
+co-signer is `FHpcNSe6tb2n15bAdq4BkeYWGyZKFD7yLYrH92ng7wCT`, on 37 USDC fills by
+pump.fun-sourced traders, taking a small USDC fee. n = 3 Fomo traders is small.
+**Verdict: a co-signer, not a labeller. The Fomo attribution is unsupported by
+the chain and the "marks scams" claim has no support.** Use: at most an AGGREGATE source of one
+app's retail order flow, and a wallet that must never count as a trader in any
+cluster test (`PRECOMMIT_cluster_rule.md`, definition of wallet).
+
+### 4a. degentape's win rate against our paper log, and its fills against the chain
+
+**The relay's "37% over 9,979 closed" is a live rolling figure, not a record.**
+The homepage number is `wins / closed` from `GET /api/stats?window=24h`, all
+chains pooled. Read 2026-09-19 ~18:30Z:
+
+| window | wins / closed | rate |
+|---|---:|---:|
+| 1h | 168 / 406 | 41.4% |
+| 24h | 3,725 / 9,781 | 38.1% |
+| 7d | 21,611 / 57,880 | 37.3% |
+| all (data from 2026-09-07) | 27,910 / 74,207 | 37.6% |
+| Solana only, 24h | 3,406 / 8,657 | 39.3% |
+
+**What their number counts (inferred from their own records, not published):** a
+trade is one wallet's position in one token; it closes when that wallet's sells
+seen by the site cover its buys; **a win is any realized profit above $0** (a
++$0.20 trade is a win), counted per trade, not weighted by size. Checked on 16
+wallets whose trades rebuild fully from the tape: the count matched "profit > 0"
+on all 16. **Whose trades: 905 wallets imported from leaderboards** (442 pump.fun,
+215 fomo.family, 147 robinhoodtrenches, 90 hoodwatch, ~11 user-added).
+
+**Our side (`paperv3.summary()`, 2026-09-19 18:40Z):** 58 entries, **24 closes on
+24 distinct contracts**, 34 open, 0 voids. Below the pre-committed n = 30, so
+**no rate** (`PRECOMMIT_paper_v3.md` §7, standing rule 7). Counts only: **5 of 24
+closed above cost**, all five at the 2.0x target (2.06x - 5.17x); **11 were total
+losses** (Jupiter `NO_ROUTES_FOUND`, pool drained); the **8 max-hold closes were
+all below 0.16x**. Nothing closed between 0.16x and 2x.
+
+⭐ **The two numbers are not in conflict, because they are not the same quantity:**
+
+| | degentape | our v3 |
+|---|---|---|
+| who picks the trade | 905 wallets **chosen from leaderboards**, i.e. selected on past profit | a pre-committed rule over every token our scanner sees |
+| win | **any profit > $0** | exit at **>= 2.0x**, or held to 24h |
+| exit | whenever the trader chooses, including small profits | the rule's, never discretionary |
+| fills | the traders' own, on chain | Jupiter quotes at $100 |
+| survivorship | a wallet removed from their list is removed from the history (inferred: stats equal the sum over currently tracked wallets) | append-only, nothing removed |
+
+A leaderboard-selected population winning 38% of trades on a profit-above-zero
+definition is **not evidence** that a rule can pick winners, and our n = 24 is not
+evidence against it. **Neither of us is shown wrong. Neither number transfers.**
+
+**Their fills against the chain, 2026-09-19.** 30 closed trades (the agent's
+sample: 9 from the site's own win records, 21 rebuilt from the tape, 14 traders,
+**182 fills**), every signature fetched with `getTransaction`:
+
+- **182 / 182 exist, succeeded, and landed at the stated second.**
+- **182 / 182 are signed by the named Solana wallet.**
+- **182 / 182 move that wallet's token balance by the stated amount**, in the
+  stated direction.
+- **182 / 182 match on the quote side**: 145 on SOL (within 5%), 37 on USDC
+  (within 2%). The 37 are USDC trades Jupiter routed through SOL; degentape's
+  `sol` field is the routing leg and its `usd` is within 0.04% of the USDC paid.
+- ⚠️ **Not random**: the sample is what the agent could reconstruct, and 9 of 30
+  are the site's own showcased wins. It shows the fills are real, not that the
+  rate is.
+
+**Known defects in their data** (the agent's, from their own endpoints): the
+7d/30d/all USD totals read **$2.46e27** (one BNCB buy priced at $9.8e26), so some
+fills are mispriced; `/api/status` counts 728,489 fills against 453,122 in the
+all-time stats, unexplained; their "unverified" flag is about cross-chain
+payment proof, not token safety; two positions closed without a matching tape
+sell or kept selling after closing (n = 2); index lag median 106s, p90 263s,
+max 21 min.
+
+⭐ **What degentape gives us: per-wallet buy data, which our journal does not
+have.** `GET /api/tape` (no login, no robots.txt, no terms page found) carries the
+Solana wallet in `solana`, the signature in `tx`, `usd`, `token_amt`, `side` and
+block time. That is **arm D of `PRECOMMIT_cluster_rule.md`**, runnable without
+any chain cost. The agent counted **70 tokens meeting the cluster rule in 4.4h of
+Solana tape (~16 an hour)**, a count of fires, with no outcome looked at.
+
+### What the register changes
+
+1. **Nothing here is a dependency.** degentape is the one AGGREGATE source: its
+   fills verify on chain and its tape supplies arm D of the cluster test (§4a).
+   If it disappears, the test loses an arm and nothing on the site breaks.
+2. **The one capability worth building is Fomo-trade identification from chain**
+   (fomowalletfinder's backend describes it): Fomo's fee recipient → every Fomo
+   trade → per-wallet cash-flow PnL from Helius history. That also yields the
+   wallet set trenchscope's rule needs (arm S of the cluster test), without
+   anyone's login. Not started; costed with the cluster test.
+3. **Three of eight made a claim their own public output contradicts**
+   (copyfomo's two wallets for one handle, fomowalletfinder's null "verified"
+   addresses, trenchscope's "illustrative" figures). Rule 24's "marketing until
+   verified" is not caution for its own sake.

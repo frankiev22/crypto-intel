@@ -172,7 +172,7 @@ fees. Any path that depends on a track record has nothing to sell yet.
     any of them, no exceptions. Never take a dependency that needs auth.**
     ⚠️ **Their claims are marketing until verified against our own data or the
     chain.** Every tool's label lives in `docs/EXISTING_TOOLS.md`; `RULES.md`
-    rule 19 has the reasoning.
+    rule 24 has the reasoning.
 
 12. ⚠️ **Any script hitting a Cloudflare-fronted API must set a `User-Agent`.**
     Python's default `Python-urllib/3.x` is blocked with a bare `403 error code:
@@ -192,7 +192,7 @@ fees. Any path that depends on a track record has nothing to sell yet.
 | ⭐ `live.py` + `supa.py` | the 10-second path: Jupiter every 10s (hot) / 60s (all), D1 every 60s, published to Supabase `live_*` tables (`supabase/migrations/002_live.sql`) under its own path name; `.live/status.json` on the host | ⛔ **BLOCKED: the schema is not applied** - nothing on disk can run DDL on `rxofejxostyqlgjlzqmk` (BACKLOG A41) |
 | ⭐ `graduations.py` | **every pump.fun graduation** (C14): pages the migration authority from a cursor, every signature accounted for → `data/graduations/` | ✅ **UNATTENDED, verified 2026-09-19 01:48Z** on the keyless public RPC (17/17 accounted, lag 11s). Runs before the universe, which re-checks 72h of graduations for $1M |
 | ⭐ `paperv3.py` | the ledger that prices fills on real quotes | ✅ **SCHEDULED 2026-09-18** — enters in the scan loop beside v1/v2, sweeps in the sweep stage. ⛔ **Nothing called it before that**, despite 71 passing tests |
-| GitHub Actions `collect.yml` | same, hosted | ✅ **ALIVE — the repo went public 2026-09-18, so Actions minutes are free and unlimited.** A scheduled run fired on its own at 11:54Z and collected a full pass |
+| GitHub Actions `collect.yml` | same, hosted | 🟡 **Free and unlimited (public repo), but ⛔ the 11:37, 14:50 and 17:38Z passes on 2026-09-19 were CANCELLED at the 15-min job timeout before they could commit - every row lost, silently** (BACKLOG C17). Fix `b13267f`: job 35 min, Collect step 24, runner pass clock 20 min, outcomes stop at 13, artifact on cancel too, `test_stages.py` §10 ties them together. ⚠️ **Not yet observed on an unattended pass** |
 | Claude desktop task `crypto-collect-hourly` | same, staged, on the host (all ten stages incl. `sweep`) | ✅ **alive again 2026-09-19** after the desktop restart cleared the Plan9 mount: scheduled passes observed 06:24–06:41Z and 07:07Z, and it closed a v3 position unattended (Pigeon, 07:07:55Z). ⚠️ **Recurring outage**: a reboot that loses the mount kills it silently. ⛔ It is NOT Windows Task Scheduler - there is no crypto task there, and none should be added (`479e9cc`) |
 | `site/` on Vercel (`crypto-intel-one-eta.vercel.app`) | ⭐ **the deliverable**: trending, tracked universe, narratives, crossings, movers, paper v3 counts. **Owned by the site session**; every cap goes through `honest.capWithBacking()` | ✅ **all four C16 reads live, verified 2026-09-19** from the pipeline side. ⛔ The pipeline session never stages `site/` files, `site/README.md` included |
 | `site/api/helius.mjs` on Vercel | Helius webhook receiver → Supabase → Discord | ✅ **deployed and answering**, but watching 0 addresses |
@@ -237,6 +237,13 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
    Fixed two ways: `*.jsonl merge=union` in `.gitattributes`, and a push loop
    that resolves conflicts and uploads `data/` as an artifact if it still cannot
    push. ⛔ **Avoid pushing while a run is in flight anyway.**
+4. ⛔ **A cancelled run loses its rows and says nothing** (2026-09-19, BACKLOG
+   C17). Three passes ran past the 15-minute job timeout; `cancelled` is not
+   `failure`, so nothing alarmed, and origin/master sat at 07:26Z for 11 hours
+   while the site served stale data. The desktop task's rows were committed by
+   hand (`2ef6de5`). ⛔ **The desktop task never commits** - its rows reach origin
+   only when this session commits them. **When a pass grows, check its duration
+   against the workflow's timeouts** - `test_stages.py` §10 now does.
 
 ---
 
@@ -251,6 +258,7 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
 | ⭐ **holders, mcap, volume, bundles — all from chain** | `docs/TRUSTED_FIELDS.md` |
 | ⭐ **every killed strategy and whether its killer survives** | `docs/UNKILL.md` |
 | ⭐ **what already exists — compose, don't rebuild** | `docs/EXISTING_TOOLS.md` |
+| ⛔ **every third-party crypto tool's label (REBUILD / AGGREGATE / neither), degentape verified on chain** | `docs/EXISTING_TOOLS.md` §4 |
 | volume manipulation: methods and pre-committed thresholds | `docs/VOLUME_INTEGRITY.md` |
 | ⭐ **dev wallet history, funding graphs, first buyers, LP** | `docs/DEV_WALLET.md` |
 | ⭐ **paper trader v3 — fills priced on real quotes** | `docs/PAPER_V3.md`, `PRECOMMIT_paper_v3.md` |
