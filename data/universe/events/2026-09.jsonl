@@ -1844,3 +1844,11 @@
 {"ts":1789781772,"token":"DL6UR7ZqbDLughWtEyxtpht9anYye3wRUowrTpAPpump","event":"admitted","verdict":"TRADEABLE","rt_cost_pct":2.1175,"status_before":"candidate","origin":"manual","status_after":"member"}
 {"ts":1789781773,"token":"8Pc9fXE5M9s12CVTu4qH9Q41Z1XdMKmJ5J26HEkhpump","event":"admitted","verdict":"TRADEABLE","rt_cost_pct":2.2615,"status_before":"candidate","origin":"manual","status_after":"member"}
 {"ts":1789781773,"token":"vAddewUHuYgRDrL6n3kXtBXMT635evJz8K93j6Wm1Ba","event":"admitted","verdict":"TRADEABLE","rt_cost_pct":5.493,"status_before":"candidate","origin":"manual","status_after":"member"}
+{"ts":1789782490,"token":"CniKT92DiarTgvRFDGyYusZBr5GGFypXhoijn48pump","event":"below_floor","mcap_usd":2046,"origin":"scheduled"}
+{"ts":1789782490,"token":"r6ufyvVk2YtQpGwGSB4SM4KCsycZxpvbnT6Rxpnpump","event":"discovered","mcap_usd":169062565,"sources":["graduation"],"origin":"scheduled"}
+{"ts":1789782490,"token":"C4j7kPx9PqDnfvxe2uycJQRTAeyGwmU4DyGf21Xgpump","event":"discovered","mcap_usd":1001711,"sources":["jupiter.verified"],"origin":"scheduled"}
+{"ts":1789782490,"token":"8Pc9fXE5M9s12CVTu4qH9Q41Z1XdMKmJ5J26HEkhpump","event":"below_floor","mcap_usd":2026,"origin":"scheduled"}
+{"ts":1789782490,"token":"4SnKwnz6DyagftnFqdxsvWvehrcbEDhxmmXNQk2Jpump","event":"below_floor","mcap_usd":970497,"origin":"scheduled"}
+{"ts":1789782490,"token":"FGsiK5qAvTpzB5L4qcSJhKRGzPKq81pf2oFQtEFJpump","event":"below_floor","mcap_usd":2012,"origin":"scheduled"}
+{"ts":1789782495,"token":"r6ufyvVk2YtQpGwGSB4SM4KCsycZxpvbnT6Rxpnpump","event":"admitted","verdict":"TRADEABLE","rt_cost_pct":0.6263,"status_before":"candidate","origin":"scheduled","status_after":"member"}
+{"ts":1789782496,"token":"C4j7kPx9PqDnfvxe2uycJQRTAeyGwmU4DyGf21Xgpump","event":"admitted","verdict":"TRADEABLE","rt_cost_pct":0.7324,"status_before":"candidate","origin":"scheduled","status_after":"member"}

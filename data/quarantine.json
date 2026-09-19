@@ -2646,5 +2646,13 @@
   "first_horizon_h": 1,
   "last_ts": 1789775501,
   "hits": 1
+ },
+ "BYyGkD7wcYJy4jPY8tGALpcxWrh5znNZLv4bv28Ypump": {
+  "confidence": "quarantined_liquidity_divergent",
+  "detail": "dexscreener liquidity $0 vs geckoterminal $24,138; the sources do not agree that there is a pool to exit into",
+  "first_ts": 1789782336,
+  "first_horizon_h": 1,
+  "last_ts": 1789782336,
+  "hits": 1
  }
 }
