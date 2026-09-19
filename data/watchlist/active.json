@@ -9,7 +9,7 @@
   "added_vol_h1": 9629.4,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 17,
+  "checks": 18,
   "last_fdv": 46544.51,
   "last_vol_h1": 0.0,
   "peak_fdv": 46544.51
@@ -24,7 +24,7 @@
   "added_vol_h1": 3105.27,
   "added_liq": 0.0,
   "added_venue": "amm",
-  "checks": 17,
+  "checks": 18,
   "last_fdv": 62403.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 62403.0
@@ -39,7 +39,7 @@
   "added_vol_h1": 297.17,
   "added_liq": 24321.21,
   "added_venue": "amm",
-  "checks": 17,
+  "checks": 18,
   "last_fdv": 34777.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 62175.0
@@ -69,7 +69,7 @@
   "added_vol_h1": 251.49,
   "added_liq": 18557.37,
   "added_venue": "amm",
-  "checks": 16,
+  "checks": 17,
   "last_fdv": 39463.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 47690.0
@@ -84,7 +84,7 @@
   "added_vol_h1": 901.08,
   "added_liq": 20808.92,
   "added_venue": "amm",
-  "checks": 15,
+  "checks": 16,
   "last_fdv": 25950.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 56291.0
@@ -99,7 +99,7 @@
   "added_vol_h1": 9617.5,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 15,
+  "checks": 16,
   "last_fdv": 46486.98,
   "last_vol_h1": 0.0,
   "peak_fdv": 46486.98
@@ -114,7 +114,7 @@
   "added_vol_h1": 2.64,
   "added_liq": 8.8,
   "added_venue": "amm",
-  "checks": 15,
+  "checks": 16,
   "last_fdv": 23518.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 60621.0
@@ -129,7 +129,7 @@
   "added_vol_h1": 16317.53,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 15,
+  "checks": 16,
   "last_fdv": 53488.36,
   "last_vol_h1": 0.0,
   "peak_fdv": 53488.36
@@ -144,7 +144,7 @@
   "added_vol_h1": 0.61,
   "added_liq": 0.37,
   "added_venue": "amm",
-  "checks": 15,
+  "checks": 16,
   "last_fdv": 56104.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 68149.0
@@ -159,7 +159,7 @@
   "added_vol_h1": 9501.89,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 14,
+  "checks": 15,
   "last_fdv": 45928.19,
   "last_vol_h1": 0.0,
   "peak_fdv": 45928.19
@@ -174,7 +174,7 @@
   "added_vol_h1": 9501.89,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 14,
+  "checks": 15,
   "last_fdv": 45928.19,
   "last_vol_h1": 0.0,
   "peak_fdv": 45928.19
@@ -189,7 +189,7 @@
   "added_vol_h1": 16241.45,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 14,
+  "checks": 15,
   "last_fdv": 53425.82,
   "last_vol_h1": 0.0,
   "peak_fdv": 53425.82
@@ -204,7 +204,7 @@
   "added_vol_h1": 309.43,
   "added_liq": 0.0,
   "added_venue": "amm",
-  "checks": 14,
+  "checks": 15,
   "last_fdv": 64767.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 64767.0
@@ -219,7 +219,7 @@
   "added_vol_h1": 20154.69,
   "added_liq": 2586.43,
   "added_venue": "amm",
-  "checks": 14,
+  "checks": 15,
   "last_fdv": null,
   "last_vol_h1": 0.0,
   "peak_fdv": 62706.0
@@ -234,7 +234,7 @@
   "added_vol_h1": 9500.19,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 14,
+  "checks": 15,
   "last_fdv": 45919.97,
   "last_vol_h1": 0.0,
   "peak_fdv": 45919.97
@@ -249,7 +249,7 @@
   "added_vol_h1": 1915.42,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 13,
+  "checks": 14,
   "last_fdv": 46140.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 46140.0
@@ -264,7 +264,7 @@
   "added_vol_h1": 9507.84,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 13,
+  "checks": 14,
   "last_fdv": 45956.95,
   "last_vol_h1": 0.0,
   "peak_fdv": 45956.95
@@ -279,7 +279,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 12,
+  "checks": 13,
   "last_fdv": 45956.95,
   "last_vol_h1": 0.0,
   "peak_fdv": 45956.95
@@ -294,7 +294,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 12,
+  "checks": 13,
   "last_fdv": 45956.95,
   "last_vol_h1": 0.0,
   "peak_fdv": 45956.95
@@ -309,7 +309,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "amm",
-  "checks": 12,
+  "checks": 13,
   "last_fdv": 46241.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 46241.0
@@ -324,7 +324,7 @@
   "added_vol_h1": 9457.13,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 12,
+  "checks": 13,
   "last_fdv": 45850.12,
   "last_vol_h1": 0.0,
   "peak_fdv": 45850.12
@@ -339,7 +339,7 @@
   "added_vol_h1": 17043.21,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 12,
+  "checks": 13,
   "last_fdv": 55075.84,
   "last_vol_h1": 0.0,
   "peak_fdv": 55075.84
@@ -354,7 +354,7 @@
   "added_vol_h1": 6918.85,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 12,
+  "checks": 13,
   "last_fdv": 50919.33,
   "last_vol_h1": 0.0,
   "peak_fdv": 50919.33
@@ -369,7 +369,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 11,
+  "checks": 12,
   "last_fdv": 45850.12,
   "last_vol_h1": 0.0,
   "peak_fdv": 45850.12
@@ -384,7 +384,7 @@
   "added_vol_h1": 878.82,
   "added_liq": 0.0,
   "added_venue": "amm",
-  "checks": 11,
+  "checks": 12,
   "last_fdv": 62747.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 62747.0
@@ -399,7 +399,7 @@
   "added_vol_h1": 9515.49,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 11,
+  "checks": 12,
   "last_fdv": 45993.93,
   "last_vol_h1": 0.0,
   "peak_fdv": 45993.93
@@ -414,7 +414,7 @@
   "added_vol_h1": 9515.49,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 11,
+  "checks": 12,
   "last_fdv": 45993.93,
   "last_vol_h1": 0.0,
   "peak_fdv": 45993.93
@@ -429,7 +429,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 10,
+  "checks": 11,
   "last_fdv": 55757.61,
   "last_vol_h1": 0.0,
   "peak_fdv": 55757.61
@@ -444,7 +444,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 9,
+  "checks": 10,
   "last_fdv": 51741.16,
   "last_vol_h1": 0.0,
   "peak_fdv": 51741.16
@@ -459,7 +459,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 9,
+  "checks": 10,
   "last_fdv": 53593.97,
   "last_vol_h1": 0.0,
   "peak_fdv": 53593.97
@@ -474,7 +474,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 9,
+  "checks": 10,
   "last_fdv": 47371.76,
   "last_vol_h1": 0.0,
   "peak_fdv": 47371.76
@@ -489,7 +489,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 9,
+  "checks": 10,
   "last_fdv": 46100.75,
   "last_vol_h1": 0.0,
   "peak_fdv": 46100.75
@@ -504,7 +504,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 8,
+  "checks": 9,
   "last_fdv": 52203.62,
   "last_vol_h1": 0.0,
   "peak_fdv": 52203.62
@@ -519,7 +519,7 @@
   "added_vol_h1": 331237.12,
   "added_liq": 0.0,
   "added_venue": "amm",
-  "checks": 8,
+  "checks": 9,
   "last_fdv": 58439.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 58439.0
@@ -534,7 +534,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 8,
+  "checks": 9,
   "last_fdv": 50328.29,
   "last_vol_h1": 0.0,
   "peak_fdv": 50328.29
@@ -549,7 +549,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 8,
+  "checks": 9,
   "last_fdv": 54920.31,
   "last_vol_h1": 0.0,
   "peak_fdv": 54920.31
@@ -564,7 +564,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "amm",
-  "checks": 8,
+  "checks": 9,
   "last_fdv": 68847.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 68847.0
@@ -579,7 +579,7 @@
   "added_vol_h1": 0.02,
   "added_liq": 0.36,
   "added_venue": "amm",
-  "checks": 8,
+  "checks": 9,
   "last_fdv": 64018.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 67263.0
@@ -594,7 +594,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 8,
+  "checks": 9,
   "last_fdv": 50947.24,
   "last_vol_h1": 0.0,
   "peak_fdv": 50947.24
@@ -609,7 +609,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 8,
+  "checks": 9,
   "last_fdv": 53280.73,
   "last_vol_h1": 0.0,
   "peak_fdv": 53280.73
@@ -624,7 +624,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 8,
+  "checks": 9,
   "last_fdv": 54239.95,
   "last_vol_h1": 0.0,
   "peak_fdv": 54239.95
@@ -639,7 +639,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 7,
+  "checks": 8,
   "last_fdv": 53397.12,
   "last_vol_h1": 0.0,
   "peak_fdv": 53397.12
@@ -654,7 +654,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 7,
+  "checks": 8,
   "last_fdv": 45961.06,
   "last_vol_h1": 0.0,
   "peak_fdv": 45961.06
@@ -669,7 +669,7 @@
   "added_vol_h1": 318532.45,
   "added_liq": 0.0,
   "added_venue": "amm",
-  "checks": 7,
+  "checks": 8,
   "last_fdv": 51096.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 51096.0
@@ -684,7 +684,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 7,
+  "checks": 8,
   "last_fdv": 53910.95,
   "last_vol_h1": 0.0,
   "peak_fdv": 53910.95
@@ -699,7 +699,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 6,
+  "checks": 7,
   "last_fdv": 54349.52,
   "last_vol_h1": 0.0,
   "peak_fdv": 54349.52
@@ -714,7 +714,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "amm",
-  "checks": 6,
+  "checks": 7,
   "last_fdv": 47174.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 47174.0
@@ -729,7 +729,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 6,
+  "checks": 7,
   "last_fdv": 45936.4,
   "last_vol_h1": 0.0,
   "peak_fdv": 45936.4
@@ -744,7 +744,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 6,
+  "checks": 7,
   "last_fdv": 55734.63,
   "last_vol_h1": 0.0,
   "peak_fdv": 55734.63
@@ -759,7 +759,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 5,
+  "checks": 6,
   "last_fdv": 45903.53,
   "last_vol_h1": 0.0,
   "peak_fdv": 45903.53
@@ -774,7 +774,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 55468.31,
   "last_vol_h1": 0.0,
   "peak_fdv": 55468.31
@@ -789,7 +789,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 60870.58,
   "last_vol_h1": 0.0,
   "peak_fdv": 60870.58
@@ -804,7 +804,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 53267.02,
   "last_vol_h1": 0.0,
   "peak_fdv": 53267.02
@@ -819,7 +819,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "amm",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 51438.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 51438.0
@@ -834,7 +834,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 53840.25,
   "last_vol_h1": 0.0,
   "peak_fdv": 53840.25
@@ -849,7 +849,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 45870.66,
   "last_vol_h1": 0.0,
   "peak_fdv": 45870.66
@@ -864,7 +864,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 45870.66,
   "last_vol_h1": 0.0,
   "peak_fdv": 45870.66
@@ -879,7 +879,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "amm",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 45575.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 45575.0
@@ -894,7 +894,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "amm",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 61168.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 61168.0
@@ -909,7 +909,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 55209.57,
   "last_vol_h1": 0.0,
   "peak_fdv": 55209.57
@@ -924,7 +924,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 54251.2,
   "last_vol_h1": 0.0,
   "peak_fdv": 54251.2
@@ -939,7 +939,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 52463.44,
   "last_vol_h1": 0.0,
   "peak_fdv": 52463.44
@@ -954,7 +954,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 50828.7,
   "last_vol_h1": 0.0,
   "peak_fdv": 50828.7
@@ -969,7 +969,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 45825.47,
   "last_vol_h1": 0.0,
   "peak_fdv": 45825.47
@@ -984,7 +984,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 55621.12,
   "last_vol_h1": 0.0,
   "peak_fdv": 55621.12
@@ -999,7 +999,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 45825.47,
   "last_vol_h1": 0.0,
   "peak_fdv": 45825.47
@@ -1014,7 +1014,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 59074.94,
   "last_vol_h1": 0.0,
   "peak_fdv": 59074.94
@@ -1029,7 +1029,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 53985.18,
   "last_vol_h1": 0.0,
   "peak_fdv": 53985.18
@@ -1044,7 +1044,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 56336.44,
   "last_vol_h1": 0.0,
   "peak_fdv": 56336.44
@@ -1059,7 +1059,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 55459.75,
   "last_vol_h1": 0.0,
   "peak_fdv": 55459.75
@@ -1074,7 +1074,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 55660.98,
   "last_vol_h1": 0.0,
   "peak_fdv": 55660.98
@@ -1089,7 +1089,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 45993.93,
   "last_vol_h1": 0.0,
   "peak_fdv": 45993.93
@@ -1104,7 +1104,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.33,
   "added_venue": "amm",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 55205.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 55205.0
@@ -1119,7 +1119,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 55025.87,
   "last_vol_h1": 0.0,
   "peak_fdv": 55025.87
@@ -1134,7 +1134,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 55639.89,
   "last_vol_h1": 0.0,
   "peak_fdv": 55639.89
@@ -1149,7 +1149,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 49219.37,
   "last_vol_h1": 0.0,
   "peak_fdv": 49219.37
@@ -1164,7 +1164,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 45587.15,
   "last_vol_h1": 0.0,
   "peak_fdv": 45587.15
@@ -1179,7 +1179,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 53980.71,
   "last_vol_h1": 0.0,
   "peak_fdv": 53980.71
@@ -1194,7 +1194,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 45627.95,
   "last_vol_h1": 0.0,
   "peak_fdv": 45627.95
@@ -1209,7 +1209,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 45607.7,
   "last_vol_h1": 0.0,
   "peak_fdv": 45607.7
@@ -1224,7 +1224,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 55352.5,
   "last_vol_h1": 0.0,
   "peak_fdv": 55352.5
@@ -1239,7 +1239,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 53066.93,
   "last_vol_h1": 0.0,
   "peak_fdv": 53066.93
@@ -1254,7 +1254,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 45533.74,
   "last_vol_h1": 0.0,
   "peak_fdv": 45533.74
@@ -1269,8 +1269,8 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.36,
   "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 65825.0,
+  "checks": 1,
+  "last_fdv": 59429.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 65825.0
  },
@@ -1284,7 +1284,7 @@
   "added_vol_h1": 0.0,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 45533.74,
   "last_vol_h1": 0.0,
   "peak_fdv": 45533.74
@@ -1299,9 +1299,9 @@
   "added_vol_h1": 0.01,
   "added_liq": 0.33,
   "added_venue": "amm",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 56546.0,
-  "last_vol_h1": 0.01,
+  "last_vol_h1": 0.0,
   "peak_fdv": 56546.0
  },
  "DQnhM9JZ6mf3T3bDD8xRPiGmK9AKnuKryUcTwqkTsung": {
@@ -1314,9 +1314,9 @@
   "added_vol_h1": 10111.34,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 46842.15,
-  "last_vol_h1": 10111.34,
+  "last_vol_h1": 0.0,
   "peak_fdv": 46842.15
  },
  "HNPFcpRpPsDdVfx9Las1af3YYpFBq3T8wcEhgRfdpoke": {
@@ -1329,9 +1329,9 @@
   "added_vol_h1": 82765.51,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 45648.79,
-  "last_vol_h1": 82765.51,
+  "last_vol_h1": 0.0,
   "peak_fdv": 45648.79
  },
  "37rsBXrLuFQk1ynX365Dy5CA38CVyE9fEYxgYmTnaE1V": {
@@ -1344,9 +1344,9 @@
   "added_vol_h1": 17548.73,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 45274.6,
-  "last_vol_h1": 17548.73,
+  "last_vol_h1": 0.0,
   "peak_fdv": 45274.6
  },
  "57wRTmHkKjSgkF6Q59fg3UR8A3h7kB6uC3o1CQhoRPAk": {
@@ -1359,9 +1359,9 @@
   "added_vol_h1": 0.5,
   "added_liq": 0.32,
   "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 52642.0,
-  "last_vol_h1": 0.5,
+  "checks": 1,
+  "last_fdv": 42006.0,
+  "last_vol_h1": 0.0,
   "peak_fdv": 52642.0
  },
  "21o2BdqDyG3ecWY1TW7ZR259mYDjKtY7ZkThPbksX47Z": {
@@ -1374,9 +1374,9 @@
   "added_vol_h1": 16722.09,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 55115.08,
-  "last_vol_h1": 16722.09,
+  "last_vol_h1": 0.0,
   "peak_fdv": 55115.08
  },
  "13GgD2jD1x8qqCpfgV2xXFJrvVYGmgqPcBgEqrcqpump": {
@@ -1389,9 +1389,9 @@
   "added_vol_h1": 9478.09,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 45813.14,
-  "last_vol_h1": 9478.09,
+  "last_vol_h1": 0.0,
   "peak_fdv": 45813.14
  },
  "5TYJ6zZcGFwqZwpbAXUMLZ1hZadRdDfXhedfNjJqpump": {
@@ -1404,9 +1404,9 @@
   "added_vol_h1": 900.11,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
-  "last_fdv": 56803.61,
-  "last_vol_h1": 900.11,
+  "checks": 1,
+  "last_fdv": 56567.86,
+  "last_vol_h1": 0.0,
   "peak_fdv": 56803.61
  },
  "AFEzYxJvexZftieeuborNqFVLtNpDKajUdqq5Baupump": {
@@ -1419,9 +1419,9 @@
   "added_vol_h1": 9440.69,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 45632.35,
-  "last_vol_h1": 9440.69,
+  "last_vol_h1": 0.0,
   "peak_fdv": 45632.35
  },
  "EUYneFS6RpxXwDV9AuygVxijrQRqiEmQ1eheuYvHjEjm": {
@@ -1434,9 +1434,9 @@
   "added_vol_h1": 8584.32,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 48940.78,
-  "last_vol_h1": 8584.32,
+  "last_vol_h1": 0.0,
   "peak_fdv": 48940.78
  }
 }

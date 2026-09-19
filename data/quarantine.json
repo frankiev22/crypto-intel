@@ -2790,5 +2790,29 @@
   "first_horizon_h": 1,
   "last_ts": 1789847316,
   "hits": 1
+ },
+ "DrYbgK5ZXh2MG4R9EBhWxP3PdfKYcPkZmLf6kgdRNAJN": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0375 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789854754,
+  "first_horizon_h": 1,
+  "last_ts": 1789854754,
+  "hits": 1
+ },
+ "7C1R431Mx7k2tGNmX5SZvh1Yw5m8Azgp9zCbVsDE8Wwq": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.2030 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789855187,
+  "first_horizon_h": 24,
+  "last_ts": 1789855187,
+  "hits": 1
+ },
+ "F9WDA4ZsrtdAJtDgFpzigfh34R3AEFkerNpJed1z1Y1u": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $15.7796 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789855215,
+  "first_horizon_h": 24,
+  "last_ts": 1789855215,
+  "hits": 1
  }
 }
