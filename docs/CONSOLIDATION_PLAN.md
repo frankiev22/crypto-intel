@@ -201,13 +201,13 @@ face has to be reorganised around it, not given another panel.
 
 | order | panel | file | status |
 |---|---|---|---|
-| 1 | **Top trending, always on screen**: every trending token with its universe status and gate verdict. Dexscreener boosts are labelled PAID | `data/universe/narratives.json` → `trending_now` | pipeline ✅, site ⬜ |
-| 2 | **Narratives**: name clusters over the live universe, plus Dexscreener themes intersected with it | same file, `name_clusters`, `themes` | pipeline ✅, site ⬜ |
-| 3 | **The universe**: every member with gate status and age, market cap, moves, "under $1M since", "failing since" | `data/universe/members.json` | pipeline ✅, site ⬜ |
-| 4 | **Movers, volume, the tape** | `data/market/*.json` | pipeline ✅ (unattended 23:49Z), site ⬜ |
-| 5 | **Crossings, each with its depth at the crossing** | `data/milestones/` `exit_depth_at_crossing` | pipeline ✅ (unattended), ⛔ **site ignores the field** |
+| 1 | **Top trending, always on screen**: every trending token with its universe status and gate verdict. Dexscreener boosts are labelled PAID | `data/universe/narratives.json` → `trending_now` | pipeline ✅, site ✅ **live on production 2026-09-19** (verified from the pipeline side; ⚠️ site source uncommitted, BACKLOG C16) |
+| 2 | **Narratives**: name clusters over the live universe, plus Dexscreener themes intersected with it | same file, `name_clusters`, `themes` | pipeline ✅, site ✅ **live on production 2026-09-19** (verified from the pipeline side; ⚠️ site source uncommitted, BACKLOG C16) |
+| 3 | **The universe**: every member with gate status and age, market cap, moves, "under $1M since", "failing since" | `data/universe/members.json` | pipeline ✅, site ✅ **live on production 2026-09-19** (verified from the pipeline side; ⚠️ site source uncommitted, BACKLOG C16) |
+| 4 | **Movers, volume, the tape** | `data/market/*.json` | pipeline ✅, site ✅ **live on production 2026-09-19** (verified from the pipeline side; ⚠️ site source uncommitted, BACKLOG C16) |
+| 5 | **Crossings, each with its depth at the crossing** | `data/milestones/` `exit_depth_at_crossing` | pipeline ✅, site ✅ **live on production 2026-09-19** (verified from the pipeline side; ⚠️ site source uncommitted, BACKLOG C16) |
 | 6 | Launch-side sections that exist today (graduated, approaching, flags) | as now | ✅ — moves below the fold |
-| 7 | Paste a CA → one report, which now also answers "is it in the universe, and does it sell" | `/api/ca` + `members.json` | ⬜ |
+| 7 | Paste a CA → one report, which now also answers "is it in the universe, and does it sell" | `/api/ca` + `members.json` | ⭐ site ✅ the lookup returns universe status and gate verdict (2026-09-19); on-demand analysis of an unseen CA still needs `check.py` as a service (D1) |
 
 **Why it matters for consolidation.** Eleven of the thirteen rows the SHIPPED
 audit reclassified (BACKLOG, "SHIPPED-row audit") are pipeline output that
