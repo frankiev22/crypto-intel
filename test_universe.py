@@ -307,6 +307,8 @@ check("⭐ an untracked boost is NAMED from Jupiter, with the cap and its backin
       tn[SMALL]["universe_status"] == "not tracked" and tn[SMALL]["symbol"] == "SMALL"
       and tn[SMALL]["mcap_usd"] == 4e5 and tn[SMALL]["resolved_by"] == "jupiter.search"
       and tn[SMALL]["cap_backing_pct"] == market.cap_backing(WORLD[SMALL]["liquidity"], 4e5), tn.get(SMALL))
+check("⛔ an untracked trending row carries a verdict too - UNKNOWN (no round trip), never blank",
+      tn[SMALL]["safety"] == "UNKNOWN" and tn[GHOST]["safety"] == "UNKNOWN", (tn[SMALL].get("safety"), tn[GHOST].get("safety")))
 check("⛔ one Jupiter never heard of stays unknown: None, not a guessed name or a 0",
       tn[GHOST]["symbol"] is None and tn[GHOST]["mcap_usd"] is None
       and tn[GHOST]["cap_backing_pct"] is None and tn[GHOST]["resolved_by"] is None, tn.get(GHOST))

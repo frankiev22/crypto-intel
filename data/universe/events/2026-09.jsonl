@@ -1864,3 +1864,8 @@
 {"ts":1789785737,"token":"FvhorDts9M8uJekzs3pBcYUPUjWtCTrGLhdv3ADHyeRY","event":"below_floor","mcap_usd":999668,"origin":"manual"}
 {"ts":1789785753,"token":"AyYNfPtftg2zDP4ZbgcoQMggQtwLh4zpfVVmUJs2thto","event":"admitted","verdict":"TRADEABLE","rt_cost_pct":1.478,"status_before":"candidate","origin":"manual","status_after":"member"}
 {"ts":1789785754,"token":"biddm3N7RjyjfcnzmjgrQJ24QKooBGUy1RYP1aEgtzW","event":"admitted","verdict":"TRADEABLE","rt_cost_pct":2.3498,"status_before":"candidate","origin":"manual","status_after":"member"}
+{"ts":1789786289,"token":"FvhorDts9M8uJekzs3pBcYUPUjWtCTrGLhdv3ADHyeRY","event":"back_above_floor","mcap_usd":1155375,"below_since":1789785737,"origin":"manual"}
+{"ts":1789786289,"token":"qWNEpzaefWfRpowfLintnaMMqC3Xz9xPa518fHWpump","event":"below_floor","mcap_usd":2038,"origin":"manual"}
+{"ts":1789786289,"token":"PrekqLJvJ3qVdXmBGDiexvwUTF4rLFDa6HWS4HJbw9S","event":"below_floor","mcap_usd":997514,"origin":"manual"}
+{"ts":1789786289,"token":"biddm3N7RjyjfcnzmjgrQJ24QKooBGUy1RYP1aEgtzW","event":"below_floor","mcap_usd":882199,"origin":"manual"}
+{"ts":1789786289,"token":"7MCgYMzq3fov6oERdtTMAYbN2U9LZrrSYS1MBhjixZFr","event":"back_above_floor","mcap_usd":1043376,"below_since":1789785737,"origin":"manual"}

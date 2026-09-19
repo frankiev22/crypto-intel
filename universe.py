@@ -779,6 +779,24 @@ def build(verbose=True, now=None, rt=None, gate_s=None, discover=True, fdv=None,
         except Exception as ex:
             SOURCES["jupiter.search_untracked_trending"] = {"status": "error", "n": 0,
                                                              "error": type(ex).__name__}
+    # ⛔ Untracked trending rows sit at the TOP of the page, so they get a
+    # verdict too: chain facts, D1 and holders cost one RPC call and two
+    # Dexscreener calls for all of them. No round trip was run, so S1 is
+    # unknown and the level is UNKNOWN unless something found DANGER.
+    uverdict = {}
+    if untracked and safety_s > 0:
+        try:
+            import safety as _safety
+            ch = _safety.chain_mints(untracked)
+            dx = _safety.dex_pairs(untracked)
+            for m in untracked:
+                j = looked.get(m) or {}
+                tmp = {"status": "not tracked", "class": market.token_class(j) if j else "token",
+                       "gate": {}, "sources": [], "last": snapshot(j, now) if j else {},
+                       "chain": {"facts": ch.get(m), "ts": int(now)}, "dex": {"facts": dx.get(m), "ts": int(now)}}
+                uverdict[m] = _safety.verdict(tmp, now)
+        except Exception as ex:
+            SOURCES["safety.untracked_trending"] = {"status": "error", "n": 0, "error": type(ex).__name__}
     tr_rows = []
     for r in trending_rows:
         e = tokens.get(r["token"])
@@ -787,10 +805,14 @@ def build(verbose=True, now=None, rt=None, gate_s=None, discover=True, fdv=None,
         else:
             j = looked.get(r["token"]) or {}
             mc, lq = _num(j.get("mcap")), _num(j.get("liquidity"))
+            uv = uverdict.get(r["token"]) or {}
             extra = {"symbol": r.get("symbol") or j.get("symbol"), "name": j.get("name"),
                      "mcap_usd": mc, "cap_backing_pct": cap_backing(lq, mc),
                      "liquidity_usd_reported": lq,
-                     "resolved_by": "jupiter.search" if j else None}
+                     "resolved_by": "jupiter.search" if j else None,
+                     "safety": uv.get("level") or "not computed",
+                     "safety_reasons": (uv.get("reasons") or [])[:4],
+                     "safety_ts": uv.get("computed_ts")}
         tr_rows.append(dict(r, universe_status=(e or {}).get("status") or "not tracked", **extra))
     narr = dict(head, trending_built_at=_iso(trending_ts), trending_stale=stale_tr,
                 trending_age_s=(None if trending_ts is None else int(now - trending_ts)),
