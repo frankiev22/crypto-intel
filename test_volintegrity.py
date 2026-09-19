@@ -86,6 +86,9 @@ check("...and 0.0 on M1', where one transfer is one size -> CLEAN_V2",
 loop = V.profile_from(M, [swap(i, 77.7) for i in range(10)])
 check("a bot looping one size is still 1.0 on M1'", loop["dup_amount_share_tx"] == 1.0
       and loop["verdict_v2"] == "VOLUME_SUSPECT")
+check("§3d M1' alone: 0.50 SUSPECT, 0.2499 CLEAN, 0.25 UNKNOWN, None UNKNOWN",
+      [V.verdict_m1p(x) for x in (0.5, 0.2499, 0.25, None)]
+      == ["VOLUME_SUSPECT", "VOLUME_CLEAN", "VOLUME_UNKNOWN", "VOLUME_UNKNOWN"])
 src = open(V.__file__, encoding="utf-8").read()
 check("transactions are requested at version 1", '"maxSupportedTransactionVersion": 1' in src)
 

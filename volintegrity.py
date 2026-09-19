@@ -189,6 +189,63 @@ def validate(per_arm=30, members_path=None, out_path=None):
     return rep
 
 
+def verdict_m1p(dup_tx):
+    """§3d, pre-committed 2026-09-19: M1' alone."""
+    if dup_tx is None:
+        return "VOLUME_UNKNOWN"
+    if dup_tx >= SUSPECT_DUP:
+        return "VOLUME_SUSPECT"
+    if dup_tx < CLEAN_DUP:
+        return "VOLUME_CLEAN"
+    return "VOLUME_UNKNOWN"
+
+
+def validate_farm(per_arm=30, members_path=None, out_path=None, seed=20260920):
+    """§3d: M1' alone, farm signature vs TRADEABLE token members outside it."""
+    members_path = members_path or os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                                "data", "universe", "members.json")
+    with open(members_path, encoding="utf-8") as f:
+        T = json.load(f)["tokens"]
+
+    def farm(e):
+        return ("graduation" in (e.get("sources") or []) and (e.get("ticker_contracts") or 0) > 1)
+    toks = {m: e for m, e in T.items() if e.get("status") == "member" and e.get("class") == "token"}
+    arms = {"FARM": sorted(m for m, e in toks.items() if farm(e)),
+            "NOT_FARM": sorted(m for m, e in toks.items() if not farm(e)
+                               and (e.get("gate") or {}).get("verdict") == "TRADEABLE")}
+    n = min(per_arm, len(arms["FARM"]))
+    rng = random.Random(seed)
+    rows = []
+    for arm, pool in arms.items():
+        for m in rng.sample(pool, min(n, len(pool))):
+            r = measure(m)
+            r["arm"] = arm
+            r["verdict_m1p"] = verdict_m1p(r.get("dup_amount_share_tx"))
+            rows.append(r)
+            print(f"  {arm:9} {m[:8]}… parsed {r.get('parsed')!s:>3} dup_tx {r.get('dup_amount_share_tx')!s:>6} "
+                  f"-> {r['verdict_m1p']}", flush=True)
+    rep = {"rule": "docs/VOLUME_INTEGRITY.md section 3d (pre-committed 2026-09-19)", "per_arm": n,
+           "arms": {}, "rows": rows}
+    for arm in arms:
+        rs = [r for r in rows if r["arm"] == arm]
+        c = collections.Counter(r["verdict_m1p"] for r in rs)
+        known = [r for r in rs if r["verdict_m1p"] != "VOLUME_UNKNOWN"]
+        rep["arms"][arm] = {"n": len(rs), "verdicts": dict(c),
+                            "suspect_all": [c["VOLUME_SUSPECT"], len(rs), wilson(c["VOLUME_SUSPECT"], len(rs))],
+                            "suspect_known": [c["VOLUME_SUSPECT"], len(known),
+                                              wilson(c["VOLUME_SUSPECT"], len(known))]}
+    a, b = rep["arms"].get("FARM"), rep["arms"].get("NOT_FARM")
+    rep["separates_all"] = bool(a and b and a["suspect_all"][2][0] is not None and b["suspect_all"][2][1] is not None
+                                and a["suspect_all"][2][0] > b["suspect_all"][2][1])
+    rep["separates_known"] = bool(a and b and a["suspect_known"][2][0] is not None
+                                  and b["suspect_known"][2][1] is not None
+                                  and a["suspect_known"][2][0] > b["suspect_known"][2][1])
+    if out_path:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(rep, f, indent=1)
+    return rep
+
+
 if __name__ == "__main__":
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")

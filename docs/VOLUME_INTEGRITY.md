@@ -140,6 +140,57 @@ otherwise         VOLUME_UNKNOWN
 ⛔ **Neither is quotable as a detector unless it separates the arms on that
 run.** A null result is the finding, and it gets written here.
 
+## 3c. ⛔ RESULT, 2026-09-19: both rules FAIL validation. Not a detector; do not quote
+
+`volintegrity.validate(30)`, seeded 20260919, labelled by the universe gate's
+round trip. 30 TRADEABLE members against 30 tokens refused at the gate; 3,600
+transactions, all read at version 1. Evidence:
+`data/findings/volintegrity_validation_2026-09-19.json`.
+
+| rule | TRADEABLE flagged SUSPECT | NOT TRADEABLE flagged SUSPECT |
+|---|---|---|
+| §3 (09-17, as committed) | **29/30 = 96.7% [83.3, 99.4]** | 27/30 = 90.0% [74.4, 96.5] |
+| §3 on verdicts only | 29/29 = 100% [88.3, 100] | 27/28 = 96.4% [82.3, 99.4] |
+| §3b M1′ + M2 | **19/30 = 63.3% [45.5, 78.1]** | 18/30 = 60.0% [42.3, 75.4] |
+| §3b on verdicts only | 19/22 = 86.4% [66.7, 95.3] | 18/26 = 69.2% [50.0, 83.5] |
+
+**Neither separates, and on verdicts only the direction is inverted:** the
+tokens you can actually sell are flagged more often. Why:
+
+- **M1 as committed counts both legs of every swap** (§3b). The median TRADEABLE
+  token scores 0.845, so almost everything reads SUSPECT.
+- **⛔ M2 measures trading intensity, not fraud.** Tokens flagged by slots had
+  their 60 sampled transactions spread over a median **2.0h**; tokens with ≤ 1
+  multi-tx slot, over **90h**. A busy token puts two trades in one 400ms slot
+  as a matter of course.
+- ⚠️ **The label is the wrong one for a wash detector.** Round-trip verdicts
+  separate *sellable* from *not*. A wash-traded token can be sellable; that is
+  the point of washing it. The §3 validation design could only ever confirm
+  "dead vs alive", which the round trip already tells us.
+
+An observation, **not a finding**, because it was seen in this sample: M1′ on its
+own differs by arm, with a median of **0.128** for TRADEABLE and **0.496** for NOT
+TRADEABLE. It is tested only on a fresh sample with a better label (§3d).
+
+## 3d. PRE-COMMITTED 2026-09-19, before it runs: M1′ alone, against the wallet farm
+
+**The label:** the wallet farm the universe seed found (`docs/UNIVERSE.md` §3a).
+Those are members from the graduation ledger that share a ticker with another
+tracked contract. That label was identified from holders, tickers and backing,
+**independently of any volume measure**. The positive arm is those members; the
+negative arm is TRADEABLE `token`-class members outside the farm signature,
+seeded random (seed 20260920). n = min(30, farm size) per arm.
+
+```
+M1'_SUSPECT if dup_amount_share_tx >= 0.50
+M1'_CLEAN   if dup_amount_share_tx <  0.25
+otherwise   UNKNOWN          (and None -> UNKNOWN, never clean)
+```
+
+**Separates** only if the farm's SUSPECT rate's Wilson lower bound exceeds the
+negative arm's upper bound, reported both ways. Anything less is a null result
+and gets written here.
+
 ## 4. ⚠️ Two limits I hit, stated so nobody repeats them
 
 1. **Keying on the stored `pair` gives stale pools.** An earlier run showed
