@@ -202,6 +202,32 @@ try:
 finally:
     paper.LEDGER = _saved_ledger
     os.environ.pop("CRYPTO_PAPER_UNFREEZE", None)
+paper.LEDGER = next(iter(paper.QUARANTINED_PATHS))
+try:
+    _sw = paper.sweep(lambda *a, **k: None, verbose=False)
+finally:
+    paper.LEDGER = _saved_ledger
+check("⛔ a frozen sweep returns a DICT (collect.sweep_stage calls .get on it)",
+      isinstance(_sw, dict) and _sw.get("frozen") is True and _sw.get("deferred") == 0, repr(_sw))
+import collect as _collect
+_seen2 = {}
+_real_v2 = __import__("paperv2").sweep
+__import__("paperv2").sweep = lambda *a, **k: _seen2.setdefault("v2", True) and {"deferred": 0}
+_saved_ledger2 = paper.LEDGER
+paper.LEDGER = next(iter(paper.QUARANTINED_PATHS))
+import io as _io, contextlib as _cl
+_buf = _io.StringIO()
+try:
+    with _cl.redirect_stdout(_buf):
+        try:
+            _collect.sweep_stage(verbose=False)
+        except Exception:
+            pass
+finally:
+    paper.LEDGER = _saved_ledger2
+    __import__("paperv2").sweep = _real_v2
+check("...so sweep_stage no longer prints 'paper sweep failed', and REACHES the v2 sweep",
+      "paper sweep failed" not in _buf.getvalue() and _seen2.get("v2") is True, _buf.getvalue()[:120])
 check("...and unfreezing for a migration write does not turn it back into evidence",
       _q2["hit_rate"].startswith("QUARANTINED"), _q2.get("hit_rate", "")[:40])
 

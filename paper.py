@@ -727,7 +727,12 @@ def sweep(fetch_pair, verbose=True, should_stop=None):
     Unbudgeted callers (the GitHub runner) pass nothing and behave as before.
     """
     if frozen():
-        return (0, 0)
+        # ⛔ A DICT, like every other return. This returned (0, 0) from the
+        # quarantine (4676ce3) on, and collect.sweep_stage calls .get() on it:
+        # "paper sweep failed: 'tuple' object has no attribute 'get'" on every
+        # pass, and the v2 sweep nested in the same try never ran. Found by the
+        # desktop task's own collector-error finding, 2026-09-19 07:21Z.
+        return {"checked": 0, "closed": 0, "deferred": 0, "frozen": True}
     import datetime as _dt
     liveness.beat("paper.sweep")
     rows = _read()
