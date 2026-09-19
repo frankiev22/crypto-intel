@@ -177,6 +177,16 @@ check("⭐ liveness was beaten ONCE with the ROW COUNT read back, not a bare 1",
       {k: beat.get(k) for k in ("firings", "rows_total", "empty_firings")})
 check("the origin of a hand run is recorded as manual, not unattended",
       idx["origin"] == "manual", idx["origin"])
+mv = read("movers.json")["lists"]
+vol = read("volume.json")
+vrows = (vol.get("leaders_24h") or []) + (vol.get("leaders_24h_tokens") or [])
+mrows = [r for L in mv.values() for r in L] + vrows
+check("the volume rows are actually in that check (not an empty list passing vacuously)", len(vrows) > 0, len(vrows))
+check("⛔ every mover and volume row carries cap_backing_pct beside its cap (the site shows no cap without it)",
+      mrows and all("cap_backing_pct" in r for r in mrows), len(mrows))
+check("...computed as the quote half of reported liquidity over the cap, None when unknown",
+      all(r["cap_backing_pct"] == market.cap_backing(r["liquidity_usd_reported"], r["mcap_usd"]) for r in mrows)
+      and market.cap_backing(None, 5e6) is None and market.cap_backing(1e3, 0) is None)
 
 print()
 print("=" * 70)

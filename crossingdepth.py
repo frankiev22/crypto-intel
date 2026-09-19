@@ -13,6 +13,7 @@ nothing (standing rule 4).
 ⭐ THE MEASUREMENT WAS NEVER LOST, ONLY UNLINKED. record_outcome() sets
 `checked_ts = int(time.time())`, appends the outcome row, and claims the
 milestone in the same call, so the claim's `crossed_ts` lands 0-2 seconds after
+(from 2026-09-19 it EQUALS it: milestones.claim stamps the observing measurement)
 the row it came from. Measured over every live crossing on 2026-09-18:
 
     09-09 onward   926 of 926 join to exactly one outcome row, delta 0-2s

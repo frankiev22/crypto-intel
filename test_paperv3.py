@@ -259,6 +259,9 @@ b, _ = paperv3.open_entry(dict(CLEAN, addr="BBB222222222222222222222222222222222
 ok, idx, msg = paperv3.verify()
 check("a clean chain verifies", ok, msg)
 check("seq increments", a["seq"] == 0 and b["seq"] == 1)
+check("⭐ every new row says who wrote it, inside the hash (a hand run is 'manual')",
+      a.get("origin") is not None and a.get("origin") == paperv3.liveness.origin() == b.get("origin"),
+      a.get("origin"))
 check("b chains to a", b["prev"] == a["hash"])
 
 rows = [json.loads(l) for l in io.open(paperv3.LEDGER, encoding="utf-8")]

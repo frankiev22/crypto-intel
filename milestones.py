@@ -83,9 +83,19 @@ def claim(token, milestone, **meta):
     if not token or not milestone:
         return False
     path = _claim_path(token, milestone)
+    claimed = int(time.time())
+    # ⭐ WHEN it crossed is when the crossing was OBSERVED. A claim made from an
+    # outcome check is detected BY that check's measurement, so crossed_ts is the
+    # measurement's own time (outcome_checked_ts), and depth read in the same
+    # call is at the crossing by construction. Until 2026-09-19 crossed_ts was
+    # the write time, a second later, and the site found 2 of 18 claims whose
+    # depth read "1s BEFORE the crossing". The write time is kept as claimed_ts.
+    seen = meta.get("outcome_checked_ts")
+    crossed = int(seen) if isinstance(seen, (int, float)) and 0 < seen <= claimed else claimed
     row = {"token": token, "milestone": milestone,
-           "crossed_ts": int(time.time()),
-           "crossed_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+           "crossed_ts": crossed,
+           "crossed_at": dt.datetime.fromtimestamp(crossed, dt.timezone.utc).isoformat(timespec="seconds"),
+           "claimed_ts": claimed,
            **meta}
     try:
         # The whole design is this one call. O_EXCL means the create fails if

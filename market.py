@@ -251,6 +251,16 @@ def token_class(tok):
     return "token"
 
 
+def cap_backing(liq, mcap):
+    """What the pool could pay out if every holder sold, as a % of the cap: the
+    quote half of reported liquidity over the market cap. None when either is
+    unknown, never 0. Descriptive, gates nothing - see universe.cap_backing and
+    docs/UNIVERSE.md 3a for the wallet farm it was built to expose."""
+    if liq is None or not mcap:
+        return None
+    return round(liq / 2 / mcap * 100, 4)
+
+
 def token_row(tok, sol, now, seen, lists):
     mint = tok.get("id")
     ch = {h: _stat(tok, h, "priceChange") for h in ("5m", "1h", "6h", "24h")}
@@ -271,6 +281,8 @@ def token_row(tok, sol, now, seen, lists):
         "traders": {h: _stat(tok, h, "numTraders") for h in ("1h", "24h")},
         "liquidity_usd_reported": _r(_num(tok.get("liquidity"))),
         "mcap_usd": _r(_num(tok.get("mcap"))),
+        # ⛔ A cap is never shown without this beside it (the site enforces it).
+        "cap_backing_pct": cap_backing(_num(tok.get("liquidity")), _num(tok.get("mcap"))),
         "fdv_usd": _r(_num(tok.get("fdv"))),
         "holders": tok.get("holderCount"),
         "age_h": age_h(tok, now),

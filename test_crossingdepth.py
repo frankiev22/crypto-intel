@@ -87,8 +87,21 @@ for c in claims:
     check(f"{c['milestone']}: it names the measurement it came from",
           c.get("outcome_checked_ts") == o.get("checked_ts")
           and c.get("horizon_h") == 1 and c.get("exit_pair_at_crossing") == o.get("exit_pair"))
-    check(f"{c['milestone']}: and the crossing lands 0-2s after that measurement",
-          0 <= c["crossed_ts"] - o["checked_ts"] <= 2, c["crossed_ts"] - o["checked_ts"])
+    check(f"{c['milestone']}: ⭐ crossed_ts IS that measurement's time, so depth is at the crossing",
+          c["crossed_ts"] == o["checked_ts"], c["crossed_ts"] - o["checked_ts"])
+    check(f"{c['milestone']}: the write time is kept separately, never before the crossing",
+          c.get("claimed_ts") is not None and 0 <= c["claimed_ts"] - c["crossed_ts"] <= 2,
+          c.get("claimed_ts"))
+
+check("a claim with no measurement behind it (graduation) is stamped at write time",
+      milestones.claim("TestMintNoCheck33333333333333333333333333pump", "graduated", kind="graduation")
+      and next(r for r in ledger_rows() if r.get("token", "").startswith("TestMintNoCheck"))["crossed_ts"]
+      == next(r for r in ledger_rows() if r.get("token", "").startswith("TestMintNoCheck"))["claimed_ts"])
+check("⛔ a future outcome_checked_ts cannot date a crossing after it was written",
+      milestones.claim("TestMintFuture4444444444444444444444444pump", "mcap_100k", kind="mcap",
+                       outcome_checked_ts=int(time.time()) + 3600)
+      and next(r for r in ledger_rows() if r.get("token", "").startswith("TestMintFuture"))["crossed_ts"]
+      <= next(r for r in ledger_rows() if r.get("token", "").startswith("TestMintFuture"))["claimed_ts"])
 
 print()
 print("=" * 70)

@@ -217,11 +217,24 @@ over **the live universe**:
 - **`trending_now`**: every token on Jupiter toptrending (1h/6h/24h),
   GeckoTerminal trending, and Dexscreener boosts (**PAID**, labelled as such).
   Each carries its universe status and gate verdict. It is always present in
-  the file, and marked stale if the market stage did not run.
+  the file. ⭐ **`trending_age_s`** is how old the lists are, in seconds, on
+  every build; `trending_stale` is true past **3h**, one missed ~2h pass.
+  ⚠️ It was 6h until 2026-09-19, when the site read a list 1.75h old marked
+  fresh beside a "just now" build time (my hand seed, reading the 23:47 run's
+  file). Trending moves faster than any pass we run (standing rule 13), so the
+  age is the honest label and the flag is only the alarm.
+- ⭐ **Untracked rows are named.** Paid boosts and GeckoTerminal pools we do
+  not track arrived with no symbol (13 of 13 paid rows on the site read
+  "unknown"). One Jupiter search per 100 mints now fills `symbol`, `name`,
+  `mcap_usd` and `cap_backing_pct`, so "not tracked" can show *why* (usually
+  under $1M). `resolved_by: null` means Jupiter has never heard of it, and the
+  fields stay null.
 - **`name_clusters`**: members grouped by a shared root in symbol and name,
   using `clusters.roots()` including the CJK n-grams. Each cluster carries
   aggregate market cap, 24h volume, a market-cap-weighted 24h move, and how
-  many members are trending right now.
+  many members are trending right now. ⚠️ **The site does not show the
+  cap-weighted move, and it is right not to:** weighted by caps that can be
+  fiction, the farm's "fund" cluster read **+353%**.
 - **`themes`**: Dexscreener's trending categories, intersected with the
   universe.
 

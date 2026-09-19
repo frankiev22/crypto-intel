@@ -69,7 +69,12 @@ GRAD_WATCH_H = 72
 THEMES_N = 12
 THEME_GAP_S = 1.1      # Dexscreener meta pages, one per ~second
 MEMBERS_CAP = 40      # members listed per cluster/theme in narratives.json
-TRENDING_FRESH_H = 6  # trending marks older than this are shown as stale
+# Trending marks older than this are flagged stale. Runner passes land ~2h apart
+# (measured 2026-09-18/19: 2h16, 1h57, 1h54), so 3h means "the market stage
+# missed a pass". It was 6h until the site caught a 1.75h-old list read as fresh
+# beside a "just now" build time. Trending moves faster than any pass, so the
+# age is published in seconds on every build - read it, not the flag alone.
+TRENDING_FRESH_H = 3
 
 CALLS = {"n": 0}
 SOURCES = {}
@@ -210,10 +215,10 @@ def cap_backing(liq, mcap):
     farm, a pool holding almost none of it: price x supply is fiction, and a $100
     round trip still passes at 0.6%. The quote half of Jupiter's reported
     liquidity over the cap. DESCRIPTIVE - it overlaps real coins (their p10 is
-    0.087%), so it is shown on every row and gates nothing (docs/UNIVERSE.md 3a)."""
-    if liq is None or not mcap:
-        return None
-    return round(liq / 2 / mcap * 100, 4)
+    0.087%), so it is shown on every row and gates nothing (docs/UNIVERSE.md 3a).
+    The formula lives in market.cap_backing, which the mover and volume rows use
+    too: one copy, so a cap and its backing mean the same thing on every panel."""
+    return market.cap_backing(liq, mcap)
 
 
 def _mcap(e):
@@ -230,11 +235,11 @@ def jupiter_verified():
     return {t["id"]: t for t in d or [] if isinstance(t, dict) and t.get("id")}
 
 
-def jupiter_search(mints):
+def jupiter_search(mints, label="jupiter.search"):
     out = {}
     mints = list(mints)
     for i in range(0, len(mints), SEARCH_BATCH):
-        d = _fetch("jupiter.search", f"{JUP_TOKENS}/search?query=" + ",".join(mints[i:i + SEARCH_BATCH]),
+        d = _fetch(label, f"{JUP_TOKENS}/search?query=" + ",".join(mints[i:i + SEARCH_BATCH]),
                    jupiter=True)
         for t in d or []:
             if isinstance(t, dict) and t.get("id"):
@@ -736,13 +741,33 @@ def build(verbose=True, now=None, rt=None, gate_s=None, discover=True, fdv=None)
     _append(HISTORY_DIR, f"{day}.jsonl", [{"ts": int(now), "cols": cols, "rows": hist}] if hist else [])
 
     stale_tr = (trending_ts is None) or (now - trending_ts > TRENDING_FRESH_H * 3600)
+    # Rows we do not track (paid boosts, GeckoTerminal pools) arrive with no
+    # symbol: one Jupiter search per 100 mints names them, and gives the cap and
+    # its backing so "not tracked" can say why. Unknown stays None.
+    untracked = sorted({r["token"] for r in trending_rows if r["token"] not in tokens})
+    looked = {}
+    if untracked:
+        try:
+            looked = jupiter_search(untracked, label="jupiter.search_untracked_trending")
+        except Exception as ex:
+            SOURCES["jupiter.search_untracked_trending"] = {"status": "error", "n": 0,
+                                                             "error": type(ex).__name__}
     tr_rows = []
     for r in trending_rows:
         e = tokens.get(r["token"])
-        tr_rows.append(dict(r, universe_status=(e or {}).get("status") or "not tracked",
-                            **({k: v for k, v in _brief(r["token"], e).items()
-                                if k not in ("token", "trending")} if e else {"symbol": r.get("symbol")})))
+        if e:
+            extra = {k: v for k, v in _brief(r["token"], e).items() if k not in ("token", "trending")}
+        else:
+            j = looked.get(r["token"]) or {}
+            mc, lq = _num(j.get("mcap")), _num(j.get("liquidity"))
+            extra = {"symbol": r.get("symbol") or j.get("symbol"), "name": j.get("name"),
+                     "mcap_usd": mc, "cap_backing_pct": cap_backing(lq, mc),
+                     "liquidity_usd_reported": lq,
+                     "resolved_by": "jupiter.search" if j else None}
+        tr_rows.append(dict(r, universe_status=(e or {}).get("status") or "not tracked", **extra))
     narr = dict(head, trending_built_at=_iso(trending_ts), trending_stale=stale_tr,
+                trending_age_s=(None if trending_ts is None else int(now - trending_ts)),
+                trending_stale_after_h=TRENDING_FRESH_H,
                 caveats=["Descriptive only. Clusters are ordered by how many members are trending "
                          "now, then 24h volume - size and activity, never a quality ranking.",
                          "Market cap is price x supply and can be fiction. Never show or sum it without "

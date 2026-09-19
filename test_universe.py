@@ -77,6 +77,7 @@ CGONLY = mint("CGONLYcoin")            # CoinGecko only, Jupiter does not know i
 CGDISAGREE = mint("CGDISAGREE")        # CoinGecko $2M, Jupiter $600k -> Jupiter wins
 REFUSE = mint("REFUSEme")              # $1.2M on the listing, cannot be sold
 CATS = [mint(f"CAT{i}popcat") for i in range(3)]   # a name cluster of three
+GHOST = mint("GHOSTboost")             # a paid boost Jupiter has never heard of
 
 WORLD = {
     BIG: jtok(BIG, "BIG", 5e6, liq=900_000.0),
@@ -133,7 +134,11 @@ with open(os.path.join(market.OUT_DIR, "trending.json"), "w", encoding="utf-8") 
     json.dump({"built_ts": int(NOW), "jupiter": {"1h": [{"rank": 1, "token": TREND, "symbol": "TRND"},
                                                         {"rank": 2, "token": NOMCAP, "symbol": "NOM"}]},
                "geckoterminal": {"1h": [{"token": GRAD, "pool": "p", "dex": "pumpswap"}]},
-               "boosts_top": [{"token": CATS[0], "boost_total": 500}]}, f)
+               "boosts_top": [{"token": CATS[0], "boost_total": 500},
+                              # untracked paid rows arrive with no symbol (the site
+                              # showed 13 of 13 as "unknown", 2026-09-19)
+                              {"token": SMALL, "boost_total": 100},
+                              {"token": GHOST, "boost_total": 50}]}, f)
 with open(os.path.join(market.OUT_DIR, "clusters.json"), "w", encoding="utf-8") as f:
     json.dump({"dexscreener_metas": [{"name": "Cats", "slug": "cat", "token_count": 90}]}, f)
 os.makedirs(milestones.DIR, exist_ok=True)
@@ -261,6 +266,19 @@ tn = {r["token"]: r for r in N["trending_now"]}
 check("trending_now carries every trending token, with its universe status",
       tn[TREND]["universe_status"] == "member" and tn[NOMCAP]["universe_status"] == "not tracked", tn.get(NOMCAP))
 check("⛔ a paid boost is labelled paid", tn[CATS[0]].get("paid") is True)
+check("⭐ an untracked boost is NAMED from Jupiter, with the cap and its backing that say why",
+      tn[SMALL]["universe_status"] == "not tracked" and tn[SMALL]["symbol"] == "SMALL"
+      and tn[SMALL]["mcap_usd"] == 4e5 and tn[SMALL]["resolved_by"] == "jupiter.search"
+      and tn[SMALL]["cap_backing_pct"] == market.cap_backing(WORLD[SMALL]["liquidity"], 4e5), tn.get(SMALL))
+check("⛔ one Jupiter never heard of stays unknown: None, not a guessed name or a 0",
+      tn[GHOST]["symbol"] is None and tn[GHOST]["mcap_usd"] is None
+      and tn[GHOST]["cap_backing_pct"] is None and tn[GHOST]["resolved_by"] is None, tn.get(GHOST))
+check("the untracked lookup is its own source, so it cannot mask the main search",
+      U.SOURCES.get("jupiter.search_untracked_trending", {}).get("status") == "ok"
+      and U.SOURCES.get("jupiter.search", {}).get("status") == "ok")
+check("⭐ the trending age is published in seconds, and stale means one missed ~2h pass (3h)",
+      N["trending_age_s"] == 0 and N["trending_stale"] is False and U.TRENDING_FRESH_H == 3
+      and N["trending_stale_after_h"] == 3, {k: N.get(k) for k in ("trending_age_s", "trending_stale")})
 nc = N["name_clusters"]
 check("⭐ three members named Popcat form one name cluster over the LIVE universe",
       any(c["root"] == "popcat" and c["size"] == 3 for c in nc), [(c["root"], c["size"]) for c in nc])

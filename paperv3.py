@@ -134,6 +134,10 @@ def _append(rec):
     """Append one record to the V3 chain. The ONLY writer in this module."""
     os.makedirs(LOG_DIR, exist_ok=True)
     rows = _read()
+    # Who wrote it: scheduled / dispatch / manual (liveness.origin). Inside the
+    # hash, so it cannot be edited after the fact. From 2026-09-19 only; older
+    # rows have no origin and it cannot be re-derived for them.
+    rec.setdefault("origin", liveness.origin())
     rec["prev"] = rows[-1].get("hash") if rows else None
     rec["seq"] = len(rows)
     rec["hash"] = paper._hash(rec)
