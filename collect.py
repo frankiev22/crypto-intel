@@ -454,7 +454,11 @@ def sweep_stage(verbose=True):
                                     f"v3 positions unchecked")
         if verbose and (s3 or {}).get("checked"):
             print(f"  [v3] swept {s3['checked']} open, closed {s3['closed']}"
-                  + (f", {s3['errors']} recording errors" if s3.get("errors") else ""))
+                  + (f", {s3['errors']} recording errors" if s3.get("errors") else "")
+                  + (f", {s3['quote_failed']} exit quotes FAILED (retried next sweep, not losses)"
+                     if s3.get("quote_failed") else "")
+                  + (f", {s3['voided']} voided: quote API down past the retry window"
+                     if s3.get("voided") else ""))
     except Exception as e:
         print(f"  v3 sweep failed: {e}")
     try:

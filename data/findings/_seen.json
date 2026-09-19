@@ -4,35 +4,40 @@
   "count": 2,
   "example": "reporting-path: SendUserMessage",
   "last_seen": "2026-08-23T23:35:24+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:xiaopang": {
   "first_seen": "2026-08-24T01:08:05+00:00",
   "count": 1,
   "example": "scanner-hit: XiaoPang",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:gtavi": {
   "first_seen": "2026-08-24T01:08:06+00:00",
   "count": 2,
   "example": "scanner-hit: GTAVI",
   "last_seen": "2026-08-24T09:09:12+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:friend": {
   "first_seen": "2026-08-24T01:08:06+00:00",
   "count": 1,
   "example": "scanner-hit: FRIEND",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:acat": {
   "first_seen": "2026-08-24T01:08:07+00:00",
   "count": 2,
   "example": "outcome-3x: ACAT",
   "last_seen": "2026-08-24T07:09:52+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:meow": {
   "first_seen": "2026-08-24T02:07:11+00:00",
@@ -50,14 +55,16 @@
   "count": 1,
   "example": "scanner-hit: CRYPT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:larry": {
   "first_seen": "2026-08-24T03:07:37+00:00",
   "count": 1,
   "example": "scanner-hit: LARRY",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:tesla-ai": {
   "first_seen": "2026-08-24T03:07:37+00:00",
@@ -74,7 +81,8 @@
   "count": 1,
   "example": "outcome-3x: FISHNU",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:normie": {
   "first_seen": "2026-08-24T05:07:49+00:00",
@@ -91,28 +99,32 @@
   "count": 1,
   "example": "scanner-hit: inf",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:joshua": {
   "first_seen": "2026-08-24T07:09:34+00:00",
   "count": 1,
   "example": "scanner-hit: joshua",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:niu": {
   "first_seen": "2026-08-24T07:09:35+00:00",
   "count": 1,
   "example": "scanner-hit: Niu",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:horse": {
   "first_seen": "2026-08-24T07:09:36+00:00",
   "count": 1,
   "example": "scanner-hit: HORSE",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:unknown": {
   "first_seen": "2026-08-24T07:09:37+00:00",
@@ -132,42 +144,48 @@
   "count": 1,
   "example": "scanner-hit: Giggle",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:gtaleak": {
   "first_seen": "2026-08-24T07:09:52+00:00",
   "count": 1,
   "example": "outcome-3x: GTALEAK",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:starecat": {
   "first_seen": "2026-08-24T08:08:21+00:00",
   "count": 1,
   "example": "scanner-hit: STARECAT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:skyzip": {
   "first_seen": "2026-08-24T08:08:22+00:00",
   "count": 1,
   "example": "scanner-hit: SKYZIP",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:walmart": {
   "first_seen": "2026-08-24T08:08:22+00:00",
   "count": 1,
   "example": "scanner-hit: Walmart",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:ninjacat": {
   "first_seen": "2026-08-24T08:08:23+00:00",
   "count": 2,
   "example": "outcome-3x: NINJACAT",
   "last_seen": "2026-08-25T02:08:51+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:tmx": {
   "first_seen": "2026-08-24T09:09:12+00:00",
@@ -184,21 +202,24 @@
   "count": 1,
   "example": "scanner-hit: Starlink",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:catcult": {
   "first_seen": "2026-08-24T09:09:12+00:00",
   "count": 1,
   "example": "scanner-hit: CATCULT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:ansem": {
   "first_seen": "2026-08-24T09:09:13+00:00",
   "count": 1,
   "example": "scanner-hit: ANSEM",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:nvda": {
   "first_seen": "2026-08-24T10:08:49+00:00",
@@ -226,7 +247,8 @@
   "count": 2,
   "example": "scanner-hit: RIDARK",
   "last_seen": "2026-08-24T10:09:03+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:cyberleek": {
   "first_seen": "2026-08-24T10:08:51+00:00",
@@ -253,28 +275,32 @@
   "count": 1,
   "example": "scanner-hit: MARTIANS",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:tilly": {
   "first_seen": "2026-08-24T11:09:07+00:00",
   "count": 1,
   "example": "scanner-hit: TILLY",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "collector-error:timeouterror": {
   "first_seen": "2026-08-24T12:17:30+00:00",
   "count": 6,
   "example": "collector-error: TimeoutError",
   "last_seen": "2026-08-30T03:28:07+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:martin": {
   "first_seen": "2026-08-24T15:08:14+00:00",
   "count": 1,
   "example": "scanner-hit: MARTIN",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:cyberleek": {
   "first_seen": "2026-08-24T17:07:38+00:00",
@@ -291,245 +317,280 @@
   "count": 1,
   "example": "outcome-3x: SPCX",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:gmb": {
   "first_seen": "2026-08-24T17:07:47+00:00",
   "count": 1,
   "example": "outcome-3x: GMB",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:sheila": {
   "first_seen": "2026-08-24T20:06:18+00:00",
   "count": 2,
   "example": "scanner-hit: Sheila",
   "last_seen": "2026-08-24T20:06:29+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:scamtin": {
   "first_seen": "2026-08-24T20:06:29+00:00",
   "count": 3,
   "example": "outcome-3x: SCAMTIN",
   "last_seen": "2026-08-25T19:08:56+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:biscotti": {
   "first_seen": "2026-08-24T21:06:23+00:00",
   "count": 2,
   "example": "scanner-hit: BISCOTTI",
   "last_seen": "2026-08-26T18:08:09+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:agents": {
   "first_seen": "2026-08-24T21:06:23+00:00",
   "count": 2,
   "example": "scanner-hit: AGENTS",
   "last_seen": "2026-08-24T21:06:24+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:anon": {
   "first_seen": "2026-08-24T21:06:23+00:00",
   "count": 1,
   "example": "scanner-hit: ANON",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:fckstr": {
   "first_seen": "2026-08-24T21:06:24+00:00",
   "count": 1,
   "example": "scanner-hit: fckstr",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:fckstr": {
   "first_seen": "2026-08-24T22:06:50+00:00",
   "count": 1,
   "example": "outcome-3x: fckstr",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:alon": {
   "first_seen": "2026-08-25T01:07:39+00:00",
   "count": 1,
   "example": "outcome-3x: ALON",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:virgin": {
   "first_seen": "2026-08-25T02:08:51+00:00",
   "count": 2,
   "example": "outcome-3x: VIRGIN",
   "last_seen": "2026-08-25T07:06:30+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:baton": {
   "first_seen": "2026-08-25T03:06:31+00:00",
   "count": 1,
   "example": "scanner-hit: BATON",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:buildingcat": {
   "first_seen": "2026-08-25T03:06:31+00:00",
   "count": 1,
   "example": "scanner-hit: BuildingCat",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:solgu": {
   "first_seen": "2026-08-25T03:06:32+00:00",
   "count": 1,
   "example": "scanner-hit: SOLGU",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:nenem": {
   "first_seen": "2026-08-25T04:08:15+00:00",
   "count": 1,
   "example": "scanner-hit: NENEM",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:tiny": {
   "first_seen": "2026-08-25T04:08:16+00:00",
   "count": 1,
   "example": "scanner-hit: TINY",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:kulie": {
   "first_seen": "2026-08-25T04:08:23+00:00",
   "count": 1,
   "example": "outcome-3x: KULIE",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:doge": {
   "first_seen": "2026-08-25T05:06:07+00:00",
   "count": 1,
   "example": "scanner-hit: DOGE2",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:doge": {
   "first_seen": "2026-08-25T06:07:14+00:00",
   "count": 1,
   "example": "outcome-3x: DOGE2",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:vulpes": {
   "first_seen": "2026-08-25T06:07:22+00:00",
   "count": 1,
   "example": "scanner-hit: VULPES",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:ogdoge": {
   "first_seen": "2026-08-25T06:07:22+00:00",
   "count": 1,
   "example": "scanner-hit: OGDOGE",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:cgb": {
   "first_seen": "2026-08-25T07:06:24+00:00",
   "count": 1,
   "example": "scanner-hit: CGB",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:khorasan": {
   "first_seen": "2026-08-25T07:06:24+00:00",
   "count": 1,
   "example": "scanner-hit: Khorasan",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:duvet": {
   "first_seen": "2026-08-25T07:06:24+00:00",
   "count": 1,
   "example": "scanner-hit: DUVET",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:kat": {
   "first_seen": "2026-08-25T13:09:04+00:00",
   "count": 1,
   "example": "scanner-hit: KAT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:tiny": {
   "first_seen": "2026-08-25T13:09:04+00:00",
   "count": 1,
   "example": "outcome-3x: TINY",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:crashout": {
   "first_seen": "2026-08-25T13:09:05+00:00",
   "count": 3,
   "example": "outcome-3x: CRASHOUT",
   "last_seen": "2026-08-26T08:07:32+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:b": {
   "first_seen": "2026-08-25T14:09:28+00:00",
   "count": 3,
   "example": "scanner-hit: B",
   "last_seen": "2026-08-25T14:09:29+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:debit": {
   "first_seen": "2026-08-25T14:09:28+00:00",
   "count": 1,
   "example": "scanner-hit: DEBIT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:kat": {
   "first_seen": "2026-08-25T14:09:53+00:00",
   "count": 1,
   "example": "outcome-3x: KAT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:shandi": {
   "first_seen": "2026-08-25T14:09:53+00:00",
   "count": 2,
   "example": "outcome-3x: 闪迪 (SHANDI)",
   "last_seen": "2026-08-25T19:08:56+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:kas": {
   "first_seen": "2026-08-25T14:09:53+00:00",
   "count": 1,
   "example": "outcome-3x: KAS",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:cate": {
   "first_seen": "2026-08-25T14:10:11+00:00",
   "count": 1,
   "example": "outcome-3x: CATE",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "correction:kat": {
   "first_seen": "2026-08-25T14:10:48+00:00",
   "count": 1,
   "example": "correction: KAT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:yuno": {
   "first_seen": "2026-08-25T18:06:41+00:00",
   "count": 2,
   "example": "outcome-3x: Yuno",
   "last_seen": "2026-08-26T17:07:27+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:rst": {
   "first_seen": "2026-08-25T19:08:33+00:00",
@@ -547,7 +608,8 @@
   "count": 1,
   "example": "outcome-3x: Sara",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:grass": {
   "first_seen": "2026-08-25T21:07:16+00:00",
@@ -564,14 +626,16 @@
   "count": 2,
   "example": "scanner-hit: OCB",
   "last_seen": "2026-08-31T00:12:05+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:lode": {
   "first_seen": "2026-08-25T22:07:24+00:00",
   "count": 1,
   "example": "outcome-3x: LODE",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:spy": {
   "first_seen": "2026-08-26T00:07:25+00:00",
@@ -598,42 +662,48 @@
   "count": 1,
   "example": "scanner-hit: DRILLPIG",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:berry": {
   "first_seen": "2026-08-26T02:07:35+00:00",
   "count": 1,
   "example": "scanner-hit: berry",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:source": {
   "first_seen": "2026-08-26T02:07:36+00:00",
   "count": 1,
   "example": "scanner-hit: SOURCE",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:opossum": {
   "first_seen": "2026-08-26T02:07:36+00:00",
   "count": 1,
   "example": "outcome-3x: OPOSSUM",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "collector-error:unrealizableoutcomefalsepositive": {
   "first_seen": "2026-08-26T03:08:52+00:00",
   "count": 6,
   "example": "collector-error: UnrealizableOutcomeFalsePositive",
   "last_seen": "2026-08-30T03:28:07+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:atm": {
   "first_seen": "2026-08-26T05:07:35+00:00",
   "count": 1,
   "example": "scanner-hit: ATM",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:coin": {
   "first_seen": "2026-08-26T06:06:18+00:00",
@@ -662,21 +732,24 @@
   "count": 1,
   "example": "scanner-hit: NPC",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:ogcall": {
   "first_seen": "2026-08-26T08:07:23+00:00",
   "count": 2,
   "example": "outcome-3x: OGCALL",
   "last_seen": "2026-08-26T13:08:04+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:srlerfd": {
   "first_seen": "2026-08-26T09:07:28+00:00",
   "count": 1,
   "example": "scanner-hit: 维特根斯坦-8srLerfd",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:cate": {
   "first_seen": "2026-08-26T09:07:29+00:00",
@@ -694,63 +767,72 @@
   "count": 1,
   "example": "scanner-hit: YMTC",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:crocs": {
   "first_seen": "2026-08-26T10:08:40+00:00",
   "count": 1,
   "example": "scanner-hit: crocs",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:pistasol": {
   "first_seen": "2026-08-26T10:08:48+00:00",
   "count": 1,
   "example": "scanner-hit: PISTASOL",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:fingers": {
   "first_seen": "2026-08-26T10:09:01+00:00",
   "count": 1,
   "example": "outcome-3x: 4fingers",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "collector-error:duplicatepooljournalling": {
   "first_seen": "2026-08-26T10:09:35+00:00",
   "count": 2,
   "example": "collector-error: DuplicatePoolJournalling",
   "last_seen": "2026-08-27T13:09:29+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:dmo": {
   "first_seen": "2026-08-26T12:08:01+00:00",
   "count": 1,
   "example": "scanner-hit: DMO",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:frg": {
   "first_seen": "2026-08-26T12:08:07+00:00",
   "count": 1,
   "example": "scanner-hit: fr0g",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:pistacio": {
   "first_seen": "2026-08-26T13:07:55+00:00",
   "count": 1,
   "example": "scanner-hit: Pistacio",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:adapt": {
   "first_seen": "2026-08-26T13:08:03+00:00",
   "count": 2,
   "example": "outcome-3x: adapt",
   "last_seen": "2026-08-27T12:07:44+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:unknown": {
   "first_seen": "2026-08-26T13:08:03+00:00",
@@ -768,63 +850,72 @@
   "count": 1,
   "example": "scanner-hit: clanker",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:debit": {
   "first_seen": "2026-08-26T14:08:18+00:00",
   "count": 1,
   "example": "outcome-3x: DEBIT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:openai": {
   "first_seen": "2026-08-26T15:07:51+00:00",
   "count": 1,
   "example": "outcome-3x: OPENAI",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:fixed": {
   "first_seen": "2026-08-26T15:08:00+00:00",
   "count": 1,
   "example": "outcome-3x: FIXED",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:kitwe": {
   "first_seen": "2026-08-26T16:08:13+00:00",
   "count": 1,
   "example": "outcome-3x: Kitwe",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:fbi": {
   "first_seen": "2026-08-26T17:07:26+00:00",
   "count": 1,
   "example": "outcome-3x: FBI",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:ant": {
   "first_seen": "2026-08-26T19:07:18+00:00",
   "count": 3,
   "example": "outcome-3x: ANT",
   "last_seen": "2026-08-27T18:22:18+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:nigachu": {
   "first_seen": "2026-08-27T01:09:18+00:00",
   "count": 2,
   "example": "outcome-3x: nigachu",
   "last_seen": "2026-08-28T00:08:42+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:ore": {
   "first_seen": "2026-08-27T01:09:30+00:00",
   "count": 1,
   "example": "outcome-3x: ORE",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:bull": {
   "first_seen": "2026-08-27T05:08:22+00:00",
@@ -842,35 +933,40 @@
   "count": 1,
   "example": "scanner-hit: TRUMPBULL",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:scat": {
   "first_seen": "2026-08-27T05:08:45+00:00",
   "count": 2,
   "example": "outcome-3x: SCAT",
   "last_seen": "2026-08-27T08:08:34+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:bimpsons": {
   "first_seen": "2026-08-27T06:08:08+00:00",
   "count": 1,
   "example": "scanner-hit: Bimpsons",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:mona": {
   "first_seen": "2026-08-27T06:08:09+00:00",
   "count": 1,
   "example": "scanner-hit: MONA",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:chicky": {
   "first_seen": "2026-08-27T06:08:09+00:00",
   "count": 1,
   "example": "scanner-hit: chicky",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:anthropic": {
   "first_seen": "2026-08-27T06:08:10+00:00",
@@ -888,14 +984,16 @@
   "count": 1,
   "example": "outcome-3x: letgo",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:molage": {
   "first_seen": "2026-08-27T06:08:33+00:00",
   "count": 1,
   "example": "outcome-3x: MOLAGE",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:anthropic": {
   "first_seen": "2026-08-27T08:08:34+00:00",
@@ -922,56 +1020,64 @@
   "count": 1,
   "example": "scanner-hit: collective",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:cheshire": {
   "first_seen": "2026-08-27T12:07:43+00:00",
   "count": 1,
   "example": "scanner-hit: Cheshire",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:sky": {
   "first_seen": "2026-08-27T13:08:31+00:00",
   "count": 1,
   "example": "scanner-hit: Sky",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:surfpool": {
   "first_seen": "2026-08-27T16:08:27+00:00",
   "count": 1,
   "example": "scanner-hit: SURFPOOL",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:benny": {
   "first_seen": "2026-08-27T16:08:51+00:00",
   "count": 1,
   "example": "scanner-hit: Benny",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:ikigai": {
   "first_seen": "2026-08-27T17:08:24+00:00",
   "count": 1,
   "example": "scanner-hit: IKIGAI",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:surfpool": {
   "first_seen": "2026-08-27T17:08:50+00:00",
   "count": 2,
   "example": "outcome-3x: SURFPOOL",
   "last_seen": "2026-08-28T16:08:47+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:huggy": {
   "first_seen": "2026-08-27T18:22:16+00:00",
   "count": 1,
   "example": "scanner-hit: HUGGY",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:sol": {
   "first_seen": "2026-08-27T18:22:17+00:00",
@@ -989,14 +1095,16 @@
   "count": 2,
   "example": "scanner-hit: PENGU",
   "last_seen": "2026-08-27T23:08:41+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:wave": {
   "first_seen": "2026-08-27T22:08:03+00:00",
   "count": 1,
   "example": "scanner-hit: WAVE",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:sol": {
   "first_seen": "2026-08-28T00:08:24+00:00",
@@ -1004,8 +1112,8 @@
   "example": "outcome-3x: SOL",
   "last_seen": "2026-09-01T15:10:34+00:00",
   "keys": [
-   "Sol",
-   "SOL"
+   "SOL",
+   "Sol"
   ],
   "last_escalated": null
  },
@@ -1014,7 +1122,8 @@
   "count": 2,
   "example": "outcome-3x: MERP",
   "last_seen": "2026-08-28T10:07:49+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:fone": {
   "first_seen": "2026-08-28T01:08:45+00:00",
@@ -1043,70 +1152,80 @@
   "count": 1,
   "example": "outcome-3x: AAPL",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:umt": {
   "first_seen": "2026-08-28T02:08:10+00:00",
   "count": 1,
   "example": "scanner-hit: UMT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:soon": {
   "first_seen": "2026-08-28T02:08:11+00:00",
   "count": 1,
   "example": "scanner-hit: SOON",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:wojakfone": {
   "first_seen": "2026-08-28T02:08:12+00:00",
   "count": 1,
   "example": "scanner-hit: wojakfone",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:fone": {
   "first_seen": "2026-08-28T03:07:47+00:00",
   "count": 2,
   "example": "outcome-3x: FONE",
   "last_seen": "2026-08-29T01:08:52+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:call": {
   "first_seen": "2026-08-28T04:08:33+00:00",
   "count": 1,
   "example": "scanner-hit: call",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:hemypwlo": {
   "first_seen": "2026-08-28T04:08:46+00:00",
   "count": 1,
   "example": "scanner-hit: HEmYPWLo",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:pengu": {
   "first_seen": "2026-08-28T04:08:47+00:00",
   "count": 2,
   "example": "outcome-3x: PENGU",
   "last_seen": "2026-08-28T22:08:16+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:gold": {
   "first_seen": "2026-08-28T05:08:34+00:00",
   "count": 1,
   "example": "scanner-hit: GOLD",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:pink": {
   "first_seen": "2026-08-28T05:08:47+00:00",
   "count": 2,
   "example": "scanner-hit: PINK",
   "last_seen": "2026-08-28T19:09:42+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:ai": {
   "first_seen": "2026-08-28T08:09:05+00:00",
@@ -1123,7 +1242,8 @@
   "count": 1,
   "example": "scanner-hit: MERP",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:wofi": {
   "first_seen": "2026-08-28T11:07:45+00:00",
@@ -1141,49 +1261,56 @@
   "count": 1,
   "example": "scanner-hit: GREG",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:wyman": {
   "first_seen": "2026-08-28T11:08:13+00:00",
   "count": 1,
   "example": "outcome-3x: WYMAN",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:skhy": {
   "first_seen": "2026-08-28T11:08:24+00:00",
   "count": 1,
   "example": "outcome-3x: SKHY",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:banana": {
   "first_seen": "2026-08-28T13:07:13+00:00",
   "count": 1,
   "example": "scanner-hit: banana",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:debtor": {
   "first_seen": "2026-08-28T13:07:25+00:00",
   "count": 1,
   "example": "outcome-3x: $DEBTOR",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:tony": {
   "first_seen": "2026-08-28T14:10:19+00:00",
   "count": 1,
   "example": "scanner-hit: Tony",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:basement": {
   "first_seen": "2026-08-28T14:10:20+00:00",
   "count": 1,
   "example": "scanner-hit: BASEMENT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:beast": {
   "first_seen": "2026-08-28T14:10:21+00:00",
@@ -1233,14 +1360,16 @@
   "count": 1,
   "example": "outcome-3x: CONK",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:plumbers": {
   "first_seen": "2026-08-28T16:08:48+00:00",
   "count": 1,
   "example": "outcome-3x: PLUMBERS",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:tsla": {
   "first_seen": "2026-08-28T17:08:37+00:00",
@@ -1258,84 +1387,96 @@
   "count": 1,
   "example": "scanner-hit: CAT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:gooncat": {
   "first_seen": "2026-08-28T17:08:45+00:00",
   "count": 1,
   "example": "outcome-3x: GOONCAT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:unrealizable-batch": {
   "first_seen": "2026-08-28T18:08:46+00:00",
   "count": 1,
   "example": "outcome-3x: unrealizable-batch-1804",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:tsla": {
   "first_seen": "2026-08-28T19:08:55+00:00",
   "count": 2,
   "example": "outcome-3x: TSLA",
   "last_seen": "2026-08-28T23:10:30+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:moku": {
   "first_seen": "2026-08-28T19:09:06+00:00",
   "count": 2,
   "example": "outcome-3x: Moku",
   "last_seen": "2026-08-28T23:10:30+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:unta": {
   "first_seen": "2026-08-28T19:09:29+00:00",
   "count": 1,
   "example": "scanner-hit: Unta",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:chance": {
   "first_seen": "2026-08-28T21:08:55+00:00",
   "count": 2,
   "example": "scanner-hit: chance",
   "last_seen": "2026-08-28T21:08:57+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:gerald": {
   "first_seen": "2026-08-28T21:08:56+00:00",
   "count": 1,
   "example": "scanner-hit: GERALD",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:readdddd": {
   "first_seen": "2026-08-28T21:08:56+00:00",
   "count": 1,
   "example": "scanner-hit: READDDDD",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:serum": {
   "first_seen": "2026-08-28T21:08:57+00:00",
   "count": 1,
   "example": "scanner-hit: SERUM",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:pencil": {
   "first_seen": "2026-08-28T22:08:02+00:00",
   "count": 2,
   "example": "scanner-hit: Pencil",
   "last_seen": "2026-08-28T22:08:15+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:derp": {
   "first_seen": "2026-08-28T22:08:02+00:00",
   "count": 1,
   "example": "scanner-hit: Derp",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:flork": {
   "first_seen": "2026-08-28T22:08:03+00:00",
@@ -1352,42 +1493,48 @@
   "count": 1,
   "example": "scanner-hit: USOF",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:slopless": {
   "first_seen": "2026-08-28T23:10:12+00:00",
   "count": 1,
   "example": "scanner-hit: slopless",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:faded": {
   "first_seen": "2026-08-28T23:10:13+00:00",
   "count": 1,
   "example": "scanner-hit: faded",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:suni": {
   "first_seen": "2026-08-28T23:10:13+00:00",
   "count": 1,
   "example": "scanner-hit: Suni",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:crog": {
   "first_seen": "2026-08-28T23:10:30+00:00",
   "count": 2,
   "example": "outcome-3x: crog",
   "last_seen": "2026-08-29T03:21:28+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:gatito": {
   "first_seen": "2026-08-28T23:10:31+00:00",
   "count": 1,
   "example": "outcome-3x: GATITO",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:claude": {
   "first_seen": "2026-08-29T00:08:04+00:00",
@@ -1406,154 +1553,176 @@
   "count": 1,
   "example": "scanner-hit: paid",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:usxr": {
   "first_seen": "2026-08-29T01:08:43+00:00",
   "count": 1,
   "example": "scanner-hit: USXR",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:samurai": {
   "first_seen": "2026-08-29T01:08:52+00:00",
   "count": 1,
   "example": "scanner-hit: SAMURAI",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:cu": {
   "first_seen": "2026-08-29T03:20:56+00:00",
   "count": 1,
   "example": "scanner-hit: CU",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:ign": {
   "first_seen": "2026-08-29T03:21:05+00:00",
   "count": 1,
   "example": "scanner-hit: IGN",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:inuzard": {
   "first_seen": "2026-08-29T03:21:22+00:00",
   "count": 1,
   "example": "outcome-3x: INUZARD",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "collector-error:sandboxcommandtimeout": {
   "first_seen": "2026-08-29T03:21:52+00:00",
   "count": 1,
   "example": "collector-error: SandboxCommandTimeout",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:azure": {
   "first_seen": "2026-08-29T23:08:13+00:00",
   "count": 1,
   "example": "scanner-hit: AZURE",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:ponsguy": {
   "first_seen": "2026-08-29T23:08:13+00:00",
   "count": 1,
   "example": "scanner-hit: PONSGUY",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:stacy": {
   "first_seen": "2026-08-30T00:10:00+00:00",
   "count": 2,
   "example": "scanner-hit: STACY",
   "last_seen": "2026-08-30T11:09:24+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:mycel": {
   "first_seen": "2026-08-30T00:10:14+00:00",
   "count": 1,
   "example": "scanner-hit: MYCEL",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:nvda": {
   "first_seen": "2026-08-30T03:27:24+00:00",
   "count": 3,
   "example": "outcome-3x: NVDA",
   "last_seen": "2026-08-31T00:12:22+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:niulai": {
   "first_seen": "2026-08-30T03:27:25+00:00",
   "count": 1,
   "example": "outcome-3x: NIULAI",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:her": {
   "first_seen": "2026-08-30T03:27:25+00:00",
   "count": 2,
   "example": "outcome-3x: her",
   "last_seen": "2026-08-30T07:09:56+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:mama": {
   "first_seen": "2026-08-30T03:27:26+00:00",
   "count": 1,
   "example": "outcome-3x: MAMA",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:perform": {
   "first_seen": "2026-08-30T03:27:26+00:00",
   "count": 1,
   "example": "outcome-3x: PERFORM",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:rockstar": {
   "first_seen": "2026-08-30T03:27:26+00:00",
   "count": 1,
   "example": "outcome-3x: ROCKSTAR",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:fill": {
   "first_seen": "2026-08-30T03:27:27+00:00",
   "count": 1,
   "example": "outcome-3x: fill",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:ponsguy": {
   "first_seen": "2026-08-30T03:27:27+00:00",
   "count": 2,
   "example": "outcome-3x: PONSGUY",
   "last_seen": "2026-08-30T07:09:55+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:nikolas": {
   "first_seen": "2026-08-30T04:07:29+00:00",
   "count": 1,
   "example": "scanner-hit: Nikolas",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:pbj": {
   "first_seen": "2026-08-30T04:07:29+00:00",
   "count": 1,
   "example": "scanner-hit: PBJ",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "collector-zero:verify": {
   "first_seen": "2026-08-30T04:25:16+00:00",
   "count": 2,
   "example": "collector-zero: VERIFY-2026-08-30",
   "last_seen": "2026-08-30T04:25:17+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "collector-zero:solana": {
   "first_seen": "2026-08-30T04:25:33+00:00",
@@ -1571,7 +1740,8 @@
   "count": 1,
   "example": "collector-zero: WORDING-CHECK",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:rock": {
   "first_seen": "2026-08-30T05:09:12+00:00",
@@ -1589,14 +1759,16 @@
   "count": 1,
   "example": "scanner-hit: ANSTASY",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:rizo": {
   "first_seen": "2026-08-30T05:09:13+00:00",
   "count": 1,
   "example": "scanner-hit: RIZO",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:ai": {
   "first_seen": "2026-08-30T05:09:24+00:00",
@@ -1613,28 +1785,32 @@
   "count": 1,
   "example": "scanner-hit: Risk",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:stacy": {
   "first_seen": "2026-08-30T06:11:56+00:00",
   "count": 1,
   "example": "outcome-3x: STACY",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:paypal": {
   "first_seen": "2026-08-30T07:09:13+00:00",
   "count": 1,
   "example": "scanner-hit: PayPal",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:pigeon": {
   "first_seen": "2026-08-30T07:09:13+00:00",
   "count": 1,
   "example": "scanner-hit: PIGEON",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:gemini-ai": {
   "first_seen": "2026-08-30T07:09:14+00:00",
@@ -1651,49 +1827,56 @@
   "count": 1,
   "example": "scanner-hit: leadmem",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:pappy": {
   "first_seen": "2026-08-30T07:09:15+00:00",
   "count": 1,
   "example": "scanner-hit: Pappy",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:rock": {
   "first_seen": "2026-08-30T07:09:55+00:00",
   "count": 2,
   "example": "outcome-3x: ROCK",
   "last_seen": "2026-08-30T12:11:52+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:analyst": {
   "first_seen": "2026-08-30T08:09:15+00:00",
   "count": 1,
   "example": "scanner-hit: Analyst",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:zipper": {
   "first_seen": "2026-08-30T08:09:15+00:00",
   "count": 1,
   "example": "scanner-hit: Zipper",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:ape": {
   "first_seen": "2026-08-30T08:09:16+00:00",
   "count": 1,
   "example": "scanner-hit: APE",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:bullchy": {
   "first_seen": "2026-08-30T08:09:16+00:00",
   "count": 1,
   "example": "scanner-hit: BULLCHY",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:gta-coin": {
   "first_seen": "2026-08-30T08:09:25+00:00",
@@ -1710,7 +1893,8 @@
   "count": 2,
   "example": "outcome-3x: GZ",
   "last_seen": "2026-08-30T13:10:50+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:rst": {
   "first_seen": "2026-08-30T08:09:26+00:00",
@@ -1727,77 +1911,88 @@
   "count": 1,
   "example": "outcome-3x: namaste",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:sora": {
   "first_seen": "2026-08-30T09:09:25+00:00",
   "count": 1,
   "example": "scanner-hit: Sora",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:francis": {
   "first_seen": "2026-08-30T09:10:00+00:00",
   "count": 2,
   "example": "outcome-3x: Francis",
   "last_seen": "2026-08-30T13:10:50+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:brainrot": {
   "first_seen": "2026-08-30T09:10:01+00:00",
   "count": 2,
   "example": "outcome-3x: BRAINROT",
   "last_seen": "2026-08-30T10:10:04+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:muk": {
   "first_seen": "2026-08-30T09:10:02+00:00",
   "count": 1,
   "example": "outcome-3x: MUK",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:back": {
   "first_seen": "2026-08-30T10:09:56+00:00",
   "count": 1,
   "example": "scanner-hit: back",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:deepseek": {
   "first_seen": "2026-08-30T10:10:17+00:00",
   "count": 1,
   "example": "outcome-3x: DeepSeek",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:btr": {
   "first_seen": "2026-08-30T10:10:17+00:00",
   "count": 1,
   "example": "outcome-3x: BTR",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:jackie": {
   "first_seen": "2026-08-30T11:09:05+00:00",
   "count": 1,
   "example": "scanner-hit: Jackie",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:pussies": {
   "first_seen": "2026-08-30T11:09:24+00:00",
   "count": 1,
   "example": "scanner-hit: Pussies",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:apeotc": {
   "first_seen": "2026-08-30T12:11:41+00:00",
   "count": 1,
   "example": "scanner-hit: apeotc",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:lego": {
   "first_seen": "2026-08-30T12:11:42+00:00",
@@ -1815,7 +2010,8 @@
   "count": 1,
   "example": "scanner-hit: MEMECOINS",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:ustf": {
   "first_seen": "2026-08-30T12:11:42+00:00",
@@ -1832,49 +2028,56 @@
   "count": 2,
   "example": "scanner-hit: MEMECOIN",
   "last_seen": "2026-08-30T13:10:12+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:ama": {
   "first_seen": "2026-08-30T12:11:43+00:00",
   "count": 1,
   "example": "scanner-hit: AMA",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:pepecat": {
   "first_seen": "2026-08-30T12:11:52+00:00",
   "count": 1,
   "example": "outcome-3x: PEPECAT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:lucia": {
   "first_seen": "2026-08-30T13:10:12+00:00",
   "count": 1,
   "example": "scanner-hit: LUCIA",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:cot": {
   "first_seen": "2026-08-30T13:10:35+00:00",
   "count": 1,
   "example": "scanner-hit: COT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:android": {
   "first_seen": "2026-08-30T13:10:36+00:00",
   "count": 1,
   "example": "scanner-hit: ANDROID",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:doubao": {
   "first_seen": "2026-08-30T13:10:36+00:00",
   "count": 1,
   "example": "scanner-hit: Doubao",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:miner": {
   "first_seen": "2026-08-30T14:11:28+00:00",
@@ -1901,49 +2104,56 @@
   "count": 2,
   "example": "outcome-3x: Doubao",
   "last_seen": "2026-08-30T20:08:40+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:ponster": {
   "first_seen": "2026-08-30T15:08:49+00:00",
   "count": 1,
   "example": "scanner-hit: PONSTER",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:quackd": {
   "first_seen": "2026-08-30T15:08:50+00:00",
   "count": 1,
   "example": "scanner-hit: QUACKD",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:air": {
   "first_seen": "2026-08-30T15:08:50+00:00",
   "count": 1,
   "example": "scanner-hit: AIR",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:forest": {
   "first_seen": "2026-08-30T16:10:14+00:00",
   "count": 1,
   "example": "scanner-hit: Forest",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:capybara": {
   "first_seen": "2026-08-30T16:10:14+00:00",
   "count": 1,
   "example": "scanner-hit: CAPYBARA",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:clinton": {
   "first_seen": "2026-08-30T16:10:15+00:00",
   "count": 1,
   "example": "scanner-hit: Clinton©",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:fish": {
   "first_seen": "2026-08-30T16:10:16+00:00",
@@ -1971,49 +2181,56 @@
   "count": 1,
   "example": "scanner-hit: MC",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:witness": {
   "first_seen": "2026-08-30T17:09:27+00:00",
   "count": 1,
   "example": "scanner-hit: Witness",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:pump": {
   "first_seen": "2026-08-30T17:09:28+00:00",
   "count": 1,
   "example": "scanner-hit: PUMP",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:allindoge": {
   "first_seen": "2026-08-30T17:09:34+00:00",
   "count": 2,
   "example": "outcome-3x: ALLINDOGE",
   "last_seen": "2026-08-30T22:10:55+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:heehaw": {
   "first_seen": "2026-08-30T18:07:32+00:00",
   "count": 1,
   "example": "scanner-hit: HeeHaw",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:taotao": {
   "first_seen": "2026-08-30T18:07:32+00:00",
   "count": 1,
   "example": "scanner-hit: TaoTao",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:gold": {
   "first_seen": "2026-08-30T18:07:33+00:00",
   "count": 2,
   "example": "outcome-3x: GOLD",
   "last_seen": "2026-08-30T23:08:37+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:googl": {
   "first_seen": "2026-08-30T18:08:12+00:00",
@@ -2030,112 +2247,128 @@
   "count": 1,
   "example": "outcome-3x: AWR",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:raven": {
   "first_seen": "2026-08-30T18:08:13+00:00",
   "count": 1,
   "example": "outcome-3x: Raven",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:sfm": {
   "first_seen": "2026-08-30T19:08:42+00:00",
   "count": 1,
   "example": "scanner-hit: SFM",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:wukong": {
   "first_seen": "2026-08-30T19:08:42+00:00",
   "count": 1,
   "example": "scanner-hit: Wukong",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:humabird": {
   "first_seen": "2026-08-30T19:09:07+00:00",
   "count": 1,
   "example": "outcome-3x: humabird",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:memecoins": {
   "first_seen": "2026-08-30T19:09:07+00:00",
   "count": 1,
   "example": "outcome-3x: MEMECOINS",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:analyst": {
   "first_seen": "2026-08-30T19:09:08+00:00",
   "count": 1,
   "example": "outcome-3x: Analyst",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:memecoin": {
   "first_seen": "2026-08-30T19:09:08+00:00",
   "count": 1,
   "example": "outcome-3x: MEMECOIN",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:children": {
   "first_seen": "2026-08-30T20:08:30+00:00",
   "count": 1,
   "example": "scanner-hit: Children",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:dat": {
   "first_seen": "2026-08-30T20:08:31+00:00",
   "count": 1,
   "example": "scanner-hit: DAT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:shrub": {
   "first_seen": "2026-08-30T20:08:32+00:00",
   "count": 1,
   "example": "scanner-hit: SHRUB",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:chud": {
   "first_seen": "2026-08-30T20:08:32+00:00",
   "count": 1,
   "example": "scanner-hit: Chud",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:lootx": {
   "first_seen": "2026-08-30T21:08:09+00:00",
   "count": 1,
   "example": "scanner-hit: LOOTX",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:pcc": {
   "first_seen": "2026-08-30T21:08:10+00:00",
   "count": 1,
   "example": "scanner-hit: PCC",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:testo": {
   "first_seen": "2026-08-30T21:08:22+00:00",
   "count": 2,
   "example": "outcome-3x: TESTO",
   "last_seen": "2026-08-31T01:11:03+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:cot": {
   "first_seen": "2026-08-30T21:08:22+00:00",
   "count": 1,
   "example": "outcome-3x: COT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:meta": {
   "first_seen": "2026-08-30T22:10:43+00:00",
@@ -2152,14 +2385,16 @@
   "count": 2,
   "example": "scanner-hit: Luna",
   "last_seen": "2026-08-30T23:08:14+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:pppp": {
   "first_seen": "2026-08-30T22:10:44+00:00",
   "count": 1,
   "example": "scanner-hit: PPPP",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:lqx": {
   "first_seen": "2026-08-30T22:10:45+00:00",
@@ -2176,42 +2411,48 @@
   "count": 1,
   "example": "scanner-hit: owlin",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:qhairman": {
   "first_seen": "2026-08-30T23:08:14+00:00",
   "count": 1,
   "example": "scanner-hit: Qhairman",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:sharav": {
   "first_seen": "2026-08-30T23:08:15+00:00",
   "count": 1,
   "example": "scanner-hit: sharav",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:apec": {
   "first_seen": "2026-08-31T00:12:04+00:00",
   "count": 2,
   "example": "scanner-hit: APEC",
   "last_seen": "2026-08-31T01:08:43+00:00",
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:avant": {
   "first_seen": "2026-08-31T00:12:21+00:00",
   "count": 1,
   "example": "outcome-3x: AVANT",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:cjk-niulai": {
   "first_seen": "2026-08-31T00:12:21+00:00",
   "count": 1,
   "example": "outcome-3x: CJK-niulai",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:tap": {
   "first_seen": "2026-08-31T00:12:22+00:00",
@@ -2228,21 +2469,24 @@
   "count": 1,
   "example": "scanner-hit: COFFEE",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:duval": {
   "first_seen": "2026-08-31T01:08:43+00:00",
   "count": 1,
   "example": "scanner-hit: DUVAL",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:sfm": {
   "first_seen": "2026-08-31T01:11:01+00:00",
   "count": 1,
   "example": "outcome-3x: SFM",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:apec": {
   "first_seen": "2026-08-31T01:11:02+00:00",
@@ -2269,14 +2513,16 @@
   "count": 1,
   "example": "outcome-3x: MIKE",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:spiegel": {
   "first_seen": "2026-08-31T01:11:13+00:00",
   "count": 1,
   "example": "outcome-3x: SPIEGEL",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "outcome-x:macroduck": {
   "first_seen": "2026-08-31T02:08:00+00:00",
@@ -2293,7 +2539,8 @@
   "count": 1,
   "example": "scanner-hit: Meowdani",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:hope": {
   "first_seen": "2026-08-31T04:10:18+00:00",
@@ -2310,7 +2557,8 @@
   "count": 1,
   "example": "outcome-3x: BWIDGE",
   "last_seen": null,
-  "last_escalated": null
+  "last_escalated": null,
+  "keys": []
  },
  "scanner-hit:djt": {
   "first_seen": "2026-08-31T05:09:43+00:00",
@@ -2760,8 +3008,8 @@
   "count": 2,
   "example": "scanner-hit: topdog",
   "keys": [
-   "topdog",
-   "TOPDOG"
+   "TOPDOG",
+   "topdog"
   ],
   "last_seen": "2026-08-31T13:09:08+00:00",
   "last_escalated": null
@@ -4148,8 +4396,8 @@
   "count": 2,
   "example": "outcome-3x: GTA6",
   "keys": [
-   "GTA6",
-   "$GTA6"
+   "$GTA6",
+   "GTA6"
   ],
   "last_seen": "2026-09-03T04:10:24+00:00",
   "last_escalated": null
@@ -4910,13 +5158,14 @@
  },
  "scanner-hit:fomo": {
   "first_seen": "2026-09-03T20:10:12+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: FOMO",
   "keys": [
    "FOMO"
   ],
-  "last_seen": "2026-09-03T20:10:48+00:00",
-  "last_escalated": null
+  "last_seen": "2026-09-19T06:43:03+00:00",
+  "last_escalated": "2026-09-19T06:43:03+00:00",
+  "escalations": 1
  },
  "scanner-hit:machine": {
   "first_seen": "2026-09-03T20:10:16+00:00",
@@ -5183,8 +5432,8 @@
   "count": 183,
   "example": "lookup-outage: 24h",
   "keys": [
-   "24h",
-   "168h"
+   "168h",
+   "24h"
   ],
   "last_seen": "2026-09-11T14:18:55+00:00",
   "last_escalated": "2026-09-11T10:18:37+00:00",
@@ -5486,14 +5735,14 @@
  },
  "scanner-hit:u-7c277a": {
   "first_seen": "2026-09-04T14:11:18+00:00",
-  "count": 2,
+  "count": 3,
   "example": "scanner-hit: 孙小圣",
   "keys": [
    "孙小圣"
   ],
-  "last_seen": "2026-09-10T19:18:22+00:00",
-  "last_escalated": "2026-09-10T19:18:22+00:00",
-  "escalations": 1
+  "last_seen": "2026-09-19T06:43:05+00:00",
+  "last_escalated": "2026-09-19T06:43:05+00:00",
+  "escalations": 2
  },
  "scanner-hit:agi": {
   "first_seen": "2026-09-04T15:10:46+00:00",
@@ -5541,9 +5790,9 @@
   "count": 4,
   "example": "scanner-hit: Stonks",
   "keys": [
-   "Stonks",
+   "4STONKS",
    "STONKS",
-   "4STONKS"
+   "Stonks"
   ],
   "last_seen": "2026-09-08T07:15:51+00:00",
   "last_escalated": "2026-09-08T07:15:51+00:00",
@@ -5662,14 +5911,14 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 81,
+  "count": 83,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
-   "6h",
-   "24h"
+   "24h",
+   "6h"
   ],
-  "last_seen": "2026-09-19T06:46:26+00:00",
+  "last_seen": "2026-09-19T07:13:30+00:00",
   "last_escalated": "2026-09-19T01:46:10+00:00",
   "escalations": 14
  },
@@ -5980,8 +6229,8 @@
   "count": 2,
   "example": "scanner-hit: Solana",
   "keys": [
-   "Solana",
-   "SOLANA"
+   "SOLANA",
+   "Solana"
   ],
   "last_seen": "2026-09-05T10:10:16+00:00",
   "last_escalated": null
@@ -6924,8 +7173,8 @@
   "count": 2,
   "example": "scanner-hit: Airdrop",
   "keys": [
-   "Airdrop",
-   "AIRDROP"
+   "AIRDROP",
+   "Airdrop"
   ],
   "last_seen": "2026-09-14T20:12:11+00:00",
   "last_escalated": "2026-09-14T20:12:11+00:00",
@@ -8384,7 +8633,7 @@
  },
  "liveness:paper-open": {
   "first_seen": "2026-09-09T15:02:17+00:00",
-  "count": 26,
+  "count": 35,
   "example": "liveness: paper.open",
   "keys": [
    "paper.open"
@@ -8395,7 +8644,7 @@
  },
  "liveness:paper-sweep": {
   "first_seen": "2026-09-10T00:07:40+00:00",
-  "count": 74,
+  "count": 83,
   "example": "liveness: paper.sweep",
   "keys": [
    "paper.sweep"
@@ -8679,14 +8928,14 @@
  },
  "collector-error:field-guard": {
   "first_seen": "2026-09-10T14:07:05+00:00",
-  "count": 15,
+  "count": 16,
   "example": "collector-error: field-guard",
   "keys": [
    "field-guard"
   ],
-  "last_seen": "2026-09-11T04:07:25+00:00",
-  "last_escalated": "2026-09-11T02:10:27+00:00",
-  "escalations": 2
+  "last_seen": "2026-09-19T07:07:08+00:00",
+  "last_escalated": "2026-09-19T07:07:08+00:00",
+  "escalations": 3
  },
  "scanner-hit:vc": {
   "first_seen": "2026-09-10T14:16:35+00:00",
@@ -9355,7 +9604,8 @@
   "example": "scanner-hit: 9/11Files",
   "keys": [
    "9/11Files"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:opai": {
   "first_seen": "2026-09-11T14:20:15+00:00",
@@ -9363,7 +9613,8 @@
   "example": "scanner-hit: OPAI",
   "keys": [
    "OPAI"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:microfly": {
   "first_seen": "2026-09-11T15:19:32+00:00",
@@ -9371,7 +9622,8 @@
   "example": "scanner-hit: MICROFLY",
   "keys": [
    "MICROFLY"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:bullfly": {
   "first_seen": "2026-09-11T15:19:38+00:00",
@@ -9379,7 +9631,8 @@
   "example": "scanner-hit: BULLFLY",
   "keys": [
    "BULLFLY"
-  ]
+  ],
+  "last_seen": null
  },
  "liveness:milestone-mcap": {
   "first_seen": "2026-09-14T19:45:44+00:00",
@@ -9405,7 +9658,7 @@
  },
  "liveness:paper-close": {
   "first_seen": "2026-09-14T19:45:47+00:00",
-  "count": 12,
+  "count": 21,
   "example": "liveness: paper.close",
   "keys": [
    "paper.close"
@@ -9420,7 +9673,8 @@
   "example": "outcome-win: BkhKd3R5hhWDivxwR5C8JHfYSaykSdcRqLgd2oFVHXWa",
   "keys": [
    "BkhKd3R5hhWDivxwR5C8JHfYSaykSdcRqLgd2oFVHXWa"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:bunny": {
   "first_seen": "2026-09-14T19:50:28+00:00",
@@ -9428,7 +9682,8 @@
   "example": "scanner-hit: BUNNY",
   "keys": [
    "BUNNY"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:krill": {
   "first_seen": "2026-09-14T19:50:33+00:00",
@@ -9436,7 +9691,8 @@
   "example": "scanner-hit: KRILL",
   "keys": [
    "KRILL"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:bc": {
   "first_seen": "2026-09-14T19:50:37+00:00",
@@ -9444,7 +9700,8 @@
   "example": "scanner-hit: BC",
   "keys": [
    "BC"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:ptn": {
   "first_seen": "2026-09-14T20:12:16+00:00",
@@ -9452,7 +9709,8 @@
   "example": "scanner-hit: PTN",
   "keys": [
    "PTN"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:stunk": {
   "first_seen": "2026-09-14T21:14:51+00:00",
@@ -9460,7 +9718,8 @@
   "example": "scanner-hit: Stunk",
   "keys": [
    "Stunk"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:u-2de749": {
   "first_seen": "2026-09-14T21:14:57+00:00",
@@ -9468,7 +9727,8 @@
   "example": "scanner-hit: 火花",
   "keys": [
    "火花"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:brain": {
   "first_seen": "2026-09-14T22:15:20+00:00",
@@ -9485,7 +9745,8 @@
   "example": "scanner-hit: Shark",
   "keys": [
    "Shark"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:niarbylf": {
   "first_seen": "2026-09-14T23:16:46+00:00",
@@ -9493,7 +9754,8 @@
   "example": "scanner-hit: niarbylf",
   "keys": [
    "niarbylf"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:oil": {
   "first_seen": "2026-09-14T23:16:52+00:00",
@@ -9501,7 +9763,8 @@
   "example": "scanner-hit: OIL",
   "keys": [
    "OIL"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:perps": {
   "first_seen": "2026-09-14T23:17:01+00:00",
@@ -9509,7 +9772,8 @@
   "example": "scanner-hit: PERPS",
   "keys": [
    "PERPS"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:llmos": {
   "first_seen": "2026-09-15T00:14:08+00:00",
@@ -9517,7 +9781,8 @@
   "example": "scanner-hit: LLMOS",
   "keys": [
    "LLMOS"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:seaz": {
   "first_seen": "2026-09-15T00:14:18+00:00",
@@ -9525,7 +9790,8 @@
   "example": "scanner-hit: seaz",
   "keys": [
    "seaz"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:jinbuzhang": {
   "first_seen": "2026-09-15T00:14:31+00:00",
@@ -9533,7 +9799,8 @@
   "example": "scanner-hit: JINBUZHANG",
   "keys": [
    "JINBUZHANG"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:bikepepe": {
   "first_seen": "2026-09-15T00:14:32+00:00",
@@ -9541,7 +9808,8 @@
   "example": "scanner-hit: BIKEPEPE",
   "keys": [
    "BIKEPEPE"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:seaz-fprmmae": {
   "first_seen": "2026-09-15T00:14:43+00:00",
@@ -9549,7 +9817,8 @@
   "example": "scanner-hit: seaz-7fpRmMaE",
   "keys": [
    "seaz-7fpRmMaE"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:llmos-rddfxf": {
   "first_seen": "2026-09-15T00:14:44+00:00",
@@ -9557,7 +9826,8 @@
   "example": "scanner-hit: LLMOS-98rDdFxF",
   "keys": [
    "LLMOS-98rDdFxF"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:ten-ev": {
   "first_seen": "2026-09-15T01:12:45+00:00",
@@ -9565,7 +9835,8 @@
   "example": "scanner-hit: TEN-EV",
   "keys": [
    "TEN-EV"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:kiba": {
   "first_seen": "2026-09-15T02:16:42+00:00",
@@ -9573,7 +9844,8 @@
   "example": "scanner-hit: KIBA",
   "keys": [
    "KIBA"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:snoopdoge-dqlofn": {
   "first_seen": "2026-09-15T02:16:48+00:00",
@@ -9581,7 +9853,8 @@
   "example": "scanner-hit: SNOOPDOGE-DQ9Lofn3",
   "keys": [
    "SNOOPDOGE-DQ9Lofn3"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:lipump-ozidug": {
   "first_seen": "2026-09-15T02:16:53+00:00",
@@ -9589,7 +9862,8 @@
   "example": "scanner-hit: LiPump-2oZidUG",
   "keys": [
    "LiPump-2oZidUG"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:snoopdoge-aewdns": {
   "first_seen": "2026-09-15T02:16:58+00:00",
@@ -9597,7 +9871,8 @@
   "example": "scanner-hit: SNOOPDOGE-AEWDNs6",
   "keys": [
    "SNOOPDOGE-AEWDNs6"
-  ]
+  ],
+  "last_seen": null
  },
  "outcome-win:ozidugiwfmnpavpbhjfuydtgukiupesgfmnntpa": {
   "first_seen": "2026-09-15T03:18:20+00:00",
@@ -9605,7 +9880,8 @@
   "example": "outcome-win: 2oZidUGiWfM8npavpbhj1fu49ydtGuKiuPeSGfMNnTPa",
   "keys": [
    "2oZidUGiWfM8npavpbhj1fu49ydtGuKiuPeSGfMNnTPa"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:huhcat-xkxr": {
   "first_seen": "2026-09-15T03:24:37+00:00",
@@ -9613,7 +9889,8 @@
   "example": "scanner-hit: HUHCAT-31Xkxr",
   "keys": [
    "HUHCAT-31Xkxr"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:hodl-veqi": {
   "first_seen": "2026-09-15T03:24:38+00:00",
@@ -9621,7 +9898,8 @@
   "example": "scanner-hit: HODL-2veq2i",
   "keys": [
    "HODL-2veq2i"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:criptoe-zdarx": {
   "first_seen": "2026-09-15T03:24:39+00:00",
@@ -9629,7 +9907,8 @@
   "example": "scanner-hit: CRIPTOE-3ZdArx",
   "keys": [
    "CRIPTOE-3ZdArx"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:huhcat-sabn": {
   "first_seen": "2026-09-15T03:24:40+00:00",
@@ -9637,7 +9916,8 @@
   "example": "scanner-hit: HUHCAT-6SA2Bn",
   "keys": [
    "HUHCAT-6SA2Bn"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:tianming-efphz": {
   "first_seen": "2026-09-15T03:24:41+00:00",
@@ -9645,7 +9925,8 @@
   "example": "scanner-hit: TIANMING-EFPh2Z",
   "keys": [
    "TIANMING-EFPh2Z"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:huhcat-zsb": {
   "first_seen": "2026-09-15T03:24:42+00:00",
@@ -9653,7 +9934,8 @@
   "example": "scanner-hit: HUHCAT-7ZS2b1",
   "keys": [
    "HUHCAT-7ZS2b1"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:flygram-kjsss": {
   "first_seen": "2026-09-15T03:24:42+00:00",
@@ -9661,7 +9943,8 @@
   "example": "scanner-hit: flygram-kjS1Ss",
   "keys": [
    "flygram-kjS1Ss"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:tianming-hagmj": {
   "first_seen": "2026-09-15T04:16:14+00:00",
@@ -9669,7 +9952,8 @@
   "example": "scanner-hit: TIANMING-H8AGMj",
   "keys": [
    "TIANMING-H8AGMj"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:tianming-cufpoe": {
   "first_seen": "2026-09-15T04:16:21+00:00",
@@ -9677,7 +9961,8 @@
   "example": "scanner-hit: TIANMING-CuFPoE",
   "keys": [
    "TIANMING-CuFPoE"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:usdf-hvmfrv": {
   "first_seen": "2026-09-15T04:16:28+00:00",
@@ -9685,7 +9970,8 @@
   "example": "scanner-hit: USDF-hvmfRv",
   "keys": [
    "USDF-hvmfRv"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:disney-mbr": {
   "first_seen": "2026-09-15T04:16:36+00:00",
@@ -9693,7 +9979,8 @@
   "example": "scanner-hit: DISNEY-m84b4r",
   "keys": [
    "DISNEY-m84b4r"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:fly": {
   "first_seen": "2026-09-15T05:17:56+00:00",
@@ -9701,7 +9988,8 @@
   "example": "scanner-hit: FLY",
   "keys": [
    "FLY"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:tokjoy": {
   "first_seen": "2026-09-15T05:18:10+00:00",
@@ -9709,7 +9997,8 @@
   "example": "scanner-hit: TOKJOY",
   "keys": [
    "TOKJOY"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:samsung": {
   "first_seen": "2026-09-15T05:18:12+00:00",
@@ -9717,7 +10006,8 @@
   "example": "scanner-hit: Samsung",
   "keys": [
    "Samsung"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:parker": {
   "first_seen": "2026-09-15T05:18:13+00:00",
@@ -9725,7 +10015,8 @@
   "example": "scanner-hit: Parker",
   "keys": [
    "Parker"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:lsd": {
   "first_seen": "2026-09-15T05:18:16+00:00",
@@ -9733,7 +10024,8 @@
   "example": "scanner-hit: LSD",
   "keys": [
    "LSD"
-  ]
+  ],
+  "last_seen": null
  },
  "scanner-hit:huhcat": {
   "first_seen": "2026-09-15T05:18:17+00:00",
@@ -9741,7 +10033,8 @@
   "example": "scanner-hit: HUHCAT",
   "keys": [
    "HUHCAT"
-  ]
+  ],
+  "last_seen": null
  },
  "liveness:detector-drift": {
   "first_seen": "2026-09-17T19:28:30+00:00",
@@ -9749,7 +10042,8 @@
   "example": "liveness: detector.drift",
   "keys": [
    "detector.drift"
-  ]
+  ],
+  "last_seen": null
  },
  "liveness:fieldguard-check": {
   "first_seen": "2026-09-17T19:28:30+00:00",
@@ -9757,7 +10051,8 @@
   "example": "liveness: fieldguard.check",
   "keys": [
    "fieldguard.check"
-  ]
+  ],
+  "last_seen": null
  },
  "liveness:news-freshness": {
   "first_seen": "2026-09-17T19:28:31+00:00",
@@ -9765,7 +10060,8 @@
   "example": "liveness: news.freshness",
   "keys": [
    "news.freshness"
-  ]
+  ],
+  "last_seen": null
  },
  "liveness:scan-observations": {
   "first_seen": "2026-09-17T19:28:33+00:00",
@@ -9773,7 +10069,8 @@
   "example": "liveness: scan.observations",
   "keys": [
    "scan.observations"
-  ]
+  ],
+  "last_seen": null
  },
  "collector-error:launcher-restore-test": {
   "first_seen": "2026-09-18T03:57:43+00:00",
@@ -9781,7 +10078,8 @@
   "example": "collector-error: launcher-restore-test",
   "keys": [
    "launcher-restore-test"
-  ]
+  ],
+  "last_seen": null
  },
  "outcome-win:umjitcqirakmcrykanmqhrhboqzdyctawzrhe": {
   "first_seen": "2026-09-18T14:31:10+00:00",
@@ -9793,11 +10091,44 @@
   "last_seen": "2026-09-18T19:40:07+00:00"
  },
  "outcome-win:gfqatbcfvrticsmadpyqkpbxpagjgegdpzs": {
-  "first_seen": "2026-09-19T06:45:58+00:00",
+  "first_seen": "2026-09-19T06:30:56+00:00",
   "count": 1,
   "example": "outcome-win: GF714QATBcf6v67RticSmadPYQKpBxpAgjgEg3D6PzS3",
   "keys": [
    "GF714QATBcf6v67RticSmadPYQKpBxpAgjgEg3D6PzS3"
+  ],
+  "last_seen": null
+ },
+ "collector-error:attributeerror": {
+  "first_seen": "2026-09-19T06:42:16+00:00",
+  "count": 1,
+  "example": "collector-error: AttributeError",
+  "keys": [
+   "AttributeError"
+  ]
+ },
+ "scanner-trap:cyphummclgxjwatsphlkykcgrhjtchwbxdguawk": {
+  "first_seen": "2026-09-19T06:42:55+00:00",
+  "count": 1,
+  "example": "scanner-trap: CYPHuMmCL1GxJWa2tsPhLKykC7GrHJTCHwbXD4g5uawK",
+  "keys": [
+   "CYPHuMmCL1GxJWa2tsPhLKykC7GrHJTCHwbXD4g5uawK"
+  ]
+ },
+ "scanner-hit:inuranus": {
+  "first_seen": "2026-09-19T06:43:04+00:00",
+  "count": 1,
+  "example": "scanner-hit: INURANUS",
+  "keys": [
+   "INURANUS"
+  ]
+ },
+ "scanner-hit:lastanon": {
+  "first_seen": "2026-09-19T07:21:05+00:00",
+  "count": 1,
+  "example": "scanner-hit: LASTANON",
+  "keys": [
+   "LASTANON"
   ]
  }
 }

@@ -57,7 +57,8 @@ further" — scope those separately and hold them to the measurement bar below.
 | $1M crossings/day, **verified** | **24.5** | same |
 | verification pass rate at $1M | **25.4%** [22.3, 28.8], n=696 | same |
 | reported liquidity overstatement | **median 781x** | `CONTAMINATION.md`, `TEMPLATE_ATTACK.md` |
-| paper v1 record | 9 wins / 76 measured closes = **11.84%** [6.36, 21.00] | `paper.summary()` |
+| ⛔ **verified wins** | **none.** `7uMjiTCQ…` "4.58x" FAILED: graded TRAP at observation, then its freeze authority froze 50 buyers the second each bought, and their SOL was the multiple | `docs/BACKLOG.md` A42 |
+| ⛔ paper v1 hit rate | **QUARANTINED - no usable rate.** The retired 9/76 = 11.84% was on mid-priced exits, and 96 v1+v2 positions were never closed (09-15 → 09-17). `paper.summary()` returns `QUARANTINED` from 2026-09-19 | `PRECOMMIT_paper_v3.md` §2a |
 | ⭐ median holders, our own "winners" | **9** (54% under 10) | `docs/TRUSTED_FIELDS.md` §1 |
 | median holders, Jupiter-TRADEABLE | **1,350** | same |
 | median holders, Jupiter-TOTAL_LOSS | **3** | same |
@@ -181,7 +182,7 @@ fees. Any path that depends on a track record has nothing to sell yet.
 | ⭐ `graduations.py` | **every pump.fun graduation** (C14): pages the migration authority from a cursor, every signature accounted for → `data/graduations/` | ✅ **UNATTENDED, verified 2026-09-19 01:48Z** on the keyless public RPC (17/17 accounted, lag 11s). Runs before the universe, which re-checks 72h of graduations for $1M |
 | ⭐ `paperv3.py` | the ledger that prices fills on real quotes | ✅ **SCHEDULED 2026-09-18** — enters in the scan loop beside v1/v2, sweeps in the sweep stage. ⛔ **Nothing called it before that**, despite 71 passing tests |
 | GitHub Actions `collect.yml` | same, hosted | ✅ **ALIVE — the repo went public 2026-09-18, so Actions minutes are free and unlimited.** A scheduled run fired on its own at 11:54Z and collected a full pass |
-| Claude desktop task | same, on the host | ⛔ dead since the 9/15 reboot — sandbox lost its drive mount |
+| Claude desktop task `crypto-collect-hourly` | same, staged, on the host (all ten stages incl. `sweep`) | ✅ **alive again 2026-09-19** after the desktop restart cleared the Plan9 mount: scheduled passes observed 06:24–06:41Z and 07:07Z, and it closed a v3 position unattended (Pigeon, 07:07:55Z). ⚠️ **Recurring outage**: a reboot that loses the mount kills it silently. ⛔ It is NOT Windows Task Scheduler - there is no crypto task there, and none should be added (`479e9cc`) |
 | `site/` on Vercel (`crypto-intel-one-eta.vercel.app`) | ⭐ **the deliverable**: trending, tracked universe, narratives, crossings, movers, paper v3 counts. **Owned by the site session**; every cap goes through `honest.capWithBacking()` | ✅ **all four C16 reads live, verified 2026-09-19** from the pipeline side. ⛔ The pipeline session never stages `site/` files, `site/README.md` included |
 | `site/api/helius.mjs` on Vercel | Helius webhook receiver → Supabase → Discord | ✅ **deployed and answering**, but watching 0 addresses |
 | `data/dashboard.html` | static phone-first dashboard, built by `dashboard.py` | ✅ **rebuilt on every pass from 2026-09-18** (`dashboard.build`, 4.0s, stdlib only, no network). ⛔ Before that it appeared nowhere in `collect.py` and went stale silently |
@@ -353,6 +354,17 @@ History (1,097 crossings, 09-09 onward) is in
 liquidity), `supply()`, `market_cap()`, `holder_count()`, `trusted()`. ⛔ **Unknown
 is None, never 0.** Decision-point only: a process-wide bucket caps Jupiter at
 55/min, so it must never reach the per-row scan path. `test_chainfields.py --live`.
+⛔ **A failed quote is not a route answer (2026-09-19).** Only Jupiter's own
+`errorCode` (`NO_ROUTES_FOUND`…) makes `NO_BUY_ROUTE` / `NO_SELL_ROUTE`
+(`chainfields.answered()`). An HTTP 5xx, a dead network or rate limiting is
+verdict `None` from `round_trip()` and `QUOTE_FAILED` from `sell_quote()` - before
+this, a Jupiter outage would have booked v3 total losses, DANGER verdicts and
+universe refusals. v3 retries a failed exit quote and voids only 6h past the hold.
+
+⛔ **The win gate has NINE checks from 2026-09-19**: `authority_live` fails any
+multiple measured from a moment when the mint or freeze authority was live
+(`authority_live_at_entry` on every outcome row; None = unchecked, not failed).
+And a win announcement no longer says "realizable" - nothing in it quotes a sell.
 
 ⛔ **The runner has NO `.env`, and two things quietly depend on that.**
 `config.helius_rpc()` falls back to `api.mainnet-beta.solana.com`, which
@@ -433,9 +445,10 @@ you can watch.** Do not tell Frank it is impossible.
 
 ## The one genuinely urgent thing
 
-⛔ **Socials capture (commit `ce0d33a`) is forward-only and no collector is
-running.** Every hour without one is sample that cannot be bought back at any
-price. **Restoring collection outranks every purchase decision on the board** —
+⛔ **Socials capture (commit `ce0d33a`) is forward-only.** Two collectors run
+again as of 2026-09-19 (the runner, ~7-9 passes a day, and the desktop task,
+hourly while its mount holds), but every hour without one is sample that cannot be
+bought back at any price. **Restoring collection outranks every purchase decision on the board** —
 see `docs/DECISION_X_DATA.md`.
 
 ## Knowledge corpus

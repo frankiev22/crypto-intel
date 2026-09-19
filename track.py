@@ -360,6 +360,11 @@ def score_horizon(horizon_h, limit=None, verbose=True):
         except (TypeError, ValueError):
             _pn_exit = None
 
+        # ⛔ The authorities AS OBSERVED. A live mint or freeze authority at
+        # the moment we saw it fails the win gate; never read = None, unknown.
+        _auth_live = None
+        if o.get("authorities_checked"):
+            _auth_live = any(o.get(k) is True for k in ("can_freeze", "can_mint"))
         status, mult, gate_ok, gate_failed = journal.record_outcome(
             o["pair"], o["ts"], horizon_h, price, liq, vol24,
             o.get("price_usd"), o.get("liq"), o.get("symbol", ""),
@@ -367,7 +372,7 @@ def score_horizon(horizon_h, limit=None, verbose=True):
             price_verdict=verdict, exit_depth=depth,
             base_price_native=o.get("price_native"), price_native=_pn_exit,
             exit_pair=_exit_pair, sells_h24=_sells24, buys_h24=_buys24,
-            mcap=_mcap)
+            mcap=_mcap, authority_live=_auth_live)
         done += 1
         _elapsed = (time.time() - o["ts"]) / 3600.0
         elapsed_seen.append(_elapsed)
@@ -414,7 +419,9 @@ def score_horizon(horizon_h, limit=None, verbose=True):
                 # have been suppressed as a repeat of the first.
                 findings.record(
                     "outcome-win", o.get("token") or o.get("symbol", "?"),
-                    f"{o.get('symbol','?')} {mult:,.2f}x, realizable, at the "
+                    # ⛔ Not "realizable": nothing here quoted a sell. The gate
+                    # passed on Dexscreener's depth (2026-09-19, 7uMjiTCQ...).
+                    f"{o.get('symbol','?')} {mult:,.2f}x, passed the win gate (no sell quoted), at the "
                     f"{horizon_h}h horizon (measured {_elapsed:.2f}h after "
                     f"observation) "
                     + (f"[{_nth_ordinal(_prior + 1)} horizon to clear for this "
@@ -425,7 +432,11 @@ def score_horizon(horizon_h, limit=None, verbose=True):
                         + "pair     " + str(o["pair"]) + chr(10)
                         + f"entry    ${(o.get('price_usd') or 0):.10g}" + chr(10)
                         + f"now      ${(price or 0):.10g}" + chr(10)
-                        + f"exit depth ${(depth or 0):,.0f} of ${(liq or 0):,.0f} reported" + chr(10)
+                        + f"exit depth ${(depth or 0):,.0f} of ${(liq or 0):,.0f} reported"
+                          " (Dexscreener's quote side, not a quote)" + chr(10)
+                        + "authorities at entry: "
+                        + ("revoked" if _auth_live is False else "UNCHECKED")
+                        + chr(10)
                         + f"price     {conf}"
                         + (f", sources within {ratio:.4f}x" if ratio else "")
                         + chr(10)

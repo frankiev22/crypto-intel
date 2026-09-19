@@ -42,6 +42,33 @@ and have **no sell route at all** at $500.
   realizable over 86 closes**. Both are computed on fictional fills. **The
   honest status of v1 and v2 is "no usable P&L", not a loss figure.**
 
+### 2a. Addendum 2026-09-19: the open-and-never-closed window. Same quarantine, second reason.
+
+The relay reported `paper.sweep` 84h stale. It was the v1 sweep, which returns before it
+beats once the ledger is frozen, so the registry was alarming on a deliberate stop
+(`liveness.RETIRED` now says so, and alarms `undead` if a retired component ever writes).
+But under the alarm is a real window. Measured from the ledgers on 2026-09-19:
+
+| ledger | last close | positions open at the freeze | past their 24h hold at the freeze | entered |
+|---|---|---:|---:|---|
+| v1 `ledger.jsonl` | 2026-09-15 05:08:53Z | 17 | 16 | 4 on 09-14, 12 on 09-15, 1 on 09-17 |
+| v2 `ledger_v2.jsonl` | 2026-09-15 05:10:10Z | 79 | 76 | 23 on 09-14, 53 on 09-15, 3 on 09-17 |
+
+The sweep died with the host sandbox at 09-15 05:08Z and the runner was on its billing
+hold, so nothing closed anything for ~2.6 days until the freeze at `4676ce3`
+(2026-09-17 23:37Z). **Not salvageable, and not to be salvaged:** a reconstructed close
+would be priced on the same mid that is the reason for the quarantine, and the 92
+overdue positions are not a random sample - every one of them is missing from `n`, so
+the rate over the remaining closes is censored by entry date.
+
+⛔ **The window was already inside the quarantine, but the quarantine leaked.**
+`paper.summary()` still returned `conclusive: True, hit_rate: 11.84%` and `paperv2`
+`B_high` `10.34%`, and CLAUDE.md's numbers table quoted the first as the "paper v1
+record". From 2026-09-19 both summaries return `QUARANTINED` in place of every rate
+(counts still readable), `CRYPTO_PAPER_UNFREEZE` does not lift it, and `test_paper.py` /
+`test_v2.py` read the real ledgers to prove it. **v3 is unaffected**: its first entry
+is 2026-09-18, after the collector was restored.
+
 ## 3. The rule — frozen
 
 **Entry condition** (all must hold, evaluated at the observation that triggers):
@@ -149,6 +176,17 @@ positive median realizable multiple over n ≥ 30 distinct contracts.**
 per standing rule 7. **A position whose exit route vanished is a loss, not a
 void.** The only `void` permitted is a *recording* failure (quote API down at
 exit), which must be logged with its reason and reported separately.
+
+**7a. Clarification, 2026-09-19 - declared before any row was affected.** The code
+did not do what this section says. `chainfields` labelled every failed quote
+(an HTTP 5xx, a dead network, four 429s in a row) `NO_SELL_ROUTE`, so an API outage
+at exit would have been booked as a **total loss**, not a void. Now only
+Jupiter's own `errorCode` is a no-route answer (`chainfields.answered()`); a failed
+exit quote is `QUOTE_FAILED`. The sweep retries it every pass, and only if it still fails
+`QUOTE_RETRY_H` = **6h** past the 24h hold does it write the void above, with the
+error as the reason. All four `NO_SELL_ROUTE` closes recorded before the fix carry
+`NO_ROUTES_FOUND`, so **no existing row changes** and the rule's thresholds do not
+move. `test_paperv3.py` §8 holds it.
 
 ## 8. ⭐ Why this is the asset worth building
 

@@ -145,6 +145,14 @@ big = dict(CLEAN_RC, insider_networks=[{"size": 35335, "type": "transfer", "pct_
 check("⛔ v1.1: an insider network 'holding 98%' changes NOTHING (BONK reads that)",
       lv(entry(chain=CLEAN_CHAIN, dex=CLEAN_DEX, rc=big)) == "NO FLAGS")
 check("S11 LP 20% locked -> WARN", lv(entry(chain=CLEAN_CHAIN, dex=CLEAN_DEX, rc=dict(CLEAN_RC, lp_locked_pct=20))) == "WARN")
+# ⛔ 2026-09-19 (site session, defect A): reasons sorted as strings put "S11" (a
+# warn) ahead of "S2" (a danger), and a page shows only the first few.
+_mix = S.verdict(entry(chain=dict(CLEAN_CHAIN, freeze_authority="X"), dex=CLEAN_DEX,
+                       rc=dict(CLEAN_RC, lp_locked_pct=20), top=80.0), NOW)["reasons"]
+check("⛔ reasons: every DANGER before any WARN",
+      _mix and _mix[0].startswith("S2:") and all(not r.startswith("S2:") for r in _mix[1:]), _mix)
+_ids = [int(r.split(":")[0][1:]) for r in _mix[1:]]
+check("...and warns in check NUMBER order (S8 before S11, not string order)", _ids == sorted(_ids), _mix)
 unk = S.verdict(entry(), NOW)
 check("⛔ no chain, no pair, no RugCheck read: each is LISTED as not checked, none passes",
       len([x for x in unk["not_checked"] if any(w in x for w in ("mint account", "D1", "RugCheck"))]) == 3

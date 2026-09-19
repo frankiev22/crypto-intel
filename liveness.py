@@ -150,6 +150,28 @@ COMPONENTS = {
                              "a v3 position was closed against a live sell quote"),
 }
 
+# ⛔ RETIRED: declared components whose source was shut down ON PURPOSE. They
+# stay declared, so their history reads, but they are never judged stale again.
+#
+# 2026-09-19: the relay reported "paper.sweep is 84 hours stale - the close side
+# is dead" and asked for a sweep to be added to a launcher. The sweep was never
+# missing. The v1 ledger was QUARANTINED at 4676ce3, and a frozen ledger's sweep
+# returns before it beats (paper.sweep, by design), so the registry went on
+# holding a deliberately stopped component to a 12h bar and reported the stop as
+# an outage. An alarm that is true-by-construction is the one that teaches
+# everyone to ignore the registry.
+#
+# ⭐ The inverse is the useful alarm: a retired component that BEATS UNATTENDED
+# after its retirement is writing to a ledger that is meant to be frozen. That
+# verdict is `undead`, and it alarms. Manual beats (tests, hand runs) are not
+# counted, the same as everywhere else in this module.
+RETIRED = {
+    name: ("2026-09-17T23:37:44Z",
+           "v1 ledger QUARANTINED (fills on the Dexscreener mid; PRECOMMIT_paper_v3.md "
+           "section 2). Its sweep returns before beating. Superseded by paperv3.*")
+    for name in ("paper.sweep", "paper.open", "paper.close")
+}
+
 
 def _load():
     """Absent -> {}. Present-but-corrupt -> safeload.LoadFailed.
@@ -334,6 +356,21 @@ def status():
         _fired = (r.get("last_unattended_ts") if "last_origin" in r
                   else r.get("last_ts"))
         fired_h = ((now - _fired) / 3600.0) if _fired else None
+        if name in RETIRED:
+            _rts, _why = RETIRED[name]
+            _rts_s = dt.datetime.strptime(_rts, "%Y-%m-%dT%H:%M:%SZ").replace(
+                tzinfo=dt.timezone.utc).timestamp()
+            # ⛔ undead: it wrote UNATTENDED after it was shut down.
+            _undead = _fired is not None and _fired > _rts_s
+            out.append({"name": name, "verdict": "undead" if _undead else "retired",
+                        "age_h": age_h, "max_age_h": None, "count": r.get("count") or 0,
+                        "declared": declared, "declared_h": declared_h,
+                        "basis": basis, "what": what, "retired": _rts, "why": _why,
+                        "fired_age_h": fired_h,
+                        "last_at": r.get("last_at"),
+                        "last_origin": r.get("last_origin"),
+                        "manual_age_h": manual_h})
+            continue
         if max_age_h is None:
             # ⭐ DECLARED, COUNTED, NEVER ALARMED. There is no honest bar yet.
             out.append({"name": name, "verdict": "unmetered", "age_h": age_h,
@@ -407,10 +444,18 @@ def line(st=None):
           f"{len(by.get('empty', []))} empty, "
           f"{len(by.get('never', []))} never, {len(by.get('pending', []))} pending, "
           f"{len(by.get('unmetered', []))} unmetered, "
-          f"{len(by.get('undeclared', []))} undeclared"]
-    for v in ("empty", "never", "stale", "undeclared", "unmetered", "pending"):
+          f"{len(by.get('undeclared', []))} undeclared, "
+          f"{len(by.get('retired', []))} retired"
+          + (f", {len(by.get('undead', []))} UNDEAD" if by.get("undead") else "")]
+    for v in ("undead", "empty", "never", "stale", "undeclared", "unmetered", "pending", "retired"):
         for s in by.get(v, []):
-            if v == "unmetered":
+            if v in ("retired", "undead"):
+                age = (f"retired {s['retired'][:10]}"
+                       + (f", last unattended beat {s['fired_age_h']:.1f}h ago"
+                          if s.get("fired_age_h") is not None else "")
+                       + (" - AFTER RETIREMENT: something is writing a frozen ledger"
+                          if v == "undead" else ""))
+            elif v == "unmetered":
                 age = (f"last {s['age_h']:.1f}h ago" if s["age_h"] is not None
                        else "never yet") + ", no threshold set - market event"
             elif v == "empty":
@@ -442,11 +487,16 @@ def check(record=None, verbose=True):
     if verbose:
         print("  " + line(st).replace("\n", "\n  "))
     for s in st:
-        if s["verdict"] not in ("never", "stale", "undeclared", "empty"):
+        if s["verdict"] not in ("never", "stale", "undeclared", "empty", "undead"):
             continue
         if not record:
             continue
-        if s["verdict"] == "never":
+        if s["verdict"] == "undead":
+            msg = (f"{s['name']} beat UNATTENDED after it was retired on "
+                   f"{s['retired'][:10]}")
+            detail = (f"Retired because: {s['why']}. A retired component that "
+                      f"writes means a frozen ledger is being appended to.")
+        elif s["verdict"] == "never":
             msg = (f"{s['name']} has NEVER fired in the {s['declared_h']:.0f}h "
                    f"since it was declared")
             detail = (f"A tracker that has never fired is broken or unnecessary, "
@@ -519,5 +569,5 @@ if __name__ == "__main__":
     else:
         print("  ⛔ unattended rows: NEVER - no pass that nobody triggered has "
               "written a row")
-    bad = [s for s in st if s["verdict"] in ("never", "stale", "undeclared", "empty")]
+    bad = [s for s in st if s["verdict"] in ("never", "stale", "undeclared", "empty", "undead")]
     sys.exit(1 if bad else 0)

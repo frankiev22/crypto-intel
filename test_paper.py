@@ -183,6 +183,28 @@ check("the dead `or paper.qualifies(row)[0]` branch is gone",
 check("gate constants still match RULE_V1", not paper.gate_drift(),
       str(paper.gate_drift()))
 
+# ⛔ 2026-09-19: the real v1 ledger was quarantined on 09-17 and summary() went
+# on printing `conclusive: True, hit_rate: 11.84%`, which CLAUDE.md quoted as
+# "paper v1 record". Read-only: the real ledger is read, never written.
+_saved_ledger = paper.LEDGER
+paper.LEDGER = next(iter(paper.QUARANTINED_PATHS))
+try:
+    _q = paper.summary()
+finally:
+    paper.LEDGER = _saved_ledger
+check("⛔ the quarantined REAL v1 ledger quotes no hit rate",
+      _q.get("quarantined") is True and _q["conclusive"] is False
+      and _q["hit_rate"].startswith("QUARANTINED"), _q.get("hit_rate", "")[:40])
+os.environ["CRYPTO_PAPER_UNFREEZE"] = "1"
+paper.LEDGER = next(iter(paper.QUARANTINED_PATHS))
+try:
+    _q2 = paper.summary()
+finally:
+    paper.LEDGER = _saved_ledger
+    os.environ.pop("CRYPTO_PAPER_UNFREEZE", None)
+check("...and unfreezing for a migration write does not turn it back into evidence",
+      _q2["hit_rate"].startswith("QUARANTINED"), _q2.get("hit_rate", "")[:40])
+
 bad = [r for r in R if not r[1]]
 print(f"{len(R) - len(bad)}/{len(R)} passed")
 sys.exit(1 if bad else 0)

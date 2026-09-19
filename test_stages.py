@@ -331,6 +331,21 @@ if os.path.exists(SKILL):
           found == collect.staged_commands(), f"skill has {found}")
     check("no skill command runs a stage without the origin marker",
           len(bare) == len(found), f"{len(bare)} stage commands, {len(found)} marked")
+    # ⛔ 2026-09-19: the list grew from seven lines to ten and the prose said
+    # "seven" twice. The commands were tested; the words about them were not.
+    _words = {w: i for i, w in enumerate(
+        "zero one two three four five six seven eight nine ten eleven twelve "
+        "thirteen fourteen fifteen sixteen".split())}
+    _stated = [(m.group(0), _words.get(m.group(1).lower(), None) if not m.group(1).isdigit()
+                else int(m.group(1)))
+               for m in re.finditer(r"\b(\w+)\s+(?:staged\s+)?(?:commands|stages|lines)\b", txt)
+               if m.group(1).isdigit() or m.group(1).lower() in _words]
+    check("⛔ any count of commands the prose states equals the real count",
+          all(n == len(found) for _, n in _stated),
+          f"{_stated} vs {len(found)}")
+    _sweep = txt.split("--stage sweep` CLOSES THE PAPER LOG")[1][:400] if "CLOSES THE PAPER LOG" in txt else ""
+    check("...and the sweep line names the live ledger (v3), not only the frozen ones",
+          "v3" in _sweep, _sweep[:80])
 else:
     print(f"  SKIP  skill file not present here ({SKILL})")
 

@@ -242,9 +242,17 @@ saved = live.LEDGER
 live.LEDGER = "data/paper/ledger_v2.jsonl"
 ls = live.summary()
 leaks = {k: v["rate"] for k, v in ls["arms"].items()
-         if v["closed_tokens"] < live.MIN_N and "WITHHELD" not in v["rate"]}
+         if v["closed_tokens"] < live.MIN_N
+         and not any(w in v["rate"] for w in ("WITHHELD", "QUARANTINED"))}
 check("the LIVE v2 ledger quotes no rate below MIN_N closed tokens",
       not leaks, str(leaks))
+# ⛔ 2026-09-19: quarantined on 09-17, and B_high still printed "10.34%",
+# conclusive. A frozen ledger must quote NO rate at any n.
+check("⛔ the quarantined LIVE ledger quotes no rate on ANY arm, at any n",
+      ls.get("quarantined") is True
+      and all(v["rate"].startswith("QUARANTINED") and v["conclusive"] is False
+              for v in ls["arms"].values()),
+      str({k: v["rate"][:30] for k, v in ls["arms"].items()}))
 live.LEDGER = saved
 
 

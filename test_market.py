@@ -188,6 +188,16 @@ check("...computed as the quote half of reported liquidity over the cap, None wh
       all(r["cap_backing_pct"] == market.cap_backing(r["liquidity_usd_reported"], r["mcap_usd"]) for r in mrows)
       and market.cap_backing(None, 5e6) is None and market.cap_backing(1e3, 0) is None)
 
+check("⭐ every mover and volume row carries a safety verdict (milestone 1: a verdict on everything at the top)",
+      mrows and all(r.get("safety") in ("DANGER", "WARN", "NO FLAGS", "UNKNOWN") for r in mrows),
+      sorted({str(r.get("safety")) for r in mrows}))
+check("⛔ ...with what was NOT checked, and a scope that says it is S1 only",
+      all(r.get("safety_not_checked") and "partial" in r.get("safety_scope", "") for r in mrows))
+_rt_rows = [r for r in mrows if (r.get("round_trip") or {}).get("verdict")]
+check("...and S1 is this row's own round trip: a checked row is never UNKNOWN",
+      _rt_rows and all(r["safety"] != "UNKNOWN" for r in _rt_rows),
+      [(r["token"][:6], r["round_trip"]["verdict"], r["safety"]) for r in _rt_rows][:4])
+
 print()
 print("=" * 70)
 print("2. ⛔ ranking: by the move, with every exclusion COUNTED")

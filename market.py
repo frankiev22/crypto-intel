@@ -333,6 +333,29 @@ def rank(universe, key, n, descending=True, sign=None):
     return [t for _, t in elig[:n]], counts
 
 
+ROW_SAFETY_SCOPE = ("partial: S1 only, from this row's own $100 round trip. The mint account, "
+                    "D1, holders and RugCheck are read for tracked tokens (data/universe/)")
+
+
+def row_safety(r, now=None):
+    """⭐ A safety verdict on a mover / volume row, from what the row already holds.
+
+    Milestone 1 wants a verdict on everything at the top of the page, and these
+    rows had none. No extra call: S1 comes from the row's own round trip, and
+    every check it cannot make is listed in not_checked, so NO FLAGS never
+    appears without the list of what was not looked at. ⛔ Jupiter's `audit`
+    flags are Jupiter's claim, not the mint account, so they are NOT fed in.
+    """
+    import safety
+    rt = r.get("round_trip") or {}
+    gate = ({"verdict": rt.get("verdict"), "rt_cost_pct": rt.get("rt_cost_pct"), "ts": rt.get("ts")}
+            if rt.get("verdict") else {})
+    v = safety.verdict({"status": "market row", "class": r.get("class") or "token",
+                        "gate": gate, "last": {}, "sources": []}, now or time.time())
+    return {"safety": v["level"], "safety_reasons": v["reasons"][:4], "safety_ts": v["computed_ts"],
+            "safety_not_checked": v["not_checked"], "safety_scope": ROW_SAFETY_SCOPE}
+
+
 def verify(lists_in_priority, budget_s=None, rt=None, per_list=None):
     """Realizable check on the top of each list, until the time budget is spent.
 
@@ -651,6 +674,7 @@ def build(verbose=True, now=None, rt=None, verify_s=None):
         for r in rows:
             if r["token"] in verified:
                 r.update(verified[r["token"]])
+            r.update(row_safety(r))
 
     trending = {"jupiter": {}, "geckoterminal": {}}
     for interval in ("1h", "6h", "24h"):

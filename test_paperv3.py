@@ -342,6 +342,103 @@ check("⚠️ and with both supplied it still qualifies",
       paperv3.qualifies(_full, _rt)[0] is True, str(paperv3.qualifies(_full, _rt)))
 
 print()
+print("=" * 70)
+print("8. ⛔ a FAILED exit quote is retried, never booked as a total loss")
+print("=" * 70)
+# 2026-09-19: chainfields labelled an HTTP 5xx, a network failure and rate
+# limiting NO_SELL_ROUTE, so the sweep would have closed a position as a total
+# loss on a Jupiter outage. The pre-commit says "quote API down at exit" is a
+# void. The four real NO_SELL_ROUTE closes all carry NO_ROUTES_FOUND.
+import datetime as _dt
+import chainfields as _cf
+
+
+def _age(entry, hours):
+    ts = (_dt.datetime.now(_dt.timezone.utc) - _dt.timedelta(hours=hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    rows = [json.loads(l) for l in open(paperv3.LEDGER, encoding="utf-8") if l.strip()]
+    for r in rows:
+        if r.get("hash") == entry["hash"]:
+            r["ts"] = ts
+    with open(paperv3.LEDGER, "w", encoding="utf-8") as f:
+        for r in rows:
+            f.write(json.dumps(r) + chr(10))
+
+
+def _failed(*a, **k):
+    return {"usd_out": None, "verdict": _cf.QUOTE_FAILED, "error": "HTTP 503", "ts": 1789000100,
+            "venues": None, "price_impact_pct": None}
+
+
+check("answered(): Jupiter's own errorCode IS an answer", _cf.answered("NO_ROUTES_FOUND"))
+check("...an HTTP status, a dead network and rate limiting are NOT",
+      not any(_cf.answered(e) for e in ("HTTP 503", "HTTP None", "rate limited", None, "")))
+
+fresh()
+_e, _ = paperv3.open_entry(dict(CLEAN), rt=RT_OK, shadows=False)
+_sw = paperv3.sweep(verbose=False, sell_quote=_failed)
+check("⛔ an open position whose quote FAILED stays open - no loss booked",
+      _sw["closed"] == 0 and paperv3.has_open(CLEAN["addr"]), str(_sw))
+check("...and the failure is COUNTED, not silent", _sw["quote_failed"] == 1, str(_sw))
+
+_age(_e, paperv3.MAX_HOLD_H + 1)
+_sw = paperv3.sweep(verbose=False, sell_quote=_failed)
+check("⛔ due by MAX_HOLD, quote failed, inside the retry window -> still open, retried",
+      _sw["closed"] == 0 and _sw["voided"] == 0 and paperv3.has_open(CLEAN["addr"]), str(_sw))
+
+_age(_e, paperv3.MAX_HOLD_H + paperv3.QUOTE_RETRY_H + 0.5)
+_sw = paperv3.sweep(verbose=False, sell_quote=_failed)
+_rows = [json.loads(l) for l in open(paperv3.LEDGER, encoding="utf-8") if l.strip()]
+_x = [r for r in _rows if r.get("type") == "exit"]
+check("⭐ past the retry window -> the pre-committed VOID, with the error as its reason",
+      _sw["voided"] == 1 and len(_x) == 1 and _x[0].get("void") is True
+      and "quote API down" in _x[0].get("void_reason", "") and "503" in _x[0]["void_reason"],
+      str(_x[:1]))
+check("...never a 0.0x total loss", _x and _x[0].get("realizable_multiple") is None
+      and _x[0].get("exit_reason") != "NO_SELL_ROUTE")
+
+fresh()
+_e2, _ = paperv3.open_entry(dict(CLEAN), rt=RT_OK, shadows=False)
+try:
+    paperv3.close_entry(_e2, sq=_failed(), shadows=False)
+    _raised = False
+except ValueError:
+    _raised = True
+check("⛔ close_entry REFUSES to book a failed quote as a loss", _raised)
+
+
+def _noroute(*a, **k):
+    return {"usd_out": None, "verdict": "NO_SELL_ROUTE", "error": "NO_ROUTES_FOUND", "ts": 1789000100,
+            "venues": None, "price_impact_pct": None}
+
+
+_real_rt, _net = _cf.round_trip, []
+_cf.round_trip = lambda *a, **k: _net.append(a) or {"verdict": None, "error": "offline"}
+try:
+    _sw = paperv3.sweep(verbose=False, sell_quote=_noroute)
+finally:
+    _cf.round_trip = _real_rt
+check("...but Jupiter ANSWERING no-route still closes as a total loss, as pre-committed",
+      _sw["closed"] == 1 and _sw["reasons"].get("NO_SELL_ROUTE") == 1, str(_sw))
+
+# chainfields itself: the transport failure never becomes a route verdict.
+_real_q = _cf._quote
+try:
+    _cf._quote = lambda *a, **k: (None, "HTTP 503")
+    _rt_fail = _cf.round_trip("M" * 44, 100)
+    _sq_fail = _cf.sell_quote("M" * 44, 1000)
+    _cf._quote = lambda *a, **k: (None, "NO_ROUTES_FOUND")
+    _rt_ans = _cf.round_trip("M" * 44, 100)
+    _sq_ans = _cf.sell_quote("M" * 44, 1000)
+finally:
+    _cf._quote = _real_q
+check("⛔ round_trip on an HTTP failure: verdict None ('could not check'), error kept",
+      _rt_fail["verdict"] is None and _rt_fail["error"] == "HTTP 503", str(_rt_fail["verdict"]))
+check("⛔ sell_quote on an HTTP failure: QUOTE_FAILED, not NO_SELL_ROUTE",
+      _sq_fail["verdict"] == _cf.QUOTE_FAILED, str(_sq_fail["verdict"]))
+check("...and Jupiter's own no-route answer is still NO_BUY_ROUTE / NO_SELL_ROUTE",
+      _rt_ans["verdict"] == "NO_BUY_ROUTE" and _sq_ans["verdict"] == "NO_SELL_ROUTE")
+
+print()
 bad = [r for r in R if not r[1]]
 print(f"{len(R) - len(bad)}/{len(R)} passed")
 if bad:

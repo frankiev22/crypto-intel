@@ -350,8 +350,15 @@ def verdict(e, now):
         level = "WARN"
     else:
         level = "NO FLAGS"
+    # ⛔ Most severe first, then by check NUMBER. A plain string sort put "S11:
+    # LP 0% locked" (a warn) ahead of "S2: freeze authority active" (a danger),
+    # and every page shows only the first few reasons.
+    def _order(kc):
+        k, c = kc
+        return (0 if c["level"] == "danger" else 1, int(k[1:]) if k[1:].isdigit() else 99)
     return {"level": level, "rule": "PRECOMMIT_safety_v1.md " + RULE_VERSION, "computed_ts": int(now),
-            "reasons": [f"{k}: {c['detail']}" for k, c in sorted(checks.items()) if c["level"] in ("danger", "warn")],
+            "reasons": [f"{k}: {c['detail']}" for k, c in sorted(checks.items(), key=_order)
+                        if c["level"] in ("danger", "warn")],
             "checks": checks, "not_checked": not_checked}
 
 

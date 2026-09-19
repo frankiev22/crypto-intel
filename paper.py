@@ -173,11 +173,19 @@ def _read():
 # --------------------------------------------------------------------------
 QUARANTINED = True
 QUARANTINE_REASON = (
-    "fills priced on the Dexscreener mid with notional_usd ignored; "
+    "fills priced on the Dexscreener mid with notional_usd ignored, and 16 "
+    "positions entered 09-14/15 were never closed (the sweep died 09-15 05:08Z); "
     "see PRECOMMIT_paper_v3.md section 2. Use paperv3.")
 
 
 QUARANTINED_PATHS = {os.path.abspath(LEDGER)}
+
+
+def quarantined():
+    """True for the real v1 ledger. Unlike frozen(), CRYPTO_PAPER_UNFREEZE does not
+    lift it: unfreezing permits a deliberate migration write, it does not turn
+    fills on the mid into evidence."""
+    return bool(QUARANTINED) and os.path.abspath(LEDGER) in QUARANTINED_PATHS
 
 
 def frozen():
@@ -1060,4 +1068,11 @@ def summary(include_inferred=False):
         out["max_mult"] = mults[-1]
     out["hit_rate"] = (f"{100.0 * len(wins) / n:.2f}%" if out["conclusive"]
                        else f"WITHHELD - {n_tokens} distinct tokens, need {MIN_N}")
+    if quarantined():
+        # ⛔ 2026-09-19: this printed `conclusive: True, hit_rate: 11.84%` for two
+        # days after the ledger was quarantined, and CLAUDE.md's numbers table
+        # quoted it as "paper v1 record". A frozen ledger kept producing a
+        # quotable rate. The counts stay readable; the rate does not.
+        out.update(conclusive=False, quarantined=True, quarantine_reason=QUARANTINE_REASON,
+                   hit_rate="QUARANTINED - no usable rate: " + QUARANTINE_REASON)
     return out

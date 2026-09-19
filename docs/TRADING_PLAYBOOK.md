@@ -22,6 +22,12 @@ file records **1** win at n=7, not 3. The "median lost 60%" half is `GAPS.md`'s 
 median multiple; **the "3 wins in 69 closes" half is not in any file in this repo** and I
 could not find its provenance. Current figures, from `data/findings/REPORT_2026-09-15.md`:
 
+> ⛔ **QUARANTINED 2026-09-17, stated here 2026-09-19.** Every figure in this table and in
+> §6.2 is computed on exits priced at the Dexscreener mid with `notional_usd` never applied,
+> and 16 positions entered 09-14/15 were never closed. **There is no usable v1 hit rate.**
+> The table is kept as history (standing rule 8); `paper.summary()` now returns
+> `QUARANTINED` instead of a rate. See `PRECOMMIT_paper_v3.md` §2 and §2a.
+
 | v1 paper ledger, 2026-09-15 | measured | + inferred losses |
 |---|---|---|
 | all closes | 9/76 = **11.84%** [6.36, 21.00] | 9/123 = 7.32% [3.90, 13.32] |
@@ -602,6 +608,9 @@ corrections section of this file says the n=7 figures should not be quoted, and 
 applies here too.
 
 ### 6.2 The two levers, priced
+
+> ⛔ The 11.84% below is the **quarantined** v1 rate (see the note in §1). The arithmetic of
+> the two levers holds for any h; the starting h does not. Recompute from v3 at n ≥ 30.
 
 Breakeven requires `h × 100 = (1−h) × L`.
 

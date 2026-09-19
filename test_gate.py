@@ -153,6 +153,33 @@ except OSError:
     check("with NO index ever built, it raises instead of answering 0", True)
 journal.outcomes = _real
 
+print()
+print("=" * 70)
+print("9. ⛔ a live mint/freeze authority AT ENTRY fails the gate (2026-09-19)")
+print("=" * 70)
+# 7uMjiTCQ...: graded TRAP at observation, then announced "4.58x, realizable".
+# Its freeze authority froze 50 buyers the second each bought; their SOL was the
+# multiple. Every other check passed, which is why it went out.
+_row = dict(status="alive", liq=26337.18, mult=4.58, exit_depth=12807.09,
+            pair="Bqkk", exit_pair="Bqkk", elapsed_h=2.73, sells_h24=26, buys_h24=99)
+_ok, _f = journal.verify_win(**_row)
+check("the 7uMjiTCQ row, as recorded, passes the old eight", _ok is True, str(_f))
+_ok, _f = journal.verify_win(**_row, authority_live=True)
+check("⛔ ...and FAILS with the authority it had at entry", _ok is False and _f == ["authority_live"], str(_f))
+_ok, _f = journal.verify_win(**_row, authority_live=None)
+check("unchecked authorities are NOT failed here (recorded, not re-labelled)", _ok is True, str(_f))
+check("the new check is in WIN_CHECKS", "authority_live" in journal.WIN_CHECKS)
+import inspect as _inspect
+_tsrc = io.open("track.py", encoding="utf-8").read()
+check("⛔ track.py passes the OBSERVED authorities into the gate",
+      "authority_live=_auth_live" in _tsrc and 'o.get("authorities_checked")' in _tsrc)
+_rsrc = _inspect.getsource(journal.record_outcome)
+check("...and record_outcome writes it ON THE ROW, not only into the gate",
+      '"authority_live_at_entry": authority_live' in _rsrc
+      and "authority_live=authority_live" in _rsrc)
+check("the announcement no longer calls an unquoted multiple 'realizable'",
+      "x, realizable, at the" not in _tsrc)
+
 bad = [r for r in R if not r[1]]
 print(f"{len(R) - len(bad)}/{len(R)} passed")
 sys.exit(1 if bad else 0)

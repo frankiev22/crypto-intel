@@ -166,6 +166,31 @@ def usage():
             "pct_of_free": q / JUP_FREE_CREDITS_MONTH * 100.0}
 
 
+# ⛔ A TRANSPORT FAILURE IS NOT A ROUTE ANSWER. Found 2026-09-19.
+#
+# _quote() returns (None, err) for three different things: Jupiter's own
+# errorCode (NO_ROUTES_FOUND, TOKEN_NOT_TRADABLE - it looked, and there is no
+# route), "HTTP <status>" (a 5xx, or "HTTP None" when the network failed), and
+# "rate limited" after four 429s. round_trip() and sell_quote() labelled ALL
+# three NO_BUY_ROUTE / NO_SELL_ROUTE. Downstream that is a honeypot: the
+# universe gate refuses the token, safety S1 calls it DANGER, and the paperv3
+# sweep closes the position as a TOTAL LOSS - on a Jupiter outage. The v3
+# pre-commit (section 7) says the opposite: "quote API down at exit" is a void,
+# logged with its reason. The four NO_SELL_ROUTE closes recorded before this
+# fix all carry NO_ROUTES_FOUND, so no existing row was affected.
+#
+# Now only an answer is a verdict. A transport failure is verdict None from
+# round_trip() (every caller already treats None as "could not check") and
+# QUOTE_FAILED from sell_quote(), which paperv3 retries and never books as a loss.
+QUOTE_FAILED = "QUOTE_FAILED"
+
+
+def answered(err):
+    """True when Jupiter itself said "no route" (an errorCode). False for an HTTP
+    status, a network failure ("HTTP None") or rate limiting: no answer came."""
+    return bool(err) and not str(err).startswith("HTTP") and str(err) != "rate limited"
+
+
 def _quote(in_mint, out_mint, amount, slippage_bps=5000, tries=4):
     """One Jupiter quote. Returns (body, error). Backs off on 429."""
     k = config.key("jupiter")
@@ -255,7 +280,7 @@ def round_trip(mint, usd=DEFAULT_PROBE_USD):
            "token_qty_raw": None, "price_impact_pct": None}
     buy, err = _quote(USDC, mint, usd * 1_000_000)
     if not buy:
-        out["verdict"] = "NO_BUY_ROUTE"
+        out["verdict"] = "NO_BUY_ROUTE" if answered(err) else None
         out["error"] = err
         return out
     out["venues"] = [((h.get("swapInfo") or {}).get("label") or "?")
@@ -267,7 +292,7 @@ def round_trip(mint, usd=DEFAULT_PROBE_USD):
     out["price_impact_pct"] = _impact_pct(buy)
     sell, err = _quote(mint, USDC, int(buy["outAmount"]))
     if not sell:
-        out["verdict"] = "NO_SELL_ROUTE"
+        out["verdict"] = "NO_SELL_ROUTE" if answered(err) else None
         out["error"] = err
         return out
     back = int(sell["outAmount"]) / 1e6
@@ -289,7 +314,8 @@ def sell_quote(mint, raw_qty):
 
     Returns a dict. ⛔ `usd_out` is None when no route exists - that is an
     ANSWER, not an error, and paperv3 records it as a total loss rather than
-    skipping the close. Never coerce it to 0 at the call site; the distinction
+    skipping the close. It is ALSO None when no answer came (verdict
+    QUOTE_FAILED), which is never a loss - check `verdict`, not `usd_out`. Never coerce it to 0 at the call site; the distinction
     between "no route" and "zero recovered" is preserved in `verdict`.
     """
     out = {"mint": mint, "raw_qty": int(raw_qty), "ts": int(time.time()),
@@ -301,7 +327,7 @@ def sell_quote(mint, raw_qty):
         return out
     sell, err = _quote(mint, USDC, int(raw_qty))
     if not sell:
-        out["verdict"] = "NO_SELL_ROUTE"
+        out["verdict"] = "NO_SELL_ROUTE" if answered(err) else QUOTE_FAILED
         out["error"] = err
         return out
     out["usd_out"] = round(int(sell["outAmount"]) / 1e6, 6)

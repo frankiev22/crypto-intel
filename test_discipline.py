@@ -12,9 +12,11 @@ A rule nobody checks is a comment, so these are machine-checked:
   D. beats count ROWS, not firings, and an empty firing does not read as health
 """
 import ast
+import datetime as dt
 import io
 import json
 import os
+import re
 import sys
 
 try:
@@ -304,7 +306,38 @@ check("⛔ and check() emits a finding for it",
 check("...saying the trigger works and the WORK produces nothing",
       any("producing NO ROWS" in str(a) for a in _emitted))
 check("⭐ the exit-code list includes it, or a red run reads green",
-      '("never", "stale", "undeclared", "empty")' in lsrc)
+      re.search(r'bad = \[s for s in st if s\["verdict"\] in \([^)]*"empty"', lsrc))
+
+# ⛔ RETIRED IS NOT STALE, AND A RETIRED COMPONENT THAT WRITES IS AN ALARM.
+# 2026-09-19: "paper.sweep 84h stale" was the quarantined v1 ledger, whose sweep
+# returns before it beats. The registry held a deliberately stopped component
+# to a 12h bar and reported the stop as an outage.
+_ret = next(iter(liveness.RETIRED))
+_rts = int(dt.datetime.strptime(liveness.RETIRED[_ret][0], "%Y-%m-%dT%H:%M:%SZ").replace(
+    tzinfo=dt.timezone.utc).timestamp())
+
+
+def _put_ret(ts, origin="scheduled"):
+    io.open(liveness.REG, "w", encoding="utf-8").write(json.dumps({_ret: {
+        "last_ts": ts, "last_at": "x", "count": 3, "first_ts": ts, "last_origin": origin,
+        "last_unattended_ts": ts if origin == "scheduled" else _rts - 3600}}))
+    return next(x for x in liveness.status() if x["name"] == _ret)
+
+
+v = _put_ret(_rts - 3600)
+check("⭐ a retired component silent since retirement reads RETIRED, not stale",
+      v["verdict"] == "retired", v["verdict"])
+v = _put_ret(_rts + 3600)
+check("⛔ ...and one that beat UNATTENDED after retirement reads UNDEAD", v["verdict"] == "undead", v["verdict"])
+_em = []
+liveness.check(record=lambda *a, **k: _em.append(a), verbose=False)
+check("⛔ ...which check() reports as a frozen ledger being written",
+      any("after it was retired" in str(a) for a in _em), str(_em[:1]))
+check("⛔ ...and which fails the exit code",
+      re.search(r'bad = \[s for s in st if s\["verdict"\] in \([^)]*"undead"', lsrc))
+v = _put_ret(int(time.time()), origin="manual")
+check("a MANUAL beat after retirement (a test, a hand run) does not make it undead",
+      v["verdict"] == "retired", v["verdict"])
 
 # ⚠️ And the report must not crash on a component with no declaration date.
 # An undeclared beat made line() raise TypeError on None and took the whole

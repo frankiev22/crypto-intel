@@ -510,6 +510,9 @@ def _brief(m, e):
             "safety": (e.get("safety") or {}).get("level") or "not computed",
             "safety_reasons": ((e.get("safety") or {}).get("reasons") or [])[:4],
             "safety_ts": (e.get("safety") or {}).get("computed_ts"),
+            # ⛔ NO FLAGS without its not-checked list reads as "safe". It travels.
+            "safety_not_checked": (e.get("safety") or {}).get("not_checked"),
+            "safety_scope": "full: every check in PRECOMMIT_safety_v1.md" if e.get("safety") else None,
             "trending": e.get("trending") or []}
 
 
@@ -812,7 +815,12 @@ def build(verbose=True, now=None, rt=None, gate_s=None, discover=True, fdv=None,
                      "resolved_by": "jupiter.search" if j else None,
                      "safety": uv.get("level") or "not computed",
                      "safety_reasons": (uv.get("reasons") or [])[:4],
-                     "safety_ts": uv.get("computed_ts")}
+                     "safety_ts": uv.get("computed_ts"),
+                     "safety_not_checked": uv.get("not_checked"),
+                     # a token under $1M is never round-tripped, so S1 is unknown
+                     # and the level can only be DANGER (from chain/D1) or UNKNOWN
+                     "safety_scope": ("partial: mint account and D1 only - not tracked, "
+                                      "so never round-tripped") if uv else None}
         tr_rows.append(dict(r, universe_status=(e or {}).get("status") or "not tracked", **extra))
     narr = dict(head, trending_built_at=_iso(trending_ts), trending_stale=stale_tr,
                 trending_age_s=(None if trending_ts is None else int(now - trending_ts)),

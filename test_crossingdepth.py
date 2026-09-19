@@ -167,6 +167,40 @@ check("the recovered file keys on the contract, never the symbol",
       all("token" in r and "symbol" not in r for r in rows(dest)))
 
 print()
+print()
+print("=" * 70)
+print("4. ⛔ the authority AT ENTRY lands on the outcome row and gates the claim")
+print("=" * 70)
+# 2026-09-19, 7uMjiTCQ...: a live freeze authority at observation, then a
+# "4.58x, realizable" announcement and realizable_2x/3x claims. Read back from
+# the files, not from the source.
+TOK3 = "TestMintAuthorityLive333333333333333333333pump"
+_st3, _m3, _ok3, _f3 = journal.record_outcome(
+    "TestPairAddr3", time.time() - 3700, 1, price=4.58, liq=26337.0, vol24=8107.0,
+    base_price=1.0, base_liq=11864.0, symbol="AUTH", token=TOK3, exit_depth=12807.0,
+    exit_pair="TestPairAddr3", sells_h24=26, buys_h24=99, mcap=32000.0, authority_live=True)
+_o3 = [r for n in sorted(os.listdir(journal.OUT)) if n.endswith(".jsonl")
+       for r in rows(os.path.join(journal.OUT, n)) if r.get("token") == TOK3]
+check("the row records authority_live_at_entry = True",
+      _o3 and _o3[-1].get("authority_live_at_entry") is True, _o3[-1] if _o3 else "no row")
+check("⛔ ...and is NOT realizable, naming the check",
+      _o3 and _o3[-1]["realizable"] is False and "authority_live" in _o3[-1]["win_checks_failed"],
+      _o3[-1].get("win_checks_failed") if _o3 else None)
+_c3 = [r for r in ledger_rows() if r.get("token") == TOK3 and str(r.get("milestone", "")).startswith("realizable")]
+check("⛔ ...and no realizable_2x/3x milestone is claimed for it", not _c3, _c3[:1])
+TOK4 = "TestMintAuthorityUnchecked44444444444444444pump"
+journal.record_outcome("TestPairAddr4", time.time() - 3700, 1, price=2.5, liq=60000.0, vol24=5000.0,
+                       base_price=1.0, base_liq=50000.0, symbol="UNCH", token=TOK4, exit_depth=12345.0,
+                       exit_pair="TestPairAddr4", sells_h24=40, buys_h24=60, mcap=250000.0)
+_o4 = [r for n in sorted(os.listdir(journal.OUT)) if n.endswith(".jsonl")
+       for r in rows(os.path.join(journal.OUT, n)) if r.get("token") == TOK4]
+_c4 = [r for r in ledger_rows() if r.get("token") == TOK4 and str(r.get("milestone", "")).startswith("realizable")]
+check("(control) the same 2x+ row WITHOUT a live authority does claim realizable_2x",
+      len(_c4) >= 1, len(_c4))
+check("unchecked authorities land as None (unknown), not False",
+      _o4 and "authority_live_at_entry" in _o4[-1] and _o4[-1]["authority_live_at_entry"] is None,
+      _o4[-1].get("authority_live_at_entry") if _o4 else "no row")
+
 bad = [r for r in R if not r[1]]
 print(f"{len(R) - len(bad)}/{len(R)} passed")
 if bad:

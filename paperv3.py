@@ -86,6 +86,14 @@ PINNED_GATE_V3 = {"NOTIONAL_USD": 100.0, "TARGET_MULT": 2.0, "MAX_HOLD_H": 24.0,
 
 DEGRADED = ("TOTAL_LOSS", "NO_SELL_ROUTE", "NO_BUY_ROUTE")
 
+# ⛔ A QUOTE THAT FAILED IS RETRIED, NEVER BOOKED AS A LOSS (2026-09-19, before
+# any row was affected - see chainfields.answered()). A due position whose exit
+# quote keeps failing is retried on every sweep until QUOTE_RETRY_H past its
+# hold, then closed as the pre-committed VOID ("quote API down at exit", section
+# 7), with the error as its reason. Six hours spans at least two runner passes
+# and six desktop passes, so one bad minute at Jupiter cannot void a position.
+QUOTE_RETRY_H = 6.0
+
 # ⭐ THE TWO REFUSALS THAT MEAN "EVERYTHING CHEAPER PASSED, GO AND MEASURE".
 #
 # A caller escalates: run qualifies() for free, and only when it comes back with
@@ -243,6 +251,8 @@ def _shadow_quotes(mint, skip=SIZE_TRADED):
             out[str(usd)] = {"verdict": r.get("verdict"),
                              "rt_cost_pct": r.get("rt_cost_pct"),
                              "usd_back": r.get("usd_back")}
+            if r.get("verdict") is None:
+                out[str(usd)]["error"] = r.get("error")     # no answer came; say why
         except Exception as e:
             # Unknown stays unknown. A failed shadow quote must never look like
             # a measured one, and must never block the real entry.
@@ -318,6 +328,10 @@ def close_entry(entry, sq=None, shadows=True, now=None, reason=None):
     qty = int(entry["token_qty_raw"])
     if sq is None:
         sq = chainfields.sell_quote(entry["contract"], qty)
+    if sq.get("verdict") == chainfields.QUOTE_FAILED:
+        # ⛔ No answer came. Booking this as NO_SELL_ROUTE would record a total
+        # loss for a Jupiter outage. The caller retries or voids; never here.
+        raise ValueError(f"exit quote failed ({sq.get('error')}), not a route answer")
 
     usd_out = sq.get("usd_out")
     if usd_out is None:
@@ -422,7 +436,8 @@ def sweep(verbose=True, should_stop=None, sell_quote=None):
     without touching the network. Returns a dict of counts; never raises.
     """
     sq_fn = sell_quote or chainfields.sell_quote
-    out = {"checked": 0, "closed": 0, "deferred": 0, "errors": 0, "reasons": {}}
+    out = {"checked": 0, "closed": 0, "deferred": 0, "errors": 0, "reasons": {},
+           "quote_failed": 0, "voided": 0}
     # ⭐ Beat FIRST and with the count, so "the sweep ran" is recorded even on a
     # pass with nothing open - that is the difference between `stale` and a
     # quiet market, and n is the row count so an empty sweep cannot read as
@@ -450,6 +465,16 @@ def sweep(verbose=True, should_stop=None, sell_quote=None):
                 # The only way to know whether the target is hit or the route is
                 # gone is to ask what the holding sells for, right now.
                 sq = sq_fn(entry["contract"], int(entry["token_qty_raw"]))
+            if sq.get("verdict") == chainfields.QUOTE_FAILED:
+                # ⛔ No answer. Not due: look again next sweep. Due: retry until
+                # QUOTE_RETRY_H past the hold, then the pre-committed void.
+                out["quote_failed"] += 1
+                if due and _elapsed_h(entry) >= MAX_HOLD_H + QUOTE_RETRY_H:
+                    close_void(entry, f"quote API down at exit for {QUOTE_RETRY_H:g}h "
+                                      f"past the hold: {sq.get('error')}")
+                    out["voided"] += 1
+                continue
+            if why != "MAX_HOLD":
                 usd_out = sq.get("usd_out")
                 if usd_out is None:
                     due, why = True, "NO_SELL_ROUTE"

@@ -153,7 +153,8 @@ DEPTH_VERIFIED_RATIO = 0.10
 #
 # Treat every win as contaminated until specifically proven otherwise.
 WIN_CHECKS = ("pair_identity", "depth_measured", "depth_floor", "sell_side",
-              "source_agreement", "plausibility", "elapsed_recorded", "alive")
+              "source_agreement", "plausibility", "elapsed_recorded", "alive",
+              "authority_live")
 
 # A price nobody has ever sold at is not a price you can realise. MEASURED
 # 2026-09-07 on the 141 outcome rows reporting $1.2M-$1.35M of liquidity, which
@@ -174,7 +175,7 @@ MIN_SELLS_FOR_WIN = int(os.environ.get("CRYPTO_MIN_SELLS_WIN", "1"))
 
 def verify_win(status, liq, mult, exit_depth=None, pair=None, exit_pair=None,
                price_verdict=None, elapsed_h=None, reasons=None,
-               sells_h24=None, buys_h24=None):
+               sells_h24=None, buys_h24=None, authority_live=None):
     """Every check a multiple must clear before it counts. Returns (ok, failed).
 
     `failed` is a list of check NAMES, so the row records which gate stopped it
@@ -222,6 +223,18 @@ def verify_win(status, liq, mult, exit_depth=None, pair=None, exit_pair=None,
     # 7. The token has to still be there.
     if status != "alive":
         failed.append("alive")
+
+    # 8. ⛔ NO AUTHORITY LIVE AT ENTRY. Added 2026-09-19.
+    #    7uMjiTCQ... was graded "TRAP - authority live" at observation, then
+    #    announced as "4.58x, realizable". Between the two, its freeze authority
+    #    froze 50 buyers within the same second each bought (12:32-13:20Z), and
+    #    their trapped SOL IS the 4.58x; nobody sold after 12:20Z. A buyer at
+    #    the observed moment was exposed to exactly that, so a multiple measured
+    #    from that moment is not one he could count on. `None` means unchecked:
+    #    recorded on the row and said in the announcement, never failed here -
+    #    failing it would silently re-label every curve-token win.
+    if authority_live is True:
+        failed.append("authority_live")
 
     return (not failed), sorted(set(failed))
 
@@ -938,7 +951,8 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
                    base_price, base_liq, symbol="", token="",
                    reasons=None, source=None, price_verdict=None,
                    exit_depth=None, base_price_native=None, price_native=None,
-                   exit_pair=None, sells_h24=None, buys_h24=None, mcap=None):
+                   exit_pair=None, sells_h24=None, buys_h24=None, mcap=None,
+                   authority_live=None):
     mult   = (price / base_price) if (base_price and price) else None
     liqchg = ((liq - base_liq) / base_liq * 100) if (base_liq and liq is not None) else None
     if liq is None:
@@ -961,7 +975,7 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
                             pair=pair, exit_pair=exit_pair,
                             price_verdict=_verdict, elapsed_h=_elapsed_pre,
                             reasons=reasons, sells_h24=sells_h24,
-                            buys_h24=buys_h24)
+                            buys_h24=buys_h24, authority_live=authority_live)
     why = None if ok else ("failed " + ", ".join(failed))
     if not ok and "source_agreement" in failed and _verdict is not None:
         why += f" ({_verdict.get('confidence')}: {_verdict.get('detail')})"
@@ -993,6 +1007,9 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
            # unrecoverable, which is what made 165 historical wins unverifiable.
            "exit_pair": exit_pair,
            "win_checks_failed": failed,
+           # True / False when the mint and freeze authorities were read at
+           # observation, None when they never were. Unknown stays unknown.
+           "authority_live_at_entry": authority_live,
            "sells_h24": sells_h24,
            "buys_h24": buys_h24,
            "price_native": price_native,

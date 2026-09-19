@@ -138,10 +138,17 @@ def _read():
 # --------------------------------------------------------------------------
 QUARANTINED = True
 QUARANTINE_REASON = ("RULE_V2 fills are priced on the same mid as v1; the "
-                     "filter A/B is unreadable on fictional exits. Use paperv3.")
+                     "filter A/B is unreadable on fictional exits, and 76 "
+                     "positions entered 09-14/15 were never closed (the sweep "
+                     "died 09-15 05:10Z). Use paperv3.")
 
 
 QUARANTINED_PATHS = {os.path.abspath(LEDGER)}
+
+
+def quarantined():
+    """True for the real v2 ledger; CRYPTO_PAPER_UNFREEZE does not lift it."""
+    return bool(QUARANTINED) and os.path.abspath(LEDGER) in QUARANTINED_PATHS
 
 
 def frozen():
@@ -391,7 +398,13 @@ def summary():
         a["rate"] = (f"{100.0 * len(wins) / n:.2f}%" if a["conclusive"] and n
                      else f"WITHHELD - {len(closed_tokens)} CLOSED tokens "
                           f"({len(tokens)} entered), need {MIN_N}")
+        if quarantined():
+            # ⛔ same leak as paper.summary(): B_high printed "10.34%" after the
+            # quarantine. Counts stay readable; the rate does not.
+            a.update(conclusive=False, rate="QUARANTINED - no usable rate: " + QUARANTINE_REASON)
         out["arms"][arm] = a
+    if quarantined():
+        out.update(quarantined=True, quarantine_reason=QUARANTINE_REASON)
     return out
 
 
