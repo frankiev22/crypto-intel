@@ -5662,14 +5662,14 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 80,
+  "count": 81,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "6h",
    "24h"
   ],
-  "last_seen": "2026-09-19T01:46:10+00:00",
+  "last_seen": "2026-09-19T06:46:26+00:00",
   "last_escalated": "2026-09-19T01:46:10+00:00",
   "escalations": 14
  },
@@ -8384,23 +8384,23 @@
  },
  "liveness:paper-open": {
   "first_seen": "2026-09-09T15:02:17+00:00",
-  "count": 25,
+  "count": 26,
   "example": "liveness: paper.open",
   "keys": [
    "paper.open"
   ],
-  "last_seen": "2026-09-19T01:48:34+00:00",
+  "last_seen": "2026-09-19T06:52:53+00:00",
   "last_escalated": "2026-09-19T01:48:34+00:00",
   "escalations": 5
  },
  "liveness:paper-sweep": {
   "first_seen": "2026-09-10T00:07:40+00:00",
-  "count": 73,
+  "count": 74,
   "example": "liveness: paper.sweep",
   "keys": [
    "paper.sweep"
   ],
-  "last_seen": "2026-09-19T01:48:35+00:00",
+  "last_seen": "2026-09-19T06:52:53+00:00",
   "last_escalated": "2026-09-19T01:48:35+00:00",
   "escalations": 8
  },
@@ -9405,12 +9405,12 @@
  },
  "liveness:paper-close": {
   "first_seen": "2026-09-14T19:45:47+00:00",
-  "count": 11,
+  "count": 12,
   "example": "liveness: paper.close",
   "keys": [
    "paper.close"
   ],
-  "last_seen": "2026-09-19T01:48:34+00:00",
+  "last_seen": "2026-09-19T06:52:53+00:00",
   "last_escalated": "2026-09-19T01:48:34+00:00",
   "escalations": 3
  },
@@ -9791,5 +9791,13 @@
    "7uMjiTCQiRaKMCrYKaNMQHR6h5Bo9qzd42ycTAWzRhE1"
   ],
   "last_seen": "2026-09-18T19:40:07+00:00"
+ },
+ "outcome-win:gfqatbcfvrticsmadpyqkpbxpagjgegdpzs": {
+  "first_seen": "2026-09-19T06:45:58+00:00",
+  "count": 1,
+  "example": "outcome-win: GF714QATBcf6v67RticSmadPYQKpBxpAgjgEg3D6PzS3",
+  "keys": [
+   "GF714QATBcf6v67RticSmadPYQKpBxpAgjgEg3D6PzS3"
+  ]
  }
 }

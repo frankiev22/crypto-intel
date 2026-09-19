@@ -2654,5 +2654,29 @@
   "first_horizon_h": 1,
   "last_ts": 1789782336,
   "hits": 1
+ },
+ "jZtZKZGduTDxALZEQbfCAJMovzRLmvVWkowBLKkcLWc": {
+  "confidence": "quarantined_liquidity_divergent",
+  "detail": "dexscreener liquidity $1,410,845 vs geckoterminal $44,815; the sources do not agree that there is a pool to exit into",
+  "first_ts": 1789800383,
+  "first_horizon_h": 1,
+  "last_ts": 1789800383,
+  "hits": 1
+ },
+ "4aS7R16w5cFKeJQWFnkC5XRLB6NHfv8FtqmFqGuAGEBD": {
+  "confidence": "quarantined_unresolved",
+  "detail": "neither source resolved the token",
+  "first_ts": 1789800590,
+  "first_horizon_h": 24,
+  "last_ts": 1789800590,
+  "hits": 1
+ },
+ "FMT7Jin3uvhRLNgYNy7XYU8FXF6cLumfwFJVUyMgMEp1": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0535 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1789800595,
+  "first_horizon_h": 24,
+  "last_ts": 1789800595,
+  "hits": 1
  }
 }
