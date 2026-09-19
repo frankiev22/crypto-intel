@@ -43,6 +43,8 @@ _PATHS = {
     "chainfields": ["USAGE_PATH"],
     "pricecheck": ["QUARANTINE", "QUARANTINE_LOG"],
     "market":     ["OUT_DIR", "HISTORY_DIR"],
+    "universe":   ["OUT_DIR", "EVENTS_DIR", "HISTORY_DIR"],
+    "graduations": ["DIR"],
 }
 
 

@@ -123,6 +123,14 @@ COMPONENTS = {
     # with 0 rows and reads `empty`, not healthy.
     "market.snapshot":      (12, "2026-09-18T23:00:00Z", "measured",
                              "data/market/*.json rebuilt, rows read back from disk"),
+    # ⭐ THE TRACKED UNIVERSE (docs/UNIVERSE.md). Counts MEMBERS read back from
+    # members.json - an unreadable file beats 0 and reads `empty`, never healthy.
+    "universe.members":     (12, "2026-09-19T01:00:00Z", "measured",
+                             "data/universe/members.json rewritten, members read back"),
+    # ⭐ C14. Rows appended to the ledger, every signature accounted for. ~47
+    # graduations an hour measured 2026-09-19, so a 12h pass with none is wrong.
+    "graduations.ledger":   (12, "2026-09-19T01:00:00Z", "measured",
+                             "migration-authority signatures paged and classified"),
     # ⛔ AND THESE TWO HAVE NO THRESHOLD, DELIBERATELY.
     #
     # An entry is a MARKET event, not a schedule event. RULE_V3 is strictly

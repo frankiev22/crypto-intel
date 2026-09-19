@@ -129,6 +129,9 @@ STOCK_TAGS = {"stocks", "xstocks", "rwa", "equities", "prestocks", "pre-ipo"}
 
 CALLS = {"n": 0}
 SOURCES = {}
+# This process's last snapshot, so universe.py reuses the lists and the round
+# trips instead of fetching and quoting them twice in one pass.
+LAST = {}
 
 
 # --------------------------------------------------------------------------
@@ -661,6 +664,8 @@ def build(verbose=True, now=None, rt=None, verify_s=None):
     except Exception as e:
         SOURCES["clusters.ours"] = {"status": "error", "n": 0, "error": type(e).__name__}
     metas = dexscreener_metas()
+    LAST.clear()
+    LAST.update(ts=now, universe=universe, lists=lists, verified=verified)
 
     head = {"built_at": built, "built_ts": int(now), "origin": origin}
     _write("movers.json", dict(head, universe_n=len(universe), sol_change_pct=sol,

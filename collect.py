@@ -151,7 +151,8 @@ JOURNAL_BATCH = 10
 #
 # test_stages.py fails if any liveness component is unreachable from STAGES, or
 # if the skill file's commands drift from staged_commands().
-STAGES = ("scan", "sweep", "watchlist", "market", "1", "6", "24", "168")
+STAGES = ("scan", "sweep", "watchlist", "market", "1", "6", "24", "168",
+          "graduations", "universe")
 STAGED_MAX_SECONDS = 110
 # What each stage can fire. Bookkeeping at the end of main() fires on every
 # invocation, whatever the stage.
@@ -165,6 +166,8 @@ STAGE_FIRES = {
     "sweep": {"paper.sweep", "paper.close", "paperv3.sweep", "paperv3.close"},
     "watchlist": {"watchlist.sweep", "milestone.graduated"},
     "market": {"market.snapshot"},
+    "graduations": {"graduations.ledger"},
+    "universe": {"universe.members"},
     "1": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
     "6": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
     "24": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
@@ -370,6 +373,48 @@ def market_stage(verbose=True):
         print(f"  market snapshot failed (non-fatal): {type(e).__name__}: {e}")
 
 
+# ⭐ THE TRACKED UNIVERSE AND THE GRADUATION LEDGER run LAST, on whatever the
+# pass has left. Both are resumable by construction - the ledger keeps a cursor,
+# the universe keeps a gate queue - so a short budget costs latency, never data.
+# Past LATE_SOFT_LIMIT_S neither runs at all: the runner's job timeout is 15
+# minutes, the longest pass on record took 13.6, and a pass killed by the
+# timeout commits nothing - including every row the scan already collected.
+LATE_SOFT_LIMIT_S = 11 * 60
+# Seconds the universe needs besides its gate: Jupiter's verified list, the
+# re-check batch, Dexscreener's theme pages, and CoinGecko every 6 hours.
+UNIVERSE_OVERHEAD_S = 90
+
+
+def graduations_stage(verbose=True):
+    import graduations
+    left = LATE_SOFT_LIMIT_S - (time.time() - _PASS_T0) - UNIVERSE_OVERHEAD_S
+    if sources.seconds_left() is not None:      # a staged run's --max-seconds
+        left = min(left, sources.seconds_left() - UNIVERSE_OVERHEAD_S)
+    if left <= 10:
+        STAGE_STOPS["graduations"] = f"skipped: the pass is {time.time() - _PASS_T0:.0f}s old"
+        print(f"  graduations: skipped, {STAGE_STOPS['graduations']}")
+        return
+    try:
+        graduations.build(verbose=verbose, seconds=min(graduations.SECONDS, left / 2))
+    except Exception as e:
+        print(f"  graduation ledger failed (non-fatal): {type(e).__name__}: {e}")
+
+
+def universe_stage(verbose=True):
+    import universe
+    left = LATE_SOFT_LIMIT_S - (time.time() - _PASS_T0) - UNIVERSE_OVERHEAD_S
+    if sources.seconds_left() is not None:      # a staged run's --max-seconds
+        left = min(left, sources.seconds_left() - UNIVERSE_OVERHEAD_S)
+    if left <= 0:
+        STAGE_STOPS["universe"] = f"skipped: the pass is {time.time() - _PASS_T0:.0f}s old"
+        print(f"  universe: skipped, {STAGE_STOPS['universe']}")
+        return
+    try:
+        universe.build(verbose=verbose, gate_s=min(universe.GATE_SECONDS, left))
+    except Exception as e:
+        print(f"  universe failed (non-fatal): {type(e).__name__}: {e}")
+
+
 def sweep_stage(verbose=True):
     """Close the paper log - both ledgers - then label the unambiguously dead."""
     fetch = _memo_fetch(sources.dexscreener_pair)
@@ -441,6 +486,9 @@ def one_pass(networks=("solana",), verbose=True):
         track.score_all(verbose=verbose)
     except Exception as e:
         print(f"  outcome scoring failed: {e}")
+    # EVERY GRADUATION, then EVERY REAL $1M COIN. Last, on leftover time.
+    graduations_stage(verbose=verbose)
+    universe_stage(verbose=verbose)
     return total_seen, total_passed
 
 
@@ -548,6 +596,14 @@ def main():
             elif stage == "market":
                 market_stage()
                 journal.pass_note(phase="market", calls=market.CALLS["n"])
+            elif stage == "graduations":
+                graduations_stage()
+                import graduations
+                journal.pass_note(phase="graduations", calls=graduations.CALLS["n"])
+            elif stage == "universe":
+                universe_stage()
+                import universe
+                journal.pass_note(phase="universe", calls=universe.CALLS["n"])
             elif stage.isdigit():
                 track.score_horizon(int(stage))
                 journal.pass_note(phase=f"{stage}h", calls=sources.calls_made())
