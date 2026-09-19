@@ -5429,13 +5429,13 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 187,
+  "count": 188,
   "example": "lookup-outage: 24h",
   "keys": [
    "168h",
    "24h"
   ],
-  "last_seen": "2026-09-19T18:19:51+00:00",
+  "last_seen": "2026-09-19T19:16:30+00:00",
   "last_escalated": "2026-09-19T15:18:59+00:00",
   "escalations": 17
  },
@@ -10284,6 +10284,14 @@
   "example": "scanner-hit: Fartbook",
   "keys": [
    "Fartbook"
+  ]
+ },
+ "scanner-hit:zeus": {
+  "first_seen": "2026-09-19T19:19:13+00:00",
+  "count": 1,
+  "example": "scanner-hit: ZEUS",
+  "keys": [
+   "ZEUS"
   ]
  }
 }
