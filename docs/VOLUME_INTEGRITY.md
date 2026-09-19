@@ -191,6 +191,32 @@ otherwise   UNKNOWN          (and None -> UNKNOWN, never clean)
 negative arm's upper bound, reported both ways. Anything less is a null result
 and gets written here.
 
+## 3e. ⛔ RESULT, 2026-09-19: M1′ against the wallet farm — NULL RESULT
+
+`volintegrity.validate_farm(30)`, seed 20260920, exactly as §3d fixed it before it
+ran. 30 farm members against 30 TRADEABLE `token` members outside the
+farm signature, 60 transactions each, all read at version 1. 0 token(s)
+gave no reading (UNKNOWN, never clean). Evidence: `data/findings/volintegrity_farm_2026-09-19.json`.
+
+| arm | SUSPECT, all | SUSPECT, verdicts only | verdicts | median M1′ |
+|---|---|---|---|---|
+| FARM | **0/30 = 0.0% [0.0, 11.3]** | 0/29 = 0.0% [0.0, 11.7] | 29 clean, 1 unknown | 0.0 (n=30) |
+| NOT FARM | 4/30 = 13.3% [5.3, 29.7] | 4/26 = 15.4% [6.2, 33.5] | 4 suspect, 22 clean, 4 unknown | 0.0707 (n=30) |
+
+**Separates, all tokens: False. Separates, verdicts only: False.**
+
+⛔ **M1′ does not detect this farm.** The farm's trades are, if anything, MORE varied in size than the control's (median M1′ 0.0 vs 0.0707).
+An inference, not a measurement: that is consistent with how the farm looks in
+§3a of `docs/UNIVERSE.md` (~2,000 holders, top ten at 5-10%). What it fakes is
+**breadth and a market cap**, not **repeated trade sizes**, so a size-clustering
+test is looking in the wrong place. The §3c observation
+(M1′ median 0.128 vs 0.496 by round-trip arm) does not carry over to this label.
+
+**What stands:** the farm is identified by the fields that found it — shared
+ticker, graduation-sourced, `cap_backing_pct` far below the claimed cap
+(`docs/UNIVERSE.md` §3a) — and **no volume measure in this file adds to that.**
+B5 stays not a detector and not wired. Nothing here is quoted as a signal.
+
 ## 4. ⚠️ Two limits I hit, stated so nobody repeats them
 
 1. **Keying on the stored `pair` gives stale pools.** An earlier run showed
