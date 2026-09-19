@@ -62,12 +62,13 @@ further" — scope those separately and hold them to the measurement bar below.
 | median holders, Jupiter-TRADEABLE | **1,350** | same |
 | median holders, Jupiter-TOTAL_LOSS | **3** | same |
 | ⭐ **launch coverage, measured from chain** | **1.26%** [0.49, 3.20], 4/317 creates | `COVERAGE.md`, `coverage_probe.py` |
-| ⭐ **graduation coverage, measured from chain** | **1.95%** [0.83, 4.47], 5/257 | same |
+| ⭐ **graduation coverage, measured from chain** | **1.67%** [1.06, 2.63], 18/1,077 — the whole ledger, every pass (was 1.95%, 5/257 sampled) | `data/graduations/index.json` |
 | top-25 24h gainers ever in our journal | **0/25** (first snapshot, 2026-09-18) | `data/market/index.json` |
 | ⭐ Solana tokens ≥ $1M on the listings | **1,035** (Jupiter-verified 668 ∪ CoinGecko 784 ∪ ours 15); **863** under the pre-committed rule (Jupiter's mcap wins) | `docs/UNIVERSE.md` §1 |
 | ⛔ ...of which a $100 round trip is TRADEABLE | **65.0%** [54.1, 74.5], 52/80 seeded random | same |
 | ⛔ ≥ $1M tokens running that NEITHER listing has | **11 of 42** (26%) in one market snapshot | same |
-| pump.fun graduations per hour, from the ledger | **47** (1h sample, 2026-09-19) — ⚠️ vs a 0.198% base rate, unreconciled | `data/graduations/` |
+| pump.fun graduations per hour, from the ledger | **~45** (944 in 21.0h, 2026-09-19) — ⚠️ vs a 0.198% base rate, unreconciled | `data/graduations/` |
+| ⛔ volume-manipulation rule (M1/M2), validated | **FAILS**: flags 96.7% of sellable vs 90.0% of unsellable tokens; M2 tracks activity | `docs/VOLUME_INTEGRITY.md` §3c |
 | paper ledger, re-derived 2026-09-17 | 86 closes, **−$2,495** by mult / **−$4,168** realizable | `docs/LIQUIDITY.md` §8 |
 
 ⛔ **Never quote the 2.10% graduation rate.** It is 397/18,920 computed on
@@ -174,8 +175,8 @@ fees. Any path that depends on a track record has nothing to sell yet.
 |---|---|---|
 | `collect.py` | hourly staged collector: scan, sweep, watchlist, 1/6/24/168h | ✅ **running again on the hosted runner, 2026-09-18** |
 | ⭐ `market.py` | **what is running NOW** - movers, volume, trending, clusters, the tape → `data/market/` | ✅ **UNATTENDED, verified 2026-09-18 23:49Z** (scheduled run 35407026193: 412 rows, 18/18 sources ok from GitHub's IPs, 44.6s). ⛔ **The pipeline only ever collected tokens at birth; 0 of the top 25 24h gainers were in our journal.** Schema for the site: `docs/MARKET_DATA.md` |
-| ⭐⭐ `universe.py` | **THE TRACKED UNIVERSE**: every Solana token ≥ $1M, admitted only on a TRADEABLE $100 round trip, **never removed**; trending × universe → narratives → `data/universe/` | 🟡 **seeded by hand 2026-09-19; last stage of every pass from the next scheduled run.** Rule pre-committed in `docs/UNIVERSE.md` §3. ⛔ **Not on the site yet (BACKLOG C16)** |
-| ⭐ `graduations.py` | **every pump.fun graduation** (C14): pages the migration authority from a cursor, every signature accounted for → `data/graduations/` | 🟡 **seeded by hand 2026-09-19**; runs before the universe, which re-checks 72h of graduations for $1M |
+| ⭐⭐ `universe.py` | **THE TRACKED UNIVERSE**: every Solana token ≥ $1M, admitted only on a TRADEABLE $100 round trip, **never removed**; trending × universe → narratives → `data/universe/` | ✅ **UNATTENDED, verified 2026-09-19 01:48Z** (scheduled run 35413442372: 701 members, 20.3s). Seeded by hand first: 922 quoted, 699 admitted. Rule pre-committed in `docs/UNIVERSE.md` §3. ⛔ **The $100 gate admits a wallet farm ($3.53B claimed on a fraction of a percent of backing): never show a cap without `cap_backing_pct` (§3a).** ⛔ **Not on the site yet (BACKLOG C16)** |
+| ⭐ `graduations.py` | **every pump.fun graduation** (C14): pages the migration authority from a cursor, every signature accounted for → `data/graduations/` | ✅ **UNATTENDED, verified 2026-09-19 01:48Z** on the keyless public RPC (17/17 accounted, lag 11s). Runs before the universe, which re-checks 72h of graduations for $1M |
 | ⭐ `paperv3.py` | the ledger that prices fills on real quotes | ✅ **SCHEDULED 2026-09-18** — enters in the scan loop beside v1/v2, sweeps in the sweep stage. ⛔ **Nothing called it before that**, despite 71 passing tests |
 | GitHub Actions `collect.yml` | same, hosted | ✅ **ALIVE — the repo went public 2026-09-18, so Actions minutes are free and unlimited.** A scheduled run fired on its own at 11:54Z and collected a full pass |
 | Claude desktop task | same, on the host | ⛔ dead since the 9/15 reboot — sandbox lost its drive mount |
