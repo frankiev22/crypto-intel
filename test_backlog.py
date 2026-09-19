@@ -99,8 +99,9 @@ print("=" * 70)
 print("3. ⛔ no status outside the four, and no weasel word")
 print("=" * 70)
 
+# [a-z]? because C4a exists: \d+ alone skipped it, so one row was never checked.
 rows = [l for l in text.splitlines()
-        if l.startswith("| ") and re.match(r"\|\s*[A-E]\d+\s*\|", l)]
+        if l.startswith("| ") and re.match(r"\|\s*[A-E]\d+[a-z]?\s*\|", l)]
 check(f"the table parses into {len(rows)} commitment rows", len(rows) >= 30,
       str(len(rows)))
 
@@ -126,6 +127,27 @@ check("⛔ every status is one of the four (or DROPPED)", not bad_status,
       "; ".join(bad_status) if bad_status else f"{len(rows)} rows")
 check("⛔ and none says designed / specced / ready", not weasel_rows,
       "; ".join(weasel_rows) if weasel_rows else "clean")
+
+def status_of(cell):
+    """The FIRST status word in the cell: "IN PROGRESS - SHIPPED-row audit" is
+    in progress, "SHIPPED - the measurement; D1 stays IN PROGRESS" is shipped."""
+    hits = [(cell.find(a), a) for a in ALLOWED if a in cell]
+    return min(hits)[1] if hits else None
+
+
+counted = {a: 0 for a in ALLOWED}
+for l in rows:
+    cells = [c.strip() for c in l.strip().strip("|").split("|")]
+    if len(cells) >= 4 and status_of(cells[2]):
+        counted[status_of(cells[2])] += 1
+board = {}
+if "## Scoreboard" in text:
+    for a, n in re.findall(r"^\|\s*\S+\s+(SHIPPED|IN PROGRESS|BLOCKED|NOT STARTED|DROPPED)\s*\|\s*\*\*(\d+)\*\*",
+                           text.split("## Scoreboard", 1)[1], re.M):
+        board[a] = int(n)
+check("⛔ the scoreboard equals the rows, counted (it said 18 SHIPPED against 48 once, "
+      "and went stale again when B5 moved)", board == counted,
+      f"board {board} vs rows {counted}")
 
 print()
 print("=" * 70)

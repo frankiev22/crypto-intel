@@ -172,14 +172,17 @@ lookup and does not call it.
 
 ## Scoreboard
 
-Recounted from the table 2026-09-19, after the SHIPPED-row audit.
+Recounted from the table 2026-09-19 ~02:20Z. ⭐ **`test_backlog.py` now fails if
+this table and the rows disagree**, so it cannot drift silently again. It had,
+within the hour: B5 and C16 moved to IN PROGRESS after the audit's recount, and
+row C4a had never been parsed at all (the row pattern was `[A-E]\d+`).
 
 | status | count |
 |---|---:|
 | ✅ SHIPPED | **35** |
-| 🟡 IN PROGRESS | **27** |
+| 🟡 IN PROGRESS | **29** |
 | 🟡 BLOCKED | **4** |
-| 🔴 NOT STARTED | **10** |
+| 🔴 NOT STARTED | **8** |
 | ⛔ DROPPED | **1** |
 | **total** | **77** |
 
