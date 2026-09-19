@@ -85,3 +85,45 @@ collector. The keyless public RPC is the alternative, rate-limited and slower.
   for entry and outcome prices. ⚠️ **The overlap between degentape's fires and
   our scanner's 493-row sample is unknown and may leave arm D under n = 30**, in
   which case the verdict is "inconclusive", as pre-committed.
+
+## Implementation, declared 2026-09-19 ~19:15Z BEFORE any outcome was read
+
+Arm B's pricing run had started; its output file had not been opened. Arm D's
+fires had not been computed. Nothing below was chosen with a result in view.
+
+- **Sample, reconstructed:** the 493 rows are the 09-12 → 09-18 observations on
+  AMM venues (`dex_id` meteora 270, pumpswap 183, raydium 21, fluxbeam 11, orca
+  8), excluding pump.fun's curve (1,522) and Meteora DBC (214). **409 distinct
+  tokens, one pool each**, first sighting = earliest row. No observation files
+  exist for 09-13 and 09-16 (collector outages): the sample is what was seen.
+  Pools by program: Meteora DAMM v2 185, PumpSwap 180, Raydium CPMM 11,
+  FluxBeam 11, Orca Whirlpool 8, Raydium CLMM 8, Meteora DLMM 6.
+- **Price** = |Δ quote vault| / |Δ base vault| inside a swap on OUR pool (the
+  pool's own vaults, found as token accounts named in the pool's account data;
+  a swap = the two deltas have opposite signs). One method for constant-product
+  and concentrated pools alike. Multiples are in quote units (SOL or USDC).
+- **Depth** at a moment = the quote vault's balance after the latest transaction
+  touching it at or before that moment; a liquidity removal counts, so a drained
+  pool shows as no depth. USD via SOL/USD = the hourly median of
+  `price_usd / price_native` over our own observation rows.
+- **Entry:** the first swap on our pool strictly after T (T = first sighting for
+  arm B, the fire for arm D), searched up to 6h. **If the pool never swaps in
+  that window, entry = its state at T and the token is flagged `dead_after_T`**:
+  its multiple is 1.0 by construction, a non-win, and it is reported both ways
+  with the pre-committed "pool died" split.
+- **Outcome at +6h / +24h:** price from the last swap at or before the moment,
+  depth as above. Win = multiple >= 2.0 with depth >= $500 at the same moment,
+  at either horizon, AND authority revoked at entry.
+- **Authority at entry:** revoked if checked revoked at observation (revocation
+  cannot be undone); live if live at observation or live on chain now; otherwise
+  **unknown**. An unknown can only matter to a token that is otherwise a win, so
+  for those the mint's history is read to date the revocation; unknown non-wins
+  stay in the denominator in both variants and the count is stated.
+- **Arm D fire:** degentape tape rows with `side = buy` and a `usd` value, wallet
+  = the `solana` field; a fire is a buy landing such that the buys of the
+  preceding 10 minutes (inclusive) come from >= 3 distinct wallets and sum to
+  >= $1,500. **The first fire with ts in [first sighting, first sighting + 2h]**
+  counts; fires before our sighting do not. Tape rows deduplicated on `id`.
+- **Unpriced tokens** (no SOL/USDC/USDT vault pair, or no swap at all) are
+  counted and listed, never dropped silently (standing rule 15).
+- Intervals: Wilson 95%. n = distinct tokens.
