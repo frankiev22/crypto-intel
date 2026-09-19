@@ -149,3 +149,26 @@ one, never put a `service_role` key anywhere a browser can reach it.
 
 **18. Report the cost before building.** Passes, API calls, latency, and monthly
 price where money is involved — so the decision is made with a number.
+
+**19. Every third-party crypto tool is UNTRUSTED BY DEFAULT.** *Frank,
+2026-09-19, permanent:* "Treat everything as unsafe and something we would want
+to rebuild as a feature of our site. Or something we can use externally for
+aggregation."
+
+Only two relationships are permitted, and every tool in
+`docs/EXISTING_TOOLS.md` carries one of the two labels:
+
+- **REBUILD** — study what it does and build that capability as a feature of
+  our site. Its site is not touched beyond reading what it publishes.
+- **AGGREGATE** — read its public output over plain HTTP, never depend on it,
+  never authenticate to it. It is one source among several and the page must
+  still work when it is gone.
+
+⛔ **Never connect a wallet to any of them. No exceptions** — not to read a free
+feed, not to "verify". ⛔ **Never take a dependency that requires auth**
+(an account, an API key, a login, a signature). ⚠️ **Their claims are marketing
+until verified against our own data or the chain**: a published win rate, a
+"smart wallet" list or a scam label is a hypothesis we test, never a fact we
+repeat. Bought with trenchscope.live, whose free feed wanted a wallet connection
+and whose fine print called its own numbers "illustrative". Read their pages over
+HTTP, never in a logged-in browser; one of them (fomolens.app) hung a real one.

@@ -163,6 +163,17 @@ fees. Any path that depends on a track record has nothing to sell yet.
     its provenance. **Read `docs/ENGINEERING_DISCIPLINE.md` before adding any
     component**, and `test_discipline.py` enforces what can be enforced.
 
+17. ⛔⛔ **Every third-party crypto tool is UNTRUSTED BY DEFAULT** (Frank,
+    2026-09-19, permanent: *"Treat everything as unsafe and something we would
+    want to rebuild as a feature of our site. Or something we can use externally
+    for aggregation"*). Two relationships only: ⭐ **REBUILD** (build the
+    capability into our site) or ⭐ **AGGREGATE** (read its public output over
+    HTTP, never depend on it, never authenticate). ⛔ **Never connect a wallet to
+    any of them, no exceptions. Never take a dependency that needs auth.**
+    ⚠️ **Their claims are marketing until verified against our own data or the
+    chain.** Every tool's label lives in `docs/EXISTING_TOOLS.md`; `RULES.md`
+    rule 19 has the reasoning.
+
 12. ⚠️ **Any script hitting a Cloudflare-fronted API must set a `User-Agent`.**
     Python's default `Python-urllib/3.x` is blocked with a bare `403 error code:
     1010`, which looks exactly like an auth failure and is not. `sources.py:12`
