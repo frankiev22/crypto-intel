@@ -155,6 +155,27 @@ with open(os.path.join(graduations.DIR, time.strftime("%Y-%m", time.gmtime(NOW))
 QUOTED = []
 VERDICT = {REFUSE: "NO_BUY_ROUTE"}
 
+# ⛔ The safety refresh must never reach the network from a test: the real
+# refresh runs against a faked _http, so the verdict code itself is exercised.
+import safety as SAFE
+
+
+def _safe_http(url, body=None, timeout=20):
+    if body is not None:
+        vals = []
+        for m in body["params"][0]:
+            fz = "FreezeAuth" if m == TREND else None
+            vals.append({"data": {"program": "spl-token", "parsed": {"info": {
+                "mintAuthority": None, "freezeAuthority": fz, "extensions": []}}}})
+        return 200, {"result": {"value": vals}}
+    if "dexscreener" in url:
+        return 200, []
+    return 404, None
+
+
+SAFE._http = _safe_http
+SAFE.RUGCHECK_GAP_S = 0
+
 
 def fake_rt(m):
     QUOTED.append(m)
@@ -259,6 +280,22 @@ hist = [json.loads(l) for n in os.listdir(U.HISTORY_DIR)
         for l in open(os.path.join(U.HISTORY_DIR, n), encoding="utf-8")]
 check("history holds one line for this pass, one row per member",
       len(hist) == 1 and len(hist[0]["rows"]) == sum(1 for e in T.values() if e["status"] == "member"))
+
+section("2b. ⭐ the safety verdict on every tracked token (PRECOMMIT_safety_v1.md)")
+T2 = read("members.json")["tokens"]
+trk = [m for m, e in T2.items() if e.get("status") in ("member", "refused", "candidate")]
+check("every member, refused and candidate token carries a verdict",
+      trk and all((T2[m].get("safety") or {}).get("level") for m in trk),
+      [m[:8] for m in trk if not (T2[m].get("safety") or {}).get("level")])
+check("⛔ a trending member with freeze authority is DANGER - shown, not dropped",
+      T2[TREND]["status"] == "member" and T2[TREND]["safety"]["level"] == "DANGER", T2[TREND].get("safety", {}).get("level"))
+check("⛔ the refused token is still tracked AND flagged (never hidden)",
+      T2[REFUSE]["status"] == "refused" and T2[REFUSE]["safety"]["level"] in ("UNKNOWN", "DANGER"),
+      T2[REFUSE].get("safety", {}).get("level"))
+check("index counts every level", sum(read("index.json")["counts"]["safety"].values()) == len(trk),
+      read("index.json")["counts"]["safety"])
+check("the pass records what the safety refresh did", "tracked" in (read("index.json").get("safety") or {}),
+      read("index.json").get("safety"))
 
 section("3. narratives: trending x the universe")
 N = read("narratives.json")

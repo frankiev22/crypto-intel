@@ -45,6 +45,7 @@ _PATHS = {
     "market":     ["OUT_DIR", "HISTORY_DIR"],
     "universe":   ["OUT_DIR", "EVENTS_DIR", "HISTORY_DIR"],
     "graduations": ["DIR"],
+    "live":       ["STATE_DIR"],
 }
 
 

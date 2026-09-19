@@ -34,3 +34,6 @@ data/tickers/index.json
 # fails outright - which blocked a merge with the runner on 2026-09-07.
 *.tmp
 data/_launcher/
+
+# the live path's local status and log (live.py); per machine, never shared
+.live/

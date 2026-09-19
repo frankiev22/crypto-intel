@@ -42,3 +42,42 @@ S6, S8 on every live refresh. S9, S11 every 24h per token, trickled.
 
 It does not rank anything and it does not predict. NO FLAGS is not a buy
 signal; DANGER is not a short signal. It describes mechanisms that exist now.
+
+## Amendment v1.1 — 2026-09-19 ~02:50Z, AFTER the first computation. Declared, not silent.
+
+The first dry run over all 924 tracked tokens (nothing published) found two
+defects in what I committed at `feb591a`. Both are corrected below. **The
+thresholds did not move.**
+
+1. **Class names that do not exist.** S2 exempted `stable`/`major`; the
+   universe's classes are `token`, `stock` and `base` (stables, LSTs, wrapped
+   majors). The exemption's own reason, "issuer-controlled by design", now
+   applies to `base` and `stock`, and covers the issuer-control extensions in
+   S4 (permanent delegate, pausable, default-frozen), because 162 of the 196
+   permanent delegates are tokenized equities (150 xStocks share one issuer
+   delegate). They are shown as **info**, with the words "issuer-controlled by
+   design". A `token`-class contract with a live permanent delegate (29) or
+   freeze authority (82) is still **DANGER**, including RWAs and stables that
+   Jupiter does not tag, which are true flags about a real mechanism.
+2. **S9's insider clause cannot be evaluated.** RugCheck's insider-network
+   `tokenAmount` is not a share of supply: BONK's "transfer" network of 35,335
+   wallets reads 98%, and one token's reads 175%. The clause is removed and
+   stated on every verdict as **not checked**. With it goes the only bundle
+   source we had: **bundle detection has no valid source today.**
+
+| level | v1 as committed | v1.1 |
+|---|---:|---:|
+| DANGER | 265 | 143 |
+| WARN | 344 | 416 |
+| UNKNOWN | 49 | 95 |
+| NO FLAGS | 266 | 270 |
+
+UNKNOWN rose because xStocks that Jupiter cannot buy (`NO_BUY_ROUTE`) were
+DANGER only through their delegate; with that shown as info, their
+sellability is honestly unknown.
+
+**First published run (v1.1, 2026-09-19 ~02:48Z, origin manual), 926 tracked
+tokens:** DANGER **143**, WARN **431**, UNKNOWN **95**, NO FLAGS **257**. The
+dry-run table above predates the insider clause's removal and read RugCheck
+for 6 tokens; this run read it for 161 (765 deferred and counted, trickled by
+later passes), which is why WARN is higher here.

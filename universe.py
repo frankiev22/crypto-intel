@@ -75,6 +75,9 @@ MEMBERS_CAP = 40      # members listed per cluster/theme in narratives.json
 # beside a "just now" build time. Trending moves faster than any pass, so the
 # age is published in seconds on every build - read it, not the flag alone.
 TRENDING_FRESH_H = 3
+# Seconds for the safety refresh inside one pass: chain + Dexscreener take ~8s
+# for the whole universe (measured 2026-09-19), the rest trickles RugCheck.
+SAFETY_SECONDS = float(os.environ.get("CRYPTO_UNIVERSE_SAFETY_S", "45"))
 
 CALLS = {"n": 0}
 SOURCES = {}
@@ -503,6 +506,10 @@ def _brief(m, e):
             "from_graduation_ledger": "graduation" in (e.get("sources") or []),
             "change_pct": last.get("change_pct"),
             "volume_usd_24h": (last.get("volume_usd") or {}).get("24h"),
+            # ⛔ the safety verdict travels with every row that can reach a page
+            "safety": (e.get("safety") or {}).get("level") or "not computed",
+            "safety_reasons": ((e.get("safety") or {}).get("reasons") or [])[:4],
+            "safety_ts": (e.get("safety") or {}).get("computed_ts"),
             "trending": e.get("trending") or []}
 
 
@@ -585,7 +592,8 @@ def themes(tokens):
 # --------------------------------------------------------------------------
 # The pass
 # --------------------------------------------------------------------------
-def build(verbose=True, now=None, rt=None, gate_s=None, discover=True, fdv=None):
+def build(verbose=True, now=None, rt=None, gate_s=None, discover=True, fdv=None,
+          safety_s=None, safety_refresh=None):
     now = time.time() if now is None else now
     t0 = time.time()
     CALLS["n"] = 0
@@ -712,6 +720,20 @@ def build(verbose=True, now=None, rt=None, gate_s=None, discover=True, fdv=None)
     gate_events, gstats = gate(tokens, now, marks, gate_s, rt=rt, reuse=reuse, origin=origin,
                                fdv=fdv)
 
+    # ---- 4b. the safety verdict on every tracked token (PRECOMMIT_safety_v1.md)
+    # After the gate, because S1 IS the gate's round trip. A refresh that fails
+    # leaves each token's last verdict in place with its computed_ts, so the
+    # page shows how old it is - never a blank that reads as clean.
+    safety_s = SAFETY_SECONDS if safety_s is None else safety_s
+    sstats = {"skipped": "no budget"} if safety_s <= 0 else None
+    if safety_s > 0:
+        try:
+            import safety as _safety
+            fn = safety_refresh or _safety.refresh
+            sstats = fn(tokens, now, budget_s=safety_s, rugcheck_budget_s=safety_s * 0.5)
+        except Exception as ex:
+            sstats = {"error": f"{type(ex).__name__}: {ex}"[:200]}
+
     # ---- 5. write, then read back ----------------------------------------
     counts = {s: sum(1 for e in tokens.values() if e.get("status") == s)
               for s in ("member", "candidate", "refused")}
@@ -721,6 +743,11 @@ def build(verbose=True, now=None, rt=None, gate_s=None, discover=True, fdv=None)
                                         and e.get("below_floor_since"))
     counts["members_trending_now"] = sum(1 for e in tokens.values() if e.get("status") == "member"
                                          and e.get("trending"))
+    counts["safety"] = {}
+    for e in tokens.values():
+        if e.get("status") in ("member", "refused", "candidate"):
+            lv = (e.get("safety") or {}).get("level") or "not computed"
+            counts["safety"][lv] = counts["safety"].get(lv, 0) + 1
     head = {"built_at": _iso(now), "built_ts": int(now), "origin": origin,
             "mcap_floor_usd": MCAP_FLOOR, "gate_rule": "$100 round trip TRADEABLE (<10% lost)",
             "rule_source": "docs/UNIVERSE.md section 3 (pre-committed)"}
@@ -798,6 +825,7 @@ def build(verbose=True, now=None, rt=None, gate_s=None, discover=True, fdv=None)
                     narratives_on_disk={k: len(nback.get(k) or []) for k in
                                         ("trending_now", "name_clusters", "themes")},
                     discovered_this_pass=sum(1 for x in new_events if x["event"] == "discovered"),
+                    safety=sstats,
                     gate=gstats, sources=dict(SOURCES), trending_stale=stale_tr)
     _write("index.json", manifest)
     liveness.beat("universe.members", on_disk,
@@ -816,6 +844,7 @@ def line(m):
             f"{c['members_below_floor']} under $1M, {c['members_trending_now']} trending), "
             f"{c['candidate']} candidates, {c['refused']} refused | gate quoted {g['quoted']} "
             f"(+{g['reused_from_market']} reused) in {g['seconds']}s, {g['deferred']} deferred | "
+            f"safety {c.get('safety')} | "
             f"{m['http_calls']} calls, {m['elapsed_s']}s")
 
 

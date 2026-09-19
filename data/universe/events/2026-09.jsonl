@@ -1852,3 +1852,15 @@
 {"ts":1789782490,"token":"FGsiK5qAvTpzB5L4qcSJhKRGzPKq81pf2oFQtEFJpump","event":"below_floor","mcap_usd":2012,"origin":"scheduled"}
 {"ts":1789782495,"token":"r6ufyvVk2YtQpGwGSB4SM4KCsycZxpvbnT6Rxpnpump","event":"admitted","verdict":"TRADEABLE","rt_cost_pct":0.6263,"status_before":"candidate","origin":"scheduled","status_after":"member"}
 {"ts":1789782496,"token":"C4j7kPx9PqDnfvxe2uycJQRTAeyGwmU4DyGf21Xgpump","event":"admitted","verdict":"TRADEABLE","rt_cost_pct":0.7324,"status_before":"candidate","origin":"scheduled","status_after":"member"}
+{"ts":1789785737,"token":"AyYNfPtftg2zDP4ZbgcoQMggQtwLh4zpfVVmUJs2thto","event":"discovered","mcap_usd":1716334,"sources":["jupiter.toporganicscore.1h","jupiter.toptraded.1h","jupiter.toptraded.24h","jupiter.toptrending.1h","jupiter.toptrending.6h","trending"],"origin":"manual"}
+{"ts":1789785737,"token":"C4j7kPx9PqDnfvxe2uycJQRTAeyGwmU4DyGf21Xgpump","event":"below_floor","mcap_usd":992297,"origin":"manual"}
+{"ts":1789785737,"token":"7MCgYMzq3fov6oERdtTMAYbN2U9LZrrSYS1MBhjixZFr","event":"below_floor","mcap_usd":997127,"origin":"manual"}
+{"ts":1789785737,"token":"biddm3N7RjyjfcnzmjgrQJ24QKooBGUy1RYP1aEgtzW","event":"discovered","mcap_usd":1121149,"sources":["graduation","jupiter.toporganicscore.1h","jupiter.toptraded.1h","jupiter.toptraded.24h","jupiter.toptrending.1h","jupiter.toptrending.24h","jupiter.toptrending.6h"],"origin":"manual"}
+{"ts":1789785737,"token":"DL6UR7ZqbDLughWtEyxtpht9anYye3wRUowrTpAPpump","event":"below_floor","mcap_usd":2041,"origin":"manual"}
+{"ts":1789785737,"token":"BiZVZFHeUaPXDDcyDWUUfxYikeejia1VpXnEMoLmdRuv","event":"below_floor","mcap_usd":2042,"origin":"manual"}
+{"ts":1789785737,"token":"7kanU4kYrzKehdanUtoCvQwKDR7Fb2VfVm8rchNRpump","event":"below_floor","mcap_usd":2042,"origin":"manual"}
+{"ts":1789785737,"token":"js686HhFkpdNTU1SvN5PgtTCwk3ZTDDiYPXYmttpump","event":"below_floor","mcap_usd":2021,"origin":"manual"}
+{"ts":1789785737,"token":"z4JU6v6VGPuty2HvXcs7T8fNBxj4CTYytu733qApump","event":"below_floor","mcap_usd":2007,"origin":"manual"}
+{"ts":1789785737,"token":"FvhorDts9M8uJekzs3pBcYUPUjWtCTrGLhdv3ADHyeRY","event":"below_floor","mcap_usd":999668,"origin":"manual"}
+{"ts":1789785753,"token":"AyYNfPtftg2zDP4ZbgcoQMggQtwLh4zpfVVmUJs2thto","event":"admitted","verdict":"TRADEABLE","rt_cost_pct":1.478,"status_before":"candidate","origin":"manual","status_after":"member"}
+{"ts":1789785754,"token":"biddm3N7RjyjfcnzmjgrQJ24QKooBGUy1RYP1aEgtzW","event":"admitted","verdict":"TRADEABLE","rt_cost_pct":2.3498,"status_before":"candidate","origin":"manual","status_after":"member"}

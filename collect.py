@@ -413,7 +413,11 @@ def universe_stage(verbose=True):
         print(f"  universe: skipped, {STAGE_STOPS['universe']}")
         return
     try:
-        universe.build(verbose=verbose, gate_s=min(universe.GATE_SECONDS, left))
+        # The safety verdict's budget comes out of the same clock, first: a
+        # verdict on every tracked token matters more than a few more quotes.
+        safety_s = min(universe.SAFETY_SECONDS, left * 0.4)
+        universe.build(verbose=verbose, safety_s=safety_s,
+                       gate_s=max(0.0, min(universe.GATE_SECONDS, left - safety_s)))
     except Exception as e:
         print(f"  universe failed (non-fatal): {type(e).__name__}: {e}")
 

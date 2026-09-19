@@ -42652,3 +42652,4 @@
 {"name": "news.freshness", "ts": 1789782512, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
 {"name": "detector.drift", "ts": 1789782512, "n": 1, "detail": "stable", "origin": "scheduled"}
 {"name": "dashboard.build", "ts": 1789782514, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "universe.members", "ts": 1789786072, "n": 703, "detail": "703 members, 0 candidates, 2 quoted, 0 deferred", "origin": "manual"}

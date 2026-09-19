@@ -274,18 +274,17 @@
   "last_unattended_at": "2026-09-19T01:48:10+00:00"
  },
  "universe.members": {
-  "last_ts": 1789782510,
-  "last_at": "2026-09-19T01:48:30+00:00",
-  "count": 2080,
+  "last_ts": 1789786072,
+  "last_at": "2026-09-19T02:47:52+00:00",
+  "count": 2783,
   "first_ts": 1789781369,
-  "detail": "701 members, 0 candidates, 2 quoted, 0 deferred",
-  "last_origin": "scheduled",
-  "firings": 3,
-  "rows_total": 2080,
+  "detail": "703 members, 0 candidates, 2 quoted, 0 deferred",
+  "last_origin": "manual",
+  "firings": 4,
+  "rows_total": 2783,
   "empty_firings": 0,
-  "last_rows_ts": 1789782510,
-  "last_rows_at": "2026-09-19T01:48:30+00:00",
-  "last_unattended_rows_ts": 1789782510,
+  "last_rows_ts": 1789786072,
+  "last_rows_at": "2026-09-19T02:47:52+00:00",
   "last_unattended_ts": 1789782510,
   "last_unattended_at": "2026-09-19T01:48:30+00:00"
  }
