@@ -188,7 +188,7 @@ fees. Any path that depends on a track record has nothing to sell yet.
 | `collect.py` | hourly staged collector: scan, sweep, watchlist, 1/6/24/168h | ✅ **running again on the hosted runner, 2026-09-18** |
 | ⭐ `market.py` | **what is running NOW** - movers, volume, trending, clusters, the tape → `data/market/` | ✅ **UNATTENDED, verified 2026-09-18 23:49Z** (scheduled run 35407026193: 412 rows, 18/18 sources ok from GitHub's IPs, 44.6s). ⛔ **The pipeline only ever collected tokens at birth; 0 of the top 25 24h gainers were in our journal.** Schema for the site: `docs/MARKET_DATA.md` |
 | ⭐⭐ `universe.py` | **THE TRACKED UNIVERSE**: every Solana token ≥ $1M, admitted only on a TRADEABLE $100 round trip, **never removed**; trending × universe → narratives → `data/universe/` | ✅ **UNATTENDED, verified 2026-09-19 01:48Z** (scheduled run 35413442372: 701 members, 20.3s). Seeded by hand first: 922 quoted, 699 admitted. Rule pre-committed in `docs/UNIVERSE.md` §3. ⛔ **The $100 gate admits a wallet farm ($3.53B claimed on a fraction of a percent of backing): never show a cap without `cap_backing_pct` (§3a).** ⭐ **Read by the site on production from 2026-09-19** (`site/api/market.mjs`, verified ~02:05Z), ⚠️ **but that source is uncommitted until the site session commits it (BACKLOG C16)** |
-| ⭐⭐ `safety.py` | **the safety verdict on every tracked token** (DANGER / WARN / NO FLAGS / UNKNOWN), rule `PRECOMMIT_safety_v1.md` v1.1: the $100 round trip, mint account from chain (authorities, Token-2022 extensions), D1 on the live pair, holders, cap backing, RugCheck (attributed, optional). ⛔ **Fake volume and bundles are NOT CHECKED on every verdict, in words** | 🟡 **in every universe pass from 2026-09-19** (first run: 143 DANGER of 926); on no page yet (BACKLOG A40) |
+| ⭐⭐ `safety.py` | **the safety verdict on every tracked token** (DANGER / WARN / NO FLAGS / UNKNOWN), rule `PRECOMMIT_safety_v1.md` v1.1: the $100 round trip, mint account from chain (authorities, Token-2022 extensions), D1 on the live pair, holders, cap backing, RugCheck (attributed, optional). ⛔ **Fake volume and bundles are NOT CHECKED on every verdict, in words** | ✅ **in every universe pass from 2026-09-19, and RENDERED ON PRODUCTION** (observed 18:55Z: per-row verdicts, per-list tallies, "not checked: fake volume, bundles / insiders" in words; BACKLOG A40 SHIPPED) |
 | ⭐ `live.py` + `supa.py` | the 10-second path: Jupiter every 10s (hot) / 60s (all), D1 every 60s, published to Supabase `live_*` tables (`supabase/migrations/002_live.sql`) under its own path name; `.live/status.json` on the host | ⛔ **BLOCKED: the schema is not applied** - nothing on disk can run DDL on `rxofejxostyqlgjlzqmk` (BACKLOG A41) |
 | ⭐ `graduations.py` | **every pump.fun graduation** (C14): pages the migration authority from a cursor, every signature accounted for → `data/graduations/` | ✅ **UNATTENDED, verified 2026-09-19 01:48Z** on the keyless public RPC (17/17 accounted, lag 11s). Runs before the universe, which re-checks 72h of graduations for $1M |
 | ⭐ `paperv3.py` | the ledger that prices fills on real quotes | ✅ **SCHEDULED 2026-09-18** — enters in the scan loop beside v1/v2, sweeps in the sweep stage. ⛔ **Nothing called it before that**, despite 71 passing tests |
@@ -328,6 +328,13 @@ account, not the earlier "billing lapse" reading.
 is untouched (`project_usage 0`), and the consumable read credits are at zero.
 ⛔ **No credential unlocks full-archive search.** The ask is a **credit top-up**,
 not a subscription — and it is Frank's call alone.
+⭐ **Re-probed 2026-09-19 18:52Z (`scratchpad/xprobe2.py`):** the app-only bearer
+minted from the CONSUMER key/secret (`POST /oauth2/token`) returns 200 and is
+**identical to bearer A** - the app is alive, the consumer keys are valid. Every
+data endpoint, full-archive included, is **402 credits-depleted**: the same gate as
+recent search, not a 403 plan refusal, so credits are the only gate (inferred from
+the error type). `~/OLD-OC-old/gateway.cmd` holds the same values as `gateway.cmd`.
+BACKLOG C11.
 
 ⛔ **Solana now carries VERSION-1 transactions (~5%, measured 2026-09-19).** Any
 `getTransaction` must ask for `maxSupportedTransactionVersion: 1`; with `0` the

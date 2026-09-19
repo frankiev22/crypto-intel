@@ -177,6 +177,26 @@ the chain and the "marks scams" claim has no support.** Use: at most an AGGREGAT
 app's retail order flow, and a wallet that must never count as a trader in any
 cluster test (`PRECOMMIT_cluster_rule.md`, definition of wallet).
 
+**Where the list came from, and whether 985monitor is worth routing around**
+(2026-09-19, relay's observations from Frank's bookmarks; ⚠️ **not verified by
+us** - reading X needs credits we do not have, BACKLOG C11):
+
+- **The same eight tools were reposted four days later by a Chinese account
+  (@qkl2058) with two referral links appended** (GMGN and FOMO, both `/r/` codes).
+  Same list, two accounts, monetised on the second pass: **treat the whole list as
+  promotional distribution, not independent recommendation.** It fits what the
+  assessment found on its own: of eight, one is worth aggregating, and three
+  make claims their own output contradicts.
+- **A narrative-method post from @0xPINK3** carries its content inside images, so
+  nothing is machine-readable; the account was an earlier paid partnership. Low
+  priority, not assessed.
+- **985monitor.xyz: blocked, not assessed, and not worth routing around.** The
+  ISP's own security filter flags it as suspicious; it came from a list now known
+  to be promotional; and the seven siblings that could be read produced one
+  aggregate source between them. If it is ever wanted, the only acceptable route
+  is a text-only fetch from the GitHub runner (another network, no browser, no
+  script execution) - not a change to the filter on Frank's network.
+
 ### 4a. degentape's win rate against our paper log, and its fills against the chain
 
 **The relay's "37% over 9,979 closed" is a live rolling figure, not a record.**
