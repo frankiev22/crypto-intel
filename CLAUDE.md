@@ -70,6 +70,10 @@ further" — scope those separately and hold them to the measurement bar below.
 | ⛔ ≥ $1M tokens running that NEITHER listing has | **11 of 42** (26%) in one market snapshot | same |
 | pump.fun graduations per hour, from the ledger | **~45** (944 in 21.0h, 2026-09-19) — ⚠️ vs a 0.198% base rate, unreconciled | `data/graduations/` |
 | ⛔ volume-manipulation rule (M1/M2), validated | **FAILS**: flags 96.7% of sellable vs 90.0% of unsellable tokens; M2 tracks activity. **M1′ alone vs the wallet farm: 0/30 flagged vs 4/30 of the control, null** | `docs/VOLUME_INTEGRITY.md` §3c, §3e |
+| ⭐ **our base rate: AMM token → >= 2x with >= $500 quote depth at +6h/+24h, authorities revoked** | **0.27%** [0.05, 1.54], 1 / 364 priced from chain (409 sampled, 09-12 → 09-18) | `PRECOMMIT_cluster_rule.md` "Result" |
+| ⛔ **wallet-cluster rule (3+ wallets / 10 min / $1,500)** | **INCONCLUSIVE**: fired on 7 of our 409 sample tokens (bar n=30); degentape's wallets touched only 38 of them | same |
+| degentape's "win" (profit > $0), re-derived from their tape | **39.7%** [39.3, 40.1] of 45,853 closed positions - reproduces their own 39.4% | `docs/EXISTING_TOOLS.md` §4a |
+| ⭐ ...the same positions on OUR definition (proceeds >= 2x cost) | **6.0%** [5.8, 6.3]; median position 0.925x, median hold 2.4 min | same |
 | paper ledger, re-derived 2026-09-17 | 86 closes, **−$2,495** by mult / **−$4,168** realizable | `docs/LIQUIDITY.md` §8 |
 
 ⛔ **Never quote the 2.10% graduation rate.** It is 397/18,920 computed on

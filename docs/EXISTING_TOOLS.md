@@ -240,6 +240,36 @@ A leaderboard-selected population winning 38% of trades on a profit-above-zero
 definition is **not evidence** that a rule can pick winners, and our n = 24 is not
 evidence against it. **Neither of us is shown wrong. Neither number transfers.**
 
+⭐ **Re-derived from their own tape, 2026-09-19 ~19:30Z** (`analysis/cluster_rule_2026-09-19/dt_positions.py`):
+281,000 Solana tape rows, 09-11 20:56Z → 09-19 18:07Z, rebuilt into **45,853 closed
+positions** (671 wallets, 18,804 tokens) opened 09-12 or later. Excluded and
+counted: 14,832 wallet-token pairs opened before the window, 8,065 still open,
+1,189 with a fill lacking `usd`.
+
+| definition | closed positions | rate [Wilson 95%] |
+|---|---:|---|
+| **theirs: proceeds > cost** | 18,200 / 45,853 | **39.7%** [39.3, 40.1] |
+| their own published all-time Solana figure | 22,947 / 58,313 | 39.4% |
+| **ours: proceeds >= 2x cost** | 2,769 / 45,853 | **6.0%** [5.8, 6.3] |
+| ours, one close per token (first) | 818 / 18,804 | **4.4%** [4.1, 4.7] |
+
+- **Their headline reproduces from their own fills, within 0.3 points.** Their
+  arithmetic is honest.
+- **The median closed position returns 0.925x** (p10 0.40, p25 0.67, p75 1.16,
+  p90 1.59). **Median hold: 2.4 minutes** (p25 0.4, p75 19.8). The ~38% is mostly
+  small, fast scalps by wallets chosen for past profit.
+- ⭐ **On our definition, 905 leaderboard-selected wallets double their money on
+  6.0% of positions.** That is the first external reference point we have for how
+  often a 2x happens, even for traders picked because they win.
+- **Against our own base rate** (`PRECOMMIT_cluster_rule.md`, "Result", arm B): a
+  token our scanner saw on an AMM reached >= 2x with >= $500 of depth at +6h or
+  +24h, authorities revoked, **0.27% [0.05, 1.54] of the time (1 / 364)**. The
+  two are still not the same quantity - theirs is a realized trade exit chosen by
+  the trader, ours is the pool price at fixed horizons - so the gap (6.0% vs
+  0.27%) measures selection and discretionary exits as much as anything. It does
+  not show that copying them would work: their exits are theirs.
+- v3's paper ledger: 24 closes, below n = 30, no rate (§4a above).
+
 **Their fills against the chain, 2026-09-19.** 30 closed trades (the agent's
 sample: 9 from the site's own win records, 21 rebuilt from the tape, 14 traders,
 **182 fills**), every signature fetched with `getTransaction`:

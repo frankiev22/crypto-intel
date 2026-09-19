@@ -160,7 +160,7 @@ lookup and does not call it.
 | D3 | **Pre-launch social signal backtest** | 🟡 **BLOCKED on X credits** | The flagship experiment. ~$65 at core sample via xAI X Search. **Blocked: X bearer returns 402 credits depleted, `XAI_API_KEY` returns 400 invalid** |
 | D4 | **Re-verify the 165 "wins" against real liquidity** | ✅ **SHIPPED** `71abd83` | Of 141 checked, **8 tradeable, 126 not exitable**. The wins did not survive |
 | D5 | **Outcome-queue expiry measured** | ✅ **SHIPPED** `4949874` | 21% of due checks age out. Slice fix worked (24h: 19.1%→5.8%); the rest is downtime. ⛔ **CORRECTED 2026-09-18: the 5.8% "healthy period" figure was achieved on days with 38–204 passes of which only 6–8 were scheduled — it was carried by MANUAL runs, not by the collector.** Unattended-only capacity is ~37% of arrivals. See C4 |
-| D6 | ⭐ **Test the wallet-cluster rule (3+ wallets, one token, 10 min, ≥ $1,500) against our base rate** — relay priority 1, 2026-09-19 | 🔴 **NOT STARTED — pre-committed `bd45a18` before any data; arm D's data source found and verified** | `PRECOMMIT_cluster_rule.md`: arms U (any wallet), D (degentape's tracked wallets), S (trenchscope's 90-day PnL list), B (base rate); bar = arm's Wilson lower > B's Wilson upper at n ≥ 30 distinct tokens. ⛔ **Our journal has no per-wallet buy data** (pool-level `txns_h1` only). Arm U from chain ≈ 200k `getTransaction` calls, not run until agreed. ⭐ **Arm D is free**: degentape's public tape carries wallet + signature + USD for 905 wallets, and **182 / 182 sampled fills verified on chain** (`docs/EXISTING_TOOLS.md` §4a). Overlap with our 493-row sample unknown; may be inconclusive at n < 30. Arm S needs 90 days of every candidate wallet's swaps - unpriced. |
+| D6 | ⭐ **Test the wallet-cluster rule (3+ wallets, one token, 10 min, ≥ $1,500) against our base rate** — relay priority 1, 2026-09-19 | ✅ **SHIPPED — the measurement (2026-09-19). ⛔ Verdict: INCONCLUSIVE, arm D n = 7** · previously NOT STARTED | `PRECOMMIT_cluster_rule.md`: arms U (any wallet), D (degentape's tracked wallets), S (trenchscope's 90-day PnL list), B (base rate); bar = arm's Wilson lower > B's Wilson upper at n ≥ 30 distinct tokens. ⛔ **Our journal has no per-wallet buy data** (pool-level `txns_h1` only). Arm U from chain ≈ 200k `getTransaction` calls, not run until agreed. ⭐ **Arm D is free**: degentape's public tape carries wallet + signature + USD for 905 wallets, and **182 / 182 sampled fills verified on chain** (`docs/EXISTING_TOOLS.md` §4a). Overlap with our 493-row sample unknown; may be inconclusive at n < 30. Arm S needs 90 days of every candidate wallet's swaps - unpriced. ⭐ **RUN 2026-09-19 ~20:00Z** (`PRECOMMIT_cluster_rule.md` "Result"; code and per-token outputs in `analysis/cluster_rule_2026-09-19/`; implementation declared and pushed at 19:09Z before any outcome was read). **Arm D: the rule fired on 7 of our 409 sample tokens in the window** - 4 priced, 0 wins, Wilson [0, 49%]: inconclusive at n < 30. **degentape's 905 wallets touched only 38 of our 409 tokens**; the rule fired on 1,589 tokens across their week, 13 of ours. **Arm B, our base rate, from chain: 1 / 364 = 0.27% [0.05, 1.54]** (>= 2x with >= $500 quote depth at +6h or +24h, authorities revoked); +24h multiple median 0.977; 354 of 364 pools below $500 of quote depth at +24h (vault balances checked against Dexscreener's quote field on a seeded 8, exact). The authority gate removed 2 of 3 price-and-depth wins, one of them the A42 honeypot re-measured at 4.53x. ~17,200 Helius calls. |
 
 ## E. Knowledge
 
@@ -186,10 +186,10 @@ row C4a had never been parsed at all (the row pattern was `[A-E]\d+`).
 
 | status | count |
 |---|---:|
-| ✅ SHIPPED | **37** |
+| ✅ SHIPPED | **38** |
 | 🟡 IN PROGRESS | **32** |
 | 🟡 BLOCKED | **5** |
-| 🔴 NOT STARTED | **9** |
+| 🔴 NOT STARTED | **8** |
 | ⛔ DROPPED | **1** |
 | **total** | **82** |
 
