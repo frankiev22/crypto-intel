@@ -169,7 +169,7 @@ fees. Any path that depends on a track record has nothing to sell yet.
 | component | what it does | state |
 |---|---|---|
 | `collect.py` | hourly staged collector: scan, sweep, watchlist, 1/6/24/168h | ✅ **running again on the hosted runner, 2026-09-18** |
-| ⭐ `market.py` | **what is running NOW** - movers, volume, trending, clusters, the tape → `data/market/` | 🟡 **built 2026-09-18, observed on a manual run** (414 rows, 18/18 sources ok). ⛔ **The pipeline only ever collected tokens at birth; 0 of the top 25 24h gainers were in our journal.** Unattended run pending. Schema for the site: `docs/MARKET_DATA.md` |
+| ⭐ `market.py` | **what is running NOW** - movers, volume, trending, clusters, the tape → `data/market/` | ✅ **UNATTENDED, verified 2026-09-18 23:49Z** (scheduled run 35407026193: 412 rows, 18/18 sources ok from GitHub's IPs, 44.6s). ⛔ **The pipeline only ever collected tokens at birth; 0 of the top 25 24h gainers were in our journal.** Schema for the site: `docs/MARKET_DATA.md` |
 | ⭐ `paperv3.py` | the ledger that prices fills on real quotes | ✅ **SCHEDULED 2026-09-18** — enters in the scan loop beside v1/v2, sweeps in the sweep stage. ⛔ **Nothing called it before that**, despite 71 passing tests |
 | GitHub Actions `collect.yml` | same, hosted | ✅ **ALIVE — the repo went public 2026-09-18, so Actions minutes are free and unlimited.** A scheduled run fired on its own at 11:54Z and collected a full pass |
 | Claude desktop task | same, on the host | ⛔ dead since the 9/15 reboot — sandbox lost its drive mount |
@@ -234,6 +234,8 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
 | ⭐ **paper trader v3 — fills priced on real quotes** | `docs/PAPER_V3.md`, `PRECOMMIT_paper_v3.md` |
 | ⛔⛔ **EVERY commitment and its status — read at session start** | `docs/BACKLOG.md` |
 | ⭐ **what is running now: every `data/market/` file, field and rendering rule** | `docs/MARKET_DATA.md` |
+| ⭐ **one place: what is scattered, what retires, what Frank must decide** | `docs/CONSOLIDATION_PLAN.md` (plan only - nothing moved) |
+| ⛔ **Cash Cat is RETRACTED - never cite it as a hit** | `docs/BACKLOG.md` A37 |
 | ⭐ **how much of the launch stream we see, and the costed good version** | `COVERAGE.md` (2026-09-18 section) |
 | ⛔⛔ **how we test: verify output, not execution** | `docs/ENGINEERING_DISCIPLINE.md` |
 | ⛔ **symbols that render as a different token** | `docs/SYMBOL_ATTACKS.md` |
