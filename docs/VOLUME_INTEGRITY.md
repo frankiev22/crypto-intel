@@ -107,6 +107,39 @@ clean and never as 0 — the same rule that governs every other field here.
 labelled independently by `chainfields.round_trip()` verdict, Wilson intervals
 on the separation, reported both ways.
 
+## 3b. ⛔ A flaw in M1 as computed, and a corrected variant — PRE-COMMITTED 2026-09-19 before any validation run
+
+**Found while building the validation (`volintegrity.py`), before it ran.** One
+swap moves the same token quantity out of the pool and into the trader, and when
+both token accounts appear in `pre/postTokenBalances` the 09-17 computation
+records **two equal deltas**, e.g. BONK, one swap: `+326,173.12` and
+`−326,173.12`. It counts every delta in a repeated-size group, so **a single
+ordinary swap can register as a "repeated trade size"**. The n=4 separation in §2
+may partly reflect which routes happened to show both legs. **Unresolved — the
+09-17 script's per-token raw output was not saved.**
+
+**What happens now, in this order, so neither result can be tuned:**
+
+1. **§3 is validated exactly as committed** — the 09-17 computation, unchanged
+   except version-1 transactions and "no trades = unknown" (`volintegrity.py`).
+2. **Alongside it, on the SAME fetched transactions, a corrected M1′:**
+   `dup_amount_share_tx` — within one transaction, equal absolute deltas of the
+   mint collapse to one transfer size; the share is then taken across
+   transactions, counted the 09-17 way. **Same thresholds, fixed now:**
+
+```
+VOLUME_SUSPECT_V2 if  dup_amount_share_tx >= 0.50  or  multi_tx_slots >= 4
+VOLUME_CLEAN_V2   if  dup_amount_share_tx <  0.25  and multi_tx_slots <= 1
+otherwise         VOLUME_UNKNOWN
+```
+
+3. Both are reported, both ways (all sampled / verdicts only), with Wilson
+   intervals, labelled by the universe gate's `round_trip` verdict:
+   TRADEABLE members vs tokens refused at the gate, seeded random, n ≥ 30 per arm.
+
+⛔ **Neither is quotable as a detector unless it separates the arms on that
+run.** A null result is the finding, and it gets written here.
+
 ## 4. ⚠️ Two limits I hit, stated so nobody repeats them
 
 1. **Keying on the stored `pair` gives stale pools.** An earlier run showed
