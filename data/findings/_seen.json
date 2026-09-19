@@ -5429,15 +5429,15 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 183,
+  "count": 187,
   "example": "lookup-outage: 24h",
   "keys": [
    "168h",
    "24h"
   ],
-  "last_seen": "2026-09-11T14:18:55+00:00",
-  "last_escalated": "2026-09-11T10:18:37+00:00",
-  "escalations": 15
+  "last_seen": "2026-09-19T18:19:51+00:00",
+  "last_escalated": "2026-09-19T15:18:59+00:00",
+  "escalations": 17
  },
  "scanner-hit:patience": {
   "first_seen": "2026-09-04T05:11:20+00:00",
@@ -5911,16 +5911,17 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 83,
+  "count": 85,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
    "24h",
-   "6h"
+   "6h",
+   "168h"
   ],
-  "last_seen": "2026-09-19T07:13:30+00:00",
-  "last_escalated": "2026-09-19T01:46:10+00:00",
-  "escalations": 14
+  "last_seen": "2026-09-19T09:14:52+00:00",
+  "last_escalated": "2026-09-19T08:24:35+00:00",
+  "escalations": 15
  },
  "scanner-hit:pomp": {
   "first_seen": "2026-09-05T05:11:36+00:00",
@@ -10092,12 +10093,12 @@
  },
  "outcome-win:gfqatbcfvrticsmadpyqkpbxpagjgegdpzs": {
   "first_seen": "2026-09-19T06:30:56+00:00",
-  "count": 1,
+  "count": 2,
   "example": "outcome-win: GF714QATBcf6v67RticSmadPYQKpBxpAgjgEg3D6PzS3",
   "keys": [
    "GF714QATBcf6v67RticSmadPYQKpBxpAgjgEg3D6PzS3"
   ],
-  "last_seen": null
+  "last_seen": "2026-09-19T08:14:39+00:00"
  },
  "collector-error:attributeerror": {
   "first_seen": "2026-09-19T06:42:16+00:00",
@@ -10146,6 +10147,143 @@
   "example": "scanner-hit: ANIME-HLC3tBur",
   "keys": [
    "ANIME-HLC3tBur"
+  ]
+ },
+ "outcome-win:tqmkstqmpxacayjcjtuquawtghyqwwjxmbpump": {
+  "first_seen": "2026-09-19T08:11:35+00:00",
+  "count": 2,
+  "example": "outcome-win: 2TqMkSTqMpxACay3j8Cjt7uqUAWTG8HYqwWJ3xmbpump",
+  "keys": [
+   "2TqMkSTqMpxACay3j8Cjt7uqUAWTG8HYqwWJ3xmbpump"
+  ],
+  "last_seen": "2026-09-19T13:13:28+00:00"
+ },
+ "scanner-hit:paid-mkobdmm": {
+  "first_seen": "2026-09-19T08:24:00+00:00",
+  "count": 1,
+  "example": "scanner-hit: PAID-1mKobDMM",
+  "keys": [
+   "PAID-1mKobDMM"
+  ]
+ },
+ "scanner-hit:paid-mwabrnv": {
+  "first_seen": "2026-09-19T08:24:05+00:00",
+  "count": 1,
+  "example": "scanner-hit: PAID-mWabRn6V",
+  "keys": [
+   "PAID-mWabRn6V"
+  ]
+ },
+ "scanner-hit:satoshi-hccregq": {
+  "first_seen": "2026-09-19T08:24:11+00:00",
+  "count": 1,
+  "example": "scanner-hit: Satoshi-Hc8cregq",
+  "keys": [
+   "Satoshi-Hc8cregq"
+  ]
+ },
+ "scanner-hit:apm-wvhqiy": {
+  "first_seen": "2026-09-19T09:20:40+00:00",
+  "count": 1,
+  "example": "scanner-hit: APM-38wvhQiY",
+  "keys": [
+   "APM-38wvhQiY"
+  ]
+ },
+ "scanner-trap:umjitcqirakmcrykanmqhrhboqzdyctawzrhe": {
+  "first_seen": "2026-09-19T13:20:35+00:00",
+  "count": 1,
+  "example": "scanner-trap: 7uMjiTCQiRaKMCrYKaNMQHR6h5Bo9qzd42ycTAWzRhE1",
+  "keys": [
+   "7uMjiTCQiRaKMCrYKaNMQHR6h5Bo9qzd42ycTAWzRhE1"
+  ]
+ },
+ "scanner-hit:u-c43b0d": {
+  "first_seen": "2026-09-19T14:19:22+00:00",
+  "count": 1,
+  "example": "scanner-hit: 卡特洛特",
+  "keys": [
+   "卡特洛特"
+  ]
+ },
+ "scanner-hit:babycate": {
+  "first_seen": "2026-09-19T14:19:27+00:00",
+  "count": 1,
+  "example": "scanner-hit: BABYCATE",
+  "keys": [
+   "BABYCATE"
+  ]
+ },
+ "scanner-hit:kodkod": {
+  "first_seen": "2026-09-19T14:19:31+00:00",
+  "count": 1,
+  "example": "scanner-hit: KodKod",
+  "keys": [
+   "KodKod"
+  ]
+ },
+ "outcome-win:wvhqiyefcqersrnxvrdzvizhdxzxpqxqwp": {
+  "first_seen": "2026-09-19T15:14:30+00:00",
+  "count": 1,
+  "example": "outcome-win: 38wvhQiYEFCQerSRn8xVrdZv3iZhdX75Zxpq5xq215Wp",
+  "keys": [
+   "38wvhQiYEFCQerSRn8xVrdZv3iZhdX75Zxpq5xq215Wp"
+  ]
+ },
+ "scanner-trap:nupdggmzbbkauktpqqwobtxpjkudpjakqjc": {
+  "first_seen": "2026-09-19T16:23:21+00:00",
+  "count": 1,
+  "example": "scanner-trap: 9NUpDgg4M1ZBbKAUktpQ9QwobT61XpJKudpja453kQjc",
+  "keys": [
+   "9NUpDgg4M1ZBbKAUktpQ9QwobT61XpJKudpja453kQjc"
+  ]
+ },
+ "scanner-hit:div": {
+  "first_seen": "2026-09-19T16:23:27+00:00",
+  "count": 1,
+  "example": "scanner-hit: DIV",
+  "keys": [
+   "DIV"
+  ]
+ },
+ "scanner-hit:aiden": {
+  "first_seen": "2026-09-19T17:20:37+00:00",
+  "count": 1,
+  "example": "scanner-hit: Aiden",
+  "keys": [
+   "Aiden"
+  ]
+ },
+ "scanner-trap:bbosjlwzzoatieyywiifxagmrdcmxjfwbhbrhchy": {
+  "first_seen": "2026-09-19T18:24:47+00:00",
+  "count": 1,
+  "example": "scanner-trap: BBosJLw8ZzoATiEyywiifx7AgmrD2Cm3XjFWbhbRhChy",
+  "keys": [
+   "BBosJLw8ZzoATiEyywiifx7AgmrD2Cm3XjFWbhbRhChy"
+  ]
+ },
+ "scanner-hit:honor": {
+  "first_seen": "2026-09-19T18:24:54+00:00",
+  "count": 1,
+  "example": "scanner-hit: HONOR",
+  "keys": [
+   "HONOR"
+  ]
+ },
+ "scanner-hit:bb": {
+  "first_seen": "2026-09-19T18:25:00+00:00",
+  "count": 1,
+  "example": "scanner-hit: BB",
+  "keys": [
+   "BB"
+  ]
+ },
+ "scanner-hit:fartbook": {
+  "first_seen": "2026-09-19T18:25:05+00:00",
+  "count": 1,
+  "example": "scanner-hit: Fartbook",
+  "keys": [
+   "Fartbook"
   ]
  }
 }
