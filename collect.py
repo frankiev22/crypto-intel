@@ -55,7 +55,7 @@ WHICH RUNNER YOU ARE ON DECIDES WHETHER YOU NEED THIS:
 The journal is append-only and outcome scoring is idempotent, so running the
 stages separately is behaviour-identical to one full pass.
 """
-import os, sys, time, traceback, datetime as dt
+import contextlib, os, sys, time, traceback, datetime as dt
 import scanner, journal, track, notify, macro, sources, findings, resolve
 # The Claude dispatch sandbox SIGKILLs at ~178s. Stop at 155s, leaving 23s for
 # the pass to finish its bookkeeping and write its own short-pass record - a
@@ -358,6 +358,36 @@ def watchlist_stage(verbose=True):
 # commits nothing at all - including every row the scan already collected.
 MARKET_SOFT_LIMIT_S = 10 * 60
 
+# ⛔ THE OUTCOME HORIZONS HAD NO CLOCK ON THE RUNNER. A full pass there runs
+# with no --max-seconds, so sources.over_budget() - the only thing track.py
+# checks - was always False. On 2026-09-19 they took 9.4 minutes (Dexscreener
+# dropped 29/37 lookups, each falling back), the pass reached 890s, graduations
+# and the universe were skipped, and the job hit its timeout before committing.
+# Three passes in a row were lost. They now stop at this pass age, leaving the
+# late stages their time. Unscored rows stay queued (docs/SAMPLING_BIAS.md 5).
+OUTCOME_SOFT_LIMIT_S = 13 * 60
+# The whole pass, on the runner. Every stage that reads sources.seconds_left()
+# honours it; the workflow's Collect step times out at 24 minutes.
+RUNNER_PASS_S = 20 * 60
+
+
+@contextlib.contextmanager
+def pass_age_deadline(limit_s):
+    """Lower sources' deadline to `limit_s` of PASS AGE for the block, then restore it.
+
+    Every stage that honours sources.over_budget() - track.py's horizons - stops
+    there instead of eating the late stages' time. It never RAISES a deadline:
+    a staged run's own --max-seconds still wins when it is earlier.
+    """
+    old = sources.DEADLINE
+    left = limit_s - (time.time() - _PASS_T0)
+    cap = time.monotonic() + max(0.0, left)
+    sources.DEADLINE = cap if old is None else min(old, cap)
+    try:
+        yield
+    finally:
+        sources.DEADLINE = old
+
 
 def market_stage(verbose=True):
     elapsed = time.time() - _PASS_T0
@@ -379,7 +409,7 @@ def market_stage(verbose=True):
 # Past LATE_SOFT_LIMIT_S neither runs at all: the runner's job timeout is 15
 # minutes, the longest pass on record took 13.6, and a pass killed by the
 # timeout commits nothing - including every row the scan already collected.
-LATE_SOFT_LIMIT_S = 11 * 60
+LATE_SOFT_LIMIT_S = 17 * 60     # was 11 min under the old 15-min job timeout
 # Seconds the universe needs besides its gate: Jupiter's verified list, the
 # re-check batch, Dexscreener's theme pages, and CoinGecko every 6 hours.
 UNIVERSE_OVERHEAD_S = 90
@@ -494,7 +524,8 @@ def one_pass(networks=("solana",), verbose=True):
     # as its own record type, so the log is still derivable both ways.
     # (the labelling now runs inside sweep_stage, straight after the closes)
     try:
-        track.score_all(verbose=verbose)
+        with pass_age_deadline(OUTCOME_SOFT_LIMIT_S):
+            track.score_all(verbose=verbose)
     except Exception as e:
         print(f"  outcome scoring failed: {e}")
     # EVERY GRADUATION, then EVERY REAL $1M COIN. Last, on leftover time.
@@ -539,6 +570,9 @@ def main():
     if max_seconds is None and (stage != "full"
                                 or not os.environ.get("GITHUB_ACTIONS")):
         max_seconds = STAGE_SECONDS
+    elif max_seconds is None:
+        # The runner's full pass: a wall clock at last, inside the step timeout.
+        max_seconds = RUNNER_PASS_S
     if False:  # retained branch shape; superseded by the time budget
         pass
     elif not os.environ.get("GITHUB_ACTIONS"):
@@ -763,8 +797,11 @@ def main():
             elapsed_s=sources.budget_report()["elapsed_s"])
         if _short:
             _b = sources.budget_report()
+            # ⛔ max_seconds is None on an unbudgeted pass; formatting it with
+            # :.0f crashed every short runner pass (2026-09-19 17:53Z).
+            _of = f"of a {max_seconds:.0f}s budget" if max_seconds else "with no time budget"
             print(f"  SHORT PASS (recorded): {_b['calls']} calls in "
-                  f"{_b['elapsed_s']}s of a {max_seconds:.0f}s budget; measured "
+                  f"{_b['elapsed_s']}s {_of}; measured "
                   f"{_b['per_call_s']}s/call. Remaining work resumes next "
                   f"invocation.")
     return rc

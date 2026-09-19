@@ -61,7 +61,14 @@ permissions:
 jobs:
   collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # ⛔ WAS 15. On 2026-09-19 the 11:37, 14:50 and 17:38 scheduled passes all
+    # ran past it (outcome horizons 9.4 min with Dexscreener dropping 29/37
+    # lookups), the job was CANCELLED before "Commit the journal", and every
+    # row those passes collected died with the runner. Minutes are free on a
+    # public repo. The Collect step has its own, shorter timeout below, so the
+    # commit always gets time; collect.py's soft limits sit inside that
+    # (test_stages.py checks the three numbers against each other).
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
         with:
@@ -101,6 +108,9 @@ jobs:
       - name: Collect
         id: collect
         continue-on-error: true
+        # A step timeout fails only this step; continue-on-error lets the
+        # commit run after it. The job timeout would have cancelled everything.
+        timeout-minutes: 24
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
@@ -127,8 +137,8 @@ jobs:
           # it would make the detector unfalsifiable.
           #
           # Costs nothing: 607 calls/pass measured, 3,600/hour available at
-          # 60/min, 83% headroom. A full pass goes from ~2min to ~10min, which
-          # still fits the 15-minute job timeout above.
+          # 60/min, 83% headroom. A full pass goes from ~2min to ~10min. ⚠️ By
+          # 2026-09-19 passes reached 15+ min; see the job timeout above.
           CRYPTO_HTTP_PACE_S: '1.0'
           # Dexscreener drops far more lookups than a budget of 8 can service
           # (125 drops in one measured pass). A pass takes ~60s against the
@@ -204,7 +214,8 @@ jobs:
       # is about to be destroyed. Uploading them means a failed run costs a
       # manual recovery, not an hour of collection that cannot be bought back.
       - name: Keep the rows even when the push failed
-        if: failure()
+        # cancelled() too: a timed-out job is exactly when the rows are at risk.
+        if: failure() || cancelled()
         uses: actions/upload-artifact@v4
         with:
           name: journal-${{ github.run_id }}

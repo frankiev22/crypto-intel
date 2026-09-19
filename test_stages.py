@@ -349,6 +349,57 @@ if os.path.exists(SKILL):
 else:
     print(f"  SKIP  skill file not present here ({SKILL})")
 
+section("10. ⛔ the runner's pass fits inside the workflow's own timeouts")
+# 2026-09-19: three scheduled passes ran past a 15-minute job timeout and were
+# cancelled before "Commit the journal" - every row they collected was lost.
+# Nothing tied collect.py's soft limits to the workflow. Now something does.
+_wf = io.open(os.path.join(_HERE, ".github", "workflows", "collect.yml"), encoding="utf-8").read()
+_wf_lines = _wf.splitlines()
+_job_s = _step_s = None
+for _i, _l in enumerate(_wf_lines):
+    if _l.strip() == "runs-on: ubuntu-latest":
+        for _l2 in _wf_lines[_i + 1:_i + 12]:
+            if _l2.strip().startswith("timeout-minutes:"):
+                _job_s = int(_l2.split(":")[1]) * 60
+                break
+    if _l.strip() == "- name: Collect":
+        for _l2 in _wf_lines[_i + 1:_i + 10]:
+            if _l2.strip().startswith("timeout-minutes:"):
+                _step_s = int(_l2.split(":")[1]) * 60
+                break
+check("the job and the Collect step both declare a timeout", _job_s and _step_s, (_job_s, _step_s))
+if _job_s and _step_s:
+    check("the Collect step times out BEFORE the job, leaving >= 8 min to commit and push",
+          _step_s + 8 * 60 <= _job_s, (_step_s, _job_s))
+    check("the runner's pass clock ends >= 2 min before the Collect step's timeout",
+          collect.RUNNER_PASS_S + 120 <= _step_s, (collect.RUNNER_PASS_S, _step_s))
+check("stage limits are ordered: market < outcomes < late stages",
+      collect.MARKET_SOFT_LIMIT_S < collect.OUTCOME_SOFT_LIMIT_S < collect.LATE_SOFT_LIMIT_S,
+      (collect.MARKET_SOFT_LIMIT_S, collect.OUTCOME_SOFT_LIMIT_S, collect.LATE_SOFT_LIMIT_S))
+check("...and the universe's overhead fits inside the pass clock",
+      collect.LATE_SOFT_LIMIT_S + collect.UNIVERSE_OVERHEAD_S <= collect.RUNNER_PASS_S)
+check("⛔ the rows artifact uploads on CANCELLATION too, not only on failure",
+      "if: failure() || cancelled()" in _wf)
+_saved_t0, _saved_dl = collect._PASS_T0, sources.DEADLINE
+collect._PASS_T0 = time.time() - (collect.OUTCOME_SOFT_LIMIT_S + 30)
+sources.DEADLINE = None
+with collect.pass_age_deadline(collect.OUTCOME_SOFT_LIMIT_S):
+    _inside = sources.over_budget(headroom=2)
+_after = sources.DEADLINE
+collect._PASS_T0, sources.DEADLINE = _saved_t0, _saved_dl
+check("⭐ past the outcome limit, track's own budget check says STOP inside the block", _inside is True)
+check("...and the previous deadline (none, on the runner) is restored after it", _after is None, _after)
+sources.DEADLINE = time.monotonic() + 5
+_early = sources.DEADLINE
+collect._PASS_T0 = time.time()
+with collect.pass_age_deadline(collect.OUTCOME_SOFT_LIMIT_S):
+    _kept = sources.DEADLINE
+collect._PASS_T0, sources.DEADLINE = _saved_t0, _saved_dl
+check("...and it never RAISES an earlier deadline (a staged --max-seconds still wins)", _kept == _early)
+_csrc = io.open(os.path.join(_HERE, "collect.py"), encoding="utf-8").read()
+check("⛔ the short-pass line no longer formats max_seconds unguarded (crashed at 17:53Z)",
+      "if max_seconds else" in _csrc.split("SHORT PASS (recorded)")[0][-400:])
+
 ok = sum(1 for _, c, _ in R if c)
 print(f"\n{ok}/{len(R)} passed")
 sys.exit(0 if ok == len(R) else 1)
