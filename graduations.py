@@ -40,9 +40,14 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 DIR = os.path.join(BASE, "data", "graduations")
 MIGRATION_AUTHORITY = "39azUYFWPz3VHgKCf3VChUwbpURdCHRxjWVowf5jUJjg"
 WSOL = "So11111111111111111111111111111111111111112"
+USDC = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+USDT = "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY2qW7fZ2PqBRGrQ"
+# Quote currencies are not the token that graduated. Measured on the seed
+# (2026-09-19): 15 of 54 "ambiguous" rows were one pump mint plus USDC.
+QUOTES = {WSOL, USDC, USDT}
 TARGET = {"CreatePool"}
 BOOTSTRAP_H = 24          # first run only: how far back the ledger starts
-SECONDS = float(os.environ.get("CRYPTO_GRAD_S", "120"))
+SECONDS = float(os.environ.get("CRYPTO_GRAD_S", "150"))
 RETRY_CAP = 500
 PAGE_LIMIT = 1000         # getSignaturesForAddress maximum
 PAGE_CAP = 20             # 20,000 signatures - ~12 days of this authority
@@ -61,7 +66,11 @@ def _gap():
 
 
 def rpc(method, params, tries=3):
+    """(result, error). Transport failures and 429s are retried; an RPC-level
+    error is an ANSWER - the same request gets the same error - so it returns
+    at once instead of burning ~9s of the pass on retries."""
     body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode()
+    err = None
     for i in range(tries):
         CALLS["n"] += 1
         try:
@@ -69,13 +78,15 @@ def rpc(method, params, tries=3):
                 "Content-Type": "application/json", "User-Agent": "crypto-intel/1.0"})
             with urllib.request.urlopen(req, timeout=40) as f:
                 d = json.loads(f.read())
-            if "error" in d:
-                raise RuntimeError(str((d.get("error") or {}).get("code")))
-            return d.get("result"), None
         except Exception as e:
             CALLS["errors"] += 1
-            err = type(e).__name__ + (f" {e}" if isinstance(e, RuntimeError) else "")
+            err = type(e).__name__ + (f" {e.code}" if hasattr(e, "code") else "")
             time.sleep(1.5 * (i + 1))
+            continue
+        if "error" in d:
+            CALLS["errors"] += 1
+            return None, f"rpc error {(d.get('error') or {}).get('code')}"
+        return d.get("result"), None
     return None, err
 
 
@@ -85,7 +96,7 @@ def classify(tx):
     ins = sorted({l.split("Instruction: ", 1)[1].strip() for l in (meta.get("logMessages") or [])
                   if "Instruction: " in l})
     mints = sorted({b["mint"] for b in (meta.get("preTokenBalances") or [])
-                    if b.get("mint") and b["mint"] != WSOL})
+                    if b.get("mint") and b["mint"] not in QUOTES})
     if not (set(ins) & TARGET):
         return "not_target", None, ins, mints
     if len(mints) != 1:
@@ -195,7 +206,10 @@ def build(verbose=True, now=None, seconds=None):
                      "origin": origin})
 
     def one(item, is_retry):
-        tx, e = rpc("getTransaction", [item["sig"], {"maxSupportedTransactionVersion": 0,
+        # ⛔ Version 1, not 0. Measured 2026-09-19: 3 of 60 recent authority
+        # transactions (and 3 of 60 creates) are v1, and a v0 request returns
+        # -32015 for them. With 0 here ~5% of graduations were fetch failures.
+        tx, e = rpc("getTransaction", [item["sig"], {"maxSupportedTransactionVersion": 1,
                                                      "encoding": "json"}])
         time.sleep(_gap())
         if tx is None:
@@ -253,6 +267,13 @@ def build(verbose=True, now=None, seconds=None):
          "cursor_block_time": cur.get("block_time"), "lag_s": round(lag) if lag is not None else None,
          "rpc": "helius" if "helius" in _rpc_url() else "public", "rpc_calls": CALLS["n"],
          "rpc_errors": CALLS["errors"], "elapsed_s": round(time.time() - t0, 1), "totals": tot}
+    try:
+        import market
+        last = getattr(market, "LAST", None) or {}
+        seen = last.get("seen") if now - last.get("ts", 0) < 3600 else None
+        m["journal_coverage"] = coverage(now, seen)
+    except Exception as e:
+        m["journal_coverage"] = {"status": f"error: {type(e).__name__}"}
     _write_json("index.json", m)
     liveness.beat("graduations.ledger", len(rows),
                   detail=f"{counts['graduation']} graduations of {done} processed, backlog {backlog}")
@@ -262,6 +283,46 @@ def build(verbose=True, now=None, seconds=None):
               f"of {done} processed; backlog {backlog}, lag "
               f"{'?' if lag is None else f'{lag / 3600:.1f}h'} ({m['rpc']} RPC, {m['elapsed_s']}s)")
     return m
+
+
+def coverage(now, seen):
+    """What share of graduations did our journal EVER see? C13, on every pass.
+
+    Same window as coverage_probe.py - [now-26h, now-2h], so every graduation has
+    had time to be seen by at least one pass - but the WHOLE ledger in that
+    window, not a sample. `seen` is the set of contracts in the journal; None
+    means it was not loaded this pass, and the figure is then not computed
+    rather than guessed."""
+    if seen is None:
+        return {"status": "not computed: journal not loaded this pass"}
+    lo, hi = now - 26 * 3600, now - 2 * 3600
+    grads = set()
+    try:
+        names = sorted(n for n in os.listdir(DIR) if n[:4].isdigit() and n.endswith(".jsonl"))
+    except OSError:
+        names = []
+    for n in names[-2:]:
+        with open(_path(n), encoding="utf-8") as f:
+            for line in f:
+                if '"graduation"' not in line:
+                    continue
+                try:
+                    r = json.loads(line)
+                except ValueError:
+                    continue
+                if r.get("kind") == "graduation" and r.get("mint") and lo <= (r.get("block_time") or 0) <= hi:
+                    grads.add(r["mint"])
+    n = len(grads)
+    if not n:
+        return {"status": "no graduations in the window yet", "window_h": [26, 2], "n": 0}
+    k = len(grads & seen)
+    z = 1.96
+    p = k / n
+    d = 1 + z * z / n
+    c = p + z * z / (2 * n)
+    a = z * ((p * (1 - p) / n + z * z / (4 * n * n)) ** 0.5)
+    return {"status": "ok", "window_h": [26, 2], "graduations": n, "seen_by_journal": k,
+            "rate": round(p, 4), "wilson95": [round((c - a) / d, 4), round((c + a) / d, 4)]}
 
 
 def _read_index():
@@ -282,14 +343,22 @@ def recent_mints(since_ts):
     for n in names[-2:]:
         with open(_path(n), encoding="utf-8") as f:
             for line in f:
-                if '"graduation"' not in line:
+                if '"graduation"' not in line and '"ambiguous"' not in line:
                     continue
                 try:
                     r = json.loads(line)
                 except ValueError:
                     continue
-                if r.get("kind") == "graduation" and r.get("mint") and (r.get("block_time") or 0) >= since_ts:
-                    out.add(r["mint"])
+                if (r.get("block_time") or 0) < since_ts:
+                    continue
+                m = r.get("mint") if r.get("kind") == "graduation" else None
+                if r.get("kind") == "ambiguous":
+                    # Rows written before USDC/USDT counted as quotes: derived
+                    # from the mints the row itself recorded, never guessed.
+                    rest = [x for x in (r.get("mints") or []) if x not in QUOTES]
+                    m = rest[0] if len(rest) == 1 else None
+                if m:
+                    out.add(m)
     return out
 
 

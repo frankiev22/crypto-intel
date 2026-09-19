@@ -155,7 +155,16 @@ def fake_rt(m):
     QUOTED.append(m)
     v = VERDICT.get(m, "TRADEABLE")
     return {"mint": m, "verdict": v, "rt_cost_pct": 0.8 if v == "TRADEABLE" else None,
-            "usd_back": 99.2 if v == "TRADEABLE" else None, "probe_usd": 100, "ts": int(time.time())}
+            "usd_back": 99.2 if v == "TRADEABLE" else None, "probe_usd": 100, "ts": int(time.time()),
+            "px_per_raw": 1e-9 if v == "TRADEABLE" else None}
+
+
+FDV_CALLS = []
+
+
+def fake_fdv(m, res):
+    FDV_CALLS.append(m)
+    return None if m == GRAD else 4_200_000
 
 
 def read(name):
@@ -200,7 +209,7 @@ check("member failing + TRADEABLE -> restored, failing_since cleared",
       and ev["event"] == "gate_restored")
 
 section("2. one pass: discovery, the $1M floor, the gate - read back from disk")
-m1 = U.build(verbose=False, now=NOW, rt=fake_rt, gate_s=60)
+m1 = U.build(verbose=False, now=NOW, rt=fake_rt, gate_s=60, fdv=fake_fdv)
 doc = read("members.json")
 T = doc["tokens"]
 check("a Jupiter-verified $5M token is in", BIG in T)
@@ -225,6 +234,11 @@ check("⭐ the market stage's same-pass quote was reused, not quoted twice",
       m1["gate"])
 check("trending candidates are quoted before the rest", QUOTED[:2] and set(QUOTED[:2]) <= {TREND, GRAD, CATS[0]},
       QUOTED[:3])
+check("⭐ A3: a TRADEABLE admission records FDV from chain supply x the price the buy got",
+      T[BIG]["admitted_fdv_onchain_usd"] == 4_200_000 and T[BIG]["gate"]["fdv_onchain_usd"] == 4_200_000)
+check("⛔ ...an unreadable supply is None, not 0, and does not block admission",
+      T[GRAD]["status"] == "member" and T[GRAD]["admitted_fdv_onchain_usd"] is None)
+check("...and it is never looked up for a token that failed the gate", REFUSE not in FDV_CALLS)
 check("the file keys on contract address; symbols carry their flags",
       all(k == v["token"] and "symbol_flags" in v for k, v in T.items() if v.get("symbol")))
 REG = json.load(open(liveness.REG, encoding="utf-8")).get("universe.members") or {}
@@ -256,6 +270,17 @@ check("the cluster carries size facts, not a score",
 th = N["themes"]
 check("a Dexscreener theme is intersected with the universe (Solana pairs only)",
       th and th[0]["members_n"] == 3 and th[0]["solana_tokens"] == 3, th[:1])
+
+section("3a. ⛔ the cap is never shown without what backs it")
+check("cap_backing_pct = the quote half of reported liquidity over the cap",
+      T[BIG]["last"]["cap_backing_pct"] == round(900_000 / 2 / 5e6 * 100, 4), T[BIG]["last"].get("cap_backing_pct"))
+check("unknown liquidity or cap -> None, never 0",
+      U.cap_backing(None, 5e6) is None and U.cap_backing(1000.0, None) is None and U.cap_backing(1000.0, 0) is None)
+check("ticker_contracts counts every tracked contract carrying the ticker",
+      all(e.get("ticker_contracts") == 1 for e in T.values() if e.get("symbol")))
+check("every narrative cluster carries mcap_backed_usd beside mcap_usd",
+      all("mcap_backed_usd" in c and "shared_ticker_n" in c for c in N["name_clusters"] + N["themes"]))
+check("the caveat saying so is published in the file", any("cap_backing_pct" in c for c in N["caveats"]))
 
 section("4. ⛔ never forgets, never overwrites")
 HIDDEN.add(BIG)

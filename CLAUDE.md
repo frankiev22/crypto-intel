@@ -3,7 +3,7 @@
 **Handoff file. Read this first, then the two or three `docs/` files your task
 touches. Do not re-derive what is written here.**
 
-Last updated 2026-09-18. ⚠️ **Keep this current. It is the handoff, not a
+Last updated 2026-09-19. ⚠️ **Keep this current. It is the handoff, not a
 one-off** — if you change architecture, numbers, or blockers, update it in the
 same session.
 
@@ -64,6 +64,10 @@ further" — scope those separately and hold them to the measurement bar below.
 | ⭐ **launch coverage, measured from chain** | **1.26%** [0.49, 3.20], 4/317 creates | `COVERAGE.md`, `coverage_probe.py` |
 | ⭐ **graduation coverage, measured from chain** | **1.95%** [0.83, 4.47], 5/257 | same |
 | top-25 24h gainers ever in our journal | **0/25** (first snapshot, 2026-09-18) | `data/market/index.json` |
+| ⭐ Solana tokens ≥ $1M on the listings | **1,035** (Jupiter-verified 668 ∪ CoinGecko 784 ∪ ours 15); **863** under the pre-committed rule (Jupiter's mcap wins) | `docs/UNIVERSE.md` §1 |
+| ⛔ ...of which a $100 round trip is TRADEABLE | **65.0%** [54.1, 74.5], 52/80 seeded random | same |
+| ⛔ ≥ $1M tokens running that NEITHER listing has | **11 of 42** (26%) in one market snapshot | same |
+| pump.fun graduations per hour, from the ledger | **47** (1h sample, 2026-09-19) — ⚠️ vs a 0.198% base rate, unreconciled | `data/graduations/` |
 | paper ledger, re-derived 2026-09-17 | 86 closes, **−$2,495** by mult / **−$4,168** realizable | `docs/LIQUIDITY.md` §8 |
 
 ⛔ **Never quote the 2.10% graduation rate.** It is 397/18,920 computed on
@@ -170,6 +174,8 @@ fees. Any path that depends on a track record has nothing to sell yet.
 |---|---|---|
 | `collect.py` | hourly staged collector: scan, sweep, watchlist, 1/6/24/168h | ✅ **running again on the hosted runner, 2026-09-18** |
 | ⭐ `market.py` | **what is running NOW** - movers, volume, trending, clusters, the tape → `data/market/` | ✅ **UNATTENDED, verified 2026-09-18 23:49Z** (scheduled run 35407026193: 412 rows, 18/18 sources ok from GitHub's IPs, 44.6s). ⛔ **The pipeline only ever collected tokens at birth; 0 of the top 25 24h gainers were in our journal.** Schema for the site: `docs/MARKET_DATA.md` |
+| ⭐⭐ `universe.py` | **THE TRACKED UNIVERSE**: every Solana token ≥ $1M, admitted only on a TRADEABLE $100 round trip, **never removed**; trending × universe → narratives → `data/universe/` | 🟡 **seeded by hand 2026-09-19; last stage of every pass from the next scheduled run.** Rule pre-committed in `docs/UNIVERSE.md` §3. ⛔ **Not on the site yet (BACKLOG C16)** |
+| ⭐ `graduations.py` | **every pump.fun graduation** (C14): pages the migration authority from a cursor, every signature accounted for → `data/graduations/` | 🟡 **seeded by hand 2026-09-19**; runs before the universe, which re-checks 72h of graduations for $1M |
 | ⭐ `paperv3.py` | the ledger that prices fills on real quotes | ✅ **SCHEDULED 2026-09-18** — enters in the scan loop beside v1/v2, sweeps in the sweep stage. ⛔ **Nothing called it before that**, despite 71 passing tests |
 | GitHub Actions `collect.yml` | same, hosted | ✅ **ALIVE — the repo went public 2026-09-18, so Actions minutes are free and unlimited.** A scheduled run fired on its own at 11:54Z and collected a full pass |
 | Claude desktop task | same, on the host | ⛔ dead since the 9/15 reboot — sandbox lost its drive mount |
@@ -232,7 +238,8 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
 | volume manipulation: methods and pre-committed thresholds | `docs/VOLUME_INTEGRITY.md` |
 | ⭐ **dev wallet history, funding graphs, first buyers, LP** | `docs/DEV_WALLET.md` |
 | ⭐ **paper trader v3 — fills priced on real quotes** | `docs/PAPER_V3.md`, `PRECOMMIT_paper_v3.md` |
-| ⛔⛔ **EVERY commitment and its status — read at session start** | `docs/BACKLOG.md` |
+| ⛔⛔ **EVERY commitment and its status — read at session start** | `docs/BACKLOG.md` (⛔ read the **SHIPPED-row audit** section first) |
+| ⭐⭐ **the tracked universe: size, cost, source, the pre-committed gate** | `docs/UNIVERSE.md` |
 | ⭐ **what is running now: every `data/market/` file, field and rendering rule** | `docs/MARKET_DATA.md` |
 | ⭐ **one place: what is scattered, what retires, what Frank must decide** | `docs/CONSOLIDATION_PLAN.md` (plan only - nothing moved) |
 | ⛔ **Cash Cat is RETRACTED - never cite it as a hit** | `docs/BACKLOG.md` A37 |
@@ -298,6 +305,10 @@ is untouched (`project_usage 0`), and the consumable read credits are at zero.
 ⛔ **No credential unlocks full-archive search.** The ask is a **credit top-up**,
 not a subscription — and it is Frank's call alone.
 
+⛔ **Solana now carries VERSION-1 transactions (~5%, measured 2026-09-19).** Any
+`getTransaction` must ask for `maxSupportedTransactionVersion: 1`; with `0` the
+node returns -32015 and the transaction silently becomes a "fetch failure".
+
 ⛔ **`XAI_API_KEY` is DEAD** — `400 Incorrect API key` from `api.x.ai/v1/models`.
 Present in the same three files. It needs replacing, not finding.
 
@@ -313,7 +324,9 @@ not added there does not exist) · `paper.py` / `paperv2.py` (simulation ledgers
 `detector.py` (D1/D2) · `onchain_reserves.py` (quote-side depth) ·
 `liveness.py` (origin tagging; `UNATTENDED = ("runner","scheduled")`) ·
 `dashboard.py` · `sources.py` (all HTTP; sets the UA correctly) · ⭐ `market.py`
-(market-wide snapshot, keyless) · `crossingdepth.py` (re-links historical
+(market-wide snapshot, keyless) · ⭐ `universe.py` (the tracked universe) ·
+⭐ `graduations.py` (graduation ledger) · `volintegrity.py` (volume M1/M2 under
+the pre-committed rule; validation, not a live gate) · `crossingdepth.py` (re-links historical
 crossings to the depth measured at them) · `coverage_probe.py` (launch coverage
 from pump.fun's own signers).
 
@@ -367,6 +380,8 @@ python dashboard.py                                       # rebuild data/dashboa
 python -c "import paper; print(paper.summary())"          # paper ledger counts
 python run_tests.py                                       # ⭐ EVERY suite + proves data/ was untouched
 python test_stages.py                                     # SKILL.md must match staged_commands()
+python test_references.py                                 # every file the repo names exists (run before ANY doc move)
+python universe.py --gate-seconds 60                      # one universe pass (writes data/universe/)
 gh run list --workflow=collect.yml --limit 10             # runner state
 ```
 
@@ -460,6 +475,14 @@ by `paperv3`, `devwallet` by nothing at all, and `paperv3` is scheduled by
 nothing. **A module that only runs when called by hand has not shipped**, and
 passing tests are not evidence that it is in the system.
 
+⛔⛔ **Audited 2026-09-19: 13 of the 48 rows marked SHIPPED were not.** 11 run
+unattended and write files **no page reads** (market, clusters, crossing depth,
+v3, holders, `dashboard.html`); 2 are hand-run only. They are IN PROGRESS now.
+**The test for "shipped" is: it runs unattended AND its output reaches the site
+or Discord.** Before marking anything SHIPPED, name the page or message it
+reaches. The worst case: `exit_depth_at_crossing` lands on every claim and the
+site's crossings panel ignores it, so production still shows 0 verifiable.
+
 ## Session protocol
 
 ⛔ **This repo has one session. Everything routes through it.** Do not start a
@@ -472,6 +495,9 @@ deliverable. The goal is something **robust and genuinely novel**, not an
 indicator.
 
 **The deliverable is a site**, not chat output: enter a CA, get the analysis,
-plus live market information. Design toward one analyzer with two triggers —
+plus live market information. ⭐ **From 2026-09-19 its centre is the tracked
+universe** (Frank: *"all coins over $1M market cap tracked and the top trending
+ones always visible"*): trending on top, narratives read off the universe, the
+launch-side sections below the fold. `docs/CONSOLIDATION_PLAN.md` §8. Design toward one analyzer with two triggers —
 `analyze(CA) -> report`, called both by the automatic crossing detector and by
 Frank pasting an address. `check.py` already has that shape.

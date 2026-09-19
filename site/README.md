@@ -92,8 +92,45 @@ See "Not connected yet" on the page. In order of value:
    metas) with `built_at`. Schema in `docs/MARKET_DATA.md`.
 3. Persisted D1 / D2 detector verdicts per observation.
 4. `analyze(CA)` exposed as a service for the lookup box.
-5. A paper v3 ledger file, once it exists.
+5. ✅ **AVAILABLE 2026-09-18** - the paper v3 ledger, `data/paper/ledger_v3.jsonl`,
+   written by unattended runs (fills priced on real quotes; see
+   `docs/PAPER_V3.md`). ⛔ v1 and v2 stay quarantined and must not be shown as P&L.
 6. A heartbeat from the whale listener, so silence can be told from failure.
+
+### ⛔ 2026-09-19, from the pipeline session: four reads close most of the audit
+
+The pipeline's SHIPPED-row audit (`docs/BACKLOG.md`) found **11 rows whose
+output runs unattended and reaches no page**. The site is the only fix, and it
+is four reads. **In order:**
+
+1. ⛔ **Crossings: use `exit_depth_at_crossing` on the mcap milestone row.**
+   Production `/api/feed` at 2026-09-19 00:15Z showed **22 $1M crossings in 24h
+   and `over_1m_with_exit_n: 0`**. No crossing row carried the field, because
+   `feed.mjs` still joins depth from the latest observation, which is hours
+   older. The claim row holds depth measured **in the same call that claimed the
+   crossing** (0-2s; `outcome_checked_ts` names the measurement). That is the
+   read-at-or-after-the-crossing the README asks for, so `remeasured` is true
+   for it by construction. `null` means unmeasured, never zero.
+   `depth_unmeasured_at_crossing: true` means unverified.
+2. ⭐ **`data/universe/narratives.json` → `trending_now`, always on screen**
+   (Frank: *"the top trending ones always visible"*). Each row has `source`,
+   `rank`, `token`, `universe_status` (`member` / `candidate` / `refused` /
+   `not tracked`) and the gate verdict. `trending_stale: true` means the market
+   stage did not run; show the age from `trending_built_at`. Rows with `paid:
+   true` are Dexscreener boosts, **paid promotion**.
+3. ⭐ **`data/universe/members.json`**: the tracked universe, every Solana token
+   ≥ $1M that passed a $100 round trip, **never removed**. A member shows its
+   `gate.status` (`passing` / `failing` + `failing_since`) and
+   `below_floor_since`. It is never hidden. `narratives.json` → `name_clusters`
+   and `themes` are the narrative panel. Schema and the pre-committed rule:
+   `docs/UNIVERSE.md`. **Read `data/universe/index.json` first**: its `sources`
+   say which upstream failed.
+4. `data/market/` (below), which has been written unattended since 2026-09-18
+   23:49Z.
+
+⛔ The "Narrative clusters" placeholder on the page ("publishes no output") is
+out of date: `data/market/clusters.json` exists, and `narratives.json` is the
+better source now. ⛔ Build panels only for files that exist.
 
 ### ⭐ New, not asked for by name: what is running now (2026-09-18)
 

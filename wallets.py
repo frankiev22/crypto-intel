@@ -28,7 +28,7 @@ def early_buyers(token_mint, max_sigs=200):
     for s_ in sigs:
         try:
             tx = _rpc("getTransaction", [s_["signature"],
-                    {"encoding":"jsonParsed","maxSupportedTransactionVersion":0}]).get("result")
+                    {"encoding":"jsonParsed","maxSupportedTransactionVersion":1}]).get("result")
             if not tx: continue
             for acct in tx["transaction"]["message"]["accountKeys"]:
                 if acct.get("signer"):

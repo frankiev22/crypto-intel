@@ -92,6 +92,7 @@ def fake_rpc(method, params, tries=3):
     raise AssertionError(method)
 
 
+REAL_RPC = G.rpc
 G.rpc = fake_rpc
 
 
@@ -114,6 +115,49 @@ k = [G.classify(x["tx"])[0] for x in CHAIN]
 check("CreatePool + one non-SOL mint -> graduation", k[0] == "graduation")
 check("the authority's no-op race tx -> not_target, never a graduation", k[3] == "not_target")
 check("⛔ two mints -> ambiguous, never guessed", k[5] == "ambiguous" and G.classify(CHAIN[5]["tx"])[1] is None)
+usdc_tx = {"meta": {"logMessages": ["Program log: Instruction: CreatePool"],
+                    "preTokenBalances": [{"mint": "PumpMintAbc" + "x" * 29 + "pump"}, {"mint": G.USDC}]}}
+check("a USDC-quoted pool is a graduation of the OTHER mint - USDC is a quote, like SOL",
+      G.classify(usdc_tx)[:2] == ("graduation", "PumpMintAbc" + "x" * 29 + "pump"))
+
+section("1b. an RPC error is an answer; a transport error is retried")
+import io
+import urllib.error
+_calls = {"n": 0}
+
+
+class _Resp(io.BytesIO):
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *a):
+        return False
+
+
+def _urlopen_rpc_error(req, timeout=None):
+    _calls["n"] += 1
+    return _Resp(json.dumps({"jsonrpc": "2.0", "id": 1, "error": {
+        "code": -32015, "message": "Transaction version (1) is not supported"}}).encode())
+
+
+def _urlopen_down(req, timeout=None):
+    _calls["n"] += 1
+    raise urllib.error.URLError("down")
+
+
+_real_urlopen = G.urllib.request.urlopen
+G.urllib.request.urlopen = _urlopen_rpc_error
+res, err = REAL_RPC("getTransaction", ["x", {}])
+check("⛔ a -32015 comes back once, not retried three times",
+      res is None and _calls["n"] == 1 and "-32015" in err, (_calls, err))
+_calls["n"] = 0
+G.urllib.request.urlopen = _urlopen_down
+res, err = REAL_RPC("getTransaction", ["x", {}])
+check("a transport failure is retried, then reported", res is None and _calls["n"] == 3 and err, (_calls, err))
+G.urllib.request.urlopen = _real_urlopen
+src = open(G.__file__, encoding="utf-8").read()
+check("⛔ transactions are requested at version 1 (5% of the stream is v1)",
+      '"maxSupportedTransactionVersion": 1' in src and '"maxSupportedTransactionVersion": 0' not in src)
 
 section("2. first run, cut by the budget: processed oldest-first, the rest owed")
 m1 = G.build(verbose=False, now=T0 + 20, seconds=4)
@@ -151,6 +195,21 @@ check("recent_mints() returns graduations since a time, from disk",
 reg = json.load(open(liveness.REG, encoding="utf-8")).get("graduations.ledger") or {}
 check("liveness counts ROWS written, across the three passes",
       reg.get("firings") == 3 and reg.get("rows_total") == len(rows), (reg.get("rows_total"), len(rows)))
+
+OLD_AMB = {"kind": "ambiguous", "block_time": T0 + 9, "mints": [G.USDC, "LegacyAmbig" + "y" * 33]}
+with open(os.path.join(G.DIR, "2026-09.jsonl"), "a", encoding="utf-8") as f:
+    f.write(json.dumps(OLD_AMB) + chr(10))
+check("an old 'ambiguous' row with one non-quote mint is read as that mint - from its own record",
+      ("LegacyAmbig" + "y" * 33) in G.recent_mints(T0))
+
+section("3b. C13 on every pass: what share of graduations the journal ever saw")
+cov = G.coverage(T0 + 2 * 3600 + 20, {CHAIN[0]["mint"], CHAIN[1]["mint"], "NotAGraduation"})
+g_in = [x["mint"] for x in CHAIN if G.classify(x["tx"])[0] == "graduation" and not x["err"]]
+check("the WHOLE ledger in the window is the denominator, not a sample",
+      cov.get("graduations") == len(g_in) and cov.get("seen_by_journal") == 2, cov)
+check("it carries a Wilson interval", cov.get("wilson95") and cov["wilson95"][0] <= cov["rate"] <= cov["wilson95"][1])
+check("⛔ no journal loaded -> 'not computed', never 0%",
+      G.coverage(T0, None)["status"].startswith("not computed"))
 
 section("4. ⛔ a paging cap records the hole instead of stepping over it")
 for i in range(10, 16):

@@ -196,7 +196,24 @@ def snapshot(t, now):
         "top_holders_pct": _r(_num(a.get("topHoldersPercentage")), 2),
         "mint_authority_disabled": a.get("mintAuthorityDisabled"),
         "freeze_authority_disabled": a.get("freezeAuthorityDisabled"),
+        "cap_backing_pct": cap_backing(_num(t.get("liquidity")), _num(t.get("mcap"))),
     }
+
+
+def cap_backing(liq, mcap):
+    """⛔ What the pool could pay out if EVERY holder sold, as a % of the cap.
+
+    Found on the first seed (2026-09-19): 30 members from the graduation ledger,
+    tickers reused across up to 6 contracts, ~2,000 holders each with the top 10
+    holding a median 9.8% (other members: 34.8%), claimed $3.53B between them -
+    $827M for one - on pools holding ~$640k of SOL. Supply spread over a wallet
+    farm, a pool holding almost none of it: price x supply is fiction, and a $100
+    round trip still passes at 0.6%. The quote half of Jupiter's reported
+    liquidity over the cap. DESCRIPTIVE - it overlaps real coins (their p10 is
+    0.087%), so it is shown on every row and gates nothing (docs/UNIVERSE.md 3a)."""
+    if liq is None or not mcap:
+        return None
+    return round(liq / 2 / mcap * 100, 4)
 
 
 def _mcap(e):
@@ -371,6 +388,9 @@ def apply_verdict(e, res, now, origin):
     prev_gate = e.get("gate") or {}
     g = {"verdict": v, "rt_cost_pct": res.get("rt_cost_pct"), "usd_back": res.get("usd_back"),
          "probe_usd": res.get("probe_usd"), "ts": int(res.get("ts") or now),
+         # ⭐ chain supply x the price the $100 buy actually got (A3). Not
+         # Jupiter's mcap: nothing self-reported goes into it. None = unknown.
+         "fdv_onchain_usd": res.get("fdv_onchain_usd"),
          "error": None if v else (res.get("error") or "no verdict"), "origin": origin}
     ev = {"ts": int(now), "token": e["token"], "event": "gate", "verdict": v,
           "rt_cost_pct": g["rt_cost_pct"], "status_before": before, "origin": origin}
@@ -389,6 +409,7 @@ def apply_verdict(e, res, now, origin):
             e["admitted_ts"] = int(now)
             e["admitted_mcap_usd"] = _mcap(e)
             e["admitted_rt"] = {"verdict": v, "rt_cost_pct": g["rt_cost_pct"]}
+            e["admitted_fdv_onchain_usd"] = g["fdv_onchain_usd"]
             g["status"] = "passing"
             ev["event"] = "admitted"
             if before == "refused":
@@ -415,12 +436,19 @@ def apply_verdict(e, res, now, origin):
     return ev
 
 
-def gate(tokens, now, trending, budget_s, rt=None, reuse=None, origin=None):
+def _fdv_onchain(m, res):
+    import chainfields
+    v = chainfields.market_cap(m, rt=res)
+    return None if v is None else round(v)
+
+
+def gate(tokens, now, trending, budget_s, rt=None, reuse=None, origin=None, fdv=None):
     """Quote down the priority queue until the budget is spent. Returns
     (events, stats). `reuse` is {mint: round_trip dict} already quoted this pass."""
     if rt is None:
         import chainfields
         rt = chainfields.round_trip
+    fdv = _fdv_onchain if fdv is None else fdv
     order = gate_queue(tokens, now, trending)
     events, t0, n_q, n_reused = [], time.time(), 0, 0
     for m in order:
@@ -435,6 +463,11 @@ def gate(tokens, now, trending, budget_s, rt=None, reuse=None, origin=None):
             except Exception as ex:
                 res = {"error": type(ex).__name__}
             n_q += 1
+            if res.get("verdict") == GATE_PASS and res.get("px_per_raw"):
+                try:
+                    res = dict(res, fdv_onchain_usd=fdv(m, res))
+                except Exception:
+                    res = dict(res, fdv_onchain_usd=None)
         events.append(apply_verdict(tokens[m], res, time.time(), origin))
     elapsed = time.time() - t0
     stats = {"queue": len(order), "quoted": n_q, "reused_from_market": n_reused,
@@ -458,7 +491,12 @@ def _brief(m, e):
     return {"token": m, "symbol": e.get("symbol"), "symbol_flags": e.get("symbol_flags"),
             "name": e.get("name"), "status": e.get("status"), "class": e.get("class"),
             "gate": g.get("status"), "gate_verdict": g.get("verdict"), "gate_ts": g.get("ts"),
-            "mcap_usd": last.get("mcap_usd"), "change_pct": last.get("change_pct"),
+            "mcap_usd": last.get("mcap_usd"), "cap_backing_pct": last.get("cap_backing_pct"),
+            "liquidity_usd_reported": last.get("liquidity_usd_reported"),
+            "ticker_contracts": e.get("ticker_contracts"),
+            "top_holders_pct": last.get("top_holders_pct"),
+            "from_graduation_ledger": "graduation" in (e.get("sources") or []),
+            "change_pct": last.get("change_pct"),
             "volume_usd_24h": (last.get("volume_usd") or {}).get("24h"),
             "trending": e.get("trending") or []}
 
@@ -468,7 +506,14 @@ def _agg(members):
     tot = sum(x for x, _ in mc if x)
     w = [(x, c) for x, c in mc if x and c is not None]
     wsum = sum(x for x, _ in w)
+    liq = [b.get("liquidity_usd_reported") for b in members if b.get("liquidity_usd_reported") is not None]
+    tops = sorted(b["top_holders_pct"] for b in members if b.get("top_holders_pct") is not None)
     return {"mcap_usd": round(tot) if tot else None,
+            # ⛔ never the cap without what backs it: the quote half of reported liquidity
+            "mcap_backed_usd": round(sum(liq) / 2) if liq else None,
+            "shared_ticker_n": sum(1 for b in members if (b.get("ticker_contracts") or 0) > 1),
+            "from_graduation_ledger_n": sum(1 for b in members if b.get("from_graduation_ledger")),
+            "median_top_holders_pct": tops[len(tops) // 2] if tops else None,
             "volume_usd_24h": round(sum(b["volume_usd_24h"] or 0 for b in members)) or None,
             # mcap-weighted: what the narrative as a whole did, not its best coin
             "change_24h_pct_mcap_weighted": round(sum(x * c for x, c in w) / wsum, 2) if wsum else None,
@@ -535,7 +580,7 @@ def themes(tokens):
 # --------------------------------------------------------------------------
 # The pass
 # --------------------------------------------------------------------------
-def build(verbose=True, now=None, rt=None, gate_s=None, discover=True):
+def build(verbose=True, now=None, rt=None, gate_s=None, discover=True, fdv=None):
     now = time.time() if now is None else now
     t0 = time.time()
     CALLS["n"] = 0
@@ -646,11 +691,21 @@ def build(verbose=True, now=None, rt=None, gate_s=None, discover=True):
                                    "mcap_usd": round(cur), "below_since": e["below_floor_since"],
                                    "origin": origin})
                 e.pop("below_floor_since", None)
+    # Standing rule 2 inside the universe: how many tracked contracts carry this
+    # ticker. The farm above reuses one ticker across up to six.
+    tick = {}
+    for e in tokens.values():
+        k = str(e.get("symbol") or "").strip().upper()
+        if k:
+            tick[k] = tick.get(k, 0) + 1
     for m, e in tokens.items():
         e["trending"] = marks.get(m, [])
+        k = str(e.get("symbol") or "").strip().upper()
+        e["ticker_contracts"] = tick.get(k) if k else None
 
     # ---- 4. the gate ------------------------------------------------------
-    gate_events, gstats = gate(tokens, now, marks, gate_s, rt=rt, reuse=reuse, origin=origin)
+    gate_events, gstats = gate(tokens, now, marks, gate_s, rt=rt, reuse=reuse, origin=origin,
+                               fdv=fdv)
 
     # ---- 5. write, then read back ----------------------------------------
     counts = {s: sum(1 for e in tokens.values() if e.get("status") == s)
@@ -690,6 +745,10 @@ def build(verbose=True, now=None, rt=None, gate_s=None, discover=True):
     narr = dict(head, trending_built_at=_iso(trending_ts), trending_stale=stale_tr,
                 caveats=["Descriptive only. Clusters are ordered by how many members are trending "
                          "now, then 24h volume - size and activity, never a quality ranking.",
+                         "Market cap is price x supply and can be fiction. Never show or sum it without "
+                         "cap_backing_pct / mcap_backed_usd beside it: 30 members of the first seed "
+                         "claimed $3.53B on pools holding a fraction of a percent of that "
+                         "(docs/UNIVERSE.md 3a).",
                          "Dexscreener boosts are PAID promotion.",
                          "Themes are Dexscreener's categories; it returns only the top pairs of each.",
                          "A trending token 'not tracked' is under $1M or was never priced by Jupiter."],

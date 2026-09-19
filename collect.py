@@ -395,7 +395,10 @@ def graduations_stage(verbose=True):
         print(f"  graduations: skipped, {STAGE_STOPS['graduations']}")
         return
     try:
-        graduations.build(verbose=verbose, seconds=min(graduations.SECONDS, left / 2))
+        # ~60% of what is left, up to the ledger's own cap. Measured 2026-09-19:
+        # ~64 authority txs an hour at ~0.5s each on the keyless public RPC, so a
+        # 3.4h median gap owes ~110s. Backlog and lag are on index.json.
+        graduations.build(verbose=verbose, seconds=min(graduations.SECONDS, left * 0.6))
     except Exception as e:
         print(f"  graduation ledger failed (non-fatal): {type(e).__name__}: {e}")
 

@@ -256,5 +256,31 @@
   "last_unattended_rows_ts": 1789775422,
   "last_unattended_ts": 1789775422,
   "last_unattended_at": "2026-09-18T23:50:22+00:00"
+ },
+ "graduations.ledger": {
+  "last_ts": 1789781698,
+  "last_at": "2026-09-19T01:34:58+00:00",
+  "count": 1817,
+  "first_ts": 1789778912,
+  "detail": "231 graduations of 312 processed, backlog 0",
+  "last_origin": "manual",
+  "firings": 2,
+  "rows_total": 1817,
+  "empty_firings": 0,
+  "last_rows_ts": 1789781698,
+  "last_rows_at": "2026-09-19T01:34:58+00:00"
+ },
+ "universe.members": {
+  "last_ts": 1789781789,
+  "last_at": "2026-09-19T01:36:29+00:00",
+  "count": 1379,
+  "first_ts": 1789781369,
+  "detail": "699 members, 0 candidates, 19 quoted, 0 deferred",
+  "last_origin": "manual",
+  "firings": 2,
+  "rows_total": 1379,
+  "empty_firings": 0,
+  "last_rows_ts": 1789781789,
+  "last_rows_at": "2026-09-19T01:36:29+00:00"
  }
 }

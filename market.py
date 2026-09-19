@@ -115,7 +115,7 @@ CAVEATS = {
     "boosts": ("Dexscreener boosts are PAID promotion. Someone paid for attention; "
                "that is not organic trending and is often a warning."),
     "clusters": ("Our clusters are built from our own journal, which sees ~1.3% of "
-                 "launches (docs/COVERAGE.md) - a cluster here is a floor on the "
+                 "launches (COVERAGE.md) - a cluster here is a floor on the "
                  "wave, not its size. Dexscreener metas are theirs and span every "
                  "chain."),
     "symbols": ("symbol is raw and display-only. Key on `token`. symbol_flags marks "
@@ -665,7 +665,7 @@ def build(verbose=True, now=None, rt=None, verify_s=None):
         SOURCES["clusters.ours"] = {"status": "error", "n": 0, "error": type(e).__name__}
     metas = dexscreener_metas()
     LAST.clear()
-    LAST.update(ts=now, universe=universe, lists=lists, verified=verified)
+    LAST.update(ts=now, universe=universe, lists=lists, verified=verified, seen=seen)
 
     head = {"built_at": built, "built_ts": int(now), "origin": origin}
     _write("movers.json", dict(head, universe_n=len(universe), sol_change_pct=sol,

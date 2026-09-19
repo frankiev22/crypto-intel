@@ -42468,3 +42468,7 @@
 {"name": "news.freshness", "ts": 1789775700, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
 {"name": "detector.drift", "ts": 1789775701, "n": 1, "detail": "stable", "origin": "scheduled"}
 {"name": "dashboard.build", "ts": 1789775703, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "graduations.ledger", "ts": 1789778912, "n": 1453, "detail": "944 graduations of 1453 processed, backlog 230", "origin": "manual"}
+{"name": "universe.members", "ts": 1789781369, "n": 680, "detail": "680 members, 0 candidates, 903 quoted, 0 deferred", "origin": "manual"}
+{"name": "graduations.ledger", "ts": 1789781698, "n": 364, "detail": "231 graduations of 312 processed, backlog 0", "origin": "manual"}
+{"name": "universe.members", "ts": 1789781789, "n": 699, "detail": "699 members, 0 candidates, 19 quoted, 0 deferred", "origin": "manual"}

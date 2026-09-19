@@ -89,6 +89,16 @@ median TRADEABLE token loses 0.57% on a $100 round trip.
 
 **None of them answers "what is every real $1M coin doing right now".**
 
+⚠️ **Not to be confused with `PRECOMMIT_universe_v1.md` (2026-09-10)**, which
+defines the *launch-side* bands, graduated and approaching, for the old
+dashboard. It is a different population and does not conflict with this file.
+**Its own pre-committed size bar can now be tested:** it called the band
+*"useless as a dashboard above ~500"* new contracts a day. The graduation
+ledger's seed measured **944 graduations in 21.0h (~45 an hour, ~1,070 a day)**.
+The graduated band therefore fails the bar it set for itself. The $1M
+universe, which adds tens of tokens a day, is the second cut that file said
+would be needed.
+
 ---
 
 ## 3. ⛔ Membership rule — PRE-COMMITTED before the first seed run
@@ -110,6 +120,52 @@ median TRADEABLE token loses 0.57% on a $100 round trip.
 - **Quotes only. Nothing is executed and no wallet exists.**
 - `class` comes from Jupiter's own tags: `base` (SOL, stables, LSTs), `stock`,
   or `token`. All three are tracked, and narratives use `token` only.
+
+### 3a. ⛔ What the gate does NOT verify: the market cap — found on the first seed, 2026-09-19
+
+**Seed result (manual run, 00:33–01:29Z):** 903 candidates quoted, **680
+admitted (75.3% [72.4, 78.0])**, 223 refused (NO_BUY_ROUTE 142, TOTAL_LOSS 53,
+COSTLY 19, NO_SELL_ROUTE 9). The rate is higher than the sample's 65% because
+the rule's Jupiter-first market cap drops most of the CoinGecko-only tail.
+
+⛔ **And the gate admitted a wallet farm.** 30 members came from the graduation
+ledger and share a ticker with another member: TDOF ×6, NTDA ×5, WOTF ×4, ECTF
+×3, WSOS ×3, WOFI, USWR, VOFI, USDF ×2. Their profile:
+
+- **graduated within the last day**;
+- about **2,000 holders** each;
+- the top 10 holders own a **median of 9.8%** (every other member: 34.8%);
+- Jupiter's organic score is **0**;
+- together they **claim $3.53B** of market cap, **$827M for one**, against pools
+  holding around $640k of SOL;
+- **5 of them are in the top 20 tokens by market cap**.
+
+The supply is spread across a wallet farm and the pool holds almost none of
+it. Price × supply is fiction, yet a $100 round trip still passes at 0.6%,
+because the pool's SOL is real.
+
+**So the gate does what Frank asked, verifying the liquidity at his size, and
+it does not verify the market cap.** Nothing clean gates the market cap:
+
+- Cap backing (below) overlaps: farm median 0.51% against real members' 1.85%,
+  but the real members' 10th percentile is 0.087%.
+- Organic score 0 is shared by 141 of 370 Jupiter-verified members.
+- Any cut chosen now would be chosen after seeing this data.
+
+**Therefore, from 2026-09-19, and not a gate:**
+
+- Every member carries **`cap_backing_pct`**: the quote half of Jupiter-reported
+  liquidity over the cap, i.e. what the pool could pay out if every holder sold.
+- Every member also carries **`ticker_contracts`**: how many tracked contracts
+  share its ticker (standing rule 2).
+- Every cluster and theme carries **`mcap_backed_usd`**, `shared_ticker_n`,
+  `from_graduation_ledger_n` and `median_top_holders_pct`.
+- ⛔ **No page may show, sort or sum a market cap without its backing beside
+  it.** The caveat is published in `narratives.json`.
+- ⛔ **Decision for Frank** (CONSOLIDATION_PLAN §7g): exclude the farm signature
+  from the universe, which needs a detector validated at n ≥ 30 per arm first,
+  or keep showing it flagged. Until he decides, it is shown flagged, because
+  hiding it would be choosing for him.
 
 ---
 

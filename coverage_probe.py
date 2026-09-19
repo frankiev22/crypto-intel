@@ -25,7 +25,13 @@ MEASURED 2026-09-18 (window 2026-09-17 ~21:00Z -> 2026-09-18 ~21:00Z):
                  seen 4 / 317  = 1.26%  Wilson95 [0.49%, 3.20%]
     graduations  seen 5 / 257  = 1.95%  Wilson95 [0.83%, 4.47%]
 Triangulates with the arithmetic: median window 190s/pass (n=30, p90 288s) x
-~7 passes/day = 1.54%. See docs/COVERAGE.md.
+~7 passes/day = 1.54%. See COVERAGE.md (repo root).
+
+⚠️ THE 2026-09-18 RUN ASKED FOR maxSupportedTransactionVersion 0. Measured
+2026-09-19, ~5% of both streams are v1 transactions (3/60 creates, 3/60
+authority txs) and a v0 request fails on them, so they landed in `fetch_failed`
+and out of both numerator and denominator. The rates above move only if v1
+launches differ in whether our journal saw them; the next run uses version 1.
 
 ⚠️ NOT A GRADUATION RATE. 1,647 migration-authority transactions in 24h, of
 which ~72% carry CreatePool, implies ~1,100 graduations a day - ~3% of creates,
@@ -112,7 +118,7 @@ def main(n_sample=400):
         return out
 
     def mint_of(sig, pre):
-        t = rpc("getTransaction", [sig, {"maxSupportedTransactionVersion": 0,
+        t = rpc("getTransaction", [sig, {"maxSupportedTransactionVersion": 1,
                                           "encoding": "json"}])
         if not t:
             return None, None

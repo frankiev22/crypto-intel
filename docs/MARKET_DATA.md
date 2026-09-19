@@ -9,6 +9,11 @@ Written by `market.py` (movers, volume, trending, clusters, majors) and
 `journal.record_outcome()` / `crossingdepth.py` (crossing depth). Tested by
 `test_market.py` and `test_crossingdepth.py`, on the files as written.
 
+⭐ **2026-09-19: the tracked universe** — every Solana token ≥ $1M that passes a
+$100 round trip, never removed, plus `trending_now` and narratives read off it —
+is in `data/universe/`. Schema and the pre-committed gate: `docs/UNIVERSE.md`.
+The trending lists below are what it marks as trending.
+
 ## How fresh is it
 
 Every file carries `built_at` (ISO), `built_ts` (epoch) and `origin`
