@@ -29,8 +29,10 @@ import datetime as dt
 import json
 import os
 import sys
+import threading
 import time
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import config
@@ -53,6 +55,12 @@ PAGE_LIMIT = 1000         # getSignaturesForAddress maximum
 PAGE_CAP = 20             # 20,000 signatures - ~12 days of this authority
 
 CALLS = {"n": 0, "errors": 0}
+_CALL_LOCK = threading.Lock()
+# Transactions fetched at once. Each worker still paces itself by _gap(), so
+# four workers sit inside the free tier's ~10/s. ⛔ Results are consumed in
+# INPUT ORDER whatever order they arrive in: the cursor may only advance across
+# a contiguous prefix of processed signatures, or the ledger grows a hole.
+WORKERS = int(os.environ.get("CRYPTO_GRAD_WORKERS", "4"))
 
 
 def _rpc_url():
@@ -72,19 +80,22 @@ def rpc(method, params, tries=3):
     body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode()
     err = None
     for i in range(tries):
-        CALLS["n"] += 1
+        with _CALL_LOCK:
+            CALLS["n"] += 1
         try:
             req = urllib.request.Request(_rpc_url(), data=body, headers={
                 "Content-Type": "application/json", "User-Agent": "crypto-intel/1.0"})
             with urllib.request.urlopen(req, timeout=40) as f:
                 d = json.loads(f.read())
         except Exception as e:
-            CALLS["errors"] += 1
+            with _CALL_LOCK:
+                CALLS["errors"] += 1
             err = type(e).__name__ + (f" {e.code}" if hasattr(e, "code") else "")
             time.sleep(1.5 * (i + 1))
             continue
         if "error" in d:
-            CALLS["errors"] += 1
+            with _CALL_LOCK:
+                CALLS["errors"] += 1
             return None, f"rpc error {(d.get('error') or {}).get('code')}"
         return d.get("result"), None
     return None, err
@@ -176,9 +187,10 @@ def page_since(cursor_sig, lower_ts):
     return out, failed, None, truncated
 
 
-def build(verbose=True, now=None, seconds=None):
+def build(verbose=True, now=None, seconds=None, workers=None):
     now = time.time() if now is None else now
     seconds = SECONDS if seconds is None else seconds
+    workers = WORKERS if workers is None else max(1, int(workers))
     t0 = time.time()
     CALLS["n"] = CALLS["errors"] = 0
     origin = os.environ.get("CRYPTO_ORIGIN") or liveness.origin()
@@ -224,29 +236,47 @@ def build(verbose=True, now=None, seconds=None):
             r["retried"] = True
         return r
 
+    def batch(items, is_retry):
+        """Fetch a batch at once, and hand the results back IN INPUT ORDER.
+
+        ⛔ The order is not cosmetic. The cursor advances to the last
+        signature consumed, so consuming out of order would advance it past a
+        signature that was never fetched and the ledger would lose it silently.
+        """
+        if workers <= 1 or len(items) == 1:
+            return [one(x, is_retry) for x in items]
+        with ThreadPoolExecutor(max_workers=min(workers, len(items))) as ex:
+            return list(ex.map(lambda x: one(x, is_retry), items))
+
     still_failing = []
-    for item in retry:
+    i = 0
+    while i < len(retry):
         if time.time() - t0 >= seconds / 3:
-            still_failing.append(item)
-            continue
-        r = one(item, True)
-        if r["kind"] == "fetch_failed":
-            still_failing.append(item)
-            continue
-        counts["retried_ok"] += 1
-        counts[r["kind"]] += 1
-        rows.append(dict(r, recorded_ts=int(time.time()), origin=origin))
+            still_failing.extend(retry[i:])
+            break
+        chunk = retry[i:i + workers]
+        for item, r in zip(chunk, batch(chunk, True)):
+            if r["kind"] == "fetch_failed":
+                still_failing.append(item)
+                continue
+            counts["retried_ok"] += 1
+            counts[r["kind"]] += 1
+            rows.append(dict(r, recorded_ts=int(time.time()), origin=origin))
+        i += len(chunk)
     done = 0
-    for item in sigs:
+    i = 0
+    while i < len(sigs):
         if time.time() - t0 >= seconds:
             break
-        r = one(item, False)
-        counts[r["kind"]] += 1
-        if r["kind"] == "fetch_failed":
-            still_failing.append({"sig": item["sig"], "block_time": item.get("block_time")})
-        rows.append(dict(r, recorded_ts=int(time.time()), origin=origin))
-        cur["sig"], cur["block_time"] = item["sig"], item.get("block_time")
-        done += 1
+        chunk = sigs[i:i + workers]
+        for item, r in zip(chunk, batch(chunk, False)):
+            counts[r["kind"]] += 1
+            if r["kind"] == "fetch_failed":
+                still_failing.append({"sig": item["sig"], "block_time": item.get("block_time")})
+            rows.append(dict(r, recorded_ts=int(time.time()), origin=origin))
+            cur["sig"], cur["block_time"] = item["sig"], item.get("block_time")
+            done += 1
+        i += len(chunk)
     _append(rows)
     backlog = len(sigs) - done
     cur["retry"] = still_failing[-RETRY_CAP:]
@@ -266,7 +296,8 @@ def build(verbose=True, now=None, seconds=None):
          "accounted": done + backlog == len(sigs),
          "cursor_block_time": cur.get("block_time"), "lag_s": round(lag) if lag is not None else None,
          "rpc": "helius" if "helius" in _rpc_url() else "public", "rpc_calls": CALLS["n"],
-         "rpc_errors": CALLS["errors"], "elapsed_s": round(time.time() - t0, 1), "totals": tot}
+         "rpc_errors": CALLS["errors"], "elapsed_s": round(time.time() - t0, 1),
+         "workers": workers, "budget_s": round(seconds, 1), "totals": tot}
     try:
         import market
         last = getattr(market, "LAST", None) or {}

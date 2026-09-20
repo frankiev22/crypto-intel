@@ -107,6 +107,11 @@ COMPONENTS = {
                              "per-outlet news staleness was checked"),
     "fieldguard.check":     (12, "2026-09-07T12:05:00Z", "measured",
                              "produced fields were diffed against stored fields"),
+    # ⭐ THE FUNNEL, 2026-09-20. Coverage and queue depth as first-class rows.
+    # A pass that reaches 35% of what it sees is not a healthy pass, and until
+    # this component existed nothing on disk said which it had been.
+    "funnel.recorded":      (12, "2026-09-20T06:00:00Z", "measured",
+                             "a pass wrote what it reached and what it dropped"),
     # ⭐ V3, SCHEDULED FROM 2026-09-18. The sweep runs every pass, so it has a
     # real threshold: 12h matches paper.sweep, which shares the stage.
     # ⭐ THE ONE ARTIFACT FRANK ACTUALLY LOOKS AT. Rebuilt every pass from

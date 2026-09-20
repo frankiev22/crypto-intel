@@ -43,6 +43,9 @@ def section(t):
 CLOCK = {"t": 1_789_000_000.0}
 G.time = types.SimpleNamespace(time=lambda: CLOCK["t"], sleep=lambda s: None)
 G._gap = lambda: 0
+# Sections 1-5 fetch one transaction at a time, so the fake clock makes the
+# budget exact. Section 6 is where the batched path is tested, on its own.
+G.WORKERS = 1
 
 T0 = 1_789_000_000
 # The chain, newest LAST. Each: sig, blockTime, err, and the tx it resolves to.
@@ -234,6 +237,70 @@ except RuntimeError:
     raised = True
 check("build() refuses - a fresh start would double-record the last 24h",
       raised and len(ledger()) == n_before)
+
+section("6. ⭐ batched fetches: order is preserved, and the budget still bites")
+# ⛔ The batch completes in REVERSE order - the oldest signature is answered
+# last - so anything that consumed results as they arrived would write the
+# ledger backwards and advance the cursor past signatures it never fetched.
+import threading
+import time as _real_time
+
+for i in range(16, 40):
+    add(i)
+with open(os.path.join(G.DIR, "cursor.json"), "w", encoding="utf-8") as f:
+    json.dump({"sig": "sig00015", "block_time": T0 + 15, "retry": []}, f)
+G.time = types.SimpleNamespace(time=_real_time.time, sleep=lambda s: None)
+_seq, _seq_lock = [], threading.Lock()
+
+
+def slow_rpc(method, params, tries=3):
+    if method == "getTransaction":
+        sig = params[0]
+        n = int(sig[3:])
+        # the first block answers in reverse (later signature -> sooner); the
+        # second block is a flat 50ms so the budget check below is exact
+        _real_time.sleep(0.02 * (40 - n) if n < 40 else 0.05)
+        with _seq_lock:
+            _seq.append(sig)
+        return next(x["tx"] for x in CHAIN if x["signature"] == sig), None
+    return fake_rpc(method, params, tries)
+
+
+G.rpc = slow_rpc
+n_before = len(ledger())
+m5 = G.build(verbose=False, now=T0 + 200, seconds=100, workers=4)
+new_rows = ledger()[n_before:]
+sigs = [r["sig"] for r in new_rows]
+check("all 24 owed signatures are processed in one pass", m5["processed"] == 24, m5["processed"])
+check("⭐ four at a time: the pass took roughly a quarter of the serial time",
+      m5["elapsed_s"] < 4.0, m5["elapsed_s"])
+check("⛔ they COMPLETED out of order", _seq != sorted(_seq), _seq[:6])
+check("⭐ ...and the ledger is still written oldest-first",
+      sigs == sorted(sigs) == [f"sig{i:05d}" for i in range(16, 40)], sigs[:6])
+check("the cursor is the newest signature actually processed",
+      cursor()["sig"] == "sig00039", cursor()["sig"])
+check("every paged signature is still accounted for",
+      m5["accounted"] and m5["processed"] + m5["backlog"] == m5["paged"], m5)
+check("the row count matches what was processed", len(new_rows) == m5["processed"],
+      (len(new_rows), m5["processed"]))
+check("the pass records the width it ran at", m5["workers"] == 4, m5.get("workers"))
+
+# The budget must still stop a batched run - on a chunk boundary, owing the rest.
+for i in range(40, 72):
+    add(i)
+n_before = len(ledger())
+m6 = G.build(verbose=False, now=T0 + 300, seconds=0.35, workers=4)
+check("⛔ a batched run still stops at its budget and OWES the remainder",
+      0 < m6["processed"] < 32 and m6["backlog"] == 32 - m6["processed"],
+      (m6["processed"], m6["backlog"]))
+check("...on a chunk boundary, with no half-consumed batch",
+      m6["processed"] % 4 == 0, m6["processed"])
+check("...and the rows written equal the rows processed",
+      len(ledger()) - n_before == m6["processed"])
+check("...with the cursor at the last one it actually wrote",
+      cursor()["sig"] == f"sig{15 + 24 + m6['processed']:05d}", cursor()["sig"])
+G.rpc = fake_rpc
+G.time = types.SimpleNamespace(time=lambda: CLOCK["t"], sleep=lambda s: None)
 
 print()
 bad = [r for r in R if not r[1]]

@@ -43,6 +43,10 @@ def snapshot():
     for root, dirs, files in os.walk(DATA):
         dirs[:] = [d for d in dirs if d != ".git"]
         for f in files:
+            # An atomic write lands as <name>.tmp and is renamed. Catching one
+            # mid-flight is a race in the reader, not a change to the journal.
+            if f.endswith(".tmp"):
+                continue
             p = os.path.join(root, f)
             try:
                 with open(p, "rb") as fh:
@@ -52,12 +56,49 @@ def snapshot():
     return out
 
 
+UNATTENDED = ("scheduled", "runner")
+
+
+def _unattended_beats(t0, t1):
+    """Beats an unattended pass wrote while the suite ran: [(origin, names, n,
+    first_ts, last_ts)]. Read straight from the liveness journal - the same
+    rows the collector writes - so it is evidence, not an inference."""
+    import collections
+    import datetime as _dt
+    import json
+    now = _dt.datetime.now(_dt.timezone.utc)
+    seen = collections.defaultdict(lambda: [set(), 0, None, None])
+    for month in {now.strftime("%Y-%m"), (now - _dt.timedelta(days=1)).strftime("%Y-%m")}:
+        path = os.path.join(HERE, "data", "liveness", f"{month}.jsonl")
+        try:
+            with open(path, encoding="utf-8") as f:
+                for line in f:
+                    try:
+                        r = json.loads(line)
+                    except ValueError:
+                        continue
+                    ts, o = r.get("ts"), str(r.get("origin"))
+                    if not isinstance(ts, (int, float)) or not (t0 <= ts <= t1):
+                        continue
+                    if o not in UNATTENDED:
+                        continue
+                    e = seen[o]
+                    e[0].add(str(r.get("name")))
+                    e[1] += 1
+                    e[2] = ts if e[2] is None else min(e[2], ts)
+                    e[3] = ts if e[3] is None else max(e[3], ts)
+        except OSError:
+            continue
+    return [(o, v[0], v[1], v[2], v[3]) for o, v in sorted(seen.items())]
+
+
 def main():
     suites = sorted(glob.glob(os.path.join(HERE, "test_*.py")))
     # --live hits the network and costs credits; never on by default.
     env = dict(os.environ, PYTHONIOENCODING="utf-8")
 
     before = snapshot()
+    _t_start = time.time()
     print(f"{len(before)} files under data/ hashed")
     print("=" * 72)
 
@@ -86,15 +127,33 @@ def main():
     dirty = added + removed + changed
 
     if dirty:
-        print("⛔ THE SUITE WROTE INTO data/. A test may not touch the journal.")
+        # ⭐ WHO WROTE IT? A collector pass that fires mid-suite changes data/
+        # too, and it is not the suite's fault. On 2026-09-19 this message was
+        # read as "my test did it", the files were reverted with git checkout,
+        # and ~10.5h of liveness beats were destroyed - standing rule 8, broken
+        # by the tool that exists to protect the journal. It now names the
+        # writer before it accuses anything.
+        beats = _unattended_beats(_t_start, time.time())
+        if beats:
+            print("⚠ data/ changed during the run, but an UNATTENDED PASS WAS WRITING:")
+            for o, names, n, lo, hi in beats:
+                print(f"     origin={o}: {n} beats over {hi - lo:.0f}s  "
+                      f"({', '.join(sorted(names)[:6])})")
+            print("   The suites are not implicated by this alone. Re-run when no "
+                  "pass is in flight to separate the two.")
+        else:
+            print("⛔ THE SUITE WROTE INTO data/. A test may not touch the journal.")
         for p in changed:
             print(f"     CHANGED  {p}")
         for p in added:
             print(f"     ADDED    {p}")
         for p in removed:
             print(f"     ⛔ REMOVED {p}   <- standing rule 8")
-        print("   Fix: `import testsandbox; testsandbox.activate()` at the top of"
-              " the offending suite, before it imports anything that writes.")
+        if not beats:
+            print("   Fix: `import testsandbox; testsandbox.activate()` at the top of"
+                  " the offending suite, before it imports anything that writes.")
+        print("   ⛔ NEVER `git checkout` data/ to clear this. The journals are "
+              "append-only and what you discard is unrecoverable (standing rule 8).")
     else:
         print("⭐ data/ is byte-identical after the run")
 

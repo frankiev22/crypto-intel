@@ -56,7 +56,7 @@ The journal is append-only and outcome scoring is idempotent, so running the
 stages separately is behaviour-identical to one full pass.
 """
 import contextlib, os, sys, time, traceback, datetime as dt
-import scanner, journal, track, notify, macro, sources, findings, resolve
+import scanner, journal, track, notify, macro, sources, findings, resolve, funnel
 # The Claude dispatch sandbox SIGKILLs at ~178s. Stop at 155s, leaving 23s for
 # the pass to finish its bookkeeping and write its own short-pass record - a
 # budget that ends exactly at the kill is not a budget.
@@ -174,7 +174,10 @@ STAGE_FIRES = {
     "168": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
 }
 EVERY_INVOCATION_FIRES = {"news.freshness", "detector.drift",
-                          "dashboard.build"}
+                          "dashboard.build",
+                          # ⭐ the funnel row: every stage says what it reached
+                          # and what it dropped, or nothing on disk does.
+                          "funnel.recorded"}
 STAGE_STOPS = {}
 
 
@@ -413,22 +416,37 @@ LATE_SOFT_LIMIT_S = 17 * 60     # was 11 min under the old 15-min job timeout
 # Seconds the universe needs besides its gate: Jupiter's verified list, the
 # re-check batch, Dexscreener's theme pages, and CoinGecko every 6 hours.
 UNIVERSE_OVERHEAD_S = 90
+# Seconds a stage keeps back to write its index and finish its bookkeeping.
+STAGE_WRITE_RESERVE_S = 12
+# The single stage this invocation was asked for, or None for a full pass.
+# ⛔ A stage that reserves time for a LATER stage must know whether that stage
+# is going to run here at all - on the staged path each one is its own process.
+ONLY_STAGE = None
 
 
 def graduations_stage(verbose=True):
     import graduations
-    left = LATE_SOFT_LIMIT_S - (time.time() - _PASS_T0) - UNIVERSE_OVERHEAD_S
+    # ⛔ Reserve the universe's overhead ONLY when the universe actually runs in
+    # this invocation. A staged run is one process per stage, so reserving 90s
+    # for a stage that will not run here left the ledger 9s of a 110s budget:
+    # 10 signatures processed a pass against ~45 graduations an hour arriving,
+    # and the backlog went 306 -> 880 with lag 5.2h -> 12.0h (2026-09-20).
+    # Measured, same --max-seconds 110: 9s -> 96s of budget.
+    reserve = UNIVERSE_OVERHEAD_S if ONLY_STAGE is None else 0.0
+    left = LATE_SOFT_LIMIT_S - (time.time() - _PASS_T0) - reserve
     if sources.seconds_left() is not None:      # a staged run's --max-seconds
-        left = min(left, sources.seconds_left() - UNIVERSE_OVERHEAD_S)
+        left = min(left, sources.seconds_left() - reserve)
     if left <= 10:
         STAGE_STOPS["graduations"] = f"skipped: the pass is {time.time() - _PASS_T0:.0f}s old"
         print(f"  graduations: skipped, {STAGE_STOPS['graduations']}")
         return
     try:
-        # ~60% of what is left, up to the ledger's own cap. Measured 2026-09-19:
-        # ~64 authority txs an hour at ~0.5s each on the keyless public RPC, so a
-        # 3.4h median gap owes ~110s. Backlog and lag are on index.json.
-        graduations.build(verbose=verbose, seconds=min(graduations.SECONDS, left * 0.6))
+        # In a full pass, ~60% of what is left - the universe still has to run.
+        # On its own stage the ledger is the only thing that will run, so it
+        # takes what is there bar a margin for writing the index and committing.
+        share = 0.6 if ONLY_STAGE is None else 1.0
+        graduations.build(verbose=verbose,
+                          seconds=min(graduations.SECONDS, left * share - STAGE_WRITE_RESERVE_S))
     except Exception as e:
         print(f"  graduation ledger failed (non-fatal): {type(e).__name__}: {e}")
 
@@ -534,6 +552,44 @@ def one_pass(networks=("solana",), verbose=True):
     return total_seen, total_passed
 
 
+_PASS_CLOSED = False
+
+
+def _close_pass(stage, max_seconds, rc):
+    """Write the durable record of this pass: what it did and whether it
+    finished. Called BEFORE the end-of-pass bookkeeping, so a process that dies
+    in the bookkeeping still leaves the pass on the record."""
+    global _PASS_CLOSED
+    if _PASS_CLOSED or rc != 0:
+        return
+    _PASS_CLOSED = True
+    try:
+        # Completeness is RECORDED, not inferred. A budgeted stop is a
+        # deliberate short pass; a kill leaves the marker for the next run.
+        _stops = {k: v for k, v in track.LAST_STOP.items()}
+        _stops.update(STAGE_STOPS)
+        _short = bool(_stops) or sources.over_budget()
+        journal.pass_end(
+            complete=not _short,
+            reason=("; ".join(f"{k}{'h' if isinstance(k, int) else ''}: {v}"
+                              for k, v in _stops.items())
+                    if _stops else ("call budget spent" if _short else None)),
+            calls=sources.calls_made(), phase=stage,
+            budget_s=max_seconds, per_call_s=sources.per_call_estimate(),
+            elapsed_s=sources.budget_report()["elapsed_s"])
+        if _short:
+            _b = sources.budget_report()
+            # ⛔ max_seconds is None on an unbudgeted pass; formatting it with
+            # :.0f crashed every short runner pass (2026-09-19 17:53Z).
+            _of = f"of a {max_seconds:.0f}s budget" if max_seconds else "with no time budget"
+            print(f"  SHORT PASS (recorded): {_b['calls']} calls in "
+                  f"{_b['elapsed_s']}s {_of}; measured "
+                  f"{_b['per_call_s']}s/call. Remaining work resumes next "
+                  f"invocation.")
+    except Exception as e:
+        print(f"  pass_end failed (non-fatal): {type(e).__name__}: {e}")
+
+
 def main():
     # LINE-BUFFER STDOUT. Python block-buffers when stdout is a pipe, so a pass
     # SIGKILLed at the 178s cap flushed NOTHING - the work it had narrated was
@@ -552,6 +608,8 @@ def main():
         i = argv.index("--stage")
         stage = argv[i + 1] if i + 1 < len(argv) else "full"
         del argv[i:i + 2]
+        global ONLY_STAGE
+        ONLY_STAGE = stage
 
     # CALL BUDGET. A staged invocation must fit its window, and the window is
     # 178s on the Claude dispatch sandbox. At ~1.116s per call that is ~150
@@ -682,6 +740,27 @@ def main():
         except Exception:
             traceback.print_exc()
             rc = 1
+        # ⭐ THE FUNNEL, EVERY PASS (2026-09-20). What this pass reached, what it
+        # dropped, and what is about to age out unscored - written to
+        # data/funnel/ and alarmed on. These numbers used to exist only in this
+        # process: track.LAST_COVERAGE was read by nothing and queue depth died
+        # with the stdout it was printed to, so the funnel narrowed for days
+        # without anything on disk saying so.
+        try:
+            funnel.record(stage=stage, record_finding=findings.record)
+        except Exception as e:
+            print(f"  funnel record failed (non-fatal): {type(e).__name__}: {e}")
+        # ⭐ CLOSE THE PASS HERE, BEFORE THE BOOKKEEPING (2026-09-20).
+        # ⛔ pass_end used to run LAST, behind the news check, the drift
+        # check, a 4.4s dashboard rebuild, the liveness report and a Discord
+        # heartbeat. Measured on the scheduled scan stage, 09-19/20: 6 of 35
+        # passes died in that window - after their collection was journalled
+        # and their carry saved, but before anything recorded that the pass had
+        # happened. The rows survived; the RECORD of them did not, and the next
+        # stage then wrote an "aborted_pass" row for a pass that had in fact
+        # collected normally. The durable record now goes first and the
+        # decoration after it.
+        _close_pass(stage, max_seconds, rc)
         if not loop:
             break
         time.sleep(900)
@@ -781,29 +860,6 @@ def main():
     except Exception as e:
         print(f"  heartbeat failed (non-fatal): {e}")
 
-    if rc == 0:
-        # Completeness is RECORDED, not inferred. A budgeted stop is a
-        # deliberate short pass; a kill leaves the marker for the next run.
-        _stops = {k: v for k, v in track.LAST_STOP.items()}
-        _stops.update(STAGE_STOPS)
-        _short = bool(_stops) or sources.over_budget()
-        journal.pass_end(
-            complete=not _short,
-            reason=("; ".join(f"{k}{'h' if isinstance(k, int) else ''}: {v}"
-                              for k, v in _stops.items())
-                    if _stops else ("call budget spent" if _short else None)),
-            calls=sources.calls_made(), phase=stage,
-            budget_s=max_seconds, per_call_s=sources.per_call_estimate(),
-            elapsed_s=sources.budget_report()["elapsed_s"])
-        if _short:
-            _b = sources.budget_report()
-            # ⛔ max_seconds is None on an unbudgeted pass; formatting it with
-            # :.0f crashed every short runner pass (2026-09-19 17:53Z).
-            _of = f"of a {max_seconds:.0f}s budget" if max_seconds else "with no time budget"
-            print(f"  SHORT PASS (recorded): {_b['calls']} calls in "
-                  f"{_b['elapsed_s']}s {_of}; measured "
-                  f"{_b['per_call_s']}s/call. Remaining work resumes next "
-                  f"invocation.")
     return rc
 
 

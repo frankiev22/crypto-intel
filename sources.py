@@ -85,13 +85,28 @@ UA = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
 # which runs `collect.py solana` UNSTAGED on an hourly cron with a 15-minute
 # job timeout, and an ~11 minute pass fits that with room. --stage is the
 # sandbox path only: run scan, then watchlist, then paper, then ONE horizon at
-# a time, and lower CRYPTO_LIMIT_1H below ~150 for the 1h stage or it is
-# killed mid-pass.
+# a time. ⚠️ The "lower CRYPTO_LIMIT_1H below ~150 or it is killed mid-pass"
+# advice that stood here was written when every row cost a paced call; since
+# the 2026-09-20 batching it is 400, and the time budget - not the row count -
+# is what stops the stage.
 PACE_S = float(os.environ.get("CRYPTO_HTTP_PACE_S", "1.0"))
 
 def pace():
     """Sleep the shared inter-request gap. Call between paged fetches."""
     time.sleep(PACE_S)
+
+
+def pace_since(calls_before):
+    """Pace only if a live request was actually made since `calls_before`.
+
+    ⛔ The gap exists to rate-limit REQUESTS. Once pair lookups were batched
+    (30 per call), most rows made none and the sleep became pure latency:
+    measured 2026-09-20, the 6h stage spent 108.4s on 77 rows while making
+    5 HTTP calls in total, so ~1.4s of every row was a sleep owed to nobody.
+    A row that hit the cache is not traffic and must not be paced for.
+    """
+    if CALLS > calls_before:
+        pace()
 
 # Permanent HTTP failures. A delisted pair is gone forever, so retrying it is
 # pure latency. Measured 2026-08-30: _get retried 3x at timeout=20s with
@@ -321,6 +336,75 @@ def trending_pools(network="solana"):
     return _get(f"https://api.geckoterminal.com/api/v2/networks/{network}/trending_pools").get("data", [])
 
 # ---------- enrichment ----------
+#
+# BATCHED PAIR LOOKUPS, 2026-09-20.
+#
+# /latest/dex/pairs takes up to 30 comma-separated addresses in ONE call
+# (measured: 30 -> 200 with all 30 returned, 31 -> 400). Every loop here used
+# to spend one paced call per pair, so the outcome queue cost ~1.25s a row and
+# could not be drained: on 2026-09-19 the funnel ran at 33-40% scan coverage
+# with 1,129 rows due and 121 about to age out UNSCORED.
+#
+# Staleness is bounded by construction: the cache is filled a chunk at a time,
+# just before the rows in that chunk are read, so a price is never older than
+# the time it takes to process 30 rows. PREFETCH_TTL_S is the hard ceiling and
+# a stale entry falls back to a single live call rather than being served.
+PAIR_BATCH_MAX = 30
+PREFETCH_TTL_S = float(os.environ.get("CRYPTO_PAIR_PREFETCH_TTL_S", "300"))
+_PAIR_PRE = {}
+PREFETCH_STATS = {"calls": 0, "asked": 0, "found": 0, "served": 0, "stale": 0}
+
+
+def prefetch_pairs(chain, addresses, ttl_s=None):
+    """Fill the pair cache for `addresses`, PAIR_BATCH_MAX per call.
+
+    Absence is cached as None: Dexscreener returning 200 without our pool is
+    the same answer the single-pair path gets, and the caller's fallback runs.
+    Returns the number of HTTP calls made.
+    """
+    ttl = PREFETCH_TTL_S if ttl_s is None else ttl_s
+    now = time.time()
+    want = []
+    for a in addresses:
+        if not a:
+            continue
+        hit = _PAIR_PRE.get((chain, a))
+        if hit and now - hit[0] < ttl:
+            continue
+        if a not in want:
+            want.append(a)
+    calls = 0
+    for i in range(0, len(want), PAIR_BATCH_MAX):
+        chunk = want[i:i + PAIR_BATCH_MAX]
+        try:
+            d = _get(f"https://api.dexscreener.com/latest/dex/pairs/{chain}/{','.join(chunk)}")
+        except Exception:
+            continue          # leave them uncached; the single path will try
+        calls += 1
+        pairs = d.get("pairs") or d.get("pair") or []
+        if isinstance(pairs, dict):
+            pairs = [pairs]
+        by = {(p or {}).get("pairAddress"): p for p in pairs}
+        t = time.time()
+        for a in chunk:
+            _PAIR_PRE[(chain, a)] = (t, by.get(a))
+        PREFETCH_STATS["found"] += sum(1 for a in chunk if by.get(a))
+        PREFETCH_STATS["asked"] += len(chunk)
+    PREFETCH_STATS["calls"] += calls
+    return calls
+
+
+def prefetched_pair(chain, pair_address):
+    """(hit, pair) - hit is False when nothing fresh is cached."""
+    e = _PAIR_PRE.get((chain, pair_address))
+    if not e:
+        return False, None
+    if time.time() - e[0] >= PREFETCH_TTL_S:
+        PREFETCH_STATS["stale"] += 1
+        return False, None
+    return True, e[1]
+
+
 def dexscreener_pair(chain, pair_address, require_match=True):
     """One pair, and BY DEFAULT it is the pair you asked for.
 
@@ -337,6 +421,11 @@ def dexscreener_pair(chain, pair_address, require_match=True):
     outright, because a multi-pair response containing ours is fine - we just
     have to pick ours instead of whichever happened to sort first.
     """
+    if require_match:
+        hit, cached = prefetched_pair(chain, pair_address)
+        if hit:
+            PREFETCH_STATS["served"] += 1
+            return cached
     d = _get(f"https://api.dexscreener.com/latest/dex/pairs/{chain}/{pair_address}")
     pairs = d.get("pairs") or d.get("pair")
     if isinstance(pairs, dict):

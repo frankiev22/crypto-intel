@@ -103,7 +103,7 @@ def primary_floor(horizon_h):
 # pools and the old flat limit of 80 could not clear them, so the shortfall
 # became next pass's backlog and the "1h" check drifted to a median of 2.00h.
 # The long horizons see far fewer rows come due per pass and do not need it.
-HORIZON_LIMIT = {1: int(os.environ.get("CRYPTO_LIMIT_1H", "200"))}
+HORIZON_LIMIT = {1: int(os.environ.get("CRYPTO_LIMIT_1H", "400"))}
 
 # Default slice for the other horizons. MEASURED 2026-09-06: new distinct pairs
 # arrive at 2,308/day = 96 per hourly pass, against a slice of 80. The deficit
@@ -113,7 +113,18 @@ HORIZON_LIMIT = {1: int(os.environ.get("CRYPTO_LIMIT_1H", "200"))}
 # 6h (14.5%). 120 covers arrival with ~25% headroom; the extra 40 lookups per
 # horizon cost ~14s of Dexscreener at a measured 0.116s median, against a
 # published 300 req/min, and spend none of the scarce GeckoTerminal budget.
-HORIZON_SLICE = int(os.environ.get("CRYPTO_HORIZON_SLICE", "120"))
+# ⭐ RAISED 120 -> 400, 2026-09-20, because the slice - not the clock - had
+# become the limit once pair lookups were batched and rows served from the
+# cache stopped being paced. MEASURED on the real 6h queue, same 110s budget:
+#
+#     before   77 of 120 pairs in 108.4s   (~1.4s/row, 5 HTTP calls)
+#     after   296 of 318 pairs in 107.5s   (~0.36s/row, 18 HTTP calls)
+#
+# The slice is now a safety cap, not the throttle: the time budget stops the
+# stage cleanly and `pending()` re-offers whatever was not reached. On the
+# morning of 09-20 the standing queue was 1,129 rows with 151 about to age out
+# unscored; one pass at this slice took the 6h horizon from 656 due to 22.
+HORIZON_SLICE = int(os.environ.get("CRYPTO_HORIZON_SLICE", "400"))
 
 # A validated realizable multiple at or above this is announced by the runner
 # itself. Matches findings.SIGNIFICANCE_ALWAYS so it is never rationed.
@@ -241,7 +252,19 @@ def score_horizon(horizon_h, limit=None, verbose=True):
     elapsed_seen = []
     stopped_early = None
     LAST_STOP.pop(horizon_h, None)
+    # ⭐ BATCHED PRIMARY LOOKUPS, 2026-09-20. One paced call per pair could not
+    # drain this queue: on 09-19 the runner spent 777.8s on 74 of 120 pairs and
+    # skipped the 24h horizon entirely, while 121 rows at 6h were about to age
+    # out unscored. The prefetch below asks for 30 pools in ONE call, refilled a
+    # chunk at a time just before those rows are read, so a served price is
+    # never older than the time it takes to process 30 rows.
+    _pairs_of = [x.get("pair") for x in todo]
     for o in todo:
+        _calls0 = S.calls_made()
+        if not S.prefetched_pair(o.get("network", "solana"), o.get("pair"))[0]:
+            _i = _pairs_of.index(o.get("pair")) if o.get("pair") in _pairs_of else 0
+            S.prefetch_pairs(o.get("network", "solana"),
+                             _pairs_of[_i:_i + S.PAIR_BATCH_MAX])
         # STOP CLEANLY AT THE BUDGET. Reserve headroom for the fallback lookup
         # this row may need, so we never stop half way through one pair.
         if S.over_budget(headroom=2):
@@ -451,7 +474,7 @@ def score_horizon(horizon_h, limit=None, verbose=True):
             else:
                 print(f"    {o.get('symbol','?'):<12} {mult:>6.2f}x  NOT REALIZABLE - "
                       f"failed {', '.join(gate_failed)}")
-        S.pace()
+        S.pace_since(_calls0)
 
     # A lookup class failing at ~100% inside one pass is not weather, it is an
     # outage, and on 2026-09-03 the 24h and 168h horizons failed at ~100% for

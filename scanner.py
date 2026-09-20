@@ -410,6 +410,14 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
         # Reading it costs nothing and it is the dimension that decides whether
         # a "liquidity" figure means anything at all.
         gt_dex = venue.from_discovery(p)
+        _calls0 = S.calls_made()
+        # ⭐ BATCHED PRIMARY LOOKUPS, 2026-09-20. One paced call per pool held
+        # scan coverage at 33-40% (09-19: ~200 pools seen, ~70 processed, the
+        # rest carried hour after hour). 30 pools per call instead, refilled
+        # just before the chunk is read.
+        if not S.prefetched_pair(network, addr)[0]:
+            _rest = [(q.get("attributes") or {}).get("address") for q in pools[i:i + S.PAIR_BATCH_MAX]]
+            S.prefetch_pairs(network, [a for a in _rest if a])
         try:
             pair = S.dexscreener_pair(network, addr)
         except Exception:
@@ -695,7 +703,7 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
         LAST_SCAN["enriched"] += 1
         if on_row:
             on_row(row)          # journal NOW, not after the loop
-        S.pace()
+        S.pace_since(_calls0)
     # ⭐ A pass that finished owes nothing. Clearing is as important as saving:
     # a carry file left behind would be re-processed every pass forever.
     if not LAST_SCAN.get("budget_hit"):
