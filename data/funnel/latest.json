@@ -1,0 +1,29 @@
+{
+ "ts": 1789888792,
+ "stage": "universe",
+ "origin": "scheduled",
+ "scan": {
+  "pools_seen": 0,
+  "pools_reached": null,
+  "coverage": null,
+  "enriched": 0,
+  "failed": 0,
+  "truncated": false,
+  "truncate_reason": null,
+  "carried_forward": null,
+  "carried_in": null,
+  "skipped_addresses": 0
+ },
+ "outcomes": null,
+ "graduations": {
+  "backlog": 0,
+  "lag_s": 45,
+  "lag_h": 0.01,
+  "processed_last_pass": 409,
+  "failed_txs_skipped": 113,
+  "retry_queue": 0,
+  "accounted": true
+ },
+ "lookups": null,
+ "alarms": []
+}
