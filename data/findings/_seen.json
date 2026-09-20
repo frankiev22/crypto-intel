@@ -5429,15 +5429,15 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 190,
+  "count": 191,
   "example": "lookup-outage: 24h",
   "keys": [
    "168h",
    "24h"
   ],
-  "last_seen": "2026-09-20T16:28:20+00:00",
-  "last_escalated": "2026-09-20T12:31:16+00:00",
-  "escalations": 18
+  "last_seen": "2026-09-20T19:02:05+00:00",
+  "last_escalated": "2026-09-20T19:02:05+00:00",
+  "escalations": 19
  },
  "scanner-hit:patience": {
   "first_seen": "2026-09-04T05:11:20+00:00",
@@ -5911,7 +5911,7 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 93,
+  "count": 94,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
@@ -5919,9 +5919,9 @@
    "6h",
    "168h"
   ],
-  "last_seen": "2026-09-20T16:25:55+00:00",
-  "last_escalated": "2026-09-20T12:28:01+00:00",
-  "escalations": 18
+  "last_seen": "2026-09-20T18:59:41+00:00",
+  "last_escalated": "2026-09-20T18:59:41+00:00",
+  "escalations": 19
  },
  "scanner-hit:pomp": {
   "first_seen": "2026-09-05T05:11:36+00:00",
@@ -10298,11 +10298,14 @@
  },
  "outcome-win:qgajytggkfpqphbvtvpkqkwvpbfdgjjxvzobf": {
   "first_seen": "2026-09-20T07:12:10+00:00",
-  "count": 1,
+  "count": 2,
   "example": "outcome-win: 3QgAJyTGGKfp1QPHBV6tV5P1kq2KwvPBfdG4jjxvZobF",
   "keys": [
    "3QgAJyTGGKfp1QPHBV6tV5P1kq2KwvPBfdG4jjxvZobF"
-  ]
+  ],
+  "last_seen": "2026-09-20T19:00:06+00:00",
+  "last_escalated": "2026-09-20T19:00:06+00:00",
+  "escalations": 1
  },
  "outcome-win:oeikygznuvadarqprmkvfrzalkdzuxhkstnk": {
   "first_seen": "2026-09-20T12:27:07+00:00",
@@ -10315,11 +10318,13 @@
  },
  "funnel-narrowing:full": {
   "first_seen": "2026-09-20T12:37:21+00:00",
-  "count": 2,
+  "count": 3,
   "example": "funnel-narrowing: full",
   "keys": [
    "full"
   ],
-  "last_seen": "2026-09-20T16:34:45+00:00"
+  "last_seen": "2026-09-20T19:08:22+00:00",
+  "last_escalated": "2026-09-20T19:08:22+00:00",
+  "escalations": 1
  }
 }
