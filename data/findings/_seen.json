@@ -5429,13 +5429,13 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 192,
+  "count": 193,
   "example": "lookup-outage: 24h",
   "keys": [
    "168h",
    "24h"
   ],
-  "last_seen": "2026-09-20T21:36:41+00:00",
+  "last_seen": "2026-09-20T23:34:37+00:00",
   "last_escalated": "2026-09-20T19:02:05+00:00",
   "escalations": 19
  },
@@ -5911,7 +5911,7 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 95,
+  "count": 96,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
@@ -5919,7 +5919,7 @@
    "6h",
    "168h"
   ],
-  "last_seen": "2026-09-20T21:34:33+00:00",
+  "last_seen": "2026-09-20T23:32:44+00:00",
   "last_escalated": "2026-09-20T18:59:41+00:00",
   "escalations": 19
  },
@@ -10318,12 +10318,12 @@
  },
  "funnel-narrowing:full": {
   "first_seen": "2026-09-20T12:37:21+00:00",
-  "count": 4,
+  "count": 5,
   "example": "funnel-narrowing: full",
   "keys": [
    "full"
   ],
-  "last_seen": "2026-09-20T21:42:36+00:00",
+  "last_seen": "2026-09-20T23:41:01+00:00",
   "last_escalated": "2026-09-20T19:08:22+00:00",
   "escalations": 1
  }
