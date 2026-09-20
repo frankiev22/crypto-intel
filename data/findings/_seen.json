@@ -5911,7 +5911,7 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 88,
+  "count": 89,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
@@ -5919,9 +5919,9 @@
    "6h",
    "168h"
   ],
-  "last_seen": "2026-09-19T23:48:15+00:00",
-  "last_escalated": "2026-09-19T19:48:40+00:00",
-  "escalations": 16
+  "last_seen": "2026-09-20T01:51:45+00:00",
+  "last_escalated": "2026-09-20T01:51:45+00:00",
+  "escalations": 17
  },
  "scanner-hit:pomp": {
   "first_seen": "2026-09-05T05:11:36+00:00",
@@ -10093,12 +10093,14 @@
  },
  "outcome-win:gfqatbcfvrticsmadpyqkpbxpagjgegdpzs": {
   "first_seen": "2026-09-19T06:30:56+00:00",
-  "count": 2,
+  "count": 3,
   "example": "outcome-win: GF714QATBcf6v67RticSmadPYQKpBxpAgjgEg3D6PzS3",
   "keys": [
    "GF714QATBcf6v67RticSmadPYQKpBxpAgjgEg3D6PzS3"
   ],
-  "last_seen": "2026-09-19T08:14:39+00:00"
+  "last_seen": "2026-09-20T01:55:51+00:00",
+  "last_escalated": "2026-09-20T01:55:51+00:00",
+  "escalations": 1
  },
  "collector-error:attributeerror": {
   "first_seen": "2026-09-19T06:42:16+00:00",
