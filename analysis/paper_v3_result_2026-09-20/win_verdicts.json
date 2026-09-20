@@ -1,0 +1,226 @@
+[
+ {
+  "symbol": "XCrypto",
+  "contract": "2TqMkSTqMpxACay3j8Cjt7uqUAWTG8HYqwWJ3xmbpump",
+  "pool": "Dui133EZMfjAJnNxf85hmNzxqF94uopJ8egGLeFr3k68",
+  "mult": 5.166658,
+  "usd_in": 100.0,
+  "usd_out": 516.66582,
+  "elapsed_h": 1.0256,
+  "entry_ts": "2026-09-19T07:06:57Z",
+  "exit_ts": "2026-09-19T08:08:29Z",
+  "exit_quote_ts": 1789805309,
+  "exit_quote_verdict": "QUOTED",
+  "exit_impact_pct": 3.219808,
+  "shadow_quotes": {
+   "250": {
+    "rt_cost_pct": 7.7271,
+    "usd_back": 230.6821,
+    "verdict": "TRADEABLE"
+   },
+   "500": {
+    "rt_cost_pct": 6.4059,
+    "usd_back": 467.9704,
+    "verdict": "TRADEABLE"
+   }
+  },
+  "entry_verdict": "TRADEABLE",
+  "holders_at_entry": 341,
+  "entry_rule": "amm+TRADEABLE@100+no_mint+no_freeze+has_sell_side+holders>=100+holders_not_truncated",
+  "mint_authority": null,
+  "freeze_authority": null,
+  "auth_err": null,
+  "exit_depth_usd": 20916.437595142663,
+  "sells_before_exit": 3,
+  "buys_before_exit": 3,
+  "gate_pass": true,
+  "gate_failed": []
+ },
+ {
+  "symbol": "PRISMCAT",
+  "contract": "2w57cXVcJsm1JJRLm1uDPxMpww61SkZNSZQv5d5E16SR",
+  "pool": "7gVebsieVkHb1yGVDxd1ZAGVCyj2x7RH5RD7ZXk9HVJn",
+  "mult": 2.477535,
+  "usd_in": 100.0,
+  "usd_out": 247.753527,
+  "elapsed_h": 0.0242,
+  "entry_ts": "2026-09-18T23:48:11Z",
+  "exit_ts": "2026-09-18T23:49:38Z",
+  "exit_quote_ts": 1789775378,
+  "exit_quote_verdict": "QUOTED",
+  "exit_impact_pct": 0.0,
+  "shadow_quotes": {
+   "250": {
+    "rt_cost_pct": 3.6713,
+    "usd_back": 240.8219,
+    "verdict": "TRADEABLE"
+   },
+   "500": {
+    "rt_cost_pct": 6.558,
+    "usd_back": 467.2101,
+    "verdict": "TRADEABLE"
+   }
+  },
+  "entry_verdict": "TRADEABLE",
+  "holders_at_entry": 1024,
+  "entry_rule": "amm+TRADEABLE@100+no_mint+no_freeze+has_sell_side+holders>=100+holders_not_truncated",
+  "mint_authority": null,
+  "freeze_authority": null,
+  "auth_err": null,
+  "exit_depth_usd": 1.1284929543826128e-07,
+  "sells_before_exit": 2,
+  "buys_before_exit": 37,
+  "gate_pass": false,
+  "gate_failed": [
+   "depth_floor"
+  ]
+ },
+ {
+  "symbol": "GOOGL",
+  "contract": "F9bB2fqWaYmGWhriabuhJQD3Xbcg2QeUR3YEgWWPCrAc",
+  "pool": "4jU4v8WTeWVhiAFBigTWA6AqQETvQ4dUJWhNobX9pSfC",
+  "mult": 2.213054,
+  "usd_in": 100.0,
+  "usd_out": 221.305409,
+  "elapsed_h": 2.0352,
+  "entry_ts": "2026-09-19T16:07:07Z",
+  "exit_ts": "2026-09-19T18:09:13Z",
+  "exit_quote_ts": 1789841353,
+  "exit_quote_verdict": "QUOTED",
+  "exit_impact_pct": null,
+  "shadow_quotes": {
+   "250": {
+    "rt_cost_pct": 0.8664,
+    "usd_back": 247.834,
+    "verdict": "TRADEABLE"
+   },
+   "500": {
+    "rt_cost_pct": 1.1456,
+    "usd_back": 494.2719,
+    "verdict": "TRADEABLE"
+   }
+  },
+  "entry_verdict": "TRADEABLE",
+  "holders_at_entry": 944,
+  "entry_rule": "amm+TRADEABLE@100+no_mint+no_freeze+has_sell_side+holders>=100+holders_not_truncated",
+  "mint_authority": null,
+  "freeze_authority": null,
+  "auth_err": null,
+  "exit_depth_usd": 179333.214379401,
+  "sells_before_exit": 16,
+  "buys_before_exit": 23,
+  "gate_pass": true,
+  "gate_failed": []
+ },
+ {
+  "symbol": "Satoshi",
+  "contract": "Hc8cregqzQWXTm6Tw2CKBt4Xy556YPPhr5Eye24ZEoL7",
+  "pool": "DxYPeGVyRaknzyHiR4XPsv1jUeb94mxXMjcBNZjvG4d7",
+  "mult": 2.171695,
+  "usd_in": 100.0,
+  "usd_out": 217.169484,
+  "elapsed_h": 0.77,
+  "entry_ts": "2026-09-19T08:22:40Z",
+  "exit_ts": "2026-09-19T09:08:52Z",
+  "exit_quote_ts": 1789808931,
+  "exit_quote_verdict": "QUOTED",
+  "exit_impact_pct": 5.404927,
+  "shadow_quotes": {
+   "250": {
+    "rt_cost_pct": 2.2219,
+    "usd_back": 244.4452,
+    "verdict": "TRADEABLE"
+   },
+   "500": {
+    "rt_cost_pct": 3.8017,
+    "usd_back": 480.9916,
+    "verdict": "TRADEABLE"
+   }
+  },
+  "entry_verdict": "TRADEABLE",
+  "holders_at_entry": 1953,
+  "entry_rule": "amm+TRADEABLE@100+no_mint+no_freeze+has_sell_side+holders>=100+holders_not_truncated",
+  "mint_authority": null,
+  "freeze_authority": null,
+  "auth_err": null,
+  "exit_depth_usd": 28517.634898008946,
+  "sells_before_exit": 29,
+  "buys_before_exit": 11,
+  "gate_pass": true,
+  "gate_failed": []
+ },
+ {
+  "symbol": "APM",
+  "contract": "38wvhQiYEFCQerSRn8xVrdZv3iZhdX75Zxpq5xq215Wp",
+  "pool": "GTRNc5EpMBxkKwA39XzEPdPkrVNhWP9bFo9LtBdFBmuT",
+  "mult": 2.064093,
+  "usd_in": 100.0,
+  "usd_out": 206.409305,
+  "elapsed_h": 4.0372,
+  "entry_ts": "2026-09-19T09:06:07Z",
+  "exit_ts": "2026-09-19T13:08:20Z",
+  "exit_quote_ts": 1789823300,
+  "exit_quote_verdict": "QUOTED",
+  "exit_impact_pct": null,
+  "shadow_quotes": {
+   "250": {
+    "rt_cost_pct": 0.9329,
+    "usd_back": 247.6677,
+    "verdict": "TRADEABLE"
+   },
+   "500": {
+    "rt_cost_pct": 1.2586,
+    "usd_back": 493.7069,
+    "verdict": "TRADEABLE"
+   }
+  },
+  "entry_verdict": "TRADEABLE",
+  "holders_at_entry": 2117,
+  "entry_rule": "amm+TRADEABLE@100+no_mint+no_freeze+has_sell_side+holders>=100+holders_not_truncated",
+  "mint_authority": null,
+  "freeze_authority": null,
+  "auth_err": null,
+  "exit_depth_usd": 148838.54157528086,
+  "sells_before_exit": 4,
+  "buys_before_exit": 31,
+  "gate_pass": true,
+  "gate_failed": []
+ },
+ {
+  "symbol": "AXIS",
+  "contract": "3wTTDiEzMvBiy7Ue6b1L5Msa1Fgm5YSqTVp9cbmM3Ujf",
+  "pool": "EcuKkHY6VxLxrp5ehv1YJccrfk1hVbjhERdjPmgVKB7h",
+  "mult": 2.060841,
+  "usd_in": 100.0,
+  "usd_out": 206.084085,
+  "elapsed_h": 5.0463,
+  "entry_ts": "2026-09-20T00:06:09Z",
+  "exit_ts": "2026-09-20T05:08:55Z",
+  "exit_quote_ts": 1789880935,
+  "exit_quote_verdict": "QUOTED",
+  "exit_impact_pct": 99.257364,
+  "shadow_quotes": {
+   "250": {
+    "rt_cost_pct": 0.8516,
+    "usd_back": 247.8711,
+    "verdict": "TRADEABLE"
+   },
+   "500": {
+    "rt_cost_pct": 1.2042,
+    "usd_back": 493.9791,
+    "verdict": "TRADEABLE"
+   }
+  },
+  "entry_verdict": "TRADEABLE",
+  "holders_at_entry": 2685,
+  "entry_rule": "amm+TRADEABLE@100+no_mint+no_freeze+has_sell_side+holders>=100+holders_not_truncated",
+  "mint_authority": null,
+  "freeze_authority": null,
+  "auth_err": null,
+  "exit_depth_usd": 194211.47121160655,
+  "sells_before_exit": 6,
+  "buys_before_exit": 32,
+  "gate_pass": true,
+  "gate_failed": []
+ }
+]

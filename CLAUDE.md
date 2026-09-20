@@ -57,7 +57,9 @@ further" — scope those separately and hold them to the measurement bar below.
 | $1M crossings/day, **verified** | **24.5** | same |
 | verification pass rate at $1M | **25.4%** [22.3, 28.8], n=696 | same |
 | reported liquidity overstatement | **median 781x** | `CONTAMINATION.md`, `TEMPLATE_ATTACK.md` |
-| ⛔ **verified wins** | **none.** `7uMjiTCQ…` "4.58x" FAILED: graded TRAP at observation, then its freeze authority froze 50 buyers the second each bought, and their SOL was the multiple | `docs/BACKLOG.md` A42 |
+| ⭐ **verified wins** | **FIVE, 2026-09-20** — v3 closes that pass all nine checks with depth and swap direction measured at the exit moment from the pool's own vaults: XCrypto **5.17x**, GOOGL 2.21x, Satoshi 2.17x, APM 2.06x, AXIS 2.06x. ⚠ **Quotes, not fills** — no transaction was ever signed. PRISMCAT 2.48x correctly REJECTED ($0 quote side). ⛔ **Never quote these five without §11's result: the rule that produced them FAILED** | `PRECOMMIT_paper_v3.md` §11 |
+| ⛔ the old "verified wins: none" | superseded 2026-09-20, but its example stands: `7uMjiTCQ…` "4.58x" FAILED — graded TRAP at observation, then its freeze authority froze 50 buyers the second each bought, and their SOL was the multiple | `docs/BACKLOG.md` A42 |
+| ⛔⛔ **RULE_V3, the strategy** | **FAILS ITS OWN PRE-COMMITTED TEST at n=44.** Median realizable multiple **0.0007x**; win rate **13.6%** [6.4, 26.7] against a **36.7%** break-even, the whole interval below it; **−$2,718 / −61.8%** of notional ($4,400 → $1,682), −63.2% unattended-only at n=39. ⭐ The distribution is bimodal with **nothing between 0.5x and 2x**. Closed as a trading rule; ledger still appends | `PRECOMMIT_paper_v3.md` §11 |
 | ⛔ paper v1 hit rate | **QUARANTINED - no usable rate.** The retired 9/76 = 11.84% was on mid-priced exits, and 96 v1+v2 positions were never closed (09-15 → 09-17). `paper.summary()` returns `QUARANTINED` from 2026-09-19 | `PRECOMMIT_paper_v3.md` §2a |
 | ⭐ median holders, our own "winners" | **9** (54% under 10) | `docs/TRUSTED_FIELDS.md` §1 |
 | median holders, Jupiter-TRADEABLE | **1,350** | same |
@@ -75,6 +77,7 @@ further" — scope those separately and hold them to the measurement bar below.
 | degentape's "win" (profit > $0), re-derived from their tape | **39.7%** [39.3, 40.1] of 45,853 closed positions - reproduces their own 39.4% | `docs/EXISTING_TOOLS.md` §4a |
 | ⭐ ...the same positions on OUR definition (proceeds >= 2x cost) | **6.0%** [5.8, 6.3]; median position 0.925x, median hold 2.4 min | same |
 | paper ledger, re-derived 2026-09-17 | 86 closes, **−$2,495** by mult / **−$4,168** realizable | `docs/LIQUIDITY.md` §8 |
+| ⭐ **funnel, measured 2026-09-20 before → after** | scan coverage **33-40% → 100%** (carry 143 → 0); 6h horizon **77 rows/108s → 296/107.5s**; rows about to age out unscored **59 → 0**; graduations **10 → 532 a pass**, backlog 880 → 399, lag 11.96h → 5.46h | `funnel.py`, `data/funnel/` |
 
 ⛔ **Never quote the 2.10% graduation rate.** It is 397/18,920 computed on
 **reported liquidity** — the field measured overstating by a median 781x. Our

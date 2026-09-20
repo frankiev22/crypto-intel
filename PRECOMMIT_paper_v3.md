@@ -287,3 +287,72 @@ and asserts a **ledger row** comes out: the entry lands, the refused row records
 why, the per-pass refusal tally reaches the coverage row, and the sweep closes
 the position at **2.5x** against a live sell quote for the exact holding. **32
 checks on the output, not on whether the code ran.**
+
+---
+
+## 11. ⛔⛔ RESULT, 2026-09-20: RULE_V3 FAILS ITS OWN TEST at n = 44
+
+**MIN_N is reached. H1 is answered, and the answer is no.**
+
+44 distinct contracts closed, every one priced on a live Jupiter quote in USDC
+both ways, for the exact quantity held. 98 entries, 54 still open — and ⭐ **zero
+entries older than 25h remain open**, so the closed set is every position that
+came due plus the TARGET winners of the last 24h. That biases the sample
+*toward* winners, which makes the verdict below conservative rather than harsh.
+
+| §7 failure condition | measured | verdict |
+|---|---|---|
+| 1. median realizable multiple ≤ 1.0 | **0.0007x** | ⛔ **FAIL** |
+| 2. win-rate interval includes break-even | 6/44 = **13.6%** [6.4, 26.7]; break-even **36.7%** (mean winner 2.692x, mean loser 0.0177x) | ⛔ **FAIL — the whole interval lies BELOW break-even** |
+| 3. fewer than 30 through the gate in 60 days | 98 entries in 3 days | pass |
+| 4. median entry impact at $100 > 10% | **2.27%**, n=89 | pass |
+
+**$4,400 in → $1,682 out = −$2,718, −61.8% of notional.** Unattended only
+(origin=`scheduled`, n=39): −$2,465, **−63.2%**. Reported both ways per standing
+rule 7; no close is excluded.
+
+⭐ **The distribution is bimodal and the middle is empty:** 6 closes at ≥2x, 26
+under 0.5x, 12 total losses with no sell route at all — and **0 closes anywhere
+between 0.5x and 2x**. You either hit the target or you lose essentially
+everything. That shape is why a 13.6% hit rate cannot pay for a 2x target.
+
+### ⭐ What is nonetheless real: five wins that pass all nine checks
+
+| symbol | contract | multiple | quote-side depth at exit | flow in the 2h before | gate |
+|---|---|---|---|---|---|
+| XCrypto | `2TqMkSTq…` | 5.17x | $20,916 | 3 sells / 3 buys | ✅ nine of nine |
+| GOOGL | `F9bB2fqW…` | 2.21x | $179,333 | 16 sells / 23 buys | ✅ |
+| Satoshi | `Hc8cregq…` | 2.17x | $28,518 | **29 sells / 11 buys** | ✅ |
+| APM | `38wvhQiY…` | 2.06x | $148,839 | 4 sells / 31 buys | ✅ |
+| AXIS | `3wTTDiEz…` | 2.06x | $194,211 | 6 sells / 32 buys | ✅ |
+| PRISMCAT | `2w57cXVc…` | 2.48x | **$0** | 2 sells / 37 buys | ⛔ `depth_floor` |
+
+Depth and swap direction are measured **at the exit moment from the pool's own
+quote vault**, not read from any API field (`analysis/paper_v3_result_2026-09-20/`).
+Authorities were read from the mint account: all six have mint and freeze
+authority `null`, and revocation is irreversible, so they were revoked at entry
+too. PRISMCAT is correctly rejected — it held $0 of quote side and its whole
+position lasted 87 seconds.
+
+⚠️ **These are QUOTES, not fills.** `usd_out` is Jupiter's `outAmount` to USDC
+for the exact quantity held, net of price impact and AMM fees. It excludes
+priority fees, the slippage between quoting and landing, and the possibility
+that the transaction does not land at all. **No transaction was ever signed and
+no wallet was involved.** This is still the strongest pricing this project has:
+both legs quoted, same quantity, one denomination, forward-only, unattended.
+
+### ⭐ Why this counts as a success of method
+
+Five strategies were built and retracted before this one. **This is the first
+that was declared in full before a single row existed, ran forward and
+unattended, priced on quotes nobody could wish into existence, and then answered
+its own question at n ≥ 30 without anything being tuned.** The rule does not pay
+and we know that in three days for $0, instead of believing it for a month.
+
+⛔ **RULE_V3 is closed as a trading rule.** It is not deleted, it is not
+quarantined, and its ledger keeps appending — the open positions still close and
+the record stands. What must not happen is anyone quoting the five wins, or the
+13.6%, as evidence the rule works. **The 2x target is what fails**: a 13.6%
+[6.4, 26.7] hit rate needs 36.7% to break even. Whether a *lower* target on the
+same entries would pay is a new question and needs its own pre-commit, on
+positions not yet entered, because the 44 above have now been looked at.
