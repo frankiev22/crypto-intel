@@ -1,13 +1,13 @@
 {
- "ts": 1789907841,
+ "ts": 1789922085,
  "stage": "full",
  "origin": "scheduled",
  "scan": {
-  "pools_seen": 88,
-  "pools_reached": 88,
+  "pools_seen": 83,
+  "pools_reached": 83,
   "coverage": 1.0,
-  "enriched": 83,
-  "failed": 5,
+  "enriched": 79,
+  "failed": 4,
   "truncated": false,
   "truncate_reason": null,
   "carried_forward": 0,
@@ -16,49 +16,49 @@
  },
  "outcomes": {
   "1h": {
-   "due": 397,
-   "scored": 397,
+   "due": 83,
+   "scored": 83,
    "not_reached": 0,
    "expiring_before_next_pass": 0,
    "coverage": 1.0,
    "slice_limit": 400
   },
   "6h": {
-   "due": 483,
+   "due": 480,
    "scored": 400,
-   "not_reached": 83,
+   "not_reached": 80,
    "expiring_before_next_pass": 0,
-   "coverage": 0.8282,
+   "coverage": 0.8333,
    "slice_limit": 400
   },
   "24h": {
-   "due": 492,
+   "due": 415,
    "scored": 400,
-   "not_reached": 92,
+   "not_reached": 15,
    "expiring_before_next_pass": 0,
-   "coverage": 0.813,
+   "coverage": 0.9639,
    "slice_limit": 400
   }
  },
  "graduations": {
-  "backlog": 223,
-  "lag_s": 13633,
-  "lag_h": 3.79,
-  "processed_last_pass": 84,
-  "failed_txs_skipped": 147,
-  "retry_queue": 42,
+  "backlog": 395,
+  "lag_s": 24724,
+  "lag_h": 6.87,
+  "processed_last_pass": 56,
+  "failed_txs_skipped": 171,
+  "retry_queue": 25,
   "accounted": true
  },
  "lookups": {
-  "calls": 45,
-  "asked": 1285,
-  "found": 953,
-  "served": 1285,
+  "calls": 34,
+  "asked": 966,
+  "found": 632,
+  "served": 966,
   "stale": 0,
-  "hit_rate": 0.7416
+  "hit_rate": 0.6542
  },
  "alarms": [
-  "outcome queue 1372 due across 3 horizon(s), at or above 750",
-  "graduation ledger 3.79h behind, backlog 223"
+  "outcome queue 978 due across 3 horizon(s), at or above 750",
+  "graduation ledger 6.87h behind, backlog 395"
  ]
 }

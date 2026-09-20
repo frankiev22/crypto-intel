@@ -5429,13 +5429,13 @@
  },
  "lookup-outage:h": {
   "first_seen": "2026-09-04T04:32:41+00:00",
-  "count": 189,
+  "count": 190,
   "example": "lookup-outage: 24h",
   "keys": [
    "168h",
    "24h"
   ],
-  "last_seen": "2026-09-20T12:31:16+00:00",
+  "last_seen": "2026-09-20T16:28:20+00:00",
   "last_escalated": "2026-09-20T12:31:16+00:00",
   "escalations": 18
  },
@@ -5911,7 +5911,7 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 91,
+  "count": 93,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
@@ -5919,7 +5919,7 @@
    "6h",
    "168h"
   ],
-  "last_seen": "2026-09-20T12:28:01+00:00",
+  "last_seen": "2026-09-20T16:25:55+00:00",
   "last_escalated": "2026-09-20T12:28:01+00:00",
   "escalations": 18
  },
@@ -10306,18 +10306,20 @@
  },
  "outcome-win:oeikygznuvadarqprmkvfrzalkdzuxhkstnk": {
   "first_seen": "2026-09-20T12:27:07+00:00",
-  "count": 1,
+  "count": 2,
   "example": "outcome-win: 6oeiky8G8ZnuvadARQPRMkV6FRz8ALKd579ZuXhKSTNK",
   "keys": [
    "6oeiky8G8ZnuvadARQPRMkV6FRz8ALKd579ZuXhKSTNK"
-  ]
+  ],
+  "last_seen": "2026-09-20T16:25:04+00:00"
  },
  "funnel-narrowing:full": {
   "first_seen": "2026-09-20T12:37:21+00:00",
-  "count": 1,
+  "count": 2,
   "example": "funnel-narrowing: full",
   "keys": [
    "full"
-  ]
+  ],
+  "last_seen": "2026-09-20T16:34:45+00:00"
  }
 }
