@@ -5911,7 +5911,7 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 89,
+  "count": 90,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
@@ -5919,7 +5919,7 @@
    "6h",
    "168h"
   ],
-  "last_seen": "2026-09-20T01:51:45+00:00",
+  "last_seen": "2026-09-20T07:13:25+00:00",
   "last_escalated": "2026-09-20T01:51:45+00:00",
   "escalations": 17
  },
@@ -10294,6 +10294,14 @@
   "example": "scanner-hit: ZEUS",
   "keys": [
    "ZEUS"
+  ]
+ },
+ "outcome-win:qgajytggkfpqphbvtvpkqkwvpbfdgjjxvzobf": {
+  "first_seen": "2026-09-20T07:12:10+00:00",
+  "count": 1,
+  "example": "outcome-win: 3QgAJyTGGKfp1QPHBV6tV5P1kq2KwvPBfdG4jjxvZobF",
+  "keys": [
+   "3QgAJyTGGKfp1QPHBV6tV5P1kq2KwvPBfdG4jjxvZobF"
   ]
  }
 }
