@@ -1,29 +1,78 @@
 {
- "ts": 1789967410,
- "stage": "watchlist",
+ "ts": 1789975618,
+ "stage": "full",
  "origin": "scheduled",
  "scan": {
-  "pools_seen": 0,
-  "pools_reached": null,
-  "coverage": null,
-  "enriched": 0,
+  "pools_seen": 86,
+  "pools_reached": 86,
+  "coverage": 1.0,
+  "enriched": 86,
   "failed": 0,
   "truncated": false,
   "truncate_reason": null,
-  "carried_forward": null,
-  "carried_in": null,
+  "carried_forward": 0,
+  "carried_in": 0,
   "skipped_addresses": 0
  },
- "outcomes": null,
+ "outcomes": {
+  "1h": {
+   "due": 281,
+   "scored": 281,
+   "not_reached": 0,
+   "expiring_before_next_pass": 0,
+   "coverage": 1.0,
+   "slice_limit": 400,
+   "primary_ok": 281,
+   "primary_miss": 0,
+   "primary_seen": 281,
+   "primary_rate": 1.0,
+   "primary_floor": 0.9
+  },
+  "6h": {
+   "due": 425,
+   "scored": 400,
+   "not_reached": 25,
+   "expiring_before_next_pass": 0,
+   "coverage": 0.9412,
+   "slice_limit": 400,
+   "primary_ok": 400,
+   "primary_miss": 0,
+   "primary_seen": 400,
+   "primary_rate": 1.0,
+   "primary_floor": 0.9
+  },
+  "24h": {
+   "due": 530,
+   "scored": 400,
+   "not_reached": 130,
+   "expiring_before_next_pass": 0,
+   "coverage": 0.7547,
+   "slice_limit": 400,
+   "primary_ok": 125,
+   "primary_miss": 275,
+   "primary_seen": 400,
+   "primary_rate": 0.3125,
+   "primary_floor": 0.2
+  }
+ },
  "graduations": {
-  "backlog": 0,
-  "lag_s": 9,
-  "lag_h": 0.0,
-  "processed_last_pass": 72,
-  "failed_txs_skipped": 23,
-  "retry_queue": 0,
+  "backlog": 134,
+  "lag_s": 9450,
+  "lag_h": 2.62,
+  "processed_last_pass": 28,
+  "failed_txs_skipped": 89,
+  "retry_queue": 87,
   "accounted": true
  },
- "lookups": null,
- "alarms": []
+ "lookups": {
+  "calls": 41,
+  "asked": 1167,
+  "found": 892,
+  "served": 1167,
+  "stale": 0,
+  "hit_rate": 0.7644
+ },
+ "alarms": [
+  "outcome queue 1236 due across 3 horizon(s), at or above 750"
+ ]
 }

@@ -177,9 +177,9 @@
  },
  "funnel-narrowing:full": {
   "first_seen": "2026-09-20T12:37:21+00:00",
-  "count": 6,
+  "count": 7,
   "example": "funnel-narrowing: full",
-  "last_seen": "2026-09-21T01:49:26+00:00",
+  "last_seen": "2026-09-21T07:26:58+00:00",
   "last_escalated": "2026-09-21T01:49:26+00:00",
   "keys": [
    "full"
@@ -197,9 +197,9 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 98,
+  "count": 99,
   "example": "horizon-drift: 1h",
-  "last_seen": "2026-09-21T01:41:16+00:00",
+  "last_seen": "2026-09-21T07:20:20+00:00",
   "last_escalated": "2026-09-21T01:41:16+00:00",
   "keys": [
    "1h",
@@ -11111,10 +11111,35 @@
  },
  "liveness:selftest": {
   "first_seen": "2026-09-21T05:09:40+00:00",
-  "count": 1,
+  "count": 2,
   "example": "liveness: selftest",
   "keys": [
    "selftest"
+  ],
+  "last_seen": "2026-09-21T07:27:02+00:00"
+ },
+ "scanner-hit:xonrstvdumbwesderhypkezpbsqhknwcnyzpwpump": {
+  "first_seen": "2026-09-21T07:11:06+00:00",
+  "count": 1,
+  "example": "scanner-hit: XoNRSTVdumBweSderhyp5KezpbSqHK8NWcnyzPWpump",
+  "keys": [
+   "XoNRSTVdumBweSderhyp5KezpbSqHK8NWcnyzPWpump"
+  ]
+ },
+ "scanner-hit:abmykfuuwmrxgdzzzvbcticssgjyttbjohsrh": {
+  "first_seen": "2026-09-21T07:11:06+00:00",
+  "count": 1,
+  "example": "scanner-hit: 25A1bmyk2fUUwmRxgDzZ5ZvBcTiCSSG4j4yTtBJoHSRh",
+  "keys": [
+   "25A1bmyk2fUUwmRxgDzZ5ZvBcTiCSSG4j4yTtBJoHSRh"
+  ]
+ },
+ "scanner-hit:bxcuxnduxyfqjzhmrowzqqkjuseugkzlsyustp": {
+  "first_seen": "2026-09-21T07:11:07+00:00",
+  "count": 1,
+  "example": "scanner-hit: B9xC22ux4Nduxy9fQJZhmr6owZqqkjUseUGkZLsyuSTp",
+  "keys": [
+   "B9xC22ux4Nduxy9fQJZhmr6owZqqkjUseUGkZLsyuSTp"
   ]
  }
 }
