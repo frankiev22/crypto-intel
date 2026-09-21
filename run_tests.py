@@ -59,13 +59,44 @@ def snapshot():
 UNATTENDED = ("scheduled", "runner")
 
 
+def _pass_margin():
+    """How long a pass can be WORKING AND SILENT, from collect.py's own limits.
+
+    ⛔ The first version of this detector asked only "did an unattended pass beat
+    BETWEEN t0 and t1". It missed a pass that was writing the whole time: on
+    2026-09-21 the suite ran inside a 98-second gap between `dashboard.build`
+    (05:10:22) and `market.snapshot` (05:12:00), and the market stage spent that
+    gap making live Jupiter calls - it wrote data/_jupiter_usage.json at
+    05:11:35, mid-suite, and the run still reported "THE SUITE WROTE INTO data/".
+
+    That is standing rule 13 at small scale: a sampler narrower than the thing it
+    samples. A beat marks the END of a stage's work, not its span, so a window
+    that only counts beats inside it cannot see a stage that is mid-flight. The
+    margin is taken from KILL_S - the longest a single staged command is allowed
+    to run - so "a beat this close to the window" means "a stage could have been
+    working through it". Imported, never hardcoded, so it tracks the real limit.
+    """
+    try:
+        import collect
+        return float(collect.KILL_S) + 60.0
+    except Exception:
+        return 240.0
+
+
 def _unattended_beats(t0, t1):
-    """Beats an unattended pass wrote while the suite ran: [(origin, names, n,
+    """Beats an unattended pass wrote around the suite run: [(origin, names, n,
     first_ts, last_ts)]. Read straight from the liveness journal - the same
-    rows the collector writes - so it is evidence, not an inference."""
+    rows the collector writes - so it is evidence, not an inference.
+
+    The window is widened by _pass_margin() on BOTH sides: a pass whose last
+    beat lands just before the suite starts is still running through it, and one
+    whose first beat lands just after was working during it. See that docstring
+    for the failure this exists to catch."""
     import collections
     import datetime as _dt
     import json
+    m = _pass_margin()
+    t0, t1 = t0 - m, t1 + m
     now = _dt.datetime.now(_dt.timezone.utc)
     seen = collections.defaultdict(lambda: [set(), 0, None, None])
     for month in {now.strftime("%Y-%m"), (now - _dt.timedelta(days=1)).strftime("%Y-%m")}:
@@ -133,11 +164,23 @@ def main():
         # and ~10.5h of liveness beats were destroyed - standing rule 8, broken
         # by the tool that exists to protect the journal. It now names the
         # writer before it accuses anything.
-        beats = _unattended_beats(_t_start, time.time())
+        _t_end = time.time()
+        beats = _unattended_beats(_t_start, _t_end)
         if beats:
             print("⚠ data/ changed during the run, but an UNATTENDED PASS WAS WRITING:")
             for o, names, n, lo, hi in beats:
-                print(f"     origin={o}: {n} beats over {hi - lo:.0f}s  "
+                # ⭐ Say WHERE the beats fell relative to the run. "A pass was
+                # beating throughout" and "a pass beat 40s before it started"
+                # are different strengths of evidence and must not read alike.
+                if lo <= _t_start and hi >= _t_end:
+                    where = "throughout the run"
+                elif hi < _t_start:
+                    where = f"ending {_t_start - hi:.0f}s BEFORE the run - mid-stage through it"
+                elif lo > _t_end:
+                    where = f"starting {lo - _t_end:.0f}s AFTER it - working during it"
+                else:
+                    where = "overlapping the run"
+                print(f"     origin={o}: {n} beats over {hi - lo:.0f}s, {where}  "
                       f"({', '.join(sorted(names)[:6])})")
             print("   The suites are not implicated by this alone. Re-run when no "
                   "pass is in flight to separate the two.")

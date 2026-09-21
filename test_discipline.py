@@ -409,7 +409,79 @@ check("⛔ and reports NOTHING rather than a manual beat when there is none",
 
 print()
 print("=" * 70)
-print("E. the rule is written down where the next session will find it")
+print("E. the data guard blames the right writer")
+print("=" * 70)
+
+# ⛔ run_tests.py asserts that no suite wrote into data/. When a scheduled pass
+# is running at the same time, that assertion fires on the PASS's rows and
+# accuses the suites. That is not cosmetic: the identical message is what led me
+# to `git checkout data/` on 2026-09-20 and destroy ~10.5h of liveness beats.
+#
+# The first fix asked "did an unattended pass beat BETWEEN t0 and t1" and STILL
+# missed one, because a beat marks the end of a stage's work, not its span. On
+# 2026-09-21 the suite ran inside a 98-second gap between two beats while the
+# market stage made live Jupiter calls through it and wrote _jupiter_usage.json
+# mid-run. Sampler narrower than the phenomenon - standing rule 13.
+import run_tests
+
+margin = run_tests._pass_margin()
+try:
+    import collect
+    _kill = float(collect.KILL_S)
+except Exception:
+    _kill = None
+check("the window margin comes from collect.KILL_S, not a literal",
+      _kill is not None and margin >= _kill, f"margin {margin}s, KILL_S {_kill}")
+check("⭐ and it covers a whole silent stage", _kill is None or margin > _kill,
+      f"{margin} > {_kill}")
+
+_lv = os.path.join(HERE, "data", "liveness")
+_month = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m")
+_real_path = os.path.join(_lv, f"{_month}.jsonl")
+_tmpdir = tempfile.mkdtemp()
+_saved_here = run_tests.HERE
+try:
+    os.makedirs(os.path.join(_tmpdir, "data", "liveness"))
+    now = int(time.time())
+    # a pass that beats 100s before the run and 100s after it, and NEVER inside:
+    # exactly the shape that fooled the strict window.
+    rows = [{"name": "dashboard.build", "ts": now - 100, "n": 1, "origin": "scheduled"},
+            {"name": "market.snapshot", "ts": now + 100, "n": 412, "origin": "scheduled"}]
+    with io.open(os.path.join(_tmpdir, "data", "liveness", f"{_month}.jsonl"),
+                 "w", encoding="utf-8", newline="\n") as f:
+        for r in rows:
+            f.write(json.dumps(r) + "\n")
+    run_tests.HERE = _tmpdir
+    got = run_tests._unattended_beats(now - 20, now + 20)   # the suite's own window
+    check("⭐ a pass that beat only OUTSIDE the run is still detected",
+          len(got) == 1 and got[0][0] == "scheduled" and got[0][2] == 2,
+          repr(got))
+    # ...and a manual hand-run must NOT excuse a dirty data/ dir.
+    with io.open(os.path.join(_tmpdir, "data", "liveness", f"{_month}.jsonl"),
+                 "w", encoding="utf-8", newline="\n") as f:
+        f.write(json.dumps({"name": "scan.observations", "ts": now,
+                            "n": 9, "origin": "manual"}) + "\n")
+    check("⛔ a MANUAL beat never excuses it - only unattended does",
+          run_tests._unattended_beats(now - 20, now + 20) == [])
+    # ...and a pass from yesterday must not excuse today's run either.
+    with io.open(os.path.join(_tmpdir, "data", "liveness", f"{_month}.jsonl"),
+                 "w", encoding="utf-8", newline="\n") as f:
+        f.write(json.dumps({"name": "scan.observations", "ts": now - 86400,
+                            "n": 9, "origin": "scheduled"}) + "\n")
+    check("⛔ and a pass from 24h ago does not either",
+          run_tests._unattended_beats(now - 20, now + 20) == [])
+finally:
+    run_tests.HERE = _saved_here
+
+src = io.open(os.path.join(HERE, "run_tests.py"), encoding="utf-8").read()
+check("⛔ the message forbids `git checkout data/` in words",
+      "NEVER `git checkout` data/" in src)
+check("and it names the writer instead of blaming the suites",
+      "UNATTENDED PASS WAS WRITING" in src)
+
+print()
+print("=" * 70)
+print("F. the rule is written down where the next session will find it")
 print("=" * 70)
 
 doc = os.path.join(HERE, "docs", "ENGINEERING_DISCIPLINE.md")
