@@ -1,13 +1,13 @@
 {
- "ts": 1790020437,
+ "ts": 1790031828,
  "stage": "full",
  "origin": "scheduled",
  "scan": {
-  "pools_seen": 98,
-  "pools_reached": 98,
+  "pools_seen": 84,
+  "pools_reached": 84,
   "coverage": 1.0,
-  "enriched": 91,
-  "failed": 7,
+  "enriched": 79,
+  "failed": 5,
   "truncated": false,
   "truncate_reason": null,
   "carried_forward": 0,
@@ -16,6 +16,19 @@
  },
  "outcomes": {
   "1h": {
+   "due": 91,
+   "scored": 91,
+   "not_reached": 0,
+   "expiring_before_next_pass": 0,
+   "coverage": 1.0,
+   "slice_limit": 400,
+   "primary_ok": 91,
+   "primary_miss": 0,
+   "primary_seen": 91,
+   "primary_rate": 1.0,
+   "primary_floor": 0.9
+  },
+  "6h": {
    "due": 86,
    "scored": 86,
    "not_reached": 0,
@@ -28,52 +41,40 @@
    "primary_rate": 1.0,
    "primary_floor": 0.9
   },
-  "6h": {
-   "due": 191,
-   "scored": 191,
-   "not_reached": 0,
-   "expiring_before_next_pass": 0,
-   "coverage": 1.0,
-   "slice_limit": 400,
-   "primary_ok": 191,
-   "primary_miss": 0,
-   "primary_seen": 191,
-   "primary_rate": 1.0,
-   "primary_floor": 0.9
-  },
   "24h": {
-   "due": 919,
+   "due": 845,
    "scored": 400,
-   "not_reached": 519,
-   "expiring_before_next_pass": 0,
-   "coverage": 0.4353,
+   "not_reached": 445,
+   "expiring_before_next_pass": 65,
+   "coverage": 0.4734,
    "slice_limit": 400,
-   "primary_ok": 106,
-   "primary_miss": 294,
+   "primary_ok": 79,
+   "primary_miss": 321,
    "primary_seen": 400,
-   "primary_rate": 0.265,
+   "primary_rate": 0.1975,
    "primary_floor": 0.2
   }
  },
  "graduations": {
-  "backlog": 838,
-  "lag_s": 48913,
-  "lag_h": 13.59,
+  "backlog": 981,
+  "lag_s": 56117,
+  "lag_h": 15.59,
   "processed_last_pass": 48,
-  "failed_txs_skipped": 10724,
-  "retry_queue": 119,
+  "failed_txs_skipped": 10799,
+  "retry_queue": 147,
   "accounted": true
  },
  "lookups": {
-  "calls": 28,
-  "asked": 775,
-  "found": 474,
-  "served": 775,
+  "calls": 24,
+  "asked": 661,
+  "found": 335,
+  "served": 661,
   "stale": 0,
-  "hit_rate": 0.6116
+  "hit_rate": 0.5068
  },
  "alarms": [
-  "outcome queue 1196 due across 3 horizon(s), at or above 750",
-  "graduation ledger 13.59h behind, backlog 838"
+  "rows will age out UNSCORED before the next pass and cannot be recovered: 65 at 24h",
+  "outcome queue 1022 due across 3 horizon(s), at or above 750",
+  "graduation ledger 15.59h behind, backlog 981"
  ]
 }
