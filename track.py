@@ -441,7 +441,15 @@ def score_horizon(horizon_h, limit=None, verbose=True):
                 # (AH8DQTFk...). Keyed on the symbol, the second FLORK would
                 # have been suppressed as a repeat of the first.
                 findings.record(
-                    "outcome-win", o.get("token") or o.get("symbol", "?"),
+                    # ⛔ The address, with NO fallback to the symbol. The old
+                    # `or o.get("symbol", "?")` was dormant - `token` is on 100%
+                    # of outcome rows from 2026-09-09, and on 0% before
+                    # mid-09-08 - but a dormant ticker fallback is still a
+                    # ticker fallback, and it is the shape that silenced six
+                    # BASKET contracts in the scan lane (2026-09-21).
+                    # A row with no address is recorded under a key that cannot
+                    # be confused with another contract.
+                    "outcome-win", o.get("token") or f"no-address:{o.get('pair') or '?'}",
                     # ⛔ Not "realizable": nothing here quoted a sell. The gate
                     # passed on Dexscreener's depth (2026-09-19, 7uMjiTCQ...).
                     f"{o.get('symbol','?')} {mult:,.2f}x, passed the win gate (no sell quoted), at the "

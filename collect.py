@@ -139,6 +139,10 @@ _PASS_T0 = time.time()
 
 PASS_SCORE = 70
 JOURNAL_BATCH = 10
+# The grade at or above which a surfaced row is written to the findings journal.
+# 85 is the figure the desktop task's SKILL.md has used since 2026-09-15; see
+# PRECOMMIT_surface_grade.md, which fixes what `grade` means. Not tuned here.
+SURFACE_FINDING_GRADE = int(os.environ.get("CRYPTO_SURFACE_FINDING_GRADE", "85"))
 
 # THE STAGED COMMAND LIST IS CODE, NOT ONLY A SKILL FILE.
 #
@@ -296,13 +300,54 @@ def scan_stage(networks=("solana",), verbose=True):
                   f"{len(surfaced)} surfaced (grade {PASS_SCORE}+, authorities verified)")
         if surfaced:
             # the same token often shows up as several pools; one line each
+            #
+            # ⛔ KEYED ON THE CONTRACT ADDRESS, NEVER THE TICKER. This line read
+            # `r.get("addr") or r.get("name")`, and `addr` defaults to "" - which
+            # is falsy - so any row whose address was missing fell back to the
+            # SYMBOL and merged with an unrelated contract of the same name.
+            # Standing rule 2 exists for exactly this. A row with no address is
+            # its own group and is never merged with anything (2026-09-21).
             seen, uniq = set(), []
             for r in surfaced:
-                k = r.get("addr") or r.get("name")
+                a = (r.get("addr") or "").strip()
+                k = a or ("\x00no-address\x00", id(r))
                 if k in seen:
                     continue
                 seen.add(k)
                 uniq.append(r)
+
+            # ⭐ THE SCANNER-HIT LANE, IN CODE (2026-09-21). It used to exist only
+            # as a prose instruction in the desktop task's SKILL.md - which told
+            # the agent to pass `--key <SYMBOL>`, one paragraph above telling it
+            # to key the TRAP lane on the contract address. So six distinct
+            # BASKET contracts on 09-20, two of them graded 100, collapsed into
+            # one `scanner-hit:basket` class and everything after the first went
+            # silent; Exaflopcat was patched by hand mid-pass to
+            # `Exaflopcat-ET3Nqq`. Measured: 23 classes held more than one
+            # distinct grade-85+ contract in the four days `grade` has existed,
+            # covering 34 contracts, 11 of them inside a single hour.
+            # A prose instruction is a manual process (standing rule 11); this
+            # is the same rule with the key made structural.
+            for r in uniq:
+                a = (r.get("addr") or "").strip()
+                g = r.get("grade") or 0
+                if not a or g < SURFACE_FINDING_GRADE:
+                    continue
+                try:
+                    findings.record(
+                        "scanner-hit", a,            # ⛔ the address IS the key
+                        f"grade {g}",
+                        detail=(f"{r.get('name') or '?'} · contract {a} · "
+                                f"liq ${r.get('liq') or 0:,.0f}, 24h vol "
+                                f"${r.get('v24') or 0:,.0f}, "
+                                f"{r.get('age_h') or 0:.1f}h old"
+                                + (f", holders {r['holders']}" if r.get("holders") else "")
+                                + (f", {r['dex_id']}" if r.get("dex_id") else "")
+                                + (f" · {r['url']}" if r.get("url") else "")))
+                except Exception as e:
+                    print(f"  scanner-hit record failed (non-fatal): "
+                          f"{type(e).__name__}: {e}")
+
             chain = net.replace("-", " ").title()
             noun = "token" if len(uniq) == 1 else "tokens"
             notify.send(
