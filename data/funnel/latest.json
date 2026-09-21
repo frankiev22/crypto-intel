@@ -1,13 +1,13 @@
 {
- "ts": 1790001476,
+ "ts": 1790020437,
  "stage": "full",
  "origin": "scheduled",
  "scan": {
-  "pools_seen": 90,
-  "pools_reached": 90,
+  "pools_seen": 98,
+  "pools_reached": 98,
   "coverage": 1.0,
-  "enriched": 86,
-  "failed": 4,
+  "enriched": 91,
+  "failed": 7,
   "truncated": false,
   "truncate_reason": null,
   "carried_forward": 0,
@@ -29,51 +29,51 @@
    "primary_floor": 0.9
   },
   "6h": {
-   "due": 591,
-   "scored": 400,
-   "not_reached": 191,
+   "due": 191,
+   "scored": 191,
+   "not_reached": 0,
    "expiring_before_next_pass": 0,
-   "coverage": 0.6768,
+   "coverage": 1.0,
    "slice_limit": 400,
-   "primary_ok": 400,
+   "primary_ok": 191,
    "primary_miss": 0,
-   "primary_seen": 400,
+   "primary_seen": 191,
    "primary_rate": 1.0,
    "primary_floor": 0.9
   },
   "24h": {
-   "due": 766,
+   "due": 919,
    "scored": 400,
-   "not_reached": 366,
+   "not_reached": 519,
    "expiring_before_next_pass": 0,
-   "coverage": 0.5222,
+   "coverage": 0.4353,
    "slice_limit": 400,
-   "primary_ok": 95,
-   "primary_miss": 305,
+   "primary_ok": 106,
+   "primary_miss": 294,
    "primary_seen": 400,
-   "primary_rate": 0.2375,
+   "primary_rate": 0.265,
    "primary_floor": 0.2
   }
  },
  "graduations": {
-  "backlog": 497,
-  "lag_s": 33584,
-  "lag_h": 9.33,
-  "processed_last_pass": 36,
-  "failed_txs_skipped": 544,
-  "retry_queue": 92,
+  "backlog": 838,
+  "lag_s": 48913,
+  "lag_h": 13.59,
+  "processed_last_pass": 48,
+  "failed_txs_skipped": 10724,
+  "retry_queue": 119,
   "accounted": true
  },
  "lookups": {
-  "calls": 31,
-  "asked": 890,
-  "found": 581,
-  "served": 976,
+  "calls": 28,
+  "asked": 775,
+  "found": 474,
+  "served": 775,
   "stale": 0,
-  "hit_rate": 0.6528
+  "hit_rate": 0.6116
  },
  "alarms": [
-  "outcome queue 1443 due across 3 horizon(s), at or above 750",
-  "graduation ledger 9.33h behind, backlog 497"
+  "outcome queue 1196 due across 3 horizon(s), at or above 750",
+  "graduation ledger 13.59h behind, backlog 838"
  ]
 }
