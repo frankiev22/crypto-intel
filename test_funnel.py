@@ -43,6 +43,11 @@ try:
     import scanner
     import track
     _save_scan, _save_cov = scanner.LAST_SCAN, track.LAST_COVERAGE
+    _save_hh = dict(track.HORIZON_HEALTH)
+    # the real 2026-09-21 shape: the 24h primary source at 37/189, its floor 20%
+    track.HORIZON_HEALTH.clear()
+    track.HORIZON_HEALTH.update({1: {"primary_ok": 300, "primary_miss": 117},
+                                 6: {"primary_ok": 37, "primary_miss": 152}})
     scanner.LAST_SCAN = {"pools": 200, "reached": 70, "enriched": 68, "failed": 2,
                          "budget_hit": True, "truncate_reason": "stage deadline",
                          "carried_forward": 130, "pools_carried": 110, "skipped": ["a", "b"]}
@@ -65,6 +70,33 @@ try:
     check("...the pools it carried forward", back["scan"]["carried_forward"] == 130)
     check("...and the queue it did not reach", back["outcomes"]["6h"]["not_reached"] == 536)
     check("latest.json is written for the site", os.path.exists(funnel.LATEST))
+
+    # ⭐ the primary price source, per horizon. Only the TEXT of a lookup-outage
+    # finding recorded this before, and that is written only once the rate is
+    # already under the floor - so the trend was unmeasurable by construction.
+    check("⭐ the row carries the primary source's rate per horizon",
+          back["outcomes"]["6h"]["primary_rate"] == round(37 / 189, 4),
+          back["outcomes"]["6h"].get("primary_rate"))
+    check("...with the numerator and denominator beside it, not just the ratio",
+          (back["outcomes"]["6h"]["primary_ok"], back["outcomes"]["6h"]["primary_seen"])
+          == (37, 189))
+    check("...and the pre-committed floor it is judged against",
+          back["outcomes"]["6h"]["primary_floor"] is not None,
+          back["outcomes"]["6h"].get("primary_floor"))
+    # ⛔ A horizon the health dict knows nothing about must read unknown. Tested
+    # by removing it from HORIZON_HEALTH while it stays in LAST_COVERAGE, which
+    # is exactly what a horizon skipped for want of budget looks like.
+    _hh6 = track.HORIZON_HEALTH.pop(6)
+    _o = funnel._outcomes()
+    track.HORIZON_HEALTH[6] = _hh6
+    check("⛔ a horizon nobody looked at reads unknown, not 0%",
+          _o["6h"]["primary_rate"] is None and _o["6h"]["primary_seen"] is None
+          and _o["1h"]["primary_rate"] is not None, _o["6h"])
+    check("...and the pass line omits it rather than printing 0%",
+          "0% of" not in funnel.line({"outcomes": _o}), funnel.line({"outcomes": _o}))
+    check("the pass line names the rate and says when it is under the floor",
+          "primary source" in funnel.line(back) and "UNDER FLOOR" in funnel.line(back),
+          funnel.line(back))
     check("⛔ a narrowing funnel raises a finding", len(seen) == 1, seen)
     check("...naming the loss that cannot be recovered",
           "age out UNSCORED" in json.dumps(seen[0]) if seen else False)
@@ -118,6 +150,8 @@ try:
           s["rows_expiring_unscored"] == 151, s)
 finally:
     scanner.LAST_SCAN, track.LAST_COVERAGE = _save_scan, _save_cov
+    track.HORIZON_HEALTH.clear()
+    track.HORIZON_HEALTH.update(_save_hh)
     funnel.DIR, funnel.LATEST = _orig_dir, _orig_latest
     import shutil
     shutil.rmtree(TMP, ignore_errors=True)

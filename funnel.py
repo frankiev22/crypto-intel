@@ -86,14 +86,49 @@ def _outcomes():
         return None
     if not lc:
         return None
+    # ⭐ THE PRIMARY PRICE SOURCE, PER HORIZON (2026-09-21). `track.HORIZON_HEALTH`
+    # holds primary_ok / primary_miss for the pass that just ran and was read by
+    # nothing but the daily Discord line, so the only durable record of the rate
+    # was the TEXT of a lookup-outage finding - which is written ONLY when the
+    # rate is already under the floor. That is a biased sample: you can see the
+    # crossings and never the trend. Asked "is Dexscreener degrading?" on
+    # 2026-09-21 the honest answer was "the journal cannot say", which is the
+    # same hole this file exists to close.
+    #
+    # ⚠️ Persisted, NOT alarmed. track.score_horizon already alarms per pass
+    # against its own pre-committed per-horizon floor. A trend threshold would
+    # have to be pre-committed against a baseline we do not have yet, and
+    # inventing one after reading the data is what standing rule 6 forbids.
+    try:
+        hh = track.HORIZON_HEALTH or {}
+    except Exception:
+        hh = {}
     out = {}
     for h, v in sorted(lc.items()):
-        out[f"{h}h"] = {"due": v.get("due"), "scored": v.get("scored_this_pass"),
-                        "not_reached": v.get("not_reached"),
-                        "expiring_before_next_pass": v.get("expiring_before_next_pass"),
-                        "coverage": None if v.get("coverage") is None else round(v["coverage"], 4),
-                        "slice_limit": v.get("slice_limit")}
+        row = {"due": v.get("due"), "scored": v.get("scored_this_pass"),
+               "not_reached": v.get("not_reached"),
+               "expiring_before_next_pass": v.get("expiring_before_next_pass"),
+               "coverage": None if v.get("coverage") is None else round(v["coverage"], 4),
+               "slice_limit": v.get("slice_limit")}
+        g = hh.get(h) or {}
+        ok, miss = g.get("primary_ok"), g.get("primary_miss")
+        seen = None if (ok is None and miss is None) else (ok or 0) + (miss or 0)
+        row.update(primary_ok=ok, primary_miss=miss, primary_seen=seen,
+                   # ⛔ Unknown is None, never 0 - a 0% rate and "nobody looked"
+                   # are different facts (standing rule 5).
+                   primary_rate=(None if not seen else round((ok or 0) / seen, 4)),
+                   primary_floor=_floor(h))
+        out[f"{h}h"] = row
     return out
+
+
+def _floor(h):
+    """This horizon's pre-committed primary-source floor, or None if unreadable."""
+    try:
+        import track
+        return track.primary_floor(h)
+    except Exception:
+        return None
 
 
 def _graduations():
@@ -203,6 +238,13 @@ def line(row):
         due = sum(v.get("due") or 0 for v in oc.values())
         exp = sum(v.get("expiring_before_next_pass") or 0 for v in oc.values())
         bits.append(f"queue {due} due, {exp} about to age out")
+        pr = [(h, v) for h, v in sorted(oc.items()) if v.get("primary_rate") is not None]
+        if pr:
+            bits.append("primary source " + ", ".join(
+                f"{h} {v['primary_rate']:.0%} of {v['primary_seen']}"
+                + ("" if v.get("primary_floor") is None
+                   else ("" if v["primary_rate"] >= v["primary_floor"] else " UNDER FLOOR"))
+                for h, v in pr))
     if g:
         bits.append(f"graduations backlog {g.get('backlog')}, "
                     f"lag {'unknown' if g.get('lag_h') is None else str(g['lag_h']) + 'h'}")
@@ -241,7 +283,19 @@ def summary(hours=24, now=None):
     if scans:
         s = sorted(scans)
         med = s[len(s) // 2] if len(s) % 2 else (s[len(s) // 2 - 1] + s[len(s) // 2]) / 2
+    prim = {}
+    for r in rs:
+        for h, v in (r.get("outcomes") or {}).items():
+            if v.get("primary_rate") is not None:
+                prim.setdefault(h, []).append(v["primary_rate"])
+    prim_med = {}
+    for h, v in prim.items():
+        v = sorted(v)
+        prim_med[h] = {"median": round(v[len(v) // 2] if len(v) % 2 else
+                                      (v[len(v) // 2 - 1] + v[len(v) // 2]) / 2, 4),
+                       "n_passes": len(v), "min": v[0], "max": v[-1]}
     return {"passes": len(rs), "hours": hours,
+            "primary_rate_by_horizon": prim_med or None,
             "scan_coverage_median": None if med is None else round(med, 4),
             "scan_coverage_n": len(scans),
             "rows_expiring_unscored": exp if rs else None,
