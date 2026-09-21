@@ -403,6 +403,18 @@ while Dexscreener's `liquidity` is the field overstating by a median 781x.
 the overstating field**, which the v3 lane already does and the outcome lane
 does not.
 
+⛔⛔ **AND THE CROSSING HAS ALREADY HAPPENED AT 24h.** "One more step down and 24h
+outcomes price off one source with no cross-check" understates it: measured
+2026-09-21 over 09-20/09-21, **9 of 9** gate-passing wins at the 24h horizon are
+**single-sourced** (1h: 3/12, 6h: 1/10; 13 of 31 overall). The gate does not
+catch it, **by design** — `pricecheck` sets `trustworthy=True` on the
+single-source path, so `verify_win`'s `source_agreement` check passes a price
+nothing corroborated. ⚠️ **It is the `authority_live=None` shape again: not
+checked reads as passed.** `pricecheck.py:196` already names it an open decision
+and defers it because "the n=200 run closes 2026-09-14" — **that date has
+passed, so the reason for deferring has expired.** Changing it relabels outcomes
+across the record, so it needs a pre-commit, not a patch. BACKLOG A47.
+
 ⛔ **Jupiter's "organic" volume split is NOT a wash signal.** SOL itself runs
 1.8% organic; a low share is the norm. It is published beside SOL's baseline
 and flags nothing. There is no wash detector in `data/market/`.
