@@ -1509,3 +1509,4 @@
 {"ts":1789967370,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
 {"ts":1789967410,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
 {"ts":1789975618,"dexscreener_ok":7,"dexscreener_dropped":33,"geckoterminal_ok":6,"geckoterminal_fail":27,"onchain_ok":40,"onchain_fail":0,"unresolved":27}
+{"ts":1790001476,"dexscreener_ok":5,"dexscreener_dropped":33,"geckoterminal_ok":7,"geckoterminal_fail":26,"onchain_ok":38,"onchain_fail":0,"unresolved":26}

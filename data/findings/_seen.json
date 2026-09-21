@@ -177,13 +177,14 @@
  },
  "funnel-narrowing:full": {
   "first_seen": "2026-09-20T12:37:21+00:00",
-  "count": 7,
+  "count": 8,
   "example": "funnel-narrowing: full",
-  "last_seen": "2026-09-21T07:26:58+00:00",
-  "last_escalated": "2026-09-21T01:49:26+00:00",
+  "last_seen": "2026-09-21T14:37:56+00:00",
+  "last_escalated": "2026-09-21T14:37:56+00:00",
   "keys": [
    "full"
-  ]
+  ],
+  "escalations": 1
  },
  "funnel-narrowing:scan": {
   "first_seen": "2026-09-20T15:07:49+00:00",
@@ -197,16 +198,17 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 99,
+  "count": 101,
   "example": "horizon-drift: 1h",
-  "last_seen": "2026-09-21T07:20:20+00:00",
-  "last_escalated": "2026-09-21T01:41:16+00:00",
+  "last_seen": "2026-09-21T14:31:28+00:00",
+  "last_escalated": "2026-09-21T14:30:21+00:00",
   "keys": [
    "1h",
    "24h",
    "6h",
    "168h"
-  ]
+  ],
+  "escalations": 1
  },
  "liveness:detector-drift": {
   "first_seen": "2026-09-17T19:28:30+00:00",
@@ -11111,12 +11113,14 @@
  },
  "liveness:selftest": {
   "first_seen": "2026-09-21T05:09:40+00:00",
-  "count": 2,
+  "count": 3,
   "example": "liveness: selftest",
   "keys": [
    "selftest"
   ],
-  "last_seen": "2026-09-21T07:27:02+00:00"
+  "last_seen": "2026-09-21T14:38:00+00:00",
+  "last_escalated": "2026-09-21T14:38:00+00:00",
+  "escalations": 1
  },
  "scanner-hit:xonrstvdumbwesderhypkezpbsqhknwcnyzpwpump": {
   "first_seen": "2026-09-21T07:11:06+00:00",
@@ -11140,6 +11144,22 @@
   "example": "scanner-hit: B9xC22ux4Nduxy9fQJZhmr6owZqqkjUseUGkZLsyuSTp",
   "keys": [
    "B9xC22ux4Nduxy9fQJZhmr6owZqqkjUseUGkZLsyuSTp"
+  ]
+ },
+ "scanner-hit:kgffsyimwuxptatrtdcvrybkfaikcyxucm": {
+  "first_seen": "2026-09-21T14:21:53+00:00",
+  "count": 1,
+  "example": "scanner-hit: 4KgF5f73S51YiMwUxPtA3trTDcVrYB8K4FAik5CyXUCm",
+  "keys": [
+   "4KgF5f73S51YiMwUxPtA3trTDcVrYB8K4FAik5CyXUCm"
+  ]
+ },
+ "scanner-hit:snshwosqvmjkbtttuduocriskmnmjdtudfomo": {
+  "first_seen": "2026-09-21T14:21:54+00:00",
+  "count": 1,
+  "example": "scanner-hit: 5SN9SH1w9oSqVmJkbtttUduoCR5iSKMn1MjDTuD4fomo",
+  "keys": [
+   "5SN9SH1w9oSqVmJkbtttUduoCR5iSKMn1MjDTuD4fomo"
   ]
  }
 }
