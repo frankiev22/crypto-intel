@@ -433,3 +433,5 @@
 {"token": "6E1JwrDK7ZRztsTDmq9YsFRfpnQ9X6oM2AXNhBXHUuMm", "ts": 1789947149, "confidence": "quarantined_no_liquidity", "horizon_h": 1, "detail": "exit depth $0.0055 is below the $100 floor; no quote is meaningful"}
 {"token": "BGKUsGh67cYTvH9sySZs7ge9Y4zcdGwNA3nguwyEUb4", "ts": 1789947152, "confidence": "quarantined_no_liquidity", "horizon_h": 1, "detail": "exit depth $0.0053 is below the $100 floor; no quote is meaningful"}
 {"token": "5J7DRLk7napYq19p3MzVfCYSb7wHWRFr9Ejsx1YRA9xZ", "ts": 1789947161, "confidence": "quarantined_no_liquidity", "horizon_h": 1, "detail": "exit depth $4.1844 is below the $100 floor; no quote is meaningful"}
+{"token": "6M1yS1UrErtKJFx5eoUBZNFz2Udaq6U5USH2fFCAqqG", "ts": 1789954867, "confidence": "quarantined_no_liquidity", "horizon_h": 1, "detail": "exit depth $4.2619 is below the $100 floor; no quote is meaningful"}
+{"token": "B6VrGAjXXr5rmkQLkaeErF45Ch2T3JrMxQmJ6Ne96f2F", "ts": 1789954875, "confidence": "quarantined_no_liquidity", "horizon_h": 1, "detail": "exit depth $0.0256 is below the $100 floor; no quote is meaningful"}

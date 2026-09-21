@@ -5911,7 +5911,7 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 96,
+  "count": 97,
   "example": "horizon-drift: 1h",
   "keys": [
    "1h",
@@ -5919,9 +5919,9 @@
    "6h",
    "168h"
   ],
-  "last_seen": "2026-09-20T23:32:44+00:00",
-  "last_escalated": "2026-09-20T18:59:41+00:00",
-  "escalations": 19
+  "last_seen": "2026-09-21T01:41:16+00:00",
+  "last_escalated": "2026-09-21T01:41:16+00:00",
+  "escalations": 20
  },
  "scanner-hit:pomp": {
   "first_seen": "2026-09-05T05:11:36+00:00",
@@ -10318,13 +10318,21 @@
  },
  "funnel-narrowing:full": {
   "first_seen": "2026-09-20T12:37:21+00:00",
-  "count": 5,
+  "count": 6,
   "example": "funnel-narrowing: full",
   "keys": [
    "full"
   ],
-  "last_seen": "2026-09-20T23:41:01+00:00",
-  "last_escalated": "2026-09-20T19:08:22+00:00",
-  "escalations": 1
+  "last_seen": "2026-09-21T01:49:26+00:00",
+  "last_escalated": "2026-09-21T01:49:26+00:00",
+  "escalations": 2
+ },
+ "outcome-win:ektmpplacbeekiwohhtvtsrsmpxscmgtqtzfsiinsc": {
+  "first_seen": "2026-09-21T01:41:21+00:00",
+  "count": 1,
+  "example": "outcome-win: EKtmPPLaCbEEKiwoHHtV7TsRsmPXs5CMGtQtZFSiinsc",
+  "keys": [
+   "EKtmPPLaCbEEKiwoHHtV7TsRsmPXs5CMGtQtZFSiinsc"
+  ]
  }
 }
