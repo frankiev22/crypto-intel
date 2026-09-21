@@ -77,6 +77,9 @@ further" — scope those separately and hold them to the measurement bar below.
 | degentape's "win" (profit > $0), re-derived from their tape | **39.7%** [39.3, 40.1] of 45,853 closed positions - reproduces their own 39.4% | `docs/EXISTING_TOOLS.md` §4a |
 | ⭐ ...the same positions on OUR definition (proceeds >= 2x cost) | **6.0%** [5.8, 6.3]; median position 0.925x, median hold 2.4 min | same |
 | paper ledger, re-derived 2026-09-17 | 86 closes, **−$2,495** by mult / **−$4,168** realizable | `docs/LIQUIDITY.md` §8 |
+| ⛔⛔ **wins verified 2026-09-21, and the gate's TENTH hole** | **17 claims passed the nine checks on chain-measured depth. ⛔ SEVEN are on contracts OUR OWN SCANNER REFUSED** (grade 30–65 against PASS_SCORE 70), and **two more carry `impersonation: claims_incumbent_name`** — a token symbol'd **USDT** at 2.65x and an **OpenAI** at 2.22x/2.29x. **The gate reads depth, sells, authorities and elapsed time; it reads neither `grade` nor `impersonation`.** ⭐ Actionable — surfaced AND passing AND not impersonating: **EVO 3.44x, 💲老六 3.41x, JEANPHIL 3.33x, SpaceX 2.65x, JEANPHIL 2.47x, AXIS 2.36x/2.06x, SCRUB 2.25x** | `docs/BACKLOG.md` D8 |
+| ⚠️ **PONDER 6.68x** | **does NOT independently verify.** Its depth is Dexscreener's $27,243 and its pool is **Raydium CPMM**, which our chain vault reader cannot parse, so `depth_measured` FAILS. ⭐ **Its v3 close verifies at 5.41x** on a live Jupiter sell quote ($540.70 out of $100, impact 3.60%, $250 and $500 shadow quotes both TRADEABLE). ⛔ **Quote 5.41x, never 6.68x.** ⚠️ Our scanner graded it **15** on $117 of reported liquidity while Jupiter's round trip called it TRADEABLE — they disagreed and the round trip was right | same |
+| ⭐ **what the win gate refuses** | **158 of 166 rows** with a raw multiple ≥ 3x, 09-20 → 09-21 (93 distinct contracts); 8 rows / 6 contracts passed. **23 rows over 1,000x.** ⛔ **Worst: MEMEMAN `7a93AGkVsXAfvJ…` at 12,751,798,561x** — 12.75 **billion** x — on **$0.0006** of quote-side depth | `data/outcomes/` |
 | ⭐ **funnel, measured 2026-09-20 before → after** | scan coverage **33-40% → 100%** (carry 143 → 0); 6h horizon **77 rows/108s → 296/107.5s**; rows about to age out unscored **59 → 0**; graduations **10 → 532 a pass**, backlog 880 → 399, lag 11.96h → 5.46h | `funnel.py`, `data/funnel/` |
 
 ⛔ **Never quote the 2.10% graduation rate.** It is 397/18,920 computed on
@@ -112,6 +115,18 @@ fees. Any path that depends on a track record has nothing to sell yet.
    liquidity of 2026-09-18 with zero sells), 48 more mix Cyrillic into Latin.
    `html.escape()` does NOT neutralise this - use `dashboard.safe_sym()`. See
    `docs/SYMBOL_ATTACKS.md`.
+   ⛔⛔ **BROKEN AND FIXED 2026-09-21, in the one lane that was never code.** The
+   `scanner-hit` findings lane existed only as prose in the desktop task's
+   SKILL.md, and that prose said `--key <SYMBOL>` one paragraph above telling the
+   agent to key the TRAP lane on the contract address. **Six distinct BASKET
+   contracts, two of them graded 100, collapsed into one `scanner-hit:basket`
+   class on 2026-09-20 and everything after the first went silent.** Measured:
+   **23 ticker classes held more than one distinct grade-85+ contract** in the
+   four days `grade` has existed, covering **34 contracts**, **11 inside a single
+   hour**; 285 fires after the first were suppressed across all time. The lane is
+   now in `collect.scan_stage`, keyed on the address, and ⭐ **`test_tickerkey.py`
+   fails at the AST level if any findings key, dedupe set or `or`-fallback
+   anywhere mentions a ticker field** - 12 lanes are exempt, each with a reason.
 3. **Liquidity-gate every headline number.** Reported liquidity overstates by a
    median 781x. A market cap, a multiple or a win is not real until it is
    checked against **quote-side depth from on-chain reserves**.
@@ -367,6 +382,26 @@ not added there does not exist) · `paper.py` / `paperv2.py` (simulation ledgers
 the pre-committed rule; validation, not a live gate) · `crossingdepth.py` (re-links historical
 crossings to the depth measured at them) · `coverage_probe.py` (launch coverage
 from pump.fun's own signers).
+
+⚠️ **"Dexscreener's 24h source is degrading" — NOT SUPPORTED, 2026-09-21.** The
+figure (`37/189 = 20%`, at the 24h floor) is real and comes from
+`track.score_horizon`'s **primary** path — not from the `dexscreener_ok/dropped`
+counters, which count only the **fallback**, on rows whose pair lookup had
+already missed, and have sat at 10-15% for eleven days. The 24h primary rate
+across 09-21's own alarms: **16% (n=19), 15% (65), 19% (69), 17% (118), 20%
+(189)** — ⭐ **flat while n grows fivefold.** It alarms more often because the
+queue is finally being processed, not because the source got worse.
+⛔ **The trend could not be measured at all** until 09-21: `track.HORIZON_HEALTH`
+was read only by the daily Discord line, so the rate survived only in the TEXT of
+a `lookup-outage` finding, written solely when already under the floor.
+`funnel.py` now persists it per horizon per pass, with its pre-committed floor.
+⭐ **The third source needs no purchase and we already trust it more:**
+`chainfields.round_trip()` (Jupiter, realizable) plus quote-side depth from chain
+are what verify a number today, both on free tiers already in use — **cost $0** —
+while Dexscreener's `liquidity` is the field overstating by a median 781x.
+**The answer to a crossing is not a new feed, it is to stop pricing outcomes off
+the overstating field**, which the v3 lane already does and the outcome lane
+does not.
 
 ⛔ **Jupiter's "organic" volume split is NOT a wash signal.** SOL itself runs
 1.8% organic; a low share is the norm. It is published beside SOL's baseline
