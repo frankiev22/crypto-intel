@@ -4798,5 +4798,21 @@
   "first_horizon_h": 24,
   "last_ts": 1790108309,
   "hits": 1
+ },
+ "BM48sa1enRV644cqWrpVqdBF9bVE3QafcNoTeUQLvSPj": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0004 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1790118453,
+  "first_horizon_h": 1,
+  "last_ts": 1790118453,
+  "hits": 1
+ },
+ "9GNdzJLTestMKoW2GBmtNTfHN7UPxeTogtZ4zyGvARGD": {
+  "confidence": "quarantined_unresolved",
+  "detail": "neither source resolved the token",
+  "first_ts": 1790118541,
+  "first_horizon_h": 24,
+  "last_ts": 1790118541,
+  "hits": 1
  }
 }
