@@ -1,0 +1,316 @@
+{
+ "name_matches": {
+  "HYPE": [
+   {
+    "index": 150,
+    "name": "HYPE",
+    "fullName": "Hyperliquid",
+    "tokenId": "0x0d01dc56dcaaca66ad901c959b4011ec",
+    "evmContract": null,
+    "deployerTradingFeeShare": "0.0"
+   }
+  ],
+  "PURR": [
+   {
+    "index": 1,
+    "name": "PURR",
+    "fullName": null,
+    "tokenId": "0xc1fb593aeffbeb02f85e0308e9956a90",
+    "evmContract": {
+     "address": "0x9b498c3c8a0b8cd8ba1d9851d40d186f1872b44e",
+     "evm_extra_wei_decimals": 13
+    },
+    "deployerTradingFeeShare": "0.0"
+   }
+  ]
+ },
+ "pairs_of_interest": [
+  {
+   "pair_name": "PURR/USDC",
+   "pair_index": 0,
+   "tokens": [
+    1,
+    0
+   ],
+   "token_names": [
+    "PURR",
+    "USDC"
+   ],
+   "mid": "0.147695",
+   "prevDay": "0.12438",
+   "vol24_usd": "3341345.1046000016",
+   "circ": "594870543.1201900244",
+   "total": "594870553.4967099428"
+  },
+  {
+   "pair_name": "@107",
+   "pair_index": 107,
+   "tokens": [
+    150,
+    0
+   ],
+   "token_names": [
+    "HYPE",
+    "USDC"
+   ],
+   "mid": "0.081882",
+   "prevDay": "0.083492",
+   "vol24_usd": "0.0",
+   "circ": "722198.32383659",
+   "total": "1198186.8138365899"
+  },
+  {
+   "pair_name": "@207",
+   "pair_index": 207,
+   "tokens": [
+    150,
+    268
+   ],
+   "token_names": [
+    "HYPE",
+    "USDT0"
+   ],
+   "mid": null,
+   "prevDay": "0.0",
+   "vol24_usd": "0.0",
+   "circ": "0.0",
+   "total": "0.0"
+  },
+  {
+   "pair_name": "@232",
+   "pair_index": 232,
+   "tokens": [
+    150,
+    360
+   ],
+   "token_names": [
+    "HYPE",
+    "USDH"
+   ],
+   "mid": null,
+   "prevDay": "2.97",
+   "vol24_usd": "0.0",
+   "circ": "3000000000.0",
+   "total": "3000000000.0"
+  },
+  {
+   "pair_name": "@255",
+   "pair_index": 255,
+   "tokens": [
+    150,
+    235
+   ],
+   "token_names": [
+    "HYPE",
+    "USDE"
+   ],
+   "mid": "0.001646",
+   "prevDay": "0.001674",
+   "vol24_usd": "705.88845699",
+   "circ": "1037999998.5738172531",
+   "total": "1037999998.5738172531"
+  }
+ ],
+ "canonical": {
+  "HYPE": {
+   "pair": "@255",
+   "tokens": [
+    "HYPE",
+    "USDE"
+   ],
+   "mid": 0.001646,
+   "prev_day": "0.001674",
+   "vol24_usd": "705.88845699",
+   "circulating": 1037999998.5738173,
+   "mcap_usd": 1708547.9976525032,
+   "book": {
+    "coin": "@255",
+    "best_bid": 97.143,
+    "best_ask": 97.174,
+    "mid": 97.1585,
+    "spread_pct": 0.03190662680054335,
+    "bid_depth_usd": 119089.92,
+    "ask_depth_usd": 673380.18,
+    "sizes": {
+     "500": {
+      "buy": {
+       "avg_px": 97.174,
+       "qty": 5.145409265853005,
+       "filled_usd": 500.0
+      },
+      "sell": {
+       "avg_px": 97.11096139851784,
+       "qty": 5.148749356399959,
+       "filled_usd": 500.0
+      },
+      "buy_slip_pct": 0.015953313400271674,
+      "sell_slip_pct": 0.048928916648733244,
+      "round_trip_cost_pct": 0.06488223004900492,
+      "usd_back_on_immediate_sell": 499.68,
+      "round_trip_realized_pct": -0.06487123860295015
+     },
+     "2000": {
+      "buy": {
+       "avg_px": 97.20981875436323,
+       "qty": 20.5740533788438,
+       "filled_usd": 2000.0
+      },
+      "sell": {
+       "avg_px": 97.07395557832913,
+       "qty": 20.602848499216627,
+       "filled_usd": 2000.0
+      },
+      "buy_slip_pct": 0.052819623978573926,
+      "sell_slip_pct": 0.08701701001031299,
+      "round_trip_cost_pct": 0.1398366339888869,
+      "usd_back_on_immediate_sell": 1997.21,
+      "round_trip_realized_pct": -0.13967936990449062
+     }
+    }
+   },
+   "all_markets_by_volume": [
+    {
+     "pair": "@255",
+     "names": [
+      "HYPE",
+      "USDE"
+     ],
+     "mid": "0.001646",
+     "vol24": "705.88845699"
+    },
+    {
+     "pair": "@107",
+     "names": [
+      "HYPE",
+      "USDC"
+     ],
+     "mid": "0.081882",
+     "vol24": "0.0"
+    },
+    {
+     "pair": "@207",
+     "names": [
+      "HYPE",
+      "USDT0"
+     ],
+     "mid": null,
+     "vol24": "0.0"
+    },
+    {
+     "pair": "@232",
+     "names": [
+      "HYPE",
+      "USDH"
+     ],
+     "mid": null,
+     "vol24": "0.0"
+    }
+   ]
+  },
+  "PURR": {
+   "pair": "PURR/USDC",
+   "tokens": [
+    "PURR",
+    "USDC"
+   ],
+   "mid": 0.147695,
+   "prev_day": "0.12438",
+   "vol24_usd": "3341345.1046000016",
+   "circulating": 594870543.12019,
+   "mcap_usd": 87859404.86613646,
+   "book": {
+    "coin": "PURR/USDC",
+    "best_bid": 0.14745,
+    "best_ask": 0.14796,
+    "mid": 0.147705,
+    "spread_pct": 0.3452828272570397,
+    "bid_depth_usd": 2058.52,
+    "ask_depth_usd": 40179.02,
+    "sizes": {
+     "500": {
+      "buy": {
+       "avg_px": 0.14797186216313116,
+       "qty": 3379.0207995678015,
+       "filled_usd": 500.0
+      },
+      "sell": {
+       "avg_px": 0.14732128456471202,
+       "qty": 3393.9427115188582,
+       "filled_usd": 500.0
+      },
+      "buy_slip_pct": 0.1806723964193183,
+      "sell_slip_pct": 0.2597850007027379,
+      "round_trip_cost_pct": 0.4404573971220562,
+      "usd_back_on_immediate_sell": 497.8,
+      "round_trip_realized_pct": -0.4391518687196026
+     },
+     "2000": {
+      "buy": {
+       "avg_px": 0.14808359939949672,
+       "qty": 13505.884568651276,
+       "filled_usd": 2000.0
+      },
+      "sell": {
+       "avg_px": 0.14691776293493394,
+       "qty": 13613.057808984935,
+       "filled_usd": 2000.0
+      },
+      "buy_slip_pct": 0.25632131579616174,
+      "sell_slip_pct": 0.532979293230466,
+      "round_trip_cost_pct": 0.7893006090266277,
+      "usd_back_on_immediate_sell": 1984.28,
+      "round_trip_realized_pct": -0.7860621312272201
+     }
+    }
+   },
+   "all_markets_by_volume": [
+    {
+     "pair": "PURR/USDC",
+     "names": [
+      "PURR",
+      "USDC"
+     ],
+     "mid": "0.147695",
+     "vol24": "3341345.1046000016"
+    }
+   ]
+  }
+ },
+ "staking": {
+  "validators": 35,
+  "active": 29,
+  "total_staked_wei": 4.416953317982102e+16,
+  "top5": [
+   {
+    "name": "Hyper Foundation 3",
+    "stake": 5550718671536781,
+    "commission": "0.03",
+    "apr": null
+   },
+   {
+    "name": "Hyper Foundation 2",
+    "stake": 5412536225901390,
+    "commission": "0.03",
+    "apr": null
+   },
+   {
+    "name": "Hyper Foundation 1",
+    "stake": 5235577655041978,
+    "commission": "0.03",
+    "apr": null
+   },
+   {
+    "name": "Hyper Foundation 4",
+    "stake": 3454564346908017,
+    "commission": "0.03",
+    "apr": null
+   },
+   {
+    "name": "Hyperliquid Strategies x Unit",
+    "stake": 3211577859119609,
+    "commission": "0.02",
+    "apr": null
+   }
+  ]
+ }
+}
