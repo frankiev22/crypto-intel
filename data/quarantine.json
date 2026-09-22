@@ -4782,5 +4782,21 @@
   "first_horizon_h": 1,
   "last_ts": 1790104289,
   "hits": 1
+ },
+ "FnVq3xQyAy7S7rHJ1oNki8TPhatuRSs6uZqT7N5rSFos": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.1854 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1790108288,
+  "first_horizon_h": 24,
+  "last_ts": 1790108288,
+  "hits": 1
+ },
+ "3HgvSTuQCP71juESzR4odb1TjehELF4vrgmjtGEwMGxk": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0150 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1790108309,
+  "first_horizon_h": 24,
+  "last_ts": 1790108309,
+  "hits": 1
  }
 }
