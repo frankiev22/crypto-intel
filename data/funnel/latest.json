@@ -1,13 +1,13 @@
 {
- "ts": 1790040985,
+ "ts": 1790060494,
  "stage": "full",
  "origin": "scheduled",
  "scan": {
-  "pools_seen": 96,
-  "pools_reached": 96,
+  "pools_seen": 84,
+  "pools_reached": 84,
   "coverage": 1.0,
-  "enriched": 96,
-  "failed": 0,
+  "enriched": 74,
+  "failed": 10,
   "truncated": false,
   "truncate_reason": null,
   "carried_forward": 0,
@@ -16,64 +16,64 @@
  },
  "outcomes": {
   "1h": {
-   "due": 79,
-   "scored": 79,
+   "due": 96,
+   "scored": 96,
    "not_reached": 0,
    "expiring_before_next_pass": 0,
    "coverage": 1.0,
    "slice_limit": 400,
-   "primary_ok": 79,
+   "primary_ok": 96,
    "primary_miss": 0,
-   "primary_seen": 79,
+   "primary_seen": 96,
    "primary_rate": 1.0,
    "primary_floor": 0.9
   },
   "6h": {
-   "due": 0,
-   "scored": 0,
+   "due": 170,
+   "scored": 170,
    "not_reached": 0,
    "expiring_before_next_pass": 0,
    "coverage": 1.0,
    "slice_limit": 400,
-   "primary_ok": 0,
+   "primary_ok": 170,
    "primary_miss": 0,
-   "primary_seen": 0,
-   "primary_rate": null,
+   "primary_seen": 170,
+   "primary_rate": 1.0,
    "primary_floor": 0.9
   },
   "24h": {
-   "due": 664,
+   "due": 508,
    "scored": 400,
-   "not_reached": 264,
-   "expiring_before_next_pass": 66,
-   "coverage": 0.6024,
+   "not_reached": 108,
+   "expiring_before_next_pass": 0,
+   "coverage": 0.7874,
    "slice_limit": 400,
-   "primary_ok": 83,
-   "primary_miss": 317,
+   "primary_ok": 65,
+   "primary_miss": 335,
    "primary_seen": 400,
-   "primary_rate": 0.2075,
+   "primary_rate": 0.1625,
    "primary_floor": 0.2
   }
  },
  "graduations": {
-  "backlog": 1149,
-  "lag_s": 61808,
-  "lag_h": 17.17,
-  "processed_last_pass": 48,
-  "failed_txs_skipped": 10878,
-  "retry_queue": 174,
+  "backlog": 1407,
+  "lag_s": 77472,
+  "lag_h": 21.52,
+  "processed_last_pass": 56,
+  "failed_txs_skipped": 10957,
+  "retry_queue": 193,
   "accounted": true
  },
  "lookups": {
-  "calls": 21,
-  "asked": 575,
-  "found": 258,
-  "served": 575,
+  "calls": 27,
+  "asked": 750,
+  "found": 405,
+  "served": 750,
   "stale": 0,
-  "hit_rate": 0.4487
+  "hit_rate": 0.54
  },
  "alarms": [
-  "rows will age out UNSCORED before the next pass and cannot be recovered: 66 at 24h",
-  "graduation ledger 17.17h behind, backlog 1149"
+  "outcome queue 774 due across 3 horizon(s), at or above 750",
+  "graduation ledger 21.52h behind, backlog 1407"
  ]
 }

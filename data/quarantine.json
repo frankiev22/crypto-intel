@@ -3950,5 +3950,21 @@
   "first_horizon_h": 24,
   "last_ts": 1790040554,
   "hits": 1
+ },
+ "3XWLaEzhxJAUdeU5gjumTVwJTQWRK1Aw15zjrMRvTMFV": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0000 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1790059911,
+  "first_horizon_h": 1,
+  "last_ts": 1790059911,
+  "hits": 1
+ },
+ "6XWRv9MvvuS965i2uNupyPXpyUgUpSALwjyNg1CJcF2g": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "total reserve $0.7874 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1790059970,
+  "first_horizon_h": 24,
+  "last_ts": 1790059970,
+  "hits": 1
  }
 }
