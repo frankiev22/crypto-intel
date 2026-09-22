@@ -177,13 +177,14 @@
  },
  "funnel-narrowing:full": {
   "first_seen": "2026-09-20T12:37:21+00:00",
-  "count": 13,
+  "count": 14,
   "example": "funnel-narrowing: full",
-  "last_seen": "2026-09-22T12:16:49+00:00",
-  "last_escalated": "2026-09-22T07:01:34+00:00",
+  "last_seen": "2026-09-22T17:12:25+00:00",
+  "last_escalated": "2026-09-22T17:12:25+00:00",
   "keys": [
    "full"
-  ]
+  ],
+  "escalations": 1
  },
  "funnel-narrowing:scan": {
   "first_seen": "2026-09-20T15:07:49+00:00",
@@ -197,16 +198,17 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 111,
+  "count": 112,
   "example": "horizon-drift: 1h",
-  "last_seen": "2026-09-22T12:09:31+00:00",
-  "last_escalated": "2026-09-22T06:52:04+00:00",
+  "last_seen": "2026-09-22T17:06:55+00:00",
+  "last_escalated": "2026-09-22T17:06:55+00:00",
   "keys": [
    "1h",
    "24h",
    "6h",
    "168h"
-  ]
+  ],
+  "escalations": 1
  },
  "liveness:detector-drift": {
   "first_seen": "2026-09-17T19:28:30+00:00",
@@ -310,13 +312,14 @@
  },
  "liveness:selftest": {
   "first_seen": "2026-09-21T05:09:40+00:00",
-  "count": 309,
+  "count": 310,
   "example": "liveness: selftest",
-  "last_seen": "2026-09-22T12:16:53+00:00",
-  "last_escalated": "2026-09-22T11:11:31+00:00",
+  "last_seen": "2026-09-22T17:12:29+00:00",
+  "last_escalated": "2026-09-22T17:12:29+00:00",
   "keys": [
    "selftest"
-  ]
+  ],
+  "escalations": 1
  },
  "liveness:watchlist-sweep": {
   "first_seen": "2026-09-10T00:07:41+00:00",
@@ -12647,6 +12650,30 @@
   "last_escalated": null,
   "keys": [
    "7uMjiTCQiRaKMCrYKaNMQHR6h5Bo9qzd42ycTAWzRhE1"
+  ]
+ },
+ "scanner-hit:gumysmkwjacknnxjwmpmgpzytibgttqqz": {
+  "first_seen": "2026-09-22T16:56:22+00:00",
+  "count": 1,
+  "example": "scanner-hit: 91gU2MYSmKW13JaC35KnNxjWm9PMgpZ1y63tibGttQQz",
+  "keys": [
+   "91gU2MYSmKW13JaC35KnNxjWm9PMgpZ1y63tibGttQQz"
+  ]
+ },
+ "scanner-hit:cputiwwtsqwprnuqtedzdhzdwnzkodnfantdmwf": {
+  "first_seen": "2026-09-22T16:56:22+00:00",
+  "count": 1,
+  "example": "scanner-hit: CpuTiwWtsqWpRnuqtEdzD7Hzdw2NZkoDN4F3an3TdMWF",
+  "keys": [
+   "CpuTiwWtsqWpRnuqtEdzD7Hzdw2NZkoDN4F3an3TdMWF"
+  ]
+ },
+ "outcome-win:hwvyzxbvexazubugirqlteoycquxmqppump": {
+  "first_seen": "2026-09-22T17:06:49+00:00",
+  "count": 1,
+  "example": "outcome-win: HwVyzxBVE68x7aZub6UG78i6RQLTEoy9cQuxMq4ppump",
+  "keys": [
+   "HwVyzxBVE68x7aZub6UG78i6RQLTEoy9cQuxMq4ppump"
   ]
  }
 }

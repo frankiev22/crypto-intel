@@ -1,13 +1,13 @@
 {
- "ts": 1790079409,
+ "ts": 1790097145,
  "stage": "full",
  "origin": "scheduled",
  "scan": {
-  "pools_seen": 79,
-  "pools_reached": 79,
+  "pools_seen": 67,
+  "pools_reached": 67,
   "coverage": 1.0,
-  "enriched": 75,
-  "failed": 4,
+  "enriched": 66,
+  "failed": 1,
   "truncated": false,
   "truncate_reason": null,
   "carried_forward": 0,
@@ -16,63 +16,64 @@
  },
  "outcomes": {
   "1h": {
-   "due": 74,
-   "scored": 74,
+   "due": 156,
+   "scored": 156,
    "not_reached": 0,
    "expiring_before_next_pass": 0,
    "coverage": 1.0,
    "slice_limit": 400,
-   "primary_ok": 74,
+   "primary_ok": 156,
    "primary_miss": 0,
-   "primary_seen": 74,
+   "primary_seen": 156,
    "primary_rate": 1.0,
    "primary_floor": 0.9
   },
   "6h": {
-   "due": 96,
-   "scored": 96,
-   "not_reached": 0,
+   "due": 436,
+   "scored": 400,
+   "not_reached": 36,
    "expiring_before_next_pass": 0,
-   "coverage": 1.0,
+   "coverage": 0.9174,
    "slice_limit": 400,
-   "primary_ok": 96,
+   "primary_ok": 400,
    "primary_miss": 0,
-   "primary_seen": 96,
+   "primary_seen": 400,
    "primary_rate": 1.0,
    "primary_floor": 0.9
   },
   "24h": {
-   "due": 166,
-   "scored": 166,
-   "not_reached": 0,
+   "due": 414,
+   "scored": 400,
+   "not_reached": 14,
    "expiring_before_next_pass": 0,
-   "coverage": 1.0,
+   "coverage": 0.9662,
    "slice_limit": 400,
-   "primary_ok": 26,
-   "primary_miss": 140,
-   "primary_seen": 166,
-   "primary_rate": 0.1566,
+   "primary_ok": 1,
+   "primary_miss": 3,
+   "primary_seen": 4,
+   "primary_rate": 0.25,
    "primary_floor": 0.2
   }
  },
  "graduations": {
-  "backlog": 1631,
-  "lag_s": 92722,
-  "lag_h": 25.76,
-  "processed_last_pass": 48,
-  "failed_txs_skipped": 11212,
-  "retry_queue": 216,
+  "backlog": 237,
+  "lag_s": 14926,
+  "lag_h": 4.15,
+  "processed_last_pass": 32,
+  "failed_txs_skipped": 106,
+  "retry_queue": 212,
   "accounted": true
  },
  "lookups": {
-  "calls": 16,
-  "asked": 415,
-  "found": 271,
-  "served": 415,
+  "calls": 24,
+  "asked": 653,
+  "found": 637,
+  "served": 627,
   "stale": 0,
-  "hit_rate": 0.653
+  "hit_rate": 0.9755
  },
  "alarms": [
-  "graduation ledger 25.76h behind, backlog 1631"
+  "outcome queue 1006 due across 3 horizon(s), at or above 750",
+  "graduation ledger 4.15h behind, backlog 237"
  ]
 }
