@@ -1,0 +1,58 @@
+{
+ "mint": "5vg9KLxCrRhCf4vN9a3KyFCMxLyZ2Kpqk2Xz4xNQpump",
+ "ts": 1790100391,
+ "sol_usd": 117.92246695758556,
+ "sol_usd_src": "jupiter price v3",
+ "recorded_pairs": [],
+ "mint_account": {
+  "exists": false,
+  "error": null
+ },
+ "token_accounts": {
+  "n": 0,
+  "error": null,
+  "truncated": false
+ },
+ "holders_nonzero": 0,
+ "owner_classes": {
+  "system_wallets": 0,
+  "other": {}
+ },
+ "gpa_errors": [],
+ "pools": [],
+ "chain_quote_usd_total": 0,
+ "third_party": {
+  "jupiter_round_trip_100": {
+   "mint": "5vg9KLxCrRhCf4vN9a3KyFCMxLyZ2Kpqk2Xz4xNQpump",
+   "probe_usd": 100,
+   "ts": 1790100394,
+   "usd_back": null,
+   "rt_cost_pct": null,
+   "verdict": "NO_BUY_ROUTE",
+   "venues": null,
+   "px_per_raw": null,
+   "error": "TOKEN_NOT_TRADABLE",
+   "token_qty_raw": null,
+   "price_impact_pct": null
+  },
+  "jupiter_token": {
+   "status": 200
+  },
+  "dexscreener": [],
+  "geckoterminal": {
+   "status": 429
+  },
+  "rugcheck": {
+   "totalHolders": null,
+   "totalMarketLiquidity": null,
+   "rugged": null,
+   "markets": [],
+   "risks": []
+  }
+ },
+ "calls": {
+  "rpc": 213,
+  "http": 45
+ },
+ "seconds": 4.6
+}

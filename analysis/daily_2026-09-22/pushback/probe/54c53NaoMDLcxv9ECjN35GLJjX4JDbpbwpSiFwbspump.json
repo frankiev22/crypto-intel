@@ -1,0 +1,146 @@
+{
+ "mint": "54c53NaoMDLcxv9ECjN35GLJjX4JDbpbwpSiFwbspump",
+ "ts": 1790102832,
+ "sol_usd": 118.1637128363041,
+ "sol_usd_src": "jupiter price v3",
+ "recorded_pairs": [],
+ "mint_account": {
+  "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+  "decimals": 6,
+  "supply_ui": 998581359.824196,
+  "mint_authority": null,
+  "freeze_authority": null
+ },
+ "token_accounts": {
+  "n": 89,
+  "error": null,
+  "truncated": false
+ },
+ "holders_nonzero": 89,
+ "owner_classes": {
+  "system_wallets": 17,
+  "other": {
+   "no account": {
+    "owners": 71,
+    "mint_ui": 19746571.757213
+   }
+  }
+ },
+ "gpa_errors": [],
+ "pools": [
+  {
+   "pool": "BwyERAGGjQ2QnX7GhDsi4ZwYHA8vrdcQWj8XLXZ4PWw",
+   "venue": "PumpSwap AMM",
+   "kind": "pool-owned vault",
+   "found_by": [
+    "token-account owner",
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "PumpSwap AMM",
+   "data_len": 301,
+   "recorded": false,
+   "mint_in_pool_ui": 880633098.234226,
+   "quote": "SOL",
+   "quote_vault": "4AUgf7nEdDcMz4TKZbPBnmMG3891x4ccPn4WGQQW7q5p",
+   "quote_ui": 2.744037645,
+   "quote_usd": 324.2456762957882,
+   "read_error": null,
+   "implied_price_usd": 3.681961045365423e-07
+  }
+ ],
+ "chain_quote_usd_total": 324.2456762957882,
+ "unclassified_owners": [],
+ "unclassified_quote_usd": 0,
+ "third_party": {
+  "jupiter_round_trip_100": {
+   "mint": "54c53NaoMDLcxv9ECjN35GLJjX4JDbpbwpSiFwbspump",
+   "probe_usd": 100,
+   "ts": 1790102836,
+   "usd_back": 90.1234,
+   "rt_cost_pct": 9.8766,
+   "verdict": "TRADEABLE",
+   "venues": [
+    "Quantum",
+    "Pump.fun Amm"
+   ],
+   "px_per_raw": 2.8756591007930842e-12,
+   "error": null,
+   "token_qty_raw": 34774636525039,
+   "price_impact_pct": 6.070781
+  },
+  "jupiter_token": {
+   "symbol": "VSOF",
+   "name": "Vanguard Strategic Oil Fund",
+   "holderCount": 89,
+   "liquidity": 322.2982459865184,
+   "mcap": 2697.067619558194,
+   "fdv": 2697.067619558194,
+   "usdPrice": 2.700899223707744e-06,
+   "organicScore": 0,
+   "graduatedPool": "BwyERAGGjQ2QnX7GhDsi4ZwYHA8vrdcQWj8XLXZ4PWw",
+   "graduatedAt": "2026-09-22T02:02:05Z",
+   "launchpad": "pump.fun",
+   "volume24h": 754166.9232560113
+  },
+  "dexscreener": [
+   {
+    "pair": "BwyERAGGjQ2QnX7GhDsi4ZwYHA8vrdcQWj8XLXZ4PWw",
+    "dex": "pumpswap",
+    "labels": null,
+    "liq_usd": 2700.47,
+    "liq_quote": 2.744,
+    "vol24": 744683.31,
+    "price_usd": "0.000002700",
+    "quote": "SOL"
+   },
+   {
+    "pair": "AKaNM3YVvC3NnwepUzBVTtKmq9nZmLC18ZGCYgEvcvcv",
+    "dex": "pumpfun",
+    "labels": null,
+    "liq_usd": null,
+    "liq_quote": null,
+    "vol24": 9992.37,
+    "price_usd": "0.00004829",
+    "quote": "SOL"
+   }
+  ],
+  "geckoterminal": [
+   {
+    "pool": "BwyERAGGjQ2QnX7GhDsi4ZwYHA8vrdcQWj8XLXZ4PWw",
+    "dex": "pumpswap",
+    "reserve_usd": "2687.7698",
+    "vol24": "694322.432435079"
+   },
+   {
+    "pool": "AKaNM3YVvC3NnwepUzBVTtKmq9nZmLC18ZGCYgEvcvcv",
+    "dex": "pump-fun",
+    "reserve_usd": "0.0",
+    "vol24": "9970.2743496704"
+   }
+  ],
+  "rugcheck": {
+   "totalHolders": 0,
+   "totalMarketLiquidity": 2702.601367180706,
+   "rugged": false,
+   "markets": [
+    {
+     "pool": "BwyERAGGjQ2QnX7GhDsi4ZwYHA8vrdcQWj8XLXZ4PWw",
+     "type": "pump_fun_amm",
+     "lpLockedPct": 100,
+     "lpLockedUSD": 2702.601367180706,
+     "quoteUSD": 324.291501890513
+    }
+   ],
+   "risks": [
+    "High market cap per holder",
+    "Low Liquidity"
+   ]
+  }
+ },
+ "calls": {
+  "rpc": 240,
+  "http": 40
+ },
+ "seconds": 6.1
+}

@@ -1,0 +1,198 @@
+{
+ "mint": "9KmeDWVt7TtrEZT2567kxeDkDZxd3cDoTZ1ZrLow9soG",
+ "ts": 1790102824,
+ "sol_usd": 118.16283104068305,
+ "sol_usd_src": "jupiter price v3",
+ "recorded_pairs": [],
+ "mint_account": {
+  "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+  "decimals": 6,
+  "supply_ui": 999999999.999934,
+  "mint_authority": null,
+  "freeze_authority": null
+ },
+ "token_accounts": {
+  "n": 426,
+  "error": null,
+  "truncated": false
+ },
+ "holders_nonzero": 426,
+ "owner_classes": {
+  "system_wallets": 322,
+  "other": {
+   "no account": {
+    "owners": 100,
+    "mint_ui": 133351914.41359304
+   },
+   "defAh9DW4sHuzs98QjbSdDevUuCMnhtEBeXJumTedif": {
+    "owners": 1,
+    "mint_ui": 5293252.686966
+   },
+   "DsxdELwZ5cFZaGScVzUnWsA8H1Xn2b2BoM8XP4Y6iFxU": {
+    "owners": 1,
+    "mint_ui": 26500000.0
+   }
+  }
+ },
+ "gpa_errors": [],
+ "pools": [
+  {
+   "pool": "2dfTMmXSD2aiM9buqDDig9UbV4i5hyYUPdXzum2pRYnE",
+   "venue": "Meteora DLMM",
+   "kind": "pool-owned vault",
+   "found_by": [
+    "token-account owner",
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "Meteora DLMM",
+   "data_len": 904,
+   "recorded": false,
+   "mint_in_pool_ui": 736.589429,
+   "quote": "SOL",
+   "quote_vault": "BFgSBaAR57WnyuViVKyZ1VFb6zpHv8iVcCMN8sAL9orJ",
+   "quote_ui": 0.000285495,
+   "quote_usd": 0.0337348974479598,
+   "read_error": null,
+   "implied_price_usd": 4.5798780324282665e-05
+  },
+  {
+   "pool": "GpMZbSM2GgvTKHJirzeGfMFoaZ8UR2X7F4v8vHTvxFbL",
+   "venue": "Raydium CPMM",
+   "kind": "authority-held vault",
+   "found_by": [
+    "token-account owner"
+   ],
+   "exists": true,
+   "owner_program": "11111111111111111111111111111111",
+   "data_len": 0,
+   "recorded": false,
+   "mint_in_pool_ui": 151684032.130302,
+   "note": "shared authority PDA; the pool itself is found by gPA if its layout is right"
+  },
+  {
+   "pool": "A1PNnKCqEBF9Gtwp7MhB3SpDm3Q7RaDcHa1MnK2dGBzV",
+   "venue": "Raydium CPMM",
+   "kind": "pool (gPA)",
+   "found_by": [
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "Raydium CPMM",
+   "data_len": 637,
+   "recorded": false,
+   "mint_in_pool_ui": null,
+   "quote": null,
+   "quote_usd": null,
+   "note": "no SOL/USDC/USDT vault owned by this account"
+  }
+ ],
+ "chain_quote_usd_total": 0.0337348974479598,
+ "unclassified_owners": [
+  {
+   "owner": "DWRrtxDte6zpBopy3TJXzRvCpNmGAmKWftoAyRCTfuxn",
+   "program": "DsxdELwZ5cFZaGScVzUnWsA8H1Xn2b2BoM8XP4Y6iFxU",
+   "mint_ui": 26500000.0,
+   "quote_usd": null,
+   "n_token_accounts": 1
+  },
+  {
+   "owner": "HULfmqDFHXQnxbhyvSPTC15rU6hRZhvsNjayusXu6cUp",
+   "program": "defAh9DW4sHuzs98QjbSdDevUuCMnhtEBeXJumTedif",
+   "mint_ui": 5293252.686966,
+   "quote_usd": 9.570255000790288,
+   "n_token_accounts": 4
+  }
+ ],
+ "unclassified_quote_usd": 9.570255000790288,
+ "third_party": {
+  "jupiter_round_trip_100": {
+   "mint": "9KmeDWVt7TtrEZT2567kxeDkDZxd3cDoTZ1ZrLow9soG",
+   "probe_usd": 100,
+   "ts": 1790102830,
+   "usd_back": 94.1079,
+   "rt_cost_pct": 5.8921,
+   "verdict": "TRADEABLE",
+   "venues": [
+    "Quay",
+    "Raydium CP"
+   ],
+   "px_per_raw": 8.94566664732669e-11,
+   "error": null,
+   "token_qty_raw": 1117859673766,
+   "price_impact_pct": 4.745177
+  },
+  "jupiter_token": {
+   "symbol": "STONKBROS",
+   "name": "StonkBros",
+   "holderCount": 426,
+   "liquidity": 13152.661091770216,
+   "mcap": 85206.35275379794,
+   "fdv": 85206.35275379794,
+   "usdPrice": 8.520635275380357e-05,
+   "organicScore": 61.96892052028424,
+   "graduatedPool": "A1PNnKCqEBF9Gtwp7MhB3SpDm3Q7RaDcHa1MnK2dGBzV",
+   "graduatedAt": "2026-09-21T15:03:17Z",
+   "launchpad": "stonkfun",
+   "volume24h": 357107.3612232673
+  },
+  "dexscreener": [
+   {
+    "pair": "A1PNnKCqEBF9Gtwp7MhB3SpDm3Q7RaDcHa1MnK2dGBzV",
+    "dex": "raydium",
+    "labels": [
+     "CPMM"
+    ],
+    "liq_usd": 26289.68,
+    "liq_quote": 40164,
+    "vol24": 358197.48,
+    "price_usd": "0.00008739",
+    "quote": "STONK"
+   },
+   {
+    "pair": "2dfTMmXSD2aiM9buqDDig9UbV4i5hyYUPdXzum2pRYnE",
+    "dex": "meteora",
+    "labels": [
+     "DLMM"
+    ],
+    "liq_usd": 34.06,
+    "liq_quote": 0.002837,
+    "vol24": 63.01,
+    "price_usd": "0.0001451",
+    "quote": "SOL"
+   }
+  ],
+  "geckoterminal": {
+   "status": 429
+  },
+  "rugcheck": {
+   "totalHolders": 0,
+   "totalMarketLiquidity": 26094.37146985846,
+   "rugged": false,
+   "markets": [
+    {
+     "pool": "A1PNnKCqEBF9Gtwp7MhB3SpDm3Q7RaDcHa1MnK2dGBzV",
+     "type": "raydium_cpmm",
+     "lpLockedPct": 100,
+     "lpLockedUSD": 26094.274957680085,
+     "quoteUSD": 12925.26780866781
+    },
+    {
+     "pool": "2dfTMmXSD2aiM9buqDDig9UbV4i5hyYUPdXzum2pRYnE",
+     "type": "meteoraDlmm",
+     "lpLockedPct": 0,
+     "lpLockedUSD": 0,
+     "quoteUSD": 0.03374607503808675
+    }
+   ],
+   "risks": [
+    "High market cap per holder"
+   ]
+  }
+ },
+ "calls": {
+  "rpc": 217,
+  "http": 35
+ },
+ "seconds": 7.7
+}

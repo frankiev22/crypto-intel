@@ -1,0 +1,450 @@
+{
+ "mint": "HXQ66zSRqynwJQ6vYEYa85qGY9C2Ycz8rnYQHgApn391",
+ "ts": 1790102896,
+ "sol_usd": 118.20272679629029,
+ "sol_usd_src": "jupiter price v3",
+ "recorded_pairs": [],
+ "mint_account": {
+  "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+  "decimals": 6,
+  "supply_ui": 977640721.620375,
+  "mint_authority": null,
+  "freeze_authority": null
+ },
+ "token_accounts": {
+  "n": 966,
+  "error": null,
+  "truncated": false
+ },
+ "holders_nonzero": 963,
+ "owner_classes": {
+  "system_wallets": 705,
+  "other": {
+   "no account": {
+    "owners": 252,
+    "mint_ui": 133066003.61195198
+   },
+   "3s1rAymURnacreXreMy718GfqW6kygQsLNka1xDyW8pC": {
+    "owners": 1,
+    "mint_ui": 13.759813
+   },
+   "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb": {
+    "owners": 1,
+    "mint_ui": 96196115.846381
+   }
+  }
+ },
+ "gpa_errors": [],
+ "pools": [
+  {
+   "pool": "C2BB8PEdsZbEWm8QTmf9YBWHor5R5ecb5KkBJfb2b5so",
+   "venue": "Raydium CPMM",
+   "kind": "pool (gPA)",
+   "found_by": [
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "Raydium CPMM",
+   "data_len": 637,
+   "recorded": false,
+   "mint_in_pool_ui": 131414426.28724,
+   "quote": "SOL",
+   "quote_vault": "HsQx2JgLkpnF5TxGyyVKn7h3F6s11VmGbbz1Wgqmjwk3",
+   "quote_ui": 150.226972434,
+   "quote_usd": 17757.237780049934,
+   "read_error": null,
+   "implied_price_usd": 0.00013512396075326561
+  },
+  {
+   "pool": "FCydBTAvVxhuEkaUTu8ohjJci5ETyqfWHpUNuW7c68Ph",
+   "venue": "Meteora DLMM",
+   "kind": "pool-owned vault",
+   "found_by": [
+    "token-account owner",
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "Meteora DLMM",
+   "data_len": 904,
+   "recorded": false,
+   "mint_in_pool_ui": 2365629.043242,
+   "quote": "SOL",
+   "quote_vault": "6KyF6zk4eoinhQ9DEhSBmv9MxSbd7nosDz8J6UQ9tuLz",
+   "quote_ui": 14.899439459,
+   "quote_usd": 1761.1543717900443,
+   "read_error": null,
+   "implied_price_usd": 0.0007444761370432165
+  },
+  {
+   "pool": "4utJFkMeksyNX4mEzrXmKu6vd9hZUaiVVfBW83oqbSJB",
+   "venue": "Meteora DLMM",
+   "kind": "pool-owned vault",
+   "found_by": [
+    "token-account owner",
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "Meteora DLMM",
+   "data_len": 904,
+   "recorded": false,
+   "mint_in_pool_ui": 699255.229167,
+   "quote": "SOL",
+   "quote_vault": "8Ejp4DZzw8yfrjTJpUojJ1aRdR44FGkWidwuFxgULhnD",
+   "quote_ui": 0.770833106,
+   "quote_usd": 91.11457503405387,
+   "read_error": null,
+   "implied_price_usd": 0.00013030231485375619
+  },
+  {
+   "pool": "GAPtnfSWQjjT6fCnBDEv24oHoRsZRz559Ucrme7TpeWZ",
+   "venue": "Meteora DAMM v2",
+   "kind": "pool (gPA)",
+   "found_by": [
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "Meteora DAMM v2",
+   "data_len": 1112,
+   "recorded": false,
+   "mint_in_pool_ui": 18657.646997,
+   "quote": "SOL",
+   "quote_vault": "CkWB9eT5Pzy3V4ahBFU9tz9kMKRaL8BwpGzDTfqJns2m",
+   "quote_ui": 0.118037104,
+   "quote_usd": 13.952307555937304,
+   "read_error": null,
+   "implied_price_usd": 0.0007478063851342414
+  },
+  {
+   "pool": "H5ipHfFF5HZmeA37yW7RootdonXFn6QsGQsYYYL6TdfR",
+   "venue": "Meteora DAMM v2",
+   "kind": "pool (gPA)",
+   "found_by": [
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "Meteora DAMM v2",
+   "data_len": 1112,
+   "recorded": false,
+   "mint_in_pool_ui": 12409.525191,
+   "quote": "SOL",
+   "quote_vault": "FZtYfxRVTJyeKH99Qpx21zxSb9ipEMEKRBUuU14MMf54",
+   "quote_ui": 0.020564015,
+   "quote_usd": 2.4307226468798158,
+   "read_error": null,
+   "implied_price_usd": 0.00019587555603196613
+  },
+  {
+   "pool": "52TSKiFb4XYXTzv7rdkvJCd44yEnVmtkTNC29vzhE92N",
+   "venue": "Meteora DAMM v2",
+   "kind": "pool (gPA)",
+   "found_by": [
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "Meteora DAMM v2",
+   "data_len": 1112,
+   "recorded": false,
+   "mint_in_pool_ui": 4071.999947,
+   "quote": "USDC",
+   "quote_vault": "4H6AW6xKGCgAwkJ3LhBLkhE9JBUrs37quEUKBKS5HbLe",
+   "quote_ui": 0.881323,
+   "quote_usd": 0.881323,
+   "read_error": null,
+   "implied_price_usd": 0.00021643492423159406
+  },
+  {
+   "pool": "HLnpSz9h2S4hiLQ43rnSD9XkcUThA7B8hQMKmDaiTLcC",
+   "venue": "Meteora DAMM v2",
+   "kind": "authority-held vault",
+   "found_by": [
+    "token-account owner"
+   ],
+   "exists": true,
+   "owner_program": "11111111111111111111111111111111",
+   "data_len": 0,
+   "recorded": false,
+   "mint_in_pool_ui": 39233.231992,
+   "note": "shared authority PDA; the pool itself is found by gPA if its layout is right"
+  },
+  {
+   "pool": "GpMZbSM2GgvTKHJirzeGfMFoaZ8UR2X7F4v8vHTvxFbL",
+   "venue": "Raydium CPMM",
+   "kind": "authority-held vault",
+   "found_by": [
+    "token-account owner"
+   ],
+   "exists": true,
+   "owner_program": "11111111111111111111111111111111",
+   "data_len": 0,
+   "recorded": false,
+   "mint_in_pool_ui": 131414426.28724,
+   "note": "shared authority PDA; the pool itself is found by gPA if its layout is right"
+  },
+  {
+   "pool": "6zvWxp2Lzi4nzaHLKnEanYLQ51kMu386U5H45gGmkGWL",
+   "venue": "Meteora DAMM v2",
+   "kind": "pool (gPA)",
+   "found_by": [
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "Meteora DAMM v2",
+   "data_len": 1112,
+   "recorded": false,
+   "mint_in_pool_ui": null,
+   "quote": null,
+   "quote_usd": null,
+   "note": "no SOL/USDC/USDT vault owned by this account"
+  }
+ ],
+ "chain_quote_usd_total": 19626.77108007685,
+ "unclassified_owners": [
+  {
+   "owner": "9qbtepocFPLaft9FYbk5MvZcNHgMGMgwoUFsniK2QwDv",
+   "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+   "mint_ui": 96196115.846381,
+   "quote_usd": null,
+   "n_token_accounts": 1
+  },
+  {
+   "owner": "HWGoJ1HaMFUiDgfD7FVxMaYJAE2A5JjF7si6CgWSvRFQ",
+   "program": "3s1rAymURnacreXreMy718GfqW6kygQsLNka1xDyW8pC",
+   "mint_ui": 13.759813,
+   "quote_usd": 36634.33411025076,
+   "n_token_accounts": 52461
+  }
+ ],
+ "unclassified_quote_usd": 36634.33411025076,
+ "third_party": {
+  "jupiter_round_trip_100": {
+   "mint": "HXQ66zSRqynwJQ6vYEYa85qGY9C2Ycz8rnYQHgApn391",
+   "probe_usd": 100,
+   "ts": 1790102917,
+   "usd_back": 96.446,
+   "rt_cost_pct": 3.554,
+   "verdict": "TRADEABLE",
+   "venues": [
+    "BisonFi",
+    "Raydium CP"
+   ],
+   "px_per_raw": 1.3590269812734754e-10,
+   "error": null,
+   "token_qty_raw": 735820564109,
+   "price_impact_pct": 2.471945
+  },
+  "jupiter_token": {
+   "symbol": "GO",
+   "name": "STOKN",
+   "holderCount": 967,
+   "liquidity": 19471.05875935211,
+   "mcap": 129571.39787585418,
+   "fdv": 129571.39787585418,
+   "usdPrice": 0.00013253477991495498,
+   "organicScore": 70.04518242640306,
+   "graduatedPool": "C2BB8PEdsZbEWm8QTmf9YBWHor5R5ecb5KkBJfb2b5so",
+   "graduatedAt": "2026-09-22T09:01:39Z",
+   "launchpad": "stonkfun",
+   "volume24h": 1498593.7178100338
+  },
+  "dexscreener": [
+   {
+    "pair": "C2BB8PEdsZbEWm8QTmf9YBWHor5R5ecb5KkBJfb2b5so",
+    "dex": "raydium",
+    "labels": [
+     "CPMM"
+    ],
+    "liq_usd": 35518.8,
+    "liq_quote": 150.2487,
+    "vol24": 1394690.41,
+    "price_usd": "0.0001351",
+    "quote": "SOL"
+   },
+   {
+    "pair": "FCydBTAvVxhuEkaUTu8ohjJci5ETyqfWHpUNuW7c68Ph",
+    "dex": "meteora",
+    "labels": [
+     "DLMM"
+    ],
+    "liq_usd": 2082.26,
+    "liq_quote": 14.8994,
+    "vol24": 16665.58,
+    "price_usd": "0.0001357",
+    "quote": "SOL"
+   },
+   {
+    "pair": "4utJFkMeksyNX4mEzrXmKu6vd9hZUaiVVfBW83oqbSJB",
+    "dex": "meteora",
+    "labels": [
+     "DLMM"
+    ],
+    "liq_usd": 186.12,
+    "liq_quote": 0.7708,
+    "vol24": 1414.62,
+    "price_usd": "0.0001361",
+    "quote": "SOL"
+   },
+   {
+    "pair": "GAPtnfSWQjjT6fCnBDEv24oHoRsZRz559Ucrme7TpeWZ",
+    "dex": "meteora",
+    "labels": [
+     "DYN2"
+    ],
+    "liq_usd": 5.24,
+    "liq_quote": 0.02244,
+    "vol24": 1309.89,
+    "price_usd": "0.0001392",
+    "quote": "SOL"
+   },
+   {
+    "pair": "H5ipHfFF5HZmeA37yW7RootdonXFn6QsGQsYYYL6TdfR",
+    "dex": "meteora",
+    "labels": [
+     "DYN2"
+    ],
+    "liq_usd": 3.52,
+    "liq_quote": 0.01515,
+    "vol24": 64.99,
+    "price_usd": "0.0001401",
+    "quote": "SOL"
+   },
+   {
+    "pair": "6zvWxp2Lzi4nzaHLKnEanYLQ51kMu386U5H45gGmkGWL",
+    "dex": "meteora",
+    "labels": [
+     "DYN2"
+    ],
+    "liq_usd": 1.47,
+    "liq_quote": 0.6778,
+    "vol24": 0.49,
+    "price_usd": "0.0001948",
+    "quote": "USDT"
+   },
+   {
+    "pair": "52TSKiFb4XYXTzv7rdkvJCd44yEnVmtkTNC29vzhE92N",
+    "dex": "meteora",
+    "labels": [
+     "DYN2"
+    ],
+    "liq_usd": 1.47,
+    "liq_quote": 0.6816,
+    "vol24": 0.49,
+    "price_usd": "0.0001952",
+    "quote": "USDC"
+   }
+  ],
+  "geckoterminal": [
+   {
+    "pool": "C2BB8PEdsZbEWm8QTmf9YBWHor5R5ecb5KkBJfb2b5so",
+    "dex": "raydium",
+    "reserve_usd": "35959.6331",
+    "vol24": "1390599.28711327"
+   },
+   {
+    "pool": "FCydBTAvVxhuEkaUTu8ohjJci5ETyqfWHpUNuW7c68Ph",
+    "dex": "meteora",
+    "reserve_usd": "2088.8499",
+    "vol24": "16613.674624677"
+   },
+   {
+    "pool": "4utJFkMeksyNX4mEzrXmKu6vd9hZUaiVVfBW83oqbSJB",
+    "dex": "meteora",
+    "reserve_usd": "188.5922",
+    "vol24": "1414.0603300797"
+   },
+   {
+    "pool": "GAPtnfSWQjjT6fCnBDEv24oHoRsZRz559Ucrme7TpeWZ",
+    "dex": "meteora-damm-v2",
+    "reserve_usd": "5.3033",
+    "vol24": "1281.8352014076"
+   },
+   {
+    "pool": "H5ipHfFF5HZmeA37yW7RootdonXFn6QsGQsYYYL6TdfR",
+    "dex": "meteora-damm-v2",
+    "reserve_usd": "3.5552",
+    "vol24": "64.2281614649"
+   },
+   {
+    "pool": "52TSKiFb4XYXTzv7rdkvJCd44yEnVmtkTNC29vzhE92N",
+    "dex": "meteora-damm-v2",
+    "reserve_usd": "1.1203",
+    "vol24": "0.2872799091"
+   },
+   {
+    "pool": "6zvWxp2Lzi4nzaHLKnEanYLQ51kMu386U5H45gGmkGWL",
+    "dex": "meteora-damm-v2",
+    "reserve_usd": "1.0378",
+    "vol24": "0.2898701111"
+   },
+   {
+    "pool": "2eYznhn1LFRrPG4KPKHVEHg8GPap7EhjCut2PoLVxpTL",
+    "dex": "raydium-launchlab",
+    "reserve_usd": "0.0",
+    "vol24": "92005.0368143519"
+   }
+  ],
+  "rugcheck": {
+   "totalHolders": 0,
+   "totalMarketLiquidity": 38319.2730721789,
+   "rugged": false,
+   "markets": [
+    {
+     "pool": "C2BB8PEdsZbEWm8QTmf9YBWHor5R5ecb5KkBJfb2b5so",
+     "type": "raydium_cpmm",
+     "lpLockedPct": 100,
+     "lpLockedUSD": 36017.3118377833,
+     "quoteUSD": 18119.09557548851
+    },
+    {
+     "pool": "FCydBTAvVxhuEkaUTu8ohjJci5ETyqfWHpUNuW7c68Ph",
+     "type": "meteoraDlmm",
+     "lpLockedPct": 0,
+     "lpLockedUSD": 0,
+     "quoteUSD": 1783.40836835764
+    },
+    {
+     "pool": "4utJFkMeksyNX4mEzrXmKu6vd9hZUaiVVfBW83oqbSJB",
+     "type": "meteoraDlmm",
+     "lpLockedPct": 0,
+     "lpLockedUSD": 0,
+     "quoteUSD": 91.1534633830298
+    },
+    {
+     "pool": "GAPtnfSWQjjT6fCnBDEv24oHoRsZRz559Ucrme7TpeWZ",
+     "type": "meteora_damm_v2",
+     "lpLockedPct": 0,
+     "lpLockedUSD": 0,
+     "quoteUSD": 13.958262500083748
+    },
+    {
+     "pool": "H5ipHfFF5HZmeA37yW7RootdonXFn6QsGQsYYYL6TdfR",
+     "type": "meteora_damm_v2",
+     "lpLockedPct": 0,
+     "lpLockedUSD": 0,
+     "quoteUSD": 2.431760096601995
+    },
+    {
+     "pool": "6zvWxp2Lzi4nzaHLKnEanYLQ51kMu386U5H45gGmkGWL",
+     "type": "meteora_damm_v2",
+     "lpLockedPct": 0,
+     "lpLockedUSD": 0,
+     "quoteUSD": 0.879482
+    },
+    {
+     "pool": "52TSKiFb4XYXTzv7rdkvJCd44yEnVmtkTNC29vzhE92N",
+     "type": "meteora_damm_v2",
+     "lpLockedPct": 0,
+     "lpLockedUSD": 0,
+     "quoteUSD": 0.881323
+    }
+   ],
+   "risks": [
+    "High market cap per holder"
+   ]
+  }
+ },
+ "calls": {
+  "rpc": 531,
+  "http": 55
+ },
+ "seconds": 22.9
+}

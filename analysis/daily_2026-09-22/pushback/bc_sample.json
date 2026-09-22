@@ -1,0 +1,872 @@
+[
+ {
+  "token": "Bn1oEqGCwNNCKcZHxb5eACfK3gAcct4S6jbyREDKD2Ac",
+  "symbol": "Shareholder",
+  "status": "gone",
+  "verdict": "COSTLY",
+  "usd_back": 88.4648,
+  "venues": [
+   "Scorch",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "CrouKRgRzboqTeXbKhS9jVYxax7f12naWLaBxe4rpump",
+  "symbol": "NIGGER",
+  "status": "dead",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Kipseli",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "HUVjaWbh8uEYLEuPoeQmfwPAU1UZHypPpp9d7j6Npump",
+  "symbol": "MMCL",
+  "status": "gone",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Kipseli",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "AqyDFYgG1HMTmVfcbWaJeg2aPeRtLjK4rGvbLccNpump",
+  "symbol": "BAG",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.4943,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "6BZhR9Jqs8z43u578zPJBaTBQLMtxi17Uf1v1UPcpump",
+  "symbol": "GetBits",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3732,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "2r7nu9B4vsi6rQvTv2pypb3p3ZPRsjBsiZykko8N9VvD",
+  "symbol": "launchpad",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3745,
+  "venues": [
+   "Flux",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "E8SJn8nBU7au7UbEKWhTSvw1YPdKksabX7i4mYi3pump",
+  "symbol": "legs",
+  "status": "gone",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Whirlpool",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "B3JwEMcy52zutLCiABQfDBeuC7TUX1LoLdqg2yNfpump",
+  "symbol": "CATE",
+  "status": "dead",
+  "verdict": "TOTAL_LOSS",
+  "usd_back": 2.2959,
+  "venues": [
+   "Quantum",
+   "Pump.fun Amm"
+  ]
+ },
+ {
+  "token": "ADNeGthqN4sJfLcsaMTEPFbQ2f1eeArJMkNsXrsZ1o2p",
+  "symbol": "GLC",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3719,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "5jbNTzATLRpx2JPmJjFrsa9kYhxmNfYETydWD8MDpump",
+  "symbol": "GAMBLTOGI",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3792,
+  "venues": [
+   "Kipseli",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "G4VkNPUpaaf6Nvmpc4NVvzZR9XjRViMTWCzyCYBWpump",
+  "symbol": "BIRD",
+  "status": "gone",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Kipseli",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "7rXNPfbNVfpdDppZrbrJ7qhcgNbJHFshDsNnk2nBpump",
+  "symbol": "cap",
+  "status": "gone",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Kipseli",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "E8jY4roGp6fZSJS47WLsk9mCTNsaVnfoqEpQj7hApump",
+  "symbol": "Retardog",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3738,
+  "venues": [
+   "Kipseli",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "A5KsVjGWnG1yTCE3LVhVG1e7bV1a1mGnDK172wb4FhU5",
+  "symbol": "MCAT",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3759,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "9Cgz6TeWRAqrUaPGD6gSDvxQYpFvH7K2ZgHRFKYCrRGL",
+  "symbol": "GLC",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3804,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "8d99bUjicLkzWz5JwR2nxhqV16skPceqyMxDrc8cpump",
+  "symbol": "Zucks",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3786,
+  "venues": [
+   "Kipseli",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "5oHUogyUSPjnQJr2Gkf1yXZuttUsaezNkgmvuoAeJk1i",
+  "symbol": "CENUT",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.372,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "Hr6Wjrt7CQsPRP4egDVze2z999qyxutZ24S8JABJpump",
+  "symbol": "JTO",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3701,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "EaH55xvvdnKeUVLuhGBXKxNN2HddtVfSEyUAQtN2pump",
+  "symbol": "PSYOPPHIL",
+  "status": "gone",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Flux",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "J5VhYdWWChkPmnt1mJAyTxj8CjMEpjHcAYjqKcnxpump",
+  "symbol": "TRUMP",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3728,
+  "venues": [
+   "HumidiFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "2T98oesKhsCi6vMM4D812eZueUdovoDEYXRxVTjHyVRh",
+  "symbol": "\u4e2d\u56fd\u871c\u996f",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3712,
+  "venues": [
+   "HumidiFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "9wDd2nDRskoiLv1xAgcrVuFoH8EmaioJPD2DHepPr8MQ",
+  "symbol": "FOMOMINT",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3729,
+  "venues": [
+   "HumidiFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "Ai1CgL4xWDQF3dwZf5RZDcx6qRqzK9T94RSrovHuBkg7",
+  "symbol": "Hitler",
+  "status": "gone",
+  "verdict": "NO_BUY_ROUTE",
+  "usd_back": null,
+  "venues": null
+ },
+ {
+  "token": "FYE4PmHoqdfW2yAR47aPzZshSAfuZnRZwKVQtmdWpump",
+  "symbol": "Pemloo",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3757,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "rtyhEXkoBGDKZxYS2NwWD5rzVSyj8fLqQrNu2NSpump",
+  "symbol": "TOOM",
+  "status": "gone",
+  "verdict": "NO_BUY_ROUTE",
+  "usd_back": null,
+  "venues": null
+ },
+ {
+  "token": "DBnTu4PJX8snAsqpCV7Aiy1Lr9QDLTfCf1qz3GvQpump",
+  "symbol": "STONX",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3634,
+  "venues": [
+   "HumidiFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "6QqUCQZo7GP8DhDY1n9ch6kChtnFzNZiTP3M6DQXpump",
+  "symbol": ".",
+  "status": "dead",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Kipseli",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "2XZSbRdpB6ZtXbijrV5jMoFtakhJe3JwC1LEQJyr1a7L",
+  "symbol": "TJR",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3748,
+  "venues": [
+   "Kipseli",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "C8in68Chata7Q8CpgRbkH93M6vTyS3s1dzhAZbjTpump",
+  "symbol": "SWAMIS",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3634,
+  "venues": [
+   "Kipseli",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "CF2zU6RJdBimb1eJTUd4Py1FKR7EC99TkPhTjxvipump",
+  "symbol": "SLOP",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3717,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "6vM4aFRRWnt12hmbCMbBHt9d3qC8urtsMKYfMLgWpump",
+  "symbol": "DANCECAT",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3724,
+  "venues": [
+   "HumidiFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "4CZgAwdFEKWzbGfUPR4m5zKCebMzWT53SxpADjsPpump",
+  "symbol": "skipoo126",
+  "status": "dead",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "C8AGXDzJvNNUZkJA77bs2F1He2mUxwLXjFfZKYPFpump",
+  "symbol": "jess",
+  "status": "dead",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Scorch",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "EDCey5zwNyJfpMBvvgBGCUKejkBYqYXEHHYQHEs2pump",
+  "symbol": "DOOB",
+  "status": "dead",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "PancakeSwap",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "FZ4fnkn6Nw8bYtpZhWh5yRnAibDMU378jYckmX2jpump",
+  "symbol": "CRUISE",
+  "status": "gone",
+  "verdict": "COSTLY",
+  "usd_back": 88.4777,
+  "venues": [
+   "Whirlpool",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "GPNduAY6jbSd2iU9aNwuWDLXNioCCeDghwDbxK2Fpump",
+  "symbol": "$ANSEM",
+  "status": "gone",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "ES7GwpsNQxtSzSR35QQNjGwqf2jLnbY5T8puSrbXpump",
+  "symbol": "FIBULL",
+  "status": "gone",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "5XBXhQEiUfEADNS89EJt8bJTLC1F2CZRkj8Cqnf3ShxR",
+  "symbol": "QSTAR",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3914,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "GCBWoEKXkjXyWcpayzyDEXhvRVqvJFcXTSBkeoTgpump",
+  "symbol": "BPCATE",
+  "status": "gone",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "ECoBg2GttEHPk5xQax6CJ9hHmSXSrmpYgWfoxEE4pump",
+  "symbol": "CATMAN",
+  "status": "dead",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "DmsRi4rqibHtzEuLbVYFvpvu3C1AMFJP5bmzcxNHpump",
+  "symbol": "JEANPAID",
+  "status": "dead",
+  "verdict": "COSTLY",
+  "usd_back": 89.5002,
+  "venues": [
+   "Quantum",
+   "Pump.fun Amm"
+  ]
+ },
+ {
+  "token": "E4ePgReA7EU4rCp6q8JGbTmuo4j8Zfm7crxY9kBDuWVn",
+  "symbol": "Ember",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3698,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "CFiP2hFZCmgwBx3y2MSbKwsN15roUK2hifLsX9Rjpump",
+  "symbol": "CHIMP",
+  "status": "dead",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Raydium",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "5GyjtA3BQnLSjmMBueVSkdtBwi6JAY35Bc5MT3YRXsoL",
+  "symbol": "JPHIL",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3714,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "FSJXDYUChAUSP62zBJKDqt5whx9oCLddfk9vXQj9paid",
+  "symbol": "MLC",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3643,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "HjjP7zyttWyUf1VcbDAi6PRMNNwNrvtD92nxzUC2pump",
+  "symbol": "$Henry",
+  "status": "dead",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "85oersEExsQgpQbHKsJz8iN5Nvf8bEXAwptRbib4pump",
+  "symbol": "pumpcard",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3706,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "J9QXQi7PGkNobR81VzvPTu2oMPtHrPKQnzgF88tcpump",
+  "symbol": "POTATO",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3737,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "7UkjBJXQVZkbSQKwqs6JVUrmpNofWKKriDeSfRxgpump",
+  "symbol": "prehistory",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3714,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "9c6Z2c271e6GTnDMCcKcqsx8hSrrP6MxRK1swweapump",
+  "symbol": "FORKLIFT",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3935,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "89nq3MBRK8GJBxM2Kh4nSP2ajYmw7e5DnkWFQ6bH3Ahh",
+  "symbol": "MCAT",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3716,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "9Rd6emfD39uUhTyfejRymvg6wp9GuD7TFHuhxd2Bpump",
+  "symbol": "average",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3715,
+  "venues": [
+   "Meteora DLMM",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "BrCZXd7PzRKud3bQMZv5XWAJHhuaGYUqCYE37cfG45Yi",
+  "symbol": "BBB",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3721,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "3bUyNrHrbxvSXDhby3rAGUT3CNgZGNt1sG3N5gdYpump",
+  "symbol": "RTANK",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3739,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "7JYYQR5KY5CDy3msiLxrfFe3FHrga6xQoRvAhWqSpump",
+  "symbol": "XPC",
+  "status": "gone",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "MB6e5R17Q8xjhx4W9dbDEJbFpAGoaWz3ZxQ5xzDpump",
+  "symbol": "DOT",
+  "status": "gone",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "GyqijXHFZJyKAiRXYGCRDFVGBgmFCnX5K5Mvmy15mxpz",
+  "symbol": "MHTRIAL",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.364,
+  "venues": [
+   "BisonFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "CT3MkJb9wxmV2Cmxe766M7LULhhecMhSXg5Sb4t9pump",
+  "symbol": "Auracat",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3754,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "Nq982N2MPPau3Enm4vVmFz86Uo2Ux8g7tfPYGBAwzdq",
+  "symbol": "SFE",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3664,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "HoUG9zNhuCX5EiyL5RXCyVqCTZLAg5zKAT5Uyrxue8T8",
+  "symbol": "FINAGOTCHI",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3871,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "9tmq6aCDvVU7ZnCKNUGode7oiZfaZp6tcRkEVXQi2TmZ",
+  "symbol": "UNEMPLOYED",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3831,
+  "venues": [
+   "Kipseli",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "4Ws7YTzSfn5fSrhBXeAtpHJijF9FAQpAbFNkmxR7pump",
+  "symbol": "BONKINC",
+  "status": "dead",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Raydium",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "J6x7925uTTbw6WCW4K2A7wB7PamYsgUK9SF4qBy7pump",
+  "symbol": "NARRY",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.8421,
+  "venues": [
+   "Byreal",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "ENUEs7LBEh31BCeNgykfqhrpCj7VG9edkbUEU1bspump",
+  "symbol": "MEME ",
+  "status": "dead",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "2MufkUhNRvHmpXkgwRFfZTFPM1VPevShufnkaKKJpump",
+  "symbol": "USDF",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3733,
+  "venues": [
+   "Meteora DLMM",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "wqwSHDLSc5DqLEQxMG8zVFBYuxoSJGu23DCWtqBpump",
+  "symbol": "Catfu",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3736,
+  "venues": [
+   "Flux",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "DynrNGyiyh22zZtVwoc3xjq79gCXNmXa8uA1JS4KF3zB",
+  "symbol": "GAKELIVE",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3725,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "ETF77639z2BGssZm41r6DMaWvgDfDkUK4pSd9XTnpump",
+  "symbol": "GrenCAT",
+  "status": "dead",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "8UDyzwGhyMe9jDcmSiz9Wb9xXnUTDCQH9TmEKR5bpump",
+  "symbol": "Cred\u0435x",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3731,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "5ZTmXtSfkL3ZoRMLWXV7iXybzjmbxmp8G8QFUwTGpump",
+  "symbol": "EYE",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.4058,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "B1gaBGYyqC5wEsMaPfmUJAHMnxz1CaEJSQ4wPFbppump",
+  "symbol": "GZ",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3717,
+  "venues": [
+   "Whirlpool",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "6oFSbSbx7GtfGen3ZY7HrwwAj18oGVP1qkAt2EBypump",
+  "symbol": "dmX",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3876,
+  "venues": [
+   "Scorch",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "6PTjbp4VMdYribZhdPmUMQ6BZ5imumrzQkV3Ss6WxGtc",
+  "symbol": "$5000",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3762,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "jL6X2z8RsE9He7pRLGwQLWeUGGbqdaFDArkSJLupump",
+  "symbol": "Fox",
+  "status": "dead",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Quantum",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "Fbu8RDMSfZLX3QtLB34QNTDMJfZ3i9C2qzVMvF5Tpump",
+  "symbol": "fg",
+  "status": "gone",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Kipseli",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "Cu9dFp3rGgXCcQqNM61w2C2FJYQqB2Ve5mN3M384mU81",
+  "symbol": "Wheres inu",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3802,
+  "venues": [
+   "Kipseli",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "9Xb4bNQKZA3uss88WotdA618dX5KhYPMCgop94TxVNF9",
+  "symbol": "Winston",
+  "status": "gone",
+  "verdict": "TRADEABLE",
+  "usd_back": 93.2885,
+  "venues": [
+   "Scorch",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "HatWvcQGry6rPpAMyCG7XqKmvVeAYkkcK5a3uDzMpump",
+  "symbol": "SXSN",
+  "status": "gone",
+  "verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Flux",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "8kh9g11ATxDDFMYoG5SukD99Sm6Ak6AbYYEbEG2opump",
+  "symbol": "LEONSTREET",
+  "status": "dead",
+  "verdict": "TRADEABLE",
+  "usd_back": 92.3821,
+  "venues": [
+   "HumidiFi",
+   "Pump.fun"
+  ]
+ },
+ {
+  "token": "4uMkKigVA5dRYYfuS3DBMUpigGs6GcZLhuFSDuuTpump",
+  "symbol": "CDM",
+  "status": "gone",
+  "verdict": "NO_BUY_ROUTE",
+  "usd_back": null,
+  "venues": null
+ }
+]

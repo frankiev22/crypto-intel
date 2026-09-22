@@ -1,0 +1,152 @@
+{
+ "mint": "GPqoXbff7NPyvbngpsUz7mP1byZq7Xfh94E8Gu56HR6T",
+ "ts": 1790103247,
+ "sol_usd": 118.20203598838238,
+ "sol_usd_src": "jupiter price v3",
+ "recorded_pairs": [],
+ "mint_account": {
+  "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+  "decimals": 6,
+  "supply_ui": 608701523.832055,
+  "mint_authority": null,
+  "freeze_authority": null
+ },
+ "token_accounts": {
+  "n": 13,
+  "error": null,
+  "truncated": false
+ },
+ "holders_nonzero": 13,
+ "owner_classes": {
+  "system_wallets": 9,
+  "other": {
+   "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ": {
+    "owners": 3,
+    "mint_ui": 19502563.754040997
+   }
+  }
+ },
+ "gpa_errors": [],
+ "pools": [
+  {
+   "pool": "HCSnGKaa6M3mekoof1nuKUsC3TsM94ZuYYF3dbNk5mZY",
+   "venue": "PumpSwap AMM",
+   "kind": "pool-owned vault",
+   "found_by": [
+    "token-account owner",
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "PumpSwap AMM",
+   "data_len": 301,
+   "recorded": false,
+   "mint_in_pool_ui": 0.006077,
+   "quote": "SOL",
+   "quote_vault": "Edub5sHUssdca86S31LiAbvWsxLYdfDaG9ujM4wM47ky",
+   "quote_ui": 3e-09,
+   "quote_usd": 3.546061079651471e-07,
+   "read_error": null,
+   "implied_price_usd": 5.835216520736336e-05
+  }
+ ],
+ "chain_quote_usd_total": 3.546061079651471e-07,
+ "unclassified_owners": [
+  {
+   "owner": "A7hAgCzFw14fejgCp387JUJRMNyz4j89JKnhtKU8piqW",
+   "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
+   "mint_ui": 19500027.805126,
+   "quote_usd": 164.89733051332297,
+   "n_token_accounts": 221940
+  },
+  {
+   "owner": "GXPFM2caqTtQYC2cJ5yJRi9VDkpsYZXzYdwYpGnLmtDL",
+   "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
+   "mint_ui": 2388.755269,
+   "quote_usd": 149.11523692009087,
+   "n_token_accounts": 104473
+  },
+  {
+   "owner": "5YxQFdt3Tr9zJLvkFccqXVUwhdTWJQc1fFg2YPbxvxeD",
+   "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
+   "mint_ui": 147.193646,
+   "quote_usd": 540.40558344547,
+   "n_token_accounts": 188085
+  }
+ ],
+ "unclassified_quote_usd": 854.4181508788838,
+ "third_party": {
+  "jupiter_round_trip_100": {
+   "mint": "GPqoXbff7NPyvbngpsUz7mP1byZq7Xfh94E8Gu56HR6T",
+   "probe_usd": 100,
+   "ts": 1790103453,
+   "usd_back": null,
+   "rt_cost_pct": null,
+   "verdict": "NO_SELL_ROUTE",
+   "venues": [
+    "Raydium",
+    "Pump.fun Amm"
+   ],
+   "px_per_raw": 0.016512549537648614,
+   "error": "NO_ROUTES_FOUND",
+   "token_qty_raw": 6056,
+   "price_impact_pct": null
+  },
+  "jupiter_token": {
+   "symbol": "USDCAT",
+   "name": "DollarCat",
+   "holderCount": 13,
+   "liquidity": 3.5408617696080595e-07,
+   "mcap": null,
+   "fdv": null,
+   "usdPrice": null,
+   "organicScore": 0,
+   "graduatedPool": null,
+   "graduatedAt": null,
+   "launchpad": null,
+   "volume24h": 2858668.7034870223
+  },
+  "dexscreener": [
+   {
+    "pair": "HCSnGKaa6M3mekoof1nuKUsC3TsM94ZuYYF3dbNk5mZY",
+    "dex": "pumpswap",
+    "labels": null,
+    "liq_usd": 0,
+    "liq_quote": 3e-09,
+    "vol24": 1333686.15,
+    "price_usd": "0.00004523",
+    "quote": "SOL"
+   }
+  ],
+  "geckoterminal": [
+   {
+    "pool": "HCSnGKaa6M3mekoof1nuKUsC3TsM94ZuYYF3dbNk5mZY",
+    "dex": "pumpswap",
+    "reserve_usd": "0.0000005972480137",
+    "vol24": "1379328.50929899"
+   }
+  ],
+  "rugcheck": {
+   "totalHolders": 0,
+   "totalMarketLiquidity": 6.290243214851329e-07,
+   "rugged": false,
+   "markets": [
+    {
+     "pool": "HCSnGKaa6M3mekoof1nuKUsC3TsM94ZuYYF3dbNk5mZY",
+     "type": "pump_fun_amm",
+     "lpLockedPct": 100,
+     "lpLockedUSD": 6.290243214851329e-07,
+     "quoteUSD": 2.7457567780243455e-07
+    }
+   ],
+   "risks": [
+    "High market cap per holder",
+    "Low Liquidity"
+   ]
+  }
+ },
+ "calls": {
+  "rpc": 75,
+  "http": 10
+ },
+ "seconds": 209.2
+}

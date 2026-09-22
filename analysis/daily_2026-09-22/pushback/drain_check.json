@@ -1,0 +1,67 @@
+{
+ "USDCAT": {
+  "pool": "HCSnGKaa6M3mekoof1nuKUsC3TsM94ZuYYF3dbNk5mZY",
+  "types": {
+   "WITHDRAW": 1,
+   "SWAP": 99
+  },
+  "withdraws": [
+   [
+    "09-21 19:54:19Z",
+    "WITHDRAW",
+    "FF8mFScTU484iR"
+   ]
+  ]
+ },
+ "TSLA": {
+  "pool": "C2aUx8v7czsivzhimXydVLBfoMFJB5Hpip6Q2GjWvGzL",
+  "types": {
+   "SWAP": 14,
+   "UNKNOWN": 43,
+   "TRANSFER": 43
+  },
+  "withdraws": []
+ },
+ "OWL": {
+  "pool": "9TbmTHEhTR3sMUQTC8itFZmpTuvQ2rhiVbkBWbSJwh5s",
+  "types": {
+   "WITHDRAW": 1,
+   "SWAP": 99
+  },
+  "withdraws": [
+   [
+    "09-22 07:14:06Z",
+    "WITHDRAW",
+    "7CRkdrfaFt31rZ"
+   ]
+  ]
+ },
+ "X7": {
+  "pool": "F16kiKtygqjfiEGu6ywjU84RibisZGMsxiQmdmWjBqPQ",
+  "types": {
+   "SWAP": 99,
+   "WITHDRAW": 1
+  },
+  "withdraws": [
+   [
+    "09-22 10:27:06Z",
+    "WITHDRAW",
+    "86iCHjJ1C6DTKb"
+   ]
+  ]
+ },
+ "ChatGPT": {
+  "pool": "36pv9hJF48g1geoyoGtLo5xV4XdaGSHaEBhjfuQUQvdo",
+  "types": {
+   "SWAP": 100
+  },
+  "withdraws": []
+ },
+ "UOTF": {
+  "pool": "DSRUBAEnu1zEo4pP83uEtzyj7tWSwd6zzG2MdV3Q3wSp",
+  "types": {
+   "SWAP": 100
+  },
+  "withdraws": []
+ }
+}

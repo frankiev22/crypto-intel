@@ -1,0 +1,98 @@
+[
+ {
+  "token": "Bn1oEqGCwNNCKcZHxb5eACfK3gAcct4S6jbyREDKD2Ac",
+  "our_liq": null,
+  "chain_curve_usd": 2.3596295314538624e-07,
+  "complete": false,
+  "usd_back": 88.4648,
+  "label": "gone"
+ },
+ {
+  "token": "AqyDFYgG1HMTmVfcbWaJeg2aPeRtLjK4rGvbLccNpump",
+  "our_liq": 0.0,
+  "chain_curve_usd": 86.57934436874234,
+  "complete": false,
+  "usd_back": 92.4943,
+  "label": "dead"
+ },
+ {
+  "token": "6BZhR9Jqs8z43u578zPJBaTBQLMtxi17Uf1v1UPcpump",
+  "our_liq": 0.0,
+  "chain_curve_usd": 1.4204842359357552,
+  "complete": false,
+  "usd_back": 92.3732,
+  "label": "dead"
+ },
+ {
+  "token": "2r7nu9B4vsi6rQvTv2pypb3p3ZPRsjBsiZykko8N9VvD",
+  "our_liq": 0.0,
+  "chain_curve_usd": 4.483296109762338e-06,
+  "complete": false,
+  "usd_back": 92.3745,
+  "label": "dead"
+ },
+ {
+  "token": "ADNeGthqN4sJfLcsaMTEPFbQ2f1eeArJMkNsXrsZ1o2p",
+  "our_liq": null,
+  "chain_curve_usd": 1.1798147657269312e-07,
+  "complete": false,
+  "usd_back": 92.3719,
+  "label": "gone"
+ },
+ {
+  "token": "5jbNTzATLRpx2JPmJjFrsa9kYhxmNfYETydWD8MDpump",
+  "our_liq": null,
+  "chain_curve_usd": 1.1798147657269312e-07,
+  "complete": false,
+  "usd_back": 92.3792,
+  "label": "gone"
+ },
+ {
+  "token": "E8jY4roGp6fZSJS47WLsk9mCTNsaVnfoqEpQj7hApump",
+  "our_liq": 0.0,
+  "chain_curve_usd": 1.1798147657269312e-07,
+  "complete": false,
+  "usd_back": 92.3738,
+  "label": "dead"
+ },
+ {
+  "token": "A5KsVjGWnG1yTCE3LVhVG1e7bV1a1mGnDK172wb4FhU5",
+  "our_liq": 0.0,
+  "chain_curve_usd": 0.2778125166449159,
+  "complete": false,
+  "usd_back": 92.3759,
+  "label": "dead"
+ },
+ {
+  "token": "9Cgz6TeWRAqrUaPGD6gSDvxQYpFvH7K2ZgHRFKYCrRGL",
+  "our_liq": null,
+  "chain_curve_usd": 1.1798147657269312e-07,
+  "complete": false,
+  "usd_back": 92.3804,
+  "label": "gone"
+ },
+ {
+  "token": "8d99bUjicLkzWz5JwR2nxhqV16skPceqyMxDrc8cpump",
+  "our_liq": 0.0,
+  "chain_curve_usd": 4.939850445433408,
+  "complete": false,
+  "usd_back": 92.3786,
+  "label": "dead"
+ },
+ {
+  "token": "5oHUogyUSPjnQJr2Gkf1yXZuttUsaezNkgmvuoAeJk1i",
+  "our_liq": null,
+  "chain_curve_usd": 7.55081450065236e-06,
+  "complete": false,
+  "usd_back": 92.372,
+  "label": "gone"
+ },
+ {
+  "token": "Hr6Wjrt7CQsPRP4egDVze2z999qyxutZ24S8JABJpump",
+  "our_liq": 0.0,
+  "chain_curve_usd": 1.3685851282432402e-05,
+  "complete": false,
+  "usd_back": 92.3701,
+  "label": "dead"
+ }
+]

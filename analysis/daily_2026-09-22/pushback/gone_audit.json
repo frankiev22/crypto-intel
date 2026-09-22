@@ -1,0 +1,1234 @@
+[
+ {
+  "token": "FrRFYzdBSo9hDoguf7Y2XuVLy8rUnCQQkhWrtho5ReWn",
+  "pair": "TqcbCVc49h6HodMJwW9USgjDvWSCEuxUSqJJz8pG5JC",
+  "symbol": "PAWLAB",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.381,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "CJtPAcXxKvVedGm2SZ2pqyhLK1ogu4uM3K7GZ7YryULN",
+  "pair": "CsNxUvMszFMU52MpqdjBzfarGAqUsvMwUL6mHohmp3ZZ",
+  "symbol": "TOAST",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.385,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "VDfAj43x2Y6ha9NaRKN9A4U6kJTHgA2s34xPaRkpump",
+  "pair": "5r8MZYg1RWYdxHhzKo89QufmhXPMyp4eFN18jX4oafwW",
+  "symbol": "jevbrain",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.385,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "B9cn17GdfmNDNgiBjZUAHKVNJ9mzsUpWbAHX848Upump",
+  "pair": "FC8Szodx8RCsh7F7x4zXxjEgAM71tYiKDzsebWzkazdH",
+  "symbol": "wApe",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "GzVkFyUfBAAk9hDbR2Va5cJWmH5FDPuTijLjunzipump",
+  "pair": "DLf6XGE4Ms31nU4JN89ch1g2MF18BeJA3TB54mUXkVTw",
+  "symbol": "CTE",
+  "horizon_h": 168,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.461,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "6AmpLgEePbmtkZfWLPrYqwuKL4HFgfaT8ic9vqbpHFTn",
+  "pair": "DH47VTGrafZrmoyY3kmEdE6jaT7sAGBzrFY7WUfEF1Rr",
+  "symbol": "STONK10",
+  "horizon_h": 168,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "PumpSwap AMM",
+  "vault_error": null,
+  "quote_ui": 4e-09,
+  "quote_mints": [
+   "SOL"
+  ],
+  "quote_usd": 4.7296130438686984e-07,
+  "base_ui": 0.003233,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "AAfDQKRqW41y6iic3w49XtF43nzR6ELvHskGWC9Spump",
+  "pair": "GRE3asyXA6bcfkBad2LpVy3h13sSQxbng6WmMo6C6EdR",
+  "symbol": "lightwork",
+  "horizon_h": 168,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "HKRwN51iuwapgkyg891E6xeMjXX13ZPYzYjQycbsMa6v",
+  "pair": "E6JDeCjFZpPZ83pacGzxgtGZcZ4d3E727vyGDQ91v52D",
+  "symbol": "BELUGA",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "PumpSwap AMM",
+  "vault_error": null,
+  "quote_ui": 2e-09,
+  "quote_mints": [
+   "SOL"
+  ],
+  "quote_usd": 2.3648065219343492e-07,
+  "base_ui": 0.007753,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "EHQSV5krLGK4LtXPqknpU1h1Ykq3ytJVGRGxY1DpjoqL",
+  "pair": "AACyDFPNPhXsDRD4tkx9ngUtegDhv7nX7bgvygFN7vgp",
+  "symbol": "ZECPAD",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "Meteora DBC",
+  "vault_error": null,
+  "quote_ui": 0.039199555,
+  "quote_mints": [
+   "SOL"
+  ],
+  "quote_usd": 4.634968166046211,
+  "base_ui": 137274.468099,
+  "jup_verdict": "TOTAL_LOSS",
+  "jup_usd_back": 0.2101,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "6DNqG65Gx1nYC2SrAen5EF8K4g1S1RpGFyfu2K6cBAGS",
+  "pair": "5xrrvmjzfUfYtGsg8VJ3DM44FLaDgnMSV6wEJUVhqnzF",
+  "symbol": "AZCRAB",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "PumpSwap AMM",
+  "vault_error": null,
+  "quote_ui": 0.000149687,
+  "quote_mints": [
+   "SOL"
+  ],
+  "quote_usd": 0.017699039692439345,
+  "base_ui": 0.18735,
+  "jup_verdict": "TOTAL_LOSS",
+  "jup_usd_back": 0.0088,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "7Z4tG9E8oQkzbXb43JovGBJ79Dn59Ari86PFxp28pump",
+  "pair": "9M26hDNZHRMip2QhhApRhTXASCkbzYZatw3VLPBfHGkB",
+  "symbol": "PUMP",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "3Jy7rSvfihWsQNE31EWbYbLJ8dWL5YDpvLuRxAogpump",
+  "pair": "5xs2zYnbvcCjtmzEzVvdpiVLYXxiiDSCCT7QT4ah7YM5",
+  "symbol": "SHIBA",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "unresolved"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.3903,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "FRojSjFFUcAEVihkp1KtpUKJdnBKjE5eQjCcMzKapump",
+  "pair": "CE5Wet6JxC5XNtQvahKFtkRG5W6FLB51eV9xVynx7eku",
+  "symbol": "sol",
+  "horizon_h": 168,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "9oP5pWwQBDfEXdptXmsFp3fqxRMfRqKmERYatvYkdAKm",
+  "pair": "8qHXHzwqDRdSAWcM6vJscLhtnPzTJztES2Qtp1QzVnsx",
+  "symbol": "BASENOTE",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.3864,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "3ACVHjJYZNnKst7hkLd2FYz4gQ3p55z2hDEMXvkcpump",
+  "pair": "FQqxWhSaDKkecegGRSNhir5p1qF43awQUVUNbVBYCT46",
+  "symbol": "CHIMP",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "HjkrVJHyMTMhRzmZVaTkcS1Wh9NdtXgkna3NRv3Rpump",
+  "pair": "H56i2wqvLZMS588bKVRCRQ5ctrr3RmyL3i1d9L8oinZV",
+  "symbol": "spork",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.3888,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "6AWeGLUfZ6UiRMbDPwZ2hztkPnSDRTZ5Zd5fXJocpump",
+  "pair": "96egN9p4vKmnYvP89etFF9yevhFzMxrqSjHbJmNhL75d",
+  "symbol": "BANANA",
+  "horizon_h": 168,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "7dTTxjWGrAkKpPMLkhQTfqLZFLrqiBhnAp1sw1yRpump",
+  "pair": "38p17WHdfGow732y4XPgvtoQw89unQsK1KRG7xmuKoUY",
+  "symbol": "DOOB",
+  "horizon_h": 168,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "3gEk1acNJmdryWReBKTtbAwZ2gNSA7G9mSLCR4VWeXxq",
+  "pair": "BUEADSGSF4qXBbUYYqinnGP3RTr46ceNDKME1eqonaNM",
+  "symbol": "HAGGIS",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.3825,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "FpFK3arTzBSRhJNGYZt8uEFPGBKGxzpWhVbDbP9Hpump",
+  "pair": "26Knmr9ErVKRJPnSkZG6fzWAhTTqA8zv6jsjsAnVF3ep",
+  "symbol": "ASD",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "GVhoLdzZ4PPZsZKeJVcF11yHbJh3Mx5Q7hAtUVumpump",
+  "pair": "8WFqWepjnzVmYcbJo32SEM4ciMoV6KBwZVrLyH9sQDu3",
+  "symbol": "Bender",
+  "horizon_h": 168,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.3915,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "Gd5mTQNXXh8U1sqbe1MdQZ2q2Crkds65LLiFoSSdkjm5",
+  "pair": "EJ6PEfxbtipCDQs4Wwej8DVGTnQy5woK5KbJ5bWWAcuG",
+  "symbol": "Groktopus",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.4018,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "6wpe2fz9kAWaFD8BpEtw254uwzmJiNwA5poqC9s74aN",
+  "pair": "HjrnDKKBywHM39K1TEsutsp1thHXaaGKafFJJFVFxEQ6",
+  "symbol": "VAMP",
+  "horizon_h": 168,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "Meteora DBC",
+  "vault_error": null,
+  "quote_ui": 0.06912544,
+  "quote_mints": [
+   "SOL"
+  ],
+  "quote_usd": 8.173414567179076,
+  "base_ui": 213878.274621,
+  "jup_verdict": "TOTAL_LOSS",
+  "jup_usd_back": 0.2025,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "KZG1fNf9MeXvWrHB5mhxE3oe6LwXxjMKtK67sPwpump",
+  "pair": "ESfhqpZPvpPadqd6FWNR2t3uN6TaR9U9zE4QPK2LMn8Q",
+  "symbol": "MAPE",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.3906,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "Duaxw3G8mcGNmRcZstWjMUFBSyD2YpTibgZkobmhpump",
+  "pair": "2FRX3yNYpEWkYRAZVhwYhXErv1TCy9TM7x4jMA7awoHo",
+  "symbol": "Peak Life",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_BUY_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "AaLYugzrAqunLVu4c6gXQ1rVGaS6rYbyMRnRaEa6pump",
+  "pair": "DfQQemdexvSoHihxU5hHBwXzdSs4AMUaZxmxgctZKn18",
+  "symbol": "sc",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "EGzMWje3wCfPUTrHDjWsWqYx3aag4e5zUoWkrzW3pump",
+  "pair": "8Zgj5d8qivue4UPVrPLyBuZ4e4kuSAkUTVsusW8z2P3Z",
+  "symbol": "SOLV",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "7FkwCNa5xkCzdvkff8mQwMC7mr63ofscBmUyN7njx3j7",
+  "pair": "CpH9e6N4fHXJGkcn2VxhkNNzKVP35uvj7ZApvctnwGxt",
+  "symbol": "TUTU",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "Meteora DAMM v2",
+  "vault_error": null,
+  "quote_ui": 2e-09,
+  "quote_mints": [
+   "SOL"
+  ],
+  "quote_usd": 2.3648065219343492e-07,
+  "base_ui": 20.925093,
+  "jup_verdict": "NO_BUY_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "4yWZZkogKeNqCZxwm3dKc7YmXugmHejLa2rd1GL6pump",
+  "pair": "EYokJ6WTuvRhJGHWZVvPfjsL7xzE841T1QXt1sN5DjWB",
+  "symbol": "AURA",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.3941,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "BnfGPG2SMjkywEonSJzFC8kDgBd3ijJsm5yYRbdggN48",
+  "pair": "CCa4H2qZ2aNuMsYe6gnPnJVwobvZ6TYZ11A6j98353LS",
+  "symbol": "Redbull",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "PumpSwap AMM",
+  "vault_error": null,
+  "quote_ui": 3e-09,
+  "quote_mints": [
+   "SOL"
+  ],
+  "quote_usd": 3.5472097829015234e-07,
+  "base_ui": 0.003529,
+  "jup_verdict": "TOTAL_LOSS",
+  "jup_usd_back": 0.1078,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "6XZ3kwdTT5hxP5uhVeW11wu3MnpVZLfYR5wzVccYpump",
+  "pair": "BVZRUKTrXc4MVMeURhqwyiwLigs314uZTpuk7abdmaZt",
+  "symbol": "Scamshot",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.3871,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "GVLr4tPYtcK67KgEm1CKcYuaQG9xdSUsqt7sTt9Xpump",
+  "pair": "9TLh76Lf32kwfugEEt81rbG3amp4ScrJhXZ6JdvNmFwc",
+  "symbol": "smartbird",
+  "horizon_h": 168,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "2VACRFqWq75GobBtMSSAM5P9MujDaHKq2qTeBXfBpump",
+  "pair": "EP7obX1FyPfLEa5nn2m5kVqvfYzzFDQTvLSEVrFSUecV",
+  "symbol": "PhilTyson",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "BUJtSYuBV35Em7iPqT1Db94CMnEqixsDFijdzHtjA6N3",
+  "pair": "FShRzZd7gwY7uAqyqtHa1PH8o2DSNG2ngJA3QdYJq1Ev",
+  "symbol": "NIP",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "Meteora DBC",
+  "vault_error": null,
+  "quote_ui": 0.003350956,
+  "quote_mints": [
+   "SOL"
+  ],
+  "quote_usd": 0.3962181301757519,
+  "base_ui": 1000000000.0,
+  "jup_verdict": "COSTLY",
+  "jup_usd_back": 68.0429,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "GuzGSiZPBQEGwJ71DrZ6Qw6N6Rx3G6oc2dmAr7C6WfxE",
+  "pair": "8gkLDZioevnejtSRPfSottvwHUk9uiag1bswCe5HRe5S",
+  "symbol": "Bybit",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "Meteora DBC",
+  "vault_error": null,
+  "quote_ui": 4.06e-07,
+  "quote_mints": [
+   "SOL"
+  ],
+  "quote_usd": 4.8005572395267284e-05,
+  "base_ui": 800000134.703334,
+  "jup_verdict": "TOTAL_LOSS",
+  "jup_usd_back": 0.0027,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "dwHUbFvqtkKYQ4jDfGPLGxnJPNoKbwij2Sr75P9s6xN",
+  "pair": "4GxRqu39sE9Q7Cv2u4fTgekEHuaHZ3V9fPsjfPSX7Ut2",
+  "symbol": "CASPER",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.3898,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "H8JHfAvGWFcnEXGcR424CtyMwnjqNskSiWe9WTvGRbgk",
+  "pair": "6SXBXf8BYby463KdWTGTbmEXk9mGU8KNEU5TqeH4E5Ka",
+  "symbol": "SAKE",
+  "horizon_h": 168,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.388,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "3seieu2pgim6ZsoBvxMHpeZadDHENm3Zovr19Lk5pump",
+  "pair": "5Jx8boGPbPJwZ2AaHCWPRnUded2PQ8uGSPgbp6apEmmh",
+  "symbol": "PUMP",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "ES7GwpsNQxtSzSR35QQNjGwqf2jLnbY5T8puSrbXpump",
+  "pair": "BxvcZYFT7Wao2K8wsn4dfRg2T6aiLseDN9zUvHcjAWMQ",
+  "symbol": "FIBULL",
+  "horizon_h": 168,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "9c6Z2c271e6GTnDMCcKcqsx8hSrrP6MxRK1swweapump",
+  "pair": "3UJseJyWKQ56WcPrSgjsFqTqaRYw6h8aavfvhZXTe74B",
+  "symbol": "FORKLIFT",
+  "horizon_h": 168,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.3839,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "3WPC8KqbrTbUyrb7BYsYViVE2Q99FRdCrmG1eMzm2721",
+  "pair": "E7Apm4aWaqQnzyjjmkEYihrUK2ftiBVfhdbfcg8PNZdj",
+  "symbol": "WIZARDCAT",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "PumpSwap AMM",
+  "vault_error": null,
+  "quote_ui": 2e-09,
+  "quote_mints": [
+   "SOL"
+  ],
+  "quote_usd": 2.3648065219343492e-07,
+  "base_ui": 0.008021,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "BvTkdpcBWH9LKjzTTDz6CKJDknawrbyMdrhBCDEbpump",
+  "pair": "FexJy21so4RAsxqxLee9DKwmg8qYMngGkTkUrQmEyo2s",
+  "symbol": "Suckerberg",
+  "horizon_h": 168,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 93.6769,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "Di7vfw2qdE1YQ18Fku7X774s9dQQEfPdEt8PPxEspump",
+  "pair": "BLpbmzBsnzW3AdhRTQTKoyJ5hWKwA83UKZexZ6Z4DLdm",
+  "symbol": "a",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "GwbKKrnTprAjjvUJu8fp4uVdRriSsPYswkjmCZc6pump",
+  "pair": "7qYjobu5puTss6AnQCyuVE1NWw43Ux5ZtjZCaJRuAya3",
+  "symbol": "Piu",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "unresolved"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "FVbqxs6bHiVKFuUw5CQpvUpzExkBW8PkzyqaTiR9bJSu",
+  "pair": "DP3yMCMooH86SQF3nZx6fh62RP4MMXUdw3x8VBHBnsXR",
+  "symbol": "fly",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "Meteora DAMM v2",
+  "vault_error": null,
+  "quote_ui": 0.043095843,
+  "quote_mints": [
+   "SOL"
+  ],
+  "quote_usd": 5.095666529732938,
+  "base_ui": 877171339.647695,
+  "jup_verdict": "TOTAL_LOSS",
+  "jup_usd_back": 0.2882,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "BeQG6jXZ52MYwoBAXVq12zniNFMuJVdxWf6t8wur3gfV",
+  "pair": "8X22xBWERHjjHcEijkovu43Qc46onQ4Vnj8WYoaW53H8",
+  "symbol": "PS500",
+  "horizon_h": 168,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "PumpSwap AMM",
+  "vault_error": null,
+  "quote_ui": 3e-09,
+  "quote_mints": [
+   "SOL"
+  ],
+  "quote_usd": 3.5472097829015234e-07,
+  "base_ui": 0.004076,
+  "jup_verdict": "TOTAL_LOSS",
+  "jup_usd_back": 0.0142,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "DAL6CJhKeqYvSyF9EvNmjsQxB3zEWfDUjGvJsuUppump",
+  "pair": "4jz9qU2ig1G23QUV8nib134Qc9XCxGobp6U4PyaHTDXm",
+  "symbol": "$OF",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "4eMaFbyfUvEwCyUsbWLLorwij6W53FsxWm26Ym8EqftM",
+  "pair": "78iq1gsaVFgMpnCEWrUUVW7Nq45jo2dfNQyokApv2Gvu",
+  "symbol": "grapheneos",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.3876,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "GfXbsdZZHwM3QpxvZU83g4E679HpEANBM2pTtS3mNDnM",
+  "pair": "AQaxYqz8Bmg9odu2mFW9JGjHHFQVh7PxPjZJSPro6p7q",
+  "symbol": "QX",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.3903,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "AYiLmGxMoUDbKvUUj2WRn7PcRX8mCWMc9W7Kr4CnQXMq",
+  "pair": "DVPvcRbb2TsLB9e3ZytnTgEP5NskGqMx9GsUpKKMN3Cn",
+  "symbol": "NINJOIDS",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "Meteora DAMM v2",
+  "vault_error": null,
+  "quote_ui": 0.015679024,
+  "quote_mints": [
+   "SOL"
+  ],
+  "quote_usd": 1.8538929106382593,
+  "base_ui": 851266960.986997,
+  "jup_verdict": "TOTAL_LOSS",
+  "jup_usd_back": 0.2001,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "D77zDA2TJ6xXEbTsbjZV8RKvX9nb5Zm43bcrtLzQpump",
+  "pair": "f1tC99R5oXFJmgmqyoJJxxYtzoauL6YEA9rh46zjsXy",
+  "symbol": "sigma",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.3851,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "7WhopGn4GFgggamGmGmJzfMXuNVANAUiYm8ib5Ekpump",
+  "pair": "2iurQD1NvcSgTXAUDtpyseFE8wxyTHewyJaKNSf8FxyU",
+  "symbol": "RICK",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "unresolved"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "89LXnsRSFFReLk2ry65tXk9AfysszQX4PR4zDJtUZsF7",
+  "pair": "7K7cSfctNs6NqrpJNyh8ibPGkp7RdaKTw38cABjdz96u",
+  "symbol": "國語助理",
+  "horizon_h": 168,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "Meteora DBC",
+  "vault_error": null,
+  "quote_ui": 0.04374763,
+  "quote_mints": [
+   "SOL"
+  ],
+  "quote_usd": 5.1727340371585395,
+  "base_ui": 139782.54977,
+  "jup_verdict": "TOTAL_LOSS",
+  "jup_usd_back": 0.2246,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "FvbVwaMSTm2Kd6B8Wu2smgVPWRY2b971WnXrMYGspump",
+  "pair": "Hx1MpZWniU6YPQnhSbh1axMHJF8Y74mmNhAebZJk3Afr",
+  "symbol": "UTILITY",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.3851,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "4nn5prSCk6sxN7jKgiURDUDk3ydvDt4xYga5Ni58yCAR",
+  "pair": "JFDBuWD1fDMMf5wf8Ahhqva11ezvciNBjpT8LWB97wR",
+  "symbol": "GARAGE",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "Meteora DAMM v2",
+  "vault_error": null,
+  "quote_ui": 0.033296588,
+  "quote_mints": [
+   "SOL"
+  ],
+  "quote_usd": 3.9369994230280496,
+  "base_ui": 34227.831815,
+  "jup_verdict": "TOTAL_LOSS",
+  "jup_usd_back": 0.1352,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "8WUcQZaAggD4qsQJBXaYNkV1HBXaVzQJmfpCtpXrpump",
+  "pair": "AFZNyN8metAyke1snXxtab2AsGwNhWdfDMzLFAiVefoz",
+  "symbol": "hustle",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "BkBSKDcXdsP5tB53fjq1n5NHrzBSUvGW33fYcC2tpump",
+  "pair": "EpU59CYVxVyLXMeTbyxoKiTUdMNGiXJanF3s9aJn8oE6",
+  "symbol": "AI",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.3867,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "9m2TAGZd4EhxVhqGHenPkUEnXhy9unYJgc5Tr6RXDLum",
+  "pair": "12LY52rUoLAgZjaKvS5U5xMRBL54Jru6GWTQ8Pqiao5H",
+  "symbol": "baton",
+  "horizon_h": 168,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "PumpSwap AMM",
+  "vault_error": null,
+  "quote_ui": 1.1e-08,
+  "quote_mints": [
+   "SOL"
+  ],
+  "quote_usd": 1.3006435870638918e-06,
+  "base_ui": 0.002365,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "AtkMnEc6smdshvgmJSfkrnhUU9JU6Ky5L21uJY9acV4t",
+  "pair": "3om4usNY4DjSmtAA2GxkVZG5jTJHzCeV321ovsfpBM6b",
+  "symbol": "STX",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "TRADEABLE",
+  "jup_usd_back": 92.3864,
+  "state": "b: pool exists, near-zero reserves"
+ },
+ {
+  "token": "9PcrK6CU4dA6dV4Ya5VcUXwPjzGC3duXsbPe57F4pump",
+  "pair": "BAJYVaZFrCQPKmmuYn6oV6JvwFE8rwRiyktMuUYpbMxp",
+  "symbol": "go",
+  "horizon_h": 24,
+  "reasons": [
+   "source_dropped",
+   "fallback_budget_spent"
+  ],
+  "pair_account_exists": true,
+  "pair_owner": "pump.fun bonding curve",
+  "vault_error": null,
+  "quote_ui": null,
+  "quote_mints": [],
+  "quote_usd": null,
+  "base_ui": null,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "state": "b: pool exists, near-zero reserves"
+ }
+]

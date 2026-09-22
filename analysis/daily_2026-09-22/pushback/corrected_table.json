@@ -1,0 +1,243 @@
+[
+ {
+  "symbol": "EMBER",
+  "mint": "FLCr9vGMTkbDcRCoirP5Hx8gB7TW1Azt3pkw3qp2HTsh",
+  "morning": "drained",
+  "chain_quote_usd": 20.36,
+  "jup_liquidity": 0.6894996518697887,
+  "jup_verdict": "TOTAL_LOSS",
+  "usd_back": 0.3194,
+  "venues": [
+   "Quantum",
+   "Meteora DAMM v2"
+  ],
+  "dexscreener_liq": 1.35,
+  "holders": 109,
+  "probe_ts": 1790103237
+ },
+ {
+  "symbol": "USDCAT",
+  "mint": "GPqoXbff7NPyvbngpsUz7mP1byZq7Xfh94E8Gu56HR6T",
+  "morning": "drained",
+  "chain_quote_usd": 0.0,
+  "jup_liquidity": 3.5408617696080595e-07,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Raydium",
+   "Pump.fun Amm"
+  ],
+  "dexscreener_liq": 0,
+  "holders": 13,
+  "probe_ts": 1790103247
+ },
+ {
+  "symbol": "TSLA",
+  "mint": "3gAXa6khcC6G7tq6XBnonsiS7GQtq3auKnXCvdZvQtfJ",
+  "morning": "drained",
+  "chain_quote_usd": 0.32,
+  "jup_liquidity": 0.0361676005774378,
+  "jup_verdict": "TOTAL_LOSS",
+  "usd_back": 0.0175,
+  "venues": [
+   "BisonFi",
+   "Meteora DAMM v2"
+  ],
+  "dexscreener_liq": 0.06,
+  "holders": 68,
+  "probe_ts": 1790102044
+ },
+ {
+  "symbol": "OWL",
+  "mint": "671dNhKr12xRoPmfkevzG1daqi4c9KMAA9J83ExyMWJ7",
+  "morning": "drained",
+  "chain_quote_usd": 0.0,
+  "jup_liquidity": 2.335062585651648e-07,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Raydium",
+   "Pump.fun Amm"
+  ],
+  "dexscreener_liq": 0,
+  "holders": 12,
+  "probe_ts": 1790102327
+ },
+ {
+  "symbol": "X7",
+  "mint": "BsE3aa5FdE6FVEkWvA8ShAGpzZasEgJbfSqRC4LmErTK",
+  "morning": "drained",
+  "chain_quote_usd": 2.93,
+  "jup_liquidity": 2.883353867313642,
+  "jup_verdict": "TOTAL_LOSS",
+  "usd_back": 1.4377,
+  "venues": [
+   "HumidiFi",
+   "Meteora DAMM v2"
+  ],
+  "dexscreener_liq": 8.06,
+  "holders": 65,
+  "probe_ts": 1790102510
+ },
+ {
+  "symbol": "ChatGPT",
+  "mint": "MjimYVjNMjBu5g9t5R66wjVknJbSFnotsS6WG5epump",
+  "morning": "down 96-99.97%",
+  "chain_quote_usd": 104.97,
+  "jup_liquidity": 103.75503683846378,
+  "jup_verdict": "COSTLY",
+  "usd_back": 89.4355,
+  "venues": [
+   "Quantum",
+   "Pump.fun Amm"
+  ],
+  "dexscreener_liq": 2252.79,
+  "holders": 24,
+  "probe_ts": 1790102779
+ },
+ {
+  "symbol": "MrBeast",
+  "mint": "HGNPr1ztbHLU4eo9zQEcxCGXJHF6iQ246M3iobFxpump",
+  "morning": "down 96-99.97%",
+  "chain_quote_usd": 31.89,
+  "jup_liquidity": 32.00344553635759,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Quantum",
+   "Pump.fun Amm"
+  ],
+  "dexscreener_liq": 2134.55,
+  "holders": 71,
+  "probe_ts": 1790102784
+ },
+ {
+  "symbol": "tradecat",
+  "mint": "EHY56TBNQ1jX6zUQx7gTPwbdGo7zfKMUH6kvXLbSpump",
+  "morning": "down 96-99.97%",
+  "chain_quote_usd": 306.02,
+  "jup_liquidity": 300.4259042753729,
+  "jup_verdict": "TRADEABLE",
+  "usd_back": 90.0674,
+  "venues": [
+   "Kipseli",
+   "Pump.fun Amm"
+  ],
+  "dexscreener_liq": 2794.64,
+  "holders": 37,
+  "probe_ts": 1790102790
+ },
+ {
+  "symbol": "Vortex",
+  "mint": "5vg9KLxC8QdKCaidkmCfjg3ttAXD1CFKuyeQHSK3pump",
+  "morning": "down 96-99.97%",
+  "chain_quote_usd": 114.66,
+  "jup_liquidity": 114.3500869589149,
+  "jup_verdict": "COSTLY",
+  "usd_back": 89.4718,
+  "venues": [
+   "Scorch",
+   "Pump.fun Amm"
+  ],
+  "dexscreener_liq": 2289.88,
+  "holders": 2011,
+  "probe_ts": 1790102808
+ },
+ {
+  "symbol": "UOTF",
+  "mint": "k4WcTJwcK8x11E7RFhXsYsdiWZWwfo6FzKEmcCPpump",
+  "morning": "down 96-99.97%",
+  "chain_quote_usd": 24.28,
+  "jup_liquidity": 24.377842563731843,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "usd_back": null,
+  "venues": [
+   "Byreal",
+   "Raydium CLMM",
+   "Pump.fun Amm"
+  ],
+  "dexscreener_liq": 2134.38,
+  "holders": 9,
+  "probe_ts": 1790102818
+ },
+ {
+  "symbol": "STONKBROS",
+  "mint": "9KmeDWVt7TtrEZT2567kxeDkDZxd3cDoTZ1ZrLow9soG",
+  "morning": "still trading",
+  "chain_quote_usd": 0.03,
+  "jup_liquidity": 13152.661091770216,
+  "jup_verdict": "TRADEABLE",
+  "usd_back": 94.1079,
+  "venues": [
+   "Quay",
+   "Raydium CP"
+  ],
+  "dexscreener_liq": 26323.74,
+  "holders": 426,
+  "probe_ts": 1790102824
+ },
+ {
+  "symbol": "VSOF",
+  "mint": "54c53NaoMDLcxv9ECjN35GLJjX4JDbpbwpSiFwbspump",
+  "morning": "still trading",
+  "chain_quote_usd": 324.25,
+  "jup_liquidity": 322.2982459865184,
+  "jup_verdict": "TRADEABLE",
+  "usd_back": 90.1234,
+  "venues": [
+   "Quantum",
+   "Pump.fun Amm"
+  ],
+  "dexscreener_liq": 2700.47,
+  "holders": 89,
+  "probe_ts": 1790102832
+ },
+ {
+  "symbol": "X7b",
+  "mint": "CdhZy8wrRxNxoV8HtoByXKN7mvS46avtuZ1b39tKfx7",
+  "morning": "still trading",
+  "chain_quote_usd": 43007.38,
+  "jup_liquidity": 44275.970992601935,
+  "jup_verdict": "TRADEABLE",
+  "usd_back": 95.5619,
+  "venues": [
+   "HumidiFi",
+   "Meteora DAMM v2"
+  ],
+  "dexscreener_liq": 97887.96,
+  "holders": 1733,
+  "probe_ts": 1790102838
+ },
+ {
+  "symbol": "CATEWALK",
+  "mint": "BLSuVTxKYDL4vm4XmG3oEJfsSGfJZF3cgy98ri68pump",
+  "morning": "still trading",
+  "chain_quote_usd": 50027.87,
+  "jup_liquidity": 50037.16702003089,
+  "jup_verdict": "TRADEABLE",
+  "usd_back": 97.6532,
+  "venues": [
+   "Quantum",
+   "Pump.fun Amm"
+  ],
+  "dexscreener_liq": 101014.42,
+  "holders": 13433,
+  "probe_ts": 1790102864
+ },
+ {
+  "symbol": "GO",
+  "mint": "HXQ66zSRqynwJQ6vYEYa85qGY9C2Ycz8rnYQHgApn391",
+  "morning": "still trading",
+  "chain_quote_usd": 19626.77,
+  "jup_liquidity": 19471.05875935211,
+  "jup_verdict": "TRADEABLE",
+  "usd_back": 96.446,
+  "venues": [
+   "BisonFi",
+   "Raydium CP"
+  ],
+  "dexscreener_liq": 37798.88,
+  "holders": 963,
+  "probe_ts": 1790102896
+ }
+]

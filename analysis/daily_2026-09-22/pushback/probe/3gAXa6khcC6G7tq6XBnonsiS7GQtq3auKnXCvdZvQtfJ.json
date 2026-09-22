@@ -1,0 +1,290 @@
+{
+ "mint": "3gAXa6khcC6G7tq6XBnonsiS7GQtq3auKnXCvdZvQtfJ",
+ "ts": 1790103457,
+ "sol_usd": 118.1313241880173,
+ "sol_usd_src": "jupiter price v3",
+ "recorded_pairs": [],
+ "mint_account": {
+  "program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+  "decimals": 6,
+  "supply_ui": 99999996809.074,
+  "mint_authority": null,
+  "freeze_authority": null
+ },
+ "token_accounts": {
+  "n": 68,
+  "error": null,
+  "truncated": false
+ },
+ "holders_nonzero": 68,
+ "owner_classes": {
+  "system_wallets": 54,
+  "other": {
+   "3s1rAymURnacreXreMy718GfqW6kygQsLNka1xDyW8pC": {
+    "owners": 1,
+    "mint_ui": 0.021685
+   },
+   "no account": {
+    "owners": 2,
+    "mint_ui": 18844294586.059326
+   },
+   "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ": {
+    "owners": 8,
+    "mint_ui": 559556748.72201
+   }
+  }
+ },
+ "gpa_errors": [],
+ "pools": [
+  {
+   "pool": "6pMY7rQLmBoETsWnm2Ln6usxCHQgTvAv8E1CRxANHT4g",
+   "venue": "Meteora DAMM v2",
+   "kind": "pool (gPA)",
+   "found_by": [
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "Meteora DAMM v2",
+   "data_len": 1112,
+   "recorded": false,
+   "mint_in_pool_ui": 711.49102,
+   "quote": "SOL",
+   "quote_vault": "3TfU6gRv4vzXdhwb18WjG6GWSmHSP6P97KFeu7xFrhus",
+   "quote_ui": 0.002667815,
+   "quote_usd": 0.3151525186386554,
+   "read_error": null,
+   "implied_price_usd": 0.0004429465865059764
+  },
+  {
+   "pool": "C2aUx8v7czsivzhimXydVLBfoMFJB5Hpip6Q2GjWvGzL",
+   "venue": "PumpSwap AMM",
+   "kind": "pool-owned vault",
+   "found_by": [
+    "token-account owner",
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "PumpSwap AMM",
+   "data_len": 301,
+   "recorded": false,
+   "mint_in_pool_ui": 13.446357,
+   "quote": "SOL",
+   "quote_vault": "CsQ7nohtAm8PPqBq3KtywUL1ZrxcwdiNe19UPkhPndW6",
+   "quote_ui": 1.1881e-05,
+   "quote_usd": 0.0014035182626778336,
+   "read_error": null,
+   "implied_price_usd": 0.00010437907179452646
+  },
+  {
+   "pool": "FhVo3mqL8PW5pH5U2CN4XE33DokiyZnUwuGpH2hmHLuM",
+   "venue": "Meteora DBC",
+   "kind": "authority-held vault",
+   "found_by": [
+    "token-account owner"
+   ],
+   "exists": true,
+   "owner_program": "11111111111111111111111111111111",
+   "data_len": 0,
+   "recorded": false,
+   "mint_in_pool_ui": 80000153801.01212,
+   "note": "shared authority PDA; the pool itself is found by gPA if its layout is right"
+  },
+  {
+   "pool": "HLnpSz9h2S4hiLQ43rnSD9XkcUThA7B8hQMKmDaiTLcC",
+   "venue": "Meteora DAMM v2",
+   "kind": "authority-held vault",
+   "found_by": [
+    "token-account owner"
+   ],
+   "exists": true,
+   "owner_program": "11111111111111111111111111111111",
+   "data_len": 0,
+   "recorded": false,
+   "mint_in_pool_ui": 711.49102,
+   "note": "shared authority PDA; the pool itself is found by gPA if its layout is right"
+  }
+ ],
+ "chain_quote_usd_total": 0.3165560369013332,
+ "unclassified_owners": [
+  {
+   "owner": "5cjcW9wExnJJiqgLjq7DEG75Pm6JBgE1hNv4B2vHXUW6",
+   "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
+   "mint_ui": 72802693.297764,
+   "quote_usd": 18.268909268833948,
+   "n_token_accounts": 105986
+  },
+  {
+   "owner": "GXPFM2caqTtQYC2cJ5yJRi9VDkpsYZXzYdwYpGnLmtDL",
+   "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
+   "mint_ui": 71788776.693083,
+   "quote_usd": 41.73656517395095,
+   "n_token_accounts": 104474
+  },
+  {
+   "owner": "5YxQFdt3Tr9zJLvkFccqXVUwhdTWJQc1fFg2YPbxvxeD",
+   "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
+   "mint_ui": 70684178.043034,
+   "quote_usd": 196.9701589311027,
+   "n_token_accounts": 188092
+  },
+  {
+   "owner": "3BpXnfJaUTiwXnJNe7Ej1rcbzqTTQUvLShZaWazebsVR",
+   "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
+   "mint_ui": 69794771.205785,
+   "quote_usd": 68.64612767897123,
+   "n_token_accounts": 105023
+  },
+  {
+   "owner": "9M4giFFMxmFGXtc3feFzRai56WbBqehoSeRE5GK7gf7",
+   "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
+   "mint_ui": 68888324.944364,
+   "quote_usd": 89.14835292515332,
+   "n_token_accounts": 106190
+  },
+  {
+   "owner": "A7hAgCzFw14fejgCp387JUJRMNyz4j89JKnhtKU8piqW",
+   "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
+   "mint_ui": 68777536.85739,
+   "quote_usd": 165.22132114928232,
+   "n_token_accounts": 221950
+  },
+  {
+   "owner": "EHAAiTxcdDwQ3U4bU6YcMsQGaekdzLS3B5SmYo46kJtL",
+   "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
+   "mint_ui": 68672733.627479,
+   "quote_usd": 156.73810620340114,
+   "n_token_accounts": 128309
+  },
+  {
+   "owner": "5eHhjP8JaYkz83CWwvGU2uMUXefd3AazWGx4gpcuEEYD",
+   "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
+   "mint_ui": 68147734.053111,
+   "quote_usd": 108.214528763332,
+   "n_token_accounts": 187535
+  },
+  {
+   "owner": "HWGoJ1HaMFUiDgfD7FVxMaYJAE2A5JjF7si6CgWSvRFQ",
+   "program": "3s1rAymURnacreXreMy718GfqW6kygQsLNka1xDyW8pC",
+   "mint_ui": 0.021685,
+   "quote_usd": 36614.78654820463,
+   "n_token_accounts": 52477
+  }
+ ],
+ "unclassified_quote_usd": 37459.73061829866,
+ "third_party": {
+  "jupiter_round_trip_100": {
+   "mint": "3gAXa6khcC6G7tq6XBnonsiS7GQtq3auKnXCvdZvQtfJ",
+   "probe_usd": 100,
+   "ts": 1790103918,
+   "usd_back": 0.0177,
+   "rt_cost_pct": 99.9823,
+   "verdict": "TOTAL_LOSS",
+   "venues": [
+    "Quantum",
+    "Meteora DAMM v2"
+   ],
+   "px_per_raw": 1.405993174696117e-07,
+   "error": null,
+   "token_qty_raw": 711241006,
+   "price_impact_pct": null
+  },
+  "jupiter_token": {
+   "symbol": "TSLA",
+   "name": "Tesla",
+   "holderCount": 68,
+   "liquidity": 0.0361676005774378,
+   "mcap": null,
+   "fdv": null,
+   "usdPrice": null,
+   "organicScore": 0,
+   "graduatedPool": "6pMY7rQLmBoETsWnm2Ln6usxCHQgTvAv8E1CRxANHT4g",
+   "graduatedAt": "2026-09-21T21:54:36Z",
+   "launchpad": "met-dbc",
+   "volume24h": 60610547.086797625
+  },
+  "dexscreener": [
+   {
+    "pair": "C2aUx8v7czsivzhimXydVLBfoMFJB5Hpip6Q2GjWvGzL",
+    "dex": "pumpswap",
+    "labels": null,
+    "liq_usd": 0,
+    "liq_quote": 1.188e-05,
+    "vol24": 60611642.44,
+    "price_usd": "0.00004338",
+    "quote": "SOL"
+   },
+   {
+    "pair": "6pMY7rQLmBoETsWnm2Ln6usxCHQgTvAv8E1CRxANHT4g",
+    "dex": "meteora",
+    "labels": [
+     "DYN2"
+    ],
+    "liq_usd": 0.06,
+    "liq_quote": 0.0002968,
+    "vol24": 277.69,
+    "price_usd": "0.00004054",
+    "quote": "SOL"
+   },
+   {
+    "pair": "3pad69pvhtopcKEcCG7tzzRNVqu1HfhAoVErKPHThcQ2",
+    "dex": "meteoradbc",
+    "labels": null,
+    "liq_usd": null,
+    "liq_quote": null,
+    "vol24": 0,
+    "price_usd": "0.000000000000002621",
+    "quote": "SOL"
+   }
+  ],
+  "geckoterminal": [
+   {
+    "pool": "C2aUx8v7czsivzhimXydVLBfoMFJB5Hpip6Q2GjWvGzL",
+    "dex": "pumpswap",
+    "reserve_usd": "0.2126",
+    "vol24": "60526402.2126846"
+   },
+   {
+    "pool": "6pMY7rQLmBoETsWnm2Ln6usxCHQgTvAv8E1CRxANHT4g",
+    "dex": "meteora-damm-v2",
+    "reserve_usd": "0.1064",
+    "vol24": "271.0210570687"
+   },
+   {
+    "pool": "3pad69pvhtopcKEcCG7tzzRNVqu1HfhAoVErKPHThcQ2",
+    "dex": "meteora-dbc",
+    "reserve_usd": "0.0",
+    "vol24": "0.00005238637137"
+   }
+  ],
+  "rugcheck": {
+   "totalHolders": 0,
+   "totalMarketLiquidity": 0.38949224882738115,
+   "rugged": false,
+   "markets": [
+    {
+     "pool": "6pMY7rQLmBoETsWnm2Ln6usxCHQgTvAv8E1CRxANHT4g",
+     "type": "meteora_damm_v2",
+     "lpLockedPct": 100,
+     "lpLockedUSD": 0.38674322876457873,
+     "quoteUSD": 0.3156703159922683
+    },
+    {
+     "pool": "C2aUx8v7czsivzhimXydVLBfoMFJB5Hpip6Q2GjWvGzL",
+     "type": "pump_fun_amm",
+     "lpLockedPct": 100,
+     "lpLockedUSD": 0.0027490200628024256,
+     "quoteUSD": 0.00134319581175648
+    }
+   ],
+   "risks": [
+    "High market cap per holder",
+    "Low Liquidity"
+   ]
+  }
+ },
+ "calls": {
+  "rpc": 118,
+  "http": 15
+ },
+ "seconds": 463.3
+}

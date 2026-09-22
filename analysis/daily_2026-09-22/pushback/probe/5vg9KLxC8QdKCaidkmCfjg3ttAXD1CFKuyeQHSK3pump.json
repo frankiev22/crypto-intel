@@ -1,0 +1,136 @@
+{
+ "mint": "5vg9KLxC8QdKCaidkmCfjg3ttAXD1CFKuyeQHSK3pump",
+ "ts": 1790102808,
+ "sol_usd": 118.20856364756857,
+ "sol_usd_src": "jupiter price v3",
+ "recorded_pairs": [],
+ "mint_account": {
+  "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+  "decimals": 6,
+  "supply_ui": 959852172.747267,
+  "mint_authority": null,
+  "freeze_authority": null
+ },
+ "token_accounts": {
+  "n": 2011,
+  "error": null,
+  "truncated": false
+ },
+ "holders_nonzero": 2011,
+ "owner_classes": {
+  "system_wallets": 13,
+  "other": {
+   "no account": {
+    "owners": 1997,
+    "mint_ui": 83.07520000000282
+   }
+  }
+ },
+ "gpa_errors": [],
+ "pools": [
+  {
+   "pool": "6nwcodGXirw79NsvX1H1vkYqPNS5MqQWLcHFsqsbbERs",
+   "venue": "PumpSwap AMM",
+   "kind": "pool-owned vault",
+   "found_by": [
+    "token-account owner",
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "PumpSwap AMM",
+   "data_len": 301,
+   "recorded": false,
+   "mint_in_pool_ui": 959549186.259249,
+   "quote": "SOL",
+   "quote_vault": "GuYCoRpcfwY1HWrzmoetHxn23zyYMFS7b6s8kx8kernU",
+   "quote_ui": 0.970020006,
+   "quote_usd": 114.66467161866585,
+   "read_error": null,
+   "implied_price_usd": 1.1949848247558828e-07
+  }
+ ],
+ "chain_quote_usd_total": 114.66467161866585,
+ "unclassified_owners": [],
+ "unclassified_quote_usd": 0,
+ "third_party": {
+  "jupiter_round_trip_100": {
+   "mint": "5vg9KLxC8QdKCaidkmCfjg3ttAXD1CFKuyeQHSK3pump",
+   "probe_usd": 100,
+   "ts": 1790102816,
+   "usd_back": 89.4718,
+   "rt_cost_pct": 10.5282,
+   "verdict": "COSTLY",
+   "venues": [
+    "Scorch",
+    "Pump.fun Amm"
+   ],
+   "px_per_raw": 2.4183403081044973e-12,
+   "error": null,
+   "token_qty_raw": 41350673296423,
+   "price_impact_pct": 6.288381
+  },
+  "jupiter_token": {
+   "symbol": "Vortex",
+   "name": "VortexDeployer.com",
+   "holderCount": 2011,
+   "liquidity": 114.3500869589149,
+   "mcap": 2175.141417491874,
+   "fdv": 2175.141417491874,
+   "usdPrice": 2.266121262471318e-06,
+   "organicScore": 0,
+   "graduatedPool": "6nwcodGXirw79NsvX1H1vkYqPNS5MqQWLcHFsqsbbERs",
+   "graduatedAt": "2026-09-21T02:01:21Z",
+   "launchpad": "pump.fun",
+   "volume24h": 17416.357323857937
+  },
+  "dexscreener": [
+   {
+    "pair": "6nwcodGXirw79NsvX1H1vkYqPNS5MqQWLcHFsqsbbERs",
+    "dex": "pumpswap",
+    "labels": null,
+    "liq_usd": 2289.88,
+    "liq_quote": 0.97,
+    "vol24": 17444.8,
+    "price_usd": "0.000002267",
+    "quote": "SOL"
+   }
+  ],
+  "geckoterminal": [
+   {
+    "pool": "6nwcodGXirw79NsvX1H1vkYqPNS5MqQWLcHFsqsbbERs",
+    "dex": "pumpswap",
+    "reserve_usd": "2317.312",
+    "vol24": "17395.4500801063"
+   },
+   {
+    "pool": "7JcH4qB4B9kTR5euoyZFq2kmxTxT28DSGhPTSWFKSzFH",
+    "dex": "pump-fun",
+    "reserve_usd": "0.0",
+    "vol24": "0.0"
+   }
+  ],
+  "rugcheck": {
+   "totalHolders": 0,
+   "totalMarketLiquidity": 2290.260880309211,
+   "rugged": false,
+   "markets": [
+    {
+     "pool": "6nwcodGXirw79NsvX1H1vkYqPNS5MqQWLcHFsqsbbERs",
+     "type": "pump_fun_amm",
+     "lpLockedPct": 100,
+     "lpLockedUSD": 2290.260880309211,
+     "quoteUSD": 114.69954747732498
+    }
+   ],
+   "risks": [
+    "High market cap per holder",
+    "Low Liquidity"
+   ]
+  }
+ },
+ "calls": {
+  "rpc": 161,
+  "http": 25
+ },
+ "seconds": 9.3
+}
