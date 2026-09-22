@@ -1512,3 +1512,4 @@
 {"ts":1790001476,"dexscreener_ok":5,"dexscreener_dropped":33,"geckoterminal_ok":7,"geckoterminal_fail":26,"onchain_ok":38,"onchain_fail":0,"unresolved":26}
 {"ts":1790020437,"dexscreener_ok":11,"dexscreener_dropped":25,"geckoterminal_ok":4,"geckoterminal_fail":21,"onchain_ok":36,"onchain_fail":0,"unresolved":21}
 {"ts":1790031829,"dexscreener_ok":3,"dexscreener_dropped":37,"geckoterminal_ok":4,"geckoterminal_fail":33,"onchain_ok":40,"onchain_fail":0,"unresolved":33}
+{"ts":1790040985,"dexscreener_ok":8,"dexscreener_dropped":28,"geckoterminal_ok":2,"geckoterminal_fail":26,"onchain_ok":36,"onchain_fail":0,"unresolved":26}

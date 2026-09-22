@@ -3910,5 +3910,45 @@
   "first_horizon_h": 1,
   "last_ts": 1790031324,
   "hits": 1
+ },
+ "9aAhtgSB7vf284JSiFrgVa2rgCDVwrtaoTMDdtZe4zUB": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0083 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1790040492,
+  "first_horizon_h": 1,
+  "last_ts": 1790040492,
+  "hits": 1
+ },
+ "3EyUDaqv3eYH5zRrj3P2UMLnTJDvrWoLCpQvyjzDpump": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "total reserve $0.0000 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1790040500,
+  "first_horizon_h": 1,
+  "last_ts": 1790040500,
+  "hits": 1
+ },
+ "6QhaMwt5rpd37mGahmzFLsQzwEAsLGK7evexaHYFpump": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.9343 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1790040514,
+  "first_horizon_h": 24,
+  "last_ts": 1790040514,
+  "hits": 1
+ },
+ "3KD7f7Q97CXEEysacLP6GaC9s1UQxZpJCkFmzP4Vo2vJ": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.1860 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1790040516,
+  "first_horizon_h": 24,
+  "last_ts": 1790040516,
+  "hits": 1
+ },
+ "7tkugZ5bUP6fhauBVkt3XqyejGjjGhg44PzYDbhVp4gc": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.2117 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1790040554,
+  "first_horizon_h": 24,
+  "last_ts": 1790040554,
+  "hits": 1
  }
 }
