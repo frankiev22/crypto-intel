@@ -1,24 +1,24 @@
 {
  "mint": "BsE3aa5FdE6FVEkWvA8ShAGpzZasEgJbfSqRC4LmErTK",
- "ts": 1790102510,
- "sol_usd": 117.93168892827559,
+ "ts": 1790103978,
+ "sol_usd": 118.32659227140134,
  "sol_usd_src": "jupiter price v3",
  "recorded_pairs": [],
  "mint_account": {
   "program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
   "decimals": 6,
-  "supply_ui": 999999768.340397,
+  "supply_ui": 999999764.310397,
   "mint_authority": null,
   "freeze_authority": null
  },
  "token_accounts": {
-  "n": 65,
+  "n": 64,
   "error": null,
   "truncated": false
  },
- "holders_nonzero": 65,
+ "holders_nonzero": 64,
  "owner_classes": {
-  "system_wallets": 52,
+  "system_wallets": 51,
   "other": {
    "no account": {
     "owners": 1,
@@ -51,9 +51,9 @@
    "quote": "SOL",
    "quote_vault": "BpmHuEAL28NYKaJRFHn2YZnV53nCcVjgYRJx1tBgsnau",
    "quote_ui": 0.024854323,
-   "quote_usd": 2.9311122885588854,
+   "quote_usd": 2.940927343802713,
    "read_error": null,
-   "implied_price_usd": 0.0161499018478355
+   "implied_price_usd": 0.01620398103799059
   },
   {
    "pool": "F16kiKtygqjfiEGu6ywjU84RibisZGMsxiQmdmWjBqPQ",
@@ -71,9 +71,9 @@
    "quote": "SOL",
    "quote_vault": "BUnjcPaAfdnJoqnfAfb43YZDpfJJ2QDH34JvykVKfar4",
    "quote_ui": 5.001e-06,
-   "quote_usd": 0.0005897763763303062,
+   "quote_usd": 0.0005917512879492781,
    "read_error": null,
-   "implied_price_usd": 2.7689031752596533
+   "implied_price_usd": 2.778175060794733
   },
   {
    "pool": "HLnpSz9h2S4hiLQ43rnSD9XkcUThA7B8hQMKmDaiTLcC",
@@ -104,94 +104,94 @@
    "note": "shared authority PDA; the pool itself is found by gPA if its layout is right"
   }
  ],
- "chain_quote_usd_total": 2.931702064935216,
+ "chain_quote_usd_total": 2.941519095090662,
  "unclassified_owners": [
   {
    "owner": "EHAAiTxcdDwQ3U4bU6YcMsQGaekdzLS3B5SmYo46kJtL",
    "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
    "mint_ui": 1933247.167585,
-   "quote_usd": 162.25169547938833,
-   "n_token_accounts": 128285
+   "quote_usd": 218.42377104965655,
+   "n_token_accounts": 128311
   },
   {
    "owner": "5YxQFdt3Tr9zJLvkFccqXVUwhdTWJQc1fFg2YPbxvxeD",
    "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
    "mint_ui": 1928960.734399,
-   "quote_usd": 404.8407277158582,
-   "n_token_accounts": 188061
+   "quote_usd": 13.738197553736448,
+   "n_token_accounts": 188103
   },
   {
    "owner": "5eHhjP8JaYkz83CWwvGU2uMUXefd3AazWGx4gpcuEEYD",
    "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
    "mint_ui": 1923770.471069,
-   "quote_usd": 211.4526485401814,
-   "n_token_accounts": 187517
+   "quote_usd": 9.838760493197146,
+   "n_token_accounts": 187538
   },
   {
    "owner": "3BpXnfJaUTiwXnJNe7Ej1rcbzqTTQUvLShZaWazebsVR",
    "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
    "mint_ui": 1900223.686418,
-   "quote_usd": 288.85533025920796,
-   "n_token_accounts": 105006
+   "quote_usd": 17.63598836501012,
+   "n_token_accounts": 105029
   },
   {
    "owner": "GXPFM2caqTtQYC2cJ5yJRi9VDkpsYZXzYdwYpGnLmtDL",
    "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
    "mint_ui": 1887774.369764,
-   "quote_usd": 210.6487954591637,
-   "n_token_accounts": 104463
+   "quote_usd": 22.480387321584278,
+   "n_token_accounts": 104481
   },
   {
    "owner": "A7hAgCzFw14fejgCp387JUJRMNyz4j89JKnhtKU8piqW",
    "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
    "mint_ui": 1886067.639066,
-   "quote_usd": 302.02740088458586,
-   "n_token_accounts": 221928
+   "quote_usd": 28.41779941918922,
+   "n_token_accounts": 221961
   },
   {
    "owner": "9M4giFFMxmFGXtc3feFzRai56WbBqehoSeRE5GK7gf7",
    "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
    "mint_ui": 1884899.356749,
-   "quote_usd": 214.2428197365271,
-   "n_token_accounts": 106178
+   "quote_usd": 58.74783558496407,
+   "n_token_accounts": 106198
   },
   {
    "owner": "5cjcW9wExnJJiqgLjq7DEG75Pm6JBgE1hNv4B2vHXUW6",
    "program": "pfeeUxB6jkeY1Hxd7CsFCAjcbHA9rWtchMGdZ6VojVZ",
    "mint_ui": 1806417.712981,
-   "quote_usd": 263.3042399231247,
-   "n_token_accounts": 105975
+   "quote_usd": 52.169606427180256,
+   "n_token_accounts": 105999
   },
   {
    "owner": "HWGoJ1HaMFUiDgfD7FVxMaYJAE2A5JjF7si6CgWSvRFQ",
    "program": "3s1rAymURnacreXreMy718GfqW6kygQsLNka1xDyW8pC",
    "mint_ui": 0.000365,
-   "quote_usd": 36572.3965913762,
-   "n_token_accounts": 52457
+   "quote_usd": 37837.213471861156,
+   "n_token_accounts": 52484
   }
  ],
- "unclassified_quote_usd": 38630.02024937424,
+ "unclassified_quote_usd": 38258.66581807567,
  "third_party": {
   "jupiter_round_trip_100": {
    "mint": "BsE3aa5FdE6FVEkWvA8ShAGpzZasEgJbfSqRC4LmErTK",
    "probe_usd": 100,
-   "ts": 1790102776,
-   "usd_back": 1.4377,
-   "rt_cost_pct": 98.5623,
+   "ts": 1790104268,
+   "usd_back": 1.438,
+   "rt_cost_pct": 98.562,
    "verdict": "TOTAL_LOSS",
    "venues": [
-    "HumidiFi",
+    "Quantum",
     "Meteora DAMM v2"
    ],
-   "px_per_raw": 5.670871273683246e-07,
+   "px_per_raw": 5.670863780697172e-07,
    "error": null,
-   "token_qty_raw": 176339746,
+   "token_qty_raw": 176339979,
    "price_impact_pct": null
   },
   "jupiter_token": {
    "symbol": "X7",
    "name": "x7",
-   "holderCount": 65,
+   "holderCount": 64,
    "liquidity": 2.883353867313642,
    "mcap": null,
    "fdv": null,
@@ -240,7 +240,7 @@
    {
     "pool": "8oKG54qfkDMGCBUntpFuasr4udWSNB55Jo2i9RYRYYhc",
     "dex": "meteora-damm-v2",
-    "reserve_usd": "8.1705",
+    "reserve_usd": "8.1863",
     "vol24": "18.5671378592"
    },
    {
@@ -258,21 +258,21 @@
   ],
   "rugcheck": {
    "totalHolders": 0,
-   "totalMarketLiquidity": 8.11974755303095,
+   "totalMarketLiquidity": 8.120900682814996,
    "rugged": false,
    "markets": [
     {
      "pool": "8oKG54qfkDMGCBUntpFuasr4udWSNB55Jo2i9RYRYYhc",
      "type": "meteora_damm_v2",
      "lpLockedPct": 64.19067790905206,
-     "lpLockedUSD": 5.2117375601691895,
-     "quoteUSD": 2.938501587815288
+     "lpLockedUSD": 5.212477613086857,
+     "quoteUSD": 2.939654485621908
     },
     {
      "pool": "F16kiKtygqjfiEGu6ywjU84RibisZGMsxiQmdmWjBqPQ",
      "type": "pump_fun_amm",
      "lpLockedPct": 100,
-     "lpLockedUSD": 0.0005973431618623031,
+     "lpLockedUSD": 0.0005975751392905722,
      "quoteUSD": 6.079966294101397e-06
     }
    ],
@@ -283,8 +283,8 @@
   }
  },
  "calls": {
-  "rpc": 43,
-  "http": 5
+  "rpc": 186,
+  "http": 25
  },
- "seconds": 269.0
+ "seconds": 291.7
 }

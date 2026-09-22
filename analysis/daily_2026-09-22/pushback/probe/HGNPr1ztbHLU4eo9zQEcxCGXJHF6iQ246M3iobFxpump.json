@@ -1,7 +1,7 @@
 {
  "mint": "HGNPr1ztbHLU4eo9zQEcxCGXJHF6iQ246M3iobFxpump",
- "ts": 1790102784,
- "sol_usd": 118.23200040444296,
+ "ts": 1790104276,
+ "sol_usd": 118.22797140342142,
  "sol_usd_src": "jupiter price v3",
  "recorded_pairs": [],
  "mint_account": {
@@ -44,19 +44,19 @@
    "quote": "SOL",
    "quote_vault": "2gGJ89oBh4QueQLbEe3tMP7N35QbqNGTECtUN3XhraTd",
    "quote_ui": 0.269710488,
-   "quote_usd": 31.88841052629851,
+   "quote_usd": 31.88732386246684,
    "read_error": null,
-   "implied_price_usd": 3.207006578352671e-08
+   "implied_price_usd": 3.206897292941479e-08
   }
  ],
- "chain_quote_usd_total": 31.88841052629851,
+ "chain_quote_usd_total": 31.88732386246684,
  "unclassified_owners": [],
  "unclassified_quote_usd": 0,
  "third_party": {
   "jupiter_round_trip_100": {
    "mint": "HGNPr1ztbHLU4eo9zQEcxCGXJHF6iQ246M3iobFxpump",
    "probe_usd": 100,
-   "ts": 1790102788,
+   "ts": 1790104280,
    "usd_back": null,
    "rt_cost_pct": null,
    "verdict": "NO_SELL_ROUTE",
@@ -64,10 +64,10 @@
     "Quantum",
     "Pump.fun Amm"
    ],
-   "px_per_raw": 2.2497154265270477e-12,
+   "px_per_raw": 2.2497756023542695e-12,
    "error": "NO_ROUTES_FOUND",
-   "token_qty_raw": 44450066359892,
-   "price_impact_pct": 5.956086
+   "token_qty_raw": 44448877432645,
+   "price_impact_pct": 5.955618
   },
   "jupiter_token": {
    "symbol": "MrBeast",
@@ -109,7 +109,7 @@
    {
     "pool": "DHdN2ScQjDsAceYJVEuuU6yGeLM1gBvRcJNK1kMVhtZg",
     "dex": "pumpswap",
-    "reserve_usd": "2150.592",
+    "reserve_usd": "2154.2917",
     "vol24": "116458.033049469"
    },
    {
@@ -121,15 +121,15 @@
   ],
   "rugcheck": {
    "totalHolders": 0,
-   "totalMarketLiquidity": 2134.5069747051093,
+   "totalMarketLiquidity": 2134.5222998244963,
    "rugged": false,
    "markets": [
     {
      "pool": "DHdN2ScQjDsAceYJVEuuU6yGeLM1gBvRcJNK1kMVhtZg",
      "type": "pump_fun_amm",
      "lpLockedPct": 100,
-     "lpLockedUSD": 2134.5069747051093,
-     "quoteUSD": 31.887468633115716
+     "lpLockedUSD": 2134.5222998244963,
+     "quoteUSD": 31.902793752502422
     }
    ],
    "risks": [
@@ -139,8 +139,8 @@
   }
  },
  "calls": {
-  "rpc": 89,
-  "http": 15
+  "rpc": 232,
+  "http": 35
  },
- "seconds": 5.4
+ "seconds": 5.8
 }

@@ -136,5 +136,109 @@
    "read_error": null,
    "implied_price_usd": 3.701325553974341e-05
   }
+ },
+ {
+  "mint": "BsE3aa5FdE6FVEkWvA8ShAGpzZasEgJbfSqRC4LmErTK",
+  "symbol": "X7",
+  "chain_quote_usd": 2.94,
+  "n_pools": 4,
+  "holders_chain": 64,
+  "jup_verdict": "TOTAL_LOSS",
+  "jup_usd_back": 1.438,
+  "jup_holders": 64,
+  "jup_vol24": 36400231.39848789,
+  "launchpad": "met-dbc",
+  "graduated_at": "2026-09-22T08:01:24Z",
+  "mint_auth": null,
+  "freeze_auth": null,
+  "deepest": {
+   "pool": "8oKG54qfkDMGCBUntpFuasr4udWSNB55Jo2i9RYRYYhc",
+   "venue": "Meteora DAMM v2",
+   "kind": "pool (gPA)",
+   "found_by": [
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "Meteora DAMM v2",
+   "data_len": 1112,
+   "recorded": false,
+   "mint_in_pool_ui": 181.494124,
+   "quote": "SOL",
+   "quote_vault": "BpmHuEAL28NYKaJRFHn2YZnV53nCcVjgYRJx1tBgsnau",
+   "quote_ui": 0.024854323,
+   "quote_usd": 2.940927343802713,
+   "read_error": null,
+   "implied_price_usd": 0.01620398103799059
+  }
+ },
+ {
+  "mint": "MjimYVjNMjBu5g9t5R66wjVknJbSFnotsS6WG5epump",
+  "symbol": "ChatGPT",
+  "chain_quote_usd": 105.2,
+  "n_pools": 1,
+  "holders_chain": 25,
+  "jup_verdict": "COSTLY",
+  "jup_usd_back": 89.443,
+  "jup_holders": 25,
+  "jup_vol24": 126636.40025451273,
+  "launchpad": "pump.fun",
+  "graduated_at": "2026-09-21T16:00:19Z",
+  "mint_auth": null,
+  "freeze_auth": null,
+  "deepest": {
+   "pool": "36pv9hJF48g1geoyoGtLo5xV4XdaGSHaEBhjfuQUQvdo",
+   "venue": "PumpSwap AMM",
+   "kind": "pool-owned vault",
+   "found_by": [
+    "token-account owner",
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "PumpSwap AMM",
+   "data_len": 301,
+   "recorded": false,
+   "mint_in_pool_ui": 989726581.057338,
+   "quote": "SOL",
+   "quote_vault": "B7McG8cg3d1vbpuoL9oZpaR1JvKGnbTVBJ2Y3zxey4Sh",
+   "quote_ui": 0.889758595,
+   "quote_usd": 105.20491603670496,
+   "read_error": null,
+   "implied_price_usd": 1.0629694912741775e-07
+  }
+ },
+ {
+  "mint": "HGNPr1ztbHLU4eo9zQEcxCGXJHF6iQ246M3iobFxpump",
+  "symbol": "MrBeast",
+  "chain_quote_usd": 31.89,
+  "n_pools": 1,
+  "holders_chain": 71,
+  "jup_verdict": "NO_SELL_ROUTE",
+  "jup_usd_back": null,
+  "jup_holders": 71,
+  "jup_vol24": 216437.9239369406,
+  "launchpad": "pump.fun",
+  "graduated_at": "2026-09-21T21:56:50Z",
+  "mint_auth": null,
+  "freeze_auth": null,
+  "deepest": {
+   "pool": "DHdN2ScQjDsAceYJVEuuU6yGeLM1gBvRcJNK1kMVhtZg",
+   "venue": "PumpSwap AMM",
+   "kind": "pool-owned vault",
+   "found_by": [
+    "token-account owner",
+    "getProgramAccounts"
+   ],
+   "exists": true,
+   "owner_program": "PumpSwap AMM",
+   "data_len": 301,
+   "recorded": false,
+   "mint_in_pool_ui": 994335675.56567,
+   "quote": "SOL",
+   "quote_vault": "2gGJ89oBh4QueQLbEe3tMP7N35QbqNGTECtUN3XhraTd",
+   "quote_ui": 0.269710488,
+   "quote_usd": 31.88732386246684,
+   "read_error": null,
+   "implied_price_usd": 3.206897292941479e-08
+  }
  }
 ]

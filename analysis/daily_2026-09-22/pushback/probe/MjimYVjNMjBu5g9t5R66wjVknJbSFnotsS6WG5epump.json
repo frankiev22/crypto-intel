@@ -1,7 +1,7 @@
 {
  "mint": "MjimYVjNMjBu5g9t5R66wjVknJbSFnotsS6WG5epump",
- "ts": 1790102779,
- "sol_usd": 118.23619662958069,
+ "ts": 1790104270,
+ "sol_usd": 118.23984238860312,
  "sol_usd_src": "jupiter price v3",
  "recorded_pairs": [],
  "mint_account": {
@@ -12,13 +12,13 @@
   "freeze_authority": null
  },
  "token_accounts": {
-  "n": 24,
+  "n": 25,
   "error": null,
   "truncated": false
  },
- "holders_nonzero": 24,
+ "holders_nonzero": 25,
  "owner_classes": {
-  "system_wallets": 9,
+  "system_wallets": 10,
   "other": {
    "no account": {
     "owners": 14,
@@ -40,58 +40,58 @@
    "owner_program": "PumpSwap AMM",
    "data_len": 301,
    "recorded": false,
-   "mint_in_pool_ui": 989832204.248561,
+   "mint_in_pool_ui": 989726581.057338,
    "quote": "SOL",
    "quote_vault": "B7McG8cg3d1vbpuoL9oZpaR1JvKGnbTVBJ2Y3zxey4Sh",
-   "quote_ui": 0.887786844,
-   "quote_usd": 104.96853985233888,
+   "quote_ui": 0.889758595,
+   "quote_usd": 105.20491603670496,
    "read_error": null,
-   "implied_price_usd": 1.0604680207594031e-07
+   "implied_price_usd": 1.0629694912741775e-07
   }
  ],
- "chain_quote_usd_total": 104.96853985233888,
+ "chain_quote_usd_total": 105.20491603670496,
  "unclassified_owners": [],
  "unclassified_quote_usd": 0,
  "third_party": {
   "jupiter_round_trip_100": {
    "mint": "MjimYVjNMjBu5g9t5R66wjVknJbSFnotsS6WG5epump",
    "probe_usd": 100,
-   "ts": 1790102783,
-   "usd_back": 89.4355,
-   "rt_cost_pct": 10.5645,
+   "ts": 1790104274,
+   "usd_back": 89.443,
+   "rt_cost_pct": 10.557,
    "verdict": "COSTLY",
    "venues": [
     "Quantum",
     "Pump.fun Amm"
    ],
-   "px_per_raw": 2.3350374885454382e-12,
+   "px_per_raw": 2.3356086814604805e-12,
    "error": null,
-   "token_qty_raw": 42825864891057,
-   "price_impact_pct": 6.989692
+   "token_qty_raw": 42815391462524,
+   "price_impact_pct": 5.621586
   },
   "jupiter_token": {
    "symbol": "ChatGPT",
    "name": "ChatGPT",
-   "holderCount": 24,
-   "liquidity": 103.75503683846378,
-   "mcap": 2161.169547003235,
-   "fdv": 2161.169547003235,
-   "usdPrice": 2.17168698931421e-06,
+   "holderCount": 25,
+   "liquidity": 105.05353542739037,
+   "mcap": 2193.4254354991826,
+   "fdv": 2193.4254354991826,
+   "usdPrice": 2.2040998527438996e-06,
    "organicScore": 0,
    "graduatedPool": "36pv9hJF48g1geoyoGtLo5xV4XdaGSHaEBhjfuQUQvdo",
    "graduatedAt": "2026-09-21T16:00:19Z",
    "launchpad": "pump.fun",
-   "volume24h": 149263.79469192988
+   "volume24h": 126636.40025451273
   },
   "dexscreener": [
    {
     "pair": "36pv9hJF48g1geoyoGtLo5xV4XdaGSHaEBhjfuQUQvdo",
     "dex": "pumpswap",
     "labels": null,
-    "liq_usd": 2252.79,
-    "liq_quote": 0.8877,
-    "vol24": 134956.04,
-    "price_usd": "0.000002171",
+    "liq_usd": 2287.48,
+    "liq_quote": 0.8897,
+    "vol24": 125175.67,
+    "price_usd": "0.000002205",
     "quote": "SOL"
    }
   ],
@@ -99,8 +99,8 @@
    {
     "pool": "36pv9hJF48g1geoyoGtLo5xV4XdaGSHaEBhjfuQUQvdo",
     "dex": "pumpswap",
-    "reserve_usd": "30912.07",
-    "vol24": "160161.811404413"
+    "reserve_usd": "30982.4252",
+    "vol24": "125530.468276423"
    },
    {
     "pool": "76KFbAQ2zAnKNCx8i149MzLKCYCBgXWsJr6jCYjVLvhR",
@@ -111,15 +111,15 @@
   ],
   "rugcheck": {
    "totalHolders": 0,
-   "totalMarketLiquidity": 2257.8661530995387,
+   "totalMarketLiquidity": 2290.0558238960202,
    "rugged": false,
    "markets": [
     {
      "pool": "36pv9hJF48g1geoyoGtLo5xV4XdaGSHaEBhjfuQUQvdo",
      "type": "pump_fun_amm",
      "lpLockedPct": 100,
-     "lpLockedUSD": 2257.8661530995387,
-     "quoteUSD": 104.65081314770343
+     "lpLockedUSD": 2290.0558238960202,
+     "quoteUSD": 105.24537600894347
     }
    ],
    "risks": [
@@ -129,8 +129,8 @@
   }
  },
  "calls": {
-  "rpc": 66,
-  "http": 10
+  "rpc": 209,
+  "http": 30
  },
- "seconds": 5.8
+ "seconds": 5.6
 }
