@@ -12,7 +12,29 @@
   is volume-as-trailing-24h-sum vs reserve-as-snapshot. Both true at once.
 
 ## Open
-- Does score predict SURVIVAL independent of peak multiple?
+- ~~Does score predict SURVIVAL independent of peak multiple?~~ **TESTED
+  2026-09-22: NOT SUPPORTED** under the rule pre-committed in
+  `analysis/daily_2026-09-22/PRECOMMIT.md`. 15,034 contracts, 4,392 with a
+  known 24h label (survived = alive with >= $1,000 quote-side depth).
+  Crude: score >= 70 survives 12.6% [9.8, 15.9] (57/454) vs 1.9% [1.5, 2.3]
+  (73/3,938). Pooled Mantel-Haenszel OR 2.75 [1.94, 3.89], BUT the direction
+  **reverses** where the early peak was already >= 2x: high score 4.9%
+  [2.1, 11.0] (5/102) vs low score 26.4% [19.9, 34.0] (39/148). The rule
+  required the direction in every eligible stratum, so it fails. Two
+  weaknesses in the test itself: 126 of 130 survivors were AMM pools, so the
+  label mostly measures venue, which the score partly measures too; and the
+  unknown share is biased (48.9% high arm vs 72.2% low arm, mostly `gone` =
+  the pair lookup returned nothing). **Sharpened into the next two.**
+- **(sharpened)** Among contracts already on an AMM at first sight, does score
+  predict 24h survival? Removes the venue confound. Pre-commit before running.
+- **(sharpened)** Why does high score go with LOWER survival among early 2x
+  runners? Hypothesis to test, not a finding: the score reads the pump itself.
+- **(new 2026-09-22)** Do names cluster narratives that tickers hide?
+  `token_name` is persisted from 2026-09-22; test once 7 days exist. The
+  fake-fund wave (108 contracts, 24 tickers) was invisible to ticker clustering.
+- **(new 2026-09-22)** Drained pools that keep printing volume: EMBER's pool
+  showed $163M of 24h volume on $0 of liquidity, TSLA $60.6M on $0.06. How
+  often does this happen, and can the scanner or milestone ledger admit one?
 - Median time-to-peak for winners (needs peak tracking, not built).
 - Does cluster membership predict a 1M crossing, against real milestone labels?
 - Do linked socials outperform?

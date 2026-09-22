@@ -415,10 +415,21 @@ def record_aborted(stale, cause="killed - no clean exit"):
     """
     started = stale.get("started_ts")
     prog = stale.get("progress") or {}
-    obj = {"ts": int(time.time()), "network": stale.get("network"),
+    now = int(time.time())
+    # ⛔ THIS FUNCTION RUNS IN THE *NEXT* PASS, when it finds the dead pass's
+    # marker. `now - started` is therefore how long until somebody NOTICED,
+    # not how long the pass ran. It was stored as `ran_for_s` until
+    # 2026-09-22, and a market stage that died at a 178s kill was read as a
+    # pass that "ran 3,322 seconds outside the stage-budget wrapper". The
+    # runtime is only known as far as the dead pass's own last progress note;
+    # past that it is unknown, and unknown is None, never a number.
+    noted = prog.get("noted_ts")
+    obj = {"ts": now, "network": stale.get("network"),
            "kind": "aborted_pass", "stage": stale.get("stage"),
            "started_ts": started,
-           "ran_for_s": (int(time.time()) - started) if started else None,
+           "detected_after_s": (now - started) if started else None,
+           "alive_at_least_s": (noted - started) if (started and noted) else None,
+           "ran_for_s": None,
            "complete": False,
            "suspected_cause": (stale.get("unreadable") or cause),
            "call_budget": stale.get("call_budget"),
@@ -702,6 +713,10 @@ def record(rows, network, pass_score=70):
         obj = {
             "ts": now, "network": network,
             "pair": r.get("pair"), "token": r.get("addr"), "symbol": r.get("name"),
+            # The full token name. Fetched by the scanner since the start and
+            # never stored until 2026-09-22 - another field computed and not
+            # persisted. Names carry narratives that tickers hide. Never a key.
+            "token_name": r.get("token_name"),
             "score": r.get("score"), "passed": int(r.get("score", 0) >= pass_score),
             "liq": r.get("liq"), "fdv": r.get("fdv"),
             "vol_h1": r.get("vol_h1"), "vol_h24": r.get("v24"),

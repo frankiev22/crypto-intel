@@ -1,0 +1,199 @@
+{
+ "window": [
+  1789991170.0,
+  1790077570.0
+ ],
+ "coverage": {
+  "hours_with_unattended_scan": 24,
+  "hours_by_stage": {
+   "1": 23,
+   "6": 23,
+   "24": 23,
+   "168": 23,
+   "graduations": 23,
+   "universe": 23,
+   "market": 23
+  },
+  "aborted_by_stage": {
+   "sweep": 4,
+   "market": 1
+  }
+ },
+ "observations": {
+  "rows": 2134,
+  "contracts": 1882,
+  "passed_filter": 126,
+  "grade_100": 91,
+  "score_100": 91
+ },
+ "graduation_coverage": {
+  "graduations": 1152,
+  "in_journal": 104,
+  "pct": 9.03,
+  "wilson": [
+   7.51,
+   10.82
+  ]
+ },
+ "launch_alerts": {
+  "scan_passes": 28,
+  "passes_with_alert": 0,
+  "contracts_alerted": 126
+ },
+ "findings": {
+  "scanner-hit": 105,
+  "liveness": 228,
+  "outcome-win": 10,
+  "funnel-narrowing": 6,
+  "scanner-trap": 1,
+  "horizon-drift": 9,
+  "lookup-outage": 2
+ },
+ "crossings": {
+  "raw_rows": 75,
+  "raw_contracts": 51,
+  "gated_rows": 11,
+  "gated_contract_milestones": 11,
+  "phantom_share_pct": 85.3,
+  "alerted_before_crossing": 11,
+  "MISSED": 0,
+  "missed": []
+ },
+ "universe": {
+  "new_members_in_window": 105,
+  "never_in_journal": 95,
+  "pct": 90.5,
+  "wilson": [
+   83.35,
+   94.74
+  ],
+  "launchpads_of_unseen": {
+   "pump.fun": 79,
+   "null": 8,
+   "met-dbc": 1,
+   "stonkfun": 7
+  },
+  "unseen_backing_under_1pct": 50,
+  "unseen_now_under_10k": 42,
+  "unseen_still_real": 12,
+  "unseen_still_real_list": [
+   {
+    "token": "RzKun1ryM5NYW8Hxo5ki2vdkyqsuL4AVgP7koFApump",
+    "symbol": "SPX",
+    "name": "SPX38F",
+    "mcap": 4261290.0,
+    "backing_pct": 1.0788,
+    "holders": 4025,
+    "launchpad": "pump.fun"
+   },
+   {
+    "token": "PgmnK9RNm8jpD18CsE3xQV3oKY6uCgiwk4ebP9apump",
+    "symbol": "BSD",
+    "name": "BLACK SWAN DEFI",
+    "mcap": 3810541.0,
+    "backing_pct": 1.1399,
+    "holders": 2227,
+    "launchpad": "pump.fun"
+   },
+   {
+    "token": "DY9eMcfexuwBzwYVBGodT941AhK8e1ABcBifHvKjpump",
+    "symbol": "BIRTHDAY",
+    "name": "BIRTHDAY",
+    "mcap": 3479381.0,
+    "backing_pct": 1.1984,
+    "holders": 508,
+    "launchpad": "pump.fun"
+   },
+   {
+    "token": "rMYTcMCf9vj5XBGcywbPgBDTtqztxETYXrN28Uypump",
+    "symbol": "ASR",
+    "name": "American Solar Reserve",
+    "mcap": 3196605.0,
+    "backing_pct": 1.2424,
+    "holders": 4022,
+    "launchpad": "pump.fun"
+   },
+   {
+    "token": "SP82VpghtAizTx5Uejka6WYBm7WnGCkrN3bNuNfpump",
+    "symbol": "DAWS",
+    "name": "Digital American Water Supply",
+    "mcap": 2733118.0,
+    "backing_pct": 1.3339,
+    "holders": 1869,
+    "launchpad": "pump.fun"
+   },
+   {
+    "token": "j7ZospdRbqNGp6cJRoWhp66C336JtHdL9ohFjoVpump",
+    "symbol": "AROS",
+    "name": "American Reserved Oil Supply",
+    "mcap": 2728952.0,
+    "backing_pct": 1.3425,
+    "holders": 1815,
+    "launchpad": "pump.fun"
+   },
+   {
+    "token": "i7i6omvos7kotCcyGsBE7Q3sjDgUHLU9Yzyr6cEpump",
+    "symbol": "WSOS",
+    "name": "World Strategic Oil Supply",
+    "mcap": 2104678.0,
+    "backing_pct": 1.5225,
+    "holders": 2270,
+    "launchpad": "pump.fun"
+   },
+   {
+    "token": "DEW9dSN6QpWyNthphCpMmAbZP1Q4cEKR9xQXAri98WDP",
+    "symbol": "SI",
+    "name": "Super Inu",
+    "mcap": 1101928.0,
+    "backing_pct": 3.539,
+    "holders": 3397,
+    "launchpad": "stonkfun"
+   },
+   {
+    "token": "suifhC9gU1VbJAPYPTBkHJyyyStKGLLYPVDTmPoqbvA",
+    "symbol": "SUI",
+    "name": "Sui",
+    "mcap": 1090026.0,
+    "backing_pct": 7.1056,
+    "holders": 5501,
+    "launchpad": null
+   },
+   {
+    "token": "9CPfv7rc6vxBd3jtovmZtf5Zy8bdvssv8c4BwzbGk147",
+    "symbol": "NINJACAT",
+    "name": "ninjacat",
+    "mcap": 1071835.0,
+    "backing_pct": 3.1242,
+    "holders": 1196,
+    "launchpad": "stonkfun"
+   },
+   {
+    "token": "ATRLuHph8dxnPny4WSNW7fxkhbeivBrtWbY6BfB4xpLj",
+    "symbol": "ATR",
+    "name": "Artrade Token",
+    "mcap": 1063955.0,
+    "backing_pct": 3.0971,
+    "holders": 13588,
+    "launchpad": null
+   },
+   {
+    "token": "3z2tRjNuQjoq6UDcw4zyEPD1Eb5KXMPYb4GWFzVT1DPg",
+    "symbol": "SURGE",
+    "name": "SURGE",
+    "mcap": 1051012.0,
+    "backing_pct": 4.991,
+    "holders": 8234,
+    "launchpad": null
+   }
+  ]
+ },
+ "alerts_vs_mattered": {
+  "alerted_contracts": 126,
+  "alerted_then_gated_1m_crossing": 7,
+  "alerted_then_gate_passing_2x": 12,
+  "gate_passing_2x_contracts": 15,
+  "gate_passing_2x_never_alerted": 3,
+  "liveness_findings_all_one_stale_line": 228,
+  "findings_total": 361
+ }
+}

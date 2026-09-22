@@ -1,0 +1,8 @@
+window rows with mult 6366; >=2x rows 321 on 195 contracts; random 60 contracts (110 rows)
+  50 calls, 26s
+  100 calls, 51s
+  150 calls, 82s
+  200 calls, 108s
+  250 calls, 133s
+255 calls in 136s, 0 errors
+written s1_results.json

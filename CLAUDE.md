@@ -3,7 +3,7 @@
 **Handoff file. Read this first, then the two or three `docs/` files your task
 touches. Do not re-derive what is written here.**
 
-Last updated 2026-09-19. ⚠️ **Keep this current. It is the handoff, not a
+Last updated 2026-09-22. ⚠️ **Keep this current. It is the handoff, not a
 one-off** — if you change architecture, numbers, or blockers, update it in the
 same session.
 
@@ -81,6 +81,8 @@ further" — scope those separately and hold them to the measurement bar below.
 | ⚠️ **PONDER 6.68x** | **does NOT independently verify.** Its depth is Dexscreener's $27,243 and its pool is **Raydium CPMM**, which our chain vault reader cannot parse, so `depth_measured` FAILS. ⭐ **Its v3 close verifies at 5.41x** on a live Jupiter sell quote ($540.70 out of $100, impact 3.60%, $250 and $500 shadow quotes both TRADEABLE). ⛔ **Quote 5.41x, never 6.68x.** ⚠️ Our scanner graded it **15** on $117 of reported liquidity while Jupiter's round trip called it TRADEABLE — they disagreed and the round trip was right | same |
 | ⭐ **what the win gate refuses** | **158 of 166 rows** with a raw multiple ≥ 3x, 09-20 → 09-21 (93 distinct contracts); 8 rows / 6 contracts passed. **23 rows over 1,000x.** ⛔ **Worst: MEMEMAN `7a93AGkVsXAfvJ…` at 12,751,798,561x** — 12.75 **billion** x — on **$0.0006** of quote-side depth | `data/outcomes/` |
 | ⭐ **funnel, measured 2026-09-20 before → after** | scan coverage **33-40% → 100%** (carry 143 → 0); 6h horizon **77 rows/108s → 296/107.5s**; rows about to age out unscored **59 → 0**; graduations **10 → 532 a pass**, backlog 880 → 399, lag 11.96h → 5.46h | `funnel.py`, `data/funnel/` |
+| ⛔ **gate-passing wins, re-checked a day later** | **10 of 15** contracts with a gate-passing 2x on 09-21 were drained (5, every pool under $100) or down 96-99.97% (5) by 2026-09-22 ~11:45Z. ⛔ **EMBER `FLCr9vGM…`, given to Frank on 09-21 as the one milestone with real depth, now holds $0 (all three pools: $2.64).** Drained pools still print volume: TSLA $60.6M on $0.06. And 45% of 09-21's 2x rows cannot be re-checked at all (no pools listed) | `data/findings/REPORT_2026-09-22.md`, `analysis/daily_2026-09-22/` |
+| ⛔ **phantom share of $1M/$5M crossings** | **85%** (64/75 failed realizability at crossing, 2026-09-22), not "a third" as the research brief says. Verified-crossing figure above (25.4%) is the older, broader screen | same |
 
 ⛔ **Never quote the 2.10% graduation rate.** It is 397/18,920 computed on
 **reported liquidity** — the field measured overstating by a median 781x. Our
@@ -464,6 +466,15 @@ only: no historical row has it. `holders_truncated` means the number is a FLOOR.
 (`vol_to_liq`, `vol_burst`, the news NameError, `paper_v2_arm`) plus
 `info.socials`, which is fetched on every row and never stored. **Compute and
 persist are two separate steps. Do both.**
+⭐ **Fifth case found and fixed 2026-09-22: the full token `name`** (`baseToken.name`) was fetched for
+namecheck on every row and dropped - 0 of 2,924 rows had it, which is why the fake-fund wave
+(108 contracts, 24 tickers, one story in the names) was invisible to ticker clustering. Now
+`token_name`, display and grouping only; the key is still the address. BACKLOG A48.
+
+⚠️ **An aborted pass's duration is unknowable, and the row used to pretend otherwise.**
+`record_aborted()` runs in the NEXT pass, so `now - started` is time-to-notice (the flagged
+"3,322s against a 178s kill" was a market stage dead at 18:08Z, noticed 19:03Z). Now
+`detected_after_s` / `alive_at_least_s`, `ran_for_s` None. BACKLOG A49.
 
 ---
 

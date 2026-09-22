@@ -73,6 +73,7 @@ journal._push = lambda *a, **k: None
 os.makedirs(journal.OBS, exist_ok=True)
 
 row = {"addr": "TestCA1111111111111111111111111111111111111", "name": "TEST",
+       "token_name": "United Oil Trust Fund 景甜",
        "pair": "TestPair111111111111111111111111111111111", "score": 50,
        "liq": 1000.0, "fdv": 50000.0, "vol_h1": 1.0, "v24": 2.0,
        "txns_h1": 3, "buys_h1": 2, "sells_h1": 1,
@@ -90,6 +91,17 @@ try:
         check(w.get(k) == want, f"{k} == {want}", f"got {w.get(k)!r}")
     check(journal.LAST_WHITELIST_DROP == set(),
           "clean row drops nothing", str(journal.LAST_WHITELIST_DROP))
+    # The full token NAME, fetched since the start and dropped until
+    # 2026-09-22. Non-ASCII on purpose: the best narrative in the record is
+    # Chinese, and a name that survives only as ASCII has not survived.
+    check(w.get("token_name") == "United Oil Trust Fund 景甜",
+          "token_name lands on disk, non-ASCII intact", repr(w.get("token_name")))
+    check(w.get("symbol") == "TEST", "symbol is still the ticker, not the name",
+          repr(w.get("symbol")))
+    _src = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "scanner.py"),
+                encoding="utf-8").read()
+    check('token_name = pair.get("baseToken", {}).get("name")' in _src,
+          "the scanner fills token_name from baseToken.name")
 
     # ----------------------------------------------------------------------
     print("\n3. the guard CATCHES a field that is computed and not persisted")

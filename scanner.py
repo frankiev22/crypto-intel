@@ -438,6 +438,14 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
         t1 = pair.get("txns", {}).get("h1", {}) or {}
         row = dict(
             name   = pair.get("baseToken", {}).get("symbol", "?"),
+            # THE FULL NAME, not the ticker. Fetched on every row for namecheck
+            # just above and, until 2026-09-22, thrown away: `name` here holds
+            # the SYMBOL. The fake-fund wave of 09-19..09-22 ("United Oil Trust
+            # Fund", "National Trump Digital Accounts") shares a story in its
+            # names and nothing in its tickers (UOTF, NTDA), so the launch
+            # cluster detector could not see it. Display and grouping only -
+            # the key is still `addr`. None when absent, never "".
+            token_name = pair.get("baseToken", {}).get("name") or None,
             price_usd = _f(pair.get("priceUsd")),
             fdv       = _f(pair.get("fdv")),
             vol_h1    = _f((pair.get("volume") or {}).get("h1")),

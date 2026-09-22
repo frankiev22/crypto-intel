@@ -1,0 +1,220 @@
+[
+ {
+  "token": "FLCr9vGMTkbDcRCoirP5Hx8gB7TW1Azt3pkw3qp2HTsh",
+  "symbol": "EMBER",
+  "rows": [
+   [
+    6,
+    3.97
+   ]
+  ],
+  "recorded_pool_liq": 0,
+  "recorded_pool_vol24": 163390784.71,
+  "all_pools_liq": 2.64,
+  "n_pools": 3
+ },
+ {
+  "token": "GPqoXbff7NPyvbngpsUz7mP1byZq7Xfh94E8Gu56HR6T",
+  "symbol": "USDCAT",
+  "rows": [
+   [
+    1,
+    2.84
+   ]
+  ],
+  "recorded_pool_liq": 0,
+  "recorded_pool_vol24": 2858353.85,
+  "all_pools_liq": 0,
+  "n_pools": 1
+ },
+ {
+  "token": "9KmeDWVt7TtrEZT2567kxeDkDZxd3cDoTZ1ZrLow9soG",
+  "symbol": "STONKBROS",
+  "rows": [
+   [
+    6,
+    2.38
+   ]
+  ],
+  "recorded_pool_liq": 32723.62,
+  "recorded_pool_vol24": 739600.7,
+  "all_pools_liq": 32723.62,
+  "n_pools": 1
+ },
+ {
+  "token": "MjimYVjNMjBu5g9t5R66wjVknJbSFnotsS6WG5epump",
+  "symbol": "ChatGPT",
+  "rows": [
+   [
+    6,
+    2.19
+   ]
+  ],
+  "recorded_pool_liq": 2252.79,
+  "recorded_pool_vol24": 250465.38,
+  "all_pools_liq": 2252.79,
+  "n_pools": 2
+ },
+ {
+  "token": "HGNPr1ztbHLU4eo9zQEcxCGXJHF6iQ246M3iobFxpump",
+  "symbol": "MrBeast",
+  "rows": [
+   [
+    1,
+    5.62
+   ]
+  ],
+  "recorded_pool_liq": 2134.55,
+  "recorded_pool_vol24": 206317.98,
+  "all_pools_liq": 2134.55,
+  "n_pools": 2
+ },
+ {
+  "token": "EHY56TBNQ1jX6zUQx7gTPwbdGo7zfKMUH6kvXLbSpump",
+  "symbol": "tradecat",
+  "rows": [
+   [
+    1,
+    4.47
+   ]
+  ],
+  "recorded_pool_liq": 2638.01,
+  "recorded_pool_vol24": 1485377.82,
+  "all_pools_liq": 2778.49,
+  "n_pools": 3
+ },
+ {
+  "token": "5vg9KLxC8QdKCaidkmCfjg3ttAXD1CFKuyeQHSK3pump",
+  "symbol": "Vortex",
+  "rows": [
+   [
+    6,
+    3.46
+   ]
+  ],
+  "recorded_pool_liq": 2242.21,
+  "recorded_pool_vol24": 21089.3,
+  "all_pools_liq": 2242.21,
+  "n_pools": 1
+ },
+ {
+  "token": "k4WcTJwcK8x11E7RFhXsYsdiWZWwfo6FzKEmcCPpump",
+  "symbol": "UOTF",
+  "rows": [
+   [
+    6,
+    2.01
+   ]
+  ],
+  "recorded_pool_liq": 2134.38,
+  "recorded_pool_vol24": 274426.65,
+  "all_pools_liq": 2134.38,
+  "n_pools": 1
+ },
+ {
+  "token": "54c53NaoMDLcxv9ECjN35GLJjX4JDbpbwpSiFwbspump",
+  "symbol": "VSOF",
+  "rows": [
+   [
+    1,
+    23.64
+   ],
+   [
+    6,
+    28.72
+   ]
+  ],
+  "recorded_pool_liq": 632057.27,
+  "recorded_pool_vol24": 398606.16,
+  "all_pools_liq": 632057.27,
+  "n_pools": 2
+ },
+ {
+  "token": "3gAXa6khcC6G7tq6XBnonsiS7GQtq3auKnXCvdZvQtfJ",
+  "symbol": "TSLA",
+  "rows": [
+   [
+    6,
+    5.32
+   ]
+  ],
+  "recorded_pool_liq": 0,
+  "recorded_pool_vol24": 60611642.44,
+  "all_pools_liq": 0.06,
+  "n_pools": 3
+ },
+ {
+  "token": "CdhZy8wrRxNxoV8HtoByXKN7mvS46avtuZ1b39tKfx7",
+  "symbol": "X7",
+  "rows": [
+   [
+    1,
+    2.39
+   ],
+   [
+    6,
+    35.98
+   ]
+  ],
+  "recorded_pool_liq": 216603.06,
+  "recorded_pool_vol24": 3062218.34,
+  "all_pools_liq": 278885.01,
+  "n_pools": 30
+ },
+ {
+  "token": "671dNhKr12xRoPmfkevzG1daqi4c9KMAA9J83ExyMWJ7",
+  "symbol": "OWL",
+  "rows": [
+   [
+    1,
+    3.35
+   ]
+  ],
+  "recorded_pool_liq": 0,
+  "recorded_pool_vol24": 2128791.83,
+  "all_pools_liq": 0,
+  "n_pools": 1
+ },
+ {
+  "token": "BsE3aa5FdE6FVEkWvA8ShAGpzZasEgJbfSqRC4LmErTK",
+  "symbol": "X7",
+  "rows": [
+   [
+    1,
+    4.61
+   ]
+  ],
+  "recorded_pool_liq": 0,
+  "recorded_pool_vol24": 36392351.63,
+  "all_pools_liq": 1.39,
+  "n_pools": 3
+ },
+ {
+  "token": "BLSuVTxKYDL4vm4XmG3oEJfsSGfJZF3cgy98ri68pump",
+  "symbol": "CATEWALK",
+  "rows": [
+   [
+    6,
+    2.43
+   ]
+  ],
+  "recorded_pool_liq": 91277.27,
+  "recorded_pool_vol24": 2533747.03,
+  "all_pools_liq": 91277.27,
+  "n_pools": 3
+ },
+ {
+  "token": "HXQ66zSRqynwJQ6vYEYa85qGY9C2Ycz8rnYQHgApn391",
+  "symbol": "GO",
+  "rows": [
+   [
+    1,
+    2.6
+   ]
+  ],
+  "recorded_pool_liq": 79731.08,
+  "recorded_pool_vol24": 803202.32,
+  "all_pools_liq": 83657.06,
+  "n_pools": 4
+ }
+]

@@ -719,8 +719,11 @@ def main():
                                origin=os.environ.get("CRYPTO_ORIGIN"))
     if stale:
         ab = journal.record_aborted(stale)
-        print(f"  PREVIOUS PASS NEVER FINISHED: stage={ab['stage']} "
-              f"ran {ab['ran_for_s']}s before dying. Recorded as an aborted pass.")
+        _alive = ab.get("alive_at_least_s")
+        print(f"  PREVIOUS PASS NEVER FINISHED: stage={ab['stage']}, noticed "
+              f"{ab.get('detected_after_s')}s after it started; last known alive "
+              f"{'at ' + str(_alive) + 's' if _alive is not None else 'unknown'}. "
+              f"Recorded as an aborted pass.")
 
     rc = 0
     while True:

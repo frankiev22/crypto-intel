@@ -24,6 +24,7 @@ try:
 except Exception:
     pass
 import tempfile
+import inspect
 import time
 
 R = []
@@ -478,6 +479,38 @@ check("⛔ the message forbids `git checkout data/` in words",
       "NEVER `git checkout` data/" in src)
 check("and it names the writer instead of blaming the suites",
       "UNATTENDED PASS WAS WRITING" in src)
+
+print()
+print("=" * 70)
+print("E2. an aborted pass records when it was NOTICED, not a runtime it cannot know")
+print("=" * 70)
+
+# record_aborted() runs in the NEXT pass. On 2026-09-21 a market stage started
+# 18:08:19Z, died, and was noticed at 19:03:41Z; the row said ran_for_s 3322
+# and was read as a pass running 55 minutes outside a 178s kill.
+import collect  # noqa: E402
+_cov_saved = journal.COV
+journal.COV = tempfile.mkdtemp()
+try:
+    t_start = int(time.time()) - 3322
+    ab = journal.record_aborted({"stage": "market", "started_ts": t_start,
+                                 "network": "solana", "origin": "scheduled",
+                                 "progress": {}})
+    check("⛔ ran_for_s is None when the dead pass left no progress note",
+          ab.get("ran_for_s") is None, repr(ab.get("ran_for_s")))
+    check("the gap is recorded under its true name, detected_after_s",
+          abs((ab.get("detected_after_s") or 0) - 3322) <= 2, repr(ab.get("detected_after_s")))
+    check("and alive_at_least_s is None - unknown, never 0",
+          ab.get("alive_at_least_s") is None)
+    ab2 = journal.record_aborted({"stage": "scan", "started_ts": t_start,
+                                  "progress": {"noted_ts": t_start + 95}})
+    check("with a progress note, alive_at_least_s is what the dead pass itself wrote",
+          ab2.get("alive_at_least_s") == 95, repr(ab2.get("alive_at_least_s")))
+    check("⛔ and budget calibration still never reads aborted rows",
+          "aborted_pass" not in inspect.getsource(collect._recent_overruns)
+          or '("pass_complete", "pass_short")' in inspect.getsource(collect._recent_overruns))
+finally:
+    journal.COV = _cov_saved
 
 print()
 print("=" * 70)
