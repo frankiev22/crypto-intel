@@ -44,7 +44,7 @@ import onchain_reserves  # noqa: E402
 UA = {"User-Agent": "Mozilla/5.0 (crypto-intel research; +https://github.com)"}
 WSOL = "So11111111111111111111111111111111111111112"
 USDC = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
-USDT = "Es9vMFrJKsWFsFd8e25wJdkX8DBMLoMKNfuLDQy2Ae4Z"
+USDT = "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB"  # was wrong (a nonexistent mint) until 2026-09-22; the real one, matching onchain_reserves.py:35
 QUOTES = {WSOL: "SOL", USDC: "USDC", USDT: "USDT"}
 TOKEN = "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
 TOKEN22 = "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"

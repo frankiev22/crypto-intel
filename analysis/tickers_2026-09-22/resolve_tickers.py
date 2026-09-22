@@ -14,7 +14,7 @@ score them, and name the impersonators. Nothing here picks a winner silently.
   Dexscreener latest/dex/search - every chain, pair-level liquidity and volume
 
 Both are third-party and LABELLED as such. The chain read comes next, in
-vet_tickers.py, only for the finalists.
+vet_solana.py, only for the finalists.
 
 Free endpoints, no key, no signup.
 """

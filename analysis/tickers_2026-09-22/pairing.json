@@ -1,0 +1,129 @@
+{
+ "ZCAT": {
+  "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+  "pools": [
+   {
+    "pool": "BTccxxTFi7a9xJTE1exKn38Jgie35s6gNeRxd8DM61Rc",
+    "dex": "raydium",
+    "quote_symbol": "ZEC",
+    "quote_mint": "A7bdiYdS5GjqGFtxf17ppRHtDKPkkRqbKtR27dxvQXaS",
+    "liq_usd": 1590225.05,
+    "chain_quote_ui": 556.92543049,
+    "chain_base_ui": 8556874.343813336
+   },
+   {
+    "pool": "GuPbekwP9MqB23CghhiMQZTaigPdUJooovo1neCErhM8",
+    "dex": "meteora",
+    "quote_symbol": "SOL",
+    "quote_mint": "So11111111111111111111111111111111111111112",
+    "liq_usd": 1077789.6,
+    "chain_quote_ui": 5508.663823416,
+    "chain_base_ui": 5163192.403835775
+   },
+   {
+    "pool": "CZt61djgJ6ggjA1aCfYskFViBQxcprA9HT3nE7PZdE1X",
+    "dex": "raydium",
+    "quote_symbol": "USDC",
+    "quote_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "liq_usd": 284146.48,
+    "chain_quote_ui": 7763.201763,
+    "chain_base_ui": 3241527.189188908
+   },
+   {
+    "pool": "7t477j7S8SDcdg1pzCSvjRjYK3nPc14FmrbzPYTjfHYs",
+    "dex": "meteora",
+    "quote_symbol": "SOL",
+    "quote_mint": "So11111111111111111111111111111111111111112",
+    "liq_usd": 109118.23,
+    "chain_quote_ui": 414.596617031,
+    "chain_base_ui": 723609.046958132
+   }
+  ]
+ },
+ "NEARKAT": {
+  "mint": "6UtY9iTZMQQ5QZVrbzFnNaJntV7oySm9k97mvwnuZcxr",
+  "pools": [
+   {
+    "pool": "G19cwhvY4teiUm3jgjrDX5RfzfCnSXe1s5upRXVmTQki",
+    "dex": "raydium",
+    "quote_symbol": "NEAR",
+    "quote_mint": "3ZLekZYq2qkZiSpnSvabjit34tUkjSwD1JFuW9as9wBG",
+    "liq_usd": 427865.64,
+    "chain_quote_ui": 48642.376432146,
+    "chain_base_ui": 24411976.508458
+   },
+   {
+    "pool": "B8BH6ZKr64agqNWG51CQWUKrLZZw5L31u2K6hubsZfyf",
+    "dex": "meteora",
+    "quote_symbol": "SOL",
+    "quote_mint": "So11111111111111111111111111111111111111112",
+    "liq_usd": 205407.88,
+    "chain_quote_ui": 1437.698188086,
+    "chain_base_ui": 3944216.606697
+   },
+   {
+    "pool": "6Ts8KA8Q1Pf6dsj5Rc1JvH56jKLNnpJs4KsUkUcUhEVp",
+    "dex": "meteora",
+    "quote_symbol": "USDC",
+    "quote_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "liq_usd": 160729.14,
+    "chain_quote_ui": 40796.386526,
+    "chain_base_ui": 14278255.518554
+   },
+   {
+    "pool": "J3wZVx37wfEpGNjBHiJyuGZf948jsFe3toCiMkD4D1oz",
+    "dex": "meteora",
+    "quote_symbol": "SOL",
+    "quote_mint": "So11111111111111111111111111111111111111112",
+    "liq_usd": 58727.14,
+    "chain_quote_ui": 342.641647329,
+    "chain_base_ui": 2203780.8184
+   }
+  ]
+ },
+ "VCAT": {
+  "mint": "DmXUJwGyduWgh5q3ZDrPTweeNNK4rmEh5zPZwz8Q2yY3",
+  "pools": []
+ },
+ "COPCAT": {
+  "mint": "HhcfXbZ2rukoKx8oAH8rfkmzXbwvfdh6MMLZjneg4rWk",
+  "pools": [
+   {
+    "pool": "FDy48HT3x8xV27vwemC5VZjJwX2WBnCgKMJYuAnmoBdZ",
+    "dex": "raydium",
+    "quote_symbol": "COPX",
+    "quote_mint": "CzLTZppPdZtTjyq3WGpHLstoc3GLhu7zH5Zg6xUa6Gv5",
+    "liq_usd": 61839.45,
+    "chain_quote_ui": 343.531329,
+    "chain_base_ui": 81171749.518297
+   },
+   {
+    "pool": "6gxUidG3M5heZVitb3CPLdPf23ptmXCJxdp8r9Gusf38",
+    "dex": "meteora",
+    "quote_symbol": "SOL",
+    "quote_mint": "So11111111111111111111111111111111111111112",
+    "liq_usd": 14763.57,
+    "chain_quote_ui": 82.559916399,
+    "chain_base_ui": 13520508.015711
+   },
+   {
+    "pool": "6XVyFKQp71v2h3AXuUHx93Wx3hd9PhUHN1BgofjFrDvG",
+    "dex": "meteora",
+    "quote_symbol": "SOL",
+    "quote_mint": "So11111111111111111111111111111111111111112",
+    "liq_usd": 7467.35,
+    "chain_quote_ui": 47.075199294,
+    "chain_base_ui": 5784345.874175
+   },
+   {
+    "pool": "2zMTRhsHFNDtzEFtweZHLr8fijP2GkLf335y9xkQ4EKA",
+    "dex": "meteora",
+    "quote_symbol": "SOL",
+    "quote_mint": "So11111111111111111111111111111111111111112",
+    "liq_usd": 602.22,
+    "chain_quote_ui": 1.762189587,
+    "chain_base_ui": 1081279.883157
+   }
+  ]
+ }
+}
