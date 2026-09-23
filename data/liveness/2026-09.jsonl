@@ -86792,3 +86792,47 @@
 {"name": "news.freshness", "ts": 1790127670, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
 {"name": "detector.drift", "ts": 1790127671, "n": 1, "detail": "stable", "origin": "scheduled"}
 {"name": "dashboard.build", "ts": 1790127673, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145497, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145517, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145536, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145557, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145576, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145596, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145617, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145637, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145656, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145677, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145697, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145716, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145737, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145756, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145777, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790145778, "n": 1, "detail": "JDvPbg9jdEdbyERikpDLUw4r", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145797, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145817, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145838, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790145839, "n": 1, "detail": "3vD6LTH7Rvca5G4DcWwKAXWu", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790145858, "n": 8, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1790145858, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1790145904, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1790145911, "n": 101, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790145911, "n": 1, "detail": "中国人 MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790145911, "n": 1, "detail": "Pygoscelis MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790145911, "n": 1, "detail": "LOOONGCA MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790145995, "n": 1, "detail": "BASEDCAT NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790145996, "n": 1, "detail": "SWBR NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790145996, "n": 1, "detail": "빵송 NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790145996, "n": 1, "detail": "Manlet NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1790146092, "n": 403, "detail": "403 rows, universe 260, 3 round trips", "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790146115, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790146136, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790146155, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790146174, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790146194, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790146214, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790146233, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "graduations.ledger", "ts": 1790146313, "n": 44, "detail": "10 graduations of 44 processed, backlog 38", "origin": "scheduled"}
+{"name": "universe.members", "ts": 1790146453, "n": 1121, "detail": "1121 members, 0 candidates, 18 quoted, 1222 deferred", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790146456, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790146477, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790146480, "n": 1, "detail": null, "origin": "scheduled"}

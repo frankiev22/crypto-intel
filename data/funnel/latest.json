@@ -1,29 +1,50 @@
 {
- "ts": 1790140980,
- "stage": "universe",
+ "ts": 1790146456,
+ "stage": "full",
  "origin": "scheduled",
  "scan": {
-  "pools_seen": 0,
-  "pools_reached": null,
-  "coverage": null,
-  "enriched": 0,
-  "failed": 0,
+  "pools_seen": 191,
+  "pools_reached": 191,
+  "coverage": 1.0,
+  "enriched": 188,
+  "failed": 3,
   "truncated": false,
   "truncate_reason": null,
-  "carried_forward": null,
-  "carried_in": null,
+  "carried_forward": 0,
+  "carried_in": 107,
   "skipped_addresses": 0
  },
- "outcomes": null,
+ "outcomes": {
+  "1h": {
+   "due": 176,
+   "scored": 176,
+   "not_reached": 0,
+   "expiring_before_next_pass": 0,
+   "coverage": 1.0,
+   "slice_limit": 400,
+   "primary_ok": 7,
+   "primary_miss": 0,
+   "primary_seen": 7,
+   "primary_rate": 1.0,
+   "primary_floor": 0.9
+  }
+ },
  "graduations": {
-  "backlog": 0,
-  "lag_s": 76,
-  "lag_h": 0.02,
-  "processed_last_pass": 58,
-  "failed_txs_skipped": 18,
-  "retry_queue": 0,
+  "backlog": 38,
+  "lag_s": 2932,
+  "lag_h": 0.81,
+  "processed_last_pass": 44,
+  "failed_txs_skipped": 33,
+  "retry_queue": 28,
   "accounted": true
  },
- "lookups": null,
+ "lookups": {
+  "calls": 8,
+  "asked": 221,
+  "found": 218,
+  "served": 198,
+  "stale": 0,
+  "hit_rate": 0.9864
+ },
  "alarms": []
 }

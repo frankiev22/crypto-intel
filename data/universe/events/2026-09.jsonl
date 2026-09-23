@@ -5284,3 +5284,26 @@
 {"ts":1790127565,"token":"Dso1bDeDjCQxTrWHqUUi63oBvV7Mdm6WaobLbQ7gnPQ","event":"gate","verdict":"TRADEABLE","rt_cost_pct":0.0417,"status_before":"member","origin":"scheduled","status_after":"member"}
 {"ts":1790127567,"token":"cPQPBN7WubB3zyQDpzTK2ormx1BMdAym9xkrYUJsctm","event":"gate","verdict":"TRADEABLE","rt_cost_pct":0.0213,"status_before":"member","origin":"scheduled","status_after":"member"}
 {"ts":1790127628,"token":"mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So","event":"gate_check_failed","verdict":null,"rt_cost_pct":null,"status_before":"member","origin":"scheduled","error":"rate limited","status_after":"member"}
+{"ts":1790146313,"token":"7XiFJgX4nkER8gTH1LXUX1VEBJrLRSZfFXuzDy8ccWGT","event":"below_floor","mcap_usd":648643,"origin":"scheduled"}
+{"ts":1790146313,"token":"6Qd6mmFR84jzg24S3851TWNGeTTFrfPko76UiHyRMDMT","event":"below_floor","mcap_usd":961199,"origin":"scheduled"}
+{"ts":1790146313,"token":"DcNnMuFxwhgV4WY1HVSaSEgr92bv2b1vUvEKiNxWqHdF","event":"back_above_floor","mcap_usd":1002389,"below_since":1789888865,"origin":"scheduled"}
+{"ts":1790146313,"token":"CdhZy8wrRxNxoV8HtoByXKN7mvS46avtuZ1b39tKfx7","event":"below_floor","mcap_usd":988795,"origin":"scheduled"}
+{"ts":1790146313,"token":"7ga6rtE9qSb3wdEiDCpTu2kHqoGVfT52jD8ign1rYTvx","event":"back_above_floor","mcap_usd":1000109,"below_since":1790140908,"origin":"scheduled"}
+{"ts":1790146345,"token":"MsKqgUCTYpsLdLACrG8cum6EnuQsCH76i9QSg5spump","event":"admitted","verdict":"TRADEABLE","rt_cost_pct":1.267,"status_before":"candidate","origin":"scheduled","status_after":"member"}
+{"ts":1790146345,"token":"k35mzVhazf7BZrwSvvxiUS8WziyGDHZn9ZNNQJVpump","event":"admitted","verdict":"TRADEABLE","rt_cost_pct":1.7773,"status_before":"candidate","origin":"scheduled","status_after":"member"}
+{"ts":1790146345,"token":"jknMoh5N6nzfdbAMatVtXAqcTcU3bm7uJied6UJpump","event":"admitted","verdict":"TRADEABLE","rt_cost_pct":1.8217,"status_before":"candidate","origin":"scheduled","status_after":"member"}
+{"ts":1790146345,"token":"Xsg5wAwmiHVopEZpYynDu352fxFbrT1VyNoyncTpump","event":"admitted","verdict":"TRADEABLE","rt_cost_pct":1.9496,"status_before":"candidate","origin":"scheduled","status_after":"member"}
+{"ts":1790146345,"token":"3c7mmVSyEH8jfZXgxvpLsETtko1Y16DyRJ5XYB4snhGt","event":"refused","verdict":"COSTLY","rt_cost_pct":20.2862,"status_before":"candidate","origin":"scheduled","status_after":"refused"}
+{"ts":1790146345,"token":"Gq99DRvqtjcatiHqVVe4B2G2tCe42GKMz5vvnHmYpump","event":"refused","verdict":"NO_SELL_ROUTE","rt_cost_pct":null,"status_before":"candidate","origin":"scheduled","status_after":"refused"}
+{"ts":1790146345,"token":"G5AuccjhzPSy3JGzUran4izyoVhG4mQmfujX7y6cpump","event":"refused","verdict":"NO_SELL_ROUTE","rt_cost_pct":null,"status_before":"candidate","origin":"scheduled","status_after":"refused"}
+{"ts":1790146345,"token":"BDQ7oUZNJ536S1pYGG693wUrTVGVqEFm3nNAQqHtpump","event":"refused","verdict":"NO_SELL_ROUTE","rt_cost_pct":null,"status_before":"candidate","origin":"scheduled","status_after":"refused"}
+{"ts":1790146346,"token":"WyK1a4FGbuycaJFmht4WpaYYgvhDvzcxQCXkNHTpump","event":"refused","verdict":"NO_SELL_ROUTE","rt_cost_pct":null,"status_before":"candidate","origin":"scheduled","status_after":"refused"}
+{"ts":1790146348,"token":"BjfTMW2V5hxWocE3WQdNADdP2JQkPyuTadknoC1Dpump","event":"refused","verdict":"NO_SELL_ROUTE","rt_cost_pct":null,"status_before":"candidate","origin":"scheduled","status_after":"refused"}
+{"ts":1790146350,"token":"B3pcWZSSTfApDX1jHjXgnbYAX7nam2nKBUtmPQ2spump","event":"refused","verdict":"NO_SELL_ROUTE","rt_cost_pct":null,"status_before":"candidate","origin":"scheduled","status_after":"refused"}
+{"ts":1790146353,"token":"GbxSFxjbh1TYBMcMZwNDuVCXxW9TdYhCozZXkNJpump","event":"refused","verdict":"NO_SELL_ROUTE","rt_cost_pct":null,"status_before":"candidate","origin":"scheduled","status_after":"refused"}
+{"ts":1790146355,"token":"9HWvdcBF5EK5UjXM7Mg97cf42Bs8RhPspt7v77nEpump","event":"refused","verdict":"NO_SELL_ROUTE","rt_cost_pct":null,"status_before":"candidate","origin":"scheduled","status_after":"refused"}
+{"ts":1790146357,"token":"DBRiDgJAMsM95moTzJs7M9LnkGErpbv9v6CUR1DXnUu5","event":"gate","verdict":"TRADEABLE","rt_cost_pct":0.6058,"status_before":"member","origin":"scheduled","status_after":"member"}
+{"ts":1790146359,"token":"Xs8S1uUs1zvS2p7iwtsG3b6fkhpvmwz4GYU3gWAmWHZ","event":"gate","verdict":"TRADEABLE","rt_cost_pct":0.06,"status_before":"member","origin":"scheduled","status_after":"member"}
+{"ts":1790146361,"token":"PAYmo6moDF3Ro3X6bU2jwe2UdBnBhv8YjLgL1j4DxGu","event":"gate","verdict":"TRADEABLE","rt_cost_pct":0.9583,"status_before":"member","origin":"scheduled","status_after":"member"}
+{"ts":1790146364,"token":"4SoQ8UkWfeDH47T56PA53CZCeW4KytYCiU65CwBWoJUt","event":"gate","verdict":"TRADEABLE","rt_cost_pct":0.6055,"status_before":"member","origin":"scheduled","status_after":"member"}
+{"ts":1790146425,"token":"A13oRB9FFaiUjfi6LdCg6p9ka1u8SfGkUFs4SKvPpump","event":"gate_check_failed","verdict":null,"rt_cost_pct":null,"status_before":"member","origin":"scheduled","error":"rate limited","status_after":"member"}

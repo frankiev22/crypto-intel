@@ -311,9 +311,9 @@
  },
  "liveness:selftest": {
   "first_seen": "2026-09-21T05:09:40+00:00",
-  "count": 480,
+  "count": 481,
   "example": "liveness: selftest",
-  "last_seen": "2026-09-23T05:23:33+00:00",
+  "last_seen": "2026-09-23T06:54:40+00:00",
   "last_escalated": "2026-09-23T05:17:33+00:00",
   "keys": [
    "selftest"
@@ -13101,6 +13101,22 @@
   "example": "scanner-hit: Vb6p6sAfXkHMZjHof2Q1b7dGv9gNVrQFWBhzoN1pump",
   "keys": [
    "Vb6p6sAfXkHMZjHof2Q1b7dGv9gNVrQFWBhzoN1pump"
+  ]
+ },
+ "scanner-hit:hmwgdrkyrapfvabcfzcbizmobsjhhbbmxtrb": {
+  "first_seen": "2026-09-23T06:44:18+00:00",
+  "count": 1,
+  "example": "scanner-hit: H5Mwg6dRKyRapfv8abcfZC8b91izmobS54jhhbbMxtrb",
+  "keys": [
+   "H5Mwg6dRKyRapfv8abcfZC8b91izmobS54jhhbbMxtrb"
+  ]
+ },
+ "scanner-hit:jdvpbgjdedbyerikpdluwrmjfnfzxggaqceql": {
+  "first_seen": "2026-09-23T06:44:19+00:00",
+  "count": 1,
+  "example": "scanner-hit: JDvPbg9jdEdbyERikpDLUw4rmJf7NfZ5XGG3AQ3C1eQL",
+  "keys": [
+   "JDvPbg9jdEdbyERikpDLUw4rmJf7NfZ5XGG3AQ3C1eQL"
   ]
  }
 }
