@@ -771,40 +771,23 @@ _LEG_POWERS = (
 
 
 def _leg_authorities(leg_mint):
-    """Read one quote mint's authorities from chain. Unknown stays unknown."""
+    """One quote mint's authorities, from chain.
+
+    ⛔⛔ THIS USED TO BE A SECOND COPY OF `legs.read_mint` and the two had already
+    started to differ: the registry generated its power sentences from extension
+    STATE and this one from the extension NAME. Four copies of `exit_depth` are
+    already on the blockers list for exactly this reason, so there is now one
+    reader and this delegates to it.
+
+    ⚠️ Imported as `legs_registry`. `legs` is a local list in `_pair_legs`, and
+    `import legs` inside that function rebinds the name for the whole scope - a
+    bug that cost a debugging round earlier today.
+    """
+    import legs as legs_registry
     try:
-        res, err = chainfields._rpc("getAccountInfo",
-                                    [leg_mint, {"encoding": "jsonParsed"}])
+        return legs_registry.read_mint(leg_mint, rpc=chainfields._rpc)
     except Exception as e:
         return {"ok": False, "why": "%s: %s" % (type(e).__name__, str(e)[:100])}
-    if err:
-        return {"ok": False, "why": str(err)[:140]}
-    val = (res or {}).get("value")
-    if not val:
-        return {"ok": False, "why": "no account returned for this mint"}
-    info = (((val.get("data") or {}).get("parsed")) or {}).get("info") or {}
-    exts = info.get("extensions") or []
-    names = [e.get("extension") for e in exts]
-    fee_bps = None
-    for e in exts:
-        if e.get("extension") == "transferFeeConfig":
-            st = e.get("state") or {}
-            fee_bps = ((st.get("newerTransferFee") or {})
-                       .get("transferFeeBasisPoints"))
-    default_state = None
-    for e in exts:
-        if e.get("extension") == "defaultAccountState":
-            default_state = (e.get("state") or {}).get("accountState")
-    return {
-        "ok": True,
-        "freeze_authority": info.get("freezeAuthority"),
-        "mint_authority": info.get("mintAuthority"),
-        "is_token_2022": val.get("owner") == TOKEN22,
-        "extensions": names,
-        "default_account_state": default_state,
-        "transfer_fee_bps": fee_bps,
-    }
-
 
 
 def _pair_legs(mint):
@@ -866,17 +849,12 @@ def _pair_legs(mint):
                        "answered from the published registry as of %s. It is a "
                        "cached fact, not a fresh one."
                        % (sym, cached.get("checked_at")))
-        powers = []
-        if a.get("ok"):
-            if a.get("freeze_authority"):
-                powers.append("the issuer can FREEZE your account")
-            for ext, sentence in _LEG_POWERS:
-                if ext in (a.get("extensions") or []):
-                    powers.append(sentence)
-            if a.get("transfer_fee_bps"):
-                powers.append("every transfer is taxed %s bps"
-                              % a["transfer_fee_bps"])
-        leg = {"symbol": sym, "mint": leg_mint, "powers": powers, **a}
+        # ⛔ The sentences come from the ONE reader now (legs.read_mint), which
+        # generates them from each extension's STATE. Regenerating them here from
+        # the extension NAME is what produced "every transfer runs issuer code
+        # that can reject it" about a mint whose transfer-hook slot is empty.
+        powers = a.get("powers") or []
+        leg = {"symbol": sym, "mint": leg_mint, **a, "powers": powers}
         legs.append(leg)
         # ⭐ The loud flag Frank asked for: yield paid in an asset the issuer can
         # move without the holder. That is permanentDelegate, specifically.
@@ -921,6 +899,27 @@ def _pair_legs(mint):
           "transferFeeConfig on the quote mint",
           "⭐ THIS is the cost that is actually yours: the tax applies on the "
           "way in and again on the way out.")
+    # ⭐⭐ THE ISSUER RESEARCH Frank asked for before we publish either way.
+    # ⛔ A leg with no entry is NOT RESEARCHED, and that is said out loud rather
+    # than left to look like nothing to report.
+    researched = {l["symbol"]: l["issuer_research"] for l in legs
+                  if l.get("issuer_research")}
+    r.put("issuers_researched", researched,
+          "our own reads of the issuer's metadata, site and terms, with the "
+          "provenance of each field marked from_chain / from_issuer / from_press",
+          "a leg absent here has NO issuer research behind it")
+    r.put("legs_not_researched",
+          [l["symbol"] for l in legs if not l.get("issuer_research")],
+          "quote legs with no issuer research at all",
+          "⛔ absence of research is not absence of risk")
+    for sym, info in researched.items():
+        if info.get("redeemable_for_the_real_share") is False:
+            r.warn("%s is %s. Dividends are %s."
+                   % (sym, info["instrument"], info["dividends"]))
+        if str(info.get("us_persons", "")).startswith("⛔"):
+            r.warn("%s: %s. ⚠️ That is the issuer's own statement about its own "
+                   "product, not legal advice and not a statement about you."
+                   % (sym, info["us_persons"]))
     r.put("disclosure",
           "ISSUER RETAINS CONTROL OF A QUOTE LEG" if flagged else
           ("NO ISSUER-CONTROLLED QUOTE LEG FOUND" if legs

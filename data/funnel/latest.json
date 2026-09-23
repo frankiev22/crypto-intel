@@ -1,6 +1,6 @@
 {
- "ts": 1790176101,
- "stage": "watchlist",
+ "ts": 1790176825,
+ "stage": "universe",
  "origin": "scheduled",
  "scan": {
   "pools_seen": 0,
@@ -17,10 +17,10 @@
  "outcomes": null,
  "graduations": {
   "backlog": 0,
-  "lag_s": 61,
-  "lag_h": 0.02,
-  "processed_last_pass": 2,
-  "failed_txs_skipped": 0,
+  "lag_s": 128,
+  "lag_h": 0.04,
+  "processed_last_pass": 58,
+  "failed_txs_skipped": 54,
   "retry_queue": 0,
   "accounted": true
  },

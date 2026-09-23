@@ -223,6 +223,81 @@ check("⚠️ the docstring does not overstate the seed",
 # ---------------------------------------------------------------------------
 print()
 failed = [n for n, ok_ in R if not ok_]
+
+# ======================================================================
+# ⛔⛔ A PRESENT EXTENSION IS NOT AN ACTIVE ONE
+# ======================================================================
+# Read from chain 2026-09-23: SPYx and COPX both carry `transferHook` with
+# programId NULL, and the old sentence said "every transfer runs issuer code
+# that can reject it" about both. That is not-happening rendered as happening,
+# and it is the direction that cries wolf.
+check("⛔⛔ an EXPLICITLY null transfer hook says the slot is empty, not that code runs",
+  "no issuer code runs" in (legs.power_sentence(
+      "transferHook", {"authority": "a", "programId": None}) or ""),
+  legs.power_sentence("transferHook", {"authority": "a", "programId": None}))
+check("⛔ but a MISSING programId key is unknown, not empty - it still reports the "
+  "capability rather than a clean negative",
+  "every transfer runs issuer code" in (legs.power_sentence(
+      "transferHook", {"authority": "a"}) or ""),
+  legs.power_sentence("transferHook", {"authority": "a"}))
+check("⭐ a live hook names the program",
+  "program Hook1" in (legs.power_sentence(
+      "transferHook", {"programId": "Hook1"}) or ""))
+check("⛔⛔ a permanentDelegate whose address could not be read still reports the "
+  "power, and says WHO is unknown - silence there is the bug this repo keeps "
+  "making",
+  "unknown" in (legs.power_sentence("permanentDelegate", {}) or "")
+  and "MOVE your tokens" in (legs.power_sentence("permanentDelegate", {}) or ""),
+  legs.power_sentence("permanentDelegate", {}))
+check("⭐ and a delegate revoked to the zero address reports nothing",
+  legs.power_sentence("permanentDelegate",
+                      {"delegate": legs.ZERO_ADDRESS}) is None)
+check("⛔ `defaultAccountState: initialized` says accounts are NOT frozen today",
+  "so they are not" in (legs.power_sentence(
+      "defaultAccountState", {"accountState": "initialized"}) or ""))
+check("⛔ and `frozen` says so loudly",
+  "START FROZEN" in (legs.power_sentence(
+      "defaultAccountState", {"accountState": "frozen"}) or ""))
+check("⛔ a PAUSED asset is reported as paused right now, not as a capability",
+  "PAUSED RIGHT NOW" in (legs.power_sentence(
+      "pausableConfig", {"paused": True}) or ""))
+
+# ⭐⭐ The dividend mechanism, read from the mint rather than from marketing.
+check("⭐⭐ a scaled-UI multiplier above 1 is reported as the DIVIDEND mechanism, "
+  "because that is what an xStock pays instead of cash",
+  "dividend without a transfer" in (legs.power_sentence(
+      "scaledUiAmountConfig",
+      {"multiplier": "1.0039", "newMultiplier": "1.0057"}) or ""))
+check("⭐ and a multiplier of exactly 1 reports nothing - COPX does not rebase",
+  legs.power_sentence("scaledUiAmountConfig",
+                      {"multiplier": "1", "newMultiplier": "1"}) is None)
+
+# ======================================================================
+# ⭐⭐ THE ISSUER REGISTRY, keyed on the MINT
+# ======================================================================
+check("⛔ the issuer registry is keyed on the MINT, never a symbol (standing rule 2 "
+  "- six different mints answer to COPX)",
+  all(len(k) >= 32 for k in legs.ISSUERS))
+check("⭐ SPYx resolves to Backed, and is recorded as NOT the share",
+  legs.issuer("XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W")
+  ["redeemable_for_the_real_share"] is False)
+check("⭐ COPX resolves to Backpack Securities, and IS redeemable for the real share "
+  "- so the two RWA legs are materially different instruments",
+  legs.issuer("CzLTZppPdZtTjyq3WGpHLstoc3GLhu7zH5Zg6xUa6Gv5")
+  ["redeemable_for_the_real_share"] is True)
+check("⛔ an unresearched mint returns None, which means NOT RESEARCHED",
+  legs.issuer("So11111111111111111111111111111111111111112") is None)
+check("⛔⛔ every researched issuer marks the PROVENANCE of its fields, so a press "
+  "claim is never read as our own measurement",
+  all({"from_chain", "from_issuer", "from_press"} <= set(v)
+      for v in legs.ISSUERS.values()))
+check("⚠️ a field we could not establish is None or says NOT ESTABLISHED, never a "
+  "confident guess",
+  legs.issuer("CzLTZppPdZtTjyq3WGpHLstoc3GLhu7zH5Zg6xUa6Gv5")
+  ["voting_rights"] is None
+  and "NOT ESTABLISHED" in legs.issuer(
+      "CzLTZppPdZtTjyq3WGpHLstoc3GLhu7zH5Zg6xUa6Gv5")["us_persons"])
+
 print(f"{len(R) - len(failed)}/{len(R)} passed")
 for n in failed:
     print("  FAILED:", n)

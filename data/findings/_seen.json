@@ -198,9 +198,9 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 115,
+  "count": 116,
   "example": "horizon-drift: 1h",
-  "last_seen": "2026-09-23T14:14:50+00:00",
+  "last_seen": "2026-09-23T15:14:34+00:00",
   "last_escalated": "2026-09-23T14:12:47+00:00",
   "keys": [
    "1h",
@@ -312,9 +312,9 @@
  },
  "liveness:selftest": {
   "first_seen": "2026-09-21T05:09:40+00:00",
-  "count": 575,
+  "count": 582,
   "example": "liveness: selftest",
-  "last_seen": "2026-09-23T15:08:35+00:00",
+  "last_seen": "2026-09-23T15:20:39+00:00",
   "last_escalated": "2026-09-23T11:19:34+00:00",
   "keys": [
    "selftest"
@@ -13261,6 +13261,30 @@
   "example": "scanner-hit: GHMn7Thc8o65NREdnZfcQ2xE5YXn88rycLweZ9n5pump",
   "keys": [
    "GHMn7Thc8o65NREdnZfcQ2xE5YXn88rycLweZ9n5pump"
+  ]
+ },
+ "mcap-crossing:bdzzeucuccwrmrugyqvjjrzvajxcbegockzogc": {
+  "first_seen": "2026-09-23T15:11:11+00:00",
+  "count": 1,
+  "example": "mcap-crossing: 3BDzz28eUCuCCWrMru2GyqVjJrzVaJXcbEgockz3og3c",
+  "keys": [
+   "3BDzz28eUCuCCWrMru2GyqVjJrzVaJXcbEgockz3og3c"
+  ]
+ },
+ "mcap-crossing:ckrhetxyutwutrvnmhftcodyfrvjtbhhxvksaj": {
+  "first_seen": "2026-09-23T15:11:47+00:00",
+  "count": 1,
+  "example": "mcap-crossing: CkRHeTxYuTWUtrVnMHFTcody47FRVj8TbHHxVk6s5A9j",
+  "keys": [
+   "CkRHeTxYuTWUtrVnMHFTcody47FRVj8TbHHxVk6s5A9j"
+  ]
+ },
+ "mcap-crossing:mnhsjgdhddfmprgxddquwthzxuatuexpu": {
+  "first_seen": "2026-09-23T15:12:11+00:00",
+  "count": 1,
+  "example": "mcap-crossing: 5MNH5SjgDHdd44FMpRgx2D5DQUWthzxUa658tU2E3xpu",
+  "keys": [
+   "5MNH5SjgDHdd44FMpRgx2D5DQUWthzxUa658tU2E3xpu"
   ]
  }
 }
