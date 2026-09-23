@@ -24,8 +24,8 @@
 // Authorization header, this hashes what arrives and compares. The plaintext
 // lives in .env and in Helius's own webhook config, and nowhere else.
 //
-// TWO SILENT FAILURES WERE FOUND HERE BY PROBING THE OUTPUT, and the handling
-// of both is now part of the contract:
+// FIVE SILENT FAILURES WERE FOUND HERE BY PROBING THE OUTPUT, and the handling
+// of all five is now part of the contract:
 //   1. service_role had no grant on either table, so the watchlist read came
 //      back 401 and watchlist() returned an EMPTY SET. Empty is indistinguishable
 //      from "we watch nothing", which is the authority_live=None shape: not
@@ -36,6 +36,20 @@
 //      server error now returns 500 so Helius RETRIES and its own error counter
 //      rises. Only a payload error returns 200, because retrying that forever
 //      helps nobody.
+//   3. The insert asked for merge-duplicates, which is an UPSERT and therefore
+//      wants UPDATE on an append-only table. See the note at the insert: the fix
+//      was the weaker verb, not the wider grant.
+//   4. The watchlist was read on EVERY event, which at the measured 5.5
+//      events/sec saturated PostgREST for the whole project. See watchlist().
+//   5. It stored the FULL raw payload of every event, which at the 18 addresses
+//      actually registered is 982 MB a day into a 500 MB database. See the
+//      storage budget below.
+//
+// AND A SIXTH THAT WAS NOT IN THE CODE. This header said "TWO SILENT FAILURES"
+// for two deploys after items 3 and 4 existed, because the patches that were
+// meant to add them used a replace() with no assert and silently matched
+// nothing. The behaviour was right and the committed description was wrong,
+// which is the same class of error: a change nobody verified landed.
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -61,6 +75,52 @@ const SWAPS = new Set(["SWAP", "SWAP_EXACT_OUT"]);
 // A transfer at or above this many lamports is large enough to report on its
 // own, whatever Helius called the transaction. 50 SOL.
 const LARGE_LAMPORTS = 50 * 1e9;
+
+// ---------------------------------------------------------------------------
+// THE STORAGE BUDGET, and it binds harder than the credit budget.
+//
+// The free-tier Supabase database is 500 MB TOTAL, shared with everything else
+// already in the project. Measured from our own delivered rows:
+//
+//   18 addresses, 5.55 events/sec, full raw at ~2 KB ->    982 MB/DAY
+//   4 addresses,  0.09 events/sec, full raw at ~2 KB ->    496 MB/month
+//   4 addresses,  0.09 events/sec, metadata only     ->     73 MB/month
+//
+// So at the set actually registered, this table would have consumed the whole
+// database in under twelve hours, and even the four addresses the credit budget
+// allows would fill it inside a month. Storing every swap's full payload is not
+// affordable at any watchlist size worth having.
+//
+// WHAT IS KEPT: the full payload for the four classifications that are actual
+// EVENTS, because they are rare and we want everything about them. SWAP and
+// OTHER rows are still written with all their metadata (a few hundred bytes) -
+// the denominator matters, and OTHER is 89% of delivered traffic and is where a
+// Meteora liquidity operation hides. Their raw payload is kept for a bounded
+// SAMPLE per hour so the classifier can still be improved against real traffic.
+//
+// An omitted payload is NEVER a null that could read as "there was nothing".
+// It is an explicit marker saying what was dropped and why (standing rule 5),
+// and the sample is bounded and says so (standing rule 15).
+const EVENTS = new Set([
+  "POOL_CREATE", "LIQUIDITY_ADD", "LIQUIDITY_REMOVE", "LARGE_TRANSFER",
+]);
+const RAW_SAMPLE_PER_HOUR = 20;   // raw payloads kept for SWAP / OTHER
+let sampleHour = -1;
+let sampleKept = 0;
+
+function keepRaw(classification: string): boolean {
+  if (EVENTS.has(classification)) return true;
+  const hour = Math.floor(Date.now() / 3_600_000);
+  if (hour !== sampleHour) {
+    sampleHour = hour;
+    sampleKept = 0;
+  }
+  if (sampleKept < RAW_SAMPLE_PER_HOUR) {
+    sampleKept += 1;
+    return true;
+  }
+  return false;
+}
 
 function classify(tx: any, watched: string[] | null): string {
   const t = String(tx?.type ?? "").toUpperCase();
@@ -202,6 +262,10 @@ Deno.serve(async (req) => {
       watching: watch ? watch.size : null,
       watchlist_read: watch ? "ok" : "FAILED",
       read_error: readErr,
+      raw_sample_kept_this_hour: sampleKept,
+      raw_sample_per_hour: RAW_SAMPLE_PER_HOUR,
+      raw_note: "raw is omitted with an explicit marker, never nulled",
+      newest_rows: latest,
     });
   }
   if (req.method !== "POST") {
@@ -230,6 +294,10 @@ Deno.serve(async (req) => {
 
   const rows = txs.filter(Boolean).map((tx: any) => {
     const hit = watch ? touched(tx, watch) : null;
+    const cls = classify(tx, hit);
+    // The transfer arrays are most of a swap's bytes, so they follow the same
+    // rule as raw. Dropping raw while keeping them would have saved little.
+    const full = keepRaw(cls);
     return {
       signature: String(tx?.signature ?? ""),
       slot: tx?.slot ?? null,
@@ -238,14 +306,21 @@ Deno.serve(async (req) => {
         : null,
       tx_type: tx?.type ?? null,
       source: tx?.source ?? null,
+      // Kept even when the arrays are dropped, so a null array is never read as
+      // "nothing moved": the description is Helius's own sentence about the tx.
       description: (tx?.description ?? "").slice(0, 2000) || null,
       fee_payer: tx?.feePayer ?? null,
       watched: hit,
-      native_transfers: tx?.nativeTransfers ?? null,
-      token_transfers: tx?.tokenTransfers ?? null,
+      native_transfers: full ? (tx?.nativeTransfers ?? null) : null,
+      token_transfers: full ? (tx?.tokenTransfers ?? null) : null,
       account_data: null, // large and mostly noise; raw keeps everything
-      classification: classify(tx, hit),
-      raw: tx,
+      classification: cls,
+      raw: full ? tx : {
+        omitted: true,
+        why: "storage budget: see THE STORAGE BUDGET in the receiver",
+        classification: cls,
+        raw_sample_per_hour: RAW_SAMPLE_PER_HOUR,
+      },
     };
   }).filter((r: any) => r.signature);
 

@@ -219,6 +219,45 @@ the correct direction for a guard and the wrong number to quote as a cost.
 not zero. `test_heliushook.py` (24/24, offline, both the probe and the HTTP call
 injected) fails if any of that stops being true.
 
+### ⛔⛔ And the STORAGE budget binds harder than the credit budget
+
+This is the finding I should have reached before registering anything, and it is
+worse than the credit arithmetic.
+
+**The free-tier Supabase database is 500 MB TOTAL**, shared with everything else
+already in the project. Computed from our own delivered rows:
+
+| watchlist | rows/day | full raw ~2 KB | metadata only ~300 B |
+|---|---:|---:|---:|
+| 18 addresses, 5.55/sec | **479,520** | ⛔ **982 MB per DAY** | 144 MB/day |
+| 4 addresses, 0.09/sec | 7,974 | ⛔ **496 MB/month** | 73 MB/month |
+
+⛔ **At the set I actually registered, `chain_events` would have consumed the
+entire database in under twelve hours.** It ran for thirteen minutes and wrote
+1,571 rows. And even the four addresses the credit budget allows would fill the
+database inside a month at full payload.
+
+⭐ **So the fix is not a smaller watchlist, it is to stop storing what we do not
+need.** From v6 the receiver keeps the full payload only for the four
+classifications that are actual EVENTS - `POOL_CREATE`, `LIQUIDITY_ADD`,
+`LIQUIDITY_REMOVE`, `LARGE_TRANSFER` - which are rare. `SWAP` and `OTHER` rows
+are still written with every field that is small (signature, slot, block time,
+type, source, Helius's own description sentence, fee payer, the watched
+addresses, our classification), because the denominator matters and **`OTHER` is
+89% of delivered traffic and is where a Meteora liquidity operation hides.** Their
+payload and transfer arrays are kept for a bounded **20 per hour** sample, so the
+classifier can still be improved against real traffic.
+
+⛔ **An omitted payload is never a null that could read as "there was
+nothing".** It is an explicit marker object carrying `omitted: true`, the reason,
+the classification and the sample size. Standing rule 5, and standing rule 15:
+the sample is bounded and says so.
+
+⚠️ **The row-size figures are estimates, not measurements.** 2 KB and 300 B are
+assumptions; the actual average was never measured because the database went down
+before it could be. **Re-measure with `pg_total_relation_size` before quoting any
+of this as a capacity figure.**
+
 ### ⭐ What the numbers actually recommend
 
 **Polling reserves, not subscribing to events**, for the bulk of the watchlist:
