@@ -614,6 +614,35 @@ profitable" does not make the remainder "93.84% lost money" — it folds break-e
 losses. **The correct statement is that 6.16% of Fomo wallets showed a realized profit
 over 90 days, and DWF does not attribute that to the feed.**
 
+### ⭐ Correction 2026-09-23: use 5 to 7 percent, multiply-sourced, and never the "500"
+
+Frank, via the relay: **"Use 5 to 7 percent net positive, multiply-sourced. Do not
+quote the 500 figure as fact."**
+
+⛔ **The viral claim that only about 500 Fomo traders have ever been above
+$1,000 comes from a single X post and is not independently sourced.** It is not to
+be repeated as a fact, here or to Frank.
+
+⭐ **What IS multiply-sourced is a net-positive share of roughly 5 to 7 percent**,
+and three independent derivations land inside that band:
+
+| source | population | net positive |
+|---|---|---|
+| independent rerun, as of 2026-09-02 | 476,627 wallets | **27,130 = 5.69%** |
+| DWF Ventures, 90 days to Aug 2026 | ~292,000 wallets | **6.16%** (realized) |
+| our own re-derivation of degentape's tape | 45,853 closed positions | **6.0% [5.8, 6.3]** at proceeds >= 2x cost |
+
+⭐ **That third row is ours and it is the one with an interval** - and it is
+measuring a different thing on a different population (positions, not wallets;
+a 2x bar, not "above zero"), so its agreement with the other two is a coincidence
+of magnitude rather than a confirmation. ⚠️ **The band is the claim. Any single
+number inside it is one study's definition of "profitable."**
+
+⚠️ **And the caveat above still governs all three:** "5 to 7 percent net
+positive" does not make the rest losers, because every one of these folds
+break-even into the negative side. Only 229 Robinhood Chain FOMO users are above
+$10,000 in profit, which is a separate and much narrower statement.
+
 **So the honest framing of the switch is not "cheaper fees," and not "the feed is
 costing him money" either** — neither is established. It is: the UI and the feed are the
 reason to stay, the one population-level number anyone has published about this app is

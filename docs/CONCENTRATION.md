@@ -134,6 +134,53 @@ hit rate to defend, because it makes no claim about what happens next.**
 `test_intel.py` fails at the AST level if any API field name contains `score`,
 `grade`, `rank`, `expected_return`, `prediction` or `rating`.
 
+## 5a. ⛔⛔ Correction 2026-09-23: the funding graph is already defeated
+
+Frank, via the relay: **"sophisticated bundlers now fund 20-plus wallets through
+paths that defeat naive funding-graph clustering. So the sybil work needs the
+stacked-signal approach: same-block co-buying, wallet age and history, and
+post-launch behavioral correlation, with a published confidence level rather than
+a binary verdict."**
+
+⭐ **He is right and this file was already most of the way to agreeing with
+him.** §4 records `funder()` failing on 6 of 8 real wallets and §7 records that
+two hops of separation defeat the cluster half entirely. **What his correction
+adds is that the defeat is now the NORM rather than an edge case**, and that the
+answer is not a better walk.
+
+⛔ **So `funder()` and `breadth()` stop being the sybil detector.** They stay,
+because a funder paying 25+ distinct wallets is still worth identifying as a hub,
+but a shared funder is now **one weak signal among several** and its absence
+proves nothing at all.
+
+### The four signals, and what each costs
+
+| signal | what it measures | why a bundler cannot cheaply defeat it | cost |
+|---|---|---|---|
+| **same-block co-buying** | wallets whose first buy lands in the same block, or within one or two slots | ⭐ **The strongest of the four.** Splitting a buy across 20 wallets is what makes them arrive together; arriving apart means paying the price drift that splitting was meant to avoid | already on chain in the buy transactions |
+| **wallet age and history** | first funded at, signature count, whether the wallet existed before this launch | ageing 20 wallets costs real time and real rent, and the profile has to be maintained, not just created | `activity_before()`, never a history walk (a walk gave WOFI an age of **minus** 0.1h) |
+| **post-launch behavioural correlation** | do the wallets sell together, hold identical fractions, route through the same venue | ⭐ The exit is harder to disguise than the entry, because the whole point is to exit together | our own `chain_events` and outcome rows, going forward |
+| shared funding source | a common ancestor within the walk depth | ⛔ **Defeated, per Frank.** Kept only for hub identification | `funder()`, `breadth()` |
+
+### ⛔ And the output is a confidence level, never a verdict
+
+**A binary "bundled / not bundled" is not defensible on any of these signals and
+must not be published.** What the endpoint returns is the evidence with a stated
+confidence, in the shape this repo already uses everywhere else: the number, its
+n, and what was not checked.
+
+⚠️ **None of the three new signals is built.** The recurrence half of this file
+is built and measured; the stacked-signal sybil detector is **scoped here and NOT
+STARTED**, which by `docs/BACKLOG.md`'s own rule means it does not get a status
+above that until a run is observed. Writing it down is not building it.
+
+⛔ **And it must not become a score.** A confidence level on a factual claim
+("these 9 wallets bought in the same block, 80% confidence they are one actor")
+is a description of the past and is allowed. A number that ranks tokens by how
+likely they are to go up is Marino and is forbidden. The two are easy to conflate
+and `test_intel.py` fails at the AST level if any API field name ever contains
+`score`, `grade`, `rank`, `expected_return`, `prediction` or `rating`.
+
 ## 6. Where it lives
 
 | | |
