@@ -89986,3 +89986,38 @@
 {"name": "paperv3.close", "ts": 1790184086, "n": 1, "detail": "✨Betty NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1790184182, "n": 404, "detail": "404 rows, universe 290, 20 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1790184182, "n": 32, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790195598, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790195598, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790195598, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790195602, "n": 1, "detail": "A9wNrTB4m9DyUCXm9a6CcbPM", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790195602, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790195603, "n": 1, "detail": "3YHQBS77TbGHMvXQpfHaZPJq", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790195604, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790195604, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790195605, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790195605, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790195607, "n": 1, "detail": "EMVPgg9AtgFwub4oab356MUj", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790195611, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790195612, "n": 1, "detail": "89qJ7N4Reo96hcHH6CjF8Zih", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790195612, "n": 6, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1790195612, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1790195616, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1790195620, "n": 1, "detail": "graduated 8YogmR9TkaFyGiHAfsn7NvrEcQgfJsGQyLT9rvSQpump", "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1790195628, "n": 1, "detail": "graduated GY9av5PUHpqQpUkbFmGtaS9YoU7my4CcN9dDwwzpSdfE", "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1790195629, "n": 1, "detail": "graduated 6t2KPapr4WgUhGcMfn7ifeTThyq1VKDhoqV7fpoUuk5x", "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1790195631, "n": 1, "detail": "graduated 5nwhWum3G51vy4RqbMV2EcRYYxnHq6YBm1GkKFT2Vw9F", "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1790195632, "n": 74, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790195633, "n": 1, "detail": "APE MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790195633, "n": 1, "detail": "APE MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790195634, "n": 1, "detail": "MSFT MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790195634, "n": 1, "detail": "MORE NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790195635, "n": 1, "detail": "POLYCAT MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790195635, "n": 1, "detail": "COMPUTE MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790195636, "n": 1, "detail": "⠁⠏⠑ MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790195637, "n": 1, "detail": "PONDER MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790195637, "n": 1, "detail": "OpenSea MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790195638, "n": 1, "detail": "SpongeBob MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790195779, "n": 1, "detail": "✨Betty NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790195780, "n": 1, "detail": "BLUF NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1790195889, "n": 407, "detail": "407 rows, universe 288, 15 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1790195889, "n": 32, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
