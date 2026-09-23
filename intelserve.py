@@ -37,10 +37,12 @@ ROUTES = {
     "safety":       (intel.safety,       "mint",   ()),
     "bundle_check": (intel.bundle_check, "mint",   ("n_buyers",)),
     "paired":       (intel.paired,       "mint",   ()),
+    "concentration": (intel.concentration, "mint",  ("deep", "max_walk")),
     "wallet":       (intel.wallet,       "pubkey", ("price_all", "max_positions")),
 }
-INTS = {"size_usd", "raw_qty", "max_positions", "max_candidates", "n_buyers"}
-BOOLS = {"price_all"}
+INTS = {"size_usd", "raw_qty", "max_positions", "max_candidates",
+        "n_buyers", "max_walk"}
+BOOLS = {"price_all", "deep"}
 
 STARTED = time.time()
 HITS = {"served": 0, "errors": 0, "refused": 0}

@@ -40,6 +40,32 @@ can move a token, and none may ever be added to this file.
 - ⭐ **The only exit number is `exit_depth`**, which quotes Jupiter across every
   venue and reports what a seller receives. When the two disagree, the quote
   wins.
+
+## ⛔⛔ THIS API SELLS FACTS, NOT A SCORE
+
+Frank: *"We need to seriously improve our scoring system before we can sell
+it."* ⭐ **The answer is to retire it as a product, not to improve it.** Marino
+is why: perfect knowledge of graduation probability still loses money, because by
+the time a signal is readable it is priced. Five ranking models have been built
+and retracted in this repo, and `test_scoreband.py` already fails at the AST
+level if a score term reappears in any entry gate.
+
+**What is sellable is the set of things that are checkable and that nobody
+publishes:** bundled or not, liquidity real or phantom, exit depth at a stated
+size, mint and freeze authority live or revoked, who else holds it and how many
+other launches those same wallets top-hold. Every one of those is a fact the
+reader can verify against the chain. **None of them needs a hit rate to defend,
+because none of them predicts anything.**
+
+⛔ **So no endpoint here returns a score, a grade, a rank or an expected
+return, and none ever may.** Any internal score stays internal.
+
+## ⛔ No model call on the hot path
+
+Every number in every response is arithmetic over RPC and index reads. **If an
+endpoint ever needs an LLM call to return a number, that is a design error.** A
+narrative layer may be added on top, cached per contract, but it may never sit
+between a question and its number.
 """
 import json
 import os
@@ -63,7 +89,8 @@ DUST_USD = 1.00                   # positions under this are counted, not priced
 
 # Public reads, so cache hard. Seconds.
 TTL = {"liquidity": 60, "resolve": 300, "phantom": 60, "exit_depth": 30,
-       "safety": 180, "paired": 900, "wallet": 30, "mint": 900}
+       "safety": 180, "paired": 900, "wallet": 30, "mint": 900,
+       "concentration": 600}
 
 _CACHE = {}
 
@@ -603,6 +630,83 @@ def bundle_check(mint, n_buyers=20):
     return r.done()
 
 
+
+# --------------------------------------------------------------------------
+# concentration(mint) - sybil-adjusted, and the recurrence finding
+# --------------------------------------------------------------------------
+def concentration(mint, deep=True, max_walk=10):
+    """⭐⭐ Who actually holds this, with pool vaults out and sybils collapsed.
+
+    Frank: *"nobody should ever be able to buy more than 1%-2% of a coin that
+    early on... Not sure how we could police that."* A per-wallet cap stops only
+    the lazy version, so this reports **effective** concentration: wallets that
+    share a funding source are collapsed into one holder.
+
+    ⛔⛔ **And running it produced a better answer than the one it was built for.**
+    On real tokens the top holders are not fresh sybil wallets at all; they carry
+    3,000+ signatures each. Two pump.fun graduations picked at random share
+    **three** of their top-10 holders. So the headline field is `recurrence`:
+    how many OTHER launches each top holder also top-holds.
+
+    ⭐ Base rate, measured over 60 consecutive graduations: **9.1% [6.8, 12.0]**
+    of 474 distinct top-10 wallets appear in more than one, and the **median
+    token has 20% of its top 10 recurring**. A token at 80% is a different
+    animal, and that is a fact the reader can check.
+
+    ⛔ It predicts nothing and must never be turned into a score.
+    """
+    if not _is_mint(mint):
+        return Report("concentration", mint).fail("that is not a contract address.")
+    return _cached("concentration", f"{mint}:{deep}:{max_walk}",
+                   lambda: _concentration(mint, deep, max_walk))
+
+
+def _concentration(mint, deep, max_walk):
+    import concentration as CN
+    r = Report("concentration", mint)
+    liq = liquidity(mint)
+    first_pool = liq["data"].get("first_pool_ms") if liq.get("ok") else None
+    try:
+        a = CN.analyse(mint, first_pool_ms=first_pool, deep=deep, max_walk=max_walk)
+    except Exception as e:
+        return r.fail(f"concentration could not be measured ({type(e).__name__})")
+    if a.get("error"):
+        return r.fail(a["error"])
+
+    src = "getTokenLargestAccounts + getMultipleAccounts, pool vaults excluded"
+    for f in ("supply", "n_wallets_seen", "n_pool_vaults_excluded",
+              "pool_vault_pct", "raw_top1_pct", "raw_top10_pct", "raw_top20_pct",
+              "wallets_over_1pct", "wallets_over_2pct", "wallets"):
+        r.put(f, a.get(f), src)
+    r.put("is_partial", a.get("is_partial"), src, a.get("partial_why"))
+
+    fsrc = "keyless funding walk (getSignaturesForAddress + getTransaction)"
+    for f in ("n_fresh_wallets", "n_established_wallets", "fresh_rule",
+              "clusters", "n_clusters", "effective_top1_pct",
+              "effective_top10_pct", "sybil_uplift_pct", "walked"):
+        if f in a:
+            r.put(f, a.get(f), fsrc)
+
+    rsrc = ("append-only holder registry data/holders/*.jsonl, seeded from 60 "
+            "consecutive graduations measured 2026-09-23")
+    for f in ("recurrence_registry_mints", "n_top10_seen_in_other_launches",
+              "top10_recurring_share_pct", "recurring_holders"):
+        r.put(f, a.get(f), rsrc)
+    r.put("recurrence_base_rate",
+          {"wallets_in_more_than_one_launch": "9.1% [6.8, 12.0] of 474",
+           "median_token_top10_recurring_pct": 20.0, "n_mints": 60,
+           "measured": "2026-09-23"}, "analysis/holder_recurrence/measure.py")
+    r.put("recurrence_note", a.get("recurrence_note"), rsrc)
+
+    for n in (a.get("not_checked") or []):
+        r.unchecked(n["field"], n["why"])
+    for w in (a.get("warnings") or []):
+        r.warn(w)
+    r.warn("⛔ This describes the present and predicts nothing. Do not rank "
+           "tokens by it and do not turn it into a score.")
+    return r.done()
+
+
 # --------------------------------------------------------------------------
 # 6. paired(mint)
 # --------------------------------------------------------------------------
@@ -953,10 +1057,10 @@ if __name__ == "__main__":
         print(__doc__)
         print("usage: python intel.py <endpoint> <arg> [arg]")
         print("  endpoints: liquidity resolve phantom exit_depth safety "
-              "bundle_check paired wallet")
+              "concentration bundle_check paired wallet")
         raise SystemExit(0)
     fn = {"liquidity": liquidity, "resolve": resolve, "phantom": phantom,
-          "exit_depth": exit_depth, "safety": safety,
+          "exit_depth": exit_depth, "safety": safety, "concentration": concentration,
           "bundle_check": bundle_check, "paired": paired, "wallet": wallet}[args[0]]
     rest = []
     for x in args[1:]:

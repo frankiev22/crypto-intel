@@ -95,6 +95,7 @@ chain and public index data and contains nothing private.
 | `safety` | `mint` | | 180s |
 | `bundle_check` | `mint` | `n_buyers` | none |
 | `paired` | `mint` | | 900s |
+| `concentration` | `mint` | `deep`, `max_walk` | 600s |
 | `wallet` | `pubkey` | `price_all`, `max_positions` | 30s |
 
 ---
@@ -240,6 +241,43 @@ wallet's own history. **The front end must not display a yield figure.**
 
 ---
 
+### `concentration(mint)` ⭐⭐ sybil-adjusted, and the recurrence finding
+
+Frank: *"nobody should ever be able to buy more than 1%-2% of a coin that early
+on... Not sure how we could police that."* A per-wallet cap stops the lazy
+version only, so this reports **effective** concentration with pool vaults
+excluded and wallets sharing a funding source collapsed.
+
+⛔⛔ **Running it produced a better answer than the one it was built for**, and
+the front end should lead with that one. On real tokens the top holders are not
+fresh sybil wallets; they carry 3,000+ signatures each, and **the same wallets
+top-hold launch after launch**.
+
+Live, on a recent pump.fun graduate:
+
+```
+raw_top1_pct                       17.54
+raw_top10_pct                      64.03
+wallets_over_2pct                  8
+n_fresh_wallets                    0        <- none of them is a per-launch wallet
+n_established_wallets              all
+n_top10_seen_in_other_launches     8
+top10_recurring_share_pct          80.0     <- against a measured median of 20%
+recurring_holders[0]               also top-holds 9 other launches
+```
+
+⭐ **Base rate, measured over 60 consecutive graduations: 9.1% [6.8, 12.0] of
+474 distinct top-10 wallets appear in more than one, and the median token has
+20% of its top 10 recurring.** Three wallets top-hold 10 of the 60.
+
+⚠️ **Every recurrence number is a FLOOR.** The registry sees only mints this
+system has looked at, so a wallet shown in 10 launches appears in **at least**
+10. It proves presence, never absence. Render it as `9+`, never `9`.
+
+⛔ **Neither reading is a verdict.** A token full of recurring snipers is not
+thereby safe, and one without them is not thereby honest. Full method,
+including the two bugs found by running it, in `docs/CONCENTRATION.md`.
+
 ### `wallet(pubkey)` ⭐⭐ the headline feature
 
 Read-only. Every token account across **both** SPL and Token-2022, each one run
@@ -313,3 +351,37 @@ every endpoint above.
 - ⛔ **No hit rate on any ticker-only source.** See `docs/GORILLA_ARCHIVE.md` §4b.
 - ⛔ **No buy or sell recommendation anywhere.** The system shows him what he
   would otherwise miss and stops a class of loss. He makes the call.
+
+## 6. ⛔⛔ The product is facts, not a score
+
+Frank: *"We need to seriously improve our scoring system before we can sell
+it."* ⭐ **The answer is to retire it as a product rather than improve it.** The
+reason is Marino and it has not moved: perfect knowledge of graduation
+probability still loses money, because by the time a signal is readable it is
+priced. Five ranking models have been built and retracted here.
+
+**What is sellable is the set of things that are checkable and that nobody
+publishes**, and every endpoint above returns one of them:
+
+| fact | endpoint |
+|---|---|
+| liquidity real or phantom | `liquidity`, `phantom` |
+| exit depth at a stated size | `exit_depth` |
+| mint and freeze authority live or revoked | `safety`, `wallet` |
+| which of several same-ticker mints this is | `resolve` |
+| taxed, and can the tax be raised after you buy | `paired` |
+| who holds it, and how many other launches those wallets top-hold | `concentration` |
+
+**None of these needs a hit rate to defend, because none of them predicts
+anything.** ⛔ **No endpoint returns a score, grade, rank or expected return, and
+`test_intel.py` fails at the AST level if a field name ever contains one.** Any
+internal score stays internal and never reaches a response.
+
+## 7. ⛔ No model call on the hot path
+
+Every number in every response is arithmetic over RPC and index reads. The
+wallet checker costs RPC plus index calls and nothing else. **If an endpoint
+ever needs a model call to return a number, that is a design error.**
+`test_intel.py` also fails if a model client is imported into `intel.py`. A
+narrative layer may sit on top, cached per contract, but never between a
+question and its number.

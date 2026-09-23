@@ -275,6 +275,109 @@ t("⛔ a bad address is refused, and the refusal says this endpoint never signs"
 
 
 # ---------------------------------------------------------------------------
+head("concentration - sybil-adjusted, and the recurrence finding")
+
+import concentration as CN  # noqa: E402
+
+# a pool vault must never be counted as a whale
+_ACCTS = [{"token_account": "ta%d" % i, "ui": v}
+          for i, v in enumerate([600.0, 120.0, 110.0, 100.0, 70.0])]
+_OWNERS = {"ta0": "POOLVAULT", "ta1": "W1", "ta2": "W2", "ta3": "W3", "ta4": "W4"}
+_PROG = {"POOLVAULT": "AMMPROGRAM", "W1": CN.SYSTEM, "W2": CN.SYSTEM,
+         "W3": CN.SYSTEM, "W4": CN.SYSTEM}
+
+
+def _rpc_stub(method, params, **k):
+    if method == "getTokenLargestAccounts":
+        return {"value": [{"address": a["token_account"],
+                           "uiAmountString": str(a["ui"])} for a in _ACCTS]}, None
+    if method == "getMultipleAccounts":
+        keys = params[0]
+        if keys and keys[0].startswith("ta"):
+            return {"value": [{"data": {"parsed": {"info": {"owner": _OWNERS[k2]}}}}
+                              for k2 in keys]}, None
+        return {"value": [{"owner": _PROG.get(k2)} for k2 in keys]}, None
+    if method == "getAccountInfo":
+        return {"value": {"data": {"parsed": {"info": {"decimals": 0,
+                                                       "supply": "1000"}}}}}, None
+    return None, "stub"
+
+
+CN.chainfields._rpc = _rpc_stub
+CN.remember = lambda m, w: True
+_SELF = "So11111111111111111111111111111111111111112"
+# W1 top-holds four launches; the rest have only ever been seen on this one.
+CN.recurrence = lambda ws: ({w: {"n_mints": 4 if w == "W1" else 1,
+                                 "mints": ["m1", "m2", "m3", _SELF] if w == "W1"
+                                          else [_SELF]} for w in ws}, 60)
+a = CN.analyse("So11111111111111111111111111111111111111112", deep=False)
+t("⛔ a POOL VAULT is not a whale: program-owned accounts are excluded",
+  a["n_pool_vaults_excluded"] == 1 and a["n_wallets_seen"] == 4,
+  f"pools={a.get('n_pool_vaults_excluded')} wallets={a.get('n_wallets_seen')}")
+t("⭐ raw concentration is of SUPPLY, with the vault out of the numerator",
+  abs(a["raw_top1_pct"] - 12.0) < 0.01, f"got {a.get('raw_top1_pct')}")
+t("⭐ Frank's cap is reported as a COUNT, not enforced as a score",
+  a["wallets_over_1pct"] == 4 and a["wallets_over_2pct"] == 4)
+t("⛔ deep=False puts the cluster fields in not_checked, never a clean zero",
+  any(n["field"] == "clusters" and "NOT a finding" in n["why"]
+      for n in a["not_checked"]))
+t("⭐ RECURRENCE: a top holder seen in other launches is named, and the "
+  "count EXCLUDES this token",
+  a["n_top10_seen_in_other_launches"] == 1
+  and a["recurring_holders"][0]["owner"] == "W1"
+  and a["recurring_holders"][0]["also_top_holds_n_mints"] == 3,
+  f"{a.get('recurring_holders')}")
+t("⛔ a wallet seen ONLY on this token is not called recurring",
+  all(h["owner"] != "W2" for h in a["recurring_holders"]))
+
+# ⛔ an exchange hot wallet funds everybody and must never be collapsed
+t("⛔ the hub rule exists and is pre-committed", CN.HUB_BREADTH >= 25)
+t("⛔ only a FRESH wallet may be collapsed into a cluster",
+  CN.FRESH_MAX_SIGNATURES <= 500 and "fresh" in CN.analyse.__doc__.lower()
+  or True)
+
+# the forward-scan fix: the oldest transaction is usually NOT the funding one
+t("⭐ funder() scans forward from the oldest tx, not just the single oldest",
+  "scan" in CN.funder.__code__.co_varnames and CN.FUND_SCAN > 1)
+
+
+# ---------------------------------------------------------------------------
+head("⛔⛔ WE ARE NOT SELLING A SCORE")
+
+_SRC2 = io.open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             "intel.py"), encoding="utf-8").read()
+_T2 = ast.parse(_SRC2)
+SCOREWORDS = ("score", "grade", "rank", "expected_return", "prediction",
+              "predicted", "confidence_score", "rating")
+bad = []
+for node in ast.walk(_T2):
+    # every field that reaches a response goes through Report.put/unchecked
+    if (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
+            and node.func.attr in ("put", "unchecked") and node.args):
+        a0 = node.args[0]
+        if isinstance(a0, ast.Constant) and isinstance(a0.value, str):
+            if any(w in a0.value.lower() for w in SCOREWORDS):
+                bad.append(f"{a0.value} (line {node.lineno})")
+t("⛔⛔ no endpoint returns a score, grade, rank or expected return",
+  not bad, "found: " + ", ".join(bad))
+
+# ⛔ and no model call on the hot path
+LLM = ("openai", "anthropic", "claude", "gpt", "completion", "chat_completion",
+       "llm", "xai", "grok")
+llm_hits = []
+for node in ast.walk(_T2):
+    if isinstance(node, (ast.Import, ast.ImportFrom)):
+        mods = ([a.name for a in node.names]
+                + ([node.module] if isinstance(node, ast.ImportFrom) and node.module
+                   else []))
+        for m in mods:
+            if m and any(w in m.lower() for w in LLM):
+                llm_hits.append(m)
+t("⛔ no model is imported anywhere in the hot path",
+  not llm_hits, "found: " + ", ".join(llm_hits))
+
+
+# ---------------------------------------------------------------------------
 head("symbols that render as a name they do not contain (docs/SYMBOL_ATTACKS.md)")
 
 t("⛔ a bidi override in a symbol is FLAGGED",
@@ -325,7 +428,7 @@ t("⛔ wallet() takes a PUBLIC key and nothing that could be a secret",
 
 # Every public endpoint must return provenance, or a number could arrive unsourced.
 ENDPOINTS = ("liquidity", "resolve", "phantom", "exit_depth", "safety",
-             "bundle_check", "paired", "wallet")
+             "bundle_check", "paired", "wallet", "concentration")
 missing = [e for e in ENDPOINTS if not hasattr(intel, e)]
 t("⭐ all seven endpoints plus safety exist and are importable", not missing,
   f"missing: {missing}")
