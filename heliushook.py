@@ -18,6 +18,9 @@ Read only with respect to the chain. Nothing here can sign or send anything.
     python heliushook.py register             # create the pool webhook
     python heliushook.py sync                 # push chain_watch to the webhook
     python heliushook.py rows                 # what has actually landed
+    python heliushook.py health               # ⛔ can Helius REACH us: exits 1 if the
+                                              #   Supabase gateway is answering instead
+                                              #   of the function (verify_jwt back on)
 """
 
 from __future__ import annotations
@@ -328,8 +331,68 @@ def register(addresses: list[str], measured: bool = True) -> dict:
 def rows(limit: int = 10) -> dict:
     """What has actually landed. The only evidence that counts."""
     req = urllib.request.Request(RECEIVER, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=30) as f:
+    with urllib.request.urlopen(req, timeout=60) as f:
         return json.loads(f.read())
+
+
+def health() -> dict:
+    """Can Helius still REACH the receiver at all.
+
+    ⛔ THE FAILURE THIS EXISTS FOR. A Supabase function deploy takes verify_jwt
+    and DEFAULTS IT TO TRUE. Redeploying the receiver on 2026-09-23 at 06:10Z
+    without passing it explicitly flipped it on, and the Supabase GATEWAY then
+    answered every request UNAUTHORIZED_NO_AUTH_HEADER in 0.33s - before a line
+    of our code ran, and it would have rejected Helius exactly the same way.
+    The deploy itself returned a perfectly healthy 200 with the new version.
+
+    So the deploy's own answer proves nothing, and neither does the source. The
+    only thing that proves the receiver is reachable is an unauthenticated GET
+    to its real URL coming back 200. That is what this does.
+
+    ⚠️ It says NOTHING about whether the database is up - the probe reports that
+    separately and honestly. gateway_blocking is the one question here.
+    """
+    t0 = time.time()
+    try:
+        req = urllib.request.Request(RECEIVER, headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=60) as f:
+            body = json.loads(f.read())
+        out = {
+            "reachable": True,
+            "gateway_blocking": False,
+            "http": 200,
+            "elapsed_s": round(time.time() - t0, 2),
+        }
+    except urllib.error.HTTPError as e:
+        detail = e.read()[:200].decode("utf-8", "replace")
+        blocked = "UNAUTHORIZED_NO_AUTH_HEADER" in detail or e.code == 401
+        return {
+            "reachable": False,
+            # ⛔ A 401 on an unauthenticated GET means verify_jwt is back on.
+            "gateway_blocking": blocked,
+            "http": e.code,
+            "detail": detail,
+            "elapsed_s": round(time.time() - t0, 2),
+            "fix": ("redeploy with verify_jwt=false; the receiver authenticates "
+                    "with the SHA-256 of the shared secret, not a Supabase JWT"),
+        }
+    except Exception as e:
+        # Unknown is unknown. A network failure is not evidence the gateway is
+        # fine, and it is not evidence it is broken either.
+        return {
+            "reachable": False,
+            "gateway_blocking": None,
+            "http": None,
+            "detail": f"{type(e).__name__}: {str(e)[:160]}",
+            "elapsed_s": round(time.time() - t0, 2),
+        }
+    # Reachable. Pass through what the probe says about the database, unchanged.
+    for k in ("rows_total", "watching", "watchlist_read", "read_error",
+              "raw_omitted_rows", "raw_full_rows", "storage_budget_working",
+              "bytes_per_row", "bytes_per_row_note"):
+        out[k] = body.get(k)
+    out["database"] = "up" if body.get("watchlist_read") == "ok" else "NOT ANSWERING"
+    return out
 
 
 def main(argv: list[str]) -> int:
@@ -372,6 +435,13 @@ def main(argv: list[str]) -> int:
         print(json.dumps(register(addrs), indent=1))
     elif cmd == "rows":
         print(json.dumps(rows(), indent=1))
+    elif cmd == "health":
+        h = health()
+        print(json.dumps(h, indent=1))
+        # Non-zero when the gateway is in front of us, so this is usable as a
+        # check rather than only as something to read.
+        if h.get("gateway_blocking"):
+            return 1
     else:
         print(__doc__)
         return 2

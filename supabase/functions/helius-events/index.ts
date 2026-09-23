@@ -24,6 +24,13 @@
 // Authorization header, this hashes what arrives and compares. The plaintext
 // lives in .env and in Helius's own webhook config, and nowhere else.
 //
+// ⛔ THIS FUNCTION MUST BE DEPLOYED WITH verify_jwt: false. Its auth is the
+// SHA-256 check below, not a Supabase JWT. Deployed once with verify_jwt left at
+// its default of true (2026-09-23 06:10Z) and the GATEWAY then answered every
+// request UNAUTHORIZED_NO_AUTH_HEADER in 0.33s before reaching a line of this
+// file - which would have rejected Helius too. Caught by probing the deployed
+// URL rather than trusting the deploy's 200.
+//
 // FIVE SILENT FAILURES WERE FOUND HERE BY PROBING THE OUTPUT, and the handling
 // of all five is now part of the contract:
 //   1. service_role had no grant on either table, so the watchlist read came
@@ -50,6 +57,10 @@
 // meant to add them used a replace() with no assert and silently matched
 // nothing. The behaviour was right and the committed description was wrong,
 // which is the same class of error: a change nobody verified landed.
+//
+// AND A SEVENTH, 2026-09-23: the GET probe had no timeout, so when the database
+// stopped answering at ~04:06Z the probe hung instead of reporting. Every read
+// is now bounded and a failed read says so. See PROBE_TIMEOUT_MS.
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -208,9 +219,14 @@ async function watchlist(force = false): Promise<Set<string> | null> {
     return watchCache.set;
   }
   try {
+    // Bounded, for the same reason the probe reads are: an unbounded read here
+    // blocks the EVENT path, not just a diagnostic. 6s, then null.
     const r = await fetch(
       `${SUPABASE_URL}/rest/v1/chain_watch?select=address&active=is.true`,
-      { headers: { apikey: SERVICE_KEY, Authorization: `Bearer ${SERVICE_KEY}` } },
+      {
+        headers: { apikey: SERVICE_KEY, Authorization: `Bearer ${SERVICE_KEY}` },
+        signal: AbortSignal.timeout(6_000),
+      },
     );
     if (!r.ok) {
       console.error("watchlist read failed", r.status, (await r.text()).slice(0, 200));
@@ -226,31 +242,89 @@ async function watchlist(force = false): Promise<Set<string> | null> {
   }
 }
 
+// ⛔ EVERY PROBE READ IS BOUNDED. The probe had no timeout, so when the database
+// stopped answering on 2026-09-23 at ~04:06Z the probe hung for the caller's full
+// timeout and told us nothing. A diagnostic that cannot answer while the thing it
+// diagnoses is broken is worse than useless - it is the case you built it for.
+// Each read gets 6s and a failure reports itself instead of hanging.
+const PROBE_TIMEOUT_MS = 6_000;
+
+function probeHeaders(extra: Record<string, string> = {}) {
+  return {
+    apikey: SERVICE_KEY,
+    Authorization: `Bearer ${SERVICE_KEY}`,
+    ...extra,
+  };
+}
+
 Deno.serve(async (req) => {
   if (req.method === "GET") {
     // A liveness probe that answers the only question worth asking: have rows
     // ACTUALLY landed. Not "is the function deployed".
-    const r = await fetch(
-      `${SUPABASE_URL}/rest/v1/chain_events` +
-      `?select=id,received_at,block_time,classification,tx_type,source,watched` +
-      `&order=received_at.desc&limit=5`,
-      { headers: { apikey: SERVICE_KEY, Authorization: `Bearer ${SERVICE_KEY}` } },
-    );
-    const latest = r.ok ? await r.json() : [];
-    const readErr = r.ok ? null : `${r.status} ${(await r.text()).slice(0, 160)}`;
-    const c = await fetch(
-      `${SUPABASE_URL}/rest/v1/chain_events?select=id&limit=1`,
-      {
-        method: "GET",
-        headers: {
-          apikey: SERVICE_KEY,
-          Authorization: `Bearer ${SERVICE_KEY}`,
-          Prefer: "count=exact",
-          Range: "0-0",
+    let latest: unknown = null;
+    let readErr: string | null = null;
+    try {
+      const r = await fetch(
+        `${SUPABASE_URL}/rest/v1/chain_events` +
+        `?select=id,received_at,block_time,classification,tx_type,source,watched` +
+        `&order=received_at.desc&limit=5`,
+        { headers: probeHeaders(), signal: AbortSignal.timeout(PROBE_TIMEOUT_MS) },
+      );
+      if (r.ok) {
+        latest = await r.json();
+      } else {
+        readErr = `${r.status} ${(await r.text()).slice(0, 160)}`;
+      }
+    } catch (e) {
+      // null, not [], so an unreadable table never renders as an empty one.
+      readErr = `read failed: ${String(e).slice(0, 160)}`;
+    }
+    let range = "";
+    try {
+      const c = await fetch(
+        `${SUPABASE_URL}/rest/v1/chain_events?select=id&limit=1`,
+        {
+          method: "GET",
+          headers: probeHeaders({ Prefer: "count=exact", Range: "0-0" }),
+          signal: AbortSignal.timeout(PROBE_TIMEOUT_MS),
         },
-      },
-    );
-    const range = c.headers.get("content-range") ?? "";
+      );
+      range = c.headers.get("content-range") ?? "";
+    } catch (e) {
+      readErr = readErr ?? `count failed: ${String(e).slice(0, 160)}`;
+    }
+
+    // THE OUTPUT ASSERTION FOR THE STORAGE BUDGET, answered here rather than by
+    // a SQL query someone has to remember to run.
+    //
+    // Deploying the budget is not evidence that it WORKS. What proves it is a
+    // count of rows that actually carry the omitted marker, against a count of
+    // rows that kept a full payload. Before this, that answer needed a hand-run
+    // query against the database - a manual step, and therefore not an answer.
+    //
+    // ⚠️ A count that could not be read comes back null, never 0. A 0 here would
+    // read as "the budget is not dropping anything", which is exactly the
+    // authority_live=None shape: not measured looking like measured.
+    async function countWhere(filter: string): Promise<number | null> {
+      try {
+        const res = await fetch(
+          `${SUPABASE_URL}/rest/v1/chain_events?select=id&limit=1&${filter}`,
+          {
+            headers: probeHeaders({ Prefer: "count=exact", Range: "0-0" }),
+            signal: AbortSignal.timeout(PROBE_TIMEOUT_MS),
+          },
+        );
+        const cr = res.headers.get("content-range") ?? "";
+        if (!res.ok || !cr.includes("/")) return null;
+        const n = Number(cr.split("/")[1]);
+        return Number.isFinite(n) ? n : null;
+      } catch (_e) {
+        return null;
+      }
+    }
+    const rawOmitted = await countWhere("raw->>omitted=eq.true");
+    const rawFull = await countWhere("raw->>omitted=is.null");
+
     const watch = await watchlist(true);   // the probe never trusts the cache
     return Response.json({
       ok: true,
@@ -265,6 +339,18 @@ Deno.serve(async (req) => {
       raw_sample_kept_this_hour: sampleKept,
       raw_sample_per_hour: RAW_SAMPLE_PER_HOUR,
       raw_note: "raw is omitted with an explicit marker, never nulled",
+      // null means the count could not be read, NOT that there are none.
+      raw_omitted_rows: rawOmitted,
+      raw_full_rows: rawFull,
+      storage_budget_working: (rawOmitted === null || rawFull === null)
+        ? "unknown - count unreadable"
+        : (rawOmitted > 0 ? "yes - rows carry the omitted marker" : "NOT OBSERVED YET"),
+      // ⛔ Still not answered here, and it is the figure every capacity number in
+      // docs/CHAIN_EVENTS.md section 3 rests on: bytes per row. It needs
+      // pg_total_relation_size, which PostgREST cannot reach without an RPC, so
+      // it stays ESTIMATED at 2 KB and labelled as such until one exists.
+      bytes_per_row: null,
+      bytes_per_row_note: "ESTIMATED at 2 KB, never measured - needs an RPC over pg_total_relation_size",
       newest_rows: latest,
     });
   }

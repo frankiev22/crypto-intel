@@ -49,7 +49,11 @@ PLANNED = {
     "jupiter.py": "docs/LIQUIDITY.md plan row; shipped as chainfields.round_trip()",
 }
 # Fixture file names inside a test's own synthetic cases, not repo references.
-FIXTURE_FILES = {"test_evidenceguard.py"}
+# test_pushloop builds a throwaway git repo in a temp directory and needs paths
+# that MATCH THE REAL .gitattributes PATTERNS (*.jsonl, data/findings/*.md) for
+# the merge behaviour under test to be the real one, so its fixtures
+# deliberately look like repo paths and deliberately are not.
+FIXTURE_FILES = {"test_evidenceguard.py", "test_pushloop.py"}
 
 PAT = re.compile(r"(?<![\w/.-])((?:docs|data|site|scripts|supabase|\.github)/[\w./-]+\."
                  r"(?:md|py|mjs|json|jsonl|yml|sql|html)|[A-Z][A-Z0-9_]+\.md|[a-z_][a-z0-9_]*\.py)(?![\w])")

@@ -284,9 +284,9 @@ independently from the webhook side. **Nothing has been signed up for.**
 
 ---
 
-## 4. ⛔ Four silent failures, all found by probing output rather than execution
+## 4. ⛔ Six silent failures, all found by probing output rather than execution
 
-This is standing rule 16 earning its place four times in one session. Every one
+This is standing rule 16 earning its place six times in one session. Every one
 of these would have left a receiver that looked healthy and stored nothing.
 
 **1. `service_role` had no grant on either table.** The tables were created
@@ -329,6 +329,71 @@ unmeasured event rate must have that rate measured **before** it is pointed at
 production, which is standing rule 13 wearing different clothes.
 
 ---
+
+
+### ⛔⛔ 5. The deploy turned the gateway back on, and the deploy returned 200
+
+**2026-09-23 06:10Z.** Redeploying the receiver flipped `verify_jwt` back to
+**true**, because a Supabase function deploy takes that flag and **defaults it to
+true when it is not passed**. The Supabase **gateway** then answered every
+request with `UNAUTHORIZED_NO_AUTH_HEADER` in **0.33s, before a single line of
+our code ran** - and it would have rejected Helius in exactly the same way.
+
+⛔ **The deploy itself returned a healthy 200 with a new version number.** The
+source was correct, the function was `ACTIVE`, and the receiver was unreachable.
+There is no reading of the code or of the deploy response that catches this: the
+only thing that catches it is an unauthenticated GET to the real URL.
+
+⭐ **Caught within one minute by probing the live URL**, redeployed with
+`verify_jwt: false` as v8, and confirmed reachable (`GET 200`). The receiver
+authenticates with the SHA-256 of the shared secret, not a Supabase JWT, so that
+flag must always be passed explicitly.
+
+⭐ **The guard is now a command:** `python heliushook.py health` does the
+unauthenticated GET, reports `gateway_blocking` separately from whether the
+database is answering, and **exits 1** when the gateway is in front of us. It
+reports `gateway_blocking: null` rather than `false` when the request failed for
+some other reason - a network error is not evidence that the gateway is fine.
+
+### ⚠️ 6. The probe had no timeout, so it could not report the outage
+
+When the database stopped answering at ~04:06Z the GET probe **hung** for the
+caller's entire timeout instead of saying what was wrong. A diagnostic that
+cannot answer while the thing it diagnoses is broken has failed in exactly the
+case it was built for.
+
+Every probe read is now bounded at **6s** (`PROBE_TIMEOUT_MS`), and so is the
+watchlist read, which sits on the **event** path rather than a diagnostic one.
+⭐ **Verified under the real failure**, with the database still down:
+
+```
+GET 200 in 30.45s
+  rows_total              'unknown'        <- not 0
+  watching                None             <- not 0
+  watchlist_read          'FAILED'
+  read_error              'read failed: TimeoutError: Signal timed out.'
+  raw_omitted_rows        None             <- not 0
+  storage_budget_working  'unknown - count unreadable'
+  newest_rows             None             <- not []
+```
+
+Every unknown renders as unknown (standing rule 5), under the exact condition
+that produces them. ⚠️ The 30s is five bounded reads in sequence and only
+happens while the database is down; a healthy probe returns promptly.
+
+### ⭐ And the storage assertion is now answered by the probe, not by a person
+
+`raw_omitted_rows` and `raw_full_rows` are counted on every probe, so the
+question "is the storage budget actually dropping payloads" no longer needs a
+hand-run SQL query - which, being manual, was not an answer at all (standing
+rule 11). `storage_budget_working` says `NOT OBSERVED YET` when the counts read
+zero and `unknown - count unreadable` when they cannot be read, never a bare
+"no".
+
+⛔ **Still not answered: bytes per row.** It needs `pg_total_relation_size`,
+which PostgREST cannot reach without an RPC, so it stays **ESTIMATED at 2 KB and
+labelled as such** in the probe's own output. Every capacity figure in §3 rests
+on it. BACKLOG C36.
 
 ## 5. What is not done
 
