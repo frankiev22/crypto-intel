@@ -80,11 +80,78 @@ t("⛔ at the 30-pair API cap the total is declared a FLOOR",
   r["data"]["is_floor"] is True and any("cap" in w for w in r["warnings"]),
   "SOL returns 30 too, so 30 means '30 or more'")
 
+# -------------------------------------------------------------------------
+# ⛔⛔ THE `gone` BUG, journal.py:974: a failed lookup is NOT a dead token.
+# From 2026-09-23 this is no longer only a warning - liquidity() ASKS THE CHAIN.
+# Rule: PRECOMMIT_pool_discovery.md. Frank: "We need to use the contract address
+# to find the real pool so we can see it after bonding."
+# -------------------------------------------------------------------------
+import pooldiscovery as _pdisc
+
+_REAL_DISCOVER, _REAL_PX = _pdisc.discover, _pdisc.sol_price
+_pdisc.sol_price = lambda: (100.0, "stub", 1700000000)
+
+
+def _fake_discover(verdict="POOL_QUOTE_100", pools=1, quote=250.0, rung=1):
+    def go(mint, **k):
+        return {"mint": mint, "rung": rung, "verdict": verdict,
+                "pools": [{"pool": "P" * 32, "venue": "pumpswap",
+                           "quote_usd": quote}] * pools,
+                "pool_count": pools, "quote_usd_max": quote,
+                "quote_usd_total": quote, "unvalued_vaults": 0,
+                "holders_reached": 20, "holders_total_known": None,
+                "errors": [], "absence_is_a_floor": True,
+                "floor_note": "largest holders only, so absence is a FLOOR"}
+    return go
+
+
+for label, lookup, verdict, want_ok, want_phrase in [
+    ("a failed lookup", fake_token(ok=False), "POOL_QUOTE_100", True,
+     "EXISTS on chain"),
+    ("an indexer answering NO PAIRS", fake_token(pairs=0), "POOL_QUOTE_100", True,
+     "EXISTS on chain"),
+    ("and when the chain finds nothing either", fake_token(ok=False),
+     "NO_POOL_FOUND", True, "FLOOR"),
+]:
+    clear()
+    intel.allpairs.token = lambda m, _l=lookup, **k: _l
+    _pdisc.discover = _fake_discover(verdict=verdict)
+    r = intel.liquidity("So11111111111111111111111111111111111111112")
+    t("⛔ %s is NOT a dead token - it FALLS BACK to the chain" % label,
+      r["ok"] is want_ok
+      and any("NOT evidence the token is dead" in w for w in r["warnings"])
+      and r["data"]["source_that_answered"] == "chain",
+      "ok=%s src=%s" % (r["ok"], r["data"].get("source_that_answered")))
+    t("   ⭐ ...and it says which way it came out (%s)" % verdict,
+      r["data"]["discovery_verdict"] == verdict
+      and any(want_phrase in w for w in r["warnings"]),
+      str(r["warnings"])[:120])
+    t("   ⛔ ...every indexer-only field is NULL WITH A REASON, never 0",
+      all(r["data"][f] is None for f in ("liq_usd", "vol24_usd", "mcap_usd",
+                                         "pair_count", "quote_assets"))
+      and {"liq_usd", "pair_count"} <= {x["field"] for x in r["not_checked"]},
+      str(r["data"].get("liq_usd")))
+    t("   ⛔ ...and absence is declared a FLOOR on every such response",
+      r["data"]["absence_is_a_floor"] is True)
+
 clear()
 intel.allpairs.token = lambda m, **k: fake_token(ok=False)
+
+
+def _boom(mint, **k):
+    raise RuntimeError("rpc down")
+
+
+_pdisc.discover = _boom
 r = intel.liquidity("So11111111111111111111111111111111111111112")
-t("⛔ a failed lookup is NOT a dead token (the `gone` bug, journal.py:974)",
-  r["ok"] is False and any("NOT evidence" in w for w in r["warnings"]))
+t("⛔⛔ when NEITHER source answers it FAILS, and never reports zero",
+  r["ok"] is False and r["data"]["source_that_answered"] is None
+  and "UNKNOWN, not zero" in str(r["provenance"]),
+  str(r.get("error"))[:90])
+
+_pdisc.discover, _pdisc.sol_price = _REAL_DISCOVER, _REAL_PX
+clear()
+intel.allpairs.token = lambda m, **k: fake_token(pairs=10, liq_each=4000.0)
 
 r = intel.liquidity("PEPE")
 t("⛔ a ticker is refused, never resolved silently (standing rule 2)",

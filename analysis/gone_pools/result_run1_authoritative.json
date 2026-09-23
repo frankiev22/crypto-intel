@@ -1,0 +1,4129 @@
+{
+ "any_pool_at_all": {
+  "k": 105,
+  "n": 120,
+  "pct": 87.5,
+  "wilson95": [
+   80.4,
+   92.28
+  ]
+ },
+ "band_10_plus": {
+  "k": 6,
+  "n": 120,
+  "pct": 5.0,
+  "wilson95": [
+   2.31,
+   10.48
+  ]
+ },
+ "gone_rows_in_window": 8282,
+ "headline": {
+  "definition": "share of `gone` contracts with a pool holding >= $100 of VALUED quote-side reserves on chain",
+  "is_a_lower_bound": true,
+  "k": 3,
+  "n": 120,
+  "pct": 2.5,
+  "why_lower_bound": "discovery reaches the largest holders only, so a NO_POOL_FOUND is not proof that no pool exists",
+  "wilson95": [
+   0.85,
+   7.09
+  ]
+ },
+ "n_sample": 120,
+ "ran_at_utc": "2026-09-23T16:46:11Z",
+ "rate_published": true,
+ "recorded_pair_was_a_real_pool": 93,
+ "rows": [
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180154,
+   "errors": [],
+   "holders_reached": 5,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1069788902733206,
+     "lamports": 1417329,
+     "pool": "ApP76bymgcQLkcGd8xXX2isZ3EYDArBpzYDBd8y2JhzT",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "ApP76bymgcQLkcGd8xXX2isZ3EYDArBpzYDBd8y2JhzT",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "pruple",
+   "token": "Eg9EobbvcVwRFpWMNKSPp51mFA1fsRRnwKeA9NqSpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180154,
+   "errors": [],
+   "holders_reached": 9,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417347,
+     "pool": "9c2b6P5bZZo6P8kZMK1We5VWus2Cg5enzVBLyJhoVfY1",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "9c2b6P5bZZo6P8kZMK1We5VWus2Cg5enzVBLyJhoVfY1",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "Rapestein",
+   "token": "F5mFZHRUtZ2HPhw836UkZF92UHQ3c2Xo2oCGrBpXpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180154,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1013334272180980,
+     "lamports": 1285241,
+     "pool": "6pdMh9F6RP9618cojnqR5kVLcRmNwNdPRjxoTs96tuUq",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "6pdMh9F6RP9618cojnqR5kVLcRmNwNdPRjxoTs96tuUq",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "DOGE PAID",
+   "token": "EEidZ4to1wLCZqQiyS2oHJec2WeSMY4wGAhMCnQxpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180153,
+   "errors": [],
+   "holders_reached": 96,
+   "holders_total_known": 96,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 213,
+     "lamports": 2179320,
+     "pool": "F16kiKtygqjfiEGu6ywjU84RibisZGMsxiQmdmWjBqPQ",
+     "quote_usd": 0.0005731613525894212,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0006,
+   "quote_usd_total": 0.0006,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "BBcbsQMp5uvga4AEuFz11WgkLBT5o1YjT2NN26UoxPLF",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "X7",
+   "token": "BsE3aa5FdE6FVEkWvA8ShAGpzZasEgJbfSqRC4LmErTK",
+   "truncated_holders": 0,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180152,
+   "errors": [],
+   "holders_reached": 10,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 8900,
+     "lamports": 2179320,
+     "pool": "7fDURjz2siEzkJ68DjqjuDGzr33GvEUB5ptYuQJEeU8b",
+     "quote_usd": 2.292186972963092e-07,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "7fDURjz2siEzkJ68DjqjuDGzr33GvEUB5ptYuQJEeU8b",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "URANUS",
+   "token": "7CRm8B1PUvrCrtV56CzX4kUK4E4rYyATGKkuGpjDcE4P",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180152,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1032121567192429,
+     "lamports": 1285241,
+     "pool": "DsZpUsrobNEoowHzGyeUnpaMWai918Rh1PtsT5iwJZan",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "DsZpUsrobNEoowHzGyeUnpaMWai918Rh1PtsT5iwJZan",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "MONEY",
+   "token": "7nfB1JqvXmRTgMDx325CCwQyY4KJfBhUEuB4wwyopump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180152,
+   "errors": [],
+   "holders_reached": 4,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1041445790874541,
+     "lamports": 1285241,
+     "pool": "FVP2mRRecGRmN6QcGdgrheRhqvchf6DXDuM6rPCcneB3",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "FVP2mRRecGRmN6QcGdgrheRhqvchf6DXDuM6rPCcneB3",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "PUFF",
+   "token": "6REYtAgjhukznG5XbQyZFMLaaHxw3QvnGnuYPqGdpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180150,
+   "errors": [],
+   "holders_reached": 19,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 4777,
+     "lamports": 2026920,
+     "pool": "CANXQtvwZaQGe8cvBEoMw6yttS7FwragHvY5SQJ1zajg",
+     "quote_usd": 3.438280459444638e-07,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "FxNxZ2bjc87kMwmbMGBdWVhfUMcq6qUMA4Do9H4xEnc5",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 1,
+   "symbol": "\u51b7\u6f20\u7684",
+   "token": "H5Y66i9MgxrAPdDk4FQnKHET3SmaReMWQLifjXirrZeE",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180149,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 990444062327513,
+     "lamports": 1285242,
+     "pool": "J3bALpjHGzEVCUZts6XZoCGhrdRjuU4J9zPhmKd1M4To",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "J3bALpjHGzEVCUZts6XZoCGhrdRjuU4J9zPhmKd1M4To",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "MGOAT",
+   "token": "BRA2LouKcAap7w7cNbKGK9ZiSEGVRSrby7zn8Mc1pump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180148,
+   "errors": [],
+   "holders_reached": 19,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 4107,
+     "lamports": 2026920,
+     "pool": "82LjKcqPHzxa6JVcT5BXBMbRKMH3dG8CdRxnMuejwjZ9",
+     "quote_usd": 3.438280459444638e-07,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "D3n4UwDTwQBYDzfWMvNWHqritvCmfWH6PPL2a3FoEymM",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 1,
+   "symbol": "MSFT",
+   "token": "9C78vRHXC7YipQ1JrYGcqBFsS4eWrkJEymThn2wtAGhU",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180147,
+   "errors": [],
+   "holders_reached": 20,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 213418119,
+     "lamports": 2026920,
+     "pool": "28aaZM8jcBnTNKbCzWPQTipFko7toqeWA8eWtbW9aVP3",
+     "quote_usd": 0.0007223827245293184,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0007,
+   "quote_usd_total": 0.0007,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "4vyhKP8FK4fQqF9ZgbrjcnSZj4SzMCNrtRavfXBSuz7W",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 1,
+   "symbol": "Gemini AI",
+   "token": "8TfUpFfPKuvWKhG3NmmbtRwh1XUCA9rvQopnGmd2Ah4P",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180147,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417323,
+     "pool": "4bBa6EJfWapQKxnkWhfQdVa5tB7FepPa5yqkat7kRJMh",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "4bBa6EJfWapQKxnkWhfQdVa5tB7FepPa5yqkat7kRJMh",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "DOREMIFASOLAT",
+   "token": "58y2Q8YonXNTuWTpcYGGNi5eTLVpGr6rqQPNUFxsS3Rw",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180146,
+   "errors": [],
+   "holders_reached": 3,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1285245,
+     "pool": "BjFaz63iBCezgW3qefrX5ULwvqCPsdd46mMG2nBr4Yd8",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "BjFaz63iBCezgW3qefrX5ULwvqCPsdd46mMG2nBr4Yd8",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "GTA IV",
+   "token": "Av3x4PAHaGe8YG2w6d4GM3XWgJKp38E4qV3YtVY1pump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180145,
+   "errors": [],
+   "holders_reached": 4,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417322,
+     "pool": "Fnt6ApWatF8M8M1ygjShpMXtDrdXL7Mde5LwcBsgcWWf",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "Fnt6ApWatF8M8M1ygjShpMXtDrdXL7Mde5LwcBsgcWWf",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "workcat",
+   "token": "236y8PFLySFN2mLPdrfsFmEhLTL7qzdyoea3vpZspump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180144,
+   "errors": [],
+   "holders_reached": 20,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 988895503585949,
+     "lamports": 2179320,
+     "pool": "EA4H2wvhsA992nc9YaqUgPhGi9bEUnACH6nNDVYts2A7",
+     "quote_usd": 41.065200314542075,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 41.0652,
+   "quote_usd_total": 41.0652,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "EA4H2wvhsA992nc9YaqUgPhGi9bEUnACH6nNDVYts2A7",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "Spider-Man",
+   "token": "3DiGCcJa17kp31GajGQeUUierwAqFy2ofbohc6z4pump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_10"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180144,
+   "errors": [],
+   "holders_reached": 9,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 212803374,
+     "lamports": 2179320,
+     "pool": "8ik5jgX1weLasgERxGt2UZX4DQncuzxeWZzaGV4EM1YW",
+     "quote_usd": 0.0028667236377362907,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0029,
+   "quote_usd_total": 0.0029,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "8ik5jgX1weLasgERxGt2UZX4DQncuzxeWZzaGV4EM1YW",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "URANUS",
+   "token": "BXQ88BAYscAzoejN65vhA97ySYUdnzS8wmbYZDyXT2b",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180143,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1001853962212603,
+     "lamports": 1285241,
+     "pool": "3W4dDAg9C7FZpmRBu8xz6eaME25Rc34weFWBS9Eo8eeY",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "3W4dDAg9C7FZpmRBu8xz6eaME25Rc34weFWBS9Eo8eeY",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "BI",
+   "token": "wruGFujGVLXKGTiNoeK1RzzRHK6zLHDP4nAaqVKpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180142,
+   "errors": [],
+   "holders_reached": 20,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 2,
+   "pools": [
+    {
+     "base_amount": 835699262858544,
+     "lamports": 2179320,
+     "pool": "BiWTskxEzfMK1EeXdD2o7e8cP2iCNgZf7utwxcaHfYSE",
+     "quote_usd": 398.7826845706759,
+     "venue": "pumpswap"
+    },
+    {
+     "base_amount": 0,
+     "lamports": 1417320,
+     "pool": "4zhiY2VkGG4Ae3JQxM2cS15hzT1P9u7jD2L7EJCWuxSh",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 398.7827,
+   "quote_usd_total": 398.7827,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "4zhiY2VkGG4Ae3JQxM2cS15hzT1P9u7jD2L7EJCWuxSh",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "NOOS",
+   "token": "EKShF2iKiGZNLh9QjXF7tu822AapGh4rNj9h6y8upump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve",
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_100"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180142,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1180871363142716,
+     "lamports": 1417327,
+     "pool": "GyMmH7mHZUgKXkncEBkDLYQBWY8YMsLhD6Jq51Cv95oT",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "GyMmH7mHZUgKXkncEBkDLYQBWY8YMsLhD6Jq51Cv95oT",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "TOAD",
+   "token": "HBtb3ANYK6jGrxc6KYdQAwVyzN6kGUYC5xPXuNynpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180142,
+   "errors": [],
+   "holders_reached": 6,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417327,
+     "pool": "CGaQPJtg1ZHrk8iyFyJ18TiWEitTxzKvz2YjsmLKaJTm",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "CGaQPJtg1ZHrk8iyFyJ18TiWEitTxzKvz2YjsmLKaJTm",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "Elephant",
+   "token": "Fv7fJ6Tb3uwNHsP4K9EGLV1PaAabi6qtHF1Gja1Ypump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180141,
+   "errors": [],
+   "holders_reached": 43,
+   "holders_total_known": 43,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 3261,
+     "lamports": 2179320,
+     "pool": "AnQ6WTaPKwvuk4Zuj2V4vM52EdbcTzN78ASWb95DjNWv",
+     "quote_usd": 4.584373945926184e-07,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "AnQ6WTaPKwvuk4Zuj2V4vM52EdbcTzN78ASWb95DjNWv",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 2,
+   "symbol": "PONZIPAD",
+   "token": "Btu1wVMcs7JxGDo1gQmaBGVssyK331T2413YWn8QD3ZP",
+   "truncated_holders": 0,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180141,
+   "errors": [],
+   "holders_reached": 4,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1035336373287861,
+     "lamports": 1417325,
+     "pool": "CjpeF25U8hM1soMnXYj2boodcCNXiWhBQFpRkNSY2A2k",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "CjpeF25U8hM1soMnXYj2boodcCNXiWhBQFpRkNSY2A2k",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "MORE",
+   "token": "J7cPDCzuTztxDufPonvDuJUA65ygXv5Edj9mEhFCpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180140,
+   "errors": [],
+   "holders_reached": 1,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 999999900000000,
+     "lamports": 1288038,
+     "pool": "Gs6Qc6ZqwFPHNLjfFQTy4496MaMxFJZh7sdbFe1T3rF6",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "Gs6Qc6ZqwFPHNLjfFQTy4496MaMxFJZh7sdbFe1T3rF6",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "Nearoor",
+   "token": "2TvTcAjCiXjA73BhaZ26ZdFv6rfyUEAZ6dciEXuHpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180140,
+   "errors": [],
+   "holders_reached": 15,
+   "holders_total_known": 15,
+   "horizon_h": 24,
+   "pool_count": 0,
+   "pools": [],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "7xyCuLSZNwawTmbHUde71v2i3ctrBmMtU8Rj9TeVBsqK",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "FOUR",
+   "token": "m58vbjW6MLAc5iBntEco8xWrg5v1MYxECSoTAQozSqz",
+   "truncated_holders": 0,
+   "unvalued_vaults": 0,
+   "venues": [],
+   "verdict": "NO_POOL_FOUND"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180140,
+   "errors": [],
+   "holders_reached": 6,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417365,
+     "pool": "HRGvpoMCoNrKdQa7htG4Z5dDtpiod37cGoPz8hKWGw2F",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "HRGvpoMCoNrKdQa7htG4Z5dDtpiod37cGoPz8hKWGw2F",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "Launchpad",
+   "token": "9wcC7pgcsi9UkMJZx5kg62sQZ1r6Svu1VdEa5MxMZ1ib",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180139,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417325,
+     "pool": "5yCagkE1jhFgwvRAEjHtuFBU15SHbw9aPXqjUHCD2rmf",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "5yCagkE1jhFgwvRAEjHtuFBU15SHbw9aPXqjUHCD2rmf",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "lil wig",
+   "token": "BiFPzPMReDFbBC9dVw7UPqxLUucawtuB1yZvfHBcEDiq",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180138,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": 2,
+   "horizon_h": 24,
+   "pool_count": 0,
+   "pools": [],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "2XWT4L7NUmrHSCbKKhEo6dwvw7LdaEfRSotqAEB6zSoF",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "X7DOG",
+   "token": "F1qWNY4rUAgMnyCG62xkpAYYcbpCbgxboSV5QSe4rYM",
+   "truncated_holders": 0,
+   "unvalued_vaults": 0,
+   "venues": [],
+   "verdict": "NO_POOL_FOUND"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180137,
+   "errors": [],
+   "holders_reached": 100,
+   "holders_total_known": 215,
+   "horizon_h": 24,
+   "pool_count": 0,
+   "pools": [],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "8p4g48VyymuW18TcUfrJ97tFi4jSU7abZUrN8q8siQdv",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "ERIKA",
+   "token": "GtCJjGUbBx9VRsW57v6zx2v4b9PaYdgmGLwJy8Ue6f3P",
+   "truncated_holders": 115,
+   "unvalued_vaults": 0,
+   "venues": [],
+   "verdict": "NO_POOL_FOUND"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180136,
+   "errors": [],
+   "holders_reached": 20,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 823462515930516,
+     "lamports": 2179320,
+     "pool": "9Vtqt6UruSVL8otRwYHughNLszXTE7E2hga2Z9AyYw6B",
+     "quote_usd": 440.13721079924085,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 440.1372,
+   "quote_usd_total": 440.1372,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "5Cozv7kaYAhWjFq44MkZLzKNWNSPZnwpUAZyqAS1rHEA",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 1,
+   "symbol": "JEANB",
+   "token": "3ZvY6acjpewyFphnwQrpF89YmoMqjdC3QqHALvgbpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_100"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180136,
+   "errors": [],
+   "holders_reached": 9,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 37395760445,
+     "lamports": 2179320,
+     "pool": "4Pf6oPSknGy6RLjR7QEFXAYRR8vU25znZjfPFjXXcJtZ",
+     "quote_usd": 1.0314841378333914e-05,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "4Pf6oPSknGy6RLjR7QEFXAYRR8vU25znZjfPFjXXcJtZ",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "URANUS",
+   "token": "DRirMsAVR31NJcjp8Mv7ygDiqdySBW3LhNWSwQQLvCJq",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180135,
+   "errors": [],
+   "holders_reached": 3,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1066758591004751,
+     "lamports": 1417323,
+     "pool": "7AZe4vtsHA42CgTxry9ixjHEG1u2wu37wa9czhJ7mLgA",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "7AZe4vtsHA42CgTxry9ixjHEG1u2wu37wa9czhJ7mLgA",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "JUMP",
+   "token": "6JeG7gdQAjx2PAkRgy3TkqfaXojhypquk2ip97Hupump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180134,
+   "errors": [],
+   "holders_reached": 10,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 35240901101,
+     "lamports": 2179320,
+     "pool": "Fq3i93kdX4PMuevyrEubTC8QsWmnnoJf2V9EnW53tC5R",
+     "quote_usd": 1.1575544213463614e-05,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "Fq3i93kdX4PMuevyrEubTC8QsWmnnoJf2V9EnW53tC5R",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "URANUS",
+   "token": "DeTZ36rbZ91NqfgzrnKWZjNf7w733DFk7kfeuCiM3c1M",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180134,
+   "errors": [],
+   "holders_reached": 6,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 983435060746482,
+     "lamports": 20847917,
+     "pool": "GBfH9tJfFVq5gwiYsTr2VKQSanArCNZXbZpBzTDdiipf",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "GBfH9tJfFVq5gwiYsTr2VKQSanArCNZXbZpBzTDdiipf",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "cate",
+   "token": "24HFGGvWFMpGwG795tyPMLTcCoodh55J1PVsaKSnpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180133,
+   "errors": [],
+   "holders_reached": 9,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1067548575926851,
+     "lamports": 4726799,
+     "pool": "9TXUnZW72Lpuow1ciZvDetmzyzsiqTeQjwd31nAwVoqb",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "9TXUnZW72Lpuow1ciZvDetmzyzsiqTeQjwd31nAwVoqb",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "BONKINC",
+   "token": "4Ws7YTzSfn5fSrhBXeAtpHJijF9FAQpAbFNkmxR7pump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180133,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 998765962732086,
+     "lamports": 1285241,
+     "pool": "8mNztUkjzP4Zb2jULSgMpAJpznaaDG153sp8YjWwQ5LE",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "8mNztUkjzP4Zb2jULSgMpAJpznaaDG153sp8YjWwQ5LE",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "MONEY",
+   "token": "FToY9tK3RWL2qvYqaAyNbcZosPGvKpnheAx8Kuz1pump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180132,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417330,
+     "pool": "E4Q627QzfeDbSH1fbzGAcTy4D6b5YtfdZ86Kv7dVYSVD",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "E4Q627QzfeDbSH1fbzGAcTy4D6b5YtfdZ86Kv7dVYSVD",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "Ass7",
+   "token": "HYygEYWigEcax32JGopyXBu6RTG7wvfwHNaJUNPZRVqL",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180132,
+   "errors": [],
+   "holders_reached": 1,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1285241,
+     "pool": "CLWkNomETeHtJHBkjhMq1BD8rmjFirKPDCYRPKNCKua",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "CLWkNomETeHtJHBkjhMq1BD8rmjFirKPDCYRPKNCKua",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "ZPAD",
+   "token": "J5dTJqaJEpmA937GgaMhPRdP73McmJUyF9vtqLiZg6z4",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180132,
+   "errors": [],
+   "holders_reached": 19,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417403,
+     "pool": "12uYmDexn8cmwxJkxc1eegWaCXzCiZjyyju9iMnn8fLx",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "12uYmDexn8cmwxJkxc1eegWaCXzCiZjyyju9iMnn8fLx",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "Rapestein",
+   "token": "3cEgUQEykx7tkLv6goaxEHJHkR6aSny9kvxGRDPMpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180131,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417321,
+     "pool": "8rFBWhNcD5LoHtE5LhrYMezjHAZiWLWUobSykEGGtUX5",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "8rFBWhNcD5LoHtE5LhrYMezjHAZiWLWUobSykEGGtUX5",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "ZPAD",
+   "token": "GNjSQZTgpe3CQf9p8mknJVoKPtFc5wTYMHWbRAmDbGme",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180131,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1285242,
+     "pool": "4cCS1rfBX9yYNuVRSbY3GYVvfkVqwULT4J9WPp4fco6s",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "4cCS1rfBX9yYNuVRSbY3GYVvfkVqwULT4J9WPp4fco6s",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "ZPAD",
+   "token": "4f5dhqmUp15MQvkzEHBLzKSYnboyu2YgMvU4iUtfXF7Y",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180130,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 994802261054764,
+     "lamports": 1285241,
+     "pool": "CiZ5fWGBVzrAeghZzmyJpW8J3H7iUgaJbXpZyMvX8ojS",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "CiZ5fWGBVzrAeghZzmyJpW8J3H7iUgaJbXpZyMvX8ojS",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "TOTH",
+   "token": "26CYsFJdt6edJM3vGsjySpemhDr8ubtVRSgtXhi1pump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180130,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": 2,
+   "horizon_h": 24,
+   "pool_count": 0,
+   "pools": [],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "B2Xe41LKTnK2SfsuoUbkshJnpZvEAJn48zFTgSmomxcj",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "Gubsy",
+   "token": "5CPtxorWwLQhxqDTVZoupZkguuT1oMYRrxCb4DLGpump",
+   "truncated_holders": 0,
+   "unvalued_vaults": 0,
+   "venues": [],
+   "verdict": "NO_POOL_FOUND"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180129,
+   "errors": [],
+   "holders_reached": 20,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 2311,
+     "lamports": 2179320,
+     "pool": "GMvKuEtpqciQzTHyzmETivfZUkYWQu46sK5KbHgjqhR6",
+     "quote_usd": 5.730467432407729e-07,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "GMvKuEtpqciQzTHyzmETivfZUkYWQu46sK5KbHgjqhR6",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "Google AI",
+   "token": "8xZGvMiooyVbgsg8XsFU1143uJn3PLm5rr7uhFvQ9dbg",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180129,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1285241,
+     "pool": "72sQJUXFZkfUjvEn4gZ8icWnLgVidTaBiwGmFyF51LXV",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "72sQJUXFZkfUjvEn4gZ8icWnLgVidTaBiwGmFyF51LXV",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "GAPPLE",
+   "token": "26CYxTdaa3jB7NkDoRnny7ATCMQHSsi6uF1Nx7ANpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180129,
+   "errors": [],
+   "holders_reached": 3,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 978526564877662,
+     "lamports": 1417321,
+     "pool": "Buui4kawFM8wS4ogitjzD2EGQzieumSRDEgjcmQXUMHJ",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "Buui4kawFM8wS4ogitjzD2EGQzieumSRDEgjcmQXUMHJ",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "uinhim",
+   "token": "A16iU8W3mmhfABoCPsDgr4hgUqNaAAVh99M2iTuWpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180128,
+   "errors": [],
+   "holders_reached": 3,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 999762199466147,
+     "lamports": 7935386,
+     "pool": "G68VgmRbw5zPJxq7Q3pBrjfUQTvcwZMrL6NCoUqZKoGr",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "G68VgmRbw5zPJxq7Q3pBrjfUQTvcwZMrL6NCoUqZKoGr",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "MONZ",
+   "token": "7uDSetzahgvEuNHN37YMSfhqoJbnswkf8yNT1FB2pump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180127,
+   "errors": [],
+   "holders_reached": 17,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 2,
+   "pools": [
+    {
+     "base_amount": 1660758084102949,
+     "lamports": 2179320,
+     "pool": "3VHqZ3XXXhshRNuvagBX3BByetJx22qiNcx43mHKCTs7",
+     "quote_usd": 15.838546325391407,
+     "venue": "pumpswap"
+    },
+    {
+     "base_amount": 0,
+     "lamports": 1417320,
+     "pool": "Awo9RmUfFKqDBvnoNfLnJBfcGZvhZgX5iVUbmmcdABfV",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 15.8385,
+   "quote_usd_total": 15.8385,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "Awo9RmUfFKqDBvnoNfLnJBfcGZvhZgX5iVUbmmcdABfV",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "$mgey",
+   "token": "AZLt2VpVSDyxKELnAC1njSWvdCP83oeFWbySd5Gopump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve",
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_10"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180127,
+   "errors": [],
+   "holders_reached": 100,
+   "holders_total_known": 215,
+   "horizon_h": 24,
+   "pool_count": 0,
+   "pools": [],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "8E2pxbw4G6Ue24tCKE8R5RvS5w7NDpX2KArrL2ohno6y",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "Vahine",
+   "token": "9usvWnxXLyWJXMrXoGps3f3LQvRazjQsRvsfydaULdS2",
+   "truncated_holders": 115,
+   "unvalued_vaults": 0,
+   "venues": [],
+   "verdict": "NO_POOL_FOUND"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180126,
+   "errors": [],
+   "holders_reached": 20,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 860737104600713,
+     "lamports": 2179320,
+     "pool": "7FfGFgaGobmcZNnmnC6kYTxwVTX2HQvGYAuWV5bYawN1",
+     "quote_usd": 362.58723880386503,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 362.5872,
+   "quote_usd_total": 362.5872,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "DyVDpYveqAUGB6riJwankicxHmhWAfjYc82NMq5BJuvq",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 1,
+   "symbol": "LOOONGJAK",
+   "token": "9VwDGtyezNwrTQTLobyczWKbNje45zyXgBkZpKMnpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_100"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180126,
+   "errors": [],
+   "holders_reached": 23,
+   "holders_total_known": 23,
+   "horizon_h": 24,
+   "pool_count": 0,
+   "pools": [],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "8DqMMukDvM153jP9jQQLm3aPo7GMeMzaLQWhKW9Qu4hu",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "\u5e01\u5b89\u4e95\u76d6",
+   "token": "4sgZAarS5aW6AdpAfdVTDcCEwThuXAXib365RV2MxF91",
+   "truncated_holders": 0,
+   "unvalued_vaults": 0,
+   "venues": [],
+   "verdict": "NO_POOL_FOUND"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180123,
+   "errors": [],
+   "holders_reached": 20,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 999574909430615,
+     "lamports": 13307200,
+     "pool": "69jKy2dtzcPuU1QT1wMFm6GFqi4BvbYcMSTm4A3aYYYR",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "69jKy2dtzcPuU1QT1wMFm6GFqi4BvbYcMSTm4A3aYYYR",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "Vahine",
+   "token": "7GhQ5A34mS3ZKQFVZdyW8HWPDhnxjaR5XjNCjmQK6ntW",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180123,
+   "errors": [],
+   "holders_reached": 20,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1786359293029274,
+     "lamports": 2179320,
+     "pool": "CbtZAf7USyrh7Kg5T4DufQvi1WcThQFAe9aXzMUutN27",
+     "quote_usd": 14.43562921928881,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 14.4356,
+   "quote_usd_total": 14.4356,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "8mfU7bQ3ZSSLSwHBCQSEZLBCzfJbQk7YQ3cEmQjryzDd",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 1,
+   "symbol": "NP",
+   "token": "PG7pRf61g6ZyCrnpk1za9JFAYM2JvfWDM4AcNmjpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_10"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180122,
+   "errors": [],
+   "holders_reached": 15,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1750107,
+     "pool": "HfkevYa66HtptjRe22PmB7wHsu3JHc98bQ8U2kCm9vst",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "HfkevYa66HtptjRe22PmB7wHsu3JHc98bQ8U2kCm9vst",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "TRFC",
+   "token": "FDQZhHsuTvt4KxcoUp3tLacBtKNsWUtnVuqmeJkvpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180121,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417321,
+     "pool": "D5WvkzNorKMNnJ9zJ3cn7E98smxq1kxxRBvbaRVyvsDM",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "D5WvkzNorKMNnJ9zJ3cn7E98smxq1kxxRBvbaRVyvsDM",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "VAHINE",
+   "token": "3o3eWdzFevMLRfTszpCLhXAstnWUuNFXWBfoFvSqpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180120,
+   "errors": [],
+   "holders_reached": 11,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 183255,
+     "lamports": 2026920,
+     "pool": "6KwPeWFVGQxPPeh5iVJdQuPHKi3ZnQUjp27mWfj1Go5R",
+     "quote_usd": 0.02355841005202277,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0236,
+   "quote_usd_total": 0.0236,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "6KwPeWFVGQxPPeh5iVJdQuPHKi3ZnQUjp27mWfj1Go5R",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "Eartur",
+   "token": "5UdBQFSm7qPBLMniQxPwZ3UyAjBGqMQix6E5msqhmoon",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180120,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417322,
+     "pool": "Aw337MACP8P76cwogJPDQL6YWsESSvYNTFZEKDv5L2Xn",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "Aw337MACP8P76cwogJPDQL6YWsESSvYNTFZEKDv5L2Xn",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "GTA6",
+   "token": "GJgCRG8u7yU9zMH3TWPC4YrjZMFjSjgNzWsDVtfgpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180120,
+   "errors": [],
+   "holders_reached": 3,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1014601110134346,
+     "lamports": 1417321,
+     "pool": "3U9ytVFii4g9CBahv74FTCSxmUrTRzBRepLiTvh1VuoA",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "3U9ytVFii4g9CBahv74FTCSxmUrTRzBRepLiTvh1VuoA",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "NP",
+   "token": "9XkMyGpTNdkgeLnJjyaRje9m7Q3d6rrV2Y2sCcYrpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180119,
+   "errors": [],
+   "holders_reached": 1,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1285245,
+     "pool": "DeGEp8L1VukzZ1XwEcjhFHvVhwgxRc98zT2iojfvrfzD",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "DeGEp8L1VukzZ1XwEcjhFHvVhwgxRc98zT2iojfvrfzD",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "jupcat",
+   "token": "BLsBFGGfBDMQSMZXXysrf8yZSovxgbdj9bAUftDHpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180119,
+   "errors": [],
+   "holders_reached": 4,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 959641881095269,
+     "lamports": 2309719,
+     "pool": "BzgCD91LuYNEHikVSrGXdHZgFxusLERF776pJMHFh9yq",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "BzgCD91LuYNEHikVSrGXdHZgFxusLERF776pJMHFh9yq",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": ".",
+   "token": "4Qt4wdnXXdZkWj13XjDLVRJSQCd9aNq2559fsecnpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180118,
+   "errors": [],
+   "holders_reached": 4,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1014191954772877,
+     "lamports": 1417322,
+     "pool": "8yp8fduj1vSwc98NYmUqzY9hvMSczRLXpqTU5DzKV6Pt",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "8yp8fduj1vSwc98NYmUqzY9hvMSczRLXpqTU5DzKV6Pt",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "BF",
+   "token": "HqY8tHZ5nozDZ8wr2uzQkeYLpJQJWZeKnW2m4Vdepump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180118,
+   "errors": [],
+   "holders_reached": 20,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 6185,
+     "lamports": 2179320,
+     "pool": "DrR79RE9SxZREVQu92X6WqXot6BFUvSQrSTJZtqqL6x8",
+     "quote_usd": 2.292186972963092e-07,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "DrR79RE9SxZREVQu92X6WqXot6BFUvSQrSTJZtqqL6x8",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "CLIP",
+   "token": "87ZYzt9jFJ8ixA4VhTdzMrTy1rczz7CXynvXMXSvLU6w",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180118,
+   "errors": [],
+   "holders_reached": 3,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 999994059864332,
+     "lamports": 1451324,
+     "pool": "6uih6pQqnE4RQ2TkD29UjYf2kFLry5zRC4fsWg64dUbU",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "6uih6pQqnE4RQ2TkD29UjYf2kFLry5zRC4fsWg64dUbU",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "BULLKIRK",
+   "token": "EJRohcpFYx3wY2xPC2youwKNbroBrQ7uHNFF9Zfspump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180116,
+   "errors": [],
+   "holders_reached": 100,
+   "holders_total_known": 148,
+   "horizon_h": 24,
+   "pool_count": 0,
+   "pools": [],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "2shiu2njtZLwkteRK4eJRK8JFuZTFscLqKk9EDVRv443",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "Vahine",
+   "token": "5FaCHiC6hULQ9uVrMvyP2BzaMRNiy86rQjKFoFRwxEy3",
+   "truncated_holders": 48,
+   "unvalued_vaults": 0,
+   "venues": [],
+   "verdict": "NO_POOL_FOUND"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180116,
+   "errors": [],
+   "holders_reached": 20,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417338,
+     "pool": "ACUKS5k5WxDzPNt4cjUNeifRnd7yAK9cjMPjRNjEmYXA",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "ACUKS5k5WxDzPNt4cjUNeifRnd7yAK9cjMPjRNjEmYXA",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "Vahine",
+   "token": "CwdjayPSD21eVQH9yAAmLPyAfbvZs2ujxsB2JB4VuyvP",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180116,
+   "errors": [],
+   "holders_reached": 1,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417334,
+     "pool": "GSyzYsVpr5oYTT7jtkRpSorZNdPdVQp13cvA2Azoxhfp",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "GSyzYsVpr5oYTT7jtkRpSorZNdPdVQp13cvA2Azoxhfp",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "Vahine",
+   "token": "FETx3ouYq14JKTTuqbUMvBL64tdNAQEtxqn7NnA5pump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180115,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1014182382806145,
+     "lamports": 1285241,
+     "pool": "CpJYbbEKcXazYoK9qKdqBygwCMyeqXnG5Pmh566485im",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "CpJYbbEKcXazYoK9qKdqBygwCMyeqXnG5Pmh566485im",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "CAT",
+   "token": "Cu3T3tnkeoj6Kk59G7c6NxVRfWPoPqCfYWwuAL9rpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180115,
+   "errors": [],
+   "holders_reached": 7,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 999998964794071,
+     "lamports": 1446299,
+     "pool": "CiiiJQAXjbfxAnfqkaompun5hHhRd8t4ubGHhXxyy9EL",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "CiiiJQAXjbfxAnfqkaompun5hHhRd8t4ubGHhXxyy9EL",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "Mooner",
+   "token": "GYnCJCUs5hWvxWsPS29u5XsrQH4TBQ5hUWoaxufhpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180114,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 956961919155794,
+     "lamports": 1417321,
+     "pool": "EWqBfBdddjeUmXVR9ZcWUZaUD9F7MVniFubqrnzHyw8f",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "EWqBfBdddjeUmXVR9ZcWUZaUD9F7MVniFubqrnzHyw8f",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "MONEY",
+   "token": "83pJ2egSBhJBZVwJ2BRrsZk2e3hhBhWpD4ii21Pnpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180114,
+   "errors": [],
+   "holders_reached": 100,
+   "holders_total_known": 215,
+   "horizon_h": 24,
+   "pool_count": 0,
+   "pools": [],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "4vQRjsS13Ma5eNzVpYWvBzuD34joQj6b8DepBSXaY3Dj",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "the flying cow",
+   "token": "DgSXkxD7FLhWM8wE5Tbwx6pUZt4zZoqAq84fX9dWZHRQ",
+   "truncated_holders": 115,
+   "unvalued_vaults": 0,
+   "venues": [],
+   "verdict": "NO_POOL_FOUND"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180113,
+   "errors": [],
+   "holders_reached": 100,
+   "holders_total_known": 213,
+   "horizon_h": 24,
+   "pool_count": 0,
+   "pools": [],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "6pQrsTuEhQyiuoK3m5SaYef5ybR7PkaPxKUvUZTmx8aF",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "Vahine",
+   "token": "5tQWP69gzbAs1ji4NVMdQr17N8Nu4CTJmqHqxqbMmbcV",
+   "truncated_holders": 113,
+   "unvalued_vaults": 0,
+   "venues": [],
+   "verdict": "NO_POOL_FOUND"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180113,
+   "errors": [],
+   "holders_reached": 1,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417340,
+     "pool": "BYQohkwyTG8G6fj227R5a1G7FKrP3ZZJPVwpGMwhKjbB",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "BYQohkwyTG8G6fj227R5a1G7FKrP3ZZJPVwpGMwhKjbB",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "Vahine",
+   "token": "58sJ9ckU6tbhxZQxvAGrqPHWv5d1EBzWE6pdBMZZbs5a",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180112,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 998745109860205,
+     "lamports": 1285241,
+     "pool": "HiNhAd4xGYF1uLq3aHi52wNvY9FcwW7qwxofK1f2jLPo",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "HiNhAd4xGYF1uLq3aHi52wNvY9FcwW7qwxofK1f2jLPo",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "NP",
+   "token": "43mXKkAJDe1fEYDjBVUGAwTJYcWSSxuFGW5DaqQYpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180111,
+   "errors": [],
+   "holders_reached": 1,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417325,
+     "pool": "G7CEHroKmXPqLcXLWWjYX9HrBTVyLrb3suXbcZVTDdPJ",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "G7CEHroKmXPqLcXLWWjYX9HrBTVyLrb3suXbcZVTDdPJ",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "$mem",
+   "token": "NexeLNC4C5fRGn8zguxfikFVasdyiMHaPDpNQ4Gpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180110,
+   "errors": [],
+   "holders_reached": 20,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 4284,
+     "lamports": 2179320,
+     "pool": "AYLiCrUnu1pqV3XwbFTTY5oEF57ZzXsq3UAmy1V7Br47",
+     "quote_usd": 4.584373945926184e-07,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "AYLiCrUnu1pqV3XwbFTTY5oEF57ZzXsq3UAmy1V7Br47",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "\u4e2d\u56fd\u4eba\u80fd\u98de",
+   "token": "G2oMmE65RwJ3NXdwvfSeXYTrFYm8tspbAUmt77TRfHSD",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180109,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 975332484400710,
+     "lamports": 1285241,
+     "pool": "PpxF1Tt9NHc5wjSteU7Ux7iZv3K6AiEH3aRQGzwGvpx",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "PpxF1Tt9NHc5wjSteU7Ux7iZv3K6AiEH3aRQGzwGvpx",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "MONEY",
+   "token": "Hx1yCyC8yar7ihwiLjTX1AkvVP27FcRNaLw8pHhPpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180108,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1285241,
+     "pool": "5qinM5ogUekuYEyd8dX7e14NeibB7ZHtzAgGtbb5SNaw",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "5qinM5ogUekuYEyd8dX7e14NeibB7ZHtzAgGtbb5SNaw",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "FGL",
+   "token": "F6aA49wkQUGS5CDDgHY2mm68xeepWja5LQf6g6Upump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180108,
+   "errors": [],
+   "holders_reached": 4,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 980212538234325,
+     "lamports": 1417320,
+     "pool": "8k5wyBTgy87N2WWceYvDK6rwRXhriC2CWryqEHUY9XvQ",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "8k5wyBTgy87N2WWceYvDK6rwRXhriC2CWryqEHUY9XvQ",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "test",
+   "token": "9XqHoZ5jwsqS7DtVHWGSso8VEUcX2fRpPn4GA5jApump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180107,
+   "errors": [],
+   "holders_reached": 3,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 997733200339251,
+     "lamports": 1417320,
+     "pool": "DoxH92Hhyobuof3U6e3ha1CHWwkuuAMmKQZVpsCPoNhP",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "DoxH92Hhyobuof3U6e3ha1CHWwkuuAMmKQZVpsCPoNhP",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "NP",
+   "token": "4MXZmz9u4tjg29px1Au2kYCFmfQ2iqLSJJdoraeZpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180107,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1287253,
+     "pool": "22sspLNEeDv9atXFpS8NLP2DkoRoiPb61nEceYdAMyy6",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "22sspLNEeDv9atXFpS8NLP2DkoRoiPb61nEceYdAMyy6",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "RGC",
+   "token": "7oGvvZBe6azFs9KaRmFqMEa96AJh5NKcfTviwQBwpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180106,
+   "errors": [],
+   "holders_reached": 100,
+   "holders_total_known": 210,
+   "horizon_h": 24,
+   "pool_count": 0,
+   "pools": [],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "Dt9CbYv48CnH8dooPhusWUCsLBHjHLnm9HgNEtYDHBqX",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "FIBONACCI",
+   "token": "APbc22K9KHrL5ZybEvzM4sZ8wLZzgzAmihBe9LsqgBwX",
+   "truncated_holders": 110,
+   "unvalued_vaults": 0,
+   "venues": [],
+   "verdict": "NO_POOL_FOUND"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180105,
+   "errors": [],
+   "holders_reached": 45,
+   "holders_total_known": 45,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 2292,
+     "lamports": 2179320,
+     "pool": "2yoRbFP9E2pCy9KnrbGEmt94mtjhHyXmzvy1ouepf76X",
+     "quote_usd": 5.730467432407729e-07,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "84wddGQKajNixfdpVpujy5EmroQdzcJqBoTZZtRzeNv2",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "SCHR\u00d6DNGER",
+   "token": "6R1by4pPUcwzUSpjCpSAdYL3hQqeQvRKic3JGLBHfHfE",
+   "truncated_holders": 0,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180105,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 999623916065893,
+     "lamports": 11803857,
+     "pool": "9Fb2N7A894moKUEny2pjajsgCMWCLm99mkPLPfmi8qTo",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "9Fb2N7A894moKUEny2pjajsgCMWCLm99mkPLPfmi8qTo",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "gloob",
+   "token": "eQe4zWoRo53hRw9yYK1ehBYQEiy9kADLAGs4dfVpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180104,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 981738610608120,
+     "lamports": 1285241,
+     "pool": "3Q62bDjkNkcUsmLSzPAsMEaEZVGVkogNkj7b11CZBsGM",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "3Q62bDjkNkcUsmLSzPAsMEaEZVGVkogNkj7b11CZBsGM",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "MONEY",
+   "token": "Fy4p3CeQJUyowviQQv2H3zF1shVZByTfkqayv6aMpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180103,
+   "errors": [],
+   "holders_reached": 3,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1008261736318822,
+     "lamports": 1285241,
+     "pool": "3hjcySgsBBJxhnKdV6FJ4QmdLfPiUsHLZTGHphpbrtPn",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "3hjcySgsBBJxhnKdV6FJ4QmdLfPiUsHLZTGHphpbrtPn",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "ULTRA",
+   "token": "H2zRRti4BhZhbcu2AVS4NovtGW8hkmdkujy6GVyApump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180103,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1285245,
+     "pool": "5iBkEUXYcaytn6T9LHRzovdDAv8xPjysBKift58mwoNK",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "5iBkEUXYcaytn6T9LHRzovdDAv8xPjysBKift58mwoNK",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "GROUPPROJECT",
+   "token": "CNTRdVhZfuny6w5jSvKaE6CEME1Sw7BD97bNCpnYMVk6",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180102,
+   "errors": [],
+   "holders_reached": 20,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 34,
+     "lamports": 2026920,
+     "pool": "7NCUHt14e9FKzq6zUA11Bcz1ffHQeTcpBMxTYkENXCjz",
+     "quote_usd": 5.2032644286262185e-05,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0001,
+   "quote_usd_total": 0.0001,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "6WyfYACCiqiRo3kNS5Dh9FbJjM6mitScVJqreJvc8vAW",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 1,
+   "symbol": "SCHR\u00d6DING",
+   "token": "6GzMeZwLE5nUCs5VnoETZpCrDo8RWi9b8yT6bfqa22Xv",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180102,
+   "errors": [],
+   "holders_reached": 36,
+   "holders_total_known": 36,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 12688,
+     "lamports": 2179320,
+     "pool": "FFYk6RXAzceFgihiZPGcehj4yTCWiWKcpBnnxEd7ynRk",
+     "quote_usd": 1.146093486481546e-07,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "7QcAWLaFqGBRh6n1ewuuYkF93uDBqu6V5J9WpQFDFXET",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "TWIN",
+   "token": "DyWKkeFxYiX8PZVzGKC7ZzSjYqN649Adw3D8sj83KG3h",
+   "truncated_holders": 0,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180101,
+   "errors": [],
+   "holders_reached": 7,
+   "holders_total_known": 7,
+   "horizon_h": 24,
+   "pool_count": 0,
+   "pools": [],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "5mnHTPpLJitQkWW78FVqYzmWKgURAF31Kfk8Wza6eZFf",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "\u8783\u87f9",
+   "token": "dFbPCe2MW9pg61qcXraJESF7zDWjcnZjZwgRKUsw9Ru",
+   "truncated_holders": 0,
+   "unvalued_vaults": 0,
+   "venues": [],
+   "verdict": "NO_POOL_FOUND"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180100,
+   "errors": [],
+   "holders_reached": 1,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1285243,
+     "pool": "8CWedjv5MEeS8yxpSxpvUxpPf86ihgCCrY1H9QAa3hqo",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "8CWedjv5MEeS8yxpSxpvUxpPf86ihgCCrY1H9QAa3hqo",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "TRMPX",
+   "token": "9Teq6SqoGd1kGHa92sifh9KXxwruqMD3MnTg3pSFhbr8",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180100,
+   "errors": [],
+   "holders_reached": 3,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 999959984495332,
+     "lamports": 2868920,
+     "pool": "9Uq6TeScTd3HtmMTEh8ZCeujQNktfpkFqgL9dvNJy5yP",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "9Uq6TeScTd3HtmMTEh8ZCeujQNktfpkFqgL9dvNJy5yP",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "ebrd",
+   "token": "HfyL6Gb3FomX8Pxe1Ae1orrccKHD7naHJ3jddgcwpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180100,
+   "errors": [],
+   "holders_reached": 1,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1285242,
+     "pool": "FpiWGWdoJ3BMgAhpzqLy8qFnCngh94e2Q8Pqieysu6t",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "FpiWGWdoJ3BMgAhpzqLy8qFnCngh94e2Q8Pqieysu6t",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "MUSKX",
+   "token": "Gy41873KTKiX8HzUfBQgszffwwhAFpisbDzDok4rkABv",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180097,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1013053443807998,
+     "lamports": 1285241,
+     "pool": "83cue6YvRtKsG6Krbw391bFr3UBUUVNCNaWPiTosPd7h",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "83cue6YvRtKsG6Krbw391bFr3UBUUVNCNaWPiTosPd7h",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "skipoo126",
+   "token": "4CZgAwdFEKWzbGfUPR4m5zKCebMzWT53SxpADjsPpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180096,
+   "errors": [],
+   "holders_reached": 20,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 836353069786715,
+     "lamports": 2179320,
+     "pool": "BPXj19sw3BydWUHptzrCMFbzExBxikdF6QdyhoabJbfk",
+     "quote_usd": null,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "HdKXpsMEHHEGgPuQyv9XrLd3PMp2x8iRgYpGvoc4n8Yi",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 1,
+   "symbol": "POKEDEX",
+   "token": "51R8zB5zPiy4VHC5t83dEpCs2pQExktyC5MHJftChvRP",
+   "truncated_holders": null,
+   "unvalued_vaults": 1,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_UNVALUED"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180096,
+   "errors": [],
+   "holders_reached": 8,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417345,
+     "pool": "Du9SuGk6n3aaSUsYAGDMri51tx7KomKbYQGzccPHZiDo",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "Du9SuGk6n3aaSUsYAGDMri51tx7KomKbYQGzccPHZiDo",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "DAVID",
+   "token": "FmL3ZHpUjZiT3jmhzQdnuiUSN8zDgTwzbqxPjEWMpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180095,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1013111019018200,
+     "lamports": 1285241,
+     "pool": "CFHHJzN4bqQKA1YFk3ErodFgA7ZToU9Qxhrz81qR7bGS",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "CFHHJzN4bqQKA1YFk3ErodFgA7ZToU9Qxhrz81qR7bGS",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "skipoo126",
+   "token": "6yqtsjzyjWUToLeak2JzRKSDxaV6uur9SLkmUeMQpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180095,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417330,
+     "pool": "G9CiJKSzLu5rwo85JWU8nU8FRRHYfcUKdcJqi2zNtGuu",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "G9CiJKSzLu5rwo85JWU8nU8FRRHYfcUKdcJqi2zNtGuu",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "pi",
+   "token": "4V2ecMZ4CHprh5Ufs2CKARM63E8VC9zsQmEmNWBfpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180094,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 999999731027462,
+     "lamports": 1285240,
+     "pool": "BfJCRr9bQVdqpB55WNw9ZFVbqbHEg8CAwhAJQfMtVeU4",
+     "quote_usd": null,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "BfJCRr9bQVdqpB55WNw9ZFVbqbHEg8CAwhAJQfMtVeU4",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "SSI",
+   "token": "8og6Dre3GmZKb6qMF4KAw22RT78De7doxy99sHtbpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 1,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_UNVALUED"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180094,
+   "errors": [],
+   "holders_reached": 37,
+   "holders_total_known": 37,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 3293,
+     "lamports": 2179320,
+     "pool": "H4YnXZxkgjR3e4ovQJe3Gk8EwaJc1fnQQ3YRMxEzd4vb",
+     "quote_usd": 4.584373945926184e-07,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "H4YnXZxkgjR3e4ovQJe3Gk8EwaJc1fnQQ3YRMxEzd4vb",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 2,
+   "symbol": "SCHR\u00d6DNGER",
+   "token": "7GHTd9t4PanvD4qtG8DybKFCWHH8PLLBngcwUwJxJxn5",
+   "truncated_holders": 0,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180093,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417325,
+     "pool": "3pY1ZihWKLrbo3Z2N6RcZDQhHEq9yQSeDVyfH1oiBXNZ",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "3pY1ZihWKLrbo3Z2N6RcZDQhHEq9yQSeDVyfH1oiBXNZ",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "ORA",
+   "token": "EfNT4mjVvDVS6j7QTrNJ6Qg468UrK89n497AfEykpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180093,
+   "errors": [],
+   "holders_reached": 20,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 996499794635174,
+     "lamports": 1417320,
+     "pool": "5YnfRCtJkPMLijybsGKY7Af8R5idvKScpeiuyUrNcJ9x",
+     "quote_usd": null,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "Hns3Td45EiFxs4aDUafEFwwow2kr75wFZ3hkqpf6d1T7",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 1,
+   "symbol": "QOGE",
+   "token": "BW1WuS2692bReTGzcB6tWZmgDHjtq28uomST3Jrspump",
+   "truncated_holders": null,
+   "unvalued_vaults": 1,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_UNVALUED"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180092,
+   "errors": [],
+   "holders_reached": 1,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 999996467588330,
+     "lamports": 1516084,
+     "pool": "4mFLybktSX8oiS5idkoS6wNZUMZ1jaMkcCRkvarmzMjX",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "4mFLybktSX8oiS5idkoS6wNZUMZ1jaMkcCRkvarmzMjX",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "DUALITY",
+   "token": "FmArCJczv6zh2U1PCSed6PMK2tkmccm6G3r8H6a7pump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180092,
+   "errors": [],
+   "holders_reached": 3,
+   "holders_total_known": 3,
+   "horizon_h": 24,
+   "pool_count": 0,
+   "pools": [],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "A3CpjTYCqdXaKrJLvhc7xbbgMr61mjgX3y2y1j2YfaqU",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "Ellie",
+   "token": "ymXCAMrnjapxQmrhYYAPwupCuaxD5Y3CkvbrzskT7Cq",
+   "truncated_holders": 0,
+   "unvalued_vaults": 0,
+   "venues": [],
+   "verdict": "NO_POOL_FOUND"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180091,
+   "errors": [],
+   "holders_reached": 1,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 999996467588330,
+     "lamports": 1516084,
+     "pool": "pfRbovyX33kfQZcvBQeYRyz5YfVGsLn8udTfr49gqgj",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "pfRbovyX33kfQZcvBQeYRyz5YfVGsLn8udTfr49gqgj",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "DUALITY",
+   "token": "AdHyPVjYcQALrmU9QcfKfgZeDih5TisetRgrY9fNpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180091,
+   "errors": [],
+   "holders_reached": 1,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 999996467588330,
+     "lamports": 1516084,
+     "pool": "EUMGhkazqxeedVQzH4dQFEt3LXh5uRo7vAohNGVVHJeQ",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "EUMGhkazqxeedVQzH4dQFEt3LXh5uRo7vAohNGVVHJeQ",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "DUALITY",
+   "token": "7skgEu79KZves7gBPJkGnShMZNpCTQs478RV3BuWpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180091,
+   "errors": [],
+   "holders_reached": 1,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 999996467588330,
+     "lamports": 1516084,
+     "pool": "6bh7rfEsm1kMeh9hTGAHymYez53gvagRX8u6187C4JpM",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "6bh7rfEsm1kMeh9hTGAHymYez53gvagRX8u6187C4JpM",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "DUALITY",
+   "token": "EAURwrxRQ7bpXwGT39sjLTCBiZgz2RiaXgSc5puUpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180090,
+   "errors": [],
+   "holders_reached": 3,
+   "holders_total_known": 3,
+   "horizon_h": 24,
+   "pool_count": 0,
+   "pools": [],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "CoCJj3P874nqZyAAbdbpbtYGqTAKYP4TFUq7t7JbauAd",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "Orphans",
+   "token": "GuxGtNP7jFqtQZCq5o5s9Enbza9oMnybYcQzRpU4x94U",
+   "truncated_holders": 0,
+   "unvalued_vaults": 0,
+   "venues": [],
+   "verdict": "NO_POOL_FOUND"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180090,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 999996467588330,
+     "lamports": 1516085,
+     "pool": "7VUhgKoYuKgUvbtUwB1WE2KWX7bSWJiM9JvBXEexYvcn",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "7VUhgKoYuKgUvbtUwB1WE2KWX7bSWJiM9JvBXEexYvcn",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "DUALITY",
+   "token": "8nYnHRxyZjHTAvf7M3e9RoFDzypt3RToFvD7S427pump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180089,
+   "errors": [],
+   "holders_reached": 3,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 987403757956701,
+     "lamports": 1417322,
+     "pool": "FLgRehNzvm9V5GNAvEWQQuEgRUY4JG6VTwLyyW8t1ekv",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "FLgRehNzvm9V5GNAvEWQQuEgRUY4JG6VTwLyyW8t1ekv",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "FERSPE",
+   "token": "2vLB9qbjfBDqzVS26otFAyrTbtBC3HtLT9TaH79Ppump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180089,
+   "errors": [],
+   "holders_reached": 2,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417321,
+     "pool": "ErNsS4NUiKgNrEeB4ZzhxJ9yhPCZSpEqFusY9nwSr4QL",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "ErNsS4NUiKgNrEeB4ZzhxJ9yhPCZSpEqFusY9nwSr4QL",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "larik",
+   "token": "ERcrbLZb3r89DjbsbNFojfVk827TXe1VkgCkfTpKpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180089,
+   "errors": [],
+   "holders_reached": 100,
+   "holders_total_known": 186,
+   "horizon_h": 24,
+   "pool_count": 0,
+   "pools": [],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "HqK16kd9hUHtnZgFygZbse2dDdZ1V1z4mkMMpH6B8WbN",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "BLAST",
+   "token": "HC6RxumxznbNrYEe7x9RbEo3LnyTju5geAxv4ejqXJKc",
+   "truncated_holders": 86,
+   "unvalued_vaults": 0,
+   "venues": [],
+   "verdict": "NO_POOL_FOUND"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180088,
+   "errors": [],
+   "holders_reached": 1,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1285242,
+     "pool": "PqRP4hHYQG5Y4jcAxWjabbiag4tpksxaHfzbcvaZjwb",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "PqRP4hHYQG5Y4jcAxWjabbiag4tpksxaHfzbcvaZjwb",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "Orphans",
+   "token": "7Y2SBLYLFJ3CBtMdef9DhSoG5Y4GHmN852HYbVsGpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180084,
+   "errors": [],
+   "holders_reached": 1,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1285242,
+     "pool": "EbRfFVgNM2qcANbWXeqtnKQ26rri2ZjG7iLHcdSbe7yn",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "EbRfFVgNM2qcANbWXeqtnKQ26rri2ZjG7iLHcdSbe7yn",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "IGG",
+   "token": "26wb87ooBLL8jqgK7MSbW2tdtofcuSHn4JRMrffbaAEd",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180084,
+   "errors": [],
+   "holders_reached": 3,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 992614408679175,
+     "lamports": 8549914,
+     "pool": "49ao21Fi3ih4StvqxoYbyYGvFPqznBfkS4yGiRDDDBxN",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "49ao21Fi3ih4StvqxoYbyYGvFPqznBfkS4yGiRDDDBxN",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "MGOAT",
+   "token": "Eixtav9Ys76phT6rGyr7GVciMnw4EoCPME2AQnvapump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180083,
+   "errors": [],
+   "holders_reached": 4,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1285336,
+     "pool": "9nJuCYoJG6SN7S4hMSuaM5Rcb2apKr19q7GnNyTwuCrS",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "9nJuCYoJG6SN7S4hMSuaM5Rcb2apKr19q7GnNyTwuCrS",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "ZPOT",
+   "token": "85UEnhcmh3rdnvfdXRYwQqeW8jM6DsfqbJsF5Dcxpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180083,
+   "errors": [],
+   "holders_reached": 9,
+   "holders_total_known": 9,
+   "horizon_h": 24,
+   "pool_count": 0,
+   "pools": [],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "4J2F4f3iBnRMnJKa6oNmLHXifaa4QCMuhjn2x4A4KyeY",
+   "recorded_pair_is_a_discovered_pool": false,
+   "rung": 2,
+   "symbol": "\u8783\u87f9",
+   "token": "H6L4PnnYfh9WEVB2jhneif8yJo4fuWMLy4Mo5JZTZwNQ",
+   "truncated_holders": 0,
+   "unvalued_vaults": 0,
+   "venues": [],
+   "verdict": "NO_POOL_FOUND"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180082,
+   "errors": [],
+   "holders_reached": 3,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1009397522028912,
+     "lamports": 6447402,
+     "pool": "iJ6FR9QxhZo6TRPkwCLMrJNkYDH3vvSXtqzQz5oqur9",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "iJ6FR9QxhZo6TRPkwCLMrJNkYDH3vvSXtqzQz5oqur9",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "CLAT",
+   "token": "Aa9pFZdyGSgo1avhETt4vTZhpgbJKBiuYnMgwNskpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180080,
+   "errors": [],
+   "holders_reached": 1,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1285251,
+     "pool": "3ikNq6gCpNbpW46VAs2adPf8ewSDJA39ciiP173hjNsW",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "3ikNq6gCpNbpW46VAs2adPf8ewSDJA39ciiP173hjNsW",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "ZKSVM",
+   "token": "AbeEXuEJ9kwmCFRMoWTeD7Ei87wSk4P7d63downupump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180079,
+   "errors": [],
+   "holders_reached": 40,
+   "holders_total_known": 40,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 44428263,
+     "lamports": 2179320,
+     "pool": "4CPQ2mcyarhmLj6oDC4JJ3vZAf8cZRpK1THVJ64cDmph",
+     "quote_usd": 0.0019280730723079049,
+     "venue": "pumpswap"
+    }
+   ],
+   "quote_usd_max": 0.0019,
+   "quote_usd_total": 0.0019,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "4CPQ2mcyarhmLj6oDC4JJ3vZAf8cZRpK1THVJ64cDmph",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 2,
+   "symbol": "GROK",
+   "token": "5Nje3An2iDKQkZsHacdHQiVR4EvCK5hmHrymkcD3JyZu",
+   "truncated_holders": 0,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpswap"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790180077,
+   "errors": [],
+   "holders_reached": 1,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1285258,
+     "pool": "J5cHfAsJba2LnM9if49GY7NdLiZBkfRDceBdLZufnVDP",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "unresolved"
+   ],
+   "recorded_pair": "J5cHfAsJba2LnM9if49GY7NdLiZBkfRDceBdLZufnVDP",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "SWT58",
+   "token": "BHXDjnKjvZhvrt9m2CPf1BPUb8YYuycNL8cYAHKKRTi8",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  },
+  {
+   "absence_is_a_floor": true,
+   "checked_ts": 1790176600,
+   "errors": [],
+   "holders_reached": 3,
+   "holders_total_known": null,
+   "horizon_h": 24,
+   "pool_count": 1,
+   "pools": [
+    {
+     "base_amount": 1000000000000000,
+     "lamports": 1417324,
+     "pool": "H7TitDhVXRUYsVBrq1hWSEoBm96iEeonmfYF8VVaEUwA",
+     "quote_usd": 0.0,
+     "venue": "pumpfun_curve"
+    }
+   ],
+   "quote_usd_max": 0.0,
+   "quote_usd_total": 0.0,
+   "reasons": [
+    "source_dropped",
+    "fallback_budget_spent"
+   ],
+   "recorded_pair": "H7TitDhVXRUYsVBrq1hWSEoBm96iEeonmfYF8VVaEUwA",
+   "recorded_pair_is_a_discovered_pool": true,
+   "rung": 1,
+   "symbol": "Bwull",
+   "token": "26CeQcc65wknqhD5x76hN6L1eRU3LbUYY9ERCUabpump",
+   "truncated_holders": null,
+   "unvalued_vaults": 0,
+   "venues": [
+    "pumpfun_curve"
+   ],
+   "verdict": "POOL_QUOTE_DUST"
+  }
+ ],
+ "rpc": {
+  "calls": 778,
+  "errors": 0,
+  "rate_limited": 0,
+  "wall_s": 239.8
+ },
+ "rule": "PRECOMMIT_pool_discovery.md",
+ "sol_usd": 114.6093486481546,
+ "sol_usd_read_at": 1790181971,
+ "sol_usd_source": "lite-api.jup.ag",
+ "tally": {
+  "NO_POOL_FOUND": 15,
+  "POOL_QUOTE_10": 3,
+  "POOL_QUOTE_100": 3,
+  "POOL_QUOTE_DUST": 96,
+  "POOL_QUOTE_UNVALUED": 3
+ },
+ "unreadable_n": 0,
+ "usable_n": 120,
+ "venue_counts": {
+  "pumpfun_curve": 82,
+  "pumpswap": 25
+ },
+ "window_h": 72
+}

@@ -178,10 +178,16 @@ def liquidity(mint):
 def _liquidity(mint):
     r = Report("liquidity", mint)
     t = allpairs.token(mint)
-    if not t.get("ok"):
-        r.warn("the price index did not answer. This is NOT evidence the token "
-               "is dead - that distinction is the `gone` bug (journal.py:974).")
-        return r.fail("liquidity lookup failed: " + str(t.get("error")))
+
+    # ⛔⛔ THE INDEXER'S SILENCE IS NOT AN ANSWER ABOUT THE TOKEN, and this is
+    # where that stops being a warning and starts being a second measurement.
+    # `record_outcome` collapsed "we could not find it" into "it does not exist"
+    # (journal.py:974) and it cost us a whole population: the pair address on a
+    # `gone` row is usually a pump.fun bonding curve the token has LEFT, so the
+    # indexer drops it the moment the token bonds SUCCESSFULLY. Rule:
+    # PRECOMMIT_pool_discovery.md.
+    if (not t.get("ok")) or t.get("pair_count") == 0:
+        return _liquidity_from_chain(r, mint, t)
 
     src = "dexscreener /latest/dex/tokens (all pairs summed)"
     r.put("symbol_display", t.get("symbol_display"), src,
@@ -213,6 +219,71 @@ def _liquidity(mint):
     if t.get("truncated"):
         r.warn(f"{t['pair_count']} pairs is the API cap. The real total is "
                f"higher than ${t['total_liq_usd']:,.0f} by an unknown amount.")
+    return r.done()
+
+
+def _liquidity_from_chain(r, mint, t):
+    """⭐ The indexer had nothing. Ask the CHAIN instead, from the mint itself.
+
+    ⛔ This never renders as a clean total. It answers a narrower question -
+    "does a pool with reserves exist" - and it says so, because:
+
+      - discovery reaches the largest holders only, so `NO_POOL_FOUND` is a
+        FLOOR and never proof of absence;
+      - a discovered pool's reserves are SHAPE, not an exit price. The exit is
+        `exit_depth()`, which routes a real quote across every pool.
+    """
+    import pooldiscovery
+    indexer_said = ("lookup failed: %s" % t.get("error")) if not t.get("ok") \
+        else "the indexer answered that it has NO PAIRS for this mint"
+    r.warn("⛔ " + indexer_said + ". That is NOT evidence the token is dead. "
+           "Falling back to on-chain pool discovery from the mint.")
+    src = "on-chain: SPL token accounts of the mint, then their owners' programs"
+    px, px_src, px_ts = pooldiscovery.sol_price()
+    try:
+        d = pooldiscovery.discover(mint, sol_usd=px)
+    except Exception as e:
+        r.put("source_that_answered", None, "derived",
+              "⛔ neither the indexer nor the chain answered. UNKNOWN, not zero.")
+        return r.fail("on-chain discovery also failed: %s: %s"
+                      % (type(e).__name__, str(e)[:120]))
+
+    r.put("source_that_answered", "chain" if d["verdict"] != "UNREADABLE"
+          else None, "derived",
+          "⛔ the indexer did not answer, so nothing here came from it")
+    r.put("indexer_said", indexer_said, "dexscreener")
+    r.put("discovery_verdict", d["verdict"], src,
+          "POOL_QUOTE_100 / _10 / _DUST / _UNVALUED / NO_POOL_FOUND / UNREADABLE")
+    r.put("discovery_rung", d["rung"], src,
+          "1 = largest accounts; 2 = full enumeration of every token account")
+    r.put("pool_count", d["pool_count"], src,
+          "⚠️ pools DISCOVERED, which is a floor, not the pool count")
+    r.put("pools", [{"pool": p["pool"], "venue": p["venue"],
+                     "quote_usd": p["quote_usd"]} for p in d["pools"]], src)
+    r.put("venues", sorted({p["venue"] for p in d["pools"]}), src)
+    r.put("quote_reserves_usd", d["quote_usd_max"] if d["pools"] else None, src,
+          "⛔ the deepest discovered pool's QUOTE side, read from its own "
+          "vaults. Shape and existence only - never an exit price.")
+    r.put("unvalued_vaults", d["unvalued_vaults"], src,
+          "vaults in an asset we do not price. ⛔ Counted, never valued at 0.")
+    r.put("holders_reached", d["holders_reached"], src)
+    r.put("holders_total_known", d.get("holders_total_known"), src,
+          "None unless a full enumeration ran")
+    r.put("absence_is_a_floor", True, "derived", d["floor_note"])
+    r.put("sol_usd_used", px, px_src or "unknown", "read at %d" % px_ts)
+    # ⛔ Everything the indexer would have given us is UNKNOWN, not zero.
+    for k in ("liq_usd", "vol24_usd", "mcap_usd", "price_usd", "pair_count",
+              "is_floor", "deepest_pool_liq_usd", "quote_assets"):
+        r.unchecked(k, "the indexer did not answer, and on-chain pool discovery "
+                       "does not produce this field. UNKNOWN, never 0.")
+    if d["verdict"] == "NO_POOL_FOUND":
+        r.warn("⚠️ No pool found among the largest holders reached. That is a "
+               "FLOOR: it means we did not find one, NOT that none exists.")
+    elif d["verdict"] != "UNREADABLE":
+        r.warn("⭐ A pool with reserves EXISTS on chain that the indexer did "
+               "not list. Anything that called this token dead was wrong.")
+    if d["errors"]:
+        r.warn("discovery errors: " + "; ".join(str(e) for e in d["errors"][:3]))
     return r.done()
 
 

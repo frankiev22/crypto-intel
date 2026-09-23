@@ -1,0 +1,223 @@
+{
+ "agreement_pct": 86.7,
+ "chain_band_usd": 100,
+ "chain_clears_and_not_sellable": 7,
+ "chain_clears_and_sellable_MISSED": 2,
+ "chain_flags_and_sellable": 6,
+ "chain_flags_but_not_sellable": 0,
+ "n": 15,
+ "quote_failed": 0,
+ "ran_at_utc": "2026-09-23T16:52:38Z",
+ "rows": [
+  {
+   "chain_quote_usd": 0.0,
+   "chain_verdict": "NO_POOL_FOUND",
+   "jupiter_usd_back_now": 0.0293,
+   "jupiter_verdict_now": "TOTAL_LOSS",
+   "mint": "FLCr9vGMTkbDcRCoirP5Hx8gB7TW1Azt3pkw3qp2HTsh",
+   "pool_count": 0,
+   "report_jupiter_0922": 0.32,
+   "report_single_pool_quote": 20.37,
+   "symbol": "EMBER",
+   "venues": []
+  },
+  {
+   "chain_quote_usd": 3.419714014923035e-07,
+   "chain_verdict": "POOL_QUOTE_DUST",
+   "jupiter_usd_back_now": null,
+   "jupiter_verdict_now": "NO_SELL_ROUTE",
+   "mint": "GPqoXbff7NPyvbngpsUz7mP1byZq7Xfh94E8Gu56HR6T",
+   "pool_count": 1,
+   "report_jupiter_0922": null,
+   "report_single_pool_quote": 0.0,
+   "symbol": "USDCAT",
+   "venues": [
+    "pumpswap"
+   ]
+  },
+  {
+   "chain_quote_usd": 0.001354320740376686,
+   "chain_verdict": "POOL_QUOTE_DUST",
+   "jupiter_usd_back_now": 0.0087,
+   "jupiter_verdict_now": "TOTAL_LOSS",
+   "mint": "3gAXa6khcC6G7tq6XBnonsiS7GQtq3auKnXCvdZvQtfJ",
+   "pool_count": 1,
+   "report_jupiter_0922": 0.02,
+   "report_single_pool_quote": 0.32,
+   "symbol": "TSLA",
+   "venues": [
+    "pumpswap"
+   ]
+  },
+  {
+   "chain_quote_usd": 2.2798093432820232e-07,
+   "chain_verdict": "POOL_QUOTE_DUST",
+   "jupiter_usd_back_now": null,
+   "jupiter_verdict_now": "NO_SELL_ROUTE",
+   "mint": "671dNhKr12xRoPmfkevzG1daqi4c9KMAA9J83ExyMWJ7",
+   "pool_count": 1,
+   "report_jupiter_0922": null,
+   "report_single_pool_quote": 0.0,
+   "symbol": "OWL",
+   "venues": [
+    "pumpswap"
+   ]
+  },
+  {
+   "chain_quote_usd": 0.0005700663262876699,
+   "chain_verdict": "POOL_QUOTE_DUST",
+   "jupiter_usd_back_now": 1.3186,
+   "jupiter_verdict_now": "TOTAL_LOSS",
+   "mint": "BsE3aa5FdE6FVEkWvA8ShAGpzZasEgJbfSqRC4LmErTK",
+   "pool_count": 1,
+   "report_jupiter_0922": 1.44,
+   "report_single_pool_quote": 2.94,
+   "symbol": "X7",
+   "venues": [
+    "pumpswap"
+   ]
+  },
+  {
+   "chain_quote_usd": 101.42399790732428,
+   "chain_verdict": "POOL_QUOTE_100",
+   "jupiter_usd_back_now": 89.1686,
+   "jupiter_verdict_now": "COSTLY",
+   "mint": "MjimYVjNMjBu5g9t5R66wjVknJbSFnotsS6WG5epump",
+   "pool_count": 1,
+   "report_jupiter_0922": 89.44,
+   "report_single_pool_quote": 105.2,
+   "symbol": "ChatGPT",
+   "venues": [
+    "pumpswap"
+   ]
+  },
+  {
+   "chain_quote_usd": 30.744424526177703,
+   "chain_verdict": "POOL_QUOTE_10",
+   "jupiter_usd_back_now": null,
+   "jupiter_verdict_now": "NO_SELL_ROUTE",
+   "mint": "HGNPr1ztbHLU4eo9zQEcxCGXJHF6iQ246M3iobFxpump",
+   "pool_count": 1,
+   "report_jupiter_0922": null,
+   "report_single_pool_quote": 31.89,
+   "symbol": "MrBeast",
+   "venues": [
+    "pumpswap"
+   ]
+  },
+  {
+   "chain_quote_usd": 294.16412842617723,
+   "chain_verdict": "POOL_QUOTE_100",
+   "jupiter_usd_back_now": 89.8192,
+   "jupiter_verdict_now": "COSTLY",
+   "mint": "EHY56TBNQ1jX6zUQx7gTPwbdGo7zfKMUH6kvXLbSpump",
+   "pool_count": 2,
+   "report_jupiter_0922": 90.07,
+   "report_single_pool_quote": 305.99,
+   "symbol": "tradecat",
+   "venues": [
+    "meteora_dlmm",
+    "pumpswap"
+   ]
+  },
+  {
+   "chain_quote_usd": 110.57303364246421,
+   "chain_verdict": "POOL_QUOTE_100",
+   "jupiter_usd_back_now": 89.2016,
+   "jupiter_verdict_now": "COSTLY",
+   "mint": "5vg9KLxC8QdKCaidkmCfjg3ttAXD1CFKuyeQHSK3pump",
+   "pool_count": 1,
+   "report_jupiter_0922": 89.47,
+   "report_single_pool_quote": 114.64,
+   "symbol": "Vortex",
+   "venues": [
+    "pumpswap"
+   ]
+  },
+  {
+   "chain_quote_usd": 23.414407401493385,
+   "chain_verdict": "POOL_QUOTE_10",
+   "jupiter_usd_back_now": null,
+   "jupiter_verdict_now": "NO_SELL_ROUTE",
+   "mint": "k4WcTJwcK8x11E7RFhXsYsdiWZWwfo6FzKEmcCPpump",
+   "pool_count": 2,
+   "report_jupiter_0922": null,
+   "report_single_pool_quote": 24.29,
+   "symbol": "UOTF",
+   "venues": [
+    "pumpfun_curve",
+    "pumpswap"
+   ]
+  },
+  {
+   "chain_quote_usd": 0.0,
+   "chain_verdict": "NO_POOL_FOUND",
+   "jupiter_usd_back_now": 93.5607,
+   "jupiter_verdict_now": "TRADEABLE",
+   "mint": "9KmeDWVt7TtrEZT2567kxeDkDZxd3cDoTZ1ZrLow9soG",
+   "pool_count": 0,
+   "report_jupiter_0922": 94.11,
+   "report_single_pool_quote": 12379.93,
+   "symbol": "STONKBROS",
+   "venues": []
+  },
+  {
+   "chain_quote_usd": 312.79413306943,
+   "chain_verdict": "POOL_QUOTE_100",
+   "jupiter_usd_back_now": 89.8797,
+   "jupiter_verdict_now": "COSTLY",
+   "mint": "54c53NaoMDLcxv9ECjN35GLJjX4JDbpbwpSiFwbspump",
+   "pool_count": 1,
+   "report_jupiter_0922": 90.12,
+   "report_single_pool_quote": 324.51,
+   "symbol": "VSOF",
+   "venues": [
+    "pumpswap"
+   ]
+  },
+  {
+   "chain_quote_usd": 2977.549512173538,
+   "chain_verdict": "POOL_QUOTE_100",
+   "jupiter_usd_back_now": 96.0654,
+   "jupiter_verdict_now": "TRADEABLE",
+   "mint": "CdhZy8wrRxNxoV8HtoByXKN7mvS46avtuZ1b39tKfx7",
+   "pool_count": 1,
+   "report_jupiter_0922": 95.56,
+   "report_single_pool_quote": 64122.96,
+   "symbol": "X7b",
+   "venues": [
+    "meteora_dlmm"
+   ]
+  },
+  {
+   "chain_quote_usd": 1544.6236874531946,
+   "chain_verdict": "POOL_QUOTE_100",
+   "jupiter_usd_back_now": 92.3966,
+   "jupiter_verdict_now": "TRADEABLE",
+   "mint": "BLSuVTxKYDL4vm4XmG3oEJfsSGfJZF3cgy98ri68pump",
+   "pool_count": 1,
+   "report_jupiter_0922": 97.65,
+   "report_single_pool_quote": 47650.52,
+   "symbol": "CATEWALK",
+   "venues": [
+    "pumpswap"
+   ]
+  },
+  {
+   "chain_quote_usd": 0.0,
+   "chain_verdict": "NO_POOL_FOUND",
+   "jupiter_usd_back_now": 96.4438,
+   "jupiter_verdict_now": "TRADEABLE",
+   "mint": "HXQ66zSRqynwJQ6vYEYa85qGY9C2Ycz8rnYQHgApn391",
+   "pool_count": 0,
+   "report_jupiter_0922": 96.45,
+   "report_single_pool_quote": 18467.44,
+   "symbol": "GO",
+   "venues": []
+  }
+ ],
+ "sellable_threshold_usd_back": 50.0,
+ "sol_usd": 113.99046716410116,
+ "sol_usd_source": "lite-api.jup.ag",
+ "what_this_is": "instrument validation on an ALREADY-LABELLED set, NOT part of the gone experiment"
+}

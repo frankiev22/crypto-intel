@@ -120,6 +120,56 @@ returned 30 are not ordered by size. **Render a floor as `$2.27M+`, never as
 ⚠️ `liq_usd` is a correct sum of an **overstating** field, measured overstating
 by a median 781x. It answers *what shape is this token*. It is not an exit price.
 
+#### ⭐⭐ And when the indexer has NOTHING, this endpoint asks the CHAIN
+
+**New 2026-09-23, rule `PRECOMMIT_pool_discovery.md`.** If the all-pairs lookup
+fails *or* returns `pair_count: 0`, `liquidity()` does not return an empty
+answer. It falls back to **on-chain pool discovery from the mint itself**
+(`pooldiscovery.discover`) and the response says so.
+
+⛔ **Why this is not a nicety.** `record_outcome` wrote `gone` when two INDEXER
+lookups of a recorded pair failed (`journal.py:974`), which collapsed *"we could
+not find it"* into *"it does not exist"* - the `authority_live=None` bug class.
+And the recorded pair on those rows is usually a pump.fun **bonding curve the
+token has left**, so the indexer drops it precisely when the token bonds
+**successfully**. Frank: *"We need to use the contract address to find the real
+pool so we can see it after bonding."*
+
+How it works, with no AMM layout parsed anywhere: the SPL token-account layout is
+fixed (`mint` @0, `owner` @32, `amount` @64), so we enumerate the token accounts
+**of the mint**, read each account's owner, and ask which program owns that owner.
+An owner owned by a **known AMM program** is a pool. Then
+`getTokenAccountsByOwner` on that pool gives its **quote side**, read from the
+pool's own vaults.
+
+Extra fields on a fallback response:
+
+| field | meaning |
+|---|---|
+| `source_that_answered` | `"chain"`, or **null** when neither source answered |
+| `indexer_said` | the indexer's actual answer, quoted |
+| `discovery_verdict` | `POOL_QUOTE_100` / `_10` / `_DUST` / `_UNVALUED` / `NO_POOL_FOUND` / `UNREADABLE` |
+| `discovery_rung` | 1 = largest accounts, 2 = full enumeration of every token account |
+| `quote_reserves_usd` | the deepest discovered pool's quote side, from its vaults |
+| `unvalued_vaults` | vaults in an asset we do not price. ⛔ Counted, never valued at 0 |
+| `holders_reached` / `holders_total_known` | what the ladder actually saw |
+| `absence_is_a_floor` | always `true`, with the reason in words |
+
+⛔⛔ **Two hard limits, on every such response.**
+
+1. **`NO_POOL_FOUND` is a FLOOR, never proof of absence.** Resolving every holder
+   is not affordable - measured: 60,691 token accounts for EMBER, and batching
+   all their owners returned **HTTP 429** - so the ladder reaches the largest
+   holders only. Finding a pool is proof; finding none is not.
+2. ⛔ **Discovered reserves are SHAPE AND EXISTENCE, never an exit price.**
+   Measured on the controls: a pool holding **$23.53** of WSOL returned
+   **NO_SELL_ROUTE** from Jupiter. **Existence is not liquidity.** The exit stays
+   `exit_depth()`, which routes a real quote across every pool.
+
+⚠️ Every indexer-only field (`liq_usd`, `vol24_usd`, `mcap_usd`, `price_usd`,
+`pair_count`, `is_floor`, `deepest_pool_liq_usd`, `quote_assets`) comes back in
+`not_checked` as **null with a reason**, never as 0 (standing rule 5).
+
 ---
 
 ### `resolve(ticker)` ⭐ the call that would have saved an entire day

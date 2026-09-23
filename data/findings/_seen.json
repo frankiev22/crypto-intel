@@ -198,9 +198,9 @@
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
-  "count": 116,
+  "count": 117,
   "example": "horizon-drift: 1h",
-  "last_seen": "2026-09-23T15:14:34+00:00",
+  "last_seen": "2026-09-23T16:13:49+00:00",
   "last_escalated": "2026-09-23T14:12:47+00:00",
   "keys": [
    "1h",
@@ -312,9 +312,9 @@
  },
  "liveness:selftest": {
   "first_seen": "2026-09-21T05:09:40+00:00",
-  "count": 582,
+  "count": 596,
   "example": "liveness: selftest",
-  "last_seen": "2026-09-23T15:20:39+00:00",
+  "last_seen": "2026-09-23T17:10:12+00:00",
   "last_escalated": "2026-09-23T11:19:34+00:00",
   "keys": [
    "selftest"
@@ -13285,6 +13285,55 @@
   "example": "mcap-crossing: 5MNH5SjgDHdd44FMpRgx2D5DQUWthzxUa658tU2E3xpu",
   "keys": [
    "5MNH5SjgDHdd44FMpRgx2D5DQUWthzxUa658tU2E3xpu"
+  ]
+ },
+ "scanner-hit:sveztxhtzbanwactiycutnkeondnktynpkbvm": {
+  "first_seen": "2026-09-23T16:04:26+00:00",
+  "count": 1,
+  "example": "scanner-hit: 9svEztx19H6TZba6NWaCtiYC3UtNKeondnKTynpkb1VM",
+  "keys": [
+   "9svEztx19H6TZba6NWaCtiYC3UtNKeondnKTynpkb1VM"
+  ]
+ },
+ "mcap-crossing:gucivbrzbcxfqnrtxvovzizkywmmwyypyswpmu": {
+  "first_seen": "2026-09-23T16:11:22+00:00",
+  "count": 1,
+  "example": "mcap-crossing: Gu2ci21VBRzBCxfqNRTxVovziZ3KYw6MMwYypYSW3pMU",
+  "keys": [
+   "Gu2ci21VBRzBCxfqNRTxVovziZ3KYw6MMwYypYSW3pMU"
+  ]
+ },
+ "mcap-crossing:ysyxefxnrbgbwuchvmdwcobbkyfktlofaluvr": {
+  "first_seen": "2026-09-23T16:11:27+00:00",
+  "count": 1,
+  "example": "mcap-crossing: 6ySYXeFX3nrBG8bWuchVm7d8wCoBbKYFk7tLo3FALuvr",
+  "keys": [
+   "6ySYXeFX3nrBG8bWuchVm7d8wCoBbKYFk7tLo3FALuvr"
+  ]
+ },
+ "mcap-crossing:azczujapdqdlqtyxdwtupnbzzxtzqlbk": {
+  "first_seen": "2026-09-23T16:11:37+00:00",
+  "count": 2,
+  "example": "mcap-crossing: Azcz2ujAp23DqdLQ882T3YX42DWTUpn4BZzxTZ88QLBK",
+  "keys": [
+   "Azcz2ujAp23DqdLQ882T3YX42DWTUpn4BZzxTZ88QLBK"
+  ],
+  "last_seen": "2026-09-23T16:11:38+00:00"
+ },
+ "scanner-hit:zpoquzauosjwkmstyjgwufapktdpsbgujbvazc": {
+  "first_seen": "2026-09-23T17:04:44+00:00",
+  "count": 1,
+  "example": "scanner-hit: ZpoquZaUo1SjWKmst5yJgWUfA7PKtDPsbGujbV8AZ1c",
+  "keys": [
+   "ZpoquZaUo1SjWKmst5yJgWUfA7PKtDPsbGujbV8AZ1c"
+  ]
+ },
+ "scanner-hit:efjyniywzmwfmtjazifqodfpqcfgvtwfaztgrh": {
+  "first_seen": "2026-09-23T17:04:45+00:00",
+  "count": 1,
+  "example": "scanner-hit: E7f3JYniYw3Zm3wFmTJaZifQoDf9pQcfGvtWF8aZtGrH",
+  "keys": [
+   "E7f3JYniYw3Zm3wFmTJaZifQoDf9pQcfGvtWF8aZtGrH"
   ]
  }
 }
