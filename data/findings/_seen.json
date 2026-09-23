@@ -187,13 +187,14 @@
  },
  "funnel-narrowing:scan": {
   "first_seen": "2026-09-20T15:07:49+00:00",
-  "count": 2,
+  "count": 3,
   "example": "funnel-narrowing: scan",
-  "last_seen": "2026-09-21T20:05:47+00:00",
-  "last_escalated": "2026-09-21T20:05:47+00:00",
+  "last_seen": "2026-09-23T05:06:08+00:00",
+  "last_escalated": "2026-09-23T05:06:08+00:00",
   "keys": [
    "scan"
-  ]
+  ],
+  "escalations": 1
  },
  "horizon-drift:h": {
   "first_seen": "2026-09-05T04:28:42+00:00",
@@ -310,13 +311,14 @@
  },
  "liveness:selftest": {
   "first_seen": "2026-09-21T05:09:40+00:00",
-  "count": 452,
+  "count": 480,
   "example": "liveness: selftest",
-  "last_seen": "2026-09-23T02:17:21+00:00",
-  "last_escalated": "2026-09-22T23:16:46+00:00",
+  "last_seen": "2026-09-23T05:23:33+00:00",
+  "last_escalated": "2026-09-23T05:17:33+00:00",
   "keys": [
    "selftest"
-  ]
+  ],
+  "escalations": 1
  },
  "liveness:watchlist-sweep": {
   "first_seen": "2026-09-10T00:07:41+00:00",
@@ -13067,6 +13069,38 @@
   "example": "scanner-hit: 51Lrs5sL4ZtfqSqppy7bLdqBz7DhwekojNPoYdX6pump",
   "keys": [
    "51Lrs5sL4ZtfqSqppy7bLdqBz7DhwekojNPoYdX6pump"
+  ]
+ },
+ "scanner-hit:msefpfncasecaeffsmbfbyjmsxhouevkereee": {
+  "first_seen": "2026-09-23T03:05:05+00:00",
+  "count": 1,
+  "example": "scanner-hit: M7SEFpf2NcAsECAEFFsMBfbyj8msxho8U8EVkE2rEEe",
+  "keys": [
+   "M7SEFpf2NcAsECAEFFsMBfbyj8msxho8U8EVkE2rEEe"
+  ]
+ },
+ "scanner-hit:emqyqkpalvhaycbsmmppmtrthjenderwzrk": {
+  "first_seen": "2026-09-23T03:05:06+00:00",
+  "count": 1,
+  "example": "scanner-hit: 8e2mqYqKp1ALVHAYCbsM69MppmT72rThJEn3deRwZrk7",
+  "keys": [
+   "8e2mqYqKp1ALVHAYCbsM69MppmT72rThJEn3deRwZrk7"
+  ]
+ },
+ "scanner-hit:gpzqttmjenqfrsymumxnntekahxuezjrmrbtr": {
+  "first_seen": "2026-09-23T04:06:00+00:00",
+  "count": 1,
+  "example": "scanner-hit: G4PZQ4tTMjeNQfrSyMUMXN919NTeKA8hXUEzjRmr9btr",
+  "keys": [
+   "G4PZQ4tTMjeNQfrSyMUMXN919NTeKA8hXUEzjRmr9btr"
+  ]
+ },
+ "scanner-hit:vbpsafxkhmzjhofqbdgvgnvrqfwbhzonpump": {
+  "first_seen": "2026-09-23T04:06:01+00:00",
+  "count": 1,
+  "example": "scanner-hit: Vb6p6sAfXkHMZjHof2Q1b7dGv9gNVrQFWBhzoN1pump",
+  "keys": [
+   "Vb6p6sAfXkHMZjHof2Q1b7dGv9gNVrQFWBhzoN1pump"
   ]
  }
 }
