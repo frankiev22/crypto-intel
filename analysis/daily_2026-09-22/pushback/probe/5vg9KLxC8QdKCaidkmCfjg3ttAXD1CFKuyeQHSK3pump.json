@@ -1,7 +1,7 @@
 {
  "mint": "5vg9KLxC8QdKCaidkmCfjg3ttAXD1CFKuyeQHSK3pump",
- "ts": 1790102808,
- "sol_usd": 118.20856364756857,
+ "ts": 1790104309,
+ "sol_usd": 118.18527828740557,
  "sol_usd_src": "jupiter price v3",
  "recorded_pairs": [],
  "mint_account": {
@@ -44,30 +44,30 @@
    "quote": "SOL",
    "quote_vault": "GuYCoRpcfwY1HWrzmoetHxn23zyYMFS7b6s8kx8kernU",
    "quote_ui": 0.970020006,
-   "quote_usd": 114.66467161866585,
+   "quote_usd": 114.64208435346082,
    "read_error": null,
-   "implied_price_usd": 1.1949848247558828e-07
+   "implied_price_usd": 1.1947494302026022e-07
   }
  ],
- "chain_quote_usd_total": 114.66467161866585,
+ "chain_quote_usd_total": 114.64208435346082,
  "unclassified_owners": [],
  "unclassified_quote_usd": 0,
  "third_party": {
   "jupiter_round_trip_100": {
    "mint": "5vg9KLxC8QdKCaidkmCfjg3ttAXD1CFKuyeQHSK3pump",
    "probe_usd": 100,
-   "ts": 1790102816,
-   "usd_back": 89.4718,
-   "rt_cost_pct": 10.5282,
+   "ts": 1790104322,
+   "usd_back": 89.4828,
+   "rt_cost_pct": 10.5172,
    "verdict": "COSTLY",
    "venues": [
-    "Scorch",
+    "Kipseli",
     "Pump.fun Amm"
    ],
-   "px_per_raw": 2.4183403081044973e-12,
+   "px_per_raw": 2.4197059456082397e-12,
    "error": null,
-   "token_qty_raw": 41350673296423,
-   "price_impact_pct": 6.288381
+   "token_qty_raw": 41327335737427,
+   "price_impact_pct": 6.338299
   },
   "jupiter_token": {
    "symbol": "Vortex",
@@ -99,7 +99,7 @@
    {
     "pool": "6nwcodGXirw79NsvX1H1vkYqPNS5MqQWLcHFsqsbbERs",
     "dex": "pumpswap",
-    "reserve_usd": "2317.312",
+    "reserve_usd": "2319.7046",
     "vol24": "17395.4500801063"
    },
    {
@@ -111,15 +111,15 @@
   ],
   "rugcheck": {
    "totalHolders": 0,
-   "totalMarketLiquidity": 2290.260880309211,
+   "totalMarketLiquidity": 2290.3081063029167,
    "rugged": false,
    "markets": [
     {
      "pool": "6nwcodGXirw79NsvX1H1vkYqPNS5MqQWLcHFsqsbbERs",
      "type": "pump_fun_amm",
      "lpLockedPct": 100,
-     "lpLockedUSD": 2290.260880309211,
-     "quoteUSD": 114.69954747732498
+     "lpLockedUSD": 2290.3081063029167,
+     "quoteUSD": 114.74677347103021
     }
    ],
    "risks": [
@@ -129,8 +129,8 @@
   }
  },
  "calls": {
-  "rpc": 161,
-  "http": 25
+  "rpc": 304,
+  "http": 45
  },
- "seconds": 9.3
+ "seconds": 14.7
 }

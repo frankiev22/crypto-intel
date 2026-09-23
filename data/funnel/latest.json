@@ -1,5 +1,5 @@
 {
- "ts": 1790126143,
+ "ts": 1790129829,
  "stage": "universe",
  "origin": "scheduled",
  "scan": {
@@ -17,10 +17,10 @@
  "outcomes": null,
  "graduations": {
   "backlog": 0,
-  "lag_s": 14,
-  "lag_h": 0.0,
-  "processed_last_pass": 75,
-  "failed_txs_skipped": 19,
+  "lag_s": 114,
+  "lag_h": 0.03,
+  "processed_last_pass": 68,
+  "failed_txs_skipped": 33,
   "retry_queue": 0,
   "accounted": true
  },

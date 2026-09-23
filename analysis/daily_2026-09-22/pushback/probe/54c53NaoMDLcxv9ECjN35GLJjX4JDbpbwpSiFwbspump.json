@@ -1,7 +1,7 @@
 {
  "mint": "54c53NaoMDLcxv9ECjN35GLJjX4JDbpbwpSiFwbspump",
- "ts": 1790102832,
- "sol_usd": 118.1637128363041,
+ "ts": 1790104338,
+ "sol_usd": 118.25843286558406,
  "sol_usd_src": "jupiter price v3",
  "recorded_pairs": [],
  "mint_account": {
@@ -44,30 +44,31 @@
    "quote": "SOL",
    "quote_vault": "4AUgf7nEdDcMz4TKZbPBnmMG3891x4ccPn4WGQQW7q5p",
    "quote_ui": 2.744037645,
-   "quote_usd": 324.2456762957882,
+   "quote_usd": 324.5055916218679,
    "read_error": null,
-   "implied_price_usd": 3.681961045365423e-07
+   "implied_price_usd": 3.6849125052481015e-07
   }
  ],
- "chain_quote_usd_total": 324.2456762957882,
+ "chain_quote_usd_total": 324.5055916218679,
  "unclassified_owners": [],
  "unclassified_quote_usd": 0,
  "third_party": {
   "jupiter_round_trip_100": {
    "mint": "54c53NaoMDLcxv9ECjN35GLJjX4JDbpbwpSiFwbspump",
    "probe_usd": 100,
-   "ts": 1790102836,
-   "usd_back": 90.1234,
-   "rt_cost_pct": 9.8766,
+   "ts": 1790104342,
+   "usd_back": 90.1286,
+   "rt_cost_pct": 9.8714,
    "verdict": "TRADEABLE",
    "venues": [
-    "Quantum",
+    "Byreal",
+    "BisonFi",
     "Pump.fun Amm"
    ],
-   "px_per_raw": 2.8756591007930842e-12,
+   "px_per_raw": 2.877354349796828e-12,
    "error": null,
-   "token_qty_raw": 34774636525039,
-   "price_impact_pct": 6.070781
+   "token_qty_raw": 34754148374899,
+   "price_impact_pct": 6.124453
   },
   "jupiter_token": {
    "symbol": "VSOF",
@@ -105,31 +106,20 @@
     "quote": "SOL"
    }
   ],
-  "geckoterminal": [
-   {
-    "pool": "BwyERAGGjQ2QnX7GhDsi4ZwYHA8vrdcQWj8XLXZ4PWw",
-    "dex": "pumpswap",
-    "reserve_usd": "2687.7698",
-    "vol24": "694322.432435079"
-   },
-   {
-    "pool": "AKaNM3YVvC3NnwepUzBVTtKmq9nZmLC18ZGCYgEvcvcv",
-    "dex": "pump-fun",
-    "reserve_usd": "0.0",
-    "vol24": "9970.2743496704"
-   }
-  ],
+  "geckoterminal": {
+   "status": 429
+  },
   "rugcheck": {
    "totalHolders": 0,
-   "totalMarketLiquidity": 2702.601367180706,
+   "totalMarketLiquidity": 2702.9374318174237,
    "rugged": false,
    "markets": [
     {
      "pool": "BwyERAGGjQ2QnX7GhDsi4ZwYHA8vrdcQWj8XLXZ4PWw",
      "type": "pump_fun_amm",
      "lpLockedPct": 100,
-     "lpLockedUSD": 2702.601367180706,
-     "quoteUSD": 324.291501890513
+     "lpLockedUSD": 2702.9374318174237,
+     "quoteUSD": 324.627566527231
     }
    ],
    "risks": [
@@ -139,8 +129,8 @@
   }
  },
  "calls": {
-  "rpc": 240,
-  "http": 40
+  "rpc": 383,
+  "http": 61
  },
- "seconds": 6.1
+ "seconds": 5.7
 }

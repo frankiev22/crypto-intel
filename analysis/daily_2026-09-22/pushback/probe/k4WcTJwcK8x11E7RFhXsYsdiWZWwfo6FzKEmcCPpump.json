@@ -1,7 +1,7 @@
 {
  "mint": "k4WcTJwcK8x11E7RFhXsYsdiWZWwfo6FzKEmcCPpump",
- "ts": 1790102818,
- "sol_usd": 118.20799939112779,
+ "ts": 1790104324,
+ "sol_usd": 118.25175125422633,
  "sol_usd_src": "jupiter price v3",
  "recorded_pairs": [],
  "mint_account": {
@@ -44,31 +44,30 @@
    "quote": "SOL",
    "quote_vault": "NwYnbCjmVrkLVAx8AFwXjiL9vXnEdc5rWddVHLMgCxU",
    "quote_ui": 0.205406715,
-   "quote_usd": 24.280716841653557,
+   "quote_usd": 24.28970376812776,
    "read_error": null,
-   "implied_price_usd": 2.4305024242265127e-08
+   "implied_price_usd": 2.4314020165542162e-08
   }
  ],
- "chain_quote_usd_total": 24.280716841653557,
+ "chain_quote_usd_total": 24.28970376812776,
  "unclassified_owners": [],
  "unclassified_quote_usd": 0,
  "third_party": {
   "jupiter_round_trip_100": {
    "mint": "k4WcTJwcK8x11E7RFhXsYsdiWZWwfo6FzKEmcCPpump",
    "probe_usd": 100,
-   "ts": 1790102822,
+   "ts": 1790104328,
    "usd_back": null,
    "rt_cost_pct": null,
    "verdict": "NO_SELL_ROUTE",
    "venues": [
-    "Byreal",
-    "Raydium CLMM",
+    "Kipseli",
     "Pump.fun Amm"
    ],
-   "px_per_raw": 2.23107202825287e-12,
+   "px_per_raw": 2.232537470105604e-12,
    "error": "NO_ROUTES_FOUND",
-   "token_qty_raw": 44821502279471,
-   "price_impact_pct": 5.300797
+   "token_qty_raw": 44792081359902,
+   "price_impact_pct": 5.359955
   },
   "jupiter_token": {
    "symbol": "UOTF",
@@ -91,36 +90,25 @@
     "labels": null,
     "liq_usd": 2134.38,
     "liq_quote": 0.2054,
-    "vol24": 215651.95,
+    "vol24": 212128.75,
     "price_usd": "0.000002112",
     "quote": "SOL"
    }
   ],
-  "geckoterminal": [
-   {
-    "pool": "DSRUBAEnu1zEo4pP83uEtzyj7tWSwd6zzG2MdV3Q3wSp",
-    "dex": "pumpswap",
-    "reserve_usd": "4885.1483",
-    "vol24": "43499.4602662945"
-   },
-   {
-    "pool": "EeimyaX8aFt15S1DVe6QtrMoybhWH6xoY91FxhfNHkKC",
-    "dex": "pump-fun",
-    "reserve_usd": "0.0",
-    "vol24": "0.0"
-   }
-  ],
+  "geckoterminal": {
+   "status": 429
+  },
   "rugcheck": {
    "totalHolders": 0,
-   "totalMarketLiquidity": 2132.122294576478,
+   "totalMarketLiquidity": 2132.137295697342,
    "rugged": false,
    "markets": [
     {
      "pool": "DSRUBAEnu1zEo4pP83uEtzyj7tWSwd6zzG2MdV3Q3wSp",
      "type": "pump_fun_amm",
      "lpLockedPct": 100,
-     "lpLockedUSD": 2132.122294576478,
-     "quoteUSD": 24.285698578349432
+     "lpLockedUSD": 2132.137295697342,
+     "quoteUSD": 24.300699699213663
     }
    ],
    "risks": [
@@ -130,8 +118,8 @@
   }
  },
  "calls": {
-  "rpc": 184,
-  "http": 30
+  "rpc": 327,
+  "http": 50
  },
- "seconds": 6.2
+ "seconds": 5.5
 }

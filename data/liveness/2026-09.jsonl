@@ -85403,3 +85403,480 @@
 {"name": "news.freshness", "ts": 1790126144, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
 {"name": "detector.drift", "ts": 1790126147, "n": 1, "detail": "stable", "origin": "scheduled"}
 {"name": "dashboard.build", "ts": 1790126156, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790129037, "n": 1, "detail": "51Lrs5sL4ZtfqSqppy7bLdqB", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790129047, "n": 1, "detail": "fyc2VddMThS3nG6tD3LT9AvU", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790129055, "n": 1, "detail": "DVm3UVZsKkN9XxFJWWPNApTf", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790129057, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790129061, "n": 1, "detail": "6uuZUikHdggRTtTy5otD35wg", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790129063, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790129072, "n": 1, "detail": "9Ci5KwRcC29so34vQV54i4MF", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790129074, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790129077, "n": 1, "detail": "9QSRbgqbYDhKd3KRP331CBTQ", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790129079, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790129081, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790129090, "n": 1, "detail": "5aSt1VE6LmtQzMoeXyRL7WCB", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790129092, "n": 1, "detail": "3KQpmFoSK7ryd3ZtMvGTdfbG", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790129095, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790129101, "n": 1, "detail": "7946SdrnhEBZeZj94DuEFdNZ", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790129103, "n": 6, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1790129103, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790129119, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "news.freshness", "ts": 1790129120, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790129123, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790129132, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1790129138, "n": 115, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790129139, "n": 1, "detail": "TYLER MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790129140, "n": 1, "detail": "yuan MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790129160, "n": 1, "detail": "TRUMPTV MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790129161, "n": 1, "detail": "Samsung MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790129200, "n": 1, "detail": "zSeal MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790129201, "n": 1, "detail": "Coinbase MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790129220, "n": 1, "detail": "VSOF MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790129221, "n": 1, "detail": "cap MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790129241, "n": 1, "detail": "ZECINU MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790129242, "n": 1, "detail": "BEAST MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790129262, "n": 1, "detail": "unc MAX_HOLD", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790129262, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "news.freshness", "ts": 1790129263, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790129266, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790129275, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1790129280, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1790129305, "n": 1, "detail": "graduated 86D9XzDh8rGcitJuTp9emVNAMBamsgDHj3vpuWMFArPP", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790129307, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "news.freshness", "ts": 1790129308, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790129311, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790129320, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1790129406, "n": 418, "detail": "418 rows, universe 276, 14 round trips", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790129407, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "news.freshness", "ts": 1790129407, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790129410, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790129420, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129436, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129437, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129438, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129438, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129439, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129439, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129440, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129440, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129440, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129441, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129441, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129442, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129442, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129442, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129443, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129443, "n": 1, "detail": "mcap_100k XsoBhf2ufR8fTyNSjqfU71DYGaE6Z3SUGAidpzriAA4", "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129443, "n": 1, "detail": "mcap_200k XsoBhf2ufR8fTyNSjqfU71DYGaE6Z3SUGAidpzriAA4", "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129443, "n": 1, "detail": "mcap_1m XsoBhf2ufR8fTyNSjqfU71DYGaE6Z3SUGAidpzriAA4", "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129444, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129444, "n": 1, "detail": "mcap_100k 9ZkmJoWXBtEAkpZUj7Hy31AKZqRLcixzCjaFYriUX5vi", "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129444, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129444, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129445, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129445, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129446, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129446, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129446, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129447, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129447, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129449, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129449, "n": 1, "detail": "mcap_100k 6npHXbtf2n2V46abiHmNp9v3hbX5i6JfUGJkLoseDFGz", "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129449, "n": 1, "detail": "mcap_200k 6npHXbtf2n2V46abiHmNp9v3hbX5i6JfUGJkLoseDFGz", "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129449, "n": 1, "detail": "mcap_1m 6npHXbtf2n2V46abiHmNp9v3hbX5i6JfUGJkLoseDFGz", "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129450, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129451, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129451, "n": 1, "detail": "mcap_100k 93DsvSeNkdRZp23NninxyLNFUxK2XEpT6ybdKyq3bonk", "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129451, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129452, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129452, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129454, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129454, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129454, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129455, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129455, "n": 1, "detail": "mcap_100k 9sHAXWPLCWTNYGmS8kxDqWZ7J8VGSDV2TahrSQ9cK6Vx", "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129455, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129456, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129456, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129456, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129457, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129457, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129458, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129459, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129460, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129460, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129461, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129461, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129461, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129462, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129462, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129463, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129463, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129463, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129464, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129464, "n": 1, "detail": "mcap_100k FFFagXniidWYtS2KVKgCNaYJeTPDtWk6mdYu21BFK2NC", "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129464, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129465, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129465, "n": 1, "detail": "mcap_100k 86D9XzDh8rGcitJuTp9emVNAMBamsgDHj3vpuWMFArPP", "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129466, "n": 1, "detail": "mcap_200k 86D9XzDh8rGcitJuTp9emVNAMBamsgDHj3vpuWMFArPP", "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129466, "n": 1, "detail": "mcap_1m 86D9XzDh8rGcitJuTp9emVNAMBamsgDHj3vpuWMFArPP", "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129466, "n": 1, "detail": "mcap_5m 86D9XzDh8rGcitJuTp9emVNAMBamsgDHj3vpuWMFArPP", "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129467, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129468, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129468, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129469, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129469, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129471, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129471, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129471, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129472, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129473, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129474, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129475, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129475, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129475, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129476, "n": 1, "detail": "mcap_100k GTdfHZ6MDLpybT846dJvwoNwVq282feitn18WDwvmax7", "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129476, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129476, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129477, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129479, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129479, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790129479, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "news.freshness", "ts": 1790129480, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790129482, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790129492, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129508, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129509, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129510, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129510, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129511, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129511, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129512, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129512, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129513, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129513, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129513, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129514, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129514, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129515, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129515, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129515, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129516, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129516, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129517, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129517, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129517, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129518, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129518, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129519, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129519, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129519, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129520, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129520, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129520, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129521, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129521, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129523, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129523, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129524, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129524, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129524, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129525, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129525, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129525, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129526, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129526, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129527, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129527, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129527, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129528, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129528, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129529, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129529, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129529, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129530, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129530, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129530, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129531, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129531, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129531, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129532, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129532, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129532, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129533, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129533, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129534, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129535, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129535, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129536, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129536, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129536, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129537, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129537, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129538, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129538, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129538, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129539, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129539, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129540, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129540, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129540, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129541, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129541, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129542, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129542, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129542, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129543, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129543, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129543, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129544, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129544, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129544, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129545, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129545, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129546, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129546, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129547, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129548, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129548, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129549, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129549, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129549, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129550, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129550, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129550, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129551, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129551, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129551, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129552, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129552, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129553, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129553, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129554, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129554, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129554, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129555, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129555, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129556, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129556, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129556, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129557, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129557, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129557, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129558, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129558, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129559, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129560, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129560, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129561, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129561, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129562, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129562, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129562, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129563, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129563, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129563, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129564, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129564, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129565, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129565, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129565, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129566, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129566, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129567, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129567, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129567, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129568, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129568, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129569, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129569, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129569, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129570, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129570, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129571, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790129571, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "news.freshness", "ts": 1790129572, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790129574, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790129584, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129600, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129603, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129604, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129606, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129607, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129608, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129610, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129612, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129613, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129616, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129618, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129619, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129620, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129620, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129620, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129621, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129621, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129622, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129622, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129622, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129623, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129623, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129623, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129624, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129624, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129624, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129625, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129625, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129626, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129626, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129626, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129628, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129628, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129628, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129629, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129629, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129629, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129630, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129630, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129630, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129631, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129631, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129631, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129632, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129632, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129633, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129633, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129633, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129634, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129634, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129635, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129635, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129635, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129636, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129636, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129637, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129637, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129637, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129638, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129638, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129639, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129640, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129641, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129641, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129641, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129642, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129642, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129642, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129643, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129643, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129643, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129644, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129644, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129645, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129645, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129645, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129646, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129646, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129646, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129647, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129647, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129647, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129648, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129648, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129648, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129649, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129649, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129650, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129650, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129650, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129651, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129652, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129653, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129653, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129654, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129654, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129655, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129655, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129656, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129656, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129656, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129657, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129657, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129658, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129658, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129658, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129659, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129659, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129659, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129660, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129660, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129660, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129661, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129661, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129662, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129662, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129663, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129663, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129663, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129664, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129664, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129666, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129666, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129666, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129667, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129667, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129667, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129668, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129668, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129669, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129669, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129670, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129670, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129670, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129671, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129671, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129671, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129672, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129672, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129672, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129673, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129673, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129673, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129674, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129674, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129675, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129675, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129675, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129676, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129676, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129677, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129678, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129678, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129679, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129679, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129679, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129680, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129680, "n": 1, "detail": "mcap_200k AVXPQqxd32ABAP5F7shHKNeWBpos9miktdH3uKqgXYJZ", "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790129680, "n": 1, "detail": "mcap_1m AVXPQqxd32ABAP5F7shHKNeWBpos9miktdH3uKqgXYJZ", "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129681, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129681, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129681, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129682, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790129682, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790129682, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "news.freshness", "ts": 1790129683, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790129686, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790129695, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790129710, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "news.freshness", "ts": 1790129711, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790129714, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790129722, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "graduations.ledger", "ts": 1790129737, "n": 68, "detail": "51 graduations of 68 processed, backlog 0", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790129737, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "news.freshness", "ts": 1790129738, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790129741, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790129751, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "universe.members", "ts": 1790129828, "n": 1097, "detail": "1097 members, 7 candidates, 6 quoted, 1207 deferred", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790129829, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "news.freshness", "ts": 1790129829, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790129832, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790129841, "n": 1, "detail": null, "origin": "scheduled"}

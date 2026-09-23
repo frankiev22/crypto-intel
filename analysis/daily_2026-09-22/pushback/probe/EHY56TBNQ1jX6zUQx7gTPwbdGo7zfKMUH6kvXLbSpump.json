@@ -1,7 +1,7 @@
 {
  "mint": "EHY56TBNQ1jX6zUQx7gTPwbdGo7zfKMUH6kvXLbSpump",
- "ts": 1790102790,
- "sol_usd": 118.21489863048052,
+ "ts": 1790104281,
+ "sol_usd": 118.20641296655059,
  "sol_usd_src": "jupiter price v3",
  "recorded_pairs": [],
  "mint_account": {
@@ -48,9 +48,9 @@
    "quote": "SOL",
    "quote_vault": "CUwXkBgJQYqfMmcSKTXQ7uTZQcre2HP1LQfpTzqe6Qs1",
    "quote_ui": 2.580602885,
-   "quote_usd": 305.0657084558006,
+   "quote_usd": 305.0438103269818,
    "read_error": null,
-   "implied_price_usd": 3.1076214657685084e-07
+   "implied_price_usd": 3.107398395481383e-07
   },
   {
    "pool": "66Vjk13ddscYx4cbnWzw66iLUYCtt5KC1v4ttkUBkAmU",
@@ -68,38 +68,38 @@
    "quote": "SOL",
    "quote_vault": "DJrBJ4VzftpcmekWSexRpmhqRYVhCT3VCJNW3QucaDkg",
    "quote_ui": 0.008038965,
-   "quote_usd": 0.9503254325689808,
+   "quote_usd": 0.9502572166136464,
    "read_error": null,
-   "implied_price_usd": 0.0002440092115469593
+   "implied_price_usd": 0.00024399169615601466
   }
  ],
- "chain_quote_usd_total": 306.0160338883696,
+ "chain_quote_usd_total": 305.99406754359546,
  "unclassified_owners": [
   {
    "owner": "HWGoJ1HaMFUiDgfD7FVxMaYJAE2A5JjF7si6CgWSvRFQ",
    "program": "3s1rAymURnacreXreMy718GfqW6kygQsLNka1xDyW8pC",
    "mint_ui": 3.079461,
-   "quote_usd": 36636.240261969404,
-   "n_token_accounts": 52458
+   "quote_usd": 37809.03049892012,
+   "n_token_accounts": 52485
   }
  ],
- "unclassified_quote_usd": 36636.240261969404,
+ "unclassified_quote_usd": 37809.03049892012,
  "third_party": {
   "jupiter_round_trip_100": {
    "mint": "EHY56TBNQ1jX6zUQx7gTPwbdGo7zfKMUH6kvXLbSpump",
    "probe_usd": 100,
-   "ts": 1790102807,
-   "usd_back": 90.0674,
-   "rt_cost_pct": 9.9326,
+   "ts": 1790104308,
+   "usd_back": 90.0649,
+   "rt_cost_pct": 9.9351,
    "verdict": "TRADEABLE",
    "venues": [
-    "Kipseli",
+    "Flux",
     "Pump.fun Amm"
    ],
-   "px_per_raw": 2.5606198901260335e-12,
+   "px_per_raw": 2.5601785151753328e-12,
    "error": null,
-   "token_qty_raw": 39053043517161,
-   "price_impact_pct": 7.940477
+   "token_qty_raw": 39059776264528,
+   "price_impact_pct": 7.921684
   },
   "jupiter_token": {
    "symbol": "tradecat",
@@ -149,44 +149,27 @@
     "quote": "SOL"
    }
   ],
-  "geckoterminal": [
-   {
-    "pool": "GVTJd6AsTjBFayQeUGDJ3YrV2gBpV68PstGo9hBTy3XJ",
-    "dex": "pumpswap",
-    "reserve_usd": "2652.5127",
-    "vol24": "1478883.50809192"
-   },
-   {
-    "pool": "66Vjk13ddscYx4cbnWzw66iLUYCtt5KC1v4ttkUBkAmU",
-    "dex": "meteora",
-    "reserve_usd": "142.0691",
-    "vol24": "851.3651402786"
-   },
-   {
-    "pool": "EFvT5AXog3NbFYWCq67vV37th8VTEBFUERojmfAv6fFP",
-    "dex": "pump-fun",
-    "reserve_usd": "0.0",
-    "vol24": "10120.2150437598"
-   }
-  ],
+  "geckoterminal": {
+   "status": 429
+  },
   "rugcheck": {
    "totalHolders": 0,
-   "totalMarketLiquidity": 2619.714891806689,
+   "totalMarketLiquidity": 2619.7424670429746,
    "rugged": false,
    "markets": [
     {
      "pool": "GVTJd6AsTjBFayQeUGDJ3YrV2gBpV68PstGo9hBTy3XJ",
      "type": "pump_fun_amm",
      "lpLockedPct": 100,
-     "lpLockedUSD": 2618.7551569923944,
-     "quoteUSD": 305.1396863752434
+     "lpLockedUSD": 2618.7826465944468,
+     "quoteUSD": 305.1671759772958
     },
     {
      "pool": "66Vjk13ddscYx4cbnWzw66iLUYCtt5KC1v4ttkUBkAmU",
      "type": "meteoraDlmm",
      "lpLockedPct": 0,
      "lpLockedUSD": 0,
-     "quoteUSD": 0.95055588488252
+     "quoteUSD": 0.9506415191155311
     }
    ],
    "risks": [
@@ -196,8 +179,8 @@
   }
  },
  "calls": {
-  "rpc": 116,
-  "http": 20
+  "rpc": 259,
+  "http": 40
  },
- "seconds": 18.5
+ "seconds": 28.1
 }
