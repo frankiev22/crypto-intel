@@ -320,13 +320,29 @@ is `active: true`, `transactionTypes: ["ANY"]`, **`accountAddresses: []`**.
    (`CRYPTO_HTTP_PACE_S` 1.0, correct and not to be reverted).
    ⚠️ **Windows Task Scheduler is NOT the answer and was deliberately removed**
    (`479e9cc`). Do not reintroduce it.
-3. ⚠️ **A concurrent push can still cost a pass, and once did.** On 2026-09-18 a
-   scheduled run collected a full pass and then died in `Commit the journal`
-   because a human pushed during its ~10 minutes; `git pull --rebase` stopped at
-   the first conflict and the ephemeral runner was destroyed with the rows on it.
-   Fixed two ways: `*.jsonl merge=union` in `.gitattributes`, and a push loop
-   that resolves conflicts and uploads `data/` as an artifact if it still cannot
-   push. ⛔ **Avoid pushing while a run is in flight anyway.**
+3. ⚠️ **A concurrent push can still cost a pass, and has now cost two.** On
+   2026-09-18 a scheduled run collected a full pass and then died in `Commit the
+   journal` because a human pushed during its ~10 minutes; `git pull --rebase`
+   stopped at the first conflict and the ephemeral runner was destroyed with the
+   rows on it. Fixed two ways: `*.jsonl merge=union` in `.gitattributes`, and a
+   push loop that resolves conflicts and uploads `data/` as an artifact if it
+   still cannot push. ⛔ **Avoid pushing while a run is in flight anyway.**
+   ⛔⛔ **AND THAT FIX LOST A PASS OF ITS OWN, 2026-09-23 01:41Z, to ONE FLAG.**
+   `git rebase --continue -q` is a **usage error** - git exits 129 and prints its
+   usage, because `--continue` takes no `-q` - and the loop sent that to
+   `/dev/null` and followed it with `|| true`. ⭐ **The resolution was CORRECT
+   every time; the rebase was simply never continued**, so the next round saw a
+   clean index, broke, and the leftover `rebase-merge` directory printed "after
+   10 rounds - aborting it" and discarded a good resolution. 1,304 rows went to
+   an artifact and were recovered in `db4cfe0`. ⭐ **The tell was in the log: the
+   whole loop ran in 551 ms.** ⭐ **Also measured there: every `*.jsonl`
+   auto-merged with zero conflicts, so `merge=union` works; every conflict was a
+   whole-document `.json`.** ⛔ **`data/findings/*.md` now merges by union too** -
+   it is an append-only day log, and taking one side DELETED the other writer's
+   findings for that day. ⭐ **`test_pushloop.py` extracts that step's real
+   script out of the YAML, syntax checks it, RUNS it against a reproduction where
+   a second writer pushed mid-pass, and asserts on the pushed result** (30/30).
+   BACKLOG C34, C35.
 4. ⛔ **A cancelled run loses its rows and says nothing** (2026-09-19, BACKLOG
    C17). Three passes ran past the 15-minute job timeout; `cancelled` is not
    `failure`, so nothing alarmed, and origin/master sat at 07:26Z for 11 hours
@@ -563,6 +579,7 @@ python dashboard.py                                       # rebuild data/dashboa
 python -c "import paper; print(paper.summary())"          # paper ledger counts
 python run_tests.py                                       # ⭐ EVERY suite + proves data/ was untouched
 python test_stages.py                                     # SKILL.md must match staged_commands()
+python test_pushloop.py                                   # ⭐ RUNS the runner's push loop against a real conflict
 python test_references.py                                 # every file the repo names exists (run before ANY doc move)
 python universe.py --gate-seconds 60                      # one universe pass (writes data/universe/)
 python intelserve.py 8799                                 # ⭐ the read-only site API

@@ -171,14 +171,48 @@ jobs:
           # the rebase's own non-zero status. The runner is ephemeral, so the
           # rows were LOST - infrastructure breaking standing rule 8 by itself.
           #
-          # *.jsonl now merges by union (.gitattributes), which handles the logs
-          # automatically. Whatever still conflicts is a whole-document state
-          # file that this run has just recomputed, so this run's version wins.
+          # ⛔⛔ AND THE FIX FOR THAT LOST A PASS OF ITS OWN, 2026-09-23 01:41Z,
+          # to ONE FLAG. `git rebase --continue -q` is a usage error: git exits
+          # 129 and prints its usage, because --continue takes no -q. This loop
+          # sent that to /dev/null and followed it with `|| true`, so a malformed
+          # command looked exactly like a working one. The resolution was CORRECT
+          # every time - the index was clean after resolve_conflicts - but the
+          # rebase was never continued, the next round saw nothing unmerged and
+          # broke, and the leftover rebase-merge directory printed "after 10
+          # rounds" and aborted a good resolution. 1,304 rows went to the
+          # artifact and were recovered by hand (commit db4cfe0). The whole loop
+          # ran in 551 ms, which is the tell: ten rounds of checkout and add over
+          # thirty files cannot.
+          #
+          # ⭐ SO: --continue runs WITHOUT -q, its output is kept, and its exit
+          # code is CHECKED rather than swallowed. Standing rule 16 - verify the
+          # output, never the execution - applies to the shell too.
+          #
+          # What merges how, measured from that run's own log:
+          #   *.jsonl                union merge (.gitattributes). Every one of
+          #                          them auto-merged. Zero conflicts. It works.
+          #   data/findings/*.md     union merge from 2026-09-23. It is an
+          #                          append-only day log of "## HH:MM:SS UTC"
+          #                          blocks, so taking one side DELETED the other
+          #                          writer's findings for that day.
+          #   other *.json           whole-document state this run just
+          #                          recomputed, so this run's version wins - and
+          #                          it is now NAMED in the log, because silently
+          #                          overwriting the other writer's state is a
+          #                          thing we should be able to see afterwards.
           resolve_conflicts() {
-            git diff --name-only --diff-filter=U | while read -r f; do
+            # git ls-files -u is the INDEX's own answer. `git diff --diff-filter=U`
+            # asks the worktree and was one indirection too many for a step whose
+            # whole job is not to lose rows.
+            git ls-files -u | cut -f2 | sort -u | while IFS= read -r f; do
               # In a rebase, --theirs is the commit being replayed: ours.
-              git checkout --theirs -- "$f" 2>/dev/null \
-                || git checkout --ours -- "$f" 2>/dev/null || true
+              if git checkout --theirs -- "$f" 2>/dev/null; then
+                echo "  kept THIS RUN's version: $f"
+              elif git checkout --ours -- "$f" 2>/dev/null; then
+                echo "  ⚠️ kept UPSTREAM's version: $f"
+              else
+                echo "::warning::could not resolve $f from either side"
+              fi
               git add -- "$f"
             done
           }
@@ -188,18 +222,36 @@ jobs:
             if git push -q; then pushed=1; break; fi
             echo "push rejected, integrating (attempt $i)"
             git fetch -q origin "${GITHUB_REF_NAME}"
-            if ! git rebase -q "origin/${GITHUB_REF_NAME}"; then
-              for _ in 1 2 3 4 5 6 7 8 9 10; do
-                git diff --name-only --diff-filter=U | grep -q . || break
-                resolve_conflicts
-                GIT_EDITOR=true git rebase --continue -q >/dev/null 2>&1 || true
-              done
-              # Never leave the tree mid-rebase for the next step to trip over.
-              if [ -d .git/rebase-merge ] || [ -d .git/rebase-apply ]; then
-                echo "rebase still unresolved after 10 rounds - aborting it"
-                git rebase --abort || true
-                break
+            if ! git rebase "origin/${GITHUB_REF_NAME}" 2>&1 | grep -E "CONFLICT|error:" ; then
+              : # no conflicts; the rebase either succeeded or said nothing
+            fi
+            for round in 1 2 3 4 5 6 7 8 9 10; do
+              if [ ! -d .git/rebase-merge ] && [ ! -d .git/rebase-apply ]; then
+                break                       # rebase finished; go and push
               fi
+              if git ls-files -u | grep -q .; then
+                echo "round $round: resolving $(git ls-files -u | cut -f2 | sort -u | wc -l) conflicted paths"
+                resolve_conflicts
+              fi
+              # NO -q HERE. See above: it makes this a usage error.
+              cont_out="$(GIT_EDITOR=true git rebase --continue 2>&1)"; cont_rc=$?
+              if [ "$cont_rc" -ne 0 ]; then
+                if printf '%s' "$cont_out" | grep -qiE "no changes|nothing to commit|became empty|is empty"; then
+                  echo "round $round: resolution left an empty commit - skipping it"
+                  GIT_EDITOR=true git rebase --skip >/dev/null 2>&1 || true
+                else
+                  # ⛔ Never silent. This is the failure that cost 1,304 rows.
+                  echo "::error::git rebase --continue failed (exit $cont_rc):"
+                  printf '%s\n' "$cont_out" | sed 's/^/    /' | head -20
+                  break
+                fi
+              fi
+            done
+            # Never leave the tree mid-rebase for the next step to trip over.
+            if [ -d .git/rebase-merge ] || [ -d .git/rebase-apply ]; then
+              echo "::warning::rebase still unresolved after 10 rounds - aborting it"
+              git rebase --abort || true
+              break
             fi
           done
 

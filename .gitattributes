@@ -28,7 +28,26 @@ data/** -text
 # quarantine, liveness) where concatenating two versions produces invalid JSON.
 # The workflow resolves those by keeping the run's freshly computed version.
 #
+# ⛔⛔ THAT LAST SENTENCE WAS FALSE FOR FIVE DAYS. The resolver computed the
+# right answer and the workflow threw it away: `git rebase --continue -q` is a
+# usage error (exit 129), it was swallowed by `>/dev/null 2>&1 || true`, so the
+# rebase was never continued and the leftover rebase directory triggered an
+# abort. A full pass at 2026-09-23 01:41Z went to an artifact and was recovered
+# by hand (db4cfe0). Fixed in collect.yml and verified by running that step's
+# own script against a reproduction, not by reading it.
+#
 # ⚠️ The paper ledgers are hash-chained, so a union merge can fork the chain.
 # paper.verify() already reports a concurrent-writer fork as OK rather than as
 # tampering, and both ledgers are quarantined against writes anyway.
 *.jsonl merge=union
+
+# ⛔ AND THE SAME ARGUMENT APPLIES TO THE FINDINGS DAY FILE, 2026-09-23.
+# data/findings/YYYY-MM-DD.md is an append-only log of "## HH:MM:SS UTC · class
+# · subject" blocks that findings.py only ever adds to. At 01:41Z the runner and
+# the desktop task had both written 2026-09-23.md; it conflicted add/add, and the
+# resolver kept one side, DELETING the other writer's findings for that day.
+# Measured, not assumed: with the loop fixed but this line absent, the harness
+# still lost the desktop task's "## 01:00:00 UTC" block from the pushed result.
+# Each block is independent, exactly like a jsonl row, so union is correct here
+# too - a duplicated header is cosmetic, a deleted finding is permanent.
+data/findings/*.md merge=union
