@@ -89966,3 +89966,23 @@
 {"name": "news.freshness", "ts": 1790183399, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
 {"name": "detector.drift", "ts": 1790183402, "n": 1, "detail": "stable", "origin": "scheduled"}
 {"name": "dashboard.build", "ts": 1790183412, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790183984, "n": 1, "detail": "Ea2qVmJ4hQbT2H1xQq82PnuB", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790183985, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790183986, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790183986, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790183987, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790183988, "n": 1, "detail": "5nwhWum3G51vy4RqbMV2EcRY", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790183989, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790183989, "n": 1, "detail": "DBBUxu2rAiESswxE4WRU2trs", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790183991, "n": 1, "detail": "9FjjW63pe5LcBDQPdDstR3SC", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790183992, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790183992, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790183993, "n": 1, "detail": "Db4U6ufxxumgseYinKZyyobB", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790183993, "n": 8, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1790183993, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1790183998, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1790184008, "n": 72, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790184086, "n": 1, "detail": "NVIDIA NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790184086, "n": 1, "detail": "✨Betty NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1790184182, "n": 404, "detail": "404 rows, universe 290, 20 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1790184182, "n": 32, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
