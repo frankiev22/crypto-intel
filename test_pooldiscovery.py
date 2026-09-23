@@ -162,30 +162,43 @@ if os.path.exists(pc):
           all(n in doc for n, _ in pd.VALUED.values()),
           str([n for n, _ in pd.VALUED.values() if n not in doc]))
 
-print("\n--- wired into intel.liquidity, which is the permanent part ---")
+print("\n--- wired into intel.liquidity, and the CHAIN is now primary ---")
 isrc = io.open(os.path.join(ROOT, "intel.py"), encoding="utf-8").read()
-check("⛔ intel has an on-chain fallback function",
-      "def _liquidity_from_chain(" in isrc)
-check("⛔ it fires when the indexer LOOKUP FAILED",
-      'if (not t.get("ok")) or t.get("pair_count") == 0:' in isrc)
-check("⛔ and when the indexer answered NO PAIRS (pair_count 0)",
-      't.get("pair_count") == 0' in isrc)
-check("the fallback is reached BEFORE the indexer fields are read",
-      isrc.index("_liquidity_from_chain(r, mint, t)")
-      < isrc.index('src = "dexscreener /latest/dex/tokens'))
+# ⛔ REWRITTEN 2026-09-23. This block asserted the OPPOSITE contract: an
+# indexer-first read with an on-chain FALLBACK called `_liquidity_from_chain`.
+# Frank: "Make liquidity(mint) use derivation as the primary path and the indexer
+# as a supplement, never the reverse." The old assertions crashed on a missing
+# substring, which is the right failure - a renamed contract should break its
+# test rather than pass quietly.
+check("⛔ the chain read happens FIRST, before the indexer is called",
+      isrc.index("poolstate.state(mint") < isrc.index("t = allpairs.token(mint)"))
+check("⛔ the response names the chain as the primary source",
+      '"source_primary", "chain"' in isrc)
+check("⛔ a failed chain read is announced, not silently swallowed",
+      "indexer below" in isrc and "UNCORROBORATED" in isrc)
+check("⛔ the indexer is labelled a SUPPLEMENT where its number is published",
+      "SUPPLEMENT" in isrc)
+check("⛔ the measured pool state reaches the response",
+      '"pool_state"' in isrc and '"quote_reserves_usd"' in isrc)
 check("⛔ indexer-only fields come back UNKNOWN, never 0",
-      'r.unchecked(k, "the indexer did not answer' in isrc)
+      'r.unchecked(k, "the indexer returned nothing' in isrc
+      and "UNKNOWN, never 0." in isrc)
 check("⛔ the response says WHICH SOURCE answered",
       '"source_that_answered"' in isrc)
-check("⛔ the response carries absence_is_a_floor",
-      '"absence_is_a_floor", True' in isrc)
+check("⛔ the chain response carries absence_is_a_floor",
+      '"absence_is_a_floor"' in io.open(os.path.join(ROOT, "poolstate.py"),
+                                       encoding="utf-8").read())
 check("⛔ it says discovered reserves are not an exit price",
       "never an exit price" in isrc)
+check("⛔ sellable is explicitly NOT answered by this endpoint",
+      'r.unchecked("sellable"' in isrc)
 itree = ast.parse(isrc)
 fns = {n.name for n in ast.walk(itree)
        if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))}
-check("_liquidity_from_chain is a real function, not only a comment",
-      "_liquidity_from_chain" in fns)
+check("the indexer supplement is a real function, not only a comment",
+      "_liquidity_indexer_silent" in fns)
+check("⛔ and the old indexer-first fallback name is GONE, not dangling",
+      "_liquidity_from_chain" not in fns)
 
 print("\n%d passed, %d failed" % (PASSED, len(FAILED)))
 if FAILED:

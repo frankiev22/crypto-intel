@@ -98,9 +98,9 @@ Three measured regimes, all from record-level data:
 
 | window | rate | n | source |
 |---|---|---|---|
-| Q4 2024 | < 2% | — | Mzoughi et al., arXiv:2512.11850 |
+| Q4 2024 | < 2% | — | Mancino, D., arXiv:2512.11850 (⛔ we credited "Mzoughi et al." until 2026-09-23; the author is Davide Mancino) |
 | Sep–Oct 2025 | **0.63%** | 655,770 | Marino et al., arXiv:2602.14860 |
-| May–Jun 2026 | **0.198%** [0.189, 0.208] | 832,941 | Kamat, arXiv:2607.02823, Jun 2026 |
+| ⛔ May–Jun 2026 | **0.198%** [0.189, 0.208] | 832,941 | ⛔⛔ **arXiv:2607.02823 v1 ONLY - SUPERSEDED by v4 (10 Sep 2026), which retitles to an AUDIT, uses n=749,816 and reports NO graduation rate. Do not publish.** See `data/findings/CITATIONS_2026-09-23.md` |
 
 Kamat's steady-state figure excluding a four-day tracker warm-up is **0.207%**
 [0.198, 0.218] on n=763,091. Kamat decomposes the 3.18× decline as substantially
@@ -686,11 +686,11 @@ rule 10 none of them is allowed to filter anything here until it has one.
 | fact | value | n | source |
 |---|---|---:|---|
 | average supply held by entity-linked coordinated accounts | **36.5%** | 41k+ launches, 200M+ tx | MELT, arXiv:2602.13480 |
-| tokens >100% return showing artificial growth | **82.89%** | 34,988 | arXiv:2507.01963 |
+| tokens >100% return showing artificial growth | **82.8%** | 34,988 | arXiv:2507.01963 (⚠️ we quoted 82.89%; the paper says 82.8%) |
 | pump.fun tokens showing pump-and-dump / rug characteristics | **98.7%** | — | Solidus Labs |
 | pump.fun tokens (pre-Apr 2025, ≥5 trades) collapsing below $1,000 liquidity | **98.6%** | — | cited via BloFin, ret. 2026-09-16 |
 | memecoins exhibiting rug characteristics **within one hour of launch** | "vast majority" | 6.4M / 7 months | arXiv:2608.20271 |
-| graduation rate, May–Jun 2026 | **0.198%** [0.189, 0.208] | 832,941 | arXiv:2607.02823 |
+| ⛔ graduation rate, May–Jun 2026 | **0.198%** [0.189, 0.208] | 832,941 | ⛔⛔ arXiv:2607.02823 **v1, SUPERSEDED** - see `data/findings/CITATIONS_2026-09-23.md` |
 | our one-sided-pool detector, precision | **100% [85.7, 100]** at 46.94% recall | 23 flags / 826 labelled | `FRAUD_DETECTION.md` |
 
 Note the shape of that list. **The external numbers are all prevalence; ours is the only

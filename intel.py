@@ -73,6 +73,8 @@ import time
 
 import allpairs
 import chainfields
+import pooldiscovery
+import poolstate
 
 SPL = "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
 TOKEN22 = "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
@@ -96,6 +98,22 @@ TTL = {"liquidity": 60, "resolve": 300, "phantom": 60, "exit_depth": 30,
        "pair_legs": 900}
 
 _CACHE = {}
+_SOL_PX = {"usd": None, "at": 0, "src": None}
+
+
+def _sol_px(max_age_s=120):
+    """One SOL price per two minutes, with its source. ⛔ None on failure, never
+    a stale-but-unlabelled number and never 0."""
+    now = time.time()
+    if _SOL_PX["usd"] is not None and now - _SOL_PX["at"] < max_age_s:
+        return _SOL_PX["usd"]
+    try:
+        px, src, _ts = poolstate.pd.sol_price()
+    except Exception:
+        px, src = None, None
+    if px:
+        _SOL_PX.update({"usd": px, "at": now, "src": src})
+    return px
 
 
 # --------------------------------------------------------------------------
@@ -177,19 +195,105 @@ def liquidity(mint):
 
 def _liquidity(mint):
     r = Report("liquidity", mint)
+
+    # ⛔⛔ THE CHAIN IS THE PRIMARY SOURCE FROM 2026-09-23. Rule:
+    # PRECOMMIT_pool_state.md. Frank: "We can't publish shit data."
+    #
+    # The order here is the whole fix. Until today this called the indexer first
+    # and only fell back to chain when the indexer said nothing, which meant an
+    # indexer that answered CONFIDENTLY AND WRONGLY was never checked. Two of the
+    # three `gone` contracts measured sellable had a recorded pair that was not
+    # the pool holding the money, so we priced the wrong account and called the
+    # token dead. Derivation does not depend on the indexer knowing the token
+    # exists, and it does not depend on how much the pool holds.
+    chain = None
+    try:
+        chain = poolstate.state(mint, sol_usd=_sol_px())
+    except Exception as e:
+        r.warn("⛔ on-chain pool derivation failed (%s: %s). The indexer below "
+               "is UNCORROBORATED." % (type(e).__name__, str(e)[:90]))
+
     t = allpairs.token(mint)
 
-    # ⛔⛔ THE INDEXER'S SILENCE IS NOT AN ANSWER ABOUT THE TOKEN, and this is
-    # where that stops being a warning and starts being a second measurement.
-    # `record_outcome` collapsed "we could not find it" into "it does not exist"
-    # (journal.py:974) and it cost us a whole population: the pair address on a
-    # `gone` row is usually a pump.fun bonding curve the token has LEFT, so the
-    # indexer drops it the moment the token bonds SUCCESSFULLY. Rule:
-    # PRECOMMIT_pool_discovery.md.
-    if (not t.get("ok")) or t.get("pair_count") == 0:
-        return _liquidity_from_chain(r, mint, t)
+    if chain:
+        csrc = "on-chain: derived pool addresses (PDA + measured-offset memcmp)"
+        r.put("pool_state", chain["pool_state"], csrc,
+              "pool_live / pool_emptied / curve_died / pool_closed / "
+              "not_found / unreadable, per PRECOMMIT_pool_state.md")
+        r.put("quote_reserves_usd", chain["quote_usd_max"] or None, csrc,
+              "⛔ the deepest DERIVED pool's quote side, from its own vaults. "
+              "Shape and existence only, never an exit price.")
+        r.put("pools_onchain", [{"pool": p["pool"], "venue": p["venue"],
+                                 "how": p["how"], "exists": p.get("exists"),
+                                 "quote_usd": p.get("quote_usd")}
+                                for p in chain["pools"]], csrc)
+        r.put("pool_count_onchain", chain["pool_count"], csrc,
+              "pools DERIVED, which does not depend on indexer coverage")
+        r.put("venues_onchain", chain["venues"], csrc)
+        r.put("venues_not_queryable", chain["venues_NOT_queryable"], csrc,
+              "⛔ venues with no MEASURED struct offset. They were never asked, "
+              "so their absence from the pool list is not evidence.")
+        r.put("rejected_non_pairs", chain["rejected_non_pairs"], csrc,
+              "memcmp hits where the pool holds no vault of this mint, so the "
+              "hit was a reward-mint slot and not a traded pair")
+        r.put("source_primary", "chain", "derived",
+              "the indexer is a SUPPLEMENT on this endpoint, never the primary")
+        r.unchecked("sellable", "existence is not liquidity: a pool holding "
+                                "$41.07 of WSOL returned NO_SELL_ROUTE. "
+                                "Use exit_depth().")
+        if chain["pool_state"] == "not_found":
+            r.warn("⚠️ No pool could be derived or discovered. That is OUR "
+                   "UNCERTAINTY, not a claim that the token has no market.")
+        elif chain["pool_state"] == "pool_closed":
+            r.warn("⛔ Every derived pool address is ABSENT on chain. This is "
+                   "the only state that means what `gone` used to claim.")
 
-    src = "dexscreener /latest/dex/tokens (all pairs summed)"
+    # ---- the indexer, now a supplement and labelled as one
+    if (not t.get("ok")) or t.get("pair_count") == 0:
+        return _liquidity_indexer_silent(r, mint, t, chain)
+
+    # ⭐⭐ THE ONE THING THE INDEXER CAN TELL US THAT THE CHAIN CANNOT: a pool
+    # address for a venue we have no measured offset for. When derivation found
+    # nothing, its pair list is EVIDENCE WORTH CHECKING - on chain, not taken on
+    # trust. This is how `BsskZM8NNi6a…` resolved: the recorded pair was a
+    # FluxBeam pool, a venue absent from our map, holding $14.64 of WSOL while
+    # every derived address said nothing.
+    if chain and chain["pool_state"] in ("not_found", "pool_closed"):
+        _cands = [pr.get("pair") for pr in (t.get("pairs") or [])[:5]
+                  if pr.get("pair")]
+        if _cands:
+            try:
+                _info, _errs = pooldiscovery._accounts_info(_cands, parsed=False)
+            except Exception as _e:
+                _info, _errs = {}, [str(_e)[:80]]
+            _rows = []
+            for _a in _cands:
+                _acc = _info.get(_a)
+                _own = (_acc or {}).get("owner")
+                _rows.append({
+                    "pool": _a,
+                    "exists_on_chain": (None if _a not in _info else bool(_acc)),
+                    "owner_program": _own,
+                    "venue": pooldiscovery.AMM_OWNERS.get(_own),
+                    "venue_in_our_map": bool(_own and
+                                             _own in pooldiscovery.AMM_OWNERS),
+                })
+            r.put("indexer_pairs_checked_on_chain", _rows,
+                  "on-chain getMultipleAccounts on the indexer's own pair list",
+                  "⛔ derivation found nothing, so the indexer's addresses were "
+                  "verified on chain rather than trusted or ignored")
+            _unmapped = sorted({x["owner_program"] for x in _rows
+                                if x["owner_program"] and not x["venue_in_our_map"]})
+            if _unmapped:
+                r.warn("⛔ The indexer names a pool owned by a program our AMM map "
+                       "does NOT know: %s. Derivation cannot reach that venue, so "
+                       "`%s` is OUR COVERAGE GAP, not a fact about the token."
+                       % (", ".join(_unmapped), chain["pool_state"]))
+            if _errs:
+                r.warn("⚠️ could not verify every indexer pair on chain: %s"
+                       % _errs[:2])
+
+    src = "dexscreener /latest/dex/tokens (all pairs summed) - SUPPLEMENT"
     r.put("symbol_display", t.get("symbol_display"), src,
           "⚠️ DISPLAY ONLY. The key is the address. Check symbol_flags before "
           "rendering it: a symbol can display as a name it does not contain.")
@@ -222,68 +326,43 @@ def _liquidity(mint):
     return r.done()
 
 
-def _liquidity_from_chain(r, mint, t):
-    """⭐ The indexer had nothing. Ask the CHAIN instead, from the mint itself.
+def _liquidity_indexer_silent(r, mint, t, chain=None):
+    """⛔ The indexer has nothing. The CHAIN already answered, above.
 
-    ⛔ This never renders as a clean total. It answers a narrower question -
-    "does a pool with reserves exist" - and it says so, because:
+    This branch exists only to say so honestly and to null out the fields the
+    indexer would have supplied. ⛔ It does NOT re-derive anything: the primary
+    path in `_liquidity` already ran `poolstate.state()`, and running the ladder
+    a second time here is what the old version did.
 
-      - discovery reaches the largest holders only, so `NO_POOL_FOUND` is a
-        FLOOR and never proof of absence;
-      - a discovered pool's reserves are SHAPE, not an exit price. The exit is
-        `exit_depth()`, which routes a real quote across every pool.
+    ⚠️ "The indexer has no pairs" is one of the most common answers we get for
+    exactly the tokens this project exists to look at, and for four days it was
+    rendered as a total of $0.
     """
-    import pooldiscovery
-    indexer_said = ("lookup failed: %s" % t.get("error")) if not t.get("ok") \
-        else "the indexer answered that it has NO PAIRS for this mint"
-    r.warn("⛔ " + indexer_said + ". That is NOT evidence the token is dead. "
-           "Falling back to on-chain pool discovery from the mint.")
-    src = "on-chain: SPL token accounts of the mint, then their owners' programs"
-    px, px_src, px_ts = pooldiscovery.sol_price()
-    try:
-        d = pooldiscovery.discover(mint, sol_usd=px)
-    except Exception as e:
+    indexer_said = ("lookup failed: %s" % t.get("error")) if not t.get("ok")         else "the indexer answered that it has NO PAIRS for this mint"
+    r.put("indexer_said", indexer_said, "dexscreener",
+          "⛔ recorded because its silence was previously rendered as zero")
+    r.warn("⛔ " + indexer_said + ". That is NOT evidence the token is dead, "
+           "and it is not why the pool_state above was decided - that came from "
+           "derived pool addresses on chain.")
+    if chain is None:
         r.put("source_that_answered", None, "derived",
               "⛔ neither the indexer nor the chain answered. UNKNOWN, not zero.")
-        return r.fail("on-chain discovery also failed: %s: %s"
-                      % (type(e).__name__, str(e)[:120]))
-
-    r.put("source_that_answered", "chain" if d["verdict"] != "UNREADABLE"
-          else None, "derived",
-          "⛔ the indexer did not answer, so nothing here came from it")
-    r.put("indexer_said", indexer_said, "dexscreener")
-    r.put("discovery_verdict", d["verdict"], src,
-          "POOL_QUOTE_100 / _10 / _DUST / _UNVALUED / NO_POOL_FOUND / UNREADABLE")
-    r.put("discovery_rung", d["rung"], src,
-          "1 = largest accounts; 2 = full enumeration of every token account")
-    r.put("pool_count", d["pool_count"], src,
-          "⚠️ pools DISCOVERED, which is a floor, not the pool count")
-    r.put("pools", [{"pool": p["pool"], "venue": p["venue"],
-                     "quote_usd": p["quote_usd"]} for p in d["pools"]], src)
-    r.put("venues", sorted({p["venue"] for p in d["pools"]}), src)
-    r.put("quote_reserves_usd", d["quote_usd_max"] if d["pools"] else None, src,
-          "⛔ the deepest discovered pool's QUOTE side, read from its own "
-          "vaults. Shape and existence only - never an exit price.")
-    r.put("unvalued_vaults", d["unvalued_vaults"], src,
-          "vaults in an asset we do not price. ⛔ Counted, never valued at 0.")
-    r.put("holders_reached", d["holders_reached"], src)
-    r.put("holders_total_known", d.get("holders_total_known"), src,
-          "None unless a full enumeration ran")
-    r.put("absence_is_a_floor", True, "derived", d["floor_note"])
-    r.put("sol_usd_used", px, px_src or "unknown", "read at %d" % px_ts)
+        return r.fail("the indexer had nothing and on-chain derivation failed "
+                      "too, so this token is UNKNOWN, not empty")
+    r.put("source_that_answered", "chain", "derived",
+          "the indexer contributed nothing to this response")
     # ⛔ Everything the indexer would have given us is UNKNOWN, not zero.
     for k in ("liq_usd", "vol24_usd", "mcap_usd", "price_usd", "pair_count",
-              "is_floor", "deepest_pool_liq_usd", "quote_assets"):
-        r.unchecked(k, "the indexer did not answer, and on-chain pool discovery "
-                       "does not produce this field. UNKNOWN, never 0.")
-    if d["verdict"] == "NO_POOL_FOUND":
-        r.warn("⚠️ No pool found among the largest holders reached. That is a "
-               "FLOOR: it means we did not find one, NOT that none exists.")
-    elif d["verdict"] != "UNREADABLE":
-        r.warn("⭐ A pool with reserves EXISTS on chain that the indexer did "
+              "is_floor", "deepest_pool_liq_usd", "quote_assets",
+              "single_pool_would_understate_by", "first_pool_ms", "chains",
+              "symbol_display", "name_display", "symbol_flags", "shape",
+              "venues"):
+        r.unchecked(k, "the indexer returned nothing for this mint, and on-chain "
+                       "pool derivation does not produce this field. "
+                       "UNKNOWN, never 0.")
+    if chain["pool_state"] in ("pool_live",):
+        r.warn("⭐ A pool with reserves EXISTS on chain that the indexer does "
                "not list. Anything that called this token dead was wrong.")
-    if d["errors"]:
-        r.warn("discovery errors: " + "; ".join(str(e) for e in d["errors"][:3]))
     return r.done()
 
 

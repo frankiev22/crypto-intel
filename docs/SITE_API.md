@@ -120,7 +120,51 @@ returned 30 are not ordered by size. **Render a floor as `$2.27M+`, never as
 ⚠️ `liq_usd` is a correct sum of an **overstating** field, measured overstating
 by a median 781x. It answers *what shape is this token*. It is not an exit price.
 
-#### ⭐⭐ And when the indexer has NOTHING, this endpoint asks the CHAIN
+#### ⛔⛔ SUPERSEDED THE SAME DAY: THE CHAIN IS NOW THE PRIMARY SOURCE
+
+**Corrected 2026-09-23, rule `PRECOMMIT_pool_state.md`.** The section below
+described the chain as a **fallback** for when the indexer had nothing. Frank:
+*"Make `liquidity(mint)` use derivation as the primary path and the indexer as a
+supplement, never the reverse."* ⛔ **A fallback only fires when the indexer is
+silent, so an indexer that answered CONFIDENTLY AND WRONGLY was never checked** -
+and that is the actual failure: 3 of 3 `gone` contracts that turned out sellable
+had a recorded pair that was the abandoned bonding curve.
+
+**The order now, every call:**
+
+1. ⭐ **`poolstate.state(mint)` runs FIRST** - pools DERIVED from the mint (a
+   pump.fun curve PDA plus a `getProgramAccounts` memcmp at each venue's
+   **measured** offset), then the quote side from each pool's own vaults.
+2. The all-pairs indexer read runs second and is labelled
+   **`- SUPPLEMENT`** in its own provenance string.
+3. ⛔ If derivation fails, the response **says the indexer is UNCORROBORATED**
+   rather than quietly presenting it as the answer.
+
+**Fields from the primary path, on every response:**
+
+| field | meaning |
+|---|---|
+| `pool_state` | `pool_live` / `pool_emptied` / `curve_died` / `pool_closed` / `not_found` / `unreadable` |
+| `quote_reserves_usd` | the deepest DERIVED pool's quote side, from its own vaults |
+| `pools_onchain`, `pool_count_onchain`, `venues_onchain` | ⭐ not capped at 30: EMBER derives to 117 pools |
+| `venues_not_queryable` | ⛔ venues with no measured offset. **Never asked, so their absence is not evidence** |
+| `venues_one_sided` | ⚠️ venues where only one mint slot is stored, so a pool with our mint on the other side is invisible |
+| `rejected_non_pairs` | memcmp hits thrown out because the pool holds no vault of this mint (reward-mint slots) |
+| `source_primary` | `"chain"` |
+| `indexer_pairs_checked_on_chain` | ⭐ when derivation finds nothing, the indexer's own pair addresses are **verified on chain** rather than trusted or ignored, with `exists_on_chain`, `owner_program` and `venue_in_our_map` |
+| `sellable` | ⛔ always in `not_checked`. Existence is not liquidity |
+
+⭐ **`indexer_pairs_checked_on_chain` is how a coverage gap announces itself**: for
+`BsskZM8NNi6a…` the indexer's pair was owned by **FluxBeam**, a program absent from
+our AMM map, holding **$14.64** of WSOL while every derived address said nothing.
+The response calls that **OUR COVERAGE GAP**, not a fact about the token.
+
+⚠️ **The `pool_state` names cannot be read as verdicts on the token.**
+`not_found` is OUR UNCERTAINTY. `pool_live` is reserves, not a fill. `pool_closed`
+requires evidence the pool once existed (`PRECOMMIT_pool_state.md` §3a).
+
+<details>
+<summary>⚠️ The superseded fallback description, kept because nothing is deleted</summary>
 
 **New 2026-09-23, rule `PRECOMMIT_pool_discovery.md`.** If the all-pairs lookup
 fails *or* returns `pair_count: 0`, `liquidity()` does not return an empty
@@ -169,6 +213,13 @@ Extra fields on a fallback response:
 ⚠️ Every indexer-only field (`liq_usd`, `vol24_usd`, `mcap_usd`, `price_usd`,
 `pair_count`, `is_floor`, `deepest_pool_liq_usd`, `quote_assets`) comes back in
 `not_checked` as **null with a reason**, never as 0 (standing rule 5).
+
+</details>
+
+⭐ **The ladder is still there and still runs, as a SUPPLEMENT to derivation**, so
+a venue with no measured offset can still surface through a large holder. What
+changed is that it is no longer the only on-chain route, and it is no longer
+reached only when the indexer is silent.
 
 ---
 

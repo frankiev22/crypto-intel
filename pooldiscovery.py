@@ -37,6 +37,7 @@ Usage:
     python pooldiscovery.py <MINT>
     import pooldiscovery; pooldiscovery.discover(mint)
 """
+import base64
 import json
 import os
 import struct
@@ -76,6 +77,22 @@ AMM_OWNERS = {
     "obriQD1zbpyLz95G5n7nJe6a4DPjpFwa5XYPoNm113y": "obric",
     "MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG": "moonshot",
     "5jnapfrAN47UYkLkEf7HnprPPBCQLvkYWGZDeKkaP5hv": "raydium_launchlab",
+    # ⭐⭐ FOUND BY MEASUREMENT 2026-09-23, and it was entirely missing.
+    # The offset probe hit 7 of 48 sampled pools under this program and our
+    # map had no name for it. The indexer labels its pools `DYN2` under
+    # dexId `meteora`, and one of them is EMBER/MET - which matters, because
+    # EMBER is a Meteora pairing-launchpad token and we would have read its
+    # pools as "unknown program" and excluded them.
+    "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG": "meteora_damm_v2",
+    # ⭐ FOUND BY MEASUREMENT 2026-09-23. It owns the recorded pair of 1 of the
+    # 120 backfill contracts, it is executable, and our map had no name for it.
+    # Its pool is the 324-byte SPL-token-swap shape (mint slots 131 and 163) and
+    # it keeps its vaults under a separate authority, which is why
+    # `vaults_from_struct` had to exist before this entry was usable.
+    "FLUXubRmkEi2q6K3Y9kBPg9248ggaZVsoSFhtJHSrm1X": "fluxbeam",
+    # ⚠️ One sample only, offset measured at 131 but on a single pool, so it
+    # is carried with low confidence and named by its program id.
+    "9W959DqEETiGZocYWCQPaJ6sBmUzgfxXfqGeTEdp3aQP": "unnamed_amm_9W959Dq",
 }
 
 # ⛔ PROGRAM-OWNED IS NOT POOL-OWNED, and the negative control caught me counting
@@ -299,6 +316,112 @@ def _vaults(pool, budget=None):
     if len(rows) > MAX_VAULTS_PER_POOL:
         return [], ["shared_authority_%d_vaults" % len(rows)]
     return rows, errs
+
+
+# ---------------------------------------------------------------------------
+# ⭐⭐ THE VAULTS A POOL DOES NOT OWN, found by scanning its own bytes.
+#
+# MEASURED 2026-09-23, and it is the bug behind "which pool holds the money".
+# `_vaults` asks getTokenAccountsByOwner(pool). That works when the pool account
+# is itself the vault owner (pump.fun curve, PumpSwap). ⛔ It returns ZERO for a
+# venue that keeps its vaults under a separate authority, and zero vaults read as
+# $0.00 of quote side with nothing unvalued - a CONFIDENT ZERO THAT WAS NEVER
+# READ. Measured: all 3 sampled Meteora DBC pools and the one FluxBeam pool
+# return 0 vaults, and 12 of 120 recorded pairs in the backfill sample are DBC.
+#
+# ⭐ The fix assumes NO LAYOUT. Every 32-byte window of the pool's own data is a
+# CANDIDATE pubkey; we ask the chain which of those candidates are real SPL token
+# accounts, and keep the ones whose mint is a real mint. A vault address is in the
+# struct by definition, so this finds it without knowing where it sits.
+# ---------------------------------------------------------------------------
+def vaults_from_struct(pool, budget=None, max_candidates=600):
+    """Vaults referenced INSIDE the pool account, for venues that own none.
+
+    Same row shape as `_vaults`. Returns (rows, errors, candidates_checked).
+    ⛔ An RPC failure returns an error, never an empty vault list, because empty
+    is what this function exists to stop being published as zero.
+    """
+    res, err = rpc("getAccountInfo",
+                   [pool, {"encoding": "base64", "commitment": "confirmed"}],
+                   budget=budget)
+    if err:
+        return [], ["struct_read: " + err], 0
+    val = (res or {}).get("value")
+    if not val:
+        return [], ["struct_read: account absent"], 0
+    try:
+        raw = base64.b64decode(val["data"][0])
+    except Exception as e:
+        return [], ["struct_decode: %s" % str(e)[:60], ], 0
+
+    import solpda
+    seen = set()
+    cand = []
+    for i in range(0, max(0, len(raw) - 31)):
+        w = raw[i:i + 32]
+        if w in seen or not any(w):
+            continue
+        seen.add(w)
+        cand.append(solpda.b58encode(w))
+        if len(cand) >= max_candidates:
+            break
+
+    rows = []
+    errs = []
+    for i in range(0, len(cand), 100):
+        chunk = cand[i:i + 100]
+        r2, e2 = rpc("getMultipleAccounts",
+                     [chunk, {"encoding": "jsonParsed"}], budget=budget)
+        if e2 or not r2:
+            errs.append("candidates: " + (e2 or "empty"))
+            continue
+        for pk, acc in zip(chunk, r2.get("value") or []):
+            if not acc or acc.get("owner") not in (TOKEN_PROGRAM, TOKEN_2022):
+                continue
+            try:
+                info = acc["data"]["parsed"]["info"]
+                if info.get("state") is None and "mint" not in info:
+                    continue
+                rows.append({
+                    "vault": pk,
+                    "mint": info["mint"],
+                    # ⛔ the vault's AUTHORITY. A pool struct can reference an
+                    # account that is not its own (a protocol fee vault, a
+                    # router), and summing one of those as this pool's quote side
+                    # would OVERSTATE it. The caller keeps one authority group.
+                    "vault_owner": info.get("owner"),
+                    "amount": int(info["tokenAmount"]["amount"]),
+                    "decimals": int(info["tokenAmount"]["decimals"]),
+                    "ui": float(info["tokenAmount"].get("uiAmountString") or 0),
+                    "how": "struct-scan",
+                })
+            except Exception:
+                continue
+    # ⚠️ A struct can reference a vault belonging to something else, so this is
+    # attributed only when the caller checks the mints against the pair.
+    return rows, errs, len(cand)
+
+
+# ⭐ A pump.fun bonding curve's quote side is NATIVE SOL in its own lamports, so
+# getTokenAccountsByOwner cannot see it and our reader called it $0. MEASURED on
+# 26 live curves from the backfill sample: 2 hold >= $10 above rent and one holds
+# 1.978990 SOL = $226.61. Labelling that `curve_died` with "$0 quote" was wrong.
+_RENT_MIN = {}
+
+
+def rent_exempt(data_len, budget=None):
+    """The rent-exempt minimum for this data length, asked once per length.
+
+    ⛔ None on failure, never a guess, because the caller subtracts it.
+    """
+    if data_len in _RENT_MIN:
+        return _RENT_MIN[data_len]
+    res, err = rpc("getMinimumBalanceForRentExemption", [int(data_len)],
+                   budget=budget)
+    if err or res is None:
+        return None
+    _RENT_MIN[data_len] = int(res)
+    return int(res)
 
 
 def sol_price():

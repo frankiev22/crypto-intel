@@ -61,6 +61,36 @@ def clear():
 # ---------------------------------------------------------------------------
 head("2. liquidity(mint) - NEVER ONE POOL (standing rule 18)")
 
+# ⛔⛔ FROM 2026-09-23 THE CHAIN IS THE PRIMARY SOURCE, so it must be stubbed or
+# every assertion below would make ~17 getProgramAccounts calls. Rule:
+# PRECOMMIT_pool_state.md. Frank: "We can't publish shit data."
+_REAL_STATE = intel.poolstate.state
+_REAL_SOLPX = intel.poolstate.pd.sol_price
+intel.poolstate.pd.sol_price = lambda: (100.0, "stub", 1700000000)
+
+
+def _fake_state(pool_state="pool_live", quote=250.0, pools=1,
+                venues=("pumpswap",), rejected=(), not_queryable=()):
+    def go(mint, **k):
+        return {"mint": mint, "pool_state": pool_state,
+                "pool_state_measured_at": 1700000000,
+                "quote_usd_max": quote, "unvalued_vaults": 0,
+                "pools": [{"pool": "P" * 32, "venue": venues[0],
+                           "how": "memcmp@43", "exists": True,
+                           "quote_usd": quote}] * pools,
+                "pool_count": pools, "pools_existing": pools,
+                "pools_absent": 0, "venues": list(venues),
+                "how_found": ["memcmp@43"],
+                "venues_queried": list(venues),
+                "venues_NOT_queryable": list(not_queryable),
+                "rejected_non_pairs": list(rejected),
+                "pairs_unverifiable": 0, "errors": [],
+                "sellable": None, "absence_is_a_floor": True}
+    return go
+
+
+intel.poolstate.state = _fake_state()
+
 clear()
 intel.allpairs.token = lambda m, **k: fake_token(pairs=10, liq_each=4000.0)
 r = intel.liquidity("So11111111111111111111111111111111111111112")
@@ -73,6 +103,47 @@ t("⭐ the size of the one-pool error is REPORTED, not hidden",
 t("⭐ every field carries provenance", len(r["provenance"]) >= 10
   and all(p.get("source") for p in r["provenance"]))
 
+t("⛔⛔ THE CHAIN IS THE PRIMARY SOURCE, not the indexer",
+  r["data"]["source_primary"] == "chain",
+  str(r["data"].get("source_primary")))
+t("⛔ the measured pool_state is on the response",
+  r["data"]["pool_state"] == "pool_live", str(r["data"].get("pool_state")))
+t("⛔ quote reserves come from the DERIVED pool's own vaults",
+  r["data"]["quote_reserves_usd"] == 250.0)
+t("⛔ sellable is explicitly NOT CHECKED here (existence is not liquidity)",
+  "sellable" in {x["field"] for x in r["not_checked"]})
+t("⛔ venues with NO measured offset are named on the response",
+  "venues_not_queryable" in r["data"])
+t("⛔ and the indexer's liq_usd is labelled a SUPPLEMENT in provenance",
+  any("SUPPLEMENT" in (p.get("source") or "")
+      for p in r["provenance"] if p["field"] == "liq_usd"))
+
+clear()
+intel.poolstate.state = _fake_state(pool_state="not_found", quote=0.0, pools=0)
+r = intel.liquidity("So11111111111111111111111111111111111111112")
+t("⛔⛔ not_found is published as OUR UNCERTAINTY, never as no market",
+  r["data"]["pool_state"] == "not_found"
+  and any("OUR UNCERTAINTY" in w for w in r["warnings"]),
+  str(r["warnings"])[:140])
+
+clear()
+intel.poolstate.state = _fake_state(pool_state="pool_closed", quote=0.0, pools=1)
+r = intel.liquidity("So11111111111111111111111111111111111111112")
+t("⭐ pool_closed is the ONLY state that means what `gone` claimed",
+  any("only state that means what `gone`" in w for w in r["warnings"]))
+
+clear()
+intel.poolstate.state = _fake_state(
+    rejected=[{"pool": "R" * 32, "venue": "raydium_clmm", "how": "memcmp@454",
+               "why": "holds no vault of our mint"}])
+r = intel.liquidity("So11111111111111111111111111111111111111112")
+t("⛔ a memcmp hit on a REWARD-mint slot is rejected and shown",
+  len(r["data"]["rejected_non_pairs"]) == 1
+  and r["data"]["rejected_non_pairs"][0]["how"] == "memcmp@454")
+
+clear()
+intel.poolstate.state = _fake_state()
+
 clear()
 intel.allpairs.token = lambda m, **k: fake_token(pairs=30, liq_each=1000.0)
 r = intel.liquidity("So11111111111111111111111111111111111111112")
@@ -81,58 +152,48 @@ t("⛔ at the 30-pair API cap the total is declared a FLOOR",
   "SOL returns 30 too, so 30 means '30 or more'")
 
 # -------------------------------------------------------------------------
-# ⛔⛔ THE `gone` BUG, journal.py:974: a failed lookup is NOT a dead token.
-# From 2026-09-23 this is no longer only a warning - liquidity() ASKS THE CHAIN.
-# Rule: PRECOMMIT_pool_discovery.md. Frank: "We need to use the contract address
-# to find the real pool so we can see it after bonding."
 # -------------------------------------------------------------------------
-import pooldiscovery as _pdisc
-
-_REAL_DISCOVER, _REAL_PX = _pdisc.discover, _pdisc.sol_price
-_pdisc.sol_price = lambda: (100.0, "stub", 1700000000)
-
-
-def _fake_discover(verdict="POOL_QUOTE_100", pools=1, quote=250.0, rung=1):
-    def go(mint, **k):
-        return {"mint": mint, "rung": rung, "verdict": verdict,
-                "pools": [{"pool": "P" * 32, "venue": "pumpswap",
-                           "quote_usd": quote}] * pools,
-                "pool_count": pools, "quote_usd_max": quote,
-                "quote_usd_total": quote, "unvalued_vaults": 0,
-                "holders_reached": 20, "holders_total_known": None,
-                "errors": [], "absence_is_a_floor": True,
-                "floor_note": "largest holders only, so absence is a FLOOR"}
-    return go
-
-
-for label, lookup, verdict, want_ok, want_phrase in [
-    ("a failed lookup", fake_token(ok=False), "POOL_QUOTE_100", True,
+# ⛔⛔ THE `gone` BUG, journal.py:974: a failed lookup is NOT a dead token.
+#
+# From 2026-09-23 the chain is not a FALLBACK, it is the PRIMARY source, so the
+# assertions here are about what happens when the INDEXER is silent while the
+# chain has already answered. Rule: PRECOMMIT_pool_state.md.
+#
+# ⛔ The proof this mattered: all THREE `gone` contracts that turned out to be
+# sellable had a recorded pair equal to their DERIVED BONDING CURVE
+# (NOOS -> 4zhiY2Vk…, JEANB -> 5Cozv7ka…, LOOONGJAK -> DyVDpYve…). The curve
+# still exists and holds $0 while the PumpSwap pool holds $360-440. We priced the
+# abandoned curve and called the token dead.
+# -------------------------------------------------------------------------
+for label, lookup, pstate, want_phrase in [
+    ("a failed indexer lookup", fake_token(ok=False), "pool_live",
      "EXISTS on chain"),
-    ("an indexer answering NO PAIRS", fake_token(pairs=0), "POOL_QUOTE_100", True,
+    ("an indexer answering NO PAIRS", fake_token(pairs=0), "pool_live",
      "EXISTS on chain"),
-    ("and when the chain finds nothing either", fake_token(ok=False),
-     "NO_POOL_FOUND", True, "FLOOR"),
+    ("an indexer silent AND no pool derivable", fake_token(ok=False),
+     "not_found", "OUR UNCERTAINTY"),
 ]:
     clear()
     intel.allpairs.token = lambda m, _l=lookup, **k: _l
-    _pdisc.discover = _fake_discover(verdict=verdict)
+    intel.poolstate.state = _fake_state(
+        pool_state=pstate, quote=(250.0 if pstate == "pool_live" else 0.0),
+        pools=(1 if pstate == "pool_live" else 0))
     r = intel.liquidity("So11111111111111111111111111111111111111112")
-    t("⛔ %s is NOT a dead token - it FALLS BACK to the chain" % label,
-      r["ok"] is want_ok
-      and any("NOT evidence the token is dead" in w for w in r["warnings"])
-      and r["data"]["source_that_answered"] == "chain",
-      "ok=%s src=%s" % (r["ok"], r["data"].get("source_that_answered")))
-    t("   ⭐ ...and it says which way it came out (%s)" % verdict,
-      r["data"]["discovery_verdict"] == verdict
-      and any(want_phrase in w for w in r["warnings"]),
-      str(r["warnings"])[:120])
+    t("⛔ %s is NOT a dead token" % label,
+      r["ok"] is True and r["data"]["source_that_answered"] == "chain"
+      and r["data"]["pool_state"] == pstate,
+      "ok=%s src=%s state=%s" % (r["ok"],
+                                 r["data"].get("source_that_answered"),
+                                 r["data"].get("pool_state")))
+    t("   ⭐ ...and it says so in words (%s)" % pstate,
+      any(want_phrase in w for w in r["warnings"]), str(r["warnings"])[:130])
     t("   ⛔ ...every indexer-only field is NULL WITH A REASON, never 0",
       all(r["data"][f] is None for f in ("liq_usd", "vol24_usd", "mcap_usd",
                                          "pair_count", "quote_assets"))
       and {"liq_usd", "pair_count"} <= {x["field"] for x in r["not_checked"]},
       str(r["data"].get("liq_usd")))
-    t("   ⛔ ...and absence is declared a FLOOR on every such response",
-      r["data"]["absence_is_a_floor"] is True)
+    t("   ⛔ ...and the indexer's own silence is RECORDED, not discarded",
+      "indexer_said" in r["data"] and r["data"]["indexer_said"])
 
 clear()
 intel.allpairs.token = lambda m, **k: fake_token(ok=False)
@@ -142,14 +203,17 @@ def _boom(mint, **k):
     raise RuntimeError("rpc down")
 
 
-_pdisc.discover = _boom
+intel.poolstate.state = _boom
 r = intel.liquidity("So11111111111111111111111111111111111111112")
 t("⛔⛔ when NEITHER source answers it FAILS, and never reports zero",
   r["ok"] is False and r["data"]["source_that_answered"] is None
   and "UNKNOWN, not zero" in str(r["provenance"]),
   str(r.get("error"))[:90])
+t("⛔ ...and it says the chain read failed, not that the token is empty",
+  any("UNCORROBORATED" in w or "derivation failed" in w for w in r["warnings"]),
+  str(r["warnings"])[:130])
 
-_pdisc.discover, _pdisc.sol_price = _REAL_DISCOVER, _REAL_PX
+intel.poolstate.state = _fake_state()
 clear()
 intel.allpairs.token = lambda m, **k: fake_token(pairs=10, liq_each=4000.0)
 
@@ -676,6 +740,17 @@ t("⛔ and every served route points at a real intel function",
   str(sorted(k for k, v in intelserve.ROUTES.items()
              if getattr(intel, k, None) is not v[0])))
 
+
+head("the indexer's pair list is EVIDENCE, and evidence gets CHECKED")
+_isrc = io.open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             "intel.py"), encoding="utf-8").read()
+t("⛔ a not_found/pool_closed answer checks the indexer's pairs ON CHAIN",
+  '"indexer_pairs_checked_on_chain"' in _isrc
+  and 'chain["pool_state"] in ("not_found", "pool_closed")' in _isrc)
+t("⛔ an owner program our map lacks is called OUR COVERAGE GAP",
+  "OUR COVERAGE GAP" in _isrc)
+t("⛔ exists_on_chain is None when the account was never asked, not False",
+  '"exists_on_chain": (None if _a not in _info else bool(_acc))' in _isrc)
 
 # ---------------------------------------------------------------------------
 print()
