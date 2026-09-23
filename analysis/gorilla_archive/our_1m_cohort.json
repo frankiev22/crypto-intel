@@ -1,0 +1,4604 @@
+[
+ {
+  "token": "7QgiWTwAa8ZxeY8fviKfWNEnZiMJQhNaKUFK3CLr7uTV",
+  "date": "2026-08-21",
+  "symbol": "\u202eTDSU",
+  "value": 101593105.0
+ },
+ {
+  "token": "FaxiFD61kB4m6KJuj7d8gr1CzBpNm6KpFxMYD1PPpump",
+  "date": "2026-08-21",
+  "symbol": "WROON100",
+  "value": 5570556.0
+ },
+ {
+  "token": "Et9pvPyzFS2gBiA6pGSXCTJYCiKfkE2AtdubS1VazucT",
+  "date": "2026-08-21",
+  "symbol": "KIRK",
+  "value": 2763942.0
+ },
+ {
+  "token": "HwwEpJZrRuFEtauytmgwQ6PBhnjfMTFYfEoQPnkCfVxt",
+  "date": "2026-08-21",
+  "symbol": "USDC",
+  "value": 9754947389.0
+ },
+ {
+  "token": "4LGy8U8yv9Ao3Jy6ko1v6sHb6pQ6tSfPE2SB6cCibonk",
+  "date": "2026-08-21",
+  "symbol": "bonkcat",
+  "value": 4498895.0
+ },
+ {
+  "token": "C8fU5GdfAt5mnw2RK7HE6XJGFNxHpaskZMkXxdm88888",
+  "date": "2026-08-21",
+  "symbol": "CTM",
+  "value": 66754315.0
+ },
+ {
+  "token": "CzfYnqnMjxB2H2B3xKuLL4Kt7reoAHJHFs5ZTHpkpump",
+  "date": "2026-08-21",
+  "symbol": "PANTS",
+  "value": 5177585.0
+ },
+ {
+  "token": "DNXN2scDLkNuQgBfMYb81kAMrFAoyW6ELu8qu528mH1G",
+  "date": "2026-08-22",
+  "symbol": "\u202eyhtomiJ",
+  "value": 14876314915.0
+ },
+ {
+  "token": "HY7ov57mLb7wChRL8fa5ASpsifwYo6QnRZTBphX91mR9",
+  "date": "2026-08-22",
+  "symbol": "m\u0254",
+  "value": 1429732867.0
+ },
+ {
+  "token": "8uJgfNZs7aFGL2mzFJ8R5ZummUyzNXh2BhKfR5PQZfXh",
+  "date": "2026-08-22",
+  "symbol": "\u202eETAC",
+  "value": 62783879284.0
+ },
+ {
+  "token": "GcstmDjPn6xwKYvq4tW89TxDmHx9KSHoQfdaZnP3pump",
+  "date": "2026-08-22",
+  "symbol": "Aposhld",
+  "value": 18682100.0
+ },
+ {
+  "token": "7zXdK28Zx3tmZogBgksp37qwtbe8xZ5b86AG5qU49S3H",
+  "date": "2026-08-22",
+  "symbol": "RippleUSD",
+  "value": 1000106.0
+ },
+ {
+  "token": "AwCUAUNtqfG7zbpE5sCpriPmfpvhAwmcyCbTk6ASzLEh",
+  "date": "2026-08-22",
+  "symbol": "\u202eTSX",
+  "value": 28392869081.0
+ },
+ {
+  "token": "Hm2N9bzLncGv9EbDkjFFC7fCz1Jucv7tsi3xvfYsbszd",
+  "date": "2026-08-22",
+  "symbol": "BERT",
+  "value": 3638098.0
+ },
+ {
+  "token": "CmZBeh5XmEd23BDWpHRTpZjPDqHYhhFhCd7oajePFZi9",
+  "date": "2026-08-22",
+  "symbol": "\u202eASUS",
+  "value": 1244812.0
+ },
+ {
+  "token": "FTph9BqQsA7ssWjrpqAHHru9Ah3j5a7XR2pRqC2ppump",
+  "date": "2026-08-22",
+  "symbol": "ICEHOP",
+  "value": 25793785.0
+ },
+ {
+  "token": "CLoUDKc4Ane7HeQcPpE3YHnznRxhMimJ4MyaUqyHFzAu",
+  "date": "2026-08-22",
+  "symbol": "CLOUD",
+  "value": 21938060.0
+ },
+ {
+  "token": "ABWwVMWmCgdBLps1pbikF6fWaC51RS4oYPSu8M4spump",
+  "date": "2026-08-22",
+  "symbol": "CONK",
+  "value": 4141081.0
+ },
+ {
+  "token": "7UCgu29WhprdE4fYRbNfVB5TQhWtoVkKUzi2EnrD5jrJ",
+  "date": "2026-08-22",
+  "symbol": "\u202e2egoD",
+  "value": 7810741.0
+ },
+ {
+  "token": "GjKca9Z1JyQuq9tmhEnX5bkkVPAwBW75F2ZHvqW2EzfB",
+  "date": "2026-08-22",
+  "symbol": "\u202eLLORT",
+  "value": 56311781797.0
+ },
+ {
+  "token": "5UdLQEu2xEo2vEu5D4JRNDXXSZkpeGMuKQuE8Xqyssb3",
+  "date": "2026-08-23",
+  "symbol": "Tappy",
+  "value": 2475090.13
+ },
+ {
+  "token": "8f6BWCWQv1h1q7VCJnG3oH24dPMQemnvA5pja2EWSpGm",
+  "date": "2026-08-23",
+  "symbol": "TBB",
+  "value": 9810826296.0
+ },
+ {
+  "token": "rXxyHqpHpcXgAEUQ6MSG1xUWqEfe3N2ARvcM9SXtofh",
+  "date": "2026-08-24",
+  "symbol": "LPC",
+  "value": 361010484.0
+ },
+ {
+  "token": "aFYjfytg6Ryx77j8gnEbVNRBD8mWCrDrw2uySD5BAGS",
+  "date": "2026-08-24",
+  "symbol": "Sheintag",
+  "value": 58013412.0
+ },
+ {
+  "token": "csBEUncYxX8LAwW8z5TcBf4Tq7xFuirhJiCP8Uepump",
+  "date": "2026-08-24",
+  "symbol": "USMS",
+  "value": 5689682.0
+ },
+ {
+  "token": "DfAuWdZ4ohymBmRrXFR52Yt9JGe4Gm8UV5GNGQKn7XLo",
+  "date": "2026-08-24",
+  "symbol": "Alycia",
+  "value": 2260428.47
+ },
+ {
+  "token": "2sFHPLb9tWWYRyGfsPBLrAp5tFNszAfcVQKzhjxMnm2p",
+  "date": "2026-08-24",
+  "symbol": "\u202etacyloP",
+  "value": 4710170.0
+ },
+ {
+  "token": "FsggQAVtxRaAhdE5BYWzbEs8RRDyFJAJWtQh4LH6bonk",
+  "date": "2026-08-24",
+  "symbol": "Elche5",
+  "value": 60932850.0
+ },
+ {
+  "token": "6bx4kyfFks8BrzFKn8xdcEuQUsryx1npbedbm4Fi6wHh",
+  "date": "2026-08-24",
+  "symbol": "DKHC",
+  "value": 100010450.0
+ },
+ {
+  "token": "Dg1LuXcWUyD7XnETrnis81Z2A6h6uRsjcMPcxN14t3x1",
+  "date": "2026-08-24",
+  "symbol": "Giggle",
+  "value": 1005384.0
+ },
+ {
+  "token": "8rZVQAXXYHCBAdTEkq32oLBKvySma6Vhc37NrMk8KsjH",
+  "date": "2026-08-24",
+  "symbol": "USDT",
+  "value": 101593105.0
+ },
+ {
+  "token": "EDcsfAAgNCoCBoL9zkgmzYY3aZTfeBxCHMnBPcTZpump",
+  "date": "2026-08-24",
+  "symbol": "ANSEM",
+  "value": 6571404.0
+ },
+ {
+  "token": "7Q7Yk2GrE2ev9ddZGmyfKCVkUQb1CJMfvYD5f4LEpump",
+  "date": "2026-08-24",
+  "symbol": "MARTIANS",
+  "value": 5245237.0
+ },
+ {
+  "token": "2g1qf4bq29Fapz4gPAPPUPWbFsFderRLhri4h32ZgZCb",
+  "date": "2026-08-24",
+  "symbol": "TMX",
+  "value": 1366465.0
+ },
+ {
+  "token": "3RyAQ3evSMUcog3i3nNJHswFrq4pGuKgrHQUWVPKwoQr",
+  "date": "2026-08-24",
+  "symbol": "SONY",
+  "value": 4288612.0
+ },
+ {
+  "token": "GzJYpqQNimGC4rnJrmhBoMGKZxfgbKGxMHesxe8UWSZ7",
+  "date": "2026-08-24",
+  "symbol": "CYBERLEEK",
+  "value": 22422057343.0
+ },
+ {
+  "token": "9rouwxAPVuBMHsiisgjvd5MbWV2P62CrVEjmLXH7nvMN",
+  "date": "2026-08-24",
+  "symbol": "\u202eEDAM",
+  "value": 1358376353.0
+ },
+ {
+  "token": "H3YTiSye5EATpHNoMcPKuDvBgyAiVEGs8i5FRMRGUDZ1",
+  "date": "2026-08-24",
+  "symbol": "U\u202eDS",
+  "value": 100080029.0
+ },
+ {
+  "token": "GejxnTPogQiy6cy4bdDGz3m5owDoY7ZGdq34zY3Cpump",
+  "date": "2026-08-24",
+  "symbol": "TILLY",
+  "value": 3274498.0
+ },
+ {
+  "token": "5vfWAJorfrvkfdaYRerxxmmEEj86kDmQ4WX1tBzzYQUz",
+  "date": "2026-08-24",
+  "symbol": "BNC",
+  "value": 2001798.0
+ },
+ {
+  "token": "3j591LHNaPaaRhg3VCPvAexKJkWHM6wgxmNYrwz3ygGy",
+  "date": "2026-08-24",
+  "symbol": "CATE",
+  "value": 37100112214.0
+ },
+ {
+  "token": "2emNyEzEwGCinaraxBbWxsJ7EQWExumpkBnzMRQoPoZK",
+  "date": "2026-08-24",
+  "symbol": "SPCX",
+  "value": 341254304.0
+ },
+ {
+  "token": "6SeEB1jZYjBf2rMfdAJ8JEzwkGeCUPhbM1pW34tKXtgi",
+  "date": "2026-08-24",
+  "symbol": "MARTIN",
+  "value": 2502215.85
+ },
+ {
+  "token": "HyN55Zxk1HyDdmd31wxiqXhXyarRWVRbUquJUJgD8S4w",
+  "date": "2026-08-24",
+  "symbol": "TSLA",
+  "value": 1003116.0
+ },
+ {
+  "token": "37psTiHQuQqMpwQ3XPNuUwhfABThDLhD1Khsu8AQbonk",
+  "date": "2026-08-24",
+  "symbol": "Xidelhi",
+  "value": 18005010.0
+ },
+ {
+  "token": "3VLpAb7zNVAcG9DPNbmyrGrvJR8Cv6HoSU64piTdJCi5",
+  "date": "2026-08-24",
+  "symbol": "sleep",
+  "value": 2500798.58
+ },
+ {
+  "token": "H87RXdpwsqdC3yoERGihWM4jFbMuWTujX8rvPjgBX3FQ",
+  "date": "2026-08-24",
+  "symbol": "USDT",
+  "value": 101593022.0
+ },
+ {
+  "token": "GjpStCqC82T2Js6H7yYCgfbKhHPkr8GGvs5KvCcKVczH",
+  "date": "2026-08-24",
+  "symbol": "CYBERLEEK",
+  "value": 18100795351.0
+ },
+ {
+  "token": "3K32J7npmT7VihfMKMw2GTsyD4g9GPr4wtsTLkqmH6BH",
+  "date": "2026-08-25",
+  "symbol": "ANTH",
+  "value": 1154031.0
+ },
+ {
+  "token": "H9z8TSKZhxx1YLuEdcqzLA4x6HTkM7TT8cBM8MTNTS5c",
+  "date": "2026-08-25",
+  "symbol": "CYBERLEEK",
+  "value": 171013731.0
+ },
+ {
+  "token": "DmfvgTSsyw3F69YkbsfE8h9V6nmAj1d5cG7wwicdXtjG",
+  "date": "2026-08-25",
+  "symbol": "CMNS",
+  "value": 2580408.0
+ },
+ {
+  "token": "8MP2h4WjYgcCtzYHECwXCVRZQg6aazmSiZ4n3sMmqiSd",
+  "date": "2026-08-25",
+  "symbol": "CYBERLEEK",
+  "value": 17910032869.0
+ },
+ {
+  "token": "EVrjYymgmBLRjbVUS6VJRfivwWGMCnGGAnfgCjKGpump",
+  "date": "2026-08-25",
+  "symbol": "TINY",
+  "value": 5454848.0
+ },
+ {
+  "token": "3HcFCXfVbERKeTxNXmnVy8T7LG7KA7xQPpW5LEUjJbA1",
+  "date": "2026-08-25",
+  "symbol": "\u202eKEREBYC",
+  "value": 141013202.0
+ },
+ {
+  "token": "tTwDeVb1dg1VRPnkvHSfgL3tPwfdAvg6fTQtRhUmoon",
+  "date": "2026-08-25",
+  "symbol": "Rrghost",
+  "value": 46941850.0
+ },
+ {
+  "token": "35ognnLrpbTFQgm6F8dFwyFQy2tU7wW6Ng7YhJMMpump",
+  "date": "2026-08-25",
+  "symbol": "YJHIVE",
+  "value": 59748257.0
+ },
+ {
+  "token": "CidUHXMK8NB3XLjFYHa1WjMzAp5fNHviSoiyT2KDQsvJ",
+  "date": "2026-08-25",
+  "symbol": "WOL",
+  "value": 293509210.0
+ },
+ {
+  "token": "7GSpMUneogMQveQNVh2Q1gnX384pDbUufx7tbys9yrLH",
+  "date": "2026-08-25",
+  "symbol": "\u202eyhtomiJ",
+  "value": 18850859386.0
+ },
+ {
+  "token": "6rYb28s3BaH7X5zSUz9QNNsDsDnk23NXquxEHMENE7nx",
+  "date": "2026-08-25",
+  "symbol": "CYBERLEEK",
+  "value": 15164414.0
+ },
+ {
+  "token": "3bzdrZUYMopJKAvX52JTHmUfJLTj25ZA4jKeyX4uRDbm",
+  "date": "2026-08-25",
+  "symbol": "CYBERLEEK",
+  "value": 1410133603.0
+ },
+ {
+  "token": "67LT7edbCTsSPjAT4wKZq5yTsnfkgJ1pD9DqNHjHpump",
+  "date": "2026-08-25",
+  "symbol": "MCX",
+  "value": 10008357.0
+ },
+ {
+  "token": "Bt6kkyUsDYRVHhAiW6pcTCL1MZEktxzS1BwRFPXTYRAX",
+  "date": "2026-08-25",
+  "symbol": "\u202eTDSU",
+  "value": 101593105.0
+ },
+ {
+  "token": "HHkSR5hE4n1evLs7mqHYjWqqLCisaiexoCvaQMGQmcZk",
+  "date": "2026-08-25",
+  "symbol": "happyseb",
+  "value": 2545944.42
+ },
+ {
+  "token": "6fWd7KWnAV1QMUzRHbGuknwgad1ybC7Kg3dDXotyVquS",
+  "date": "2026-08-25",
+  "symbol": "Fartcoin",
+  "value": 185164434042.0
+ },
+ {
+  "token": "aYhxwxjzQFUxs9PVJXbJmqqMs3hzbzTr6orozPypump",
+  "date": "2026-08-25",
+  "symbol": "RST",
+  "value": 51631496.0
+ },
+ {
+  "token": "3Ko2dPNncZz5WR18pVQbgHbBHEeuwsT1k7fjqwHrmtkY",
+  "date": "2026-08-25",
+  "symbol": "Barron$10M",
+  "value": 229813084.0
+ },
+ {
+  "token": "9E1VgW95VjkAQeFpenKVpnXegDg2dD4MEakUZuHhcHyk",
+  "date": "2026-08-25",
+  "symbol": "OCB",
+  "value": 2512870.81
+ },
+ {
+  "token": "Fcgipq3Ktty4YKqnzeAdPd3bdZ5BiiSXTNpmvkptbonk",
+  "date": "2026-08-25",
+  "symbol": "Jalrobot",
+  "value": 12293919.0
+ },
+ {
+  "token": "7Rmf5vxZMRavbykmbAJQGdjfZ315gxGaE4WAv2ivvVF1",
+  "date": "2026-08-26",
+  "symbol": "SPY",
+  "value": 1272352.0
+ },
+ {
+  "token": "5GWmFMzWjKqMMHC1VNt64wyMpJjLFaztSD7Gw4w7moon",
+  "date": "2026-08-26",
+  "symbol": "Cumag",
+  "value": 18685387.0
+ },
+ {
+  "token": "9yK8wwuWAYG9EFKpApQ6ARwNYDJkt4ZaVrsUNVdkhBiH",
+  "date": "2026-08-26",
+  "symbol": "NAKA",
+  "value": 166589131.0
+ },
+ {
+  "token": "FB7DcbUsN4F4Yefj2jVV5jqHJLwDoDVAt1TQzpogpump",
+  "date": "2026-08-26",
+  "symbol": "Kcrown",
+  "value": 17031982.0
+ },
+ {
+  "token": "G5ZQZNDCRn6kGC8bLDtXGxRyteXxTRzMXpvtXKh7pump",
+  "date": "2026-08-26",
+  "symbol": "XST",
+  "value": 52129418.0
+ },
+ {
+  "token": "Ceget7o2CUA4JgsJrDi3YcTYmwdoB11sjdwSNXGorYHJ",
+  "date": "2026-08-26",
+  "symbol": "\u202eNIUGNEP",
+  "value": 1411549735.0
+ },
+ {
+  "token": "RjiuJeWXAqEZft7RuDeujR9QW2MvJ6z3gBonWeUpump",
+  "date": "2026-08-26",
+  "symbol": "CATE",
+  "value": 3705214.0
+ },
+ {
+  "token": "Bu6jksQZxbBPoQLBYn9RrRVwVv8Ss4582QFGoL8VQEjH",
+  "date": "2026-08-26",
+  "symbol": "YMTC",
+  "value": 643481862745.0
+ },
+ {
+  "token": "J286hRaWxCt2vLxZyF5PELzu85EfR1Tx9Roh2kufhYi",
+  "date": "2026-08-26",
+  "symbol": "\u202eyeliaH",
+  "value": 102368289.0
+ },
+ {
+  "token": "5S9wvpz43jxZfjFszqSQY5rt9QBxsBSfAzp4BoLnpump",
+  "date": "2026-08-26",
+  "symbol": "CROCODILE",
+  "value": 6858684.0
+ },
+ {
+  "token": "2FaPDfhe6N22jXyg6s9QBmd3ezQJCXwGB5bDsRJMT7dL",
+  "date": "2026-08-26",
+  "symbol": "AAPL",
+  "value": 1259092.0
+ },
+ {
+  "token": "4Lr65cMLJoCdh3Du2SJUWpzPLg2opsPtv1U1LZMK4oCE",
+  "date": "2026-08-26",
+  "symbol": "GTA6",
+  "value": 6959202.0
+ },
+ {
+  "token": "8Gg91uLkcDm21aZP2fzU4KeufTpmTP67H5T1kH8uwrFt",
+  "date": "2026-08-26",
+  "symbol": "CRYPTO",
+  "value": 3593433.0
+ },
+ {
+  "token": "8toLRhLAeq7WLsjMtqr5PzLNJKeWPMMZxpGQhqSf33Me",
+  "date": "2026-08-26",
+  "symbol": "CUP",
+  "value": 2491586.76
+ },
+ {
+  "token": "GimR8FF9h2c8YJGxVbfareVzkS6DdUc1kvCMdZyFUG8d",
+  "date": "2026-08-26",
+  "symbol": "ORE",
+  "value": 1008750.0
+ },
+ {
+  "token": "DsvVXndWyP9oaCczXxf66DxQssGyQzgAeuWW9WQhpump",
+  "date": "2026-08-26",
+  "symbol": "BISCOTTI",
+  "value": 6414283.0
+ },
+ {
+  "token": "4YMbWJb9FJGGRaMsvXgVcgFM5pEYk48gjH7geBcsAY9p",
+  "date": "2026-08-27",
+  "symbol": "ROCKSTAR",
+  "value": 15270044.0
+ },
+ {
+  "token": "9xMg9oQBcj1iRPhqXJqyACeWPpBvswuUFSfDcdskA6PT",
+  "date": "2026-08-27",
+  "symbol": "AAPL",
+  "value": 1001870.0
+ },
+ {
+  "token": "GNBsw7ppLMf7paNXDgTcYvbGuAFZVpf9L26Kgaifxgqs",
+  "date": "2026-08-27",
+  "symbol": "\u202eenof",
+  "value": 1375874442.0
+ },
+ {
+  "token": "AWdX6tRuGV81usT4ZP8mYcaf7v36P3Acp7DhuqUwv6Me",
+  "date": "2026-08-27",
+  "symbol": "\u202eyhtomiJ",
+  "value": 15164685319.0
+ },
+ {
+  "token": "9xzciYcx9zVFQmv6t7k2LFrhESAfbWYz8K85uG2YkWef",
+  "date": "2026-08-27",
+  "symbol": "Anthropic",
+  "value": 1048171.0
+ },
+ {
+  "token": "EP9cD64YfLbWrr6MrtehCQ85Ez32mTgqxir7rZvsmRUo",
+  "date": "2026-08-27",
+  "symbol": "\u202eTDSU",
+  "value": 100945102.0
+ },
+ {
+  "token": "AYKxmWCAqdi6jzVLiQKRib8qrSb1uMhYUuyJSK2ipump",
+  "date": "2026-08-27",
+  "symbol": "fone",
+  "value": 6220633.0
+ },
+ {
+  "token": "E1F5mh2H8mAk77N1tH8N9Ym56cfHZnT5HJkYeC2RB6bA",
+  "date": "2026-08-27",
+  "symbol": "\u26a1\ufe0f",
+  "value": 144282393.0
+ },
+ {
+  "token": "FskmiR6Dyem9bKFq9bFMfRGU55WhGBuDrkATzBPPpump",
+  "date": "2026-08-27",
+  "symbol": "Tibyak",
+  "value": 21745887.0
+ },
+ {
+  "token": "46cSdZFD6CZgk2nxKsmtmCBGqZWinkjXrSzsvbEVJKiY",
+  "date": "2026-08-27",
+  "symbol": "\u202eDTMS",
+  "value": 1024966.51
+ },
+ {
+  "token": "6QA5NLnhiKWTbhGPHTYuV1Rdvn6nNjqq6uApoQZhn2o2",
+  "date": "2026-08-27",
+  "symbol": "SBTC",
+  "value": 13120203671.0
+ },
+ {
+  "token": "H9oyqqTRnXb2SpQuSrQxqYgVfQeGmE26tAQQXQQpump",
+  "date": "2026-08-28",
+  "symbol": "SOON",
+  "value": 1150708.0
+ },
+ {
+  "token": "dyGCLxTPmfDhtjeeNAfGPAZGqKx9TSfrXhFpGtDpump",
+  "date": "2026-08-28",
+  "symbol": "Russhrd",
+  "value": 61137161.0
+ },
+ {
+  "token": "E3UJnZhsHQAQf7grBw7cW2eAoKyUX8GhzuXpa2Rq5wwz",
+  "date": "2026-08-28",
+  "symbol": "MRVL",
+  "value": 1683057.0
+ },
+ {
+  "token": "7q6bWH1qgE8mACiyYz89Wnbi8JvVGRZk3umGNZQMpump",
+  "date": "2026-08-28",
+  "symbol": "PINK",
+  "value": 5875811.0
+ },
+ {
+  "token": "3egdrs3VebaEnARYoGEpM1m2tbFUoh8XEtcfAHKWpump",
+  "date": "2026-08-28",
+  "symbol": "DRNWALL",
+  "value": 71038957.0
+ },
+ {
+  "token": "DDsC2iA592AhmpeqDS1HrGm1aNnFbxVJp32MTsg2pump",
+  "date": "2026-08-28",
+  "symbol": "RST",
+  "value": 55908997.0
+ },
+ {
+  "token": "927d9vA4kkRxB6Ug3VgRo5jToHVS2G3gUe1itKKpMJbL",
+  "date": "2026-08-28",
+  "symbol": "MERP",
+  "value": 4318039.0
+ },
+ {
+  "token": "74nz1hoFkPD8YndZZ6iQrRWVU2kYHVmo9x7BRhFVmoon",
+  "date": "2026-08-28",
+  "symbol": "USPBELL",
+  "value": 22030549.0
+ },
+ {
+  "token": "x95HN3DWvbfCBtTjGm587z8suK3ec6cwQwgZNLbWKyp",
+  "date": "2026-08-28",
+  "symbol": "$HACHI",
+  "value": 1485371.0
+ },
+ {
+  "token": "HVJHfo7o23tfzqG5vdSJtdUM3GAbX8q25kFtDcBopump",
+  "date": "2026-08-28",
+  "symbol": "WOFI",
+  "value": 77321596.0
+ },
+ {
+  "token": "DicUuickG76JHoC68SUsE4tUJQjJDC61rF2E6RSAy8dT",
+  "date": "2026-08-28",
+  "symbol": "\u5973\u53cb\u666f\u751c",
+  "value": 40353816.0
+ },
+ {
+  "token": "92Xri613ThvUu2F6zX7MBw6eiZQkPZcZYQNGQPfUjpf3",
+  "date": "2026-08-28",
+  "symbol": "BASEMENT",
+  "value": 2490713.0
+ },
+ {
+  "token": "3d56Cb5PKRMRrXiyiLtCQMr5v69GA5JN15jzSkJaV14G",
+  "date": "2026-08-28",
+  "symbol": "\u666f\u751c",
+  "value": 1107849.0
+ },
+ {
+  "token": "DuXVVy8pZgD1UgiN8bpzPkK727B39kVHSTU9G7icXbB9",
+  "date": "2026-08-28",
+  "symbol": "TSLA",
+  "value": 1266338.0
+ },
+ {
+  "token": "EgCfHwChYHqeLLgDuHWcduc7UJXkyiTTQgbrvpdGHBxY",
+  "date": "2026-08-28",
+  "symbol": "X",
+  "value": 1286193.0
+ },
+ {
+  "token": "HM5XVxRWgaBWUq3TwbLcdDRjjvn3Qfgr6RkRFAVcSvWe",
+  "date": "2026-08-28",
+  "symbol": "HASH",
+  "value": 410020116.0
+ },
+ {
+  "token": "63Pb9TcavD2qgVsxmmY2EPL8LpjnqKQ3ogoYm3vEXFTT",
+  "date": "2026-08-28",
+  "symbol": "Anthropic",
+  "value": 1089021.0
+ },
+ {
+  "token": "xrTxnGYYvNtNaQL7CLCJXecfpFJfWMzcnjJk7UKpump",
+  "date": "2026-08-28",
+  "symbol": "USOF",
+  "value": 1564455.0
+ },
+ {
+  "token": "E3nwFvFCrJdKnTkVYSAtQTgSovm8fCsTPP51sFVaoxz5",
+  "date": "2026-08-29",
+  "symbol": "\u666f\u751c",
+  "value": 4410311.0
+ },
+ {
+  "token": "HUJE1C19tMfFrsJQ6qk1PmbMkBXn8B7tA8buCF5mpump",
+  "date": "2026-08-29",
+  "symbol": "USXR",
+  "value": 55653898.0
+ },
+ {
+  "token": "BoxBsDvMapLo49HkgKSaaYhHZRqETzxUHD3k2hQh3f57",
+  "date": "2026-08-29",
+  "symbol": "\ud83d\udc78baby",
+  "value": 156465043.0
+ },
+ {
+  "token": "UNTzRi3B1D9qHfk5mukVAvtb6C87JxdUsBseaCEpump",
+  "date": "2026-08-29",
+  "symbol": "FTFS",
+  "value": 1101351.0
+ },
+ {
+  "token": "qyB5VM97H5q3vuG4izH12dVhcBQLn1HAGGFvpPKuhfA",
+  "date": "2026-08-29",
+  "symbol": "AAPL",
+  "value": 1234917.0
+ },
+ {
+  "token": "Efh7HZTZgnFGdSibH9RzRXg5eSALWfBFdMNyNS6cZxr9",
+  "date": "2026-08-29",
+  "symbol": "\u666f\u751c\u6211\u7231\u4f60",
+  "value": 4971728.0
+ },
+ {
+  "token": "7e15Bi4xZnJth7VydsTDTPyn4wGo7sPdapRG2PfCgZXp",
+  "date": "2026-08-29",
+  "symbol": "\u666f\u751c\u6211\u7231\u4f60",
+  "value": 4506655.0
+ },
+ {
+  "token": "51bwioep5tK5CGKhJZsNJJzoLBKzYczdof8qiwPZsVLN",
+  "date": "2026-08-29",
+  "symbol": "\u5988\u5988",
+  "value": 3381261.0
+ },
+ {
+  "token": "8MwkNCt3UCxN2VxWLAFwi2w7oAXy5DcBhyYmDoa3QriX",
+  "date": "2026-08-29",
+  "symbol": "SUUO",
+  "value": 12864572.0
+ },
+ {
+  "token": "4FXy5MNno2aLT2sNzxJ2PWUNVrR2gWEMNCfJJ5S5z3p3",
+  "date": "2026-08-29",
+  "symbol": "OEB",
+  "value": 75286678.0
+ },
+ {
+  "token": "EMWtbpHaNqMbjUMZguuazhuZUVLWG3z4C5oZnGJPSqxS",
+  "date": "2026-08-29",
+  "symbol": "GOLD",
+  "value": 20250487.0
+ },
+ {
+  "token": "DtEnyGWB4Y1DMKg4KtLfmtEY3aBNN5FR4sWA2pUzrvc1",
+  "date": "2026-08-29",
+  "symbol": "Anthropic",
+  "value": 1061159.0
+ },
+ {
+  "token": "EeK9o18hkY2quBKm2jsXnWj7oNv2gWnDE9ZaFT4wuh34",
+  "date": "2026-08-29",
+  "symbol": "\u725b\u6765",
+  "value": 3570762.0
+ },
+ {
+  "token": "4oKAoPfrCCwMcrZ17bznXsJCP8HQ7wAG6FZNksSAuTfU",
+  "date": "2026-08-29",
+  "symbol": "NVDA",
+  "value": 1528061.0
+ },
+ {
+  "token": "vn2mue1Kjs4qrFdgCVmWZB9s4pG1Z2cg1y13fE4pump",
+  "date": "2026-08-30",
+  "symbol": "RST",
+  "value": 56590594.0
+ },
+ {
+  "token": "3FFy3m1k7aZ4ZQVex1hKPSoKyKUk78qeEGF7VBE8DMBG",
+  "date": "2026-08-30",
+  "symbol": "Anthropic",
+  "value": 3069663.0
+ },
+ {
+  "token": "2NEyuRkuLdKSsVzTH8hb4DxWUFB7F35XgdNZ4X7Gbwq3",
+  "date": "2026-08-30",
+  "symbol": "\u202eIART",
+  "value": 1305984.0
+ },
+ {
+  "token": "rm1hRhAyYJcCS4TDq81q9n9P6dDEGg9MsQhweFp2QCc",
+  "date": "2026-08-30",
+  "symbol": "PayPal",
+  "value": 1065148.0
+ },
+ {
+  "token": "FFV3FBfusDNKvjRNWhUyJ9FrdQuKVtr8Ky3BEgtQUq1N",
+  "date": "2026-08-30",
+  "symbol": "PayPal",
+  "value": 111425268.0
+ },
+ {
+  "token": "BGZJCY8w3LkZBePJW3e2Gjz4khvVQB9hBegvDgfipump",
+  "date": "2026-08-30",
+  "symbol": "BILDUB",
+  "value": 22201248.0
+ },
+ {
+  "token": "HcLH7NbRGoBzEQaXKfrSDcawSAz7K6hzKdBGFXWB7nzz",
+  "date": "2026-08-30",
+  "symbol": "ROCK",
+  "value": 31746720931.0
+ },
+ {
+  "token": "7B7Rh5DG6D7p86wDCamAVnWk4PNeyJxwowUuz9Vbm9Ln",
+  "date": "2026-08-30",
+  "symbol": "GOOGL",
+  "value": 135168462.0
+ },
+ {
+  "token": "CDgLxSKmt83Dk66YcJr2nX9TBgMxFu5SVXznLA7PeG5w",
+  "date": "2026-08-30",
+  "symbol": "\u5b59\u5b87\u6668",
+  "value": 1366976.0
+ },
+ {
+  "token": "2ipbxX5vH6iSXEtqwaVirWdX2Z9BhzCGaAyTSye5pump",
+  "date": "2026-08-30",
+  "symbol": "USWS",
+  "value": 4634313.0
+ },
+ {
+  "token": "6weTqa53ZdjrMdEZB1v96GtABs1ysDLjPhz3t6PyvTxD",
+  "date": "2026-08-30",
+  "symbol": "PayPal",
+  "value": 1423791.0
+ },
+ {
+  "token": "HhiZpJ3NF7Np8mrNJ5Q1MXuq2iKxBES5hqyppDhepump",
+  "date": "2026-08-30",
+  "symbol": "Pappy",
+  "value": 6880804.0
+ },
+ {
+  "token": "EKLjiwEGTGZfRXDzJfN77SwVSVXoP9doQKBtrwKjbonk",
+  "date": "2026-08-30",
+  "symbol": "SYDWATCH",
+  "value": 18490793.0
+ },
+ {
+  "token": "E1FJVdACc2ah9WN5YjSgxnpMGenfM9jWm2xmghT5Xfje",
+  "date": "2026-08-30",
+  "symbol": "\u666f\u751c\u4eba\u751f",
+  "value": 3465030.0
+ },
+ {
+  "token": "Cn2Zi8Sr3p3uWeKoDiv32LBKJcCWNRYSNMENGdf8NuMN",
+  "date": "2026-08-30",
+  "symbol": "\u202eNEW",
+  "value": 1033506.19
+ },
+ {
+  "token": "9gTgN3ru1D5NFXoPRuTQ26hXEK2NL6czDQ7aUqCipump",
+  "date": "2026-08-30",
+  "symbol": "Igarack",
+  "value": 20825379.0
+ },
+ {
+  "token": "DLMduV4wmNy621zj8rxyXJySUffmZHoZWHwWYxN6pL7m",
+  "date": "2026-08-30",
+  "symbol": "OTC",
+  "value": 3787586536.0
+ },
+ {
+  "token": "4HYYvei6YLqnnhSZRz3DZ1a9fLsAmTnxdQeLrkGNpump",
+  "date": "2026-08-30",
+  "symbol": "STACY",
+  "value": 6060952.0
+ },
+ {
+  "token": "doKtTtS3iqgnytbJy9Q51hPYeNHWYbCdtBDiHY6pump",
+  "date": "2026-08-30",
+  "symbol": "USTF",
+  "value": 2598625.0
+ },
+ {
+  "token": "HQHogmRuzDMDjSEkaTAie6bLLKSfUd5rCUco4xh6DhK6",
+  "date": "2026-08-30",
+  "symbol": "MARSCOIN",
+  "value": 43198790.0
+ },
+ {
+  "token": "EqGriWFNnz8w2t13EQfXireUJCC413foipuRqGGy5aUB",
+  "date": "2026-08-30",
+  "symbol": "SAUDI",
+  "value": 1395935.0
+ },
+ {
+  "token": "6WcJMYMGG81ACQyst88A2pXv2HuTHX34s4MFx2ZdmZv4",
+  "date": "2026-08-30",
+  "symbol": "DEBIT",
+  "value": 154972595.0
+ },
+ {
+  "token": "CCtU9Mjd8Skezv4o3mnSaQFH3PjY7nzjmAAHnMkApump",
+  "date": "2026-08-30",
+  "symbol": "Doubao",
+  "value": 2901277.0
+ },
+ {
+  "token": "E7EY9F744nxNWZazR85Z26vNomeZcngnqCGGJdpPVfjh",
+  "date": "2026-08-30",
+  "symbol": "LUCIA",
+  "value": 150169843.0
+ },
+ {
+  "token": "ERu6byuK5uqDRgfqqN6fjHQ82bRhyiudqsT26WP5pump",
+  "date": "2026-08-30",
+  "symbol": "WOFI",
+  "value": 21539721.0
+ },
+ {
+  "token": "GsSqxAn7FHesaYgPWryyYxM9ovjijdbrR51hijvKUj3v",
+  "date": "2026-08-30",
+  "symbol": "BTC",
+  "value": 786953338.0
+ },
+ {
+  "token": "3YsESNH5VYaXuX9dGa5EMkJvpQir7ZfhmWUBbnMgumjb",
+  "date": "2026-08-30",
+  "symbol": "Anthropic",
+  "value": 1372785.0
+ },
+ {
+  "token": "EkNVrUJ99YViqKTBKNFKc2o8k2V64ws6aStBXchNvH9Q",
+  "date": "2026-08-30",
+  "symbol": "\u202eTNH",
+  "value": 946870814563.0
+ },
+ {
+  "token": "BRRKi7VjB82cA2xCnWVkJuVhJaWwSFJqJ7kbnLJgdbBp",
+  "date": "2026-08-30",
+  "symbol": "\u202eYCATS",
+  "value": 1701972.0
+ },
+ {
+  "token": "866B8DXmE5WLQ6rkaEwjBuKuS9pfxiasukmu2c77pump",
+  "date": "2026-08-30",
+  "symbol": "WOFI",
+  "value": 60672773.0
+ },
+ {
+  "token": "5qkzQ1ncHN5KY7MJzaxYyaBU8f5s2th7fyWHy2Zi5pBo",
+  "date": "2026-08-30",
+  "symbol": "GOOGL",
+  "value": 1487130.0
+ },
+ {
+  "token": "G84sU1XsZiu5U6vTqjHiZrrs6sXZfNGrgB7XaVa7pump",
+  "date": "2026-08-30",
+  "symbol": "GTA 6 Coin",
+  "value": 4680883.0
+ },
+ {
+  "token": "Bpf1zTaha9yMBVRxeMSeBEY2FxXhJTGzjwJukXwvpump",
+  "date": "2026-08-30",
+  "symbol": "G20SHLD",
+  "value": 18676080.0
+ },
+ {
+  "token": "4bPuoAX6Qcud1toKHzwjwVAHmFxeMcvDDdHC7ff5BKuQ",
+  "date": "2026-08-30",
+  "symbol": "ANKRETH",
+  "value": 875611694.0
+ },
+ {
+  "token": "BS61Th8ANqRCUsmPFaFLVy6APmNtHCLVxSbX2DWU39hK",
+  "date": "2026-08-30",
+  "symbol": "STACY",
+  "value": 1604297.0
+ },
+ {
+  "token": "4GwcAPcnFD3QuksR8AaEG5YETw7pA7BHRAaQx4mn4uvJ",
+  "date": "2026-08-30",
+  "symbol": "FIFA",
+  "value": 4270322.0
+ },
+ {
+  "token": "CLaXpMcUHxkhRiZroUzxUYo7rFjgtc8eNXyFNHwErqrf",
+  "date": "2026-08-30",
+  "symbol": "TSLA",
+  "value": 1386691.0
+ },
+ {
+  "token": "EPTD1MRzNJFePoykhXtu9PwMHoThsosTE46qMjsHpump",
+  "date": "2026-08-30",
+  "symbol": "SHRUB",
+  "value": 15563394.0
+ },
+ {
+  "token": "c8bdKqmNcHx3DuQTuqqcDGEtMmy3pTDDAMg9Q4epump",
+  "date": "2026-08-30",
+  "symbol": "PCC",
+  "value": 7182364.0
+ },
+ {
+  "token": "DNT9EkRi5KRKmg1tGUaqD4xBnoy1aiPLBDEtxsNckJ3R",
+  "date": "2026-08-30",
+  "symbol": "\u5b59\u5b87\u6668",
+  "value": 3310603.0
+ },
+ {
+  "token": "GojBr5jPJYsQmmwsk9toJ8r3kLE1zVnw2my7BjxXPTC7",
+  "date": "2026-08-30",
+  "symbol": "PREDATOR",
+  "value": 1024697.93
+ },
+ {
+  "token": "GuuyL5rCpTbWkiYE8re7FGUriBggFrrNy5JmbybXwjTY",
+  "date": "2026-08-30",
+  "symbol": "META",
+  "value": 1220564.0
+ },
+ {
+  "token": "E4pCF3H7j7yQbEySW7aGgogFzaHuS8PPpop6etydpump",
+  "date": "2026-08-30",
+  "symbol": "BENNY",
+  "value": 5069140.0
+ },
+ {
+  "token": "3cwEEwEMc6V3NT7wfkPg7J5LCKGeqQjs8eJ7riyyHLSa",
+  "date": "2026-08-30",
+  "symbol": "apefone",
+  "value": 1021278.76
+ },
+ {
+  "token": "6ZFQKHZVdAhhdoQFuWrnfSoGEUTpAApWQsdrep9Gpump",
+  "date": "2026-08-31",
+  "symbol": "OCB",
+  "value": 9933234.0
+ },
+ {
+  "token": "uY9o1MhhJAeexQDqxUWSndV6BRWfrSyjj88tLFZF34C",
+  "date": "2026-08-31",
+  "symbol": "\u5973\u53cb\u666f\u751c",
+  "value": 2767831.0
+ },
+ {
+  "token": "5trDzH3LWTbLyDb6RKDYEc3YGAkghhFf99vGcHgZCGvz",
+  "date": "2026-08-31",
+  "symbol": "\u202eSNOP",
+  "value": 1433603.0
+ },
+ {
+  "token": "6FvtFy8FAnuVgvwt8Bkh4AHju9KjEiGVYt4KMy6T7777",
+  "date": "2026-08-31",
+  "symbol": "\u65fa\u8d22",
+  "value": 5866762.0
+ },
+ {
+  "token": "AiFna4VzmLgJM3vkzBMZnTvNGNhBDY2Uqu7hRWBdRFkn",
+  "date": "2026-08-31",
+  "symbol": "PIPPIN",
+  "value": 133640233.0
+ },
+ {
+  "token": "5Xh8ZbZ8WM8E4iyD1eaPa4cxqqwVEPeFjVjV5k7cjUBb",
+  "date": "2026-08-31",
+  "symbol": "Anthropic",
+  "value": 1197523.0
+ },
+ {
+  "token": "AhfnkooWKXVYghB63VaFCJNtcuZFgEL4k8PAWFoVjDA8",
+  "date": "2026-08-31",
+  "symbol": "TJR",
+  "value": 6209052730.0
+ },
+ {
+  "token": "J7EcqMC1Qeiyuz2t23JvDPf5KKQtyQSwYrid7avnNoE7",
+  "date": "2026-08-31",
+  "symbol": "GTA 6 COIN",
+  "value": 3089356.0
+ },
+ {
+  "token": "gf8ttj1CsSFNsdJVQYxgtZxCoXhqD77jf6DZd5Gpump",
+  "date": "2026-08-31",
+  "symbol": "LQX",
+  "value": 1084590.0
+ },
+ {
+  "token": "hMdNrXs1HLWTGyyptGEdm9Lc3o6XvsgVZfbqVQ8pump",
+  "date": "2026-08-31",
+  "symbol": "UNEMPLOYME",
+  "value": 8917770.0
+ },
+ {
+  "token": "2JFu9HsdDqZJakhKZjdyYsgfh8ANG8VCN4QZxZWsMawT",
+  "date": "2026-08-31",
+  "symbol": "MHPD",
+  "value": 1011155.0
+ },
+ {
+  "token": "HvhpiocqbYzyxo5jiVTqa31PzetNZk61inJkfuy3Qgfn",
+  "date": "2026-08-31",
+  "symbol": "Anthropic",
+  "value": 1247578.0
+ },
+ {
+  "token": "GgpmmwPUMPs4hexsRYoGGPzf3N5HvSXRhyrLwi3pump",
+  "date": "2026-08-31",
+  "symbol": "USWR",
+  "value": 6831812.0
+ },
+ {
+  "token": "2EmxR2BqoAmE3j43Vj75BCU7pFaGF6m5tmrbH9SNfErX",
+  "date": "2026-08-31",
+  "symbol": "JMZH",
+  "value": 150015153.0
+ },
+ {
+  "token": "3z46cT567YrtvecxfXmK7mmH1Trwp8UYpdxCGBiinVJc",
+  "date": "2026-08-31",
+  "symbol": "$CE",
+  "value": 124011044748.0
+ },
+ {
+  "token": "GZE9Th2aUECcph38Fio7YSFRqiE89zwdgfefQSbpASCc",
+  "date": "2026-08-31",
+  "symbol": "\u5b59\u5272\u4eba\u751f",
+  "value": 4346037.0
+ },
+ {
+  "token": "8PvonBefgFwrpejuQLtyHKzzfGC7BucDic2vi9dzpump",
+  "date": "2026-08-31",
+  "symbol": "WWR",
+  "value": 22713578.0
+ },
+ {
+  "token": "6orDzPNv3ZUqATjzFoifrgQNLngdJmNDfmUs5zPLpump",
+  "date": "2026-08-31",
+  "symbol": "JUDEB",
+  "value": 18340475.0
+ },
+ {
+  "token": "HDEWLfitPMUF54eWC5QT4rRzJkdZDYZZRw9U7s1UL9Dy",
+  "date": "2026-08-31",
+  "symbol": "MSFT",
+  "value": 1074851.0
+ },
+ {
+  "token": "BzkLoy1EAdc8hwdCwUAnUBLTQriQNQhCUs47SXVqpump",
+  "date": "2026-08-31",
+  "symbol": "petcat",
+  "value": 2790119.0
+ },
+ {
+  "token": "4anHdm5Bon9N6u2U83P2bfNdUFmFAqgHAM5AaB74bonk",
+  "date": "2026-08-31",
+  "symbol": "Navrkt",
+  "value": 17623792.0
+ },
+ {
+  "token": "HzX5a9x7DqUd1PCrzSZg1Dms6tZNgKBwddtwhhz6SZ7W",
+  "date": "2026-08-31",
+  "symbol": "HeeHaw",
+  "value": 306949728870.0
+ },
+ {
+  "token": "9m9xsxXXqwFBUWtVC69GqTDnQXhRqoZmekiqKryxbonk",
+  "date": "2026-08-31",
+  "symbol": "Starcas",
+  "value": 74573361.0
+ },
+ {
+  "token": "8iGrspg3VaLx5rpYXGaFJNrwQK8Ce7ayNmBaasJ2ie7Y",
+  "date": "2026-08-31",
+  "symbol": "HOOD",
+  "value": 1436331.0
+ },
+ {
+  "token": "kT4U4CbNoF212Qve6yXWrkuELwnZmLiPACMJMrVpump",
+  "date": "2026-08-31",
+  "symbol": "USMS",
+  "value": 97125855.0
+ },
+ {
+  "token": "1g4X5qej5T5VHG521CFXastgk6PkH7hZaFca32xLrDx",
+  "date": "2026-08-31",
+  "symbol": "WhiteWhale",
+  "value": 1644110.0
+ },
+ {
+  "token": "28Gg1tq7RW4Zd4YAXAtf2KXFmqQPWhZSoLwcL6ogbNxG",
+  "date": "2026-08-31",
+  "symbol": "Anthropic",
+  "value": 1771099.0
+ },
+ {
+  "token": "3chkjCyi79JX978CRXW4xNUBAmum9TeTDnJNmPTsAU2f",
+  "date": "2026-08-31",
+  "symbol": "GOOGL",
+  "value": 1511011.0
+ },
+ {
+  "token": "8T57gEStrAYzdh5mYGihom6e33kzGYXecAwG8evWpump",
+  "date": "2026-08-31",
+  "symbol": "chimp",
+  "value": 2787630.0
+ },
+ {
+  "token": "22v6xtpmuje6r83addGD2voz6B6LEY7DEro8NFiaBt2J",
+  "date": "2026-08-31",
+  "symbol": "CC",
+  "value": 5000409185.0
+ },
+ {
+  "token": "43B4kwVWzXEAK8FQ859zZhbXuKkURK1RG8NPDMsQpump",
+  "date": "2026-09-01",
+  "symbol": "10KK",
+  "value": 6250930.0
+ },
+ {
+  "token": "GZMRdwbyHVm6zF9e4wvcESasi77ZTEDdydGeZvb2DirA",
+  "date": "2026-09-01",
+  "symbol": "ROBINCAT",
+  "value": 1051078.0
+ },
+ {
+  "token": "8pXw9ZnSNQw3DsCr35ZDK4fhgWFPAhD5cPXGjbEaogEP",
+  "date": "2026-09-01",
+  "symbol": "GTA6",
+  "value": 19057654.0
+ },
+ {
+  "token": "513fMuFogXTN4NMAp7QW9DgYZousUXKKdajruEspPnkx",
+  "date": "2026-09-01",
+  "symbol": "HOOD",
+  "value": 4156109.0
+ },
+ {
+  "token": "Dkb6KHfWGjqkSCsYUjjWPxQrQQhm6KAJigHUV3mGKLWs",
+  "date": "2026-09-01",
+  "symbol": "ANGRYCHICKEN",
+  "value": 1834982.0
+ },
+ {
+  "token": "FkW4DHVnuTFEtggSbRAmgwfe28K1eBRUSTSSKL6ytyeC",
+  "date": "2026-09-01",
+  "symbol": "AAPL",
+  "value": 1640832.0
+ },
+ {
+  "token": "93ki8yTvqJwSezg51cKhKPfeC3sz5uhPLEZCYgyWkjpJ",
+  "date": "2026-09-01",
+  "symbol": "DeepSeekAI",
+  "value": 1330455.0
+ },
+ {
+  "token": "KMRqeyUDhzq1mnXcKhooiD44mrUWSz4GMQq346Fqez7",
+  "date": "2026-09-01",
+  "symbol": "NVDA",
+  "value": 1805128.0
+ },
+ {
+  "token": "Am2VjDN2vEaunh4vPL2eGcYoUmWumzYPiZuNhDjkHw2r",
+  "date": "2026-09-01",
+  "symbol": "AAPL",
+  "value": 2005276.0
+ },
+ {
+  "token": "9jzP3YXCMm3mxfhpysBdDFkYqi7b55MgKiNkL9zYv56w",
+  "date": "2026-09-01",
+  "symbol": "MSFT",
+  "value": 3772343.0
+ },
+ {
+  "token": "9cRJtkE38wTrap9rRLsaY4S12eGX6EqbyJ9pmC2Cpump",
+  "date": "2026-09-01",
+  "symbol": "ARROW",
+  "value": 39556804.0
+ },
+ {
+  "token": "Bfmhh3X7fqMq6r8KQgoVnfdA4uxDMJnFeS3hocU3pump",
+  "date": "2026-09-01",
+  "symbol": "10KK",
+  "value": 6318413.0
+ },
+ {
+  "token": "DYQhRyy2QoWonRMWjSDLpEiubTpJwa7B5Z5s9S2fLj2o",
+  "date": "2026-09-01",
+  "symbol": "LNRA",
+  "value": 924599627.0
+ },
+ {
+  "token": "4GU9TJ1EfXkqkTKG5tRk9SDiJ5PAuCiQHfxnnf1PPDja",
+  "date": "2026-09-01",
+  "symbol": "HYPE",
+  "value": 1756541971.0
+ },
+ {
+  "token": "HFLHoye55XwnYpsQ8xhNkd5Xw6a3EjBWXUEMNTdpwbt5",
+  "date": "2026-09-01",
+  "symbol": "SPCX",
+  "value": 1212083.0
+ },
+ {
+  "token": "DUZN7M6ezXez9UVrou4N8UEGRkwnbWmXqqZgEKiZCrnN",
+  "date": "2026-09-01",
+  "symbol": "MARKET",
+  "value": 2673560.0
+ },
+ {
+  "token": "DQtUCEvgGngXHxGMRnZNTmsJnSSBfqRRrrnAUdxGtu8X",
+  "date": "2026-09-01",
+  "symbol": "Minecraft",
+  "value": 76271950.0
+ },
+ {
+  "token": "EfyAcbmYYyehMhbTUbCFw2EQiSyCLTXaRMu21PkK7DTf",
+  "date": "2026-09-01",
+  "symbol": "LEAWOOD",
+  "value": 64755352.0
+ },
+ {
+  "token": "7nNFHUvCvPB7xdVzXaQn6XQamtPc934Bjukv9iVCR7kz",
+  "date": "2026-09-01",
+  "symbol": "ORAGON",
+  "value": 752358255000.0
+ },
+ {
+  "token": "917hzP7Ve4BLFkNyKTvsyXbyaLGKsZVjrCeZGZsDpump",
+  "date": "2026-09-01",
+  "symbol": "DOGE-1 ",
+  "value": 12328848.0
+ },
+ {
+  "token": "ecc8kZyhVojbuhUoqRGuPjfvEjrR4Y5dRQ86V3aP7aD",
+  "date": "2026-09-01",
+  "symbol": "TIT",
+  "value": 35023416.0
+ },
+ {
+  "token": "JDMApqAkHiPZkCCT2ZDZoxyp5PjueptTixE2saP9ZpeS",
+  "date": "2026-09-02",
+  "symbol": "VVV",
+  "value": 1464224.0
+ },
+ {
+  "token": "6wxDQpGUef4EDPx8oRF6srXebGvv9rjdypzYm5kPpump",
+  "date": "2026-09-02",
+  "symbol": "Nick Woodman",
+  "value": 9074921.0
+ },
+ {
+  "token": "g2qNwqrLCpJcmtThChMRR4fTTWJEBB59TZRxYvRpump",
+  "date": "2026-09-02",
+  "symbol": "LQX",
+  "value": 4446528.0
+ },
+ {
+  "token": "6U4CWKNV6Y8vp8nsKkFEFoSYnKxws6qA2czfEbkwb9AX",
+  "date": "2026-09-07",
+  "symbol": "BREW",
+  "value": 1314794.0
+ },
+ {
+  "token": "6fvVdfzf5CpPXwxaQEdrC7nEfmGP1rxCGbpAJwa5xgau",
+  "date": "2026-09-07",
+  "symbol": "UHPD",
+  "value": 9991327.0
+ },
+ {
+  "token": "V9go49dPikTYPaQhiXVsAQ8kSfnZJWZb1VhUEqrLWPj",
+  "date": "2026-09-07",
+  "symbol": "OPENAI",
+  "value": 1338641.0
+ },
+ {
+  "token": "EXFbepG7N8xrn12wvf7enNd9BUWGpZ1nY254rMLX8KX6",
+  "date": "2026-09-07",
+  "symbol": "ZEROCASH",
+  "value": 1314292.0
+ },
+ {
+  "token": "8QLAF4GDsqnsXshDfVku6j2jM4vEyTvqEH4nhvQui5mK",
+  "date": "2026-09-07",
+  "symbol": "SOLCAT",
+  "value": 1438922.0
+ },
+ {
+  "token": "8Hh6c2Npa8pKNk9QTfHUGd26dYKFz52osPWwm8oQYiWi",
+  "date": "2026-09-07",
+  "symbol": "Anthropic",
+  "value": 1365930.0
+ },
+ {
+  "token": "83AwcFWz4GL8F7UFGsdtT4eZp2L448y5NuhgefYWwqAp",
+  "date": "2026-09-07",
+  "symbol": "ICP",
+  "value": 1314365.0
+ },
+ {
+  "token": "Es9rD6TRiAkvDFRGW1wMv9yEFRLYUBze1CAdVEjqYBc2",
+  "date": "2026-09-07",
+  "symbol": "TOAD2.0",
+  "value": 1339983.0
+ },
+ {
+  "token": "EhT8hf3NSNM9dbw2Nq93n713ib9e93PP2zmD65pyxQz1",
+  "date": "2026-09-07",
+  "symbol": "BEN",
+  "value": 2868861.0
+ },
+ {
+  "token": "GFAQU5ZcmtKKpLFr3S5xGGf8GvD3jAJfSaXrW1aC5EB6",
+  "date": "2026-09-07",
+  "symbol": "TOAD2.0",
+  "value": 1341050.0
+ },
+ {
+  "token": "pXFTgSMwjzFu1xJZq43ekWao68XKy5u3pSM5wQepump",
+  "date": "2026-09-07",
+  "symbol": "NTDA",
+  "value": 1259429.0
+ },
+ {
+  "token": "HEzzqQHNpBnDku6tUKH36WoiDZTY4ntPyjqYbYFMeUCh",
+  "date": "2026-09-07",
+  "symbol": "Nasduck",
+  "value": 1060814.0
+ },
+ {
+  "token": "CnEHZxVL7vxq9DQ1WARMrCA2q7qups1hw5DUhxSRdvtb",
+  "date": "2026-09-07",
+  "symbol": "BILL",
+  "value": 1338987.0
+ },
+ {
+  "token": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+  "date": "2026-09-07",
+  "symbol": "STONK",
+  "value": 92257351.0
+ },
+ {
+  "token": "8khrnFocxRgNCdK3dXB4mPFBWY6GXjbnJ6RVEhadpump",
+  "date": "2026-09-07",
+  "symbol": "Anakvolc",
+  "value": 76159063.0
+ },
+ {
+  "token": "XNwuWDAM8A6nm3Dc8gvo6YBPwi4bhCABibbLoWPD5kc",
+  "date": "2026-09-07",
+  "symbol": "HOOD",
+  "value": 349582953.0
+ },
+ {
+  "token": "D2fpz5XFKxvQg2sHGFfocAUvxjS2MDgQ1rrqrWHc3uqn",
+  "date": "2026-09-07",
+  "symbol": "HOOD",
+  "value": 1208348.0
+ },
+ {
+  "token": "A7bdiYdS5GjqGFtxf17ppRHtDKPkkRqbKtR27dxvQXaS",
+  "date": "2026-09-07",
+  "symbol": "ZEC",
+  "value": 115989650.0
+ },
+ {
+  "token": "AjUPChqae6zNwDmrse83siD7m5qLkKF4QTa66rKcpump",
+  "date": "2026-09-07",
+  "symbol": "WOFI",
+  "value": 262944564.0
+ },
+ {
+  "token": "4faUY45voszFaiD78n1Q1QgQ5C4gpt1EWz21xAqY5cdv",
+  "date": "2026-09-07",
+  "symbol": "Anthropic",
+  "value": 1629910.0
+ },
+ {
+  "token": "Cxkro34Rw8soeZ5S3CkxL52yikKT3FjMR6g8aSe9Y9j4",
+  "date": "2026-09-07",
+  "symbol": "OTC",
+  "value": 13959555.0
+ },
+ {
+  "token": "J8xnMaLvwrWSy9iLWnw1Kh1xiwbBHiAGVgZvcHTTnCYe",
+  "date": "2026-09-07",
+  "symbol": "GOOGL",
+  "value": 1329090.0
+ },
+ {
+  "token": "BH3jRiESzBEpzDKHQbh6hZJeVZtEVJ6kJTXeeiZP1VE3",
+  "date": "2026-09-07",
+  "symbol": "Redbull",
+  "value": 23966980.0
+ },
+ {
+  "token": "FQ7hGTyuE7whYxcmCSozEuruA5rB28Wr54ga2WJuj6DF",
+  "date": "2026-09-07",
+  "symbol": "BILL",
+  "value": 1363282.0
+ },
+ {
+  "token": "C5NWTiF3W7iK8bX1hzzo9mPBw8AV76H7Yd2bzPVxt1UP",
+  "date": "2026-09-07",
+  "symbol": "BBUN",
+  "value": 1360353.0
+ },
+ {
+  "token": "8X69q8KLSGRsJ9KGm2zdrLhdVaRQbf7BYZNWzEVbYRXW",
+  "date": "2026-09-07",
+  "symbol": "CIRCUMSIZE",
+  "value": 1339474.0
+ },
+ {
+  "token": "6UPCeRvD8uyXHTHi8Yq5DCCsE1PYHkd6XPLMqYLxuXFZ",
+  "date": "2026-09-07",
+  "symbol": "CNPY",
+  "value": 25905859.0
+ },
+ {
+  "token": "DyaffN6oexNWCQnxoCHtiMVMkpdwCvy5zzUX6eoSpump",
+  "date": "2026-09-07",
+  "symbol": "Netdrag",
+  "value": 19389124.0
+ },
+ {
+  "token": "Bhr7nLYCT1YrGurxG6Jh1rvjtp3yPbDrbxWv5nQ5rdgZ",
+  "date": "2026-09-07",
+  "symbol": "BUCK",
+  "value": 1943932.0
+ },
+ {
+  "token": "7Y7V1a4m2nWK7BMgbka5B4vR1pDvCK7yva3Hnrqkraze",
+  "date": "2026-09-07",
+  "symbol": "Nasduck",
+  "value": 1939512.0
+ },
+ {
+  "token": "4k5bvo3XQhsdnoMK65jsTWGdDU8AyehbXrhj8bnACv7N",
+  "date": "2026-09-07",
+  "symbol": "STONK",
+  "value": 10201965.0
+ },
+ {
+  "token": "EPCXqcytq5wSkyQo6Qr83pDHUiFWKoweMR5RQ7Mg51Wk",
+  "date": "2026-09-07",
+  "symbol": "FWOB",
+  "value": 3685699.0
+ },
+ {
+  "token": "3eSoXsNgsPWJjcytiTuZHr1iJSkqK1nS6kHUfp517vBu",
+  "date": "2026-09-07",
+  "symbol": "DEXTAM",
+  "value": 10201940.0
+ },
+ {
+  "token": "2cGGaf8GKbnVnFNrgiCk8YeTiJZ3kkdv8o7U7e724b1D",
+  "date": "2026-09-07",
+  "symbol": "MERT",
+  "value": 1325696.0
+ },
+ {
+  "token": "8AqujdjENUQKYRQUeSi97CADZhpo2nGx3Zu49bTHppWj",
+  "date": "2026-09-07",
+  "symbol": "AMC",
+  "value": 1381509.0
+ },
+ {
+  "token": "6odqXU1aR4AHX9vNFjLQ31DCQdKpbpzTtRGL3Co1rMpd",
+  "date": "2026-09-07",
+  "symbol": "Citi",
+  "value": 10119670.0
+ },
+ {
+  "token": "GhHe2K1UZUoiTxdUdFYj62mSoRRSzLiBHVq4mmfSL14L",
+  "date": "2026-09-07",
+  "symbol": "Longxdd",
+  "value": 159086625.0
+ },
+ {
+  "token": "H3K4EGXjN7eXRK4CpEnyMt3SntismeQyko1yyqJ4eczw",
+  "date": "2026-09-07",
+  "symbol": "AiBSURD",
+  "value": 790617610.0
+ },
+ {
+  "token": "FmFNe4Akc5FZv1btB2ZhAzcmMuK4fA98ScAqEC13kec",
+  "date": "2026-09-07",
+  "symbol": "\ud83c\udf92",
+  "value": 1316343.0
+ },
+ {
+  "token": "GfAKf5yTbtrv2vzcNa2Ye7PQpAPUjVKR9SHdcMzzXEdL",
+  "date": "2026-09-07",
+  "symbol": "AAPL",
+  "value": 2321802.0
+ },
+ {
+  "token": "5Jy6idHdSzVwHTE5mC9KQE7hx8GKrJ4o4u6UAZWh6NqV",
+  "date": "2026-09-07",
+  "symbol": "Anony",
+  "value": 12654902803.0
+ },
+ {
+  "token": "DuD1sA53BucR23QpwPqoifSMVtC6Y4JTYQQbghDmd7mm",
+  "date": "2026-09-07",
+  "symbol": "Memeworld",
+  "value": 77040576.0
+ },
+ {
+  "token": "8K5X85PAJHAAVSvYaAzgVPPAPsqqHmvx16ZyBiscYF8L",
+  "date": "2026-09-07",
+  "symbol": "CTO",
+  "value": 8419648.0
+ },
+ {
+  "token": "5t8UvnPnvdtLRjQ6LKLLRCzAzWbc6i3S81KWnFsj7wMJ",
+  "date": "2026-09-07",
+  "symbol": "ZEC",
+  "value": 1162989680.0
+ },
+ {
+  "token": "GFLwQN2Pmdks8QWsjRiqnQe5ypDWCgDhV8wyhfqRzkxU",
+  "date": "2026-09-07",
+  "symbol": "ANTHROPIC",
+  "value": 10132930.0
+ },
+ {
+  "token": "FQwt9MUX3bMqpAPp1XeAsyaYUAzWCiziZhWjpuL6dkEg",
+  "date": "2026-09-07",
+  "symbol": "ETHICS",
+  "value": 1293820.0
+ },
+ {
+  "token": "FNVedKFtWQUV3oK3pcd3hHpne4nfVUycKeP5FSvrW7Fv",
+  "date": "2026-09-07",
+  "symbol": "WET",
+  "value": 1306774.0
+ },
+ {
+  "token": "GksQ9iy4hWg52NivoPU8bhJqFiPhEvUW8AMzHQJpSWqh",
+  "date": "2026-09-07",
+  "symbol": "\u202eRSU",
+  "value": 1046207.98
+ },
+ {
+  "token": "9XqW82GbV8TSuFGLS5qZjpMmL8F2BZ2AaWyC68px37hc",
+  "date": "2026-09-07",
+  "symbol": "ZIVIDEND",
+  "value": 4913670.0
+ },
+ {
+  "token": "9BekDoV9qGXfsJSmdywbbRK8uSquoehvzEUGUDbcX234",
+  "date": "2026-09-07",
+  "symbol": "Ninjacat",
+  "value": 1351187.0
+ },
+ {
+  "token": "rxczFZFvzksquCazjtv9vtEBYW7q4SwiqXkzBcw8NFW",
+  "date": "2026-09-07",
+  "symbol": "NFW",
+  "value": 11147374.0
+ },
+ {
+  "token": "5E9A1KRit6hQBN3RFtD1C5qEWrZrGaMExvVQFBHuse9A",
+  "date": "2026-09-07",
+  "symbol": "KIFGO",
+  "value": 10232829.0
+ },
+ {
+  "token": "Hcvyap3wziK5ZjXV3GagWdpyv5gguRccFTH3R9kFtE1T",
+  "date": "2026-09-07",
+  "symbol": "QWEN",
+  "value": 1557163.0
+ },
+ {
+  "token": "83cXaXVxxAYaLP3mS8VyTAw9NghjhwcBPKhxNVCpump",
+  "date": "2026-09-07",
+  "symbol": "ROBIN",
+  "value": 8729409.0
+ },
+ {
+  "token": "8EUziDk3ScaAfmpcBLzqXmcRTHaCCaBFathaW4FYccFj",
+  "date": "2026-09-07",
+  "symbol": "ZONKEY",
+  "value": 1328203.0
+ },
+ {
+  "token": "Fi2arAwVX29gfdcfKzjVDySCMHfiMxePg97iNPZTQcng",
+  "date": "2026-09-07",
+  "symbol": "OTC",
+  "value": 6993626.0
+ },
+ {
+  "token": "59zaD8n398WQ69Rnawkb5LmqqwxXcnijr5UNf6qhmjfC",
+  "date": "2026-09-07",
+  "symbol": "BEN",
+  "value": 2805611.0
+ },
+ {
+  "token": "3DZkJb2jCSLkqXBZJvVGohzXg6CNeRq7mMfq2pADzQsZ",
+  "date": "2026-09-07",
+  "symbol": "BIDEX",
+  "value": 1041119.0
+ },
+ {
+  "token": "4ZtdpbuoPxLDpAJ45YiEYx6Kc34LaDsP6QXzcgoutMCg",
+  "date": "2026-09-07",
+  "symbol": "PURR",
+  "value": 16486721.0
+ },
+ {
+  "token": "5KtALSzirr76hwabJH4odSZU248oxWSV4Mn4XN12gpf2",
+  "date": "2026-09-07",
+  "symbol": "TPA",
+  "value": 1333679.0
+ },
+ {
+  "token": "GFLwQN2Pmdks8QWsjRiqnQe5ypDWCgDhV8wyhfqRzkxU",
+  "date": "2026-09-07",
+  "symbol": "ANTHROPIC",
+  "value": 10132930.0
+ },
+ {
+  "token": "FQwt9MUX3bMqpAPp1XeAsyaYUAzWCiziZhWjpuL6dkEg",
+  "date": "2026-09-07",
+  "symbol": "ETHICS",
+  "value": 1293820.0
+ },
+ {
+  "token": "FNVedKFtWQUV3oK3pcd3hHpne4nfVUycKeP5FSvrW7Fv",
+  "date": "2026-09-07",
+  "symbol": "WET",
+  "value": 1306774.0
+ },
+ {
+  "token": "GksQ9iy4hWg52NivoPU8bhJqFiPhEvUW8AMzHQJpSWqh",
+  "date": "2026-09-07",
+  "symbol": "\u202eRSU",
+  "value": 1046207.98
+ },
+ {
+  "token": "9XqW82GbV8TSuFGLS5qZjpMmL8F2BZ2AaWyC68px37hc",
+  "date": "2026-09-07",
+  "symbol": "ZIVIDEND",
+  "value": 4913670.0
+ },
+ {
+  "token": "9BekDoV9qGXfsJSmdywbbRK8uSquoehvzEUGUDbcX234",
+  "date": "2026-09-07",
+  "symbol": "Ninjacat",
+  "value": 1351187.0
+ },
+ {
+  "token": "JpL694AG3sjjV1CA4RV92xmjHZLKyHP56GrkKKhpump",
+  "date": "2026-09-07",
+  "symbol": "HOOD",
+  "value": 2538491.0
+ },
+ {
+  "token": "H7haYZhoE7MhdEFmwM8hHCi9CsvGJG957DGkwWjpump",
+  "date": "2026-09-07",
+  "symbol": "LEGO",
+  "value": 2493327.0
+ },
+ {
+  "token": "2sUWJ3ZiRsvwTSMSNjawuqa4TtQZuS6tUGhyNwUApump",
+  "date": "2026-09-07",
+  "symbol": "ELON",
+  "value": 12928202.0
+ },
+ {
+  "token": "AGi2s9zPRPHs3zEDPhPTroumTEXK5ufymYSfEFndCSSW",
+  "date": "2026-09-07",
+  "symbol": "LEVERCAT",
+  "value": 2046218.0
+ },
+ {
+  "token": "JDdgToZMxue8tUN1FWyMZqrisNHHxGFzxcY6L8QEZfV3",
+  "date": "2026-09-07",
+  "symbol": "CHTA",
+  "value": 597876957.0
+ },
+ {
+  "token": "XsqE9cRRpzxcGKDXj1BJ7Xmg4GRhZoyY1KpmGSxAWT2",
+  "date": "2026-09-07",
+  "symbol": "MCDx",
+  "value": 1527188.0
+ },
+ {
+  "token": "6gpcyPk6g9SRAvuovAATTRpaqXbaYfQc1Guggmfpump",
+  "date": "2026-09-07",
+  "symbol": "GTA 6 Coin",
+  "value": 8169388.0
+ },
+ {
+  "token": "48oDfsFaChKQ3SXE7Y1APLbpUfEfJJY6JCAiEJL2Q9xm",
+  "date": "2026-09-07",
+  "symbol": "KPOP",
+  "value": 1328579.0
+ },
+ {
+  "token": "5p5Bwp7BaRLiVoSxhQeDV8L3oiKZ4W2LDyrdCGVwwyN6",
+  "date": "2026-09-07",
+  "symbol": "Anthropic",
+  "value": 1066277.0
+ },
+ {
+  "token": "F9PZJ4SBPcya4DGnJfsvLsK7QrrX5c1u5DwXWPopump",
+  "date": "2026-09-07",
+  "symbol": "LAPTOP",
+  "value": 10214668.0
+ },
+ {
+  "token": "J36mBMBFnGznSibqSemkCFnT2BNvaxNsxDMNS2mYLeA9",
+  "date": "2026-09-07",
+  "symbol": "LIGER",
+  "value": 1048253.0
+ },
+ {
+  "token": "vKtBJsj1Y6c5Qst4eGYswXA3aDitZs5hgpsfR5Jpump",
+  "date": "2026-09-08",
+  "symbol": "BEAST",
+  "value": 3809029.0
+ },
+ {
+  "token": "9Nf8GXVqo6yEpp3QsPFX4K8XF1Tdpq2wa3dZJmYqpump",
+  "date": "2026-09-08",
+  "symbol": "Coca Cola",
+  "value": 1601802.0
+ },
+ {
+  "token": "sj8oFB2K7N8qGfK9uFM7arBtTLfW652H6igPWrzpump",
+  "date": "2026-09-08",
+  "symbol": "WOFI",
+  "value": 203700423.0
+ },
+ {
+  "token": "F9LfSgFVHWqfJSbiBb2WujD1jGhRhegaaZFcots4saAx",
+  "date": "2026-09-08",
+  "symbol": "PONZI",
+  "value": 1301441.0
+ },
+ {
+  "token": "A7F2TqewjeQNoHYagTBR18Uu2W7HRNzrrxeCGgANVXWv",
+  "date": "2026-09-08",
+  "symbol": "NASDUCK",
+  "value": 1322689.0
+ },
+ {
+  "token": "AkSwhtZPjXx8eteqLW8nKLZ5S11WSqWZnA9WnnshhHDz",
+  "date": "2026-09-08",
+  "symbol": "\ud83c\udd7f\ufe0f",
+  "value": 1096415.0
+ },
+ {
+  "token": "44ZNZBrqEpbLYT5xoztVbzFoer5MBrP5z3bHuGXHaKf2",
+  "date": "2026-09-08",
+  "symbol": "\ud83c\udd7f\ufe0f",
+  "value": 2069165.0
+ },
+ {
+  "token": "Hbt7unKBDCXN2MkuaVMn9paXWwe7XLf4r1pEDuWbD7qy",
+  "date": "2026-09-08",
+  "symbol": "Amazon",
+  "value": 44345492.0
+ },
+ {
+  "token": "9PtRbAeHbgctGvw3CBn6v6mDeYN9VPW8GzbAUZLLpump",
+  "date": "2026-09-08",
+  "symbol": "LAPTOP",
+  "value": 162515319.0
+ },
+ {
+  "token": "Ck9K6sypthfdV2Gwb6E1hbh9PYZgQSmMqhUcz3wn6jhe",
+  "date": "2026-09-08",
+  "symbol": "AMC",
+  "value": 2124904.0
+ },
+ {
+  "token": "5STJWBrKaLdFX649gGN1yq8CNyPVmZPVZi5jNuXSSVgC",
+  "date": "2026-09-08",
+  "symbol": "CNR",
+  "value": 3544834.0
+ },
+ {
+  "token": "bYLvsvDhgK5CtjqEJRuh2zizGSdTyQjdwg9LnKBpump",
+  "date": "2026-09-08",
+  "symbol": "PONYX",
+  "value": 28665267.0
+ },
+ {
+  "token": "ucH7Xyg8yBuqzf9LGw7zbKJuMcnAGiTksJxy2DZpump",
+  "date": "2026-09-08",
+  "symbol": "LAPTOP",
+  "value": 12205149.0
+ },
+ {
+  "token": "fPsu92FAVq8sni4QuvfnXr8JAK7RuLuLhbGiPTGjskL",
+  "date": "2026-09-08",
+  "symbol": "$OSAI",
+  "value": 129874984117.0
+ },
+ {
+  "token": "2sUWJ3ZiRsvwTSMSNjawuqa4TtQZuS6tUGhyNwUApump",
+  "date": "2026-09-07",
+  "symbol": "ELON",
+  "value": 13377001.0
+ },
+ {
+  "token": "AGi2s9zPRPHs3zEDPhPTroumTEXK5ufymYSfEFndCSSW",
+  "date": "2026-09-07",
+  "symbol": "LEVERCAT",
+  "value": 2046218.0
+ },
+ {
+  "token": "XsqE9cRRpzxcGKDXj1BJ7Xmg4GRhZoyY1KpmGSxAWT2",
+  "date": "2026-09-07",
+  "symbol": "MCDx",
+  "value": 1527188.0
+ },
+ {
+  "token": "sj8oFB2K7N8qGfK9uFM7arBtTLfW652H6igPWrzpump",
+  "date": "2026-09-08",
+  "symbol": "WOFI",
+  "value": 281875824.0
+ },
+ {
+  "token": "AkSwhtZPjXx8eteqLW8nKLZ5S11WSqWZnA9WnnshhHDz",
+  "date": "2026-09-08",
+  "symbol": "\ud83c\udd7f\ufe0f",
+  "value": 4747045.0
+ },
+ {
+  "token": "44ZNZBrqEpbLYT5xoztVbzFoer5MBrP5z3bHuGXHaKf2",
+  "date": "2026-09-08",
+  "symbol": "\ud83c\udd7f\ufe0f",
+  "value": 2069165.0
+ },
+ {
+  "token": "F7PFg8veGE6VCSxSYCwSDPRkNg8ehHEeJiLBfoVbBAGS",
+  "date": "2026-09-08",
+  "symbol": "Rasque",
+  "value": 26603033.0
+ },
+ {
+  "token": "C4ncJiNkNLuVBRWNgmRu2qUstwqGQUDNUQhBJqfpreki",
+  "date": "2026-09-08",
+  "symbol": "OO",
+  "value": 1295997.0
+ },
+ {
+  "token": "F7Ydp59sAfTx2GFqpWQoSdEK2xUFeTLrmwUsHmbqKe5Y",
+  "date": "2026-09-08",
+  "symbol": "TikTok",
+  "value": 1304643.0
+ },
+ {
+  "token": "AZkZV97xPDL35eXaPuwWxp2yEsZhtoTEHfDaBufghM4r",
+  "date": "2026-09-08",
+  "symbol": "LIGER",
+  "value": 1018883.0
+ },
+ {
+  "token": "GiZBwXbcyT1PotFybNG4tAk2N1icw5nZvPSPaXbf7Hsx",
+  "date": "2026-09-08",
+  "symbol": "TOAD2.0",
+  "value": 1323065.0
+ },
+ {
+  "token": "BppT1tMrUu6KmPbMxLLgXJRAYEhN9nPT3wmrfxuLUSZY",
+  "date": "2026-09-08",
+  "symbol": "STONKER",
+  "value": 6975998262.0
+ },
+ {
+  "token": "954PFV8KfFyuP4JZ2TLozGaULk9fzv2pDeULp75UeXSy",
+  "date": "2026-09-08",
+  "symbol": "OKKB",
+  "value": 10001007.0
+ },
+ {
+  "token": "CURYgPBm3aSGshoCFTgta2cvHwjuxhHUaw5ZvoyzeqYM",
+  "date": "2026-09-08",
+  "symbol": "4Stock",
+  "value": 3284203.0
+ },
+ {
+  "token": "HzjY5yeJCiu9RLa6nyCfsb8XcJbsbtwKdi9BLSDB74aC",
+  "date": "2026-09-08",
+  "symbol": "4Stock",
+  "value": 1120346.0
+ },
+ {
+  "token": "Bs5PmEnm1ugySurQCohqQP5oJyQRw83BgEArNrkzL5p4",
+  "date": "2026-09-08",
+  "symbol": "S3",
+  "value": 5160274.0
+ },
+ {
+  "token": "FzZgwnnNTFjAF4V8zr7UYCWdwq6FPpYQSjZWWEfapfQD",
+  "date": "2026-09-08",
+  "symbol": "S3",
+  "value": 8416556.0
+ },
+ {
+  "token": "AvZZF1YaZDziPY2RCK4oJrRVrbN3mTD9NL24hPeaZeUj",
+  "date": "2026-09-08",
+  "symbol": "syrupUSDC",
+  "value": 1368102835.0
+ },
+ {
+  "token": "XRmXfJKcB9GLtbrCtMEtn42fFgmXVB8XT18ehcYpump",
+  "date": "2026-09-08",
+  "symbol": "WWR",
+  "value": 52996403.0
+ },
+ {
+  "token": "Ca19eTJ54TBozVSjQqzf7mJDq6xy4fJ1rDgeggtPBAGS",
+  "date": "2026-09-08",
+  "symbol": "Coptr",
+  "value": 30148202.0
+ },
+ {
+  "token": "3k281kAAVULPx2uhNJgN1pqoJ5jwBczTqTwWhdH5G7my",
+  "date": "2026-09-08",
+  "symbol": "haMSTR",
+  "value": 1314486.0
+ },
+ {
+  "token": "AjN6VS8fRZjUr3goSQeEgD9TaJRMueBRUmi3j4CfeX3E",
+  "date": "2026-09-08",
+  "symbol": "Anthropic",
+  "value": 5801089.0
+ },
+ {
+  "token": "F7PFg8veGE6VCSxSYCwSDPRkNg8ehHEeJiLBfoVbBAGS",
+  "date": "2026-09-08",
+  "symbol": "Rasque",
+  "value": 26603033.0
+ },
+ {
+  "token": "C4ncJiNkNLuVBRWNgmRu2qUstwqGQUDNUQhBJqfpreki",
+  "date": "2026-09-08",
+  "symbol": "OO",
+  "value": 1295997.0
+ },
+ {
+  "token": "F7Ydp59sAfTx2GFqpWQoSdEK2xUFeTLrmwUsHmbqKe5Y",
+  "date": "2026-09-08",
+  "symbol": "TikTok",
+  "value": 1304643.0
+ },
+ {
+  "token": "AZkZV97xPDL35eXaPuwWxp2yEsZhtoTEHfDaBufghM4r",
+  "date": "2026-09-08",
+  "symbol": "LIGER",
+  "value": 1018883.0
+ },
+ {
+  "token": "DdTNdhMHReC78yhUgq6pWRrGabBNJfeMYXBvQ8vMZNC2",
+  "date": "2026-09-08",
+  "symbol": "STONK",
+  "value": 8061623.0
+ },
+ {
+  "token": "EQxngF7vx5X9WikfNLsGWxVEmG5jmEpHz2oBqMjWpump",
+  "date": "2026-09-08",
+  "symbol": "RST",
+  "value": 7367029.0
+ },
+ {
+  "token": "4sg3LGJhvqqyfoT1YQznGPv8VrW33YLb8ukiKKHw9FV1",
+  "date": "2026-09-08",
+  "symbol": "67",
+  "value": 2161628775.0
+ },
+ {
+  "token": "AvFZUu9FdAQUuqpcXg4NmDNokvgdwv7sPgiQ2BeB3F25",
+  "date": "2026-09-08",
+  "symbol": "SANDBOX",
+  "value": 1291611.0
+ },
+ {
+  "token": "BUuyDrwnp37aUicGcYMAWUovvMMBpbfBhwcGnimbqkFN",
+  "date": "2026-09-08",
+  "symbol": "LEPTEP",
+  "value": 1378413.0
+ },
+ {
+  "token": "3e2t77W7q2K5DGkiuM4b4Gvd6H3e4JpZ5Vbj5T8jhx66",
+  "date": "2026-09-08",
+  "symbol": "USDUC",
+  "value": 3421363120.0
+ },
+ {
+  "token": "CGEDT9QZDvvH5GmVkWJH2BXiMJqMJySC9ihWyr7Spump",
+  "date": "2026-09-08",
+  "symbol": "BURNIE",
+  "value": 1617652.0
+ },
+ {
+  "token": "npw8cokGUC1KXh3QEGXw6SgeziHAMzMWmTAivn1pump",
+  "date": "2026-09-08",
+  "symbol": "ZCAT",
+  "value": 12250535.0
+ },
+ {
+  "token": "FLiJaUTkEGmB2TjmETenDBuTiU2SX1Css5ycXhUsvcHS",
+  "date": "2026-09-08",
+  "symbol": "SPCX",
+  "value": 1759170.0
+ },
+ {
+  "token": "BcsEWr3Ks9nSKMRSd5cSRxaQaDJ23s8nydSGNERMSgPy",
+  "date": "2026-09-08",
+  "symbol": "ANTHROPIG",
+  "value": 1300660.0
+ },
+ {
+  "token": "CB1YQfUzgsnaCd93cZLdiX1uASW7utWBaYMUsvcwNUBV",
+  "date": "2026-09-08",
+  "symbol": "LOOM",
+  "value": 2520488.0
+ },
+ {
+  "token": "DTRVbFsqP61uXjaq3p6cU6Gqc6jsHtWSe1QvXQaxzray",
+  "date": "2026-09-08",
+  "symbol": "OpenAI",
+  "value": 1271089.0
+ },
+ {
+  "token": "72M6kp2fiGA8tLvbXVnC3dHnfZNSSeY61hQ9ZmBX7Vfz",
+  "date": "2026-09-09",
+  "symbol": "MEME",
+  "value": 110121649.0
+ },
+ {
+  "token": "BKtbakMQ6N92agQZ3FuBz7Ro27WVNLWFZFRGhbt2moon",
+  "date": "2026-09-09",
+  "symbol": "ASCBOT",
+  "value": 59285032.0
+ },
+ {
+  "token": "1QM6oLZsYeAndHR8ZKumJEj17ifRVBFqncViasewQXm",
+  "date": "2026-09-09",
+  "symbol": "NKE",
+  "value": 36594914446910.0
+ },
+ {
+  "token": "9DA62aB939EMPy4QhjxrSj5mvX5ihC6n2S9MQhzFJ32n",
+  "date": "2026-09-09",
+  "symbol": "USELESS",
+  "value": 24022151.0
+ },
+ {
+  "token": "CGEDT9QZDvvH5GmVkWJH2BXiMJqMJySC9ihWyr7Spump",
+  "date": "2026-09-09",
+  "symbol": "BURNIE",
+  "value": 1697965.0
+ },
+ {
+  "token": "4sg3LGJhvqqyfoT1YQznGPv8VrW33YLb8ukiKKHw9FV1",
+  "date": "2026-09-09",
+  "symbol": "67",
+  "value": 2161628775.0
+ },
+ {
+  "token": "GLRyB95LzCyyY8TVfwZVDyrVcZuSJPJJoaPTnyWs89mv",
+  "date": "2026-09-09",
+  "symbol": "MUCHWOW",
+  "value": 1342431.0
+ },
+ {
+  "token": "Gm5HGVwVTxmNxLdQRDy51MGBNotZqRKkA9TUiiRSpHcz",
+  "date": "2026-09-09",
+  "symbol": "Jacob",
+  "value": 4831087.0
+ },
+ {
+  "token": "8gvTxSrBmrYPkdgbWUrbF7LKyaNYEeDBV8Dy8zR5Pxhm",
+  "date": "2026-09-09",
+  "symbol": "GOOGL",
+  "value": 3210602.0
+ },
+ {
+  "token": "GHhdHZ18H7RPNzTk2Esr4356dk8TpbASK3fhB5BoCCRC",
+  "date": "2026-09-09",
+  "symbol": "GTR",
+  "value": 9693530.0
+ },
+ {
+  "token": "Fdg2ZRr4F4gxukxc2GiFVS5ZwJsUX4ts6XLXWqrRhnsR",
+  "date": "2026-09-09",
+  "symbol": "LAPTOP",
+  "value": 1281085.0
+ },
+ {
+  "token": "ALtBt8eRjCkhqWFfUyJfASZ8saotwDcjLT5kEMLD1mT5",
+  "date": "2026-09-10",
+  "symbol": "4Stock",
+  "value": 2425907.0
+ },
+ {
+  "token": "A4ibnM8NDXJmiZ9NpVH8xecMD17rRbPYpN4Zmn2Mbonk",
+  "date": "2026-09-10",
+  "symbol": "ROJSYR",
+  "value": 10257506.0
+ },
+ {
+  "token": "3a2mjyBVnTnjkpyDKFFhjJCh79vnurVsdcgRmGVjJrfk",
+  "date": "2026-09-10",
+  "symbol": "PUSSY",
+  "value": 1933798.0
+ },
+ {
+  "token": "yNBFDHa3xa7UsUhDLL34ZQnSvHGGyRiUPXdQUANpump",
+  "date": "2026-09-10",
+  "symbol": "HOOD",
+  "value": 5967961.0
+ },
+ {
+  "token": "KsNDMhVUJR5KFqEmJzQHyN4xuP1FTkix37zTnqdpump",
+  "date": "2026-09-10",
+  "symbol": "BEAST",
+  "value": 14237280.0
+ },
+ {
+  "token": "B3Dxm6j7sQJWjmmzFdSCtnK7XjNz7QcVtdNYkzWqkhWy",
+  "date": "2026-09-10",
+  "symbol": "DOGE",
+  "value": 86502867811.0
+ },
+ {
+  "token": "BLLieANeMifThH5gBeKRaNixYJPkf7fuM13VZfJ5STNK",
+  "date": "2026-09-10",
+  "symbol": "XBT",
+  "value": 2909224.0
+ },
+ {
+  "token": "DNQNswnNmoAPF7GspxrhwLKGnH3m5HiUwnR7eGBgJFhr",
+  "date": "2026-09-10",
+  "symbol": "TRUMP\u1160",
+  "value": 91227240.0
+ },
+ {
+  "token": "HLAWrmE9KZrTHnSd4GZ6P5sx5P8g2d94ewCwCoapump",
+  "date": "2026-09-10",
+  "symbol": "NTDA",
+  "value": 5863283.0
+ },
+ {
+  "token": "DkxfPhCLEJYMH6JSotd5Tzd83iQPVsnmeWoFJ53DBAGS",
+  "date": "2026-09-10",
+  "symbol": "Natghost",
+  "value": 16886710.0
+ },
+ {
+  "token": "R6Mgzs5FrqQFN1Jg9gfffyHtQLq7pJ1b5W4bJdspump",
+  "date": "2026-09-10",
+  "symbol": "XST",
+  "value": 19646521.0
+ },
+ {
+  "token": "wHf4b1kVqydfwawAEth6eWwVJXmnXyndKoYbJBipump",
+  "date": "2026-09-10",
+  "symbol": "GOAF",
+  "value": 6463070.0
+ },
+ {
+  "token": "81agRNoLBDj3DQwhyd2iH9NqwiaJgK1bM6ysaT1pump",
+  "date": "2026-09-10",
+  "symbol": "WOTF",
+  "value": 1856495.0
+ },
+ {
+  "token": "JE3HT7SbCgXDQWV6xp3oiiAisDzq4HyZ8wyEVBDCs45Z",
+  "date": "2026-09-10",
+  "symbol": "PENIS",
+  "value": 1227754.0
+ },
+ {
+  "token": "qSa1dSFPMSrPss4UWVJBBBFGNmUkZWzmQ5ThWJapump",
+  "date": "2026-09-10",
+  "symbol": "HOOD",
+  "value": 4127192.0
+ },
+ {
+  "token": "TUyp2nfwQk35P4B5mZEuwKD43dmhP7tB5ccvf3Jpump",
+  "date": "2026-09-10",
+  "symbol": "PONS",
+  "value": 1184339.0
+ },
+ {
+  "token": "Ga12mCFpR79bZE7PwE1woWStgvznXoErzCejToRpump",
+  "date": "2026-09-10",
+  "symbol": "GOAF",
+  "value": 4973735.0
+ },
+ {
+  "token": "Ec3beHMmFQisydYmGAgLP3aGZHf8EWeDaYjPHayNPjKA",
+  "date": "2026-09-10",
+  "symbol": "\u5b59\u5b87\u6668(\u8584\u808c\u7248)",
+  "value": 1455413.0
+ },
+ {
+  "token": "KxVkJApp87TDp43jiFmdkzC5W6bfYNpawd3HPrdXc2Q",
+  "date": "2026-09-10",
+  "symbol": "HOOD",
+  "value": 1304836.0
+ },
+ {
+  "token": "5W4JrWwhxCiQFPjbhvekFNv8oB1VY3TmEAfiTvpypump",
+  "date": "2026-09-10",
+  "symbol": "UPONLY",
+  "value": 8551251.0
+ },
+ {
+  "token": "FFZKFdFFksNtrhudFKd85sT56Et2uZsL6YVv4xdMVwCu",
+  "date": "2026-09-10",
+  "symbol": "UPONLY",
+  "value": 1539711.0
+ },
+ {
+  "token": "G92cPD5kKWAh8hP1rTv3MnTBiufSRMzfdBGZA7Zipump",
+  "date": "2026-09-10",
+  "symbol": "AIPUP",
+  "value": 14620441.0
+ },
+ {
+  "token": "BRUAd9zzQGPLDSRDHxyUgnxJBDgR9VSzZmLYjg3gbSL4",
+  "date": "2026-09-10",
+  "symbol": "NVDA",
+  "value": 15031555.0
+ },
+ {
+  "token": "GHHDg6QLt1oYVgFc2UCmURVWkY5bDtFz8RzMGSAFhvJ3",
+  "date": "2026-09-10",
+  "symbol": "USAT\u1160",
+  "value": 1000200710.0
+ },
+ {
+  "token": "qSa1dSFPMSrPss4UWVJBBBFGNmUkZWzmQ5ThWJapump",
+  "date": "2026-09-10",
+  "symbol": "HOOD",
+  "value": 20506983.0
+ },
+ {
+  "token": "TUyp2nfwQk35P4B5mZEuwKD43dmhP7tB5ccvf3Jpump",
+  "date": "2026-09-10",
+  "symbol": "PONS",
+  "value": 1194765.0
+ },
+ {
+  "token": "39HqgQ18g9R33sUfKq1TjX4sbKrgTb4YntnBCFhURJvy",
+  "date": "2026-09-10",
+  "symbol": "MONEROCHAN",
+  "value": 2174060.0
+ },
+ {
+  "token": "BRnVs11MqEEjo7utb1YwugxTzij3s6sSCRWLUo83bonk",
+  "date": "2026-09-10",
+  "symbol": "Stfrad",
+  "value": 10610037.0
+ },
+ {
+  "token": "CsAcmqaV1JUVFSxUQXHeJx3GtzcbwpfrUzYRNVu8qUWX",
+  "date": "2026-09-10",
+  "symbol": "PENIS",
+  "value": 1218830.0
+ },
+ {
+  "token": "321fwiAJhmwo5SzEvtEMZ5HGaJFkikRDCpSmbqhoT358",
+  "date": "2026-09-10",
+  "symbol": "LUCKY",
+  "value": 1265936.0
+ },
+ {
+  "token": "7bfuURWhyqLggmqjqF5p4CnL9o6fJ5tjyPbMZaLnbonk",
+  "date": "2026-09-10",
+  "symbol": "ESAFIRE",
+  "value": 39174866.0
+ },
+ {
+  "token": "7NrwxkyRVZMsoe9CEM34xHWDEyLEbdtaaJHHLyKVuxH6",
+  "date": "2026-09-10",
+  "symbol": "MET",
+  "value": 1356630.0
+ },
+ {
+  "token": "DUYUT8NLVLjBNUY7J9oDZNxDPur26WkNTuQTngQdyYdW",
+  "date": "2026-09-10",
+  "symbol": "Unicoin",
+  "value": 1286006.0
+ },
+ {
+  "token": "2mFq2CRuR5nbrNqWKUJEzXPdA5qHATEARiJw8BE5YiTT",
+  "date": "2026-09-10",
+  "symbol": "Googles",
+  "value": 26065061216.0
+ },
+ {
+  "token": "AA3fo2yfeXmhXcULVfon5zhxMWeoWVPxmec5EtdQpump",
+  "date": "2026-09-10",
+  "symbol": "$1",
+  "value": 9601051.0
+ },
+ {
+  "token": "DpSULhJHBuLdJnci46duyZsPxXBRx4VswymDdTwSaGEs",
+  "date": "2026-09-10",
+  "symbol": "ROCK",
+  "value": 1265452.0
+ },
+ {
+  "token": "9bwJZ1XdvQ9qUvzqqXA93ydmMSVa9KZdKQqVrEnNpump",
+  "date": "2026-09-10",
+  "symbol": "Nazgul",
+  "value": 1607195.0
+ },
+ {
+  "token": "Gv1pNcKCvWQz3DrMTavUtW3YcrEN81Hhua4BafqQEwAC",
+  "date": "2026-09-10",
+  "symbol": "CC",
+  "value": 112007452.0
+ },
+ {
+  "token": "AVWZXs4PLGvjUnYbypcum9eoKda3zwLqnzhRC2c3g7dy",
+  "date": "2026-09-10",
+  "symbol": "ZVP",
+  "value": 129920180.0
+ },
+ {
+  "token": "iioZg6JSoTNKT6MRhfmvwQTzLbcQ5on3bXPFjKtpump",
+  "date": "2026-09-10",
+  "symbol": "NIKE",
+  "value": 6637045.0
+ },
+ {
+  "token": "FWzrR4sWJ7V5fis2Lrppo2XAsnTPZhZzP8uGJNg2moon",
+  "date": "2026-09-10",
+  "symbol": "DUASERP",
+  "value": 24844822.0
+ },
+ {
+  "token": "tz82UGjht2yVdUttbh37jbjhE2ZSy39UW1fYBVApump",
+  "date": "2026-09-10",
+  "symbol": "OpenAI",
+  "value": 1863788.0
+ },
+ {
+  "token": "MqsAX9N6jAddTEQ8zjZQmVzS9mFuRxrYxpkkW9rpump",
+  "date": "2026-09-10",
+  "symbol": "BEAST",
+  "value": 18538412.0
+ },
+ {
+  "token": "7qLAEk2qxCfBkADcx1TG3nLD5svCRFmax3cb3GDVMdxz",
+  "date": "2026-09-10",
+  "symbol": "Niu Lai",
+  "value": 36712922.0
+ },
+ {
+  "token": "2XLLM1hyVwnhktcGfZBoDfSTcXZeKcAwSJWoUiMxzfJ3",
+  "date": "2026-09-10",
+  "symbol": "AR",
+  "value": 258998815.0
+ },
+ {
+  "token": "pQUGHUonPocvbuYXTyRtyQM2p3a66XJG8TTTdM6pump",
+  "date": "2026-09-10",
+  "symbol": "FERGANI",
+  "value": 472906459.0
+ },
+ {
+  "token": "AYd72GwBF8dGVyh7cvqW2KnvkvYCRrWBUtoGgbTdmoon",
+  "date": "2026-09-10",
+  "symbol": "Glastb",
+  "value": 24613433.0
+ },
+ {
+  "token": "AjBhNK3PaRtGZoxsSZhJRd6jSS5fo8TZKYNMyTe8qWtu",
+  "date": "2026-09-10",
+  "symbol": "MARIO",
+  "value": 1692414.0
+ },
+ {
+  "token": "31KQDokCQhqSNTN4ij3W8EDAgWPG3b1S6CfJtBLYykrt",
+  "date": "2026-09-10",
+  "symbol": "CUM",
+  "value": 1271472.0
+ },
+ {
+  "token": "DcQ8SEc9rWggEJhxrhRZoBneUmvVZ8kStuGPKYSjYubf",
+  "date": "2026-09-10",
+  "symbol": "VAGINA",
+  "value": 1273691.0
+ },
+ {
+  "token": "4tVETLooXev4EKLUrrkqG6rJ3wNSK5NLPcs6zHR2jrvv",
+  "date": "2026-09-10",
+  "symbol": "DNUT",
+  "value": 1259782.0
+ },
+ {
+  "token": "HyivHNskzFV7iGkzuracnfCnd9e2MbuuXzsbfDzrBBEe",
+  "date": "2026-09-10",
+  "symbol": "$WIF",
+  "value": 3194815607.0
+ },
+ {
+  "token": "DwUvW6TqAT5Qi88gZNB3krvEcVDYFcwRP6TvoUDbJH7t",
+  "date": "2026-09-10",
+  "symbol": "\ua4d3\u039fGE",
+  "value": 8303664.0
+ },
+ {
+  "token": "BcXMHzoxroySo88erVuB4SBTH8AYKPsmu6AqNauK1Rhi",
+  "date": "2026-09-10",
+  "symbol": "INTELXELON",
+  "value": 14313156.0
+ },
+ {
+  "token": "3pG82bXyiJjsSRvPDsDGLGEG3WdT5z6VYpKdreK6FZ2m",
+  "date": "2026-09-11",
+  "symbol": "RTO",
+  "value": 1238713.0
+ },
+ {
+  "token": "AqMfZ8LCQMJYKU761fbUZx9TaeLHqLKrFA2YSkuc8ifP",
+  "date": "2026-09-11",
+  "symbol": "BTC",
+  "value": 13098150509.0
+ },
+ {
+  "token": "FoM4mMzjvAfq2Cx6aGNsGyE1QJNkSEpg8f2DLvHBX6w6",
+  "date": "2026-09-11",
+  "symbol": "MERT",
+  "value": 1505665.0
+ },
+ {
+  "token": "9JvmiXxSVY2zyyMTbVvMdCZxMDbUmUDT1cJFbkZr9dXG",
+  "date": "2026-09-11",
+  "symbol": "GOOGL",
+  "value": 1603010.0
+ },
+ {
+  "token": "VBfHFUK8JiNWpG6vLjn5qiCbdSJpGTQW6P4RgBupump",
+  "date": "2026-09-11",
+  "symbol": "KIRK",
+  "value": 5418547.0
+ },
+ {
+  "token": "6sT7JWybXqAexFoRnPQShW7WaFr722JJwRWQN2Wyg14u",
+  "date": "2026-09-11",
+  "symbol": "GRND",
+  "value": 1101503.0
+ },
+ {
+  "token": "AmbnhnsEDES4CprsiopkAb8YcoqZSZYNWhEd3BDqDtK4",
+  "date": "2026-09-11",
+  "symbol": "\u725b\u6765",
+  "value": 496950213.0
+ },
+ {
+  "token": "SiLVFMgD3eD2rgK628NbTBq9MnuJF5FW2CRaVyTB35L",
+  "date": "2026-09-11",
+  "symbol": "SILV",
+  "value": 2804321.0
+ },
+ {
+  "token": "AVWZXs4PLGvjUnYbypcum9eoKda3zwLqnzhRC2c3g7dy",
+  "date": "2026-09-10",
+  "symbol": "ZVP",
+  "value": 132190189.0
+ },
+ {
+  "token": "FWzrR4sWJ7V5fis2Lrppo2XAsnTPZhZzP8uGJNg2moon",
+  "date": "2026-09-10",
+  "symbol": "DUASERP",
+  "value": 24844822.0
+ },
+ {
+  "token": "tz82UGjht2yVdUttbh37jbjhE2ZSy39UW1fYBVApump",
+  "date": "2026-09-10",
+  "symbol": "OpenAI",
+  "value": 1856662.0
+ },
+ {
+  "token": "AYd72GwBF8dGVyh7cvqW2KnvkvYCRrWBUtoGgbTdmoon",
+  "date": "2026-09-10",
+  "symbol": "Glastb",
+  "value": 24613433.0
+ },
+ {
+  "token": "31KQDokCQhqSNTN4ij3W8EDAgWPG3b1S6CfJtBLYykrt",
+  "date": "2026-09-10",
+  "symbol": "CUM",
+  "value": 1271472.0
+ },
+ {
+  "token": "7qLAEk2qxCfBkADcx1TG3nLD5svCRFmax3cb3GDVMdxz",
+  "date": "2026-09-10",
+  "symbol": "Niu Lai",
+  "value": 36712922.0
+ },
+ {
+  "token": "DcQ8SEc9rWggEJhxrhRZoBneUmvVZ8kStuGPKYSjYubf",
+  "date": "2026-09-10",
+  "symbol": "VAGINA",
+  "value": 1273691.0
+ },
+ {
+  "token": "3edMNiNhYLkugCK3F2RtwRhhMmWPkyUHNqzp44nrc9LK",
+  "date": "2026-09-10",
+  "symbol": "REALPEPE",
+  "value": 164459027.0
+ },
+ {
+  "token": "CMKbYkuSJRaRJeZKWXTVnpMtuAu993YCA4CKCgVzLsMw",
+  "date": "2026-09-10",
+  "symbol": "KEYCAT",
+  "value": 179634984.0
+ },
+ {
+  "token": "J6z79bFjqmhTh1buqiWW7rzA4dR1SSUjXrESpTDb4Vp2",
+  "date": "2026-09-10",
+  "symbol": "casino",
+  "value": 169487383.0
+ },
+ {
+  "token": "7VqufYtcCeX45bBb86zcmDudv7NRZHcsrdLELKajU7YA",
+  "date": "2026-09-10",
+  "symbol": "LIHUA",
+  "value": 69207742.0
+ },
+ {
+  "token": "EtH1Uiqe1Sm2HaiChit43qe4bnfdFbxzKHY4qZNZExQA",
+  "date": "2026-09-10",
+  "symbol": "KEYCAT",
+  "value": 177581279.0
+ },
+ {
+  "token": "5u43bVF8hhphnGKY883tCgPTZwz9mttpsitrMia7i2f8",
+  "date": "2026-09-10",
+  "symbol": "ZENCAT",
+  "value": 336526743.0
+ },
+ {
+  "token": "7Sn719RShfv6N4dUdc8Eh3GtEwsf8VzpQvkJHtJr5LH2",
+  "date": "2026-09-10",
+  "symbol": "GLM-5.3",
+  "value": 174179418.0
+ },
+ {
+  "token": "EMC9zTrBuykpngofZoQemMUHLT8KBbr4WDtvwxz1s7J3",
+  "date": "2026-09-10",
+  "symbol": "ZENCAT",
+  "value": 336450812.0
+ },
+ {
+  "token": "8cy7g5oaUXS4vGNomG8TZQFMNyNy78bkEiHiirqYA7ue",
+  "date": "2026-09-10",
+  "symbol": "KEYCAT",
+  "value": 199752177.0
+ },
+ {
+  "token": "3wRMLKQN1NXfEJWUnCq5BqdDNQhj6kADWJBfRAufpump",
+  "date": "2026-09-10",
+  "symbol": "TESTICLE",
+  "value": 1031570.0
+ },
+ {
+  "token": "ZKAGEN9zAiNdeUNjdjZddTPDun2Ph8b8G2xQzsPpump",
+  "date": "2026-09-10",
+  "symbol": "HOOD",
+  "value": 30819974.0
+ },
+ {
+  "token": "9Moe96FpuuBiCXZea7zYfs5QpQF3uAV6zM9RpBvcD9Sm",
+  "date": "2026-09-11",
+  "symbol": "VIAGRA",
+  "value": 1237643.0
+ },
+ {
+  "token": "wvkae6mDYFZtfXvDsE4cJXeZjCTnrKekDMtLeyGpump",
+  "date": "2026-09-11",
+  "symbol": "WOFI",
+  "value": 11458029.0
+ },
+ {
+  "token": "8tkbbbQnMXaaiYFDWACUAKyU2S24xtcFwNoMWqeJQMpT",
+  "date": "2026-09-11",
+  "symbol": "KNOTS",
+  "value": 45318018.0
+ },
+ {
+  "token": "g7yonpmG9PdrHGwb3Q1M5BQbzasaKe26UhWmPcKcBYx",
+  "date": "2026-09-11",
+  "symbol": "BOME",
+  "value": 9342665.0
+ },
+ {
+  "token": "KQLEZmM5Us8Nqhz1uR782RzAGicr7wzhwKbcUd7pump",
+  "date": "2026-09-11",
+  "symbol": "HOOD",
+  "value": 1053724.0
+ },
+ {
+  "token": "SATqS9DYpLQsM2z51P4QCoqJRHa5wboV4qjJerJRUSH",
+  "date": "2026-09-11",
+  "symbol": "RUSH",
+  "value": 2661637.0
+ },
+ {
+  "token": "CMusrYdmg2k67JWz2tjvoUeedUHnwY9awSP2CecHo4dU",
+  "date": "2026-09-11",
+  "symbol": "TIKTOK",
+  "value": 1001952.0
+ },
+ {
+  "token": "3K3KwG9D1TECewq8LFgdGhQTvNc1DJPXVfV8StpYpump",
+  "date": "2026-09-11",
+  "symbol": "TROLL",
+  "value": 2118004.0
+ },
+ {
+  "token": "8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS",
+  "date": "2026-09-11",
+  "symbol": "KNOTS",
+  "value": 38846737.0
+ },
+ {
+  "token": "89ZgXF5owCFysotXwAMNL2BbMfL27UvJuMHMi82uLnHH",
+  "date": "2026-09-11",
+  "symbol": "RICH",
+  "value": 1206977.0
+ },
+ {
+  "token": "7LxC96Ag4DnBotK6bMMUj4kdneAo1kdV1xHnzVF5s7W2",
+  "date": "2026-09-11",
+  "symbol": "ROCK",
+  "value": 1470948.0
+ },
+ {
+  "token": "92yoaNWcfTqogHU9e43GzRSVw7yfhXkRfNcxSdgEFXzF",
+  "date": "2026-09-11",
+  "symbol": "GRND",
+  "value": 1357883.0
+ },
+ {
+  "token": "GKXHCx3U3gv8uL92HC41FyXCVygY1qcjcCMJ8ZxhNSNt",
+  "date": "2026-09-11",
+  "symbol": "USDC",
+  "value": 975449495.0
+ },
+ {
+  "token": "gDJmvwb6TWreurkWquT53ZtFaHbPWQSmYPVyxTYpump",
+  "date": "2026-09-11",
+  "symbol": "GCAT",
+  "value": 3471055.0
+ },
+ {
+  "token": "GapiHBddRGCgBapqjCNNm4H6G3VRR9edQA87y6Bwbonk",
+  "date": "2026-09-11",
+  "symbol": "Xraygho",
+  "value": 24517946.0
+ },
+ {
+  "token": "6gB5s8oiZUSzCBTyGdRVmrGcZNKWmoMZ6nH77P9BdmyZ",
+  "date": "2026-09-11",
+  "symbol": "Intel",
+  "value": 7461297.0
+ },
+ {
+  "token": "4cJByR9i9AUAnrCys8dpfRR5KbtJSWPMv8MSt1HcwUhU",
+  "date": "2026-09-11",
+  "symbol": "NIGHTOWL",
+  "value": 1245495.0
+ },
+ {
+  "token": "Grnm3hYFZZEiVQoYkAoPTC37zEAswvNWEPFq8qKN9JAo",
+  "date": "2026-09-11",
+  "symbol": "HOOD",
+  "value": 311003366.0
+ },
+ {
+  "token": "3CeCySgsoJ2xCFHnzjxE5bNWXsHhYsuYFzdssbzNsFXK",
+  "date": "2026-09-11",
+  "symbol": "MSTR",
+  "value": 1245523.0
+ },
+ {
+  "token": "8tkbbbQnMXaaiYFDWACUAKyU2S24xtcFwNoMWqeJQMpT",
+  "date": "2026-09-11",
+  "symbol": "KNOTS",
+  "value": 45318018.0
+ },
+ {
+  "token": "g7yonpmG9PdrHGwb3Q1M5BQbzasaKe26UhWmPcKcBYx",
+  "date": "2026-09-11",
+  "symbol": "BOME",
+  "value": 9342665.0
+ },
+ {
+  "token": "BpB1i2kA9i4GcvZegFwfStkoTx1CBpMn7X5TTWLNZudE",
+  "date": "2026-09-11",
+  "symbol": "TSLA",
+  "value": 54081343.0
+ },
+ {
+  "token": "GapiHBddRGCgBapqjCNNm4H6G3VRR9edQA87y6Bwbonk",
+  "date": "2026-09-11",
+  "symbol": "Xraygho",
+  "value": 24517946.0
+ },
+ {
+  "token": "3CeCySgsoJ2xCFHnzjxE5bNWXsHhYsuYFzdssbzNsFXK",
+  "date": "2026-09-11",
+  "symbol": "MSTR",
+  "value": 1245523.0
+ },
+ {
+  "token": "6Mj1scPRvrK4mTfxLGf83EVwTtGRCmTZun6nYWUeFaqf",
+  "date": "2026-09-11",
+  "symbol": "LOOP",
+  "value": 3265588.0
+ },
+ {
+  "token": "8CajEnoTDA8v7Ech1uC5tCx81GFEGfDRwkonEsPYn8jE",
+  "date": "2026-09-11",
+  "symbol": "ADELL",
+  "value": 1270597.0
+ },
+ {
+  "token": "KQLEZmM5Us8Nqhz1uR782RzAGicr7wzhwKbcUd7pump",
+  "date": "2026-09-11",
+  "symbol": "HOOD",
+  "value": 1129782.0
+ },
+ {
+  "token": "SATqS9DYpLQsM2z51P4QCoqJRHa5wboV4qjJerJRUSH",
+  "date": "2026-09-11",
+  "symbol": "RUSH",
+  "value": 2661637.0
+ },
+ {
+  "token": "8fTqdihQcAbfCBe3RTt5mxNCP9KFhp6t7oXhoCauPAqF",
+  "date": "2026-09-11",
+  "symbol": "KNOTS",
+  "value": 329931756.0
+ },
+ {
+  "token": "8gxYsM19TXy1rRZMJSWcvZmQHD7NavotDCxwhTHYLPuH",
+  "date": "2026-09-11",
+  "symbol": "EMBERCAT",
+  "value": 1823370.0
+ },
+ {
+  "token": "8hVMkUjgRNKxdgjfZtnD1tGSVtUuVpTvSi6sxz3xkJ9r",
+  "date": "2026-09-11",
+  "symbol": "RAYCAT",
+  "value": 14599137.0
+ },
+ {
+  "token": "C5q9S9vfpWKnk6XT297vZWHvvEMVMza3vmhxfpisywTJ",
+  "date": "2026-09-11",
+  "symbol": "FLAME",
+  "value": 9490909100400.0
+ },
+ {
+  "token": "8fTqdihQcAbfCBe3RTt5mxNCP9KFhp6t7oXhoCauPAqF",
+  "date": "2026-09-11",
+  "symbol": "KNOTS",
+  "value": 329931756.0
+ },
+ {
+  "token": "8gxYsM19TXy1rRZMJSWcvZmQHD7NavotDCxwhTHYLPuH",
+  "date": "2026-09-11",
+  "symbol": "EMBERCAT",
+  "value": 1823370.0
+ },
+ {
+  "token": "GArqcY3Gh7Fw4MrBXtoF253kRUM9sR3CYbkM6Hmpz4nQ",
+  "date": "2026-09-11",
+  "symbol": "USUS",
+  "value": 10005757.0
+ },
+ {
+  "token": "5QSLdgmMbsG1E4tcBEiHG5PGti6w2mn9RSi6squiWHze",
+  "date": "2026-09-11",
+  "symbol": "MSTRx",
+  "value": 68382947.0
+ },
+ {
+  "token": "HDiCK3EUEBaQFcCGvapfVmDMCu7mzVsxfJuQk8KuBAGS",
+  "date": "2026-09-11",
+  "symbol": "Sparad",
+  "value": 13369054.0
+ },
+ {
+  "token": "6N7VdM6eThLjyJ1oZc8fiBBhN1a34mhweoPRwLgwwH5F",
+  "date": "2026-09-11",
+  "symbol": "STONK",
+  "value": 1277325.0
+ },
+ {
+  "token": "12sUZ1hAxEoaXv7x4J7db3VAPBEeRDbnkQ65qNy4EdzB",
+  "date": "2026-09-11",
+  "symbol": "BREW",
+  "value": 21220847.0
+ },
+ {
+  "token": "6ZGUWZdBurB5j6Cj3KFwMEh4FrE9S6D2sGeycyMnCX2U",
+  "date": "2026-09-11",
+  "symbol": "VOPAI",
+  "value": 1281018.0
+ },
+ {
+  "token": "HuYM9chgGCeV5z1eL49okArAcUYCw1HH3Qd5VEJRpump",
+  "date": "2026-09-11",
+  "symbol": "UNKNOWN",
+  "value": 29522891.0
+ },
+ {
+  "token": "69yyjmWYNurK2r6y4tkXrJnS95ex1GQPvsECDL1ZSpBA",
+  "date": "2026-09-11",
+  "symbol": "NASPONS",
+  "value": 9328572.0
+ },
+ {
+  "token": "EajwWfCkFYMWKQmcaBhSCUzxDMyVK4o8bUFnDyyRpump",
+  "date": "2026-09-12",
+  "symbol": "Orcld",
+  "value": 21383036.0
+ },
+ {
+  "token": "3pUKKGHJDjPPAtb1LShB71zgDijYgc6t54jAyGuvSQed",
+  "date": "2026-09-12",
+  "symbol": "PEPTIDES",
+  "value": 1296060.0
+ },
+ {
+  "token": "3897aakpGi8qXCnc5d6QSsGCZdhdoYbzpdbDPpwYwBxT",
+  "date": "2026-09-12",
+  "symbol": "BREW",
+  "value": 22011528.0
+ },
+ {
+  "token": "C8WKgAxkuv9VaXj8JYsat6PspPza4GtRwAAL9bGaAnL8",
+  "date": "2026-09-12",
+  "symbol": "\u202eKN0\u0422\u0405",
+  "value": 3002204.0
+ },
+ {
+  "token": "GaiVMFcSH7VeThSsASgQcoKontXgTcS9M137qsXB9kL7",
+  "date": "2026-09-12",
+  "symbol": "revolve",
+  "value": 1210495.0
+ },
+ {
+  "token": "efRuchvD3oeiY7sbArDWDWLXhVZTns1xJciSdiCpump",
+  "date": "2026-09-12",
+  "symbol": "TSKPUP",
+  "value": 16415518.0
+ },
+ {
+  "token": "HWwzf965P6P1MEMYpP9A2iDxUBmMSyWXoeCC43jNsV1J",
+  "date": "2026-09-12",
+  "symbol": "BNC4\u4eba\u751f",
+  "value": 33183649.0
+ },
+ {
+  "token": "5Vei6iZmEk5kY19MbvQRF3uRfSvs3jytieks9G6Ua4mT",
+  "date": "2026-09-12",
+  "symbol": "REVCAT",
+  "value": 4109678.0
+ },
+ {
+  "token": "2qY1xT6pLdMCksuKWtzWP8acec7qjE7iXLrdKvshY6F9",
+  "date": "2026-09-12",
+  "symbol": "POOL",
+  "value": 17075347.0
+ },
+ {
+  "token": "DTww9nMQbn3fukgMbFFmfydyunvzjE64hiQu65P5MqJp",
+  "date": "2026-09-12",
+  "symbol": "\u200b",
+  "value": 1277121.0
+ },
+ {
+  "token": "AWay8i7Htg3oP1RPqBTqXn5miCvsonXspeQMUo2HiNzS",
+  "date": "2026-09-14",
+  "symbol": "PTN",
+  "value": 1314775.0
+ },
+ {
+  "token": "ELfZV6BvGWGb7upvH9yLE7Mz5tC2uHkMZuu5fD7Qf4ZN",
+  "date": "2026-09-14",
+  "symbol": "0",
+  "value": 653513174.0
+ },
+ {
+  "token": "GpsPHExc55jj9HK9vQQ9mPCqc5o1g4GKXVCn6zA9EtLY",
+  "date": "2026-09-14",
+  "symbol": "AMZN",
+  "value": 1751388.0
+ },
+ {
+  "token": "Ai9phVcLnWA2ZsYTwBGohzsz9BoXDjvfCgnMXapi1Anc",
+  "date": "2026-09-15",
+  "symbol": "Mubarak",
+  "value": 1285594.0
+ },
+ {
+  "token": "6HfJaDaG2Zyo4tiFCyHoimF4HnKhUtDAZHHuqAJ1a7Hm",
+  "date": "2026-09-15",
+  "symbol": "TSLA",
+  "value": 26531649.0
+ },
+ {
+  "token": "4kJNUkdaJU6FT5BfMDezGQ5YV7ymcYtJwCq4xiQS2PFY",
+  "date": "2026-09-15",
+  "symbol": "BRAIN",
+  "value": 289343436.0
+ },
+ {
+  "token": "BEKSjfu3XgGsLt5k9qNUaZcAoEwVwyBJJCQk6C9NqRmh",
+  "date": "2026-09-15",
+  "symbol": "JTX",
+  "value": 1286473.0
+ },
+ {
+  "token": "AGsTXkMEw3qNysL2sS7bA1z9BJpsMe2Y4P5dXT43cUMG",
+  "date": "2026-09-15",
+  "symbol": "\u202eKNO\u0422\u0405",
+  "value": 3001602.0
+ },
+ {
+  "token": "13goi46K33nLPgJM2a7R6NaFRofJFdR9Tr8rFMkfAYrH",
+  "date": "2026-09-15",
+  "symbol": "TripleT",
+  "value": 1241615.0
+ },
+ {
+  "token": "Gr7X4R9FWZa7T7bwa853oZXb2wvmYn3FU6zc8qc2K6AF",
+  "date": "2026-09-15",
+  "symbol": "Cocacola",
+  "value": 1561674.0
+ },
+ {
+  "token": "zp9PDZfkMidthG6gjeZ1NjtSALpd5wpQB6x5mRopump",
+  "date": "2026-09-15",
+  "symbol": "KIBA",
+  "value": 188435458.0
+ },
+ {
+  "token": "hvmfRvb6Kr2WU9K1byQrs6BwkeXKzy7UgCSCqrQpump",
+  "date": "2026-09-15",
+  "symbol": "USDF",
+  "value": 2477610.0
+ },
+ {
+  "token": "GKXnH42MMhCH2qL1iifd378VE9asywMpQbRR8bNWXDf6",
+  "date": "2026-09-18",
+  "symbol": "PCAT",
+  "value": 20666959.0
+ },
+ {
+  "token": "4w1k1PqVWxZwRQyVVLzrR91L2v7snTfqtnXueT4gzXzZ",
+  "date": "2026-09-18",
+  "symbol": "Chico",
+  "value": 2932697.0
+ },
+ {
+  "token": "4LrGJwMcWDkUzW2JPCY2VdWrbxLdkXaFqUJRMivCs9u5",
+  "date": "2026-09-18",
+  "symbol": "Arc",
+  "value": 1082628.0
+ },
+ {
+  "token": "EACnFeG5ncJMFVvgNH7VDqasxWJitcNAvoXgh6rmuhBt",
+  "date": "2026-09-18",
+  "symbol": "BOB",
+  "value": 1335400.0
+ },
+ {
+  "token": "CiBj3fGzs8mQFzvmrNPkniMjkWprRwVXqDNAR7Xt6BjL",
+  "date": "2026-09-18",
+  "symbol": "SOLCAT",
+  "value": 1843883.0
+ },
+ {
+  "token": "2GYzAVCLsbdCki5RDZbiYv8Gxpz2aqF5qFkaH7DcBAGS",
+  "date": "2026-09-18",
+  "symbol": "Tscrab",
+  "value": 24818914.0
+ },
+ {
+  "token": "FYSZZr2kmwEdb3HcCNbcBxdNE9kVYJiKENqHt4gs8CaU",
+  "date": "2026-09-18",
+  "symbol": "HOOD",
+  "value": 255205761.0
+ },
+ {
+  "token": "GHdnUTVstwEKQUX5k8iBq5VwBtYrLMvc8emUUX2etk3A",
+  "date": "2026-09-18",
+  "symbol": "U\u202eCD\u0405",
+  "value": 100060014.0
+ },
+ {
+  "token": "CHV9aYbcUT5kgDTp6VfsEPZRQxZhYahGAS4k4nrfrZQZ",
+  "date": "2026-09-18",
+  "symbol": "USBD",
+  "value": 100012981.0
+ },
+ {
+  "token": "52mC6jMCNESTWn7jDbheGammGU8tW359ZCRjqL5v9DY5",
+  "date": "2026-09-18",
+  "symbol": "SHEEPLE",
+  "value": 1349786.0
+ },
+ {
+  "token": "7V2ZcL2Wwt4SYJJ1sgSAncmUmZsh7cFdXJ8vfh4SQ8QW",
+  "date": "2026-09-18",
+  "symbol": "SOLCAT",
+  "value": 10121802.0
+ },
+ {
+  "token": "HFEeAx8iRK8Xje4Re7wM7EdY4jYWmUFUAEYTc4G7T6Rg",
+  "date": "2026-09-18",
+  "symbol": "USO",
+  "value": 4620227.0
+ },
+ {
+  "token": "2qqEnZx2i5teFbobSrChveWWSrE2VfDWvhatXKuuyNMK",
+  "date": "2026-09-18",
+  "symbol": "ZBUNNY",
+  "value": 1421719.0
+ },
+ {
+  "token": "9mMvHLJPJkVaY51TT5U1USvbX9rHCMFgtA6QkiG6fxtM",
+  "date": "2026-09-18",
+  "symbol": "ZILKERS",
+  "value": 1407777.0
+ },
+ {
+  "token": "6Y8tyAQekghVJtuLUJo9hmayncuqpkYsKYU1egfZ6wdg",
+  "date": "2026-09-18",
+  "symbol": "NASDOG",
+  "value": 4542157.0
+ },
+ {
+  "token": "2u54YZHjE9ZESKRitarGs1xHpsxCHkzDWfhb7hQF9Qiy",
+  "date": "2026-09-18",
+  "symbol": "TIGRINO",
+  "value": 14639966.0
+ },
+ {
+  "token": "6MXygsP9QDJiEqGCuHjbsru6vU1YmtynDWnTsx6uWbTv",
+  "date": "2026-09-18",
+  "symbol": "TART",
+  "value": 1269043.0
+ },
+ {
+  "token": "BJQ6BvPoVNmH7CJTd4pgKLZLGrPkzDunxza3fX764J8d",
+  "date": "2026-09-18",
+  "symbol": "PEPE",
+  "value": 1429788.0
+ },
+ {
+  "token": "797WSQA4JfUoLc1oaDNcVukxPP4i8R5B9xWQ8EzVZLgZ",
+  "date": "2026-09-18",
+  "symbol": "INCASE",
+  "value": 1130091.54
+ },
+ {
+  "token": "GVfqnsNv3gvLSqZgVRdAt1McQ4gwcVNr8yv4snGJap4F",
+  "date": "2026-09-18",
+  "symbol": "HYPESTONK",
+  "value": 1438142.0
+ },
+ {
+  "token": "F9WDA4ZsrtdAJtDgFpzigfh34R3AEFkerNpJed1z1Y1u",
+  "date": "2026-09-18",
+  "symbol": "Arc",
+  "value": 1211474.0
+ },
+ {
+  "token": "7kanU4kYrzKehdanUtoCvQwKDR7Fb2VfVm8rchNRpump",
+  "date": "2026-09-18",
+  "symbol": "Jotchua",
+  "value": 9921660.0
+ },
+ {
+  "token": "jZtZKZGduTDxALZEQbfCAJMovzRLmvVWkowBLKkcLWc",
+  "date": "2026-09-19",
+  "symbol": "ICE",
+  "value": 1425334.0
+ },
+ {
+  "token": "jZtZKZGduTDxALZEQbfCAJMovzRLmvVWkowBLKkcLWc",
+  "date": "2026-09-19",
+  "symbol": "ICE",
+  "value": 1425334.0
+ },
+ {
+  "token": "6qEY65Li9qGzJNGG7Mnj1CYN9WBgxXX7UQfu49Mds9WV",
+  "date": "2026-09-19",
+  "symbol": "USBD",
+  "value": 10004489.0
+ },
+ {
+  "token": "mdLwPG9eiFfSiiE7mNT8XJZzbdBkYkR9Nn3Dpvkpump",
+  "date": "2026-09-19",
+  "symbol": "KIBA",
+  "value": 20656595.0
+ },
+ {
+  "token": "JAzKeUAoHNaUyVfdBqAtjCWpMY1EzM8ttKmr4wNwAWBK",
+  "date": "2026-09-19",
+  "symbol": "Moth",
+  "value": 8403030.0
+ },
+ {
+  "token": "7muuqgMxHLr52Rzpo2hFL6uweRbjnJKeq286EZRwPBPq",
+  "date": "2026-09-19",
+  "symbol": "AED",
+  "value": 100010227.0
+ },
+ {
+  "token": "38wvhQiYEFCQerSRn8xVrdZv3iZhdX75Zxpq5xq215Wp",
+  "date": "2026-09-19",
+  "symbol": "APM",
+  "value": 1181598.0
+ },
+ {
+  "token": "qAFfqQromoFDx4QyvkQtwte67M7Ekib4zHTdG8VKkaZ",
+  "date": "2026-09-19",
+  "symbol": "PAID",
+  "value": 10981912.0
+ },
+ {
+  "token": "DP5AtHd8hmbfdF3vFA4XrooHmjXX2ihvq5LHtYzGqeUS",
+  "date": "2026-09-19",
+  "symbol": "ECOIN",
+  "value": 119986540.0
+ },
+ {
+  "token": "2e4xZ1GNRVdVg2iGiEy6ei8t2VhyPmbp9egW91VdnBt2",
+  "date": "2026-09-19",
+  "symbol": "CATE",
+  "value": 1885494.0
+ },
+ {
+  "token": "C9LEjJwp5L5T557EkYG3288WgYs3gwuX1wQXTtKnK9AQ",
+  "date": "2026-09-19",
+  "symbol": "BabyDoge",
+  "value": 1420955.0
+ },
+ {
+  "token": "94w3HBeyydmdhTDjkQ9j6j6azEAzYnGj3qYp1czS1Xea",
+  "date": "2026-09-19",
+  "symbol": "DGAI",
+  "value": 14934058.0
+ },
+ {
+  "token": "5UPbYG89fymWMYoM21eRNsxDWZ2ugx9zHAyfnufCBFti",
+  "date": "2026-09-19",
+  "symbol": "USCD",
+  "value": 1002280.0
+ },
+ {
+  "token": "4cLrTcJSEK48gWyfPFdrV2nKPAkHg53ouFgm2d5SjAov",
+  "date": "2026-09-19",
+  "symbol": "Poipoi",
+  "value": 918291691.0
+ },
+ {
+  "token": "F9bB2fqWaYmGWhriabuhJQD3Xbcg2QeUR3YEgWWPCrAc",
+  "date": "2026-09-19",
+  "symbol": "GOOGL",
+  "value": 7095606.0
+ },
+ {
+  "token": "Huu2wHbUgJVR9Dmepy4qLxAPnj3DNkAKabZWDmiQSxQn",
+  "date": "2026-09-19",
+  "symbol": "ZCAT",
+  "value": 1241832842.0
+ },
+ {
+  "token": "qWpjec8dg7AbF6pgnFLp9dNuP2WHunLKYJD4XEA9yN8",
+  "date": "2026-09-19",
+  "symbol": "\u202eSDRAC",
+  "value": 3001602.0
+ },
+ {
+  "token": "Dm2sNC8m4bTxYjG9b5xhZDWKbt3uYbfYoW5UyMvoguy1",
+  "date": "2026-09-19",
+  "symbol": "PORNHUB",
+  "value": 16083035.0
+ },
+ {
+  "token": "tipp4C4Jnpft26HC9VXNjUPidojZqxXf8nzKvrKf5BS",
+  "date": "2026-09-19",
+  "symbol": "TIPPED",
+  "value": 1443691.0
+ },
+ {
+  "token": "9kq6sduuwRs43cRkmTV1G8EfZsbwPPoT2kS9uQJX217Z",
+  "date": "2026-09-19",
+  "symbol": "DASH",
+  "value": 1416881.0
+ },
+ {
+  "token": "6kN7EJ4Qxocncvp88gpdqQL3msQzgMoVPhq46VuXpump",
+  "date": "2026-09-19",
+  "symbol": "Pbdolph",
+  "value": 40302938.0
+ },
+ {
+  "token": "Cwb4hoCw4LQ3WoHCt74irs2YkgBWyFdcfwJGyYkzeB83",
+  "date": "2026-09-19",
+  "symbol": "Bruce",
+  "value": 9079067844.0
+ },
+ {
+  "token": "AbZiC9MtjSB7NV8jWvRu7iZMsEBCDGjdWs3SDuZkLML7",
+  "date": "2026-09-19",
+  "symbol": "\u202eYPPAH",
+  "value": 1102798.77
+ },
+ {
+  "token": "6NyopXoHz21LnX7rHMV93Gh5ivY4HopJLwVfQq3spump",
+  "date": "2026-09-19",
+  "symbol": "TIPPED",
+  "value": 2314341.0
+ },
+ {
+  "token": "3JdYkMe3ENA7Jcdm7t8gsyPzygR9fAfco39XYY1CFAfL",
+  "date": "2026-09-19",
+  "symbol": "Fartcoin",
+  "value": 28408370.0
+ },
+ {
+  "token": "A4715Vi8epQpuUAUnvgJfpiVejEaDQP5o852dtkB5ump",
+  "date": "2026-09-20",
+  "symbol": "URANUS",
+  "value": 146185703.0
+ },
+ {
+  "token": "F5UrtVR6W9nF2B7zwC5MT7N6xthEz5ZQqvVH8ZKs1ogx",
+  "date": "2026-09-20",
+  "symbol": "Arc",
+  "value": 17116344.0
+ },
+ {
+  "token": "4BSNtg2z7564UW4jjJF5BMAAuiCAdWMmyXhziHsyLqBw",
+  "date": "2026-09-20",
+  "symbol": "U235",
+  "value": 69950483569.0
+ },
+ {
+  "token": "3JdYkMe3ENA7Jcdm7t8gsyPzygR9fAfco39XYY1CFAfL",
+  "date": "2026-09-19",
+  "symbol": "Fartcoin",
+  "value": 28408370.0
+ },
+ {
+  "token": "Cv8YfZJQ8RyGwiMvre7YEVoMbd5KFMtom38N6J64EQVF",
+  "date": "2026-09-19",
+  "symbol": "PIKAMOON",
+  "value": 1627019.0
+ },
+ {
+  "token": "HgcxVs6kJhPAaGqnPNGaa7zYgNT49hJrLufiqcNMuYZT",
+  "date": "2026-09-19",
+  "symbol": "FEELSGOOD",
+  "value": 10012660.0
+ },
+ {
+  "token": "9giBBayPS3TYR9oSEspnfT7wgndhQnu64kspYCgYeFYN",
+  "date": "2026-09-19",
+  "symbol": "Feels",
+  "value": 1381964.0
+ },
+ {
+  "token": "GiYLQeVWRTQxsuJTjuHwsFkoBxN5GnZfhtRnjjeoLHmu",
+  "date": "2026-09-19",
+  "symbol": "KEK",
+  "value": 1414844.0
+ },
+ {
+  "token": "7a93AGkVsXAfvJqndwQFSw7R1PStcse9scDLwunSpump",
+  "date": "2026-09-19",
+  "symbol": "MEMEMAN",
+  "value": 143725341.0
+ },
+ {
+  "token": "81rTZn4e6ZWGtnormKAcMTNjycHG11HX8nCpZ25MLump",
+  "date": "2026-09-19",
+  "symbol": "MEMEMAN",
+  "value": 1582803.0
+ },
+ {
+  "token": "6vzP5bE5NshkyBUYabFXVSWgu6SANMDiQCsftCTB3ump",
+  "date": "2026-09-20",
+  "symbol": "fomopay",
+  "value": 1148199683.0
+ },
+ {
+  "token": "Cxq1z8fDAdFCk46YvCFLuqRnRuTDww7TUwpAwCqFyDsX",
+  "date": "2026-09-20",
+  "symbol": "AXM",
+  "value": 1390985.0
+ },
+ {
+  "token": "3wTTDiEzMvBiy7Ue6b1L5Msa1Fgm5YSqTVp9cbmM3Ujf",
+  "date": "2026-09-20",
+  "symbol": "AXIS",
+  "value": 1515063.0
+ },
+ {
+  "token": "79f5qPapYjHaWpYSN2SMTV9TG6emF1q6CXCYRrn4mvfy",
+  "date": "2026-09-20",
+  "symbol": "MCAT",
+  "value": 2524104.0
+ },
+ {
+  "token": "8zuDYxESvppy3rqV6gGtY9tv3Qhtyp9vVDseZcF3Pump",
+  "date": "2026-09-20",
+  "symbol": "MEMEMAN",
+  "value": 2692821.0
+ },
+ {
+  "token": "8SrQE88JEfVL8wys9jcYQaLH51H6awpxbMZtiBuxbonk",
+  "date": "2026-09-20",
+  "symbol": "Mccrown",
+  "value": 18079048.0
+ },
+ {
+  "token": "EFmMqnekBnwdqqpXRPerovmF9MmhMxyegmSVKqNcGeQt",
+  "date": "2026-09-20",
+  "symbol": "\u202eKOV",
+  "value": 1079522.05
+ },
+ {
+  "token": "FBTaEdyN2VJ4Lw5S93UkPtchEBjjYENYH2ND6esYfNoC",
+  "date": "2026-09-20",
+  "symbol": "EI",
+  "value": 1137614.0
+ },
+ {
+  "token": "9kq6sduuwRs43cRkmTV1G8EfZsbwPPoT2kS9uQJX217Z",
+  "date": "2026-09-20",
+  "symbol": "DASH",
+  "value": 1416881.0
+ },
+ {
+  "token": "6kN7EJ4Qxocncvp88gpdqQL3msQzgMoVPhq46VuXpump",
+  "date": "2026-09-20",
+  "symbol": "Pbdolph",
+  "value": 40302938.0
+ },
+ {
+  "token": "Cwb4hoCw4LQ3WoHCt74irs2YkgBWyFdcfwJGyYkzeB83",
+  "date": "2026-09-20",
+  "symbol": "Bruce",
+  "value": 9110951730.0
+ },
+ {
+  "token": "BKrwYsCDz5ueTsMgzTXUj9ucPst4YHnnn2FxLpGGreEA",
+  "date": "2026-09-20",
+  "symbol": "Tilcayo",
+  "value": 27521934.0
+ },
+ {
+  "token": "4EtFqt7DgUqzTUWSxCEX17xp6dXFhxbsN1xiXhf8pump",
+  "date": "2026-09-20",
+  "symbol": "Indbat",
+  "value": 1399923.0
+ },
+ {
+  "token": "5xt17Qqp1Y9ynbBuxznphAUxaaixZcLL4xaxJ2C4GBXH",
+  "date": "2026-09-20",
+  "symbol": "JUPCAT",
+  "value": 1388363.0
+ },
+ {
+  "token": "E6K6M1Di6vYqoDDrR1z2c2Ro2U8mGMX2QbWX4feimPxu",
+  "date": "2026-09-20",
+  "symbol": "PORNHUB",
+  "value": 314014141.0
+ },
+ {
+  "token": "26cMDYR5Up9ZUSgmG6hG77NnrbKCGkSWcen25Kmg7777",
+  "date": "2026-09-20",
+  "symbol": "URANUS",
+  "value": 11915634.0
+ },
+ {
+  "token": "3U3ANBLHQXck6DiMMAaSAGJvfLugyfN6mGNKtwPjLHJH",
+  "date": "2026-09-20",
+  "symbol": "ARK",
+  "value": 1368971.0
+ },
+ {
+  "token": "Gb4DEsahgArUSNX1o2vxGKY2WFNo9tVoxuVPT71gpSTg",
+  "date": "2026-09-20",
+  "symbol": "TSLA",
+  "value": 530374616.0
+ },
+ {
+  "token": "Ka8Vep1A22dj7Fp9HzA2Kx3cWwBF9zAzod52CVueMpp",
+  "date": "2026-09-20",
+  "symbol": "HKLTU",
+  "value": 1360784.0
+ },
+ {
+  "token": "4SaA7bFDLHLXwhbEtksRL5AoA5Dx51ja6dauuJztArYU",
+  "date": "2026-09-20",
+  "symbol": "OpenAI",
+  "value": 2822923.0
+ },
+ {
+  "token": "EuJYBCwvktf7KPjoFRMXfwvcNXcMv4MB5PejWFWTL3Z2",
+  "date": "2026-09-20",
+  "symbol": "MCAT",
+  "value": 1362413.0
+ },
+ {
+  "token": "4UHmZGe6X4DZ5dxYGiGXMhi3Sp34uPWtHB7qDMyvRbYB",
+  "date": "2026-09-20",
+  "symbol": "QUEEF",
+  "value": 1580560.0
+ },
+ {
+  "token": "Gk4YwEhgwj51mnaqhHocqy12dKPRvsnqZreTRuGcqk71",
+  "date": "2026-09-20",
+  "symbol": "\u202enotab",
+  "value": 19322073.0
+ },
+ {
+  "token": "FBSeJYRtotYnK2rbLQErR4yAn3acj2ocvR9ENtEJKWjT",
+  "date": "2026-09-20",
+  "symbol": "WSOS",
+  "value": 26487165.0
+ },
+ {
+  "token": "AdVuaxverbmcYrkjoEwgfFu23p8iTxHP1kFDBgPbfRr3",
+  "date": "2026-09-20",
+  "symbol": "Pabek",
+  "value": 15897615.0
+ },
+ {
+  "token": "Cfytryq8VZdUazxFYRwMU3nJKhzitYALvYuWTbZ8FkDB",
+  "date": "2026-09-20",
+  "symbol": "EVO",
+  "value": 2329368.0
+ },
+ {
+  "token": "AeWKjrhNJhTPQ2swkwWPYfCzioR59iBrvYPBsBT1AzPL",
+  "date": "2026-09-20",
+  "symbol": "MOOnDAT",
+  "value": 4255979.0
+ },
+ {
+  "token": "FE6Lrmy7uioK1rSxWiavoQTTsbqdZfxFfRw8PCXZRzTj",
+  "date": "2026-09-20",
+  "symbol": "META",
+  "value": 63900000.0
+ },
+ {
+  "token": "9RxZQY3ehkaDffb3rHzQ4HRDThaLgvZ9Vi1ob52ziouB",
+  "date": "2026-09-20",
+  "symbol": "\u5f6a\u54e5",
+  "value": 37707242.0
+ },
+ {
+  "token": "ExhrYAgeBv3wr6D3mxaWxdvSBkHpfi3cHWwVMm2GDNDs",
+  "date": "2026-09-20",
+  "symbol": "Youtube",
+  "value": 1064389.0
+ },
+ {
+  "token": "HkxuXsp5fwteMiQ2YMvqSLCQEEzg6Hp1HjTZJkKdDKgo",
+  "date": "2026-09-20",
+  "symbol": "Nasduck",
+  "value": 12892842957.0
+ },
+ {
+  "token": "H3qaEwHchz2PK7TxB8kLtoZ297YoK6LKyXMLXTm81Kfx",
+  "date": "2026-09-20",
+  "symbol": "WSOS",
+  "value": 2072917.0
+ },
+ {
+  "token": "EKtmPPLaCbEEKiwoHHtV7TsRsmPXs5CMGtQtZFSiinsc",
+  "date": "2026-09-20",
+  "symbol": "Stamp",
+  "value": 3331663.0
+ },
+ {
+  "token": "LaY7a8FuJicJEJ2AvjfbRgBcGmretabMhwTsMKUpump",
+  "date": "2026-09-20",
+  "symbol": "ECTF",
+  "value": 15727850.0
+ },
+ {
+  "token": "BYZM7VpM8aEvasfjMeSe7JmthUR8kR2TDm3q1hy5qdYV",
+  "date": "2026-09-20",
+  "symbol": "ZCAT",
+  "value": 73936817.0
+ },
+ {
+  "token": "6N3aQ4iWCSc1os5rL4RFhqhQZ6pyXgArX4SQJxL4tBkD",
+  "date": "2026-09-20",
+  "symbol": "POKEMON",
+  "value": 246467147.0
+ },
+ {
+  "token": "FVB89zEHwYpPSf53dux3YvkfdxE3aBnmPQeym7CPpump",
+  "date": "2026-09-20",
+  "symbol": "Stamp",
+  "value": 383777155.0
+ },
+ {
+  "token": "BSr5RVNTQbvsJGCkDdTxgXy7TFYpvfZd61Jfodw6pump",
+  "date": "2026-09-20",
+  "symbol": "Stpeng",
+  "value": 42532067.0
+ },
+ {
+  "token": "BGKUsGh67cYTvH9sySZs7ge9Y4zcdGwNA3nguwyEUb4",
+  "date": "2026-09-20",
+  "symbol": "Claude",
+  "value": 5285275.0
+ },
+ {
+  "token": "5J7DRLk7napYq19p3MzVfCYSb7wHWRFr9Ejsx1YRA9xZ",
+  "date": "2026-09-20",
+  "symbol": "JEANPHIL",
+  "value": 1404149.0
+ },
+ {
+  "token": "ACguzumq64ukXepqgT9RcVhN3xq32XnkAuz7YArEiGEb",
+  "date": "2026-09-21",
+  "symbol": "FOMO",
+  "value": 1977704.0
+ },
+ {
+  "token": "6M1yS1UrErtKJFx5eoUBZNFz2Udaq6U5USH2fFCAqqG",
+  "date": "2026-09-21",
+  "symbol": "cDog",
+  "value": 1429867.0
+ },
+ {
+  "token": "Gb4DEsahgArUSNX1o2vxGKY2WFNo9tVoxuVPT71gpSTg",
+  "date": "2026-09-20",
+  "symbol": "TSLA",
+  "value": 584032048.0
+ },
+ {
+  "token": "Ka8Vep1A22dj7Fp9HzA2Kx3cWwBF9zAzod52CVueMpp",
+  "date": "2026-09-20",
+  "symbol": "HKLTU",
+  "value": 1360784.0
+ },
+ {
+  "token": "EuJYBCwvktf7KPjoFRMXfwvcNXcMv4MB5PejWFWTL3Z2",
+  "date": "2026-09-20",
+  "symbol": "MCAT",
+  "value": 1362413.0
+ },
+ {
+  "token": "4UHmZGe6X4DZ5dxYGiGXMhi3Sp34uPWtHB7qDMyvRbYB",
+  "date": "2026-09-20",
+  "symbol": "QUEEF",
+  "value": 1580560.0
+ },
+ {
+  "token": "Gk4YwEhgwj51mnaqhHocqy12dKPRvsnqZreTRuGcqk71",
+  "date": "2026-09-20",
+  "symbol": "\u202enotab",
+  "value": 19322073.0
+ },
+ {
+  "token": "9RxZQY3ehkaDffb3rHzQ4HRDThaLgvZ9Vi1ob52ziouB",
+  "date": "2026-09-20",
+  "symbol": "\u5f6a\u54e5",
+  "value": 37707242.0
+ },
+ {
+  "token": "4yRyWXzJToNZKuAHMASAK1FuaJMArjqkDS9spgnu5Bxg",
+  "date": "2026-09-20",
+  "symbol": "FeelsBad",
+  "value": 1352388.0
+ },
+ {
+  "token": "FBSeJYRtotYnK2rbLQErR4yAn3acj2ocvR9ENtEJKWjT",
+  "date": "2026-09-20",
+  "symbol": "WSOS",
+  "value": 26487165.0
+ },
+ {
+  "token": "AdVuaxverbmcYrkjoEwgfFu23p8iTxHP1kFDBgPbfRr3",
+  "date": "2026-09-20",
+  "symbol": "Pabek",
+  "value": 15897615.0
+ },
+ {
+  "token": "Cfytryq8VZdUazxFYRwMU3nJKhzitYALvYuWTbZ8FkDB",
+  "date": "2026-09-20",
+  "symbol": "EVO",
+  "value": 2084719.0
+ },
+ {
+  "token": "AeWKjrhNJhTPQ2swkwWPYfCzioR59iBrvYPBsBT1AzPL",
+  "date": "2026-09-20",
+  "symbol": "MOOnDAT",
+  "value": 4255979.0
+ },
+ {
+  "token": "4SaA7bFDLHLXwhbEtksRL5AoA5Dx51ja6dauuJztArYU",
+  "date": "2026-09-20",
+  "symbol": "OpenAI",
+  "value": 1487788.0
+ },
+ {
+  "token": "FE6Lrmy7uioK1rSxWiavoQTTsbqdZfxFfRw8PCXZRzTj",
+  "date": "2026-09-20",
+  "symbol": "META",
+  "value": 63900000.0
+ },
+ {
+  "token": "8n1T4aDaQBBfc3HRmY9m4ZSwnV1gsybgh69aZSHv74t9",
+  "date": "2026-09-20",
+  "symbol": "Ban",
+  "value": 208283187000.0
+ },
+ {
+  "token": "HcVL7tpaNo7gneid375aXNfUVsjZ1xWvHe8Mhom6Wd3M",
+  "date": "2026-09-20",
+  "symbol": "\u202e01KNOTS",
+  "value": 16249574.0
+ },
+ {
+  "token": "G6fP5oygT87HHGC3HeZNpadLjCvddS51VzmEM8VuVZ3h",
+  "date": "2026-09-20",
+  "symbol": "BEATER",
+  "value": 1379578.0
+ },
+ {
+  "token": "8k3Tw55N2WgTHVKCdvnwT1dyr2QAX2ALQZJh55DqXmU1",
+  "date": "2026-09-20",
+  "symbol": "GOLD",
+  "value": 1375504.0
+ },
+ {
+  "token": "8H1yw5qsRbBWERNEKkmUteU5SCH9khwBkuK8WvDFfb19",
+  "date": "2026-09-20",
+  "symbol": "INTC",
+  "value": 350747093.0
+ },
+ {
+  "token": "FH32EfzBKJhz2JDp3TQVccPKj7WVeq3cr2DvHjkoo9zc",
+  "date": "2026-09-20",
+  "symbol": "INTC",
+  "value": 1052800.0
+ },
+ {
+  "token": "GUfjdAa1V9nsvMeoRS4G11Nh6CdziaDJ3qW2NhSgfWjf",
+  "date": "2026-09-20",
+  "symbol": "Harambe",
+  "value": 1353892.0
+ },
+ {
+  "token": "GpL7zgVgdpS7F7eF36f2BHVM33LhXkaG8Bw4ZsVskump",
+  "date": "2026-09-20",
+  "symbol": "TRUMAN",
+  "value": 554564077.0
+ },
+ {
+  "token": "EwbJtBzJaAC83tWMRN3fTUyWf2HyqZYTeX6vjanzBiGv",
+  "date": "2026-09-20",
+  "symbol": "AXIS",
+  "value": 1513278.0
+ },
+ {
+  "token": "D1ukQ4xLF7Epv9iKVKGuG27MCjsNdmGrCGSiWfSUKjXP",
+  "date": "2026-09-20",
+  "symbol": "APM",
+  "value": 1124384.0
+ },
+ {
+  "token": "GEsG6Zin4obJmQpXqxXsuCKLpYWUHKdP6ZUV929TDFSy",
+  "date": "2026-09-20",
+  "symbol": "SGHOST",
+  "value": 1355394.0
+ },
+ {
+  "token": "A1Gq22997K8VfG3mfSzp3SqTNAaZapHQfvUyVwLUXNFH",
+  "date": "2026-09-20",
+  "symbol": "OPENAI",
+  "value": 1196689.0
+ },
+ {
+  "token": "5eyrFrUG8PyfPFXTpMu3LAHMxWNSctJfWxh7gAqz9PUA",
+  "date": "2026-09-20",
+  "symbol": "OLYMPUS",
+  "value": 1355396.0
+ },
+ {
+  "token": "CemCinJnu1nioz2nEQWLN18GTFA1GsCyookqvbEWpump",
+  "date": "2026-09-20",
+  "symbol": "MrBeast",
+  "value": 2966066.0
+ },
+ {
+  "token": "5M8CRiyK3Lk2xtZ1uSUz3ESEhvJyXKsZh6CWZMSNtKxi",
+  "date": "2026-09-20",
+  "symbol": "DBS",
+  "value": 8539999.0
+ },
+ {
+  "token": "86vUhWwZwW5HGG1GquB8UMFCoKy3JtDtEWzc82XKhm8t",
+  "date": "2026-09-20",
+  "symbol": "BITSHARK",
+  "value": 1356148.0
+ },
+ {
+  "token": "CKvDiK1FDcczzybsNHqYfYF29bc1Q81ng6K27ZJSAQUR",
+  "date": "2026-09-20",
+  "symbol": "\u202eTACKIT",
+  "value": 1082239.96
+ },
+ {
+  "token": "65k8wVcsyGbG2fCqgn7tDNcHDSzx3T8WPaDmko36pump",
+  "date": "2026-09-20",
+  "symbol": "SpaceX",
+  "value": 1049900.0
+ },
+ {
+  "token": "AuJrHCMhQaWpWdwtpRHRQmwtKQAw4nAzWNG57RnPexhf",
+  "date": "2026-09-20",
+  "symbol": "\u202eDlA\u0420",
+  "value": 3002204.0
+ },
+ {
+  "token": "CQmpjVohXngukyfi19wydJW2HikHbV1eEMRGE5hMDvfh",
+  "date": "2026-09-20",
+  "symbol": "USBD",
+  "value": 1000559.0
+ },
+ {
+  "token": "p79aztbZtHYfBaGJdKLkomhrX5p3DsjY1K7LiV3pump",
+  "date": "2026-09-20",
+  "symbol": "OpenAI",
+  "value": 1077602.0
+ },
+ {
+  "token": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+  "date": "2026-09-20",
+  "symbol": "JEANPHIL",
+  "value": 8911121.0
+ },
+ {
+  "token": "3Zxcjmm8oFAbz73pPvgxWgNvjfxK12X3pcJZ5sttJU41",
+  "date": "2026-09-20",
+  "symbol": "AXIS",
+  "value": 1884757.0
+ },
+ {
+  "token": "9hSJNXvmaKd1szikChcHyudvbALKCTkyMrgw3xZKRS9D",
+  "date": "2026-09-20",
+  "symbol": "CASH",
+  "value": 1384343.0
+ },
+ {
+  "token": "2Tr693R2bh4eG6CbCLwqsPpwu7WDJnRsMkuUomSBRd4t",
+  "date": "2026-09-20",
+  "symbol": "FEELSG00D",
+  "value": 3002204.0
+ },
+ {
+  "token": "12vPurUn1vWzuohDXAXa4sZ3yHsKcCEZ7vve6Ev6D7D3",
+  "date": "2026-09-20",
+  "symbol": "VALLEY",
+  "value": 1383967.0
+ },
+ {
+  "token": "2v5nEYwE3xgAkxihg7np9oeh1DHZziMwFbx7HZ5s2cKP",
+  "date": "2026-09-21",
+  "symbol": "AXIS",
+  "value": 1399539.0
+ },
+ {
+  "token": "53TnzX9p6K6sgp1MMTqQ6ckxTUZssuf3jhDeeHD1pump",
+  "date": "2026-09-21",
+  "symbol": "Zebra",
+  "value": 2764216.0
+ },
+ {
+  "token": "BJ3ypWpfNkJtHXZVmdPZ2VTFVkBU1aVkKKZ63YQHG5Vq",
+  "date": "2026-09-21",
+  "symbol": "ACAT",
+  "value": 1407151.0
+ },
+ {
+  "token": "5ShRUGHBW9jz7RZ9PrWrESdtfbeBJJMdvf6wcFizpump",
+  "date": "2026-09-21",
+  "symbol": "URANUS",
+  "value": 1447129.0
+ },
+ {
+  "token": "6PHjvRrZ9gnusJ1ewRBxsxASicbKeoy8Nnvm3Fcarbgm",
+  "date": "2026-09-21",
+  "symbol": "RED",
+  "value": 1417390.0
+ },
+ {
+  "token": "xivXNnTrw9JrfwhEWsVCaVV1mJoHxi1cGWWNM7Cpump",
+  "date": "2026-09-21",
+  "symbol": "NTDA",
+  "value": 9900115.0
+ },
+ {
+  "token": "2bL4iinvtnwaKSTUVP5MQ7xVRSEqqZJEgPHCpfg9LFNi",
+  "date": "2026-09-21",
+  "symbol": "DATACENTER",
+  "value": 1394619.0
+ },
+ {
+  "token": "9JQARBE3fQrX9FHN5NQBHssr68dWe2mbB3oYQGSHSANS",
+  "date": "2026-09-21",
+  "symbol": "DEGODS",
+  "value": 2253519.0
+ },
+ {
+  "token": "WjfdGqZgH4B9ntKah4kV4ayGh4LcS6VWXAmJskLpump",
+  "date": "2026-09-21",
+  "symbol": "USPR",
+  "value": 7364368.0
+ },
+ {
+  "token": "7SkDegxGQdzLw4Deb2dNkr54nikfzP32JQJ2YigPa4qz",
+  "date": "2026-09-21",
+  "symbol": "ACAT",
+  "value": 1907666.0
+ },
+ {
+  "token": "13rLZjznTHNL28zr6mMkR7EMmewcVAiwqNwCptZ9pump",
+  "date": "2026-09-21",
+  "symbol": "ECTF",
+  "value": 10091808.0
+ },
+ {
+  "token": "Ahcm5zGbf5x6EgAMLGjEuKSXiww9HVt2oXFzzTnqmoon",
+  "date": "2026-09-21",
+  "symbol": "YIELDRA",
+  "value": 76862429.0
+ },
+ {
+  "token": "AJJxsha4PvWd7G4caM1dTtA9wio9AivoHA4CVHwYLqps",
+  "date": "2026-09-21",
+  "symbol": "STOCKCATS",
+  "value": 1422610.0
+ },
+ {
+  "token": "CJNXh2cL66kEzexaETFkiax5TVH4oc74S31z13oZi36A",
+  "date": "2026-09-21",
+  "symbol": "CASHCAT",
+  "value": 3323417.0
+ },
+ {
+  "token": "24sG8864ajHp1LDCHJ3F847fn7UoHqSP9JxkcZex6eYo",
+  "date": "2026-09-21",
+  "symbol": "TORAI",
+  "value": 4391207.0
+ },
+ {
+  "token": "3paoekjBWDvarDf8z2n6VYjVvfiEq9k7Rqbq8tRi7777",
+  "date": "2026-09-21",
+  "symbol": "ZEC",
+  "value": 1069113.0
+ },
+ {
+  "token": "71B8UvnDNRwMS9uq7v3r7M1zmN4Q5AzdmPvupnhrpump",
+  "date": "2026-09-21",
+  "symbol": "GMEx",
+  "value": 184204433.0
+ },
+ {
+  "token": "9wjkFtHwtPXwcvtkD4qFzvPbfrgKoWT4BSSTHyrJBAGS",
+  "date": "2026-09-21",
+  "symbol": "Hoodbot",
+  "value": 26703853.0
+ },
+ {
+  "token": "BrLaiDXnZmz6LSapsjTMfjPaoXQt5wwmUEjAocmf5Ucw",
+  "date": "2026-09-21",
+  "symbol": "ACAT",
+  "value": 13167460.0
+ },
+ {
+  "token": "7uvLyn87LSxW2GdwdEeiwmSJwQLVrcVyo7SRVcLbbtGc",
+  "date": "2026-09-21",
+  "symbol": "ACAT",
+  "value": 1739628.0
+ },
+ {
+  "token": "k4WcTJwcK8x11E7RFhXsYsdiWZWwfo6FzKEmcCPpump",
+  "date": "2026-09-21",
+  "symbol": "UOTF",
+  "value": 9441255.0
+ },
+ {
+  "token": "B9xC22ux4Nduxy9fQJZhmr6owZqqkjUseUGkZLsyuSTp",
+  "date": "2026-09-21",
+  "symbol": "URANUS",
+  "value": 2384468085.0
+ },
+ {
+  "token": "DyDZ9b3oF1pes5WMfH2o2TDBxRqCiWjHVLQZLgyXMa7w",
+  "date": "2026-09-21",
+  "symbol": "SUN",
+  "value": 1421592.0
+ },
+ {
+  "token": "747r284d87hZdf7LvnPQBazqFehjQgahy7uRK7K4TtqH",
+  "date": "2026-09-21",
+  "symbol": "USBD",
+  "value": 9996752.0
+ },
+ {
+  "token": "CbXqc7QAcotR6gdykduREUYD5Fx7PZoPsqxLHiSGnKBv",
+  "date": "2026-09-21",
+  "symbol": "DONK",
+  "value": 1478704.0
+ },
+ {
+  "token": "8p4FdLPraBej4SGoLhsWNDzi7FDdk8YvvCZtB9ZDzSJ7",
+  "date": "2026-09-21",
+  "symbol": "chudinu",
+  "value": 6504911.0
+ },
+ {
+  "token": "D3ofE5kUY3DJHLxcPrkKk9aQrkVHQm2qc1pXj7vqtD6A",
+  "date": "2026-09-21",
+  "symbol": "chill",
+  "value": 1997002.09
+ },
+ {
+  "token": "9aAhtgSB7vf284JSiFrgVa2rgCDVwrtaoTMDdtZe4zUB",
+  "date": "2026-09-22",
+  "symbol": "CATE",
+  "value": 6501764.0
+ },
+ {
+  "token": "71B8UvnDNRwMS9uq7v3r7M1zmN4Q5AzdmPvupnhrpump",
+  "date": "2026-09-21",
+  "symbol": "GMEx",
+  "value": 184204433.0
+ },
+ {
+  "token": "9wjkFtHwtPXwcvtkD4qFzvPbfrgKoWT4BSSTHyrJBAGS",
+  "date": "2026-09-21",
+  "symbol": "Hoodbot",
+  "value": 26703853.0
+ },
+ {
+  "token": "BrLaiDXnZmz6LSapsjTMfjPaoXQt5wwmUEjAocmf5Ucw",
+  "date": "2026-09-21",
+  "symbol": "ACAT",
+  "value": 13167460.0
+ },
+ {
+  "token": "7uvLyn87LSxW2GdwdEeiwmSJwQLVrcVyo7SRVcLbbtGc",
+  "date": "2026-09-21",
+  "symbol": "ACAT",
+  "value": 1184877.0
+ },
+ {
+  "token": "k4WcTJwcK8x11E7RFhXsYsdiWZWwfo6FzKEmcCPpump",
+  "date": "2026-09-21",
+  "symbol": "UOTF",
+  "value": 8656434.0
+ },
+ {
+  "token": "Ahcm5zGbf5x6EgAMLGjEuKSXiww9HVt2oXFzzTnqmoon",
+  "date": "2026-09-21",
+  "symbol": "YIELDRA",
+  "value": 76862429.0
+ },
+ {
+  "token": "AJJxsha4PvWd7G4caM1dTtA9wio9AivoHA4CVHwYLqps",
+  "date": "2026-09-21",
+  "symbol": "STOCKCATS",
+  "value": 1422610.0
+ },
+ {
+  "token": "CJNXh2cL66kEzexaETFkiax5TVH4oc74S31z13oZi36A",
+  "date": "2026-09-21",
+  "symbol": "CASHCAT",
+  "value": 3323417.0
+ },
+ {
+  "token": "24sG8864ajHp1LDCHJ3F847fn7UoHqSP9JxkcZex6eYo",
+  "date": "2026-09-21",
+  "symbol": "TORAI",
+  "value": 4391207.0
+ },
+ {
+  "token": "3paoekjBWDvarDf8z2n6VYjVvfiEq9k7Rqbq8tRi7777",
+  "date": "2026-09-21",
+  "symbol": "ZEC",
+  "value": 1069113.0
+ },
+ {
+  "token": "BuA5L2marRC92se1STeoq1ek3twJjTye8zRE8MgzKeiN",
+  "date": "2026-09-21",
+  "symbol": "UNICOIN",
+  "value": 1427830.0
+ },
+ {
+  "token": "HtHsaYqV9399WRndGEJ1AAccxU4CFKrt8RoHbaduGdXS",
+  "date": "2026-09-21",
+  "symbol": "ANTFUN",
+  "value": 78900024665.0
+ },
+ {
+  "token": "3rUrrJdKyKw7kmgidEFydLvQz17pKVLrbFxBWyG8pjJT",
+  "date": "2026-09-21",
+  "symbol": "UNICOIN",
+  "value": 1419682.0
+ },
+ {
+  "token": "9FP7YLoXU8YS3tPmuH27gGRUcRMzcs5R9tcervFXjfMH",
+  "date": "2026-09-21",
+  "symbol": "\u202eILAC",
+  "value": 8964627.0
+ },
+ {
+  "token": "txyCteRRStX5G1ygidKoDcGV2mMfFjtcHJshTjDpump",
+  "date": "2026-09-21",
+  "symbol": "USDF",
+  "value": 3887234.0
+ },
+ {
+  "token": "B9xC22ux4Nduxy9fQJZhmr6owZqqkjUseUGkZLsyuSTp",
+  "date": "2026-09-21",
+  "symbol": "URANUS",
+  "value": 2384468085.0
+ },
+ {
+  "token": "5XDqZEWa2qgQdVBrxXxoSDrYTm1bp5GZPLPdsmeRpump",
+  "date": "2026-09-21",
+  "symbol": "PONTES",
+  "value": 1596837.0
+ },
+ {
+  "token": "Fg8tAdH3M2trh15e6HRkwYGzbzjm3m9fHBZzbT16QYre",
+  "date": "2026-09-21",
+  "symbol": "\u202eWONS",
+  "value": 1122780.07
+ },
+ {
+  "token": "GsWfueEqh87RTxFA5SxJobWkkSsybav2CsSUGJ2eJF3F",
+  "date": "2026-09-21",
+  "symbol": "+++++",
+  "value": 1354492.0
+ },
+ {
+  "token": "FLCr9vGMTkbDcRCoirP5Hx8gB7TW1Azt3pkw3qp2HTsh",
+  "date": "2026-09-21",
+  "symbol": "EMBER",
+  "value": 1166458.0
+ },
+ {
+  "token": "3Bt4h2gP4qZpCiDhsKdfXLJRyibbBRthfvG8scjNVump",
+  "date": "2026-09-21",
+  "symbol": "G1",
+  "value": 5154573.0
+ },
+ {
+  "token": "2LhJaju8vyrXeozzCouwc9WBeBePatoMx2tQbogrNFT8",
+  "date": "2026-09-21",
+  "symbol": "MOONS",
+  "value": 67283404.0
+ },
+ {
+  "token": "4xzZxxFPBehJ5nAMQ9kedsxroQUV633m8BCH8RMET4qr",
+  "date": "2026-09-21",
+  "symbol": "F\u0430rtcoln",
+  "value": 3001442.0
+ },
+ {
+  "token": "8XDdRY18yCaEfmxQcRBxVfft4Q7Giq6FTQ45ScKp4Q4b",
+  "date": "2026-09-21",
+  "symbol": "OPENAI",
+  "value": 9690705.0
+ },
+ {
+  "token": "8xRiYhRtw4vncpgy7AZrLDsuWegYEURnXZwWuzs23J1A",
+  "date": "2026-09-21",
+  "symbol": "\u202eNUFlTNA",
+  "value": 3002204.0
+ },
+ {
+  "token": "XsnhgGRQwhExfS2bmWzR6EYddKGPRGDEjeJsatkmKqU",
+  "date": "2026-09-21",
+  "symbol": "SKHYx",
+  "value": 7240439.0
+ },
+ {
+  "token": "DT2WcNHnj8KufRezbstQoCRqzXtZiSbCPo9uFJpBprfP",
+  "date": "2026-09-21",
+  "symbol": "XVG",
+  "value": 3090509.0
+ },
+ {
+  "token": "HuP4FBGtE8XRB5JHv7fPLHB5myHL4Y9WbZEbfNQt56vt",
+  "date": "2026-09-21",
+  "symbol": "ARBCAT",
+  "value": 1477451.0
+ },
+ {
+  "token": "HP2A6DNJWNWyUMHNbneBnp3h9UE8paULTxr3veefGFp1",
+  "date": "2026-09-21",
+  "symbol": "AWARDED",
+  "value": 1246026.0
+ },
+ {
+  "token": "7c8wQ9oMT2Kjmip7fVj7uvuzBaMHtPztCZMct2gWxgkg",
+  "date": "2026-09-21",
+  "symbol": "USDC",
+  "value": 7407676146.0
+ },
+ {
+  "token": "13u5VUEKFKMPWbmfgsXR7KJJP2iFULav9cN9Wt51mKF",
+  "date": "2026-09-21",
+  "symbol": "AAPL",
+  "value": 1282383.0
+ },
+ {
+  "token": "fZzLZRpbgyx1GJQeAuzRB4NbqWyqhp3PBEmByhDRNx6",
+  "date": "2026-09-21",
+  "symbol": "SCAT",
+  "value": 1463667.0
+ },
+ {
+  "token": "HRShpXtCbCmeg8SEuKFnUnyQd94XgoxGTbsHoa8dyo5W",
+  "date": "2026-09-21",
+  "symbol": "\ud83d\udcb2BUNNY",
+  "value": 1100149.0
+ },
+ {
+  "token": "5sCtBYF7v2jKVPGkbmZMTVqkTxyQFYPTSwQ39DHmVsvT",
+  "date": "2026-09-21",
+  "symbol": "KIRA",
+  "value": 1470309.0
+ },
+ {
+  "token": "FFXYgc8f3RCAXodnEqgQpp1haCiQC1h69zELapjY7777",
+  "date": "2026-09-21",
+  "symbol": "QUILL",
+  "value": 1295847.0
+ },
+ {
+  "token": "FFEEmYDKZmfGidrZ5q5T2M7Q5r8Qoo94eFuzpC2UAn9x",
+  "date": "2026-09-21",
+  "symbol": "Goku",
+  "value": 81406162.0
+ },
+ {
+  "token": "7yriu74isMaa5QCoAoU1F8BbUSEBvQvwev4xP2fchUbd",
+  "date": "2026-09-21",
+  "symbol": "MCAT",
+  "value": 1480835.0
+ },
+ {
+  "token": "2isiFD13REmULqqsDRyu9twY9kD3XymWzAQBLWPT2yS5",
+  "date": "2026-09-21",
+  "symbol": "TSLA",
+  "value": 3264931.0
+ },
+ {
+  "token": "Ajh4DaFoCY82vwqcnsfea5HRZK269rzHWaatu5C8E8xj",
+  "date": "2026-09-21",
+  "symbol": "HEISENBERG",
+  "value": 1500635.0
+ },
+ {
+  "token": "jKAowGJ3zSPTXfjucz2TMUhTmYBKwuk9zLLa9tbpump",
+  "date": "2026-09-21",
+  "symbol": "COPCAT",
+  "value": 5272344.0
+ },
+ {
+  "token": "4CQdroQLywJ7gb8LNuW9xiAqEqQVzeDk7VcmQCPXFK1F",
+  "date": "2026-09-21",
+  "symbol": "\u202eDlA\u0420",
+  "value": 3002204.0
+ },
+ {
+  "token": "LLMSUP6K5ZuzWpk2AtGR5ZdaLnxaF97CyfVhCfvAtuY",
+  "date": "2026-09-21",
+  "symbol": "\u202eS\u0422A\u0421Z",
+  "value": 3001602.0
+ },
+ {
+  "token": "3bkqvED7vxHzF344XwNjD4r5cMjVYCKDLfbzT9iGpump",
+  "date": "2026-09-21",
+  "symbol": "COPCAT",
+  "value": 398391748.0
+ },
+ {
+  "token": "HGNPr1ztbHLU4eo9zQEcxCGXJHF6iQ246M3iobFxpump",
+  "date": "2026-09-21",
+  "symbol": "MrBeast",
+  "value": 2866714.0
+ },
+ {
+  "token": "3gAXa6khcC6G7tq6XBnonsiS7GQtq3auKnXCvdZvQtfJ",
+  "date": "2026-09-21",
+  "symbol": "TSLA",
+  "value": 1334941.0
+ },
+ {
+  "token": "AiidNBxpcXBAX2Aa1xEJaiJMSQVRgKG2BxQEqm5z3Vgm",
+  "date": "2026-09-21",
+  "symbol": "GEM",
+  "value": 1495245.0
+ },
+ {
+  "token": "Ht3Vd2NK6ogsEDKuGb4jnpinn1bGEBaW6FKFAMqfCKvZ",
+  "date": "2026-09-22",
+  "symbol": "Nautilo",
+  "value": 129672343.0
+ },
+ {
+  "token": "BxaRwM7V3uhwxAjAyZQoWiB6yW6EAGgkev1qMC5hi1LV",
+  "date": "2026-09-22",
+  "symbol": "JEANPHIL",
+  "value": 53123883.0
+ },
+ {
+  "token": "54c53NaoMDLcxv9ECjN35GLJjX4JDbpbwpSiFwbspump",
+  "date": "2026-09-22",
+  "symbol": "VSOF",
+  "value": 32816294.0
+ },
+ {
+  "token": "D8uvyq465tMRaBCNAqWMph5zZjoJfpyGuLWzmUdisuRR",
+  "date": "2026-09-22",
+  "symbol": "LOOONGCA",
+  "value": 1163974.42
+ },
+ {
+  "token": "88dR3kLvG3CxkwRbsAcc5UA4RKVKscYvNLybjSHtwDXk",
+  "date": "2026-09-22",
+  "symbol": "MC",
+  "value": 4587571.0
+ },
+ {
+  "token": "76cDZVdN9viCsmQ1xpPNhPdRTcWTsitcW34RReEJ4j2V",
+  "date": "2026-09-22",
+  "symbol": "TIKTOK",
+  "value": 143511054.0
+ },
+ {
+  "token": "BsskZM8NNi6ayj3h9KUwawMuuY8hU4iB1QYxEaSuJAfh",
+  "date": "2026-09-22",
+  "symbol": "business",
+  "value": 1457736.0
+ },
+ {
+  "token": "5jdfmHW7EQ3FKWMbh9FnCazMF5ZEPNvUHdCgwxXP33Xv",
+  "date": "2026-09-22",
+  "symbol": "ELON",
+  "value": 1475582.0
+ },
+ {
+  "token": "AuQbxhX3uTPC5Ah1tPu6gPewbZzoadjQYu4y8yihPV19",
+  "date": "2026-09-22",
+  "symbol": "Pygoscelis",
+  "value": 22801620.0
+ },
+ {
+  "token": "61hRVwDcu2KemY6ioxeHUwzetS7cG7GQeNySdWMYrPQM",
+  "date": "2026-09-22",
+  "symbol": "MALA",
+  "value": 8488447.0
+ },
+ {
+  "token": "6VUtnQBT9kydnxs6cxVLk8WGPjBPxWyZHUV9m19FhMWt",
+  "date": "2026-09-22",
+  "symbol": "\u202e01KNOTS",
+  "value": 44115309.0
+ },
+ {
+  "token": "GZTAV7auipQLmq1AR5dZfumigt6qoaLHxeEMNNYDEnCY",
+  "date": "2026-09-22",
+  "symbol": "PYTAD",
+  "value": 9928118.0
+ },
+ {
+  "token": "AonfjeWayz3iWUpS5p1XHgbasrMutuwXgugdTe4bWozJ",
+  "date": "2026-09-22",
+  "symbol": "USAT\u1160",
+  "value": 100010322.0
+ },
+ {
+  "token": "13h2yYmLQvuy9FS96jjJZodn28WasaPYfBzzrvjcpump",
+  "date": "2026-09-22",
+  "symbol": "SPX",
+  "value": 7204342.0
+ },
+ {
+  "token": "Df2LhAJKYhXGbe6m65bkR54roTmYwi6yd69wFZMfBwM8",
+  "date": "2026-09-22",
+  "symbol": "JEEPPHIL",
+  "value": 4648619.0
+ },
+ {
+  "token": "CdhZy8wrRxNxoV8HtoByXKN7mvS46avtuZ1b39tKfx7",
+  "date": "2026-09-22",
+  "symbol": "X7",
+  "value": 2574661.0
+ },
+ {
+  "token": "LfyYWoPrHDFTKsi94ubua5DNt2nrbBCvp1v1CUjpump",
+  "date": "2026-09-22",
+  "symbol": "VSOF",
+  "value": 55384159.0
+ },
+ {
+  "token": "7tDEJ3u2VP9YPzx1XH7gkPWPvxp9fV8yB1sT7DREE7CS",
+  "date": "2026-09-22",
+  "symbol": "SCC-X23",
+  "value": 1471231.0
+ },
+ {
+  "token": "BaA3gbB7TfPL8patyiXnEjo1bHtodhNoYSTRZ1ttEXXr",
+  "date": "2026-09-22",
+  "symbol": "FINAGOTCHI",
+  "value": 1469932.0
+ },
+ {
+  "token": "GJzgKWpwui4X8gvyhhfTRtKuD9T2r3Kfs15HUfFVBAGS",
+  "date": "2026-09-22",
+  "symbol": "Betrob",
+  "value": 1475319.0
+ },
+ {
+  "token": "HwVyzxBVE68x7aZub6UG78i6RQLTEoy9cQuxMq4ppump",
+  "date": "2026-09-22",
+  "symbol": "VSOF",
+  "value": 246094434.0
+ },
+ {
+  "token": "2SHx1YnkgnSRSm63njcV3DY2v5rZzk7Q2gZmXKTKoRWa",
+  "date": "2026-09-22",
+  "symbol": "OPENAI",
+  "value": 1105460.0
+ },
+ {
+  "token": "BsE3aa5FdE6FVEkWvA8ShAGpzZasEgJbfSqRC4LmErTK",
+  "date": "2026-09-22",
+  "symbol": "X7",
+  "value": 28587876.0
+ },
+ {
+  "token": "BaA3gbB7TfPL8patyiXnEjo1bHtodhNoYSTRZ1ttEXXr",
+  "date": "2026-09-22",
+  "symbol": "FINAGOTCHI",
+  "value": 1469932.0
+ },
+ {
+  "token": "GJzgKWpwui4X8gvyhhfTRtKuD9T2r3Kfs15HUfFVBAGS",
+  "date": "2026-09-22",
+  "symbol": "Betrob",
+  "value": 1475319.0
+ },
+ {
+  "token": "HwVyzxBVE68x7aZub6UG78i6RQLTEoy9cQuxMq4ppump",
+  "date": "2026-09-22",
+  "symbol": "VSOF",
+  "value": 186253369.0
+ },
+ {
+  "token": "CBNhYG8seyRxpSn6tMWNn2vJ4v36jtaVUFj1wY9uBAGS",
+  "date": "2026-09-22",
+  "symbol": "Arcpen",
+  "value": 16732110.0
+ },
+ {
+  "token": "XsvNBAYkrDRNhA7wPHQfX3ZUXZyZLdnCQDfHZ56bzpg",
+  "date": "2026-09-22",
+  "symbol": "HOODx",
+  "value": 13474936.0
+ },
+ {
+  "token": "BsE3aa5FdE6FVEkWvA8ShAGpzZasEgJbfSqRC4LmErTK",
+  "date": "2026-09-22",
+  "symbol": "X7",
+  "value": 19480444.0
+ },
+ {
+  "token": "ETK6R2bPeyRQvdwPJcpY1nqNdjASWnJLSB55Gs65qVi",
+  "date": "2026-09-22",
+  "symbol": "BUTTFUCK",
+  "value": 1461079.0
+ },
+ {
+  "token": "CLHrNB1TuVWcTZeteFWfMy54dUAn6pdPZN7Wwcy4pNaJ",
+  "date": "2026-09-22",
+  "symbol": "TikTok",
+  "value": 6415426.0
+ },
+ {
+  "token": "2GmLrAJa9L8fMVmy8JqRq5qr83X9U9c2SPPSrZDjG8ch",
+  "date": "2026-09-22",
+  "symbol": "\u202eDlA\u0420",
+  "value": 3001602.0
+ },
+ {
+  "token": "82roQ1WEcPW4Cx57iE5BkSAo2hUydxgefoZvKkqgVajo",
+  "date": "2026-09-22",
+  "symbol": "\u202eKN0TS",
+  "value": 3001602.0
+ },
+ {
+  "token": "F1gGV7qGbZtSKuzM1tBaDZ4oYNZMqMydU9CHqeL3kAcA",
+  "date": "2026-09-22",
+  "symbol": "KCAT",
+  "value": 60405011.0
+ },
+ {
+  "token": "864uqPsZhVUT8u49eAqV9QpP86iG4c1143ne4n8Mokyo",
+  "date": "2026-09-22",
+  "symbol": "IONQ",
+  "value": 1468554.0
+ },
+ {
+  "token": "5Nje3An2iDKQkZsHacdHQiVR4EvCK5hmHrymkcD3JyZu",
+  "date": "2026-09-22",
+  "symbol": "GROK",
+  "value": 4432402.0
+ },
+ {
+  "token": "EkBL4bRz7KvRJAHuCDrJAD2TtAEDqCEDZNQH8ARn28PU",
+  "date": "2026-09-22",
+  "symbol": "\u202eTAC\ud835\udc19",
+  "value": 3002504.0
+ },
+ {
+  "token": "6GzMeZwLE5nUCs5VnoETZpCrDo8RWi9b8yT6bfqa22Xv",
+  "date": "2026-09-22",
+  "symbol": "SCHR\u00d6DING",
+  "value": 779155135.0
+ },
+ {
+  "token": "2SHx1YnkgnSRSm63njcV3DY2v5rZzk7Q2gZmXKTKoRWa",
+  "date": "2026-09-22",
+  "symbol": "OPENAI",
+  "value": 1105460.0
+ },
+ {
+  "token": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+  "date": "2026-09-22",
+  "symbol": "SPCXx",
+  "value": 42044586.0
+ },
+ {
+  "token": "CpuTiwWtsqWpRnuqtEdzD7Hzdw2NZkoDN4F3an3TdMWF",
+  "date": "2026-09-22",
+  "symbol": "Project",
+  "value": 1798743.0
+ },
+ {
+  "token": "F2GkaUCCwFUSGjaFftimhFWzH4gzbLZLBwV8pX4cYFgm",
+  "date": "2026-09-22",
+  "symbol": "\u2728Betty",
+  "value": 2156022.0
+ },
+ {
+  "token": "3iXJjM16RLPYXyDAN3r8vasc7Z7yKySm1iuBRZTSD5eV",
+  "date": "2026-09-22",
+  "symbol": "BAKARI",
+  "value": 4344485294.0
+ },
+ {
+  "token": "F2GkaUCCwFUSGjaFftimhFWzH4gzbLZLBwV8pX4cYFgm",
+  "date": "2026-09-22",
+  "symbol": "\u2728Betty",
+  "value": 2156022.0
+ },
+ {
+  "token": "BE4oAMmHuFy4Hw4CKaj4Te2LkeBakZqHsUZVBp9xXKut",
+  "date": "2026-09-22",
+  "symbol": "PUSD",
+  "value": 1999700.12
+ },
+ {
+  "token": "6U5dacv6TxKDtTHqqjf3S8uJ1xSwUYiyfzjvFRUqbonk",
+  "date": "2026-09-22",
+  "symbol": "SSCRAB",
+  "value": 21968555.0
+ }
+]

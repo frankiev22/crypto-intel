@@ -1,0 +1,40 @@
+posts parsed        49
+content dates       2026-08-04 .. 2026-09-21  (49 distinct)
+posts with no date  0
+bullets             552
+ticker mentions     732
+distinct tickers    482
+
+most mentioned:
+  STONK          15
+  CATE           10
+  CASHCAT        9
+  PONS           9
+  AI             9
+  BASECAT        8
+  HMM            7
+  MAX            6
+  INDEX          6
+  BLUECHIP       6
+  MARSCOIN       5
+  STONKBROKERS   5
+  MANLET         5
+  DELTA          5
+  QUOTRON        5
+  牛来             5
+  BONER          5
+  MEME           5
+  PAID           5
+  BUTTHOLE       4
+  ANSEM          4
+  CYBERLEEK      4
+  BATON          4
+  SUE            4
+  FONE           4
+  MICRODUCK      4
+  ZCAT           4
+  ALLINU         4
+  FRONG          3
+  JUGGERNAUT     3
+
+mentioned once: 363

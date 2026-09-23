@@ -23,7 +23,7 @@ Backing research, 827 lines with every program id and its verification status:
    moves through the day; any share quoted from it needs its read time attached.**
 2. **Our coverage of Solana venue volume is 51.7%, not 46.4%.** The older figure
    counted all protocol rows rather than venues.
-3. ⛔ **A bug in code I wrote today.** `pool_probe.py:47` had the USDT mint as
+3. ⛔ **A bug in code I wrote today.** `analysis/daily_2026-09-22/pushback/pool_probe.py:47` had the USDT mint as
    `Es9vMFrJKsWFsFd8e25wJdkX8DBMLoMKNfuLDQy2Ae4Z`, which **does not exist on
    chain**. The real mint is `Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB`, which
    `onchain_reserves.py:35` has correctly. Fixed. ⭐ **No number I reported today
@@ -208,7 +208,7 @@ venue" estimate was pessimistic. **The missing piece is pool discovery.**
 - Program ids for Scorch, Manifest, Quantum, HumidiFi, Kipseli, Flux, Quay, Heaven,
   Boop, Moonit, Meteora DBC/DAMM v1/DAMM v2/DLMM, Raydium LaunchLab, Virtuals,
   AlphaQ, Byreal, SolFi V2, WhaleStreet, Deriverse and both Bags fee-share programs
-  are **VERIFIED executable** in `RESEARCH.md` §5. Jupiter's free
+  are **VERIFIED executable** in `analysis/coverage_expansion/RESEARCH.md` §5. Jupiter's free
   `/swap/v1/program-id-to-label` supplied 107 of them.
 
 **Observed when done:** a Meteora DBC pool's quote-side depth read from its own

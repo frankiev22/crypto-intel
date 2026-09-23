@@ -21,7 +21,7 @@ that could ever see a follow or a profile picture.**
 
 ## 1. Our access today: none, and it is not a plan problem
 
-Probed 2026-09-18 and again 2026-09-19 (`scratchpad/xprobe.py`, `xprobe2.py`, which
+Probed 2026-09-18 and again 2026-09-19 (`scratchpad/xprobe.py`, `scratchpad/xprobe2.py`, which
 print status codes only):
 
 - The app-only bearer minted from our consumer key returns **200** on

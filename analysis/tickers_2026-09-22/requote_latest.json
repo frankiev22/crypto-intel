@@ -1,0 +1,559 @@
+{
+ "quoted_at_utc": "2026-09-22T23:22:52Z",
+ "sol_usd": 118.98918282172622,
+ "solana": [
+  {
+   "ticker": "SOL",
+   "address": "So11111111111111111111111111111111111111112",
+   "what": "wrapped SOL, the reference",
+   "mint": {
+    "is_token_2022": false,
+    "mint_authority": null,
+    "freeze_authority": null,
+    "fee_bps": null,
+    "fee_config_authority": null
+   },
+   "price_usd": 118.9625172234159,
+   "mcap_usd": 69891347104.67075,
+   "holders": 3820662,
+   "rt": {
+    "100": {
+     "verdict": "TRADEABLE",
+     "usd_back": 100.0105,
+     "rt_cost_pct": -0.0105,
+     "price_impact_pct": 0.0,
+     "venues": [
+      "Kipseli"
+     ],
+     "error": null
+    },
+    "500": {
+     "verdict": "TRADEABLE",
+     "usd_back": 500.0553,
+     "rt_cost_pct": -0.0111,
+     "price_impact_pct": 0.0,
+     "venues": [
+      "Kipseli"
+     ],
+     "error": null
+    },
+    "2000": {
+     "verdict": "TRADEABLE",
+     "usd_back": 2000.1854,
+     "rt_cost_pct": -0.0093,
+     "price_impact_pct": 0.0,
+     "venues": [
+      "Kipseli"
+     ],
+     "error": null
+    }
+   }
+  },
+  {
+   "ticker": "STONK",
+   "address": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+   "what": "stonk.fun platform token",
+   "mint": {
+    "is_token_2022": false,
+    "mint_authority": null,
+    "freeze_authority": null,
+    "fee_bps": null,
+    "fee_config_authority": null
+   },
+   "price_usd": 0.2912388676081124,
+   "mcap_usd": 240384057.91164407,
+   "holders": 86374,
+   "rt": {
+    "100": {
+     "verdict": "TRADEABLE",
+     "usd_back": 99.8663,
+     "rt_cost_pct": 0.1337,
+     "price_impact_pct": 0.0,
+     "venues": [
+      "Kipseli",
+      "Meteora DLMM"
+     ],
+     "error": null
+    },
+    "500": {
+     "verdict": "TRADEABLE",
+     "usd_back": 499.2246,
+     "rt_cost_pct": 0.1551,
+     "price_impact_pct": 0.076662,
+     "venues": [
+      "Quantum"
+     ],
+     "error": null
+    },
+    "2000": {
+     "verdict": "TRADEABLE",
+     "usd_back": 1995.7378,
+     "rt_cost_pct": 0.2131,
+     "price_impact_pct": 0.036047,
+     "venues": [
+      "Kipseli",
+      "Meteora DLMM",
+      "Quantum"
+     ],
+     "error": null
+    }
+   }
+  },
+  {
+   "ticker": "CATE",
+   "address": "Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump",
+   "what": "pump.fun memecoin",
+   "mint": {
+    "is_token_2022": true,
+    "mint_authority": null,
+    "freeze_authority": null,
+    "fee_bps": null,
+    "fee_config_authority": null
+   },
+   "price_usd": 0.08966562605276317,
+   "mcap_usd": 86451379.28080224,
+   "holders": 135475,
+   "rt": {
+    "100": {
+     "verdict": "TRADEABLE",
+     "usd_back": 99.5985,
+     "rt_cost_pct": 0.4015,
+     "price_impact_pct": 0.3634,
+     "venues": [
+      "Meteora DLMM"
+     ],
+     "error": null
+    },
+    "500": {
+     "verdict": "TRADEABLE",
+     "usd_back": 496.9899,
+     "rt_cost_pct": 0.602,
+     "price_impact_pct": 0.485648,
+     "venues": [
+      "Meteora DLMM"
+     ],
+     "error": null
+    },
+    "2000": {
+     "verdict": "TRADEABLE",
+     "usd_back": 1985.6622,
+     "rt_cost_pct": 0.7169,
+     "price_impact_pct": 0.553834,
+     "venues": [
+      "Kipseli",
+      "Pump.fun Amm",
+      "Meteora DLMM"
+     ],
+     "error": null
+    }
+   }
+  },
+  {
+   "ticker": "ZCAT",
+   "address": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+   "what": "stonk.fun, paired to ZEC",
+   "mint": {
+    "is_token_2022": true,
+    "mint_authority": null,
+    "freeze_authority": null,
+    "fee_bps": 300,
+    "fee_config_authority": null
+   },
+   "price_usd": 0.08719239558391798,
+   "mcap_usd": 84418516.39451277,
+   "holders": 28146,
+   "rt": {
+    "100": {
+     "verdict": "TRADEABLE",
+     "usd_back": 93.097,
+     "rt_cost_pct": 6.903,
+     "price_impact_pct": 7.449448,
+     "venues": [
+      "Raydium CLMM"
+     ],
+     "error": null
+    },
+    "500": {
+     "verdict": "TRADEABLE",
+     "usd_back": 466.1543,
+     "rt_cost_pct": 6.7691,
+     "price_impact_pct": 7.143686,
+     "venues": [
+      "Quantum",
+      "Meteora DLMM"
+     ],
+     "error": null
+    },
+    "2000": {
+     "verdict": "TRADEABLE",
+     "usd_back": 1850.2538,
+     "rt_cost_pct": 7.4873,
+     "price_impact_pct": 7.633532,
+     "venues": [
+      "Raydium CLMM",
+      "Meteora DLMM",
+      "Quantum",
+      "Meteora DLMM"
+     ],
+     "error": null
+    }
+   }
+  },
+  {
+   "ticker": "KNOTS",
+   "address": "8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS",
+   "what": "stonk.fun reward token",
+   "mint": {
+    "is_token_2022": true,
+    "mint_authority": null,
+    "freeze_authority": null,
+    "fee_bps": 300,
+    "fee_config_authority": "5KXDF6QnqhBj72hDtJNkkpFaQVUfbFXNybMsp3DiK6tD"
+   },
+   "price_usd": 0.01346849277396137,
+   "mcap_usd": 13385057.067695403,
+   "holders": 15853,
+   "rt": {
+    "100": {
+     "verdict": "TRADEABLE",
+     "usd_back": 91.2904,
+     "rt_cost_pct": 8.7096,
+     "price_impact_pct": 3.663492,
+     "venues": [
+      "Quantum",
+      "Meteora DLMM"
+     ],
+     "error": null
+    },
+    "500": {
+     "verdict": "TRADEABLE",
+     "usd_back": 459.2533,
+     "rt_cost_pct": 8.1493,
+     "price_impact_pct": 3.070416,
+     "venues": [
+      "Quantum",
+      "Raydium CP"
+     ],
+     "error": null
+    },
+    "2000": {
+     "verdict": "TRADEABLE",
+     "usd_back": 1825.2103,
+     "rt_cost_pct": 8.7395,
+     "price_impact_pct": 3.374552,
+     "venues": [
+      "Quantum",
+      "Raydium CP",
+      "HumidiFi",
+      "Meteora DLMM"
+     ],
+     "error": null
+    }
+   }
+  },
+  {
+   "ticker": "LOOP",
+   "address": "HunmXDXMNQYVoDnUL6PNnSYEtFaTZA2WzGh1HJTW7aoV",
+   "what": "stonk.fun reward token",
+   "mint": {
+    "is_token_2022": true,
+    "mint_authority": null,
+    "freeze_authority": null,
+    "fee_bps": 300,
+    "fee_config_authority": "5KXDF6QnqhBj72hDtJNkkpFaQVUfbFXNybMsp3DiK6tD"
+   },
+   "price_usd": 0.000194771615282497,
+   "mcap_usd": 194750.092554627,
+   "holders": 2678,
+   "rt": {
+    "100": {
+     "verdict": "COSTLY",
+     "usd_back": 84.4781,
+     "rt_cost_pct": 15.5219,
+     "price_impact_pct": 11.950479,
+     "venues": [
+      "GoonFi V2",
+      "PancakeSwap",
+      "Meteora DLMM"
+     ],
+     "error": null
+    },
+    "500": {
+     "verdict": "COSTLY",
+     "usd_back": 367.6499,
+     "rt_cost_pct": 26.47,
+     "price_impact_pct": 18.147536,
+     "venues": [
+      "BisonFi",
+      "Meteora DLMM",
+      "Raydium CP"
+     ],
+     "error": null
+    },
+    "2000": {
+     "verdict": "COSTLY",
+     "usd_back": 1316.8885,
+     "rt_cost_pct": 34.1556,
+     "price_impact_pct": 23.384514,
+     "venues": [
+      "TesseraV",
+      "Meteora DLMM",
+      "Raydium CP",
+      "Meteora DLMM"
+     ],
+     "error": null
+    }
+   }
+  },
+  {
+   "ticker": "PURR-sol",
+   "address": "8RNUw4N655VSrZKuhGdywhbSMDTrheguFPfxbpE2NZHQ",
+   "what": "stonk.fun, NOT the Hyperliquid PURR",
+   "mint": {
+    "is_token_2022": true,
+    "mint_authority": null,
+    "freeze_authority": null,
+    "fee_bps": 300,
+    "fee_config_authority": null
+   },
+   "price_usd": 0.008374671169120796,
+   "mcap_usd": 8086517.104007776,
+   "holders": 13671,
+   "rt": {
+    "100": {
+     "verdict": "COSTLY",
+     "usd_back": 89.9544,
+     "rt_cost_pct": 10.0456,
+     "price_impact_pct": 4.567373,
+     "venues": [
+      "BisonFi",
+      "Meteora DLMM"
+     ],
+     "error": null
+    },
+    "500": {
+     "verdict": "TRADEABLE",
+     "usd_back": 453.1889,
+     "rt_cost_pct": 9.3622,
+     "price_impact_pct": 3.092058,
+     "venues": [
+      "BisonFi",
+      "Raydium CLMM"
+     ],
+     "error": null
+    },
+    "2000": {
+     "verdict": "COSTLY",
+     "usd_back": 1775.674,
+     "rt_cost_pct": 11.2163,
+     "price_impact_pct": 3.123126,
+     "venues": [
+      "BisonFi",
+      "Meteora DLMM",
+      "BisonFi",
+      "TesseraV",
+      "Raydium CLMM"
+     ],
+     "error": null
+    }
+   }
+  },
+  {
+   "ticker": "STONKCAT",
+   "address": "9h5AzEQzYu9CV5K6uLtFRMD1KcbxZSFNxZEgBTNfw5Na",
+   "what": "stonk.fun, 1% fee",
+   "mint": {
+    "is_token_2022": true,
+    "mint_authority": null,
+    "freeze_authority": null,
+    "fee_bps": 100,
+    "fee_config_authority": "5KXDF6QnqhBj72hDtJNkkpFaQVUfbFXNybMsp3DiK6tD"
+   },
+   "price_usd": 0.0011598517713061458,
+   "mcap_usd": 1159851.5537506624,
+   "holders": 1014,
+   "rt": {
+    "100": {
+     "verdict": "TRADEABLE",
+     "usd_back": 95.1396,
+     "rt_cost_pct": 4.8604,
+     "price_impact_pct": 0.999807,
+     "venues": [
+      "Quantum",
+      "Raydium CP"
+     ],
+     "error": null
+    },
+    "500": {
+     "verdict": "TRADEABLE",
+     "usd_back": 469.0436,
+     "rt_cost_pct": 6.1913,
+     "price_impact_pct": 1.650122,
+     "venues": [
+      "Quantum",
+      "Raydium CP"
+     ],
+     "error": null
+    },
+    "2000": {
+     "verdict": "COSTLY",
+     "usd_back": 1784.2497,
+     "rt_cost_pct": 10.7875,
+     "price_impact_pct": 4.150078,
+     "venues": [
+      "HumidiFi",
+      "Meteora DLMM",
+      "Meteora DLMM",
+      "Raydium CP"
+     ],
+     "error": null
+    }
+   }
+  }
+ ],
+ "hyperliquid": {
+  "HYPE": {
+   "pair": "@107",
+   "token_index": [
+    150,
+    0
+   ],
+   "mid": 97.6015,
+   "vol24_usd": 105025731.26522996,
+   "circulating": 298773119.7953269,
+   "mcap_usd": 29160704651.703598,
+   "book": {
+    "coin": "@107",
+    "best_bid": 97.601,
+    "best_ask": 97.602,
+    "mid": 97.6015,
+    "spread_pct": 0.0010245744174062642,
+    "bid_depth_usd": 112146.48,
+    "ask_depth_usd": 1231660.44,
+    "sizes": {
+     "100": {
+      "buy": {
+       "avg_px": 97.60199999999999,
+       "qty": 1.0245691686645766,
+       "filled_usd": 100.0
+      },
+      "sell": {
+       "avg_px": 97.59547510615347,
+       "qty": 1.0246376677938311,
+       "filled_usd": 100.0
+      },
+      "buy_slip_pct": 0.000512287208688572,
+      "sell_slip_pct": 0.006172952102712834,
+      "round_trip_cost_pct": 0.0066852393114014055,
+      "usd_back_on_immediate_sell": 99.99,
+      "round_trip_realized_pct": -0.006684830023971244
+     },
+     "500": {
+      "buy": {
+       "avg_px": 97.602,
+       "qty": 5.1228458433228825,
+       "filled_usd": 500.0
+      },
+      "sell": {
+       "avg_px": 97.5910949720856,
+       "qty": 5.123418280561532,
+       "filled_usd": 500.0
+      },
+      "buy_slip_pct": 0.0005122872087031321,
+      "sell_slip_pct": 0.010660725413443336,
+      "round_trip_cost_pct": 0.011173012622146468,
+      "usd_back_on_immediate_sell": 499.94,
+      "round_trip_realized_pct": -0.011172830023974711
+     },
+     "2000": {
+      "buy": {
+       "avg_px": 97.602,
+       "qty": 20.49138337329153,
+       "filled_usd": 2000.0
+      },
+      "sell": {
+       "avg_px": 97.59016473861614,
+       "qty": 20.493868468782345,
+       "filled_usd": 2000.0
+      },
+      "buy_slip_pct": 0.0005122872087031321,
+      "sell_slip_pct": 0.01161381882846357,
+      "round_trip_cost_pct": 0.012126106037166701,
+      "usd_back_on_immediate_sell": 1999.76,
+      "round_trip_realized_pct": -0.012125899192653833
+     }
+    }
+   },
+   "note": "order book, not a pool: totals are VISIBLE LEVELS only"
+  },
+  "PURR": {
+   "pair": "PURR/USDC",
+   "token_index": [
+    1,
+    0
+   ],
+   "mid": 0.150755,
+   "vol24_usd": 3522155.443190002,
+   "circulating": 594869722.85918,
+   "mcap_usd": 89679585.06963567,
+   "book": {
+    "coin": "PURR/USDC",
+    "best_bid": 0.15047,
+    "best_ask": 0.15104,
+    "mid": 0.150755,
+    "spread_pct": 0.37809691220856023,
+    "bid_depth_usd": 1260.98,
+    "ask_depth_usd": 56600.06,
+    "sizes": {
+     "100": {
+      "buy": {
+       "avg_px": 0.15104,
+       "qty": 662.0762711864406,
+       "filled_usd": 100.0
+      },
+      "sell": {
+       "avg_px": 0.15047,
+       "qty": 664.5843025187745,
+       "filled_usd": 100.0
+      },
+      "buy_slip_pct": 0.18904845610428012,
+      "sell_slip_pct": 0.18904845610428012,
+      "round_trip_cost_pct": 0.37809691220856023,
+      "usd_back_on_immediate_sell": 99.62,
+      "round_trip_realized_pct": -0.37738347457627697
+     },
+     "500": {
+      "buy": {
+       "avg_px": 0.1510405388206483,
+       "qty": 3310.3695465077785,
+       "filled_usd": 500.0
+      },
+      "sell": {
+       "avg_px": 0.15038710714571818,
+       "qty": 3324.753095459992,
+       "filled_usd": 500.0
+      },
+      "buy_slip_pct": 0.18940587088209423,
+      "sell_slip_pct": 0.24403360039920435,
+      "round_trip_cost_pct": 0.43343947128129856,
+      "usd_back_on_immediate_sell": 497.84,
+      "round_trip_realized_pct": -0.4321393447203036
+     },
+     "2000": {
+      "buy": {
+       "avg_px": 0.15106823933756755,
+       "qty": 13239.050172094256,
+       "filled_usd": 2000.0
+      },
+      "sell": {
+       "filled_usd": 1260.98,
+       "incomplete": true,
+       "book_usd_total": 1260.98
+      }
+     }
+    }
+   },
+   "note": "order book, not a pool: totals are VISIBLE LEVELS only"
+  }
+ }
+}

@@ -24,7 +24,7 @@ except Jupiter, where `chainfields` used our free key and the keyless
 Standing rule 1. Two things in our current code are wrong, and one figure in
 `CLAUDE.md` has moved.
 
-1. ⛔ **`pool_probe.py:47` has a USDT mint that does not exist on chain.**
+1. ⛔ **`analysis/daily_2026-09-22/pushback/pool_probe.py:47` has a USDT mint that does not exist on chain.**
    `USDT = "Es9vMFrJKsWFsFd8e25wJdkX8DBMLoMKNfuLDQy2Ae4Z"` returns
    `{"value": null}` from `getAccountInfo`. The real Solana USDT mint is
    `Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB` (VERIFIED: Token program owner,
@@ -34,7 +34,7 @@ Standing rule 1. Two things in our current code are wrong, and one figure in
    pinned at $1. The dollar figure was roughly right by accident; the label was
    wrong. **VERIFIED.**
 
-2. ⛔ **`pool_probe.py:76`, the Raydium LaunchLab authority, has no account on
+2. ⛔ **`analysis/daily_2026-09-22/pushback/pool_probe.py:76`, the Raydium LaunchLab authority, has no account on
    chain.** `WLHv2UAZm6z4KyaaELi5pjdbJh6RESMva1Rnn8pJVVh` returns
    `{"value": null}`. The other four `AUTHORITIES` entries all exist (system
    owned, space 0). So LaunchLab vaults are never classified as

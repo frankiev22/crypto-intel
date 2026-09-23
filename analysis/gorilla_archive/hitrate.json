@@ -1,0 +1,203 @@
+{
+ "arms": [
+  {
+   "label": "tokens he called, 49 days",
+   "value": "482"
+  },
+  {
+   "label": "contract resolved with confidence",
+   "value": "259 (54%)"
+  },
+  {
+   "label": "ticker has several live namesakes",
+   "value": "202"
+  },
+  {
+   "label": "no contract found at all",
+   "value": "21"
+  },
+  {
+   "label": "HIS HIT RATE",
+   "value": "NOT COMPUTABLE (see note)"
+  },
+  {
+   "label": "why we know that",
+   "value": "ticker survival is FLAT with age"
+  },
+  {
+   "label": "— the real base rate, keyed on ADDRESSES —",
+   "value": ""
+  },
+  {
+   "label": "our own $1m crossings, still tradeable",
+   "value": "9.0% [7.1, 11.4] n=698"
+  },
+  {
+   "label": "… cannot round trip $100 today",
+   "value": "91.0% [88.6, 92.9] n=698"
+  },
+  {
+   "label": "   crossed 21-34 days ago, alive",
+   "value": "3.2% [1.5, 6.4] n=222"
+  },
+  {
+   "label": "   crossed 8-20 days ago, alive",
+   "value": "13.2% [9.5, 18.0] n=243"
+  },
+  {
+   "label": "   crossed 0-7 days ago, alive",
+   "value": "10.3% [7.0, 14.9] n=233"
+  }
+ ],
+ "note": "His hit rate is NOT COMPUTABLE from this archive, and reporting one would be a fabrication. The archive gives tickers, not contract addresses, and the endpoints that turn a ticker into an address only return tokens that still have liquidity. A token that died is absent from them entirely, so every ticker resolves to a living namesake if one exists. Proof: EMBER. The real contract FLCr9vGM…HTsh had its LP withdrawn at 11:09:37Z on 2026-09-22 leaving $20.36 of depth, and it appears nowhere in the search results; the resolver picked a different, living EMBER and graded it alive. The base rate below therefore keys on ADDRESSES from our own milestone ledger, where the dead are still visible, and it is stratified by how long ago the crossing was because recency alone would manufacture an edge.",
+ "by_age": {
+  "0-7 days ago": {
+   "n": 56,
+   "alive": 38,
+   "alive_pct": "67.9% [54.8, 78.6] n=56",
+   "rugged": 0,
+   "below_min_n": false
+  },
+  "8-20 days ago": {
+   "n": 69,
+   "alive": 42,
+   "alive_pct": "60.9% [49.1, 71.5] n=69",
+   "rugged": 0,
+   "below_min_n": false
+  },
+  "21-34 days ago": {
+   "n": 68,
+   "alive": 47,
+   "alive_pct": "69.1% [57.4, 78.8] n=68",
+   "rugged": 0,
+   "below_min_n": false
+  },
+  "35+ days ago": {
+   "n": 66,
+   "alive": 40,
+   "alive_pct": "60.6% [48.5, 71.5] n=66",
+   "rugged": 0,
+   "below_min_n": false
+  }
+ },
+ "control_by_age": {
+  "0-7 days ago": {
+   "n": 233,
+   "alive": 24,
+   "alive_pct": "10.3% [7.0, 14.9] n=233",
+   "below_min_n": false
+  },
+  "8-20 days ago": {
+   "n": 243,
+   "alive": 32,
+   "alive_pct": "13.2% [9.5, 18.0] n=243",
+   "below_min_n": false
+  },
+  "21-34 days ago": {
+   "n": 222,
+   "alive": 7,
+   "alive_pct": "3.2% [1.5, 6.4] n=222",
+   "below_min_n": false
+  },
+  "35+ days ago": {
+   "n": 0,
+   "alive": 0,
+   "alive_pct": "no data",
+   "below_min_n": true
+  }
+ },
+ "artifact_evidence": [
+  {
+   "bucket": "0-7 days ago",
+   "ticker_arm_ARTIFACT": "67.9% [54.8, 78.6] n=56",
+   "control_real": "10.3% [7.0, 14.9] n=233",
+   "gorilla_n": 56,
+   "control_n": 233
+  },
+  {
+   "bucket": "8-20 days ago",
+   "ticker_arm_ARTIFACT": "60.9% [49.1, 71.5] n=69",
+   "control_real": "13.2% [9.5, 18.0] n=243",
+   "gorilla_n": 69,
+   "control_n": 243
+  },
+  {
+   "bucket": "21-34 days ago",
+   "ticker_arm_ARTIFACT": "69.1% [57.4, 78.8] n=68",
+   "control_real": "3.2% [1.5, 6.4] n=222",
+   "gorilla_n": 68,
+   "control_n": 222
+  }
+ ],
+ "by_category": {
+  "ATTENTION": {
+   "n": 172,
+   "alive": 104,
+   "alive_pct": "60.5% [53.0, 67.5] n=172",
+   "rugged": 0,
+   "median_mult": 0.33275,
+   "below_min_n": false
+  },
+  "FEE-ROUTING": {
+   "n": 1,
+   "alive": 0,
+   "alive_pct": "0.0% [0.0, 79.3] n=1",
+   "rugged": 0,
+   "median_mult": 0.0026,
+   "below_min_n": true
+  },
+  "FLYWHEEL": {
+   "n": 3,
+   "alive": 2,
+   "alive_pct": "66.7% [20.8, 93.9] n=3",
+   "rugged": 0,
+   "median_mult": 0.3472,
+   "below_min_n": true
+  },
+  "LAUNCHPAD": {
+   "n": 30,
+   "alive": 21,
+   "alive_pct": "70.0% [52.1, 83.3] n=30",
+   "rugged": 0,
+   "median_mult": 0.5184,
+   "below_min_n": false
+  },
+  "NFT-LINKED": {
+   "n": 3,
+   "alive": 2,
+   "alive_pct": "66.7% [20.8, 93.9] n=3",
+   "rugged": 0,
+   "median_mult": 0.5099,
+   "below_min_n": true
+  },
+  "PAIRED": {
+   "n": 34,
+   "alive": 28,
+   "alive_pct": "82.4% [66.5, 91.7] n=34",
+   "rugged": 0,
+   "median_mult": 0.83575,
+   "below_min_n": false
+  },
+  "PRODUCT": {
+   "n": 16,
+   "alive": 10,
+   "alive_pct": "62.5% [38.6, 81.5] n=16",
+   "rugged": 0,
+   "median_mult": 0.51275,
+   "below_min_n": true
+  }
+ },
+ "counts": {
+  "unverifiable": 202,
+  "alive": 167,
+  "faded": 92,
+  "unresolved": 21
+ },
+ "control_counts": {
+  "gone": 635,
+  "alive": 63
+ },
+ "n_scored": 259,
+ "n_total": 482,
+ "n_control": 698
+}

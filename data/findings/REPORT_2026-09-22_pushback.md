@@ -50,6 +50,32 @@ also **not a pump.fun token**: Jupiter reports launchpad `met-dbc` (Meteora
 DBC), graduated 09-21 10:55:09Z, which is the same minute the PumpSwap pool was
 created.
 
+### ⛔ Correction added 2026-09-22 from the @CryptoGorilla archive: EMBER is not a memecoin
+
+**It is a token-pairing LAUNCHPAD on Meteora**, and it had already round-tripped
+before our journal ever saw it. His two dated lines, verbatim:
+
+- **2026-09-10:** *"$EMBER, a token-pairing launchpad on Meteora hit $6m"*
+- **2026-09-11:** *"$EMBER ran to $40m, but had a harsh correction sub $10m"*
+
+⭐ **So the arc was $6m → $40m → under $10m over 11 and 12 September, and our
+first sight of it was ten days later, on the way down.** We then measured a real
+$292k of depth at 17:11Z on 09-21 and called a 3.97x, which was true and stayed
+realizable for about 18 more hours, and then its operator withdrew 2,907.565 SOL.
+
+⛔ **Two things this changes.** First, calling EMBER a memecoin in the morning
+report was wrong, and the thing that was rugged was a piece of launch
+infrastructure, which is a different and more serious event. Second, **EMBER is
+the pairing meta's own plumbing**: a launchpad whose product is token pairing,
+in the same weeks that ZCAT/ZEC, NEARKAT/wNEAR and COPCAT/COPX were running
+(`docs/ASSET_PAIRED_TOKENS.md`). We were watching the tokens and missed that we
+were also holding the venue.
+
+⚠️ Source: five days of that archive were relayed to us, and this session
+scraped all 49 posts (2026-08-04 → 2026-09-21). **His figures are his claims,
+dated, not our measurement.** What we verified ourselves is the chain side: the
+withdrawal, the timestamps, the $20.36 of remaining depth.
+
 ## Correction 2: "the pools no longer exist" never happened. Not once.
 
 I checked **every distinct pool address in the last 24h of outcome rows**
