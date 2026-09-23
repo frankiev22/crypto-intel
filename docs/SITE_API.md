@@ -1,0 +1,315 @@
+# The backend the site calls: eight read-only endpoints
+
+2026-09-23. **This is the contract between the pipeline session (which owns
+`intel.py`) and the site session (which owns `site/`).** Nothing here is
+aspirational; every endpoint below was called against live data before this file
+was written, and the sample outputs are real.
+
+Frank: *"Let's take everything we have been talking about and discovered and
+implement it into our site in a meaningful way. Are you able to add wallet
+connection to our site?"*
+
+---
+
+## 0. ⭐ The product thesis, so the wiring serves it
+
+**Connect a wallet and find out what you actually own.**
+
+Reading Frank's wallet by hand on 2026-09-22 taught him, in one sitting, that the
+PURR he holds is not Hyperliquid's token, that the thing he called "Fone" is
+apeonfone, and that he holds 195,771 units of a mint with no pools. **He had been
+trading for weeks.** Every portfolio tracker showed him a green number. None of
+them say *this position has no market* or *this cap sits on $342 of real
+liquidity*.
+
+⭐ **That gap is the whole product, and it is measurable.** On Frank's own PURR
+position of 19,772.37 tokens, his tracker showed **$163.92**. A live sell quote
+for that exact quantity returns **$158.50**. Neither number is wrong; only one of
+them is what he would receive.
+
+## 1. ⛔ Wallet connection: yes, with one hard boundary
+
+**Yes, the site can connect a wallet, and it must connect it in read-only mode.**
+
+- The site asks the wallet for its **public key** and nothing else.
+- It passes that public key to `GET /api/wallet?pubkey=...`.
+- ⛔ **It never requests a signature, never builds a transaction, never asks for
+  an approval or a delegate, and never touches a private key.**
+
+That boundary is enforced in code, not by convention: `test_intel.py` parses
+`intel.py` at the **AST level** and fails if any name in it matches `sign`,
+`send_transaction`, `keypair`, `secret_key`, `approve`, `delegate`,
+`set_authority`, `place_order` or a dozen more. `intelserve.py` refuses POST,
+PUT, PATCH, DELETE and HEAD with **405** before routing. Verified live:
+
+```
+POST   /api/wallet -> HTTP 405
+DELETE /api/liquidity -> HTTP 405
+  "this API is READ ONLY and serves GET only. It has no endpoint that can
+   sign, send, approve or custody anything."
+```
+
+⚠️ **A message-signature login ("sign this nonce to prove ownership") is still a
+signature request** and is out of scope for this backend. If the site ever wants
+one, it is a separate decision with Frank, not a detail of this API.
+
+## 2. The response envelope, identical on every endpoint
+
+```json
+{
+  "kind": "liquidity",
+  "subject": "5dvXTZ5q...",
+  "ok": true,
+  "ts": "2026-09-23T02:11:04Z",
+  "took_ms": 257,
+  "data":        { ... the answer ... },
+  "provenance":  [ {"field": "liq_usd", "source": "dexscreener ... all pairs summed", "at": "...", "note": "..."} ],
+  "not_checked": [ {"field": "you_get_usd", "why": "NO SELL ROUTE. There is no market ..."} ],
+  "warnings":    [ "..." ]
+}
+```
+
+⛔ **Three rules the front end must honour, because they are why this exists:**
+
+1. **`not_checked` is not an empty state.** A field listed there was **not
+   checked**. It must render as *not checked*, with the `why` string, and never
+   as a dash, a zero, a green tick or a blank. This is the
+   `authority_live=None` bug class: *not checked* displaying as *checked and
+   fine* is how five separate failures happened.
+2. **Every number on screen should be able to show its `provenance`.** A number
+   with no source is not a number.
+3. **`ok: false` means no answer was produced.** It is never "probably fine".
+
+## 3. The endpoints
+
+Base: `GET /api/<name>`. All GET, all public, all cacheable. `Cache-Control` is
+set from the per-endpoint TTL and CORS is open, because every response is public
+chain and public index data and contains nothing private.
+
+| endpoint | required | optional | TTL |
+|---|---|---|---|
+| `liquidity` | `mint` | | 60s |
+| `resolve` | `ticker` | `since`, `chain`, `max_candidates` | 300s |
+| `phantom` | `mint` | | 60s |
+| `exit_depth` | `mint` | `size_usd`, `raw_qty` | 30s |
+| `safety` | `mint` | | 180s |
+| `bundle_check` | `mint` | `n_buyers` | none |
+| `paired` | `mint` | | 900s |
+| `wallet` | `pubkey` | `price_all`, `max_positions` | 30s |
+
+---
+
+### `liquidity(mint)` ⭐ built first, everything depends on it
+
+Liquidity and volume **summed across every pair**, never one pool. Returns
+`pair_count`, `liq_usd`, `vol24_usd`, `mcap_usd`, `price_usd`, `venues`,
+`quote_assets`, `shape`, `symbol_display`, `symbol_flags`, and crucially
+`deepest_pool_liq_usd` + `single_pool_would_understate_by` so the size of the
+error a one-pool read would have made is **visible rather than hidden**.
+
+Live, on the real EMBER: **30 pairs, $2,268,256, shape LIQUID, and a one-pool
+read would have said $643,121, 3.53x too low.**
+
+⚠️ **`is_floor: true` means the 30-pair API cap was hit.** Dexscreener returns at
+most 30 pairs for any mint; SOL returns 30 too. So 30 means "30 or more", the
+total is a **floor**, and the missing pools cannot be bounded because the
+returned 30 are not ordered by size. **Render a floor as `$2.27M+`, never as
+`$2.27M`.**
+
+⚠️ `liq_usd` is a correct sum of an **overstating** field, measured overstating
+by a median 781x. It answers *what shape is this token*. It is not an exit price.
+
+---
+
+### `resolve(ticker)` ⭐ the call that would have saved an entire day
+
+Every mint wearing a ticker, which one is real, and **the impersonators named**.
+
+Live, `resolve("EMBER", since="2026-09-10", chain="solana")`:
+
+```
+status RESOLVED | 16 candidates | dominance 538.95x
+winner  5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6  "embercurve"  $2,266,278  30 pairs
+  FEEiSWLL...  Ember Bot     THIN          $4,205      eligible
+  8Y72D2ug...  embercurve    NO_LIQUIDITY  $0          eligible
+  EPT3ta6E...  embercurve    LIQUID        $1,453,007  REJECTED: first pool 2026-09-22 postdates 2026-09-10
+  B2p7GHu6...  Ember The Fox THIN          $6,186      REJECTED: first pool postdates
+  FLCr9vGM...  embercurve    PHANTOM       $1          REJECTED: a claimed cap with no liquidity behind it
+  DuK4Ni9L...  embercurve    NO_LIQUIDITY  $0          REJECTED: postdates
+  DEq8hdb5...  embercurve    NO_LIQUIDITY  $0          REJECTED: postdates
+```
+
+⭐ **Six different mints on Solana are named "embercurve".** One of them holds
+**$1.45M** and is excluded only by the date rule.
+
+The rule is pre-committed in `intel.resolve()`: candidates from two independent
+searches, each measured with all-pairs liquidity; a phantom can never win; if
+`since` is supplied, any candidate whose **first pool postdates it** is rejected;
+and the leader is only called `RESOLVED` if it holds **>= 5x** the runner-up.
+Otherwise `AMBIGUOUS` and **nothing is called real**.
+
+⛔ **`status: "AMBIGUOUS"` must render as "we do not know which one this is",
+never as a best guess.** Without the date rule the EMBER case is exactly that.
+
+---
+
+### `phantom(mint)` ⛔ is the market cap backed by anything
+
+Fires on **market cap > $1,000,000 with total liquidity < $1,000 across all
+pairs**. Live, on the mint that cost us a day: `PHANTOM`, *"$1,314,046,208 of
+claimed market cap on $1.39 of liquidity across all 3 pairs."*
+
+⚠️ Returns **`UNEVALUABLE`**, never `false`, when the pair list was truncated.
+Thirty arbitrary pools summing to nothing says nothing about a thirty-first.
+
+---
+
+### `exit_depth(mint, size_usd | raw_qty)` ⭐ the only realizable number here
+
+Not *there is $500k of liquidity* but *you get $94 back on $100*.
+
+- `?size_usd=2000` buys and sells straight back, and returns `verdict`,
+  `usd_back`, `cost_pct`, `price_impact_pct`, `venues`.
+- ⭐ `?raw_qty=19772370000000` prices **the exact position held**. This is the
+  one that matters in a wallet, because a $100 probe says nothing about exiting
+  195,771 units.
+
+Live on Frank's PURR position: `QUOTED, $158.50, impact 1.16%, via Meteora DLMM`.
+
+⛔ **Both legs are quotes. Nothing is executed and no wallet is involved.**
+
+⛔ `NO_SELL_ROUTE` is an **answer**: it means there is no market at any size.
+`QUOTE_FAILED` is **not** an answer and must never render as `$0` or as a loss;
+it appears in `not_checked`.
+
+---
+
+### `safety(mint)` ⭐ `check.py` published
+
+The project's one characterised component, with its numbers attached: **D1
+precision 97.3% [86.2, 99.5], recall 50.0% [38.7, 61.3], n=37 flagged, out of
+sample. D2 is in sample and unvalidated.**
+
+⛔ **`not flagged` means "neither of two frauds was detected", on a detector that
+misses half of what it looks for.** It is not a clean bill of health. The
+response always carries `fake_volume` and `bundles_insiders` in `not_checked`,
+**in words**, so the front end cannot imply they were covered.
+
+---
+
+### `bundle_check(mint)` ⛔ read the label before wiring this
+
+**Correction to the brief, led with:** the ask was *"the thing the Stonk fee
+backlash is about. `check.py` is our one validated component. Publish it."*
+`check.py` is published, as `safety()` above. ⛔ **But `check.py` is not a bundle
+checker and never was.** It does not look at first buyers or funding graphs.
+
+What we actually have is `devwallet.buyer_funding_overlap()`, and it ships
+labelled: **`status_of_this_check: "UNVALIDATED"`**. On n=4 it did not separate
+good tokens from bad (`docs/DEV_WALLET.md` §5). It is here because a first-buyer
+funding graph is informative to look at, **not** because it has a measured hit
+rate. It has none. ⛔ **Do not gate anything on it, and render the UNVALIDATED
+label next to any output.** It is also slow and RPC-heavy, so `wallet()` never
+calls it.
+
+---
+
+### `paired(mint)` ⭐ what it is denominated in, and what the tax does
+
+Live, on Hypurr:
+
+```
+is_asset_paired      True
+paired_to            ["HYPE", "PURR", "VCF"]
+quote_assets         HYPE $541,218 | SOL $270,877 | PURR $55,517 | USDC $51,380 | VCF $4,713
+token_program        Token-2022
+transfer_fee_bps     300      tax_pct 3.0      round_trip_tax_pct 6.0
+fee_can_be_changed   False    (transferFeeConfigAuthority is null: the rate is FIXED)
+withdraw_withheld_authority  5KXDF6QnqhBj72hDtJNkkpFaQVUfbFXNybMsp3DiK6tD
+withheld_tokens      359,171  (0.0372% of supply, about $2,978)
+```
+
+⛔ **There is no oracle anywhere.** A "pair" is the AMM pool's **quote asset**, so
+the USD price is `pool ratio x quote asset USD`. ⛔ **And the reward stream is
+REDISTRIBUTION, not yield**: it is funded by other traders' transfer tax, and the
+same tax is charged on the way in and on the way out.
+
+⛔ **`holder_has_been_paid` is always in `not_checked`, and no APR is published,
+because none was measured.** Confirming a specific holder was paid needs that
+wallet's own history. **The front end must not display a yield figure.**
+
+---
+
+### `wallet(pubkey)` ⭐⭐ the headline feature
+
+Read-only. Every token account across **both** SPL and Token-2022, each one run
+through all-pairs liquidity, the phantom rule, a position-sized sell quote and
+the pairing check.
+
+Live, against a public address, **4.8 seconds**:
+
+```
+realizable $3,521.87
+  USDT      Es9vMFrz...  30 pairs  reported $0        you get unknown
+  BP        BPxxfRCX...  30 pairs  reported $0.14     you get unknown    paired: BP, WSK
+  USDC      EPjFWdd5...  30 pairs  reported $0        you get unknown
+  STONK     6GmAFSYs...  30 pairs  reported $0.68     you get unknown    paired: SPYx, VCF
+  Fartcoin  9BB6NFEc...  30 pairs  reported $954.04   you get $958.80    paired: PYUSD
+  SOL       So111111...  30 pairs  reported $2,278.58 you get $2,271.63  paired: USD1
+  GP        HTmQz7My...  30 pairs  reported $292.97   you get $291.44    paired: GP, GLDx
+```
+
+Per position: `symbol` (display only), `pair_count`, `liq_all_pairs_usd`,
+`liq_is_floor`, `shape`, `mcap_usd`, `phantom`, `paired_to`, `quote_assets`,
+`transfer_fee_bps`, `fee_can_be_changed`, `mint_authority`, `freeze_authority`,
+`reported_value_usd`, ⭐ **`you_get_usd`**, `sell_verdict`, `price_impact_pct`,
+`reported_vs_realizable`, `symbol_flags`, plus its own `provenance` and
+`not_checked`.
+
+Top level: `sol_balance`, `n_token_accounts`, `realizable_total_usd`, and
+`flags`, which is the four questions no tracker asks:
+
+```json
+"flags": {"no_market": [], "phantom": [], "cannot_sell": [],
+          "taxed": [], "tax_can_be_raised": [], "ticker_collision": []}
+```
+
+⛔ **`realizable_total_usd` is a FLOOR over the positions that could be quoted.**
+When any position has no quote, `realizable_total_usd_complete` appears in
+`not_checked` with the count. **Never label it "portfolio value".**
+
+⚠️ **Cost control, stated rather than hidden.** Each position costs one
+all-pairs call, and each priced position costs a Jupiter quote on top, against a
+process-wide cap of 55/min. Positions under **$1** of reported value are listed
+but not quoted, each saying so in `not_checked`; `price_all=true` quotes
+everything. Above `max_positions` (default 60) the extra mints are returned in
+`unmeasured_mints` rather than dropped, because **a truncated sample must record
+what it missed** (standing rule 15).
+
+---
+
+## 4. ⚠️ Deployment: the one thing not yet decided, and it is the site session's call
+
+`intel.py` is Python. The site is a Vercel **Node** app. They cannot share a
+process, so one of these has to happen and none of them is free of trade-offs:
+
+| option | what it costs | honest assessment |
+|---|---|---|
+| **Vercel Python functions** (`api/*.py` in the site repo) | $0 on the current plan | ⭐ **Most likely right.** Same domain, no CORS, no extra host. ⚠️ Cold starts, and a 10s default execution limit that a big `wallet()` call with `price_all` could exceed. |
+| **A small always-on VPS** running `intelserve.py` | **$4 to 6/mo**, already scoped for `programSubscribe` in `docs/TRACKER_SCOPING.md` §5c | ⭐ No time limit, warm cache, and the same box can host the real-time watcher. Needs a domain and TLS. |
+| **Port the logic to Node** inside `site/api/` | no hosting cost, real duplication cost | ⛔ **Recommend against.** It would create a second implementation of the all-pairs and phantom rules, and this project already has four copies of `exit_depth_usd` and has been bitten by their divergence. |
+
+⛔ **This session does not stage `site/` files**, so wiring is the site session's
+work. `intelserve.py` runs today with `python intelserve.py 8799` and answers
+every endpoint above.
+
+## 5. What is deliberately absent
+
+- ⛔ **No scoring, no ranking, no "expected return".** Marino: perfect knowledge
+  of graduation probability still loses money, because by the time a signal is
+  readable it is priced. Five ranking models have been built and retracted.
+  **Nothing in this API orders tokens by quality**, and nothing should.
+- ⛔ **No APR or yield figure**, for the reason in `paired()`.
+- ⛔ **No hit rate on any ticker-only source.** See `docs/GORILLA_ARCHIVE.md` §4b.
+- ⛔ **No buy or sell recommendation anywhere.** The system shows him what he
+  would otherwise miss and stops a class of loss. He makes the call.

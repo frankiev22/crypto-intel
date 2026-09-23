@@ -93,7 +93,21 @@ def token(mint, timeout=25, retries=2):
     rows, venues, quotes = [], {}, {}
     liq = vol = 0.0
     mcaps, prices, created = [], [], []
+    # ⚠️ DISPLAY ONLY, and it is taken from the pair rather than trusted as an
+    # identity. Standing rule 2: the key is the address, always. A symbol can
+    # render as a name it does not contain (112 contracts carry a bidi control),
+    # so anything showing this must pass it through a symbol-flag check first.
+    sym = name = None
     for p in pairs:
+        if sym is None:
+            # ⚠️ The mint can be the BASE or the QUOTE side. A major like USDC is
+            # the quote asset in almost every pair it appears in, so checking
+            # only baseToken leaves the most recognisable tokens nameless.
+            for side in ("baseToken", "quoteToken"):
+                tok = p.get(side) or {}
+                if (tok.get("address") or "") == mint:
+                    sym, name = tok.get("symbol"), tok.get("name")
+                    break
         l = float((p.get("liquidity") or {}).get("usd") or 0)
         v = float((p.get("volume") or {}).get("h24") or 0)
         liq += l
@@ -143,6 +157,8 @@ def token(mint, timeout=25, retries=2):
                    and not truncated)
     return {
         "mint": mint, "ok": True,
+        "symbol_display": sym,
+        "name_display": name,
         "pair_count": len(pairs),
         "truncated": truncated,
         "total_liq_usd": liq,
