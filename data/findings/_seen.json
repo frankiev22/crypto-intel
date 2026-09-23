@@ -310,9 +310,9 @@
  },
  "liveness:selftest": {
   "first_seen": "2026-09-21T05:09:40+00:00",
-  "count": 422,
+  "count": 442,
   "example": "liveness: selftest",
-  "last_seen": "2026-09-22T23:16:49+00:00",
+  "last_seen": "2026-09-23T01:15:56+00:00",
   "last_escalated": "2026-09-22T23:16:46+00:00",
   "keys": [
    "selftest"
@@ -13027,6 +13027,14 @@
   "last_escalated": null,
   "keys": [
    "7uMjiTCQiRaKMCrYKaNMQHR6h5Bo9qzd42ycTAWzRhE1"
+  ]
+ },
+ "scanner-hit:rxnheyjvinxtppdduefxjiclfjnbpzwljhemwpump": {
+  "first_seen": "2026-09-23T00:04:42+00:00",
+  "count": 1,
+  "example": "scanner-hit: rxnheyjVinxtpp9DDUEFxJicLFjnb7PZWLjHemWpump",
+  "keys": [
+   "rxnheyjVinxtpp9DDUEFxJicLFjnb7PZWLjHemWpump"
   ]
  }
 }
