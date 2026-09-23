@@ -222,9 +222,15 @@ be exited. **Reserves are not an exit price, measured again.**
   is indistinguishable from one drained before. Every row carries
   `backfilled: true` and no rate over them describes the moment of scoring.
 - ⛔ **Five venues have no measured offset**, and two more are one-sided.
-- ⛔ **`journal.py:974` still writes `gone`.** The sidecar replaces the *meaning*,
-  not the field; renaming the field relabels the whole record and needs its own
-  pre-commit.
+- ⚠️ **`journal.py` still writes the word `gone`,** and that is deliberate:
+  renaming the field relabels outcomes across the whole record, which needs its
+  own pre-commit rather than a patch. ⭐ **What did change: the row no longer
+  pretends to know why.** Every `gone` row now carries `status_reason` saying two
+  indexer lookups of the recorded pair returned nothing, that this is our lookup
+  failing rather than evidence a pool closed, and where the measured state lives.
+  `test_gonelabel.py` (12/12) calls `record_outcome` in the sandbox and reads the
+  row back **off disk**, because this repo has lost five fields to computing a
+  value and never persisting it.
 
 - ⛔ **`pool_live` is not sellable.** Measured today: 3 of 7 `pool_live` contracts
   returned NO_SELL_ROUTE or TOTAL_LOSS on a live $100 round trip.

@@ -1002,8 +1002,30 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
                    authority_live=None, all_pairs=None, on_milestone=None):
     mult   = (price / base_price) if (base_price and price) else None
     liqchg = ((liq - base_liq) / base_liq * 100) if (base_liq and liq is not None) else None
+    # ⛔⛔ `status = "gone"` IS A LIE ABOUT MECHANISM AND IT IS MEASURED AS ONE.
+    # `liq is None` means two INDEXER lookups of one recorded pair returned
+    # nothing. Re-measured on chain 2026-09-23 over 120 `gone` contracts
+    # (PRECOMMIT_pool_state.md, data/findings/POOL_DERIVATION_2026-09-23.md):
+    #
+    #   curve_died   81  67.5%  never bonded, died on its pump.fun curve
+    #   pool_emptied 32  26.7%  the pool exists and has been drained
+    #   pool_live     7   5.8%  a pool still holds >= $10 of quote side, and
+    #                           FOUR of the 120 round trip $100 today
+    #   pool_closed   0   0.0%  ⭐ the only state `gone` actually claimed
+    #
+    # ⛔ The word stays for now because renaming it relabels outcomes across the
+    # whole record, which needs its own pre-commit, not a patch. What is fixed
+    # here is that the row no longer PRETENDS to know why: `status_reason` says
+    # what was actually observed, and `pool_state_is_measured_elsewhere` points
+    # at the sidecar that measures it.
+    status_reason = None
     if liq is None:
         status = "gone"
+        status_reason = ("two indexer lookups of the recorded pair returned "
+                         "nothing. ⛔ This is OUR LOOKUP FAILING, not evidence "
+                         "the pool closed: measured 0 of 120 such contracts had "
+                         "a closed pool, and 4 could be round-tripped for $100. "
+                         "The measured state lives in data/pools/state.jsonl.")
     elif base_liq and liq < base_liq * 0.15:
         status = "rugged"
     elif liq < 1000:
@@ -1069,6 +1091,9 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
                        else elapsed_h <= horizon_h * DRIFT_TOLERANCE),
            "price_usd": price, "liq": liq, "vol_h24": vol24,
            "mult": mult, "liq_change_pct": liqchg, "status": status,
+           # ⛔ What was OBSERVED, as opposed to what `status` calls it. None on
+           # every status except `gone`, where the word overstates what we know.
+           "status_reason": status_reason,
            # The quote side only. `liq` counts the token side too, which for a
            # one-sided pool is FDV in disguise - measured 2026-09-04 at ~125x
            # the real depth. Nothing downstream should size an exit off `liq`.
