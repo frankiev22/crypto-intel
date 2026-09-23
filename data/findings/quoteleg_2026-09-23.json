@@ -1,0 +1,773 @@
+{
+ "rpc_is_helius": true,
+ "results": [
+  {
+   "ok": true,
+   "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+   "is_token_2022": true,
+   "freeze_authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+   "mint_authority": "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
+   "supply": "9523133874855",
+   "decimals": 8,
+   "extensions": [
+    "metadataPointer",
+    "permanentDelegate",
+    "defaultAccountState",
+    "scaledUiAmountConfig",
+    "pausableConfig",
+    "confidentialTransferMint",
+    "transferHook",
+    "tokenMetadata"
+   ],
+   "extension_detail": {
+    "metadataPointer": {
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "metadataAddress": "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W"
+    },
+    "permanentDelegate": {
+     "delegate": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq"
+    },
+    "defaultAccountState": {
+     "accountState": "initialized"
+    },
+    "pausableConfig": {
+     "authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+     "paused": false
+    },
+    "confidentialTransferMint": {
+     "auditorElgamalPubkey": null,
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "autoApproveNewAccounts": false
+    },
+    "transferHook": {
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "programId": null
+    }
+   },
+   "family": "xStocks",
+   "symbol_from_jupiter": "SPYx",
+   "mint": "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W"
+  },
+  {
+   "ok": true,
+   "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+   "is_token_2022": true,
+   "freeze_authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+   "mint_authority": "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
+   "supply": "32127468150929",
+   "decimals": 8,
+   "extensions": [
+    "metadataPointer",
+    "permanentDelegate",
+    "defaultAccountState",
+    "scaledUiAmountConfig",
+    "pausableConfig",
+    "confidentialTransferMint",
+    "transferHook",
+    "tokenMetadata"
+   ],
+   "extension_detail": {
+    "metadataPointer": {
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "metadataAddress": "Xsc9qvGR1efVDFGLrVsmkzv3qi45LTBjeUKSPmx9qEh"
+    },
+    "permanentDelegate": {
+     "delegate": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq"
+    },
+    "defaultAccountState": {
+     "accountState": "initialized"
+    },
+    "pausableConfig": {
+     "authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+     "paused": false
+    },
+    "confidentialTransferMint": {
+     "auditorElgamalPubkey": null,
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "autoApproveNewAccounts": false
+    },
+    "transferHook": {
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "programId": null
+    }
+   },
+   "family": "xStocks",
+   "symbol_from_jupiter": "NVDAx",
+   "mint": "Xsc9qvGR1efVDFGLrVsmkzv3qi45LTBjeUKSPmx9qEh"
+  },
+  {
+   "ok": true,
+   "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+   "is_token_2022": true,
+   "freeze_authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+   "mint_authority": "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
+   "supply": "22963672581251",
+   "decimals": 8,
+   "extensions": [
+    "metadataPointer",
+    "permanentDelegate",
+    "defaultAccountState",
+    "scaledUiAmountConfig",
+    "pausableConfig",
+    "confidentialTransferMint",
+    "transferHook",
+    "tokenMetadata"
+   ],
+   "extension_detail": {
+    "metadataPointer": {
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "metadataAddress": "XsDoVfqeBukxuZHWhdvWHBhgEHjGNst4MLodqsJHzoB"
+    },
+    "permanentDelegate": {
+     "delegate": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq"
+    },
+    "defaultAccountState": {
+     "accountState": "initialized"
+    },
+    "pausableConfig": {
+     "authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+     "paused": false
+    },
+    "confidentialTransferMint": {
+     "auditorElgamalPubkey": null,
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "autoApproveNewAccounts": false
+    },
+    "transferHook": {
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "programId": null
+    }
+   },
+   "family": "xStocks",
+   "symbol_from_jupiter": "TSLAx",
+   "mint": "XsDoVfqeBukxuZHWhdvWHBhgEHjGNst4MLodqsJHzoB"
+  },
+  {
+   "ok": true,
+   "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+   "is_token_2022": true,
+   "freeze_authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+   "mint_authority": "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
+   "supply": "82107779355501",
+   "decimals": 8,
+   "extensions": [
+    "metadataPointer",
+    "permanentDelegate",
+    "defaultAccountState",
+    "scaledUiAmountConfig",
+    "pausableConfig",
+    "confidentialTransferMint",
+    "transferHook",
+    "tokenMetadata"
+   ],
+   "extension_detail": {
+    "metadataPointer": {
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "metadataAddress": "XsueG8BtpquVJX9LVLLEGuViXUungE6WmK5YZ3p3bd1"
+    },
+    "permanentDelegate": {
+     "delegate": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq"
+    },
+    "defaultAccountState": {
+     "accountState": "initialized"
+    },
+    "pausableConfig": {
+     "authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+     "paused": false
+    },
+    "confidentialTransferMint": {
+     "auditorElgamalPubkey": null,
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "autoApproveNewAccounts": false
+    },
+    "transferHook": {
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "programId": null
+    }
+   },
+   "family": "xStocks",
+   "symbol_from_jupiter": "CRCLx",
+   "mint": "XsueG8BtpquVJX9LVLLEGuViXUungE6WmK5YZ3p3bd1"
+  },
+  {
+   "ok": true,
+   "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+   "is_token_2022": true,
+   "freeze_authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+   "mint_authority": "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
+   "supply": "11626773304683",
+   "decimals": 8,
+   "extensions": [
+    "metadataPointer",
+    "permanentDelegate",
+    "defaultAccountState",
+    "scaledUiAmountConfig",
+    "pausableConfig",
+    "confidentialTransferMint",
+    "transferHook",
+    "tokenMetadata"
+   ],
+   "extension_detail": {
+    "metadataPointer": {
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "metadataAddress": "Xsv9hRk1z5ystj9MhnA7Lq4vjSsLwzL2nxrwmwtD3re"
+    },
+    "permanentDelegate": {
+     "delegate": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq"
+    },
+    "defaultAccountState": {
+     "accountState": "initialized"
+    },
+    "pausableConfig": {
+     "authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+     "paused": false
+    },
+    "confidentialTransferMint": {
+     "auditorElgamalPubkey": null,
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "autoApproveNewAccounts": false
+    },
+    "transferHook": {
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "programId": null
+    }
+   },
+   "family": "xStocks",
+   "symbol_from_jupiter": "GLDx",
+   "mint": "Xsv9hRk1z5ystj9MhnA7Lq4vjSsLwzL2nxrwmwtD3re"
+  },
+  {
+   "ok": true,
+   "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+   "is_token_2022": true,
+   "freeze_authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+   "mint_authority": "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
+   "supply": "8436047973008",
+   "decimals": 8,
+   "extensions": [
+    "metadataPointer",
+    "permanentDelegate",
+    "defaultAccountState",
+    "scaledUiAmountConfig",
+    "pausableConfig",
+    "confidentialTransferMint",
+    "transferHook",
+    "tokenMetadata"
+   ],
+   "extension_detail": {
+    "metadataPointer": {
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "metadataAddress": "Xs8S1uUs1zvS2p7iwtsG3b6fkhpvmwz4GYU3gWAmWHZ"
+    },
+    "permanentDelegate": {
+     "delegate": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq"
+    },
+    "defaultAccountState": {
+     "accountState": "initialized"
+    },
+    "pausableConfig": {
+     "authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+     "paused": false
+    },
+    "confidentialTransferMint": {
+     "auditorElgamalPubkey": null,
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "autoApproveNewAccounts": false
+    },
+    "transferHook": {
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "programId": null
+    }
+   },
+   "family": "xStocks",
+   "symbol_from_jupiter": "QQQx",
+   "mint": "Xs8S1uUs1zvS2p7iwtsG3b6fkhpvmwz4GYU3gWAmWHZ"
+  },
+  {
+   "ok": true,
+   "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+   "is_token_2022": true,
+   "freeze_authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+   "mint_authority": "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
+   "supply": "55998877031112",
+   "decimals": 8,
+   "extensions": [
+    "metadataPointer",
+    "permanentDelegate",
+    "defaultAccountState",
+    "scaledUiAmountConfig",
+    "pausableConfig",
+    "confidentialTransferMint",
+    "transferHook",
+    "tokenMetadata"
+   ],
+   "extension_detail": {
+    "metadataPointer": {
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "metadataAddress": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8"
+    },
+    "permanentDelegate": {
+     "delegate": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq"
+    },
+    "defaultAccountState": {
+     "accountState": "initialized"
+    },
+    "pausableConfig": {
+     "authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+     "paused": false
+    },
+    "confidentialTransferMint": {
+     "auditorElgamalPubkey": null,
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "autoApproveNewAccounts": false
+    },
+    "transferHook": {
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "programId": null
+    }
+   },
+   "family": "xStocks",
+   "symbol_from_jupiter": "SPCXx",
+   "mint": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8"
+  },
+  {
+   "ok": true,
+   "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+   "is_token_2022": true,
+   "freeze_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+   "mint_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+   "supply": "1901837420559",
+   "decimals": 9,
+   "extensions": [
+    "permanentDelegate",
+    "defaultAccountState",
+    "transferFeeConfig",
+    "confidentialTransferMint",
+    "confidentialTransferFeeConfig",
+    "transferHook",
+    "scaledUiAmountConfig",
+    "metadataPointer",
+    "pausableConfig",
+    "tokenMetadata"
+   ],
+   "extension_detail": {
+    "permanentDelegate": {
+     "delegate": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc"
+    },
+    "defaultAccountState": {
+     "accountState": "initialized"
+    },
+    "transferFeeConfig": {
+     "newerTransferFee": {
+      "epoch": 1039,
+      "maximumFee": 18446744073709551615,
+      "transferFeeBasisPoints": 100
+     },
+     "olderTransferFee": {
+      "epoch": 1032,
+      "maximumFee": 18446744073709551615,
+      "transferFeeBasisPoints": 50
+     },
+     "transferFeeConfigAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "withdrawWithheldAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "withheldAmount": 4046920868
+    },
+    "confidentialTransferMint": {
+     "auditorElgamalPubkey": null,
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "autoApproveNewAccounts": false
+    },
+    "transferHook": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "programId": null
+    },
+    "metadataPointer": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "metadataAddress": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF"
+    },
+    "pausableConfig": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "paused": false
+    }
+   },
+   "family": "PreStocks",
+   "symbol_from_jupiter": "OPENAI",
+   "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF"
+  },
+  {
+   "ok": true,
+   "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+   "is_token_2022": true,
+   "freeze_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+   "mint_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+   "supply": "7381826874748",
+   "decimals": 9,
+   "extensions": [
+    "permanentDelegate",
+    "defaultAccountState",
+    "transferFeeConfig",
+    "confidentialTransferMint",
+    "confidentialTransferFeeConfig",
+    "transferHook",
+    "scaledUiAmountConfig",
+    "metadataPointer",
+    "pausableConfig",
+    "tokenMetadata"
+   ],
+   "extension_detail": {
+    "permanentDelegate": {
+     "delegate": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc"
+    },
+    "defaultAccountState": {
+     "accountState": "initialized"
+    },
+    "transferFeeConfig": {
+     "newerTransferFee": {
+      "epoch": 1039,
+      "maximumFee": 18446744073709551615,
+      "transferFeeBasisPoints": 100
+     },
+     "olderTransferFee": {
+      "epoch": 1032,
+      "maximumFee": 18446744073709551615,
+      "transferFeeBasisPoints": 50
+     },
+     "transferFeeConfigAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "withdrawWithheldAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "withheldAmount": 2583585106
+    },
+    "confidentialTransferMint": {
+     "auditorElgamalPubkey": null,
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "autoApproveNewAccounts": false
+    },
+    "transferHook": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "programId": null
+    },
+    "metadataPointer": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "metadataAddress": "Pren1FvFX6J3E4kXhJuCiAD5aDmGEb7qJRncwA8Lkhw"
+    },
+    "pausableConfig": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "paused": false
+    }
+   },
+   "family": "PreStocks",
+   "symbol_from_jupiter": "ANTHROPIC",
+   "mint": "Pren1FvFX6J3E4kXhJuCiAD5aDmGEb7qJRncwA8Lkhw"
+  },
+  {
+   "ok": true,
+   "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+   "is_token_2022": true,
+   "freeze_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+   "mint_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+   "supply": "4816970106875",
+   "decimals": 9,
+   "extensions": [
+    "permanentDelegate",
+    "defaultAccountState",
+    "transferFeeConfig",
+    "confidentialTransferMint",
+    "confidentialTransferFeeConfig",
+    "transferHook",
+    "scaledUiAmountConfig",
+    "metadataPointer",
+    "pausableConfig",
+    "tokenMetadata"
+   ],
+   "extension_detail": {
+    "permanentDelegate": {
+     "delegate": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc"
+    },
+    "defaultAccountState": {
+     "accountState": "initialized"
+    },
+    "transferFeeConfig": {
+     "newerTransferFee": {
+      "epoch": 1039,
+      "maximumFee": 18446744073709551615,
+      "transferFeeBasisPoints": 100
+     },
+     "olderTransferFee": {
+      "epoch": 1032,
+      "maximumFee": 18446744073709551615,
+      "transferFeeBasisPoints": 50
+     },
+     "transferFeeConfigAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "withdrawWithheldAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "withheldAmount": 4979567378
+    },
+    "confidentialTransferMint": {
+     "auditorElgamalPubkey": null,
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "autoApproveNewAccounts": false
+    },
+    "transferHook": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "programId": null
+    },
+    "metadataPointer": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "metadataAddress": "Pre8AREmFPtoJFT8mQSXQLh56cwJmM7CFDRuoGBZiUP"
+    },
+    "pausableConfig": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "paused": false
+    }
+   },
+   "family": "PreStocks",
+   "symbol_from_jupiter": "POLYMARKET",
+   "mint": "Pre8AREmFPtoJFT8mQSXQLh56cwJmM7CFDRuoGBZiUP"
+  },
+  {
+   "ok": true,
+   "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+   "is_token_2022": true,
+   "freeze_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+   "mint_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+   "supply": "904868345532",
+   "decimals": 9,
+   "extensions": [
+    "permanentDelegate",
+    "defaultAccountState",
+    "transferFeeConfig",
+    "confidentialTransferMint",
+    "confidentialTransferFeeConfig",
+    "transferHook",
+    "scaledUiAmountConfig",
+    "metadataPointer",
+    "pausableConfig",
+    "tokenMetadata"
+   ],
+   "extension_detail": {
+    "permanentDelegate": {
+     "delegate": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc"
+    },
+    "defaultAccountState": {
+     "accountState": "initialized"
+    },
+    "transferFeeConfig": {
+     "newerTransferFee": {
+      "epoch": 1039,
+      "maximumFee": 18446744073709551615,
+      "transferFeeBasisPoints": 100
+     },
+     "olderTransferFee": {
+      "epoch": 1032,
+      "maximumFee": 18446744073709551615,
+      "transferFeeBasisPoints": 50
+     },
+     "transferFeeConfigAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "withdrawWithheldAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "withheldAmount": 613361963
+    },
+    "confidentialTransferMint": {
+     "auditorElgamalPubkey": null,
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "autoApproveNewAccounts": false
+    },
+    "transferHook": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "programId": null
+    },
+    "metadataPointer": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "metadataAddress": "PreLWGkkeqG1s4HEfFZSy9moCrJ7btsHuUtfcCeoRua"
+    },
+    "pausableConfig": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "paused": false
+    }
+   },
+   "family": "PreStocks",
+   "symbol_from_jupiter": "KALSHI",
+   "mint": "PreLWGkkeqG1s4HEfFZSy9moCrJ7btsHuUtfcCeoRua"
+  },
+  {
+   "ok": true,
+   "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+   "is_token_2022": true,
+   "freeze_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+   "mint_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+   "supply": "11805820587074",
+   "decimals": 9,
+   "extensions": [
+    "permanentDelegate",
+    "defaultAccountState",
+    "transferFeeConfig",
+    "confidentialTransferMint",
+    "confidentialTransferFeeConfig",
+    "transferHook",
+    "scaledUiAmountConfig",
+    "metadataPointer",
+    "pausableConfig",
+    "tokenMetadata"
+   ],
+   "extension_detail": {
+    "permanentDelegate": {
+     "delegate": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc"
+    },
+    "defaultAccountState": {
+     "accountState": "initialized"
+    },
+    "transferFeeConfig": {
+     "newerTransferFee": {
+      "epoch": 1039,
+      "maximumFee": 18446744073709551615,
+      "transferFeeBasisPoints": 100
+     },
+     "olderTransferFee": {
+      "epoch": 1032,
+      "maximumFee": 18446744073709551615,
+      "transferFeeBasisPoints": 50
+     },
+     "transferFeeConfigAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "withdrawWithheldAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "withheldAmount": 507475564
+    },
+    "confidentialTransferMint": {
+     "auditorElgamalPubkey": null,
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "autoApproveNewAccounts": false
+    },
+    "transferHook": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "programId": null
+    },
+    "metadataPointer": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "metadataAddress": "PresTj4Yc2bAR197Er7wz4UUKSfqt6FryBEdAriBoQB"
+    },
+    "pausableConfig": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "paused": false
+    }
+   },
+   "family": "PreStocks",
+   "symbol_from_jupiter": "ANDURIL",
+   "mint": "PresTj4Yc2bAR197Er7wz4UUKSfqt6FryBEdAriBoQB"
+  },
+  {
+   "ok": true,
+   "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+   "is_token_2022": true,
+   "freeze_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+   "mint_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+   "supply": "2595304144250",
+   "decimals": 9,
+   "extensions": [
+    "permanentDelegate",
+    "defaultAccountState",
+    "transferFeeConfig",
+    "confidentialTransferMint",
+    "confidentialTransferFeeConfig",
+    "transferHook",
+    "scaledUiAmountConfig",
+    "metadataPointer",
+    "pausableConfig",
+    "tokenMetadata"
+   ],
+   "extension_detail": {
+    "permanentDelegate": {
+     "delegate": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc"
+    },
+    "defaultAccountState": {
+     "accountState": "initialized"
+    },
+    "transferFeeConfig": {
+     "newerTransferFee": {
+      "epoch": 1039,
+      "maximumFee": 18446744073709551615,
+      "transferFeeBasisPoints": 100
+     },
+     "olderTransferFee": {
+      "epoch": 1032,
+      "maximumFee": 18446744073709551615,
+      "transferFeeBasisPoints": 50
+     },
+     "transferFeeConfigAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "withdrawWithheldAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "withheldAmount": 157672421
+    },
+    "confidentialTransferMint": {
+     "auditorElgamalPubkey": null,
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "autoApproveNewAccounts": false
+    },
+    "transferHook": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "programId": null
+    },
+    "metadataPointer": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "metadataAddress": "PrekqLJvJ3qVdXmBGDiexvwUTF4rLFDa6HWS4HJbw9S"
+    },
+    "pausableConfig": {
+     "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+     "paused": false
+    }
+   },
+   "family": "PreStocks",
+   "symbol_from_jupiter": "NEURALINK",
+   "mint": "PrekqLJvJ3qVdXmBGDiexvwUTF4rLFDa6HWS4HJbw9S"
+  },
+  {
+   "ok": true,
+   "owner_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+   "is_token_2022": true,
+   "freeze_authority": "2cVYpagTt7ZGc3mmTXBa7fAznUtx5DUu6aCq8uVDaf4a",
+   "mint_authority": "4S7eNNQcLMHeZr8MCX7cPmMKbqnVVUZ1PRRLAopTTeQt",
+   "supply": "4313907948",
+   "decimals": 6,
+   "extensions": [
+    "metadataPointer",
+    "permanentDelegate",
+    "defaultAccountState",
+    "pausableConfig",
+    "confidentialTransferMint",
+    "transferHook",
+    "scaledUiAmountConfig",
+    "tokenMetadata"
+   ],
+   "extension_detail": {
+    "metadataPointer": {
+     "authority": "2cVYpagTt7ZGc3mmTXBa7fAznUtx5DUu6aCq8uVDaf4a",
+     "metadataAddress": "CzLTZppPdZtTjyq3WGpHLstoc3GLhu7zH5Zg6xUa6Gv5"
+    },
+    "permanentDelegate": {
+     "delegate": "2cVYpagTt7ZGc3mmTXBa7fAznUtx5DUu6aCq8uVDaf4a"
+    },
+    "defaultAccountState": {
+     "accountState": "initialized"
+    },
+    "pausableConfig": {
+     "authority": "2cVYpagTt7ZGc3mmTXBa7fAznUtx5DUu6aCq8uVDaf4a",
+     "paused": false
+    },
+    "confidentialTransferMint": {
+     "auditorElgamalPubkey": null,
+     "authority": "2cVYpagTt7ZGc3mmTXBa7fAznUtx5DUu6aCq8uVDaf4a",
+     "autoApproveNewAccounts": false
+    },
+    "transferHook": {
+     "authority": "2cVYpagTt7ZGc3mmTXBa7fAznUtx5DUu6aCq8uVDaf4a",
+     "programId": null
+    }
+   },
+   "family": "in-our-data",
+   "symbol_from_jupiter": "COPX",
+   "mint": "CzLTZppPdZtTjyq3WGpHLstoc3GLhu7zH5Zg6xUa6Gv5"
+  }
+ ],
+ "summary": {
+  "read_ok": 14,
+  "freeze_live": 14,
+  "permanent_delegate": 14,
+  "default_account_state": 14,
+  "pausable": 14,
+  "transfer_hook": 14
+ }
+}
