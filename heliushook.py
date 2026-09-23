@@ -278,13 +278,46 @@ def mirror_to_supabase() -> tuple[bool, str]:
 
     ⚠️ Returns (False, reason) instead of raising, deliberately: a mirror that
     can break the thing it mirrors is worse than a stale mirror.
+
+    ⛔⛔ AN UPSERT-ONLY MIRROR DRIFTS UPWARDS AND CANNOT COME BACK DOWN, and it
+    had. Measured 2026-09-23 14:45Z: `chain_watch` held **20 active rows while
+    git held 6 and the Helius webhook delivered 6.** Every address any earlier
+    pass had ever registered was still marked active, because this function only
+    ever upserted the rows git knows about and had no way to say "and none of the
+    others". The receiver's self-check then reported `watching: 20`, which reads
+    as a fact about the system and was not one.
+    ⭐ So the mirror is now told the WHOLE desired state: git's rows, plus an
+    explicit `active: false` for every address the mirror holds that git does
+    not. ⛔ Deactivated, never deleted (standing rule 8) - the row stays as a
+    record that we once watched it.
+    ⚠️ Reading the mirror first can fail; if it does, the deactivation half is
+    SKIPPED and said so in the return, rather than the function pretending the
+    mirror is now clean.
     """
     try:
+        git_rows = watchlist_git()["addresses"]
         rows = [{"address": r["address"], "active": bool(r.get("active")),
                  "note": "%s %s" % (r.get("ticker"), r.get("dex"))}
-                for r in watchlist_git()["addresses"]]
+                for r in git_rows]
+        known = {r["address"] for r in rows}
+        stale, stale_note = [], ""
+        try:
+            mirrored = watch_sync().get("addresses")
+            if isinstance(mirrored, list):
+                stale = sorted(a for a in mirrored
+                               if isinstance(a, str) and a not in known)
+                rows += [{"address": a, "active": False,
+                          "note": "deactivated: not in data/chain_watch.json"}
+                         for a in stale]
+            else:
+                stale_note = ("; the mirror returned no address list, so nothing "
+                              "was deactivated")
+        except Exception as e:
+            stale_note = ("; could not read the mirror (%s), so nothing was "
+                          "deactivated" % type(e).__name__)
         out = watch_sync(rows)
-        return True, "mirrored %s rows, upserted %s" % (len(rows), out.get("upserted"))
+        return True, "mirrored %s rows (%s deactivated), upserted %s%s" % (
+            len(rows), len(stale), out.get("upserted"), stale_note)
     except SystemExit as e:
         return False, str(e)[:160]
     except Exception as e:
@@ -478,11 +511,60 @@ def health() -> dict:
             "elapsed_s": round(time.time() - t0, 2),
         }
     # Reachable. Pass through what the probe says about the database, unchanged.
-    for k in ("rows_total", "watching", "watchlist_read", "read_error",
-              "raw_omitted_rows", "raw_full_rows", "storage_budget_working",
-              "bytes_per_row", "bytes_per_row_note"):
+    for k in ("rows_total", "watching", "watching_chain_watch_active",
+              "watchlist_read", "read_error", "raw_omitted_rows", "raw_full_rows",
+              "storage_budget_working", "bytes_per_row", "bytes_per_row_note",
+              "backpressure"):
         out[k] = body.get(k)
     out["database"] = "up" if body.get("watchlist_read") == "ok" else "NOT ANSWERING"
+
+    # ⛔⛔ THE THREE LISTS MUST AGREE, AND THEY HAD SILENTLY DIVERGED.
+    #
+    # There are three separate answers to "what are we watching" and only one of
+    # them decides what actually gets delivered:
+    #
+    #   git        data/chain_watch.json, the source of truth
+    #   Helius     the webhook's own accountAddresses - THE DELIVERY LIST
+    #   mirror     chain_watch in Supabase, used only for attribution
+    #
+    # Measured 2026-09-23 14:45Z: **mirror 20, git 6, Helius 6.** The receiver's
+    # self-check reported "watching: 20", which reads as a fact about the system
+    # and was not one. Cause: chain_watch_sync could only ever ACTIVATE (it
+    # hard-coded active = true on conflict and ignored the payload's `active`), so
+    # every address any pass had ever registered stayed active forever and the
+    # mirror could drift upwards but never come back down.
+    #
+    # ⚠️ A number that cannot be read is None, never 0 and never "agrees".
+    try:
+        git_set = set(watched_addresses())
+    except SystemExit as e:
+        git_set, git_why = None, str(e)[:120]
+    else:
+        git_why = None
+    hook = find_pool_hook()
+    hook_set = None
+    if hook:
+        addrs = hook_addresses(hook.get("webhookID"))
+        hook_set = set(addrs) if addrs is not None else None
+    mirror_n = body.get("watching_chain_watch_active")
+    if mirror_n is None:
+        mirror_n = body.get("watching")
+    out["lists"] = {
+        "git": None if git_set is None else len(git_set),
+        "git_unreadable_why": git_why,
+        "helius_delivering": None if hook_set is None else len(hook_set),
+        "mirror_active": mirror_n,
+        # None means at least one list could not be read, which is NOT agreement.
+        "agree": (None if (git_set is None or hook_set is None or mirror_n is None)
+                  else (git_set == hook_set and len(git_set) == mirror_n)),
+        "in_git_not_delivering": (None if (git_set is None or hook_set is None)
+                                  else sorted(git_set - hook_set)),
+        "delivering_not_in_git": (None if (git_set is None or hook_set is None)
+                                  else sorted(hook_set - git_set)),
+        "note": "the DELIVERY list is Helius's accountAddresses. git is the "
+                "source of truth. the mirror is attribution only and used to "
+                "drift upwards because its RPC could not deactivate.",
+    }
     return out
 
 

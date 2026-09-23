@@ -284,9 +284,13 @@ independently from the webhook side. **Nothing has been signed up for.**
 
 ---
 
-## 4. ⛔ Six silent failures, all found by probing output rather than execution
+## 4. ⛔ TEN silent failures, all found by probing output rather than execution
 
-This is standing rule 16 earning its place six times in one session. Every one
+⚠️ **Was six. Four more were found on 2026-09-23 afternoon, three of them by a
+load test and one by reading a number that turned out to mean something else.**
+Sections 4.7 to 4.10 below.
+
+This is standing rule 16 earning its place ten times in one session. Every one
 of these would have left a receiver that looked healthy and stored nothing.
 
 **1. `service_role` had no grant on either table.** The tables were created
@@ -451,6 +455,165 @@ the right tool and it is his to press.**
 `chainevents.rows` with `n=0`, and refuses to register addresses into a database
 that cannot accept inserts - because registering them is what would restart the
 retry storm.
+
+### ⛔⛔ 7. `resolution=ignore-duplicates` DID NOT IGNORE DUPLICATES
+
+Found 2026-09-23 ~14:50Z by replaying **248 real batches** of already-stored
+signatures at the live receiver. The committed comment said, in so many words,
+that a Helius retry was a no-op because of the unique constraint plus
+`Prefer: resolution=ignore-duplicates`.
+
+⛔ **Every one of the 248 came back `409 duplicate key value violates unique
+constraint "chain_events_sig_uniq"`**, and every one was written to the log as
+`chain_events_drop`.
+
+**Why:** PostgREST emits `ON CONFLICT` against the table's **primary key**
+(`id`). The conflict here is a *separate* unique index over `signature`, so the
+clause never applied and the violation was raised normally. The fix is to name
+the target: `POST /rest/v1/chain_events?on_conflict=signature`.
+
+⛔ **And the consequence was live data loss, not cosmetics.** A POST of an array
+is ONE statement, so a single already-stored signature failed the whole batch and
+took **every genuinely new event in it** down with it. Helius batches, so this was
+reachable in normal operation on any redelivery that overlapped new traffic.
+
+⭐ **Verified fixed on the deployed function** with the same three signatures that
+had produced 409s: `{"ok": true, "submitted": 3, "stored": 0, "already_stored":
+3}`, and `rows_total` unchanged.
+
+### ⛔ 8. `stored` was the number of rows SENT, not the number written
+
+Straight out of the fix above: once duplicates were being ignored, the success
+path still answered `stored: rows.length`. A replay that wrote **nothing** said
+`stored: 3`.
+
+⭐ The count now comes from PostgREST's own `Content-Range` (`count=exact`), the
+response carries `submitted` and `already_stored` separately, and ⚠️ **an
+unparseable header gives `stored: null` with `stored_unknown_why`, never 0 and
+never `rows.length`** (standing rule 5).
+
+### ⛔⛔ 9. `chain_watch_sync` could only ever ACTIVATE, so the mirror drifted up
+
+Measured 2026-09-23 14:45Z: **the Supabase mirror held 20 active addresses while
+git held 6 and the Helius webhook delivered 6.** The receiver's self-check
+reported `watching: 20`, which reads as a fact about the system and was not one.
+
+**Why:** the `chain_watch_sync` RPC ignored the payload's `active` field entirely
+and hard-coded `active = true` in its `ON CONFLICT` branch. So every address any
+pass had ever registered stayed active forever, and a caller asking it to
+deactivate an address **silently re-activated it instead** - which is exactly what
+my first attempt at the fix did.
+
+⭐ **Fixed in the RPC** (migration `chain_watch_sync_honours_active`): it now
+honours `active`, defaulting to true so every existing caller behaves as before.
+⛔ Rows are **deactivated, never deleted** (standing rule 8): the table now reads
+6 active / 20 inactive, and the inactive rows remain as a record that we once
+watched them.
+
+⭐ **And `heliushook.health()` now compares all three lists every time it runs** -
+git, Helius's `accountAddresses` (the only one that decides delivery), and the
+mirror - with the addresses in each difference named. ⚠️ `agree` is **None**, not
+False, when any list could not be read. Verified: `git 6, helius_delivering 6,
+mirror_active 6, agree true`.
+
+⚠️ **This also changes what is possible on this project: DDL now runs**, through
+the Supabase MCP `apply_migration`. `CLAUDE.md` says "nothing on disk can run
+DDL" and that is still true of the disk, but it is no longer true of this session.
+BACKLOG A41 was blocked on exactly that.
+
+### ⚠️ 10. And the receiver had never been EXECUTED by a test, once
+
+There is no Deno on this disk, so until 2026-09-23 no test in this repo could run
+a single line of the receiver. Every fix to it, including all of the above, was
+verified by reading source or by trusting a deploy's 200.
+
+⭐ The load rule now lives in `supabase/functions/helius-events/backpressure.ts`,
+which is deliberately **pure** - no Deno, no `fetch`, no module globals - so
+node's type stripping imports and runs it unchanged. `test_backpressure.mjs`
+(44 assertions) drives the real module, and `test_backpressure.py` runs that
+harness and adds the invariants that can only be checked against `index.ts`.
+⚠️ **A missing node is a FAILURE in that suite, not a skip.**
+
+## 4a. ⭐⭐ THE BACKPRESSURE FIX, and the burst that tested it
+
+Frank, 2026-09-23: *"That is a burst problem, not a capacity problem. Fix it with
+connection pooling and backpressure on our side, not a bigger plan."*
+
+⛔⛔ **The amplifier was in our own code and it was one line.** The old insert
+path computed `ourFault = status === 401 || status === 403 || status >= 500` and
+answered **500** when true, with a comment explaining that this way "the event is
+not lost". **Helius retries a non-2xx.** So the receiver's response to "the
+database cannot take this write" was to ask for the same write again, and the
+retries multiplied the load that was already the problem.
+
+⭐ **The rule now, and it is stated in `backpressure.ts` before any of it was
+measured:** a 5xx from this receiver is a request for MORE load at the exact
+moment the database cannot take what it already has, so **the receiver may never
+answer 5xx because a write failed.** It absorbs the failure, records the drop
+where a human and a liveness check can see it, and returns 200 so Helius stops.
+
+| failure | can retrying help | what happens |
+|---|---|---|
+| `congestion` (408, 429, 5xx, thrown fetch) | maybe, later | ONE in-process retry after **250-750ms jittered**, then drop + log, 200 |
+| `privilege` (401, 403) | **never** | no retry, drop + log, 200, and the response says EVERY event is being lost until a human fixes a grant |
+| `payload` (400, 422) | never | no retry, drop + log, 200 |
+| `duplicate` (409 / SQLSTATE 23505) | n/a - **nothing was lost** | `ok: true`, `already_stored`, **not counted as a drop** |
+
+**The breaker:** 3 consecutive congestion failures opens it for 30s, during which
+**no insert is attempted at all**. One success closes it. After a served cooldown
+exactly one attempt goes through, and a further failure re-opens it immediately
+rather than granting another three.
+
+⚠️ **It is per-isolate and that is a damper, not a guarantee.** Supabase runs many
+isolates and each starts with its own counter - the same trap the raw-payload
+sampler fell into. Every isolate that sees congestion independently stops sending,
+so aggregate load falls roughly in proportion to how widely the failure is seen.
+The code says so in those words and the test asserts that it does.
+
+⛔ **Every drop is logged as a searchable `chain_events_drop` line carrying the
+count AND a signature**, because "some events were dropped" is not actionable.
+Verified on the live function: a deliberately malformed row returned **HTTP 200**
+with `kind: "payload"`, `dropped: 1`, and the marker was then read back out of
+Supabase's own function logs.
+
+### The burst, measured 2026-09-23 ~14:50Z
+
+Replayed **248 batches of 10 real, already-stored signatures** at the live
+receiver, ramping 5 -> 10 -> 16 POST/s, with the receiver's own GET polled every
+2s as a control (it reads `chain_events` over PostgREST, so if PostgREST stops
+answering for the project the control says so).
+
+| measured | result |
+|---|---|
+| POSTs / row-attempts | 248 / 2,480 |
+| receiver status codes | **200 on all 248** |
+| achieved rate | **7.5 POST/s, 75 rows/s** |
+| latency p50 / max | 0.66-1.06s / 10.9s |
+| control reads OK | **11 / 11**, p50 1.67s, max 3.37s |
+| breaker opened | never |
+| rows created | **0** - `rows_total` 1897 -> 1899, and the +2 was live traffic |
+
+⚠️ **LIMIT OF THIS TEST, stated plainly: it did NOT exceed the request rate that
+caused the outage.** The ramp asked for 16 POST/s and achieved 7.5, because
+latency and thread scheduling throttled it. The morning outage was ~11 PostgREST
+requests/sec. So **"a burst cannot exhaust the pool" is NOT established.**
+
+⭐ **What IS established, and it is the part that matters:** the request cost per
+EVENT fell from **2 PostgREST requests** (a watchlist read plus an insert, on
+every single event) to **0.1** (one insert per POST, and a POST carries ten rows),
+a **20x reduction at this batch size**. And **75 events/sec - 13.5x the 5.55
+events/sec that caused the outage - was absorbed with zero non-200s, zero drops
+and no loss.**
+
+⛔ **I stopped escalating deliberately.** Pushing past the outage rate on Frank's
+only database, on a free tier, to find the breaking point is not a call worth
+making when the receiver is live and the site's other endpoints share the project.
+
+⚠️ **And the breaker itself is UNVERIFIED against a real congestion failure.**
+Forcing one means making PostgREST return 5xx, which is the outage. Its logic is
+executed and asserted in node (44 assertions), and the drop path is verified live
+through a payload failure, but **"the breaker opens under real congestion" has not
+been observed and is not claimed.**
 
 ## 5. What is not done
 

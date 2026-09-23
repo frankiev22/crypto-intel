@@ -31,19 +31,42 @@
 // file - which would have rejected Helius too. Caught by probing the deployed
 // URL rather than trusting the deploy's 200.
 //
-// ⛔⛔ EIGHT SILENT FAILURES have been found in this receiver, every one by
+// ⛔⛔ TEN SILENT FAILURES have been found in this receiver, every one by
 // probing its OUTPUT rather than trusting a deploy. They are written up in
 // docs/CHAIN_EVENTS.md section 4, with what each looked like and what caught it.
-// The two that constrain this file most:
+// The four that constrain this file most:
 //   - the watchlist was read on EVERY event, which saturated PostgREST for the
 //     whole project at 5.5 events/sec. See watchlist(): cached, and a failed
 //     refresh returns NULL rather than a stale or empty list.
 //   - the raw-payload cap was a module-global counter, which cannot cap anything
 //     in a runtime that spins up many isolates. Measured: 1,669 rows, ZERO
 //     carrying the omitted marker. See RAW_SAMPLE_ONE_IN.
+//   - `resolution=ignore-duplicates` did NOT ignore duplicates, because the
+//     conflict target was never named. Measured by replaying 248 real batches:
+//     every one returned 409. See insertRows().
+//   - `stored` reported how many rows were SENT, not how many were written, and
+//     a replay that wrote nothing answered "stored: 3". See the success path.
 //
 // ⚠️ THIS FILE IS WHAT IS DEPLOYED. Keep them identical: a receiver whose
 // committed source differs from the running one is the same bug class again.
+
+import {
+  Breaker,
+  classifyFailure,
+  dropLogLine,
+  httpStatusFor,
+  retryDelayMs,
+  BREAKER_TRIP,
+  BREAKER_COOLDOWN_MS,
+} from "./backpressure.ts";
+
+// ⛔⛔ BACKPRESSURE. One breaker per isolate - see backpressure.ts for why
+// that is a damper and not a guarantee, and for the rule it enforces: this
+// receiver may never answer 5xx because a write failed, because a 5xx makes
+// Helius redeliver and a redelivery is more load at the moment load is the
+// problem. That amplification is what took out the project's REST API at
+// ~04:06Z on 2026-09-23.
+const breaker = new Breaker();
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -339,6 +362,15 @@ Deno.serve(async (req) => {
       read_only: true,
       note: "POST only, from Helius, with the shared secret in Authorization.",
       rows_total: range.includes("/") ? range.split("/")[1] : "unknown",
+      // ⚠️ This is the count of ACTIVE ROWS IN `chain_watch`, which is our
+      // attribution list. It is NOT what Helius delivers - that is the webhook's
+      // own accountAddresses, which this function cannot read. The two diverged:
+      // measured 2026-09-23 14:45Z at 20 here against 6 registered, because
+      // chain_watch_sync could only ever ACTIVATE and never deactivate.
+      watching_chain_watch_active: watch ? watch.size : null,
+      watching_note: "attribution list, NOT the delivery list. Helius delivers "
+        + "the webhook's own accountAddresses; compare with heliushook."
+        + "hook_addresses().",
       // null, not 0, when the list could not be read. Standing rule 5.
       watching: watch ? watch.size : null,
       watchlist_read: watch ? "ok" : "FAILED",
@@ -358,6 +390,14 @@ Deno.serve(async (req) => {
         + "(heap 805 + TOAST + indexes), avg raw payload 6,114. The 2 KB figure "
         + "in CHAIN_EVENTS.md was an estimate and was 4.7x too low. A row with "
         + "raw omitted costs about 1.2 KB.",
+      // ⚠️ PER-ISOLATE AND A FLOOR. A GET may land on an isolate that served
+      // no POSTs, which would then report a truthful zero about itself and a
+      // false zero about the receiver. The durable cross-isolate record of a
+      // drop is the `chain_events_drop` console.error line.
+      backpressure: breaker.snapshot(Date.now()),
+      backpressure_rule: "never 5xx on a write failure; one in-process retry on "
+        + "congestion, then drop with a logged marker; the breaker opens after "
+        + `${BREAKER_TRIP} consecutive congestion failures for ${BREAKER_COOLDOWN_MS}ms`,
       newest_rows: latest,
     });
   }
@@ -423,8 +463,43 @@ Deno.serve(async (req) => {
     return Response.json({ ok: true, stored: 0, note: "no signatures in payload" });
   }
 
-  // Helius retries on a non-2xx, so the insert is idempotent: the unique
-  // constraint on signature plus ignore-duplicates makes a retry a no-op.
+  // ⛔⛔ THE BREAKER IS CHECKED BEFORE THE DATABASE IS TOUCHED AT ALL. That is
+  // the whole point of backpressure: when the database has told us three times
+  // in a row that it cannot take a write, the next thing we do must not be
+  // another write. See backpressure.ts.
+  const nowMs = Date.now();
+  if (breaker.isOpen(nowMs)) {
+    breaker.recordSkip(rows.length);
+    breaker.recordDrop("breaker_open", rows.length);
+    console.error(dropLogLine(
+      "breaker_open", rows.length, rows[0]?.signature ?? null,
+      `breaker open, ${breaker.cooldownRemainingMs(nowMs)}ms of cooldown left`));
+    return Response.json({
+      ok: false,
+      stored: 0,
+      dropped: rows.length,
+      reason: "breaker_open",
+      cooldown_ms_remaining: breaker.cooldownRemainingMs(nowMs),
+      note: "the database was failing writes, so this receiver stopped sending "
+        + "them. These events are LOST, deliberately, and the loss is logged as "
+        + "chain_events_drop. Answering 200 so Helius does not retry: a retry "
+        + "would be more load at the moment load is the problem.",
+    }, { status: httpStatusFor("breaker_open") });
+  }
+
+  // ⛔⛔ `on_conflict=signature` IS LOAD-BEARING AND WAS MISSING, and the
+  // committed comment asserted the opposite. Measured 2026-09-23 by replaying
+  // 248 real batches at the live receiver: **every one returned 409 duplicate
+  // key value violates unique constraint "chain_events_sig_uniq"**, and each was
+  // logged as a dropped event. `Prefer: resolution=ignore-duplicates` alone does
+  // nothing here, because PostgREST emits ON CONFLICT against the table's
+  // PRIMARY KEY (`id`) and the conflict is on a separate unique index over
+  // `signature`. Naming the target makes it a real ON CONFLICT (signature) DO
+  // NOTHING.
+  //
+  // ⛔ The consequence while it was missing was not cosmetic: a POST of an
+  // array is ONE statement, so a single already-stored signature failed the
+  // whole batch and took every genuinely new event in it down as well.
   //
   // ignore-duplicates, NOT merge-duplicates. merge is an UPSERT, so PostgREST
   // demands UPDATE on the table, and this table is append-only (standing rule 8)
@@ -432,28 +507,133 @@ Deno.serve(async (req) => {
   // merge, got 403 "GRANT UPDATE ON public.chain_events", and the correct fix is
   // the weaker verb rather than the wider grant: a repeated signature should be
   // dropped, never allowed to overwrite what we already recorded.
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/chain_events`, {
-    method: "POST",
-    headers: {
-      apikey: SERVICE_KEY,
-      Authorization: `Bearer ${SERVICE_KEY}`,
-      "Content-Type": "application/json",
-      Prefer: "resolution=ignore-duplicates,return=minimal",
-    },
-    body: JSON.stringify(rows),
-  });
-  if (!res.ok) {
-    const detail = (await res.text()).slice(0, 400);
-    console.error("insert failed", res.status, detail);
-    // A privilege, auth or server error is OUR bug and is fixable, so answer
-    // with a 500: Helius retries, its error counter rises, and the event is not
-    // lost. A payload error (400/409/422) would retry forever, so it gets a 200
-    // and the detail is returned for whoever is looking.
-    const ourFault = res.status === 401 || res.status === 403 || res.status >= 500;
-    return Response.json(
-      { ok: false, stored: 0, error: res.status, detail },
-      { status: ourFault ? 500 : 200 },
-    );
+  async function insertRows(): Promise<Response> {
+    return await fetch(`${SUPABASE_URL}/rest/v1/chain_events?on_conflict=signature`, {
+      method: "POST",
+      headers: {
+        apikey: SERVICE_KEY,
+        Authorization: `Bearer ${SERVICE_KEY}`,
+        "Content-Type": "application/json",
+        // count=exact so the response carries how many rows were ACTUALLY
+        // inserted. Without it the receiver could only report how many it SENT,
+        // which is a different number the moment on_conflict starts working.
+        Prefer: "resolution=ignore-duplicates,return=minimal,count=exact",
+      },
+      body: JSON.stringify(rows),
+    });
   }
-  return Response.json({ ok: true, stored: rows.length });
+
+  let res: Response;
+  try {
+    res = await insertRows();
+  } catch (e) {
+    // A thrown fetch is congestion by any other name: the gateway did not
+    // answer. Treated identically, including the breaker count.
+    breaker.recordCongestion(Date.now());
+    breaker.recordDrop("congestion", rows.length);
+    console.error(dropLogLine("congestion", rows.length,
+      rows[0]?.signature ?? null, `insert threw: ${String(e)}`));
+    return Response.json({
+      ok: false, stored: 0, dropped: rows.length, reason: "insert_threw",
+      detail: String(e).slice(0, 300),
+    }, { status: httpStatusFor("congestion") });
+  }
+
+  if (res.ok) {
+    breaker.recordSuccess();
+    // ⛔ `stored` used to be `rows.length`, which is how many rows were SENT,
+    // not how many were written. With on_conflict working those two numbers are
+    // routinely different - a replay of already-stored signatures reported
+    // "stored: 3" while writing nothing at all. So the real count is read from
+    // PostgREST's own Content-Range, and if that header is absent the answer is
+    // NULL with the reason attached, never a guess (standing rule 5).
+    const cr = res.headers.get("content-range") ?? "";
+    const parsed = cr.includes("/") ? Number(cr.split("/")[1]) : NaN;
+    const inserted = Number.isFinite(parsed) ? parsed : null;
+    return Response.json({
+      ok: true,
+      submitted: rows.length,
+      stored: inserted,
+      stored_unknown_why: inserted === null
+        ? "PostgREST returned no parseable Content-Range, so how many of these "
+          + "rows were new is NOT KNOWN. It is null rather than 0 or "
+          + `${rows.length}: content-range was ${JSON.stringify(cr)}`
+        : null,
+      already_stored: inserted === null ? null : rows.length - inserted,
+    });
+  }
+
+  let detail = (await res.text()).slice(0, 400);
+  let kind = classifyFailure(res.status, detail);
+
+  // ⛔ A duplicate is NOT a loss. The signature is already in the table, so
+  // reporting it as dropped would manufacture a false alarm about data we hold.
+  if (kind === "duplicate") {
+    breaker.recordSuccess();   // the database answered; it is not congested
+    return Response.json({
+      ok: true, stored: 0, already_stored: rows.length, error: res.status,
+      note: "every signature in this batch is already stored, so nothing was "
+        + "written and nothing was lost. Not counted as a drop.",
+    });
+  }
+
+  // ⭐ ONE in-process retry, and only for congestion. Our own retry is strictly
+  // cheaper than a Helius redelivery: it does not multiply across the whole
+  // webhook, it is bounded at one, and it is jittered so a burst of isolates
+  // does not retry in lockstep. ⛔ A privilege or payload failure is NOT retried
+  // at all, because retrying it has a zero success rate and is pure load.
+  if (kind === "congestion") {
+    await new Promise((r) => setTimeout(r, retryDelayMs()));
+    try {
+      const again = await insertRows();
+      if (again.ok) {
+        breaker.recordSuccess();
+        const cr2 = again.headers.get("content-range") ?? "";
+        const p2 = cr2.includes("/") ? Number(cr2.split("/")[1]) : NaN;
+        return Response.json({
+          ok: true, submitted: rows.length,
+          stored: Number.isFinite(p2) ? p2 : null, retried: true,
+          first_error: res.status,
+        });
+      }
+      detail = (await again.text()).slice(0, 400);
+      kind = classifyFailure(again.status, detail);
+      if (kind === "duplicate") {
+        breaker.recordSuccess();
+        return Response.json({
+          ok: true, stored: 0, already_stored: rows.length,
+          note: "already stored; not a drop", retried: true,
+        });
+      }
+    } catch (e) {
+      detail = `retry threw: ${String(e).slice(0, 300)}`;
+    }
+    breaker.recordCongestion(Date.now());
+  }
+
+  // ⛔⛔ 200, ALWAYS, for every kind of write failure. The old code answered
+  // 500 for 401/403/5xx so that "the event is not lost", and that is exactly how
+  // a struggling database became an outage: the 500 asked Helius to send it
+  // again. One lost event is cheaper than the project's REST API.
+  //
+  // ⚠️ So the loss is real and it is recorded LOUDLY rather than swallowed. A
+  // privilege failure in particular means EVERY event is being lost until a
+  // human fixes a grant, which is why it gets its own kind in the log line.
+  breaker.recordDrop(kind, rows.length);
+  console.error(dropLogLine(kind, rows.length, rows[0]?.signature ?? null,
+    `${res.status} ${detail}`));
+  return Response.json({
+    ok: false,
+    stored: 0,
+    dropped: rows.length,
+    error: res.status,
+    kind,
+    detail,
+    note: kind === "privilege"
+      ? "PRIVILEGE FAILURE: every event is being lost until a grant or key is "
+        + "fixed. Retrying cannot help, so Helius is told 200 rather than asked "
+        + "to redeliver. Look for chain_events_drop in the function logs."
+      : "answered 200 so Helius does not retry; the drop is logged as "
+        + "chain_events_drop",
+  }, { status: httpStatusFor(kind) });
 });

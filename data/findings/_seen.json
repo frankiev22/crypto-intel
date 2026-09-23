@@ -312,9 +312,9 @@
  },
  "liveness:selftest": {
   "first_seen": "2026-09-21T05:09:40+00:00",
-  "count": 572,
+  "count": 575,
   "example": "liveness: selftest",
-  "last_seen": "2026-09-23T14:20:51+00:00",
+  "last_seen": "2026-09-23T15:08:35+00:00",
   "last_escalated": "2026-09-23T11:19:34+00:00",
   "keys": [
    "selftest"
@@ -13238,5 +13238,29 @@
    "4ohmpmxJAixWEBBjh7mHrFWMJXzcGzaa2qAecj9KffC4"
   ],
   "last_seen": "2026-09-23T14:14:30+00:00"
+ },
+ "scanner-hit:hrsddjewnulxkjesumhqxjjgdhsufhbte": {
+  "first_seen": "2026-09-23T15:05:04+00:00",
+  "count": 1,
+  "example": "scanner-hit: Hr869SD59dJ5EwNuLxK6jESU8mhqxJjGd62hsufHbt4e",
+  "keys": [
+   "Hr869SD59dJ5EwNuLxK6jESU8mhqxJjGd62hsufHbt4e"
+  ]
+ },
+ "scanner-hit:mosvxkdvpmbpxdbtwdewpnczavmkshefesf": {
+  "first_seen": "2026-09-23T15:05:05+00:00",
+  "count": 1,
+  "example": "scanner-hit: 54Mos1vXK9DVpmBPX16DBtWDewpncZA2Vm5kShefESF1",
+  "keys": [
+   "54Mos1vXK9DVpmBPX16DBtWDewpncZA2Vm5kShefESF1"
+  ]
+ },
+ "scanner-hit:ghmnthconrednzfcqxeyxnryclweznpump": {
+  "first_seen": "2026-09-23T15:05:05+00:00",
+  "count": 1,
+  "example": "scanner-hit: GHMn7Thc8o65NREdnZfcQ2xE5YXn88rycLweZ9n5pump",
+  "keys": [
+   "GHMn7Thc8o65NREdnZfcQ2xE5YXn88rycLweZ9n5pump"
+  ]
  }
 }
