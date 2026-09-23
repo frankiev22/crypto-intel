@@ -719,9 +719,18 @@ def pair_legs(mint):
     Nobody performs this check, and it is a fact rather than a score, so Marino
     does not touch it and it needs no hit rate to defend.
 
+    ⛔⛔ IT IS A DISCLOSURE, NOT A DANGER VERDICT. Corrected 2026-09-23 after
+    Frank pushed back: *"rwa stonk pairs seem to be safe... There may be a reason
+    nobody checks the other leg."* ⭐ The reason is that a freeze authority and a
+    permanentDelegate are what a regulated tokenised security is REQUIRED to
+    carry, so the issuer can comply with court orders, sanctions and securities
+    law. **A tokenised equity without them would be the anomaly.** Publishing the
+    fact is useful; calling it a red flag is wrong and would cost us credibility
+    with anyone who knows the space.
+
     THE POINT. A memecoin can have its own mint and freeze authorities cleanly
-    revoked and still sit in a pool whose QUOTE asset is an instrument the issuer
-    controls completely. Verified on chain 2026-09-23 across the tokenised-equity
+    revoked and still be denominated in an asset its issuer controls. That is
+    worth knowing, and what it means depends entirely on what the asset is. Verified on chain 2026-09-23 across the tokenised-equity
     quote assets that Stonk Fun and its kind actually use: **14 of 14 carry a
     LIVE freeze authority, 14 of 14 carry a permanentDelegate, and 14 of 14 carry
     pausableConfig.** A permanentDelegate is the strong one - it lets the issuer
@@ -882,19 +891,60 @@ def _pair_legs(mint):
           "count answered from the published registry because the live read "
           "failed",
           "a cached fact with its read time attached, never presented as live")
-    r.put("issuer_controlled_legs", flagged,
-          "quote assets carrying permanentDelegate")
-    r.put("verdict",
-          "ISSUER CONTROLLED LEG" if flagged else
-          ("NO ISSUER-CONTROLLED LEG FOUND" if legs else "NO QUOTE LEG RESOLVED"),
-          "derived from the per-leg reads above")
+    # ⛔⛔ CORRECTED 2026-09-23, and Frank caught it. This used to publish
+    # "ISSUER CONTROLLED LEG" as a VERDICT, which reads as a red flag. That is
+    # wrong about regulated tokenised securities and would destroy our
+    # credibility with anyone who knows the space.
+    #
+    # Frank: *"rwa stonk pairs seem to be safe. I understand they have alarming
+    # readings but I think you need to research more into those. There may be a
+    # reason nobody checks the other leg."*
+    #
+    # ⭐ THE REASON, and it is the whole correction: a freeze authority and a
+    # permanentDelegate are what a regulated tokenised security is REQUIRED to
+    # carry, so the issuer can comply with court orders, sanctions and securities
+    # law. **A tokenised equity WITHOUT them would be the anomaly.** The fact is
+    # worth publishing; calling it danger is not.
+    #
+    # So this is a DISCLOSURE, not a verdict, and the two genuine costs are
+    # separated out: the transfer tax, which is a real round-trip cost, and
+    # whether a holder can move the asset at all.
+    r.put("issuer_powers_disclosed", flagged,
+          "quote assets whose issuer can move a holder's balance unsigned "
+          "(permanentDelegate)",
+          "⚠ EXPECTED on a regulated tokenised security. Disclosure, not a "
+          "red flag.")
+    taxed = [l["symbol"] for l in legs if l.get("transfer_fee_bps")]
+    r.put("taxed_legs",
+          {l["symbol"]: l["transfer_fee_bps"] for l in legs
+           if l.get("transfer_fee_bps")},
+          "transferFeeConfig on the quote mint",
+          "⭐ THIS is the cost that is actually yours: the tax applies on the "
+          "way in and again on the way out.")
+    r.put("disclosure",
+          "ISSUER RETAINS CONTROL OF A QUOTE LEG" if flagged else
+          ("NO ISSUER-CONTROLLED QUOTE LEG FOUND" if legs
+           else "NO QUOTE LEG RESOLVED"),
+          "derived from the per-leg reads above",
+          "a statement of fact about the quote asset, NOT a safety verdict")
     if flagged:
         joined = ", ".join(flagged)
-        r.warn("This token is quoted in %s. The issuer of %s can move a "
-               "holder's tokens with no signature from the holder, so anything "
-               "you are PAID in %s is not yours in the way the pool implies."
-               % (joined, joined, "that asset" if len(flagged) == 1
-                  else "those assets"))
+        r.warn("DISCLOSURE, not a warning about safety: this token is quoted in "
+               "%s, whose issuer can freeze an account and move a holder's "
+               "balance without the holder's signature. ⚠ For a regulated "
+               "tokenised security that is REQUIRED - it is how an issuer "
+               "complies with a court order or a sanctions listing - and a "
+               "tokenised equity lacking it would be the unusual one. What it "
+               "means for you is that the asset your rewards are paid in is not "
+               "bearer-like, and that redemption may be restricted to eligible "
+               "holders. ⛔ We have NOT read %s's issuer terms, so the "
+               "specific restrictions are unknown." % (joined, joined))
+    if taxed:
+        r.warn("⭐ The cost that IS yours: %s. A transfer tax on the quote "
+               "asset is charged on the way in and again on the way out, so it "
+               "is a round-trip cost, not a yield."
+               % ", ".join("%s %s bps" % (l["symbol"], l["transfer_fee_bps"])
+                           for l in legs if l.get("transfer_fee_bps")))
     if unresolved:
         r.unchecked("unresolved_quote_symbols",
                     "no mint address for %s, and a symbol is not an identity "

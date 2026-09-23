@@ -111,12 +111,30 @@ def _call(method: str, path: str, body: dict | None = None) -> tuple[int, object
 
 
 def _redact(hook: dict) -> dict:
+    """⛔⛔ ABSENT IS NOT ZERO, and getting that wrong cost a whole day.
+
+    `GET /v0/webhooks` (the LIST) does not return `accountAddresses` at all.
+    The old code did `out.get("accountAddresses") or []` and rendered the
+    missing field as **"0 addresses"**, which is how this module reported
+    "watching 0" on 2026-09-23 while the Vercel hook was watching **5** and the
+    pool hook **2**, and rows were landing in `chain_events` the whole time.
+    `ensure()` read the same zero and HELD all day for no reason.
+
+    That is standing rule 5 and the `authority_live=None` shape, in code I wrote
+    the day before. The list endpoint's answer is now **unknown**, and the only
+    way to learn the addresses is `hook_addresses()`, which asks per id.
+    """
     out = dict(hook)
     if out.get("authHeader"):
         out["authHeader"] = f"<set, {len(out['authHeader'])} chars>"
-    addrs = out.get("accountAddresses") or []
-    out["accountAddresses"] = f"{len(addrs)} addresses"
-    out["_addresses"] = addrs
+    addrs = out.get("accountAddresses")
+    if isinstance(addrs, list):
+        out["accountAddresses"] = f"{len(addrs)} addresses"
+        out["_addresses"] = addrs
+    else:
+        out["accountAddresses"] = ("unknown - the list endpoint omits this "
+                                   "field; call hook_addresses(id)")
+        out["_addresses"] = None
     return out
 
 
@@ -125,6 +143,19 @@ def hooks() -> list[dict]:
     if status != 200 or not isinstance(body, list):
         raise SystemExit(f"list failed: {status} {body}")
     return body
+
+
+def hook_addresses(webhook_id: str) -> list[str] | None:
+    """The addresses ONE webhook actually watches, or None if it cannot be read.
+
+    ⛔ Returns None on any failure, never []. An empty list means "watching
+    nothing", which is a decision; None means "we do not know", which is not.
+    """
+    status, body = _call("GET", "/webhooks/" + webhook_id)
+    if status != 200 or not isinstance(body, dict):
+        return None
+    addrs = body.get("accountAddresses")
+    return addrs if isinstance(addrs, list) else None
 
 
 def usage() -> dict:
@@ -542,9 +573,29 @@ def ensure(register_fn=None, health_fn=None, beat_fn=None) -> dict:
     except Exception as e:
         out["why"] = "could not list webhooks: %s" % str(e)[:120]
         return out
-    have = sorted((hook or {}).get("accountAddresses") or [])
+    # ⛔⛔ ASK PER ID. `GET /v0/webhooks` omits `accountAddresses` entirely,
+    # so `hook.get("accountAddresses") or []` was reading ABSENT as ZERO - which
+    # is how this reported "watching 0" on 2026-09-23 while the two hooks were
+    # watching 5 and 2 and rows were arriving the whole time. Left unguarded it
+    # would also have seen permanent drift and re-registered every pass at 100
+    # credits a time.
+    if not hook:
+        out["acted"] = "failed"
+        out["why"] = "the pool webhook was not found in the list"
+        return out
+    have_list = hook_addresses(hook.get("webhookID") or "")
+    if have_list is None:
+        # ⛔ Unknown is not empty. Drift cannot be computed against an answer
+        # we do not have, and re-registering on a guess costs credits and could
+        # REMOVE addresses that are live.
+        out["acted"] = "hold"
+        out["watching"] = None
+        out["why"] = ("could not read the webhook's own address list, so drift "
+                      "is unknown. Refusing to re-register on a guess.")
+        return out
+    have = sorted(have_list)
     out["watching"] = len(have)
-    if hook and have == sorted(want):
+    if have == sorted(want):
         out["acted"] = "in_sync"
         out["why"] = "%d addresses, unchanged" % len(want)
         return out

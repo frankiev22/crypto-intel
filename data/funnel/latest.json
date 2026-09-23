@@ -1,7 +1,7 @@
 {
- "ts": 1790167300,
- "stage": "market",
- "origin": "manual",
+ "ts": 1790173238,
+ "stage": "universe",
+ "origin": "scheduled",
  "scan": {
   "pools_seen": 0,
   "pools_reached": null,
@@ -17,10 +17,10 @@
  "outcomes": null,
  "graduations": {
   "backlog": 0,
-  "lag_s": 75,
+  "lag_s": 61,
   "lag_h": 0.02,
-  "processed_last_pass": 50,
-  "failed_txs_skipped": 12,
+  "processed_last_pass": 2,
+  "failed_txs_skipped": 0,
   "retry_queue": 0,
   "accounted": true
  },

@@ -170,7 +170,7 @@ STAGE_FIRES = {
     "sweep": {"paper.sweep", "paper.close", "paperv3.sweep", "paperv3.close"},
     "watchlist": {"watchlist.sweep", "milestone.graduated"},
     "market": {"market.snapshot", "chainevents.rows", "legs.registry"},
-    "graduations": {"graduations.ledger"},
+    "graduations": {"graduations.ledger", "sybil.analysed"},
     "universe": {"universe.members"},
     # ⭐ `crossing.decisions` on every horizon: track.score_horizon evaluates
     # each new mcap crossing against the pre-committed depth bar and beats the
@@ -536,6 +536,92 @@ def graduations_stage(verbose=True):
                           seconds=min(graduations.SECONDS, left * share - STAGE_WRITE_RESERVE_S))
     except Exception as e:
         print(f"  graduation ledger failed (non-fatal): {type(e).__name__}: {e}")
+
+    # ⭐⭐ THE COORDINATION DETECTOR, on the freshest graduations, bounded.
+    #
+    # It runs HERE because this is where fresh mints appear and because the
+    # signal it depends on most is only readable early: S1 reads the slot each
+    # buyer arrived in, and a mint's first transactions become unreachable once
+    # it is busy enough to page past. Late is the same as never for this one.
+    #
+    # ⛔ A FUNNEL, not a sweep. The cheap signal runs on several mints; the
+    # expensive ones (wallet age, funding) run only where the cheap one fired.
+    # A deep run measured 46.5s on one mint, so sweeping deep would eat a pass.
+    try:
+        _sybil_step(verbose=verbose)
+    except Exception as e:
+        print(f"  coordination detector failed (non-fatal): "
+              f"{type(e).__name__}: {e}")
+
+
+# How many fresh graduations get the cheap signal per pass, and how many of
+# those may go deep. Bounded because a deep run measured 46.5s.
+SYBIL_SHALLOW_PER_PASS = 4
+SYBIL_DEEP_PER_PASS = 1
+SYBIL_MIN_SECONDS = 40
+
+
+def _sybil_step(verbose=True):
+    """Score the freshest graduations against PRECOMMIT_sybil_v1.md."""
+    import sybil
+    left = LATE_SOFT_LIMIT_S - (time.time() - _PASS_T0)
+    if sources.seconds_left() is not None:
+        left = min(left, sources.seconds_left())
+    if left < SYBIL_MIN_SECONDS:
+        print(f"  coordination: skipped, only {left:.0f}s left")
+        return
+
+    import graduations
+    mints = []
+    try:
+        # The freshest graduations, newest first. `recent_mints` takes a floor
+        # timestamp and returns a set, so the window is widened until there is
+        # something to score rather than assuming the last hour had any.
+        got = set()
+        for hours in (2, 12, 48):
+            got = graduations.recent_mints(time.time() - hours * 3600) or set()
+            if got:
+                break
+        mints = sorted(got)[-SYBIL_SHALLOW_PER_PASS:]
+    except Exception as e:
+        print(f"  coordination: no graduation list ({type(e).__name__}: {e})")
+        return
+    if not mints:
+        print("  coordination: no fresh graduations to score")
+        return
+
+    rows, deep_left = [], SYBIL_DEEP_PER_PASS
+    for m in mints:
+        if (time.time() - _PASS_T0) > LATE_SOFT_LIMIT_S:
+            break
+        f = sybil.flows(m)
+        if not f.get("ok"):
+            continue
+        # ⛔ The cheap signal decides whether the expensive ones are worth
+        # running. Going deep everywhere is what makes a detector unaffordable
+        # and therefore unscheduled, which is how devwallet ended up imported by
+        # nothing at all.
+        s1 = sybil.s1_same_slot(f["buys"])
+        go_deep = bool(s1.get("fired")) and deep_left > 0
+        if go_deep:
+            deep_left -= 1
+        r = sybil.analyse(m, flows_fn=lambda _m, **k: f, deep=go_deep)
+        c = sybil.cluster_buys(m, flows_fn=lambda _m, **k: f)
+        r["cluster_buy"] = {k: v for k, v in c.items()
+                            if k in ("fired", "n_known_buyers",
+                                     "largest_window_cluster", "wallets",
+                                     "registry_size")}
+        rows.append(r)
+        if verbose:
+            print("    [coordination] %s %-44s %s%s"
+                  % ("deep " if go_deep else "quick", m, r["level"],
+                     "  CLUSTER-BUY" if c.get("fired") else ""))
+    if rows:
+        path, n = sybil.write(rows)
+        lv = {}
+        for r in rows:
+            lv[r["level"]] = lv.get(r["level"], 0) + 1
+        print("  coordination: %d mints scored %s" % (n, lv))
 
 
 def universe_stage(verbose=True):

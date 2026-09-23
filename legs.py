@@ -8,8 +8,27 @@ novel check."*
 
 **It does. Measured on chain 2026-09-23: 14 of 14 of those quote mints carry a
 LIVE freeze authority, 14 of 14 carry a `permanentDelegate`, and 14 of 14 carry
-`pausableConfig`.** A `permanentDelegate` is the strong one: it lets the issuer
-move a holder's tokens with **no signature from the holder**.
+`pausableConfig`.** A `permanentDelegate` lets the issuer move a holder's tokens
+with **no signature from the holder**.
+
+⛔⛔ **AND THAT IS A DISCLOSURE, NOT A DANGER FINDING. Corrected the same day,
+because Frank pushed back and was right:** *"rwa stonk pairs seem to be safe. I
+understand they have alarming readings but I think you need to research more into
+those. There may be a reason nobody checks the other leg."*
+
+⭐ **The reason nobody checks it is that the answer is expected.** A freeze
+authority and a permanentDelegate are what a regulated tokenised security is
+REQUIRED to carry, so the issuer can comply with court orders, sanctions and
+securities law. **A tokenised equity WITHOUT them would be the anomaly.**
+Publishing the fact is useful. Publishing it as a red flag is wrong and would cost
+us credibility with anyone who knows this space.
+
+⭐ **What stays a genuine cost, and it is the one to lead with: the TRANSFER
+TAX.** Measured here: VCF **800 bps**, Circuit **400**, and ZCAT, RAYCAT,
+PURR-sol, LOOP and KNOTS at **300**. That is charged on the way in and again on
+the way out, so it is a round-trip cost and not a yield. ⛔ **We have not read
+any issuer's terms**, so which holders may actually redeem is unknown and is
+labelled unknown.
 
 ⚠️ Stated precisely, because the stronger reading is the tempting one:
 `defaultAccountState` on those mints reads `initialized`, **not** `frozen`, so
@@ -247,7 +266,14 @@ def read_mint(mint, rpc=None):
         "transfer_fee_bps": fee_bps,
         "powers": powers,
         # ⭐ The loud one: the issuer can move a holder's balance unsigned.
+        # ⚠️ The field name says CONTROL, not danger. On a regulated
+        # tokenised security this is expected and required; on a memecoin quote
+        # asset it is unusual. The fact is the same, the meaning is not, and this
+        # module does not decide which it is.
         "issuer_controlled": "permanentDelegate" in names,
+        "issuer_control_is_expected_for": ("a regulated tokenised security, "
+                                           "which must be able to comply with "
+                                           "court orders and sanctions"),
     }
 
 
@@ -291,7 +317,8 @@ def build(verbose=True, max_reads=None, rpc=None, days=2):
             row["last_read_failed_why"] = a.get("why")
         assets[mint] = row
         if verbose:
-            flag = " ⛔ ISSUER CONTROLLED" if row.get("issuer_controlled") else ""
+            flag = (" [issuer retains control - expected on an RWA]"
+                    if row.get("issuer_controlled") else "")
             print("  [legs] %-10s %-44s ok=%s%s"
                   % (str(sym)[:10], mint, row.get("ok"), flag))
 
@@ -333,7 +360,7 @@ def build(verbose=True, max_reads=None, rpc=None, days=2):
 
     if verbose:
         sm = d["summary"]
-        print("  legs: %d quote assets known, %d read ok, %d ISSUER CONTROLLED%s"
+        print("  legs: %d quote assets known, %d read ok, %d issuer-controlled%s"
               % (sm["known"], sm["read_ok"], sm["issuer_controlled"],
                  (" (" + ", ".join(controlled[:8]) + ")") if controlled else ""))
     return d["summary"]

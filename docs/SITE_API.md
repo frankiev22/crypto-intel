@@ -403,7 +403,7 @@ reports, per leg, in plain sentences:
 | field | what it means |
 |---|---|
 | `freeze_authority` | live, or null for revoked |
-| `permanentDelegate` | ⛔ **the issuer can MOVE your tokens with no signature from you** |
+| `permanentDelegate` | the issuer can MOVE your tokens with no signature from you. ⚠️ **EXPECTED on a regulated tokenised security** |
 | `pausableConfig` | the issuer can halt every transfer |
 | `defaultAccountState` | ⚠️ **reported verbatim.** `initialized` is NOT `frozen` |
 | `transferHook` | every transfer runs issuer code that can reject it |
@@ -413,13 +413,38 @@ reports, per leg, in plain sentences:
 over HTTP, 2026-09-23:
 
 ```
-VERDICT          : ISSUER CONTROLLED LEG
-flagged legs     : ['SPYx']
+DISCLOSURE       : ISSUER RETAINS CONTROL OF A QUOTE LEG
+powers disclosed : ['SPYx']
+taxed legs       : {'VCF': 800, 'Circuit': 400}
 pairs / floor    : 30 / True   legs read: 9
-WARN: This token is quoted in SPYx. The issuer of SPYx can move a holder's
-      tokens with no signature from the holder, so anything you are PAID in
-      that asset is not yours in the way the pool implies.
+WARN: DISCLOSURE, not a warning about safety: this token is quoted in SPYx,
+      whose issuer can freeze an account and move a holder's balance without
+      the holder's signature. For a regulated tokenised security that is
+      REQUIRED, and a tokenised equity lacking it would be the unusual one.
+WARN: The cost that IS yours: VCF 800 bps, Circuit 400 bps. A transfer tax on
+      the quote asset is charged on the way in and again on the way out.
 ```
+
+### ⛔⛔ CORRECTED 2026-09-23: this is a DISCLOSURE, not a danger verdict
+
+The first version published **"ISSUER CONTROLLED LEG"** as a verdict, which reads
+as a red flag. **Frank pushed back and was right:** *"rwa stonk pairs seem to be
+safe. I understand they have alarming readings but I think you need to research
+more into those. There may be a reason nobody checks the other leg."*
+
+⭐ **The reason is that the answer is expected.** A freeze authority and a
+permanentDelegate are what a regulated tokenised security is **required** to
+carry, so the issuer can comply with court orders, sanctions and securities law.
+A tokenised equity **without** them would be the anomaly. Shipping that as a
+warning would have cost us credibility with anyone who knows this space.
+
+⭐ **What stays a genuine, quantified cost is the TRANSFER TAX**, and it is now
+reported as its own field: VCF **800 bps**, Circuit **400**, and ZCAT, RAYCAT,
+PURR-sol, LOOP, KNOTS at **300**. Charged on the way in and again on the way out,
+so it is a round-trip cost and not a yield.
+
+⛔ **Still not checked, and labelled:** no issuer's terms have been read, so which
+holders may actually redeem, and under what restrictions, is unknown.
 
 ⚠️ **Frank's own STONK position is the worked example**, which is why this
 endpoint exists rather than a note in a doc.
@@ -447,7 +472,7 @@ RPC per quote mint, refreshed daily, capped per pass. The set of quote assets is
 small and slow-moving while the set of tokens quoted in them is large, so this is
 the cheap half.
 
-**Measured 2026-09-23: 32 quote assets, 32 read ok, 2 ISSUER CONTROLLED (COPX,
+**Measured 2026-09-23: 32 quote assets, 32 read ok, 2 issuer-controlled (COPX,
 SPYx), 7 freezable, 7 taxed.** The taxed ones are the ones that pay "yield":
 LOOP, KNOTS, PURR-sol and RAYCAT at 300 bps, Circuit at 400, VCF at 800.
 

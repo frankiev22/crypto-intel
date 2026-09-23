@@ -31,36 +31,19 @@
 // file - which would have rejected Helius too. Caught by probing the deployed
 // URL rather than trusting the deploy's 200.
 //
-// FIVE SILENT FAILURES WERE FOUND HERE BY PROBING THE OUTPUT, and the handling
-// of all five is now part of the contract:
-//   1. service_role had no grant on either table, so the watchlist read came
-//      back 401 and watchlist() returned an EMPTY SET. Empty is indistinguishable
-//      from "we watch nothing", which is the authority_live=None shape: not
-//      checked reading as checked. It now returns null on failure and the
-//      failure is reported in every response.
-//   2. The insert came back 403 while this returned HTTP 200, so Helius would
-//      have marked delivery successful and dropped the event. A privilege or
-//      server error now returns 500 so Helius RETRIES and its own error counter
-//      rises. Only a payload error returns 200, because retrying that forever
-//      helps nobody.
-//   3. The insert asked for merge-duplicates, which is an UPSERT and therefore
-//      wants UPDATE on an append-only table. See the note at the insert: the fix
-//      was the weaker verb, not the wider grant.
-//   4. The watchlist was read on EVERY event, which at the measured 5.5
-//      events/sec saturated PostgREST for the whole project. See watchlist().
-//   5. It stored the FULL raw payload of every event, which at the 18 addresses
-//      actually registered is 982 MB a day into a 500 MB database. See the
-//      storage budget below.
+// ⛔⛔ EIGHT SILENT FAILURES have been found in this receiver, every one by
+// probing its OUTPUT rather than trusting a deploy. They are written up in
+// docs/CHAIN_EVENTS.md section 4, with what each looked like and what caught it.
+// The two that constrain this file most:
+//   - the watchlist was read on EVERY event, which saturated PostgREST for the
+//     whole project at 5.5 events/sec. See watchlist(): cached, and a failed
+//     refresh returns NULL rather than a stale or empty list.
+//   - the raw-payload cap was a module-global counter, which cannot cap anything
+//     in a runtime that spins up many isolates. Measured: 1,669 rows, ZERO
+//     carrying the omitted marker. See RAW_SAMPLE_ONE_IN.
 //
-// AND A SIXTH THAT WAS NOT IN THE CODE. This header said "TWO SILENT FAILURES"
-// for two deploys after items 3 and 4 existed, because the patches that were
-// meant to add them used a replace() with no assert and silently matched
-// nothing. The behaviour was right and the committed description was wrong,
-// which is the same class of error: a change nobody verified landed.
-//
-// AND A SEVENTH, 2026-09-23: the GET probe had no timeout, so when the database
-// stopped answering at ~04:06Z the probe hung instead of reporting. Every read
-// is now bounded and a failed read says so. See PROBE_TIMEOUT_MS.
+// ⚠️ THIS FILE IS WHAT IS DEPLOYED. Keep them identical: a receiver whose
+// committed source differs from the running one is the same bug class again.
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -115,22 +98,46 @@ const LARGE_LAMPORTS = 50 * 1e9;
 const EVENTS = new Set([
   "POOL_CREATE", "LIQUIDITY_ADD", "LIQUIDITY_REMOVE", "LARGE_TRANSFER",
 ]);
-const RAW_SAMPLE_PER_HOUR = 20;   // raw payloads kept for SWAP / OTHER
-let sampleHour = -1;
-let sampleKept = 0;
+// ⛔⛔ THE PER-HOUR COUNTER DID NOT WORK AND THE DATABASE PROVED IT.
+// Measured 2026-09-23 13:56Z on the live table: 1,669 rows, **0 carrying the
+// omitted marker**, 1,669 full payloads, average raw 6,114 bytes. The cap was a
+// module-global counter, and a Supabase edge function runs in MANY isolates that
+// are created and recycled constantly. Each fresh isolate starts at
+// `sampleHour = -1` and hands out another 20, so the "20 per hour" was really
+// "20 per isolate per hour" and the effective rate was ~100%.
+//
+// ⭐ The fix is to hold no state at all. Sampling is now DETERMINISTIC on the
+// signature, so every isolate independently reaches the same answer for the same
+// transaction and the rate is exactly what it says regardless of how many
+// isolates exist. It is also reproducible: anyone can recompute which rows
+// should have been kept.
+//
+// ⛔ PRE-COMMITTED RATE, and the arithmetic behind it, measured not guessed:
+//   - a row WITH raw costs 9,429 bytes all-in (heap + TOAST + indexes),
+//     measured by pg_total_relation_size / count on 2026-09-23. My documented
+//     estimate was 2 KB, so it is 4.7x worse than CHAIN_EVENTS.md said.
+//   - a row WITHOUT raw costs ~1.2 KB.
+//   - the free database is 500 MB TOTAL and 150 MB is already in use.
+// At 1 in 50, the 6 addresses in data/chain_watch.json (0.0396 events/sec =
+// 3,421 rows/day) cost about 4.7 MB/day instead of 32 MB/day, which is the
+// difference between filling the remaining headroom in 11 days and in 74.
+const RAW_SAMPLE_ONE_IN = 50;
 
-function keepRaw(classification: string): boolean {
+// FNV-1a over the signature. Small, dependency free, and stable across isolates,
+// deploys and machines, which a counter is not.
+function sampleHash(sig: string): number {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < sig.length; i++) {
+    h ^= sig.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h;
+}
+
+function keepRaw(classification: string, signature: string): boolean {
   if (EVENTS.has(classification)) return true;
-  const hour = Math.floor(Date.now() / 3_600_000);
-  if (hour !== sampleHour) {
-    sampleHour = hour;
-    sampleKept = 0;
-  }
-  if (sampleKept < RAW_SAMPLE_PER_HOUR) {
-    sampleKept += 1;
-    return true;
-  }
-  return false;
+  if (!signature) return false;
+  return sampleHash(signature) % RAW_SAMPLE_ONE_IN === 0;
 }
 
 function classify(tx: any, watched: string[] | null): string {
@@ -336,8 +343,7 @@ Deno.serve(async (req) => {
       watching: watch ? watch.size : null,
       watchlist_read: watch ? "ok" : "FAILED",
       read_error: readErr,
-      raw_sample_kept_this_hour: sampleKept,
-      raw_sample_per_hour: RAW_SAMPLE_PER_HOUR,
+      raw_sample_one_in: RAW_SAMPLE_ONE_IN,
       raw_note: "raw is omitted with an explicit marker, never nulled",
       // null means the count could not be read, NOT that there are none.
       raw_omitted_rows: rawOmitted,
@@ -345,12 +351,13 @@ Deno.serve(async (req) => {
       storage_budget_working: (rawOmitted === null || rawFull === null)
         ? "unknown - count unreadable"
         : (rawOmitted > 0 ? "yes - rows carry the omitted marker" : "NOT OBSERVED YET"),
-      // ⛔ Still not answered here, and it is the figure every capacity number in
-      // docs/CHAIN_EVENTS.md section 3 rests on: bytes per row. It needs
-      // pg_total_relation_size, which PostgREST cannot reach without an RPC, so
-      // it stays ESTIMATED at 2 KB and labelled as such until one exists.
-      bytes_per_row: null,
-      bytes_per_row_note: "ESTIMATED at 2 KB, never measured - needs an RPC over pg_total_relation_size",
+      // ⭐ MEASURED 2026-09-23 13:56Z, not estimated any more:
+      // pg_total_relation_size / count over 1,669 live rows.
+      bytes_per_row: 9429,
+      bytes_per_row_note: "MEASURED 2026-09-23 on 1,669 rows: 9,429 bytes all-in "
+        + "(heap 805 + TOAST + indexes), avg raw payload 6,114. The 2 KB figure "
+        + "in CHAIN_EVENTS.md was an estimate and was 4.7x too low. A row with "
+        + "raw omitted costs about 1.2 KB.",
       newest_rows: latest,
     });
   }
@@ -383,7 +390,7 @@ Deno.serve(async (req) => {
     const cls = classify(tx, hit);
     // The transfer arrays are most of a swap's bytes, so they follow the same
     // rule as raw. Dropping raw while keeping them would have saved little.
-    const full = keepRaw(cls);
+    const full = keepRaw(cls, String(tx?.signature ?? ""));
     return {
       signature: String(tx?.signature ?? ""),
       slot: tx?.slot ?? null,
@@ -405,7 +412,9 @@ Deno.serve(async (req) => {
         omitted: true,
         why: "storage budget: see THE STORAGE BUDGET in the receiver",
         classification: cls,
-        raw_sample_per_hour: RAW_SAMPLE_PER_HOUR,
+        raw_sample_one_in: RAW_SAMPLE_ONE_IN,
+        sampling: "deterministic on the signature, so isolate count cannot "
+          + "defeat it - the per-hour counter did, at 1,669 rows and 0 omitted",
       },
     };
   }).filter((r: any) => r.signature);

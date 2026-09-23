@@ -430,11 +430,21 @@ intel.allpairs.token = lambda m, **k: _two_leg_token({"SOL": intel.WSOL,
                                                       "SPYx": SPYX})
 intel.chainfields._rpc = _legs_rpc({intel.WSOL: (_CLEAN_LEG, None),
                                     SPYX: (_RWA_LEG, None)})
-d = intel.pair_legs("6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx")["data"]
-t("⭐⭐ a permanentDelegate quote leg is FLAGGED by symbol",
-  d["issuer_controlled_legs"] == ["SPYx"], str(d["issuer_controlled_legs"]))
-t("⭐ the verdict says ISSUER CONTROLLED LEG",
-  d["verdict"] == "ISSUER CONTROLLED LEG", d["verdict"])
+out_spyx = intel.pair_legs("6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx")
+d = out_spyx["data"]
+t("⭐⭐ a permanentDelegate quote leg is DISCLOSED by symbol",
+  d["issuer_powers_disclosed"] == ["SPYx"], str(d["issuer_powers_disclosed"]))
+# ⛔⛔ CORRECTED 2026-09-23: this is a DISCLOSURE, not a danger verdict. A
+# freeze authority and a permanentDelegate are what a regulated tokenised
+# security is REQUIRED to carry; a tokenised equity without them is the anomaly.
+t("⛔⛔ it is a DISCLOSURE, not a safety verdict",
+  d["disclosure"] == "ISSUER RETAINS CONTROL OF A QUOTE LEG", d["disclosure"])
+t("⛔ and the wording says so, in the response",
+  any("DISCLOSURE, not a warning about safety" in w
+      and "REQUIRED" in w for w in out_spyx["warnings"]))
+t("⭐ the TRANSFER TAX is broken out as its own field - the cost that is "
+  "actually the holder's",
+  d.get("taxed_legs") == {"SPYx": 100}, str(d.get("taxed_legs")))
 spyx = [l for l in d["legs"] if l["symbol"] == "SPYx"][0]
 t("⛔ the seizure power is stated in plain words, not an extension name",
   any("without your signature" in p for p in spyx["powers"]), str(spyx["powers"]))
@@ -456,9 +466,9 @@ clear()
 intel.allpairs.token = lambda m, **k: _two_leg_token({"SOL": intel.WSOL})
 intel.chainfields._rpc = _legs_rpc({intel.WSOL: (_CLEAN_LEG, None)})
 d = intel.pair_legs("6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx")["data"]
-t("⭐ with every leg clean the verdict says so and flags nothing",
-  d["verdict"] == "NO ISSUER-CONTROLLED LEG FOUND"
-  and d["issuer_controlled_legs"] == [], d["verdict"])
+t("⭐ with every leg clean the disclosure says so and names nothing",
+  d["disclosure"] == "NO ISSUER-CONTROLLED QUOTE LEG FOUND"
+  and d["issuer_powers_disclosed"] == [], d["disclosure"])
 
 # ⛔ Honest nulls. A leg that could not be read is NOT a clean leg.
 clear()
@@ -494,7 +504,7 @@ t("⭐ a failed live read falls back to the PUBLISHED registry",
   str(cached_leg)[:140])
 t("⛔⛔ and it is still FLAGGED - a blip cannot launder an "
   "issuer-controlled leg",
-  d["issuer_controlled_legs"] == ["SPYx"], str(d["issuer_controlled_legs"]))
+  d["issuer_powers_disclosed"] == ["SPYx"], str(d["issuer_powers_disclosed"]))
 t("⚠️ the response SAYS it is cached, with the time it was read",
   any("published registry" in w and "2026-09-23T13:00:00Z" in w
       for w in out["warnings"]), str(out["warnings"]))

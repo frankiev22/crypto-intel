@@ -148,6 +148,12 @@ COMPONENTS = {
     # nothing, which is exactly what it is doing. 12h matches the collector.
     "chainevents.rows":     (12, "2026-09-23T12:00:00Z", "provisional",
                              "the deployed receiver reported its stored row count"),
+    # ⛔ Counts mints ANALYSED, not mints flagged. A detector that only beats
+    # when it flags is indistinguishable from one that has stopped running, and
+    # this one is expected to report NONE OBSERVED most of the time.
+    "sybil.analysed":      (24, "2026-09-23T14:00:00Z", "provisional",
+                             "the coordination detector scored a mint against "
+                             "PRECOMMIT_sybil_v1.md and wrote its row"),
     # ⛔ Counts crossings EVALUATED, silent ones included - not alerts sent.
     # 61 crossings landed in the 24h to 2026-09-23, so a pass that evaluates none
     # for 12 hours means the lane is dead, not that the market went quiet.
