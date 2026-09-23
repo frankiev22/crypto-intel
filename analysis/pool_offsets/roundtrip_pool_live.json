@@ -1,26 +1,28 @@
 [
  {
-  "measured_at": 1790195761,
+  "measured_at": 1790198588,
   "note": "a QUOTE, not a fill. Nothing was signed. Reserves are not an exit price; this line is the exit measure.",
   "pool_state": "pool_live",
+  "probe_usd": 100.0,
   "quote_reserves_usd": 1242.294554,
   "round_trip": {
    "error": null,
    "mint": "8scSC6m9Y2YDH5hRxvmVPLHUctzyRceh6oYV27pRpump",
-   "price_impact_pct": 5.288309,
+   "price_impact_pct": 5.212966,
    "probe_usd": 100.0,
-   "px_per_raw": 4.4319087614366415e-12,
-   "rt_cost_pct": 8.0604,
-   "token_qty_raw": 22563641397614,
-   "ts": 1790195761,
-   "usd_back": 91.9396,
+   "px_per_raw": 4.428455036725021e-12,
+   "rt_cost_pct": 8.0553,
+   "token_qty_raw": 22581238642078,
+   "ts": 1790198587,
+   "usd_back": 91.9447,
    "venues": [
-    "Deriverse",
-    "BisonFi",
+    "Kipseli",
     "Pump.fun Amm"
    ],
    "verdict": "TRADEABLE"
   },
+  "self_financed": false,
+  "self_financed_note": "reserves below the probe size: the sell leg is paid largely by the buy leg of this same round trip, so TRADEABLE here is not evidence that $100 of exit depth pre-existed. Control: a curve holding $0.00 returns $92.22 on a $100 round trip.",
   "symbol": "APEZCAT",
   "token": "8scSC6m9Y2YDH5hRxvmVPLHUctzyRceh6oYV27pRpump",
   "venues": [
@@ -29,27 +31,29 @@
   ]
  },
  {
-  "measured_at": 1790195762,
+  "measured_at": 1790198588,
   "note": "a QUOTE, not a fill. Nothing was signed. Reserves are not an exit price; this line is the exit measure.",
   "pool_state": "pool_live",
+  "probe_usd": 100.0,
   "quote_reserves_usd": 226.459789,
   "round_trip": {
    "error": null,
    "mint": "FrCB5Zhda9swKKQNh5uAiiC2pH2trFH1WC2Umddipump",
-   "price_impact_pct": 0.507656,
+   "price_impact_pct": 0.42768,
    "probe_usd": 100.0,
-   "px_per_raw": 3.773030042118247e-12,
-   "rt_cost_pct": 7.4756,
-   "token_qty_raw": 26503897102250,
-   "ts": 1790195761,
-   "usd_back": 92.5244,
+   "px_per_raw": 3.770058297248866e-12,
+   "rt_cost_pct": 7.4704,
+   "token_qty_raw": 26524788773949,
+   "ts": 1790198588,
+   "usd_back": 92.5296,
    "venues": [
-    "Deriverse",
-    "GoonFi V2",
+    "Kipseli",
     "Pump.fun"
    ],
    "verdict": "TRADEABLE"
   },
+  "self_financed": false,
+  "self_financed_note": "reserves below the probe size: the sell leg is paid largely by the buy leg of this same round trip, so TRADEABLE here is not evidence that $100 of exit depth pre-existed. Control: a curve holding $0.00 returns $92.22 on a $100 round trip.",
   "symbol": "TRADER",
   "token": "FrCB5Zhda9swKKQNh5uAiiC2pH2trFH1WC2Umddipump",
   "venues": [
@@ -57,27 +61,29 @@
   ]
  },
  {
-  "measured_at": 1790195762,
+  "measured_at": 1790198588,
   "note": "a QUOTE, not a fill. Nothing was signed. Reserves are not an exit price; this line is the exit measure.",
   "pool_state": "pool_live",
+  "probe_usd": 100.0,
   "quote_reserves_usd": 22.666349,
   "round_trip": {
    "error": "NO_ROUTES_FOUND",
    "mint": "J5UM626sfU7NMLe1fSsU9YWA8eLutoSunPoqVjZkpump",
-   "price_impact_pct": 2.636747,
+   "price_impact_pct": 2.570003,
    "probe_usd": 100.0,
-   "px_per_raw": 2.165629076593627e-12,
+   "px_per_raw": 2.1641792598750956e-12,
    "rt_cost_pct": null,
-   "token_qty_raw": 46175959253970,
-   "ts": 1790195762,
+   "token_qty_raw": 46206893233868,
+   "ts": 1790198588,
    "usd_back": null,
    "venues": [
-    "Deriverse",
-    "BisonFi",
+    "Kipseli",
     "Pump.fun Amm"
    ],
    "verdict": "NO_SELL_ROUTE"
   },
+  "self_financed": true,
+  "self_financed_note": "reserves below the probe size: the sell leg is paid largely by the buy leg of this same round trip, so TRADEABLE here is not evidence that $100 of exit depth pre-existed. Control: a curve holding $0.00 returns $92.22 on a $100 round trip.",
   "symbol": "Robinhood",
   "token": "J5UM626sfU7NMLe1fSsU9YWA8eLutoSunPoqVjZkpump",
   "venues": [
@@ -86,26 +92,29 @@
   ]
  },
  {
-  "measured_at": 1790195762,
+  "measured_at": 1790198589,
   "note": "a QUOTE, not a fill. Nothing was signed. Reserves are not an exit price; this line is the exit measure.",
   "pool_state": "pool_live",
+  "probe_usd": 100.0,
   "quote_reserves_usd": 22.119992,
   "round_trip": {
    "error": null,
    "mint": "4NjzeT37BXXaS1sGQnZvbAwwKgspMgKT11Pu3ZUrvm7A",
    "price_impact_pct": null,
    "probe_usd": 100.0,
-   "px_per_raw": 3.802825539632111e-13,
-   "rt_cost_pct": 99.1571,
-   "token_qty_raw": 262962365635301,
-   "ts": 1790195762,
-   "usd_back": 0.8429,
+   "px_per_raw": 3.8027792621065777e-13,
+   "rt_cost_pct": 99.1576,
+   "token_qty_raw": 262965565728378,
+   "ts": 1790198588,
+   "usd_back": 0.8424,
    "venues": [
-    "BisonFi",
+    "Kipseli",
     "Meteora DAMM v2"
    ],
    "verdict": "TOTAL_LOSS"
   },
+  "self_financed": true,
+  "self_financed_note": "reserves below the probe size: the sell leg is paid largely by the buy leg of this same round trip, so TRADEABLE here is not evidence that $100 of exit depth pre-existed. Control: a curve holding $0.00 returns $92.22 on a $100 round trip.",
   "symbol": "business",
   "token": "4NjzeT37BXXaS1sGQnZvbAwwKgspMgKT11Pu3ZUrvm7A",
   "venues": [
@@ -114,26 +123,29 @@
   ]
  },
  {
-  "measured_at": 1790195763,
+  "measured_at": 1790198589,
   "note": "a QUOTE, not a fill. Nothing was signed. Reserves are not an exit price; this line is the exit measure.",
   "pool_state": "pool_live",
+  "probe_usd": 100.0,
   "quote_reserves_usd": 14.643495,
   "round_trip": {
    "error": null,
    "mint": "BsskZM8NNi6ayj3h9KUwawMuuY8hU4iB1QYxEaSuJAfh",
    "price_impact_pct": null,
    "probe_usd": 100.0,
-   "px_per_raw": 1.513513785981992e-09,
+   "px_per_raw": 1.5125333159253092e-09,
    "rt_cost_pct": 99.9939,
-   "token_qty_raw": 66071416677,
-   "ts": 1790195762,
+   "token_qty_raw": 66114246177,
+   "ts": 1790198589,
    "usd_back": 0.0061,
    "venues": [
-    "Flux",
+    "Kipseli",
     "FluxBeam"
    ],
    "verdict": "TOTAL_LOSS"
   },
+  "self_financed": true,
+  "self_financed_note": "reserves below the probe size: the sell leg is paid largely by the buy leg of this same round trip, so TRADEABLE here is not evidence that $100 of exit depth pre-existed. Control: a curve holding $0.00 returns $92.22 on a $100 round trip.",
   "symbol": "business",
   "token": "BsskZM8NNi6ayj3h9KUwawMuuY8hU4iB1QYxEaSuJAfh",
   "venues": [
@@ -141,27 +153,29 @@
   ]
  },
  {
-  "measured_at": 1790195781,
+  "measured_at": 1790198608,
   "note": "a QUOTE, not a fill. Nothing was signed. Reserves are not an exit price; this line is the exit measure.",
   "pool_state": "pool_live",
+  "probe_usd": 100.0,
   "quote_reserves_usd": 11.481474,
   "round_trip": {
    "error": null,
    "mint": "atQMQhdARupehhVDRcBU11t5DjM1HcraUnHEJcUpump",
-   "price_impact_pct": 1.109546,
+   "price_impact_pct": 1.028868,
    "probe_usd": 100.0,
-   "px_per_raw": 3.3492374189707016e-12,
-   "rt_cost_pct": 7.7591,
-   "token_qty_raw": 29857542924124,
-   "ts": 1790195763,
-   "usd_back": 92.2409,
+   "px_per_raw": 3.346571960300282e-12,
+   "rt_cost_pct": 7.7479,
+   "token_qty_raw": 29881323690714,
+   "ts": 1790198589,
+   "usd_back": 92.2521,
    "venues": [
-    "Deriverse",
-    "GoonFi V2",
+    "Kipseli",
     "Pump.fun"
    ],
    "verdict": "TRADEABLE"
   },
+  "self_financed": true,
+  "self_financed_note": "reserves below the probe size: the sell leg is paid largely by the buy leg of this same round trip, so TRADEABLE here is not evidence that $100 of exit depth pre-existed. Control: a curve holding $0.00 returns $92.22 on a $100 round trip.",
   "symbol": "CATP",
   "token": "atQMQhdARupehhVDRcBU11t5DjM1HcraUnHEJcUpump",
   "venues": [
@@ -169,26 +183,29 @@
   ]
  },
  {
-  "measured_at": 1790195781,
+  "measured_at": 1790198608,
   "note": "a QUOTE, not a fill. Nothing was signed. Reserves are not an exit price; this line is the exit measure.",
   "pool_state": "pool_live",
+  "probe_usd": 100.0,
   "quote_reserves_usd": 11.077018,
   "round_trip": {
    "error": null,
    "mint": "Dj2dYF8BtWVf7txmRkpBzFHYQ7iraL3CLjNJgaki6rvF",
-   "price_impact_pct": 2.655681,
+   "price_impact_pct": 2.585879,
    "probe_usd": 100.0,
-   "px_per_raw": 4.0989099325642726e-12,
-   "rt_cost_pct": 9.2014,
-   "token_qty_raw": 24396730263707,
-   "ts": 1790195781,
-   "usd_back": 90.7986,
+   "px_per_raw": 4.0960520778343276e-12,
+   "rt_cost_pct": 9.1949,
+   "token_qty_raw": 24413752095865,
+   "ts": 1790198608,
+   "usd_back": 90.8051,
    "venues": [
-    "Quantum",
+    "Kipseli",
     "Dynamic Bonding Curve"
    ],
    "verdict": "TRADEABLE"
   },
+  "self_financed": true,
+  "self_financed_note": "reserves below the probe size: the sell leg is paid largely by the buy leg of this same round trip, so TRADEABLE here is not evidence that $100 of exit depth pre-existed. Control: a curve holding $0.00 returns $92.22 on a $100 round trip.",
   "symbol": "PERPY",
   "token": "Dj2dYF8BtWVf7txmRkpBzFHYQ7iraL3CLjNJgaki6rvF",
   "venues": [

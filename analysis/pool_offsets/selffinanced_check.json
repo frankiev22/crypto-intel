@@ -1,0 +1,47 @@
+[
+ {
+  "label": "APEZCAT",
+  "mint": "8scSC6m9Y2YDH5hRxvmVPLHUctzyRceh6oYV27pRpump",
+  "pool_state": "pool_live",
+  "reserves_usd": 1238.64827,
+  "rt_usd_back": 91.9412,
+  "rt_verdict": "TRADEABLE",
+  "self_financed": false
+ },
+ {
+  "label": "TRADER",
+  "mint": "FrCB5Zhda9swKKQNh5uAiiC2pH2trFH1WC2Umddipump",
+  "pool_state": "pool_live",
+  "reserves_usd": 225.797166,
+  "rt_usd_back": 92.532,
+  "rt_verdict": "TRADEABLE",
+  "self_financed": false
+ },
+ {
+  "label": "CATP",
+  "mint": "atQMQhdARupehhVDRcBU11t5DjM1HcraUnHEJcUpump",
+  "pool_state": "pool_live",
+  "reserves_usd": 11.447879,
+  "rt_usd_back": 92.2308,
+  "rt_verdict": "TRADEABLE",
+  "self_financed": true
+ },
+ {
+  "label": "PERPY",
+  "mint": "Dj2dYF8BtWVf7txmRkpBzFHYQ7iraL3CLjNJgaki6rvF",
+  "pool_state": "pool_live",
+  "reserves_usd": 11.044607,
+  "rt_usd_back": 90.7936,
+  "rt_verdict": "TRADEABLE",
+  "self_financed": true
+ },
+ {
+  "label": "BOUNCER C1tGG",
+  "mint": "C1tGGgNA8GutDrehkmeVpRC6M1yaVdzuoxkMhASBBoY1",
+  "pool_state": "curve_died",
+  "reserves_usd": 2e-06,
+  "rt_usd_back": 92.2173,
+  "rt_verdict": "TRADEABLE",
+  "self_financed": true
+ }
+]

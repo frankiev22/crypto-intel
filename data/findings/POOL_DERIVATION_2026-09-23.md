@@ -205,8 +205,28 @@ not fills. Nothing was signed.**
 | business | `4NjzeT37BXXaS1sGQnZvbAwwKgspMgKT11Pu3ZUrvm7A` | $22.12 | ⛔ TOTAL_LOSS | $0.84 |
 | business | `BsskZM8NNi6ayj3h9KUwawMuuY8hU4iB1QYxEaSuJAfh` | $14.64 | ⛔ TOTAL_LOSS | $0.0061 |
 
+### ⛔⛔ CORRECTION TO THE FOUR, SAME DAY: two of them are SELF-FINANCED
+
+A round trip **buys and then sells**. When the pool holds **less than the probe
+size**, the SOL the sell leg pays out is largely the SOL the buy leg just put in.
+⭐ **The control is unambiguous**: a mint symbol'd BOUNCER whose bonding curve
+holds **$0.00** still returns **$92.22** on a $100 round trip. So TRADEABLE on a
+thin curve is **not** evidence that $100 of exit was already sitting there, and
+Frank sells a bag he already holds rather than round-tripping.
+
+| token | reserves that pre-existed the probe | $100 round trip | what it means |
+|---|---|---|---|
+| APEZCAT | **$1,238.65** | $91.94 | ⭐ the exit was already there |
+| TRADER | **$225.80** | $92.53 | ⭐ the exit was already there |
+| CATP | $11.45 | $92.23 | ⚠️ round-trippable, **self-financed** |
+| PERPY | $11.04 | $90.79 | ⚠️ round-trippable, **self-financed** |
+
+⛔ **So the honest count is 2 of 120 with pre-existing $100 depth, and 4 of 120
+round-trippable.** `analysis/pool_offsets/roundtrip_live.py` now carries
+`self_financed` and its reason on every row, and prints both counts.
+
 ⭐⭐ **4 of 120 contracts our own pipeline wrote off as `gone` can be round-tripped
-for $100 today.** ⛔ **And 3 of those 4 are visible ONLY because of today's two
+for $100 today, and 2 of those had the depth already in the pool.** ⛔ **And 3 of those 4 are visible ONLY because of today's two
 quote-reader fixes:** TRADER and CATP hold their entire quote side as **native SOL
 in a bonding curve** (the old reader said $0, state `curve_died`), and PERPY's only
 pool is a **Meteora DBC** whose vaults the old reader could not see at all.

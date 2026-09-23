@@ -55,10 +55,27 @@ def main(argv):
         except Exception as e:
             rt = {"verdict": "ERROR", "error": "%s: %s"
                   % (type(e).__name__, str(e)[:90])}
+        # ⛔⛔ THE CAVEAT THAT HAS TO TRAVEL WITH THE NUMBER, added 2026-09-23
+        # after I published four contracts as "verified sellable". A round trip
+        # BUYS and then SELLS. When the pool holds LESS than the probe size, the
+        # SOL the sell leg pays out is largely the SOL the buy leg just put in -
+        # the trade is SELF-FINANCED, and TRADEABLE there is NOT evidence that
+        # $100 of exit was already sitting in the pool. Measured control: a
+        # BOUNCER mint whose curve holds $0.00 still returns $92.22 on a $100
+        # round trip. Frank sells a bag he already holds, so this distinction is
+        # the difference between a real exit and his own money coming back.
+        _res = r.get("quote_usd_max")
         row = {
             "token": r["token"], "symbol": r["symbol"],
             "pool_state": r["pool_state"],
-            "quote_reserves_usd": r.get("quote_usd_max"),
+            "quote_reserves_usd": _res,
+            "probe_usd": 100.0,
+            "self_financed": (None if _res is None else _res < 100.0),
+            "self_financed_note": (
+                "reserves below the probe size: the sell leg is paid largely by "
+                "the buy leg of this same round trip, so TRADEABLE here is not "
+                "evidence that $100 of exit depth pre-existed. Control: a curve "
+                "holding $0.00 returns $92.22 on a $100 round trip."),
             "venues": r.get("venues"),
             "round_trip": rt,
             "measured_at": int(time.time()),
@@ -67,15 +84,19 @@ def main(argv):
                      "an exit price; this line is the exit measure."),
         }
         out.append(row)
-        print("%-12s reserves $%9.2f  ->  %-14s back $%s  cost %s%%  (%.1fs)"
-              % ((r["symbol"] or "")[:12], r.get("quote_usd_max") or 0,
+        print("%-12s reserves $%9.2f  ->  %-14s back $%-9s cost %-8s %s (%.1fs)"
+              % ((r["symbol"] or "")[:12], _res or 0,
                  rt.get("verdict"), rt.get("usd_back"), rt.get("rt_cost_pct"),
+                 "SELF-FINANCED" if row["self_financed"] else "depth pre-existed",
                  time.time() - t0))
         sys.stdout.flush()
     json.dump(out, io.open(OUT, "w", encoding="utf-8"), indent=1, sort_keys=True)
     ok = [x for x in out if (x["round_trip"] or {}).get("verdict") == "TRADEABLE"]
     print("\nTRADEABLE on a live $100 round trip: %d of %d pool_live"
           % (len(ok), len(out)))
+    real = [x for x in ok if x.get("self_financed") is False]
+    print("⛔ ...of which the depth PRE-EXISTED the probe: %d. The rest are "
+          "round-trippable but SELF-FINANCED, which is not the same thing." % len(real))
     print("wrote", OUT)
     return 0
 

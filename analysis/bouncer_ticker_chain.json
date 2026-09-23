@@ -1,0 +1,100 @@
+[
+ {
+  "indexer_liq": 0.0,
+  "indexer_pairs": 0,
+  "mint": "C1tGGgNA8GutDrehkmeVpRC6M1yaVdzuoxkMhASBBoY1",
+  "name": null,
+  "pool_state": "curve_died",
+  "quote_reserves_usd": 2e-06,
+  "rt_back": 92.2216,
+  "rt_verdict": "TRADEABLE",
+  "symbol": null,
+  "venues": [
+   "pumpfun_curve"
+  ]
+ },
+ {
+  "indexer_liq": 0.0,
+  "indexer_pairs": 0,
+  "mint": "FsQ75AkBjNDKjZjJT9Q5Vb8LDa1KWDgsdBp6nVnzpump",
+  "name": null,
+  "pool_state": "curve_died",
+  "quote_reserves_usd": 0.039942,
+  "rt_back": 92.2187,
+  "rt_verdict": "TRADEABLE",
+  "symbol": null,
+  "venues": [
+   "pumpfun_curve"
+  ]
+ },
+ {
+  "indexer_liq": 0.0,
+  "indexer_pairs": 0,
+  "mint": "3Jao55pMF3VBxCdHBWKpPq4xots866X7gskFRT4apump",
+  "name": null,
+  "pool_state": "curve_died",
+  "quote_reserves_usd": 0.036077,
+  "rt_back": 92.2173,
+  "rt_verdict": "TRADEABLE",
+  "symbol": null,
+  "venues": [
+   "pumpfun_curve"
+  ]
+ },
+ {
+  "indexer_liq": 0.0,
+  "indexer_pairs": 0,
+  "mint": "98CbJFdpx663wskuSRVYcz7BuNdmxTQrS17miMzHpump",
+  "name": null,
+  "pool_state": "curve_died",
+  "quote_reserves_usd": 0.585349,
+  "rt_back": null,
+  "rt_verdict": "NO_BUY_ROUTE",
+  "symbol": null,
+  "venues": [
+   "pumpfun_curve"
+  ]
+ },
+ {
+  "indexer_liq": 0.0,
+  "indexer_pairs": 0,
+  "mint": "E3XfEaLR3RbzCPvQgMhDLjS9AzFicXPVxMpusPmmBAGS",
+  "name": null,
+  "pool_state": "pool_live",
+  "quote_reserves_usd": 23.273621,
+  "rt_back": null,
+  "rt_verdict": "NO_BUY_ROUTE",
+  "symbol": null,
+  "venues": [
+   "meteora_dbc"
+  ]
+ },
+ {
+  "indexer_liq": 0.0,
+  "indexer_pairs": 0,
+  "mint": "5YoR2J9dLA2hvR9YfW1Zcxbq4AH1wGTs7DYkn3FZpump",
+  "name": null,
+  "pool_state": "curve_died",
+  "quote_reserves_usd": 0.082485,
+  "rt_back": null,
+  "rt_verdict": "NO_BUY_ROUTE",
+  "symbol": null,
+  "venues": [
+   "pumpfun_curve"
+  ]
+ },
+ {
+  "indexer_liq": 0.0,
+  "indexer_pairs": 0,
+  "mint": "13hivKpUS961WH3rdTGN7j3Z75kuCVepsU33qVucpump",
+  "name": null,
+  "pool_state": "curve_died",
+  "quote_reserves_usd": 0.059715,
+  "rt_back": null,
+  "rt_verdict": "NO_BUY_ROUTE",
+  "symbol": null,
+  "venues": [
+   "pumpfun_curve"
+  ]
+ }
+]

@@ -1,0 +1,51 @@
+{
+ "controls": {
+  "app": "REGISTERED",
+  "fun": "REGISTERED",
+  "so": "NO_RDAP_ENDPOINT",
+  "xyz": "REGISTERED"
+ },
+ "targets": {
+  "bouncer.app": {
+   "control_ok": true,
+   "http": 200,
+   "meta": {
+    "created": "2018-05-09T16:33:33.705Z",
+    "expires": "2027-05-09T16:33:33.705Z"
+   },
+   "rdap": "REGISTERED",
+   "usable": true
+  },
+  "bouncer.fun": {
+   "control_ok": true,
+   "http": 404,
+   "meta": null,
+   "rdap": "AVAILABLE (registry has no record)",
+   "usable": true
+  },
+  "bouncer.so": {
+   "control_ok": false,
+   "http": null,
+   "meta": null,
+   "rdap": "NO_RDAP_ENDPOINT",
+   "usable": false
+  },
+  "bouncer.xyz": {
+   "control_ok": true,
+   "http": 200,
+   "meta": {
+    "created": "2014-10-31T23:03:45.0Z",
+    "expires": "2026-10-31T23:59:59.0Z"
+   },
+   "rdap": "REGISTERED",
+   "usable": true
+  },
+  "thebouncer.fun": {
+   "control_ok": true,
+   "http": 404,
+   "meta": null,
+   "rdap": "AVAILABLE (registry has no record)",
+   "usable": true
+  }
+ }
+}
