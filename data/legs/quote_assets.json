@@ -284,6 +284,27 @@
    "symbol": "RAYCAT",
    "transfer_fee_bps": 300
   },
+  "CdhZy8wrRxNxoV8HtoByXKN7mvS46avtuZ1b39tKfx7": {
+   "checked_at": "2026-09-23T23:11:28Z",
+   "checked_ts": 1790205088.4646204,
+   "default_account_state": null,
+   "extension_state": {},
+   "extensions": [],
+   "first_seen_at": "2026-09-23T23:11:28Z",
+   "freeze_authority": null,
+   "is_token_2022": false,
+   "issuer_control_is_expected_for": "a regulated tokenised security, which must be able to comply with court orders and sanctions",
+   "issuer_controlled": false,
+   "issuer_research": null,
+   "mint": "CdhZy8wrRxNxoV8HtoByXKN7mvS46avtuZ1b39tKfx7",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "scaled_ui_multiplier": null,
+   "source": "harvested_from_outcome_rows",
+   "symbol": "X7",
+   "transfer_fee_bps": null
+  },
   "CzLTZppPdZtTjyq3WGpHLstoc3GLhu7zH5Zg6xUa6Gv5": {
    "checked_at": "2026-09-23T12:38:12Z",
    "checked_ts": 1790167092.422588,
@@ -643,7 +664,7 @@
    "transfer_fee_bps": null
   }
  },
- "built_at": "2026-09-23T20:38:09Z",
+ "built_at": "2026-09-23T23:11:28Z",
  "harvested_from": {
   "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx": {
    "pair_count": 30,
@@ -793,9 +814,9 @@
    "COPX",
    "SPYx"
   ],
-  "known": 32,
-  "read_ok": 32,
-  "read_this_pass": 0,
+  "known": 33,
+  "read_ok": 33,
+  "read_this_pass": 1,
   "stale_remaining": 0,
   "taxed": 7
  }
