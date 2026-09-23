@@ -1,29 +1,52 @@
 {
- "ts": 1790162542,
- "stage": "universe",
+ "ts": 1790167037,
+ "stage": "full",
  "origin": "scheduled",
  "scan": {
-  "pools_seen": 0,
-  "pools_reached": null,
-  "coverage": null,
-  "enriched": 0,
-  "failed": 0,
-  "truncated": false,
-  "truncate_reason": null,
-  "carried_forward": null,
-  "carried_in": null,
-  "skipped_addresses": 0
+  "pools_seen": 465,
+  "pools_reached": 252,
+  "coverage": 0.5419,
+  "enriched": 250,
+  "failed": 2,
+  "truncated": true,
+  "truncate_reason": "enrichment budget 540s spent",
+  "carried_forward": 213,
+  "carried_in": 383,
+  "skipped_addresses": 213
  },
- "outcomes": null,
+ "outcomes": {
+  "1h": {
+   "due": 466,
+   "scored": 400,
+   "not_reached": 66,
+   "expiring_before_next_pass": 0,
+   "coverage": 0.8584,
+   "slice_limit": 400,
+   "primary_ok": 2,
+   "primary_miss": 0,
+   "primary_seen": 2,
+   "primary_rate": 1.0,
+   "primary_floor": 0.9
+  }
+ },
  "graduations": {
-  "backlog": 0,
-  "lag_s": 118,
-  "lag_h": 0.03,
-  "processed_last_pass": 53,
-  "failed_txs_skipped": 6,
-  "retry_queue": 0,
+  "backlog": 8,
+  "lag_s": 444,
+  "lag_h": 0.12,
+  "processed_last_pass": 52,
+  "failed_txs_skipped": 14,
+  "retry_queue": 16,
   "accounted": true
  },
- "lookups": null,
- "alarms": []
+ "lookups": {
+  "calls": 10,
+  "asked": 300,
+  "found": 298,
+  "served": 254,
+  "stale": 0,
+  "hit_rate": 0.9933
+ },
+ "alarms": [
+  "scan coverage 54.2% below 80%: 465 pools seen, 252 reached, 213 carried forward"
+ ]
 }

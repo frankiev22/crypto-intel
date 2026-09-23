@@ -177,13 +177,14 @@
  },
  "funnel-narrowing:full": {
   "first_seen": "2026-09-20T12:37:21+00:00",
-  "count": 15,
+  "count": 16,
   "example": "funnel-narrowing: full",
-  "last_seen": "2026-09-22T23:16:41+00:00",
-  "last_escalated": "2026-09-22T23:16:41+00:00",
+  "last_seen": "2026-09-23T12:37:17+00:00",
+  "last_escalated": "2026-09-23T12:37:17+00:00",
   "keys": [
    "full"
-  ]
+  ],
+  "escalations": 1
  },
  "funnel-narrowing:scan": {
   "first_seen": "2026-09-20T15:07:49+00:00",
@@ -311,9 +312,9 @@
  },
  "liveness:selftest": {
   "first_seen": "2026-09-21T05:09:40+00:00",
-  "count": 540,
+  "count": 541,
   "example": "liveness: selftest",
-  "last_seen": "2026-09-23T11:22:55+00:00",
+  "last_seen": "2026-09-23T12:37:41+00:00",
   "last_escalated": "2026-09-23T11:19:34+00:00",
   "keys": [
    "selftest"
@@ -13117,6 +13118,22 @@
   "example": "collector-error: HorizonStall",
   "keys": [
    "HorizonStall"
+  ]
+ },
+ "scanner-hit:bzwrxftjgmdcqzqxkczexsrjnvtrjcltbjmsapump": {
+  "first_seen": "2026-09-23T12:29:25+00:00",
+  "count": 1,
+  "example": "scanner-hit: BzWrx4FTJGm3DCqZqXkCZE6XSrjnvTrjCLtbJMSapump",
+  "keys": [
+   "BzWrx4FTJGm3DCqZqXkCZE6XSrjnvTrjCLtbJMSapump"
+  ]
+ },
+ "scanner-hit:hvnzaivjtrjeefnfcmgcdwueolmyaccayyysnvpump": {
+  "first_seen": "2026-09-23T12:29:28+00:00",
+  "count": 1,
+  "example": "scanner-hit: H1vNzAivJt1rjeEFNfCmGcDwUEoLmYAcCAYYysnVpump",
+  "keys": [
+   "H1vNzAivJt1rjeEFNfCmGcDwUEoLmYAcCAYYysnVpump"
   ]
  }
 }

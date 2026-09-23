@@ -87182,3 +87182,54 @@
 {"name": "funnel.recorded", "ts": 1790162542, "n": 1, "detail": "no alarms", "origin": "scheduled"}
 {"name": "detector.drift", "ts": 1790162565, "n": 1, "detail": "stable", "origin": "scheduled"}
 {"name": "dashboard.build", "ts": 1790162575, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166062, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790166065, "n": 1, "detail": "6HU4CmRb15C2nQDx8Ld2f2W2", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166084, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166104, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166125, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166144, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166163, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166185, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166204, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166224, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790166227, "n": 1, "detail": "H1vNzAivJt1rjeEFNfCmGcDw", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166247, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166268, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166289, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166308, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166328, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166349, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790166352, "n": 1, "detail": "BzWrx4FTJGm3DCqZqXkCZE6X", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166371, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166391, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166411, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166431, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166451, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166471, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166491, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790166504, "n": 1, "detail": "HTmQz7My6MehV7bjhJ6jde8n", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166523, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166544, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790166546, "n": 1, "detail": "AbRrcddzqTeCNokts2thcRsZ", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790166565, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1790166565, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1790166629, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1790166636, "n": 87, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790166637, "n": 1, "detail": "Sesbot MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790166637, "n": 1, "detail": "Funcoin MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790166637, "n": 1, "detail": "KCAT MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790166638, "n": 1, "detail": "WWR MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790166638, "n": 1, "detail": "MSC MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790166638, "n": 1, "detail": "claude MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790166639, "n": 1, "detail": "ALLOX MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790166722, "n": 1, "detail": "X7 TARGET", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790166723, "n": 1, "detail": "TIER NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1790166753, "n": 396, "detail": "396 rows, universe 275, 0 round trips", "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790166776, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790166797, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790166797, "n": 1, "detail": "mcap_100k eWi9B9hGTnt1yDZf9rV2uzFeytUtaRqfJ7WH1WNWfuH", "origin": "scheduled"}
+{"name": "graduations.ledger", "ts": 1790166882, "n": 52, "detail": "27 graduations of 52 processed, backlog 8", "origin": "scheduled"}
+{"name": "universe.members", "ts": 1790167033, "n": 1151, "detail": "1151 members, 0 candidates, 19 quoted, 1246 deferred", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790167037, "n": 1, "detail": "scan coverage 54.2% below 80%: 465 pools seen, 252 reached, 213 carried forward", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790167057, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790167061, "n": 1, "detail": null, "origin": "scheduled"}
