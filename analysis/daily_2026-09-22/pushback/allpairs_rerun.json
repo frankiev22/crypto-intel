@@ -1,0 +1,1414 @@
+{
+ "ts": "2026-09-23T00:56:04Z",
+ "rows": [
+  {
+   "mint": "FLCr9vGMTkbDcRCoirP5Hx8gB7TW1Azt3pkw3qp2HTsh",
+   "symbol": "EMBER",
+   "old_single_pool_quote_usd": 20.37,
+   "old_verdict": "DRAINED",
+   "new_verdict": "PHANTOM",
+   "changed": true,
+   "allpairs": {
+    "mint": "FLCr9vGMTkbDcRCoirP5Hx8gB7TW1Azt3pkw3qp2HTsh",
+    "ok": true,
+    "pair_count": 3,
+    "total_liq_usd": 1.39,
+    "total_vol24_usd": 75846027.17999999,
+    "mcap_usd": 1314046208.0,
+    "price_usd": 1.266e-06,
+    "venues": {
+     "meteora": 2,
+     "pumpswap": 1
+    },
+    "quote_assets": {
+     "SOL": {
+      "pairs": 3,
+      "liq_usd": 1.39,
+      "mint": "So11111111111111111111111111111111111111112"
+     }
+    },
+    "deepest": {
+     "pair": "GEbjH3ErHcy9gu2MtpCcBWJi4U1oneCUaKjwjJDMGm1P",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 1.38,
+     "vol24_usd": 62.3,
+     "created_ms": 1790075950000
+    },
+    "single_pair_would_have_said": 1.38,
+    "single_pair_understates_by": 1.01,
+    "first_pair_ms": 1789988109000,
+    "pairs": [
+     {
+      "pair": "GEbjH3ErHcy9gu2MtpCcBWJi4U1oneCUaKjwjJDMGm1P",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 1.38,
+      "vol24_usd": 62.3,
+      "created_ms": 1790075950000
+     },
+     {
+      "pair": "HWgGfYozwBJRPxMhfxVVBENXAhWbDDhbJFg5LoBYmUeu",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 0.01,
+      "vol24_usd": 33.99,
+      "created_ms": 1789988109000
+     },
+     {
+      "pair": "AVW2pYeHAWUgSGaz1F46pGVXVZ8d4DWerDfpa3NKWS43",
+      "dex": "pumpswap",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 0.0,
+      "vol24_usd": 75845930.89,
+      "created_ms": 1789988129000
+     }
+    ],
+    "phantom": true,
+    "phantom_why": "mcap $1,314,046,208 on $1.39 of total liquidity",
+    "chains": [
+     "solana"
+    ]
+   },
+   "round_trips": {
+    "100": {
+     "verdict": "TOTAL_LOSS",
+     "usd_back": 0.3249,
+     "rt_cost_pct": 99.6751,
+     "error": null
+    },
+    "2000": {
+     "verdict": "TOTAL_LOSS",
+     "usd_back": 0.326,
+     "rt_cost_pct": 99.9837,
+     "error": null
+    }
+   },
+   "old_jup_verdict": "TOTAL_LOSS",
+   "old_jup_usd_back": 0.3191
+  },
+  {
+   "mint": "GPqoXbff7NPyvbngpsUz7mP1byZq7Xfh94E8Gu56HR6T",
+   "symbol": "USDCAT",
+   "old_single_pool_quote_usd": 0.0,
+   "old_verdict": "DEAD",
+   "new_verdict": "NO_LIQUIDITY",
+   "changed": true,
+   "allpairs": {
+    "mint": "GPqoXbff7NPyvbngpsUz7mP1byZq7Xfh94E8Gu56HR6T",
+    "ok": true,
+    "pair_count": 0,
+    "total_liq_usd": 0.0,
+    "total_vol24_usd": 0.0,
+    "mcap_usd": null,
+    "price_usd": null,
+    "venues": {},
+    "quote_assets": {},
+    "pairs": [],
+    "phantom": false,
+    "note": "indexer returned no pairs"
+   },
+   "round_trips": {
+    "100": {
+     "verdict": "NO_SELL_ROUTE",
+     "usd_back": null,
+     "rt_cost_pct": null,
+     "error": "NO_ROUTES_FOUND"
+    },
+    "2000": {
+     "verdict": "NO_SELL_ROUTE",
+     "usd_back": null,
+     "rt_cost_pct": null,
+     "error": "NO_ROUTES_FOUND"
+    }
+   },
+   "old_jup_verdict": "NO_SELL_ROUTE",
+   "old_jup_usd_back": null
+  },
+  {
+   "mint": "3gAXa6khcC6G7tq6XBnonsiS7GQtq3auKnXCvdZvQtfJ",
+   "symbol": "TSLA",
+   "old_single_pool_quote_usd": 0.32,
+   "old_verdict": "DEAD",
+   "new_verdict": "PHANTOM",
+   "changed": true,
+   "allpairs": {
+    "mint": "3gAXa6khcC6G7tq6XBnonsiS7GQtq3auKnXCvdZvQtfJ",
+    "ok": true,
+    "pair_count": 2,
+    "total_liq_usd": 0.06,
+    "total_vol24_usd": 42845353.43,
+    "mcap_usd": 4338402.0,
+    "price_usd": 4.054e-05,
+    "venues": {
+     "pumpswap": 1,
+     "meteora": 1
+    },
+    "quote_assets": {
+     "SOL": {
+      "pairs": 2,
+      "liq_usd": 0.06,
+      "mint": "So11111111111111111111111111111111111111112"
+     }
+    },
+    "deepest": {
+     "pair": "6pMY7rQLmBoETsWnm2Ln6usxCHQgTvAv8E1CRxANHT4g",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.06,
+     "vol24_usd": 276.85,
+     "created_ms": 1790027676000
+    },
+    "single_pair_would_have_said": 0.06,
+    "single_pair_understates_by": 1.0,
+    "first_pair_ms": 1790027676000,
+    "pairs": [
+     {
+      "pair": "6pMY7rQLmBoETsWnm2Ln6usxCHQgTvAv8E1CRxANHT4g",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 0.06,
+      "vol24_usd": 276.85,
+      "created_ms": 1790027676000
+     },
+     {
+      "pair": "C2aUx8v7czsivzhimXydVLBfoMFJB5Hpip6Q2GjWvGzL",
+      "dex": "pumpswap",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 0.0,
+      "vol24_usd": 42845076.58,
+      "created_ms": 1790027853000
+     }
+    ],
+    "phantom": true,
+    "phantom_why": "mcap $4,338,402 on $0.06 of total liquidity",
+    "chains": [
+     "solana"
+    ]
+   },
+   "round_trips": {
+    "100": {
+     "verdict": "TOTAL_LOSS",
+     "usd_back": 0.0176,
+     "rt_cost_pct": 99.9824,
+     "error": null
+    },
+    "2000": {
+     "verdict": "TOTAL_LOSS",
+     "usd_back": 0.0176,
+     "rt_cost_pct": 99.9991,
+     "error": null
+    }
+   },
+   "old_jup_verdict": "TOTAL_LOSS",
+   "old_jup_usd_back": 0.0177
+  },
+  {
+   "mint": "671dNhKr12xRoPmfkevzG1daqi4c9KMAA9J83ExyMWJ7",
+   "symbol": "OWL",
+   "old_single_pool_quote_usd": 0.0,
+   "old_verdict": "DEAD",
+   "new_verdict": "NO_LIQUIDITY",
+   "changed": true,
+   "allpairs": {
+    "mint": "671dNhKr12xRoPmfkevzG1daqi4c9KMAA9J83ExyMWJ7",
+    "ok": true,
+    "pair_count": 1,
+    "total_liq_usd": 0.0,
+    "total_vol24_usd": 2128791.83,
+    "mcap_usd": 36542.0,
+    "price_usd": 3.654e-05,
+    "venues": {
+     "pumpswap": 1
+    },
+    "quote_assets": {
+     "SOL": {
+      "pairs": 1,
+      "liq_usd": 0.0,
+      "mint": "So11111111111111111111111111111111111111112"
+     }
+    },
+    "deepest": {
+     "pair": "9TbmTHEhTR3sMUQTC8itFZmpTuvQ2rhiVbkBWbSJwh5s",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.0,
+     "vol24_usd": 2128791.83,
+     "created_ms": 1790056712000
+    },
+    "single_pair_would_have_said": 0.0,
+    "single_pair_understates_by": null,
+    "first_pair_ms": 1790056712000,
+    "pairs": [
+     {
+      "pair": "9TbmTHEhTR3sMUQTC8itFZmpTuvQ2rhiVbkBWbSJwh5s",
+      "dex": "pumpswap",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 0.0,
+      "vol24_usd": 2128791.83,
+      "created_ms": 1790056712000
+     }
+    ],
+    "phantom": false,
+    "phantom_why": null,
+    "chains": [
+     "solana"
+    ]
+   },
+   "round_trips": {
+    "100": {
+     "verdict": "NO_SELL_ROUTE",
+     "usd_back": null,
+     "rt_cost_pct": null,
+     "error": "NO_ROUTES_FOUND"
+    },
+    "2000": {
+     "verdict": "NO_SELL_ROUTE",
+     "usd_back": null,
+     "rt_cost_pct": null,
+     "error": "NO_ROUTES_FOUND"
+    }
+   },
+   "old_jup_verdict": "NO_SELL_ROUTE",
+   "old_jup_usd_back": null
+  },
+  {
+   "mint": "BsE3aa5FdE6FVEkWvA8ShAGpzZasEgJbfSqRC4LmErTK",
+   "symbol": "X7",
+   "old_single_pool_quote_usd": 2.94,
+   "old_verdict": "DRAINED",
+   "new_verdict": "PHANTOM",
+   "changed": true,
+   "allpairs": {
+    "mint": "BsE3aa5FdE6FVEkWvA8ShAGpzZasEgJbfSqRC4LmErTK",
+    "ok": true,
+    "pair_count": 3,
+    "total_liq_usd": 8.06,
+    "total_vol24_usd": 36392370.22,
+    "mcap_usd": 28587876.0,
+    "price_usd": 0.02858,
+    "venues": {
+     "pumpswap": 1,
+     "meteora": 1,
+     "meteoradbc": 1
+    },
+    "quote_assets": {
+     "SOL": {
+      "pairs": 3,
+      "liq_usd": 8.06,
+      "mint": "So11111111111111111111111111111111111111112"
+     }
+    },
+    "deepest": {
+     "pair": "8oKG54qfkDMGCBUntpFuasr4udWSNB55Jo2i9RYRYYhc",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 8.06,
+     "vol24_usd": 18.58,
+     "created_ms": 1790064084000
+    },
+    "single_pair_would_have_said": 8.06,
+    "single_pair_understates_by": 1.0,
+    "first_pair_ms": 1790064084000,
+    "pairs": [
+     {
+      "pair": "8oKG54qfkDMGCBUntpFuasr4udWSNB55Jo2i9RYRYYhc",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 8.06,
+      "vol24_usd": 18.58,
+      "created_ms": 1790064084000
+     },
+     {
+      "pair": "F16kiKtygqjfiEGu6ywjU84RibisZGMsxiQmdmWjBqPQ",
+      "dex": "pumpswap",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 0.0,
+      "vol24_usd": 36392351.63,
+      "created_ms": 1790064101000
+     },
+     {
+      "pair": "BBcbsQMp5uvga4AEuFz11WgkLBT5o1YjT2NN26UoxPLF",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 0.0,
+      "vol24_usd": 0.01,
+      "created_ms": 1790064084000
+     }
+    ],
+    "phantom": true,
+    "phantom_why": "mcap $28,587,876 on $8.06 of total liquidity",
+    "chains": [
+     "solana"
+    ]
+   },
+   "round_trips": {
+    "100": {
+     "verdict": "TOTAL_LOSS",
+     "usd_back": 1.445,
+     "rt_cost_pct": 98.555,
+     "error": null
+    },
+    "2000": {
+     "verdict": "TOTAL_LOSS",
+     "usd_back": 1.4651,
+     "rt_cost_pct": 99.9267,
+     "error": null
+    }
+   },
+   "old_jup_verdict": "TOTAL_LOSS",
+   "old_jup_usd_back": 1.438
+  },
+  {
+   "mint": "MjimYVjNMjBu5g9t5R66wjVknJbSFnotsS6WG5epump",
+   "symbol": "ChatGPT",
+   "old_single_pool_quote_usd": 105.2,
+   "old_verdict": "DRAINED",
+   "new_verdict": "THIN",
+   "changed": true,
+   "allpairs": {
+    "mint": "MjimYVjNMjBu5g9t5R66wjVknJbSFnotsS6WG5epump",
+    "ok": true,
+    "pair_count": 1,
+    "total_liq_usd": 2287.48,
+    "total_vol24_usd": 9.89,
+    "mcap_usd": 2194.0,
+    "price_usd": 2.205e-06,
+    "venues": {
+     "pumpswap": 1
+    },
+    "quote_assets": {
+     "SOL": {
+      "pairs": 1,
+      "liq_usd": 2287.48,
+      "mint": "So11111111111111111111111111111111111111112"
+     }
+    },
+    "deepest": {
+     "pair": "36pv9hJF48g1geoyoGtLo5xV4XdaGSHaEBhjfuQUQvdo",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 2287.48,
+     "vol24_usd": 9.89,
+     "created_ms": 1790006419000
+    },
+    "single_pair_would_have_said": 2287.48,
+    "single_pair_understates_by": 1.0,
+    "first_pair_ms": 1790006419000,
+    "pairs": [
+     {
+      "pair": "36pv9hJF48g1geoyoGtLo5xV4XdaGSHaEBhjfuQUQvdo",
+      "dex": "pumpswap",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 2287.48,
+      "vol24_usd": 9.89,
+      "created_ms": 1790006419000
+     }
+    ],
+    "phantom": false,
+    "phantom_why": null,
+    "chains": [
+     "solana"
+    ]
+   },
+   "round_trips": {
+    "100": {
+     "verdict": "COSTLY",
+     "usd_back": 89.4787,
+     "rt_cost_pct": 10.5213,
+     "error": null
+    },
+    "2000": {
+     "verdict": "NO_SELL_ROUTE",
+     "usd_back": null,
+     "rt_cost_pct": null,
+     "error": "NO_ROUTES_FOUND"
+    }
+   },
+   "old_jup_verdict": "COSTLY",
+   "old_jup_usd_back": 89.443
+  },
+  {
+   "mint": "HGNPr1ztbHLU4eo9zQEcxCGXJHF6iQ246M3iobFxpump",
+   "symbol": "MrBeast",
+   "old_single_pool_quote_usd": 31.89,
+   "old_verdict": "DRAINED",
+   "new_verdict": "NO_LIQUIDITY",
+   "changed": true,
+   "allpairs": {
+    "mint": "HGNPr1ztbHLU4eo9zQEcxCGXJHF6iQ246M3iobFxpump",
+    "ok": true,
+    "pair_count": 0,
+    "total_liq_usd": 0.0,
+    "total_vol24_usd": 0.0,
+    "mcap_usd": null,
+    "price_usd": null,
+    "venues": {},
+    "quote_assets": {},
+    "pairs": [],
+    "phantom": false,
+    "note": "indexer returned no pairs"
+   },
+   "round_trips": {
+    "100": {
+     "verdict": "NO_SELL_ROUTE",
+     "usd_back": null,
+     "rt_cost_pct": null,
+     "error": "NO_ROUTES_FOUND"
+    },
+    "2000": {
+     "verdict": "NO_SELL_ROUTE",
+     "usd_back": null,
+     "rt_cost_pct": null,
+     "error": "NO_ROUTES_FOUND"
+    }
+   },
+   "old_jup_verdict": "NO_SELL_ROUTE",
+   "old_jup_usd_back": null
+  },
+  {
+   "mint": "EHY56TBNQ1jX6zUQx7gTPwbdGo7zfKMUH6kvXLbSpump",
+   "symbol": "tradecat",
+   "old_single_pool_quote_usd": 305.99,
+   "old_verdict": "DRAINED",
+   "new_verdict": "THIN",
+   "changed": true,
+   "allpairs": {
+    "mint": "EHY56TBNQ1jX6zUQx7gTPwbdGo7zfKMUH6kvXLbSpump",
+    "ok": true,
+    "pair_count": 1,
+    "total_liq_usd": 2654.16,
+    "total_vol24_usd": 6.37,
+    "mcap_usd": 2361.0,
+    "price_usd": 2.393e-06,
+    "venues": {
+     "pumpswap": 1
+    },
+    "quote_assets": {
+     "SOL": {
+      "pairs": 1,
+      "liq_usd": 2654.16,
+      "mint": "So11111111111111111111111111111111111111112"
+     }
+    },
+    "deepest": {
+     "pair": "GVTJd6AsTjBFayQeUGDJ3YrV2gBpV68PstGo9hBTy3XJ",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 2654.16,
+     "vol24_usd": 6.37,
+     "created_ms": 1790027863000
+    },
+    "single_pair_would_have_said": 2654.16,
+    "single_pair_understates_by": 1.0,
+    "first_pair_ms": 1790027863000,
+    "pairs": [
+     {
+      "pair": "GVTJd6AsTjBFayQeUGDJ3YrV2gBpV68PstGo9hBTy3XJ",
+      "dex": "pumpswap",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 2654.16,
+      "vol24_usd": 6.37,
+      "created_ms": 1790027863000
+     }
+    ],
+    "phantom": false,
+    "phantom_why": null,
+    "chains": [
+     "solana"
+    ]
+   },
+   "round_trips": {
+    "100": {
+     "verdict": "TRADEABLE",
+     "usd_back": 90.1028,
+     "rt_cost_pct": 9.8972,
+     "error": null
+    },
+    "2000": {
+     "verdict": "NO_SELL_ROUTE",
+     "usd_back": null,
+     "rt_cost_pct": null,
+     "error": "NO_ROUTES_FOUND"
+    }
+   },
+   "old_jup_verdict": "TRADEABLE",
+   "old_jup_usd_back": 90.0649
+  },
+  {
+   "mint": "5vg9KLxC8QdKCaidkmCfjg3ttAXD1CFKuyeQHSK3pump",
+   "symbol": "Vortex",
+   "old_single_pool_quote_usd": 114.64,
+   "old_verdict": "DRAINED",
+   "new_verdict": "THIN",
+   "changed": true,
+   "allpairs": {
+    "mint": "5vg9KLxC8QdKCaidkmCfjg3ttAXD1CFKuyeQHSK3pump",
+    "ok": true,
+    "pair_count": 1,
+    "total_liq_usd": 2289.88,
+    "total_vol24_usd": 30.67,
+    "mcap_usd": 2176.0,
+    "price_usd": 2.267e-06,
+    "venues": {
+     "pumpswap": 1
+    },
+    "quote_assets": {
+     "SOL": {
+      "pairs": 1,
+      "liq_usd": 2289.88,
+      "mint": "So11111111111111111111111111111111111111112"
+     }
+    },
+    "deepest": {
+     "pair": "6nwcodGXirw79NsvX1H1vkYqPNS5MqQWLcHFsqsbbERs",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 2289.88,
+     "vol24_usd": 30.67,
+     "created_ms": 1789956081000
+    },
+    "single_pair_would_have_said": 2289.88,
+    "single_pair_understates_by": 1.0,
+    "first_pair_ms": 1789956081000,
+    "pairs": [
+     {
+      "pair": "6nwcodGXirw79NsvX1H1vkYqPNS5MqQWLcHFsqsbbERs",
+      "dex": "pumpswap",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 2289.88,
+      "vol24_usd": 30.67,
+      "created_ms": 1789956081000
+     }
+    ],
+    "phantom": false,
+    "phantom_why": null,
+    "chains": [
+     "solana"
+    ]
+   },
+   "round_trips": {
+    "100": {
+     "verdict": "COSTLY",
+     "usd_back": 89.5103,
+     "rt_cost_pct": 10.4897,
+     "error": null
+    },
+    "2000": {
+     "verdict": "NO_SELL_ROUTE",
+     "usd_back": null,
+     "rt_cost_pct": null,
+     "error": "NO_ROUTES_FOUND"
+    }
+   },
+   "old_jup_verdict": "COSTLY",
+   "old_jup_usd_back": 89.4828
+  },
+  {
+   "mint": "k4WcTJwcK8x11E7RFhXsYsdiWZWwfo6FzKEmcCPpump",
+   "symbol": "UOTF",
+   "old_single_pool_quote_usd": 24.29,
+   "old_verdict": "DRAINED",
+   "new_verdict": "NO_LIQUIDITY",
+   "changed": true,
+   "allpairs": {
+    "mint": "k4WcTJwcK8x11E7RFhXsYsdiWZWwfo6FzKEmcCPpump",
+    "ok": true,
+    "pair_count": 0,
+    "total_liq_usd": 0.0,
+    "total_vol24_usd": 0.0,
+    "mcap_usd": null,
+    "price_usd": null,
+    "venues": {},
+    "quote_assets": {},
+    "pairs": [],
+    "phantom": false,
+    "note": "indexer returned no pairs"
+   },
+   "round_trips": {
+    "100": {
+     "verdict": "NO_SELL_ROUTE",
+     "usd_back": null,
+     "rt_cost_pct": null,
+     "error": "NO_ROUTES_FOUND"
+    },
+    "2000": {
+     "verdict": "NO_SELL_ROUTE",
+     "usd_back": null,
+     "rt_cost_pct": null,
+     "error": "NO_ROUTES_FOUND"
+    }
+   },
+   "old_jup_verdict": "NO_SELL_ROUTE",
+   "old_jup_usd_back": null
+  },
+  {
+   "mint": "9KmeDWVt7TtrEZT2567kxeDkDZxd3cDoTZ1ZrLow9soG",
+   "symbol": "STONKBROS",
+   "old_single_pool_quote_usd": 12379.93,
+   "old_verdict": "THIN",
+   "new_verdict": "THIN",
+   "changed": false,
+   "allpairs": {
+    "mint": "9KmeDWVt7TtrEZT2567kxeDkDZxd3cDoTZ1ZrLow9soG",
+    "ok": true,
+    "pair_count": 2,
+    "total_liq_usd": 19916.38,
+    "total_vol24_usd": 209889.69,
+    "mcap_usd": 145176.0,
+    "price_usd": 5.284e-05,
+    "venues": {
+     "raydium": 1,
+     "meteora": 1
+    },
+    "quote_assets": {
+     "STONK": {
+      "pairs": 1,
+      "liq_usd": 19882.32,
+      "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx"
+     },
+     "SOL": {
+      "pairs": 1,
+      "liq_usd": 34.06,
+      "mint": "So11111111111111111111111111111111111111112"
+     }
+    },
+    "deepest": {
+     "pair": "A1PNnKCqEBF9Gtwp7MhB3SpDm3Q7RaDcHa1MnK2dGBzV",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "STONK",
+     "liq_usd": 19882.32,
+     "vol24_usd": 209826.68,
+     "created_ms": 1790002998000
+    },
+    "single_pair_would_have_said": 19882.32,
+    "single_pair_understates_by": 1.0,
+    "first_pair_ms": 1790002998000,
+    "pairs": [
+     {
+      "pair": "A1PNnKCqEBF9Gtwp7MhB3SpDm3Q7RaDcHa1MnK2dGBzV",
+      "dex": "raydium",
+      "chain": "solana",
+      "quote": "STONK",
+      "liq_usd": 19882.32,
+      "vol24_usd": 209826.68,
+      "created_ms": 1790002998000
+     },
+     {
+      "pair": "2dfTMmXSD2aiM9buqDDig9UbV4i5hyYUPdXzum2pRYnE",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 34.06,
+      "vol24_usd": 63.01,
+      "created_ms": 1790086038000
+     }
+    ],
+    "phantom": false,
+    "phantom_why": null,
+    "chains": [
+     "solana"
+    ]
+   },
+   "round_trips": {
+    "100": {
+     "verdict": "TRADEABLE",
+     "usd_back": 93.6055,
+     "rt_cost_pct": 6.3945,
+     "error": null
+    },
+    "2000": {
+     "verdict": "COSTLY",
+     "usd_back": 1372.2804,
+     "rt_cost_pct": 31.386,
+     "error": null
+    }
+   },
+   "old_jup_verdict": "TRADEABLE",
+   "old_jup_usd_back": 93.941
+  },
+  {
+   "mint": "54c53NaoMDLcxv9ECjN35GLJjX4JDbpbwpSiFwbspump",
+   "symbol": "VSOF",
+   "old_single_pool_quote_usd": 324.51,
+   "old_verdict": "DRAINED",
+   "new_verdict": "THIN",
+   "changed": true,
+   "allpairs": {
+    "mint": "54c53NaoMDLcxv9ECjN35GLJjX4JDbpbwpSiFwbspump",
+    "ok": true,
+    "pair_count": 2,
+    "total_liq_usd": 2700.47,
+    "total_vol24_usd": 754675.68,
+    "mcap_usd": 48298.96,
+    "price_usd": 2.7e-06,
+    "venues": {
+     "pumpswap": 1,
+     "pumpfun": 1
+    },
+    "quote_assets": {
+     "SOL": {
+      "pairs": 2,
+      "liq_usd": 2700.47,
+      "mint": "So11111111111111111111111111111111111111112"
+     }
+    },
+    "deepest": {
+     "pair": "BwyERAGGjQ2QnX7GhDsi4ZwYHA8vrdcQWj8XLXZ4PWw",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 2700.47,
+     "vol24_usd": 744683.31,
+     "created_ms": 1790042525000
+    },
+    "single_pair_would_have_said": 2700.47,
+    "single_pair_understates_by": 1.0,
+    "first_pair_ms": 1790042525000,
+    "pairs": [
+     {
+      "pair": "BwyERAGGjQ2QnX7GhDsi4ZwYHA8vrdcQWj8XLXZ4PWw",
+      "dex": "pumpswap",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 2700.47,
+      "vol24_usd": 744683.31,
+      "created_ms": 1790042525000
+     },
+     {
+      "pair": "AKaNM3YVvC3NnwepUzBVTtKmq9nZmLC18ZGCYgEvcvcv",
+      "dex": "pumpfun",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 0.0,
+      "vol24_usd": 9992.37,
+      "created_ms": 1790042525000
+     }
+    ],
+    "phantom": false,
+    "phantom_why": null,
+    "chains": [
+     "solana"
+    ]
+   },
+   "round_trips": {
+    "100": {
+     "verdict": "TRADEABLE",
+     "usd_back": 90.1617,
+     "rt_cost_pct": 9.8383,
+     "error": null
+    },
+    "2000": {
+     "verdict": "NO_SELL_ROUTE",
+     "usd_back": null,
+     "rt_cost_pct": null,
+     "error": "NO_ROUTES_FOUND"
+    }
+   },
+   "old_jup_verdict": "TRADEABLE",
+   "old_jup_usd_back": 90.1286
+  },
+  {
+   "mint": "CdhZy8wrRxNxoV8HtoByXKN7mvS46avtuZ1b39tKfx7",
+   "symbol": "X7b",
+   "old_single_pool_quote_usd": 64122.96,
+   "old_verdict": "LIQUID",
+   "new_verdict": "LIQUID",
+   "changed": false,
+   "allpairs": {
+    "mint": "CdhZy8wrRxNxoV8HtoByXKN7mvS46avtuZ1b39tKfx7",
+    "ok": true,
+    "pair_count": 30,
+    "total_liq_usd": 197312.38999999998,
+    "total_vol24_usd": 5427438.0200000005,
+    "mcap_usd": 1970928.0,
+    "price_usd": 0.0007329,
+    "venues": {
+     "meteoradbc": 18,
+     "meteora": 12
+    },
+    "quote_assets": {
+     "SOL": {
+      "pairs": 9,
+      "liq_usd": 187477.36999999997,
+      "mint": "So11111111111111111111111111111111111111112"
+     },
+     "USDC": {
+      "pairs": 3,
+      "liq_usd": 9832.26,
+      "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+     },
+     "USDT": {
+      "pairs": 1,
+      "liq_usd": 2.76,
+      "mint": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB"
+     },
+     "X7": {
+      "pairs": 17,
+      "liq_usd": 0.0,
+      "mint": "CdhZy8wrRxNxoV8HtoByXKN7mvS46avtuZ1b39tKfx7"
+     }
+    },
+    "deepest": {
+     "pair": "DM7mLVfNUJTbWzwep9BWMVDDhwR1PQU3t2wQ66WTvgqo",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 162664.95,
+     "vol24_usd": 4432719.68,
+     "created_ms": 1790049638000
+    },
+    "single_pair_would_have_said": 162664.95,
+    "single_pair_understates_by": 1.21,
+    "first_pair_ms": 1790049607000,
+    "pairs": [
+     {
+      "pair": "DM7mLVfNUJTbWzwep9BWMVDDhwR1PQU3t2wQ66WTvgqo",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 162664.95,
+      "vol24_usd": 4432719.68,
+      "created_ms": 1790049638000
+     },
+     {
+      "pair": "7XeEPRN9oWNTo2933WGqKiUtR3wm4m5bKjwmRxSR1o7g",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 12988.18,
+      "vol24_usd": 489539.66,
+      "created_ms": 1790063713000
+     },
+     {
+      "pair": "FeLxZ4rpo4jkz2cz6EK9eX263ArwZ8wcrWQP422ys7wn",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 10226.36,
+      "vol24_usd": 369690.0,
+      "created_ms": 1790065096000
+     },
+     {
+      "pair": "6iwVtN4hpz9AgAszBNmG78kBAshJh3qeHRKJtVWzvXuK",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "USDC",
+      "liq_usd": 6027.02,
+      "vol24_usd": 510.9,
+      "created_ms": 1790071359000
+     },
+     {
+      "pair": "FGqGpMvtyuCs93kpzFrg5nxP4aHUhYv23bZSqDDMGVkK",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "USDC",
+      "liq_usd": 3802.57,
+      "vol24_usd": 37670.69,
+      "created_ms": 1790066494000
+     },
+     {
+      "pair": "G87JnfWukKwxt5kJgF7ardoSWqSCkH4x1T1bEmPhxvsC",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 1592.87,
+      "vol24_usd": 44698.01,
+      "created_ms": 1790057233000
+     },
+     {
+      "pair": "4R1ArHhay9QAbm3DQQtG3bFqd9jV3BiysSRevwL3kKqC",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 4.9,
+      "vol24_usd": 395.88,
+      "created_ms": 1790049985000
+     },
+     {
+      "pair": "5AXxvw9Rz8ArG1SWb1zp8AwVEjpQvAdrZ8d3AXYfwG1x",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "USDT",
+      "liq_usd": 2.76,
+      "vol24_usd": 1.77,
+      "created_ms": 1790080256000
+     },
+     {
+      "pair": "9xqvP5WWZ7WDKmQD1WDnGitGYpW5bjwJWDjJERa9REzq",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "USDC",
+      "liq_usd": 2.67,
+      "vol24_usd": 1.68,
+      "created_ms": 1790080256000
+     },
+     {
+      "pair": "5vBikQWA4TbQ16mvjSwQHi1bu9HqsBcLdPHTnagF9DUF",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 0.11,
+      "vol24_usd": 1.08,
+      "created_ms": 1790049892000
+     },
+     {
+      "pair": "J6HJnixVoGFwTsaVDJbdmeWYZm4ygSa5VDs9VzKafNpZ",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 0.0,
+      "vol24_usd": 526.81,
+      "created_ms": 1790062977000
+     },
+     {
+      "pair": "61Nc3Xjjxu9ZXYri6axYP6zJVmV9r1NJZvwB73RnZQae",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 0.0,
+      "vol24_usd": 0.2,
+      "created_ms": 1790079074000
+     },
+     {
+      "pair": "HTuZCSqkHReKKUTmkjpWoA8VALP2uWKcbMZZDtsCbEh9",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 0.0,
+      "vol24_usd": 38596.18,
+      "created_ms": 1790049607000
+     },
+     {
+      "pair": "4x64c8N4fn33VNZrvKqJtYZHPXzYR6NXpp3BVKR4oioz",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 4305.64,
+      "created_ms": 1790064504000
+     },
+     {
+      "pair": "EeJQRhwF4K5TLTn6PBvFypSTpJr5ANsrPTxcSRwLPDxG",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 3339.26,
+      "created_ms": 1790064525000
+     },
+     {
+      "pair": "GMKzbjcQk1UcpQZKD6a7LZG9BuUbcVWf36xeWsfoHGHH",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 1386.9,
+      "created_ms": 1790064020000
+     },
+     {
+      "pair": "9oNoD5xuopSFV9fV9aCJ6YvFgjxyVyVrbkiqXai2XfFk",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 858.23,
+      "created_ms": 1790065073000
+     },
+     {
+      "pair": "AsxQKDqg117D2jdM1bVqdUx1Tdax9U5R1C3ec8YUGWrS",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 767.64,
+      "created_ms": 1790060948000
+     },
+     {
+      "pair": "Hy8SPUhYXDmVgfEz1syukyb8y8uJEtQtfJ9GwzCinHtH",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 536.22,
+      "created_ms": 1790065013000
+     },
+     {
+      "pair": "2QKTktdNzZrFdFEMSWKvrAof2FhMFxsRwzURpZVyiZXe",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 394.19,
+      "created_ms": 1790063943000
+     },
+     {
+      "pair": "ECxeRLimHn9XTnRbLxt9VAeMmb92vVRCuNqGQdyP9UU6",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 101.69,
+      "created_ms": 1790065227000
+     },
+     {
+      "pair": "4Jj9W8aqU6LXmwpAhoujVFkMBRwXqmbffJMTZHvZbM5P",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 260.99,
+      "created_ms": 1790063592000
+     },
+     {
+      "pair": "9iyVbGAJ6DNbWcqAz34raEY7wv5tp4RaSY4qs941tPYF",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 251.34,
+      "created_ms": 1790064513000
+     },
+     {
+      "pair": "GFhryz5iP5jScqiXt1YRpXiaXpwEBSrnxNaNon2jkq2L",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 237.07,
+      "created_ms": 1790065421000
+     },
+     {
+      "pair": "4o4yhJsQHYLzFm37XwxXYb4enG8GizKjV7RqjnHWY786",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 198.48,
+      "created_ms": 1790064170000
+     },
+     {
+      "pair": "Hmm9aNixsTK4aeKRt1rQMQo4xiWxYht97ruJoUtf3vyV",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 110.25,
+      "created_ms": 1790066189000
+     },
+     {
+      "pair": "FeNdkuouBUKiZ5uJnihFzY7p2bJEV2TqwirHxuYuCbm3",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 137.28,
+      "created_ms": 1790063858000
+     },
+     {
+      "pair": "BTWXqwRE8e7VL7eoJhDaDiSTFSutY4UPXceFiodoVXbV",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 82.59,
+      "created_ms": 1790063714000
+     },
+     {
+      "pair": "FVsj9izF8mtQ6hNK7aECeBYfUrZYLMUxJdR8d7RKTKn4",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 74.15,
+      "created_ms": 1790071539000
+     },
+     {
+      "pair": "3gBcgfPTvRZB8RNCW48dehL8hLEjKpeYfAaFSKj9DG4t",
+      "dex": "meteoradbc",
+      "chain": "solana",
+      "quote": "X7",
+      "liq_usd": 0.0,
+      "vol24_usd": 43.56,
+      "created_ms": 1790063689000
+     }
+    ],
+    "phantom": false,
+    "phantom_why": null,
+    "chains": [
+     "solana"
+    ]
+   },
+   "round_trips": {
+    "100": {
+     "verdict": "TRADEABLE",
+     "usd_back": 96.3446,
+     "rt_cost_pct": 3.6554,
+     "error": null
+    },
+    "2000": {
+     "verdict": "TRADEABLE",
+     "usd_back": 1853.0944,
+     "rt_cost_pct": 7.3453,
+     "error": null
+    }
+   },
+   "old_jup_verdict": "TRADEABLE",
+   "old_jup_usd_back": 95.7126
+  },
+  {
+   "mint": "BLSuVTxKYDL4vm4XmG3oEJfsSGfJZF3cgy98ri68pump",
+   "symbol": "CATEWALK",
+   "old_single_pool_quote_usd": 47650.52,
+   "old_verdict": "LIQUID",
+   "new_verdict": "LIQUID",
+   "changed": false,
+   "allpairs": {
+    "mint": "BLSuVTxKYDL4vm4XmG3oEJfsSGfJZF3cgy98ri68pump",
+    "ok": true,
+    "pair_count": 3,
+    "total_liq_usd": 35995.53,
+    "total_vol24_usd": 5112248.449999999,
+    "mcap_usd": 130267.0,
+    "price_usd": 0.000131,
+    "venues": {
+     "pumpswap": 1,
+     "meteora": 1,
+     "pumpfun": 1
+    },
+    "quote_assets": {
+     "SOL": {
+      "pairs": 2,
+      "liq_usd": 35995.53,
+      "mint": "So11111111111111111111111111111111111111112"
+     },
+     "POOP": {
+      "pairs": 1,
+      "liq_usd": 0.0,
+      "mint": "BhWQdgq3u8z4JhRGwXttegDum2UZ9WdfXNcmmo2hrREV"
+     }
+    },
+    "deepest": {
+     "pair": "HdiUXnAwQkLBwdFpSh3gUKM1cM5QAC1G39nM1RGVwGrn",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 35995.53,
+     "vol24_usd": 5102341.93,
+     "created_ms": 1790046050000
+    },
+    "single_pair_would_have_said": 35995.53,
+    "single_pair_understates_by": 1.0,
+    "first_pair_ms": 1790046050000,
+    "pairs": [
+     {
+      "pair": "HdiUXnAwQkLBwdFpSh3gUKM1cM5QAC1G39nM1RGVwGrn",
+      "dex": "pumpswap",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 35995.53,
+      "vol24_usd": 5102341.93,
+      "created_ms": 1790046050000
+     },
+     {
+      "pair": "CeLyY8a3prkhGMTGaGKubJgeS94ZyVJsWLkGhFqQF9QQ",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "POOP",
+      "liq_usd": 0.0,
+      "vol24_usd": 0.0,
+      "created_ms": 1790058304000
+     },
+     {
+      "pair": "6zXSP7anYEYPnd39cfCzqaFZjdVg4VWzpjMKTDpwDBw1",
+      "dex": "pumpfun",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 0.0,
+      "vol24_usd": 9906.52,
+      "created_ms": 1790046050000
+     }
+    ],
+    "phantom": false,
+    "phantom_why": null,
+    "chains": [
+     "solana"
+    ]
+   },
+   "round_trips": {
+    "100": {
+     "verdict": "TRADEABLE",
+     "usd_back": 96.6108,
+     "rt_cost_pct": 3.3892,
+     "error": null
+    },
+    "2000": {
+     "verdict": "COSTLY",
+     "usd_back": 1612.0049,
+     "rt_cost_pct": 19.3998,
+     "error": null
+    }
+   },
+   "old_jup_verdict": "TRADEABLE",
+   "old_jup_usd_back": 97.631
+  },
+  {
+   "mint": "HXQ66zSRqynwJQ6vYEYa85qGY9C2Ycz8rnYQHgApn391",
+   "symbol": "GO",
+   "old_single_pool_quote_usd": 18467.44,
+   "old_verdict": "THIN",
+   "new_verdict": "LIQUID",
+   "changed": true,
+   "allpairs": {
+    "mint": "HXQ66zSRqynwJQ6vYEYa85qGY9C2Ycz8rnYQHgApn391",
+    "ok": true,
+    "pair_count": 7,
+    "total_liq_usd": 45820.33,
+    "total_vol24_usd": 1482597.85,
+    "mcap_usd": 207948.0,
+    "price_usd": 0.0001979,
+    "venues": {
+     "meteora": 6,
+     "raydium": 1
+    },
+    "quote_assets": {
+     "SOL": {
+      "pairs": 5,
+      "liq_usd": 45817.39,
+      "mint": "So11111111111111111111111111111111111111112"
+     },
+     "USDT": {
+      "pairs": 1,
+      "liq_usd": 1.47,
+      "mint": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB"
+     },
+     "USDC": {
+      "pairs": 1,
+      "liq_usd": 1.47,
+      "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+     }
+    },
+    "deepest": {
+     "pair": "C2BB8PEdsZbEWm8QTmf9YBWHor5R5ecb5KkBJfb2b5so",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 43294.0,
+     "vol24_usd": 1457334.36,
+     "created_ms": 1790067701000
+    },
+    "single_pair_would_have_said": 43294.0,
+    "single_pair_understates_by": 1.06,
+    "first_pair_ms": 1790067701000,
+    "pairs": [
+     {
+      "pair": "C2BB8PEdsZbEWm8QTmf9YBWHor5R5ecb5KkBJfb2b5so",
+      "dex": "raydium",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 43294.0,
+      "vol24_usd": 1457334.36,
+      "created_ms": 1790067701000
+     },
+     {
+      "pair": "FCydBTAvVxhuEkaUTu8ohjJci5ETyqfWHpUNuW7c68Ph",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 2279.36,
+      "vol24_usd": 22234.87,
+      "created_ms": 1790074705000
+     },
+     {
+      "pair": "4utJFkMeksyNX4mEzrXmKu6vd9hZUaiVVfBW83oqbSJB",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 233.11,
+      "vol24_usd": 1646.96,
+      "created_ms": 1790079193000
+     },
+     {
+      "pair": "GAPtnfSWQjjT6fCnBDEv24oHoRsZRz559Ucrme7TpeWZ",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 6.57,
+      "vol24_usd": 1312.69,
+      "created_ms": 1790069180000
+     },
+     {
+      "pair": "H5ipHfFF5HZmeA37yW7RootdonXFn6QsGQsYYYL6TdfR",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "SOL",
+      "liq_usd": 4.35,
+      "vol24_usd": 67.99,
+      "created_ms": 1790068891000
+     },
+     {
+      "pair": "6zvWxp2Lzi4nzaHLKnEanYLQ51kMu386U5H45gGmkGWL",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "USDT",
+      "liq_usd": 1.47,
+      "vol24_usd": 0.49,
+      "created_ms": 1790085709000
+     },
+     {
+      "pair": "52TSKiFb4XYXTzv7rdkvJCd44yEnVmtkTNC29vzhE92N",
+      "dex": "meteora",
+      "chain": "solana",
+      "quote": "USDC",
+      "liq_usd": 1.47,
+      "vol24_usd": 0.49,
+      "created_ms": 1790085709000
+     }
+    ],
+    "phantom": false,
+    "phantom_why": null,
+    "chains": [
+     "solana"
+    ]
+   },
+   "round_trips": {
+    "100": {
+     "verdict": "TRADEABLE",
+     "usd_back": 96.6353,
+     "rt_cost_pct": 3.3647,
+     "error": null
+    },
+    "2000": {
+     "verdict": "COSTLY",
+     "usd_back": 1654.7388,
+     "rt_cost_pct": 17.2631,
+     "error": null
+    }
+   },
+   "old_jup_verdict": "TRADEABLE",
+   "old_jup_usd_back": 96.3768
+  }
+ ],
+ "changed": 12,
+ "unchanged": 3
+}

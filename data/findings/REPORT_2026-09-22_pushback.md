@@ -10,7 +10,23 @@ GeckoTerminal, RugCheck and DefiLlama are labelled where used. Scripts:
 
 ---
 
-## Correction 1: EMBER was not dead this morning. It was rugged at 11:09:37Z.
+⛔⛔ **RETRACTED IN PART, 2026-09-23. READ THIS FIRST.**
+**Everything below about EMBER is about the wrong contract.** It analysed
+`FLCr9vGMTkbDcRCoirP5Hx8gB7TW1Azt3pkw3qp2HTsh`, which is a **phantom**: 3 pairs,
+**$1.39** of liquidity summed across all of them, $1.31 **billion** of claimed cap,
+first pool 09-21 10:55Z. The EMBER Gorilla named on 09-10 is
+`5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6`: **30 pairs, $2,331,895 of
+liquidity, $17.9M cap, both authorities revoked, and a $2,000 sell costs 1.30%.**
+⭐ **Frank said EMBER was at $17.2M and alive. He was right.** The pool reads, the
+timestamps and the `Withdraw` trace below are all correct — about the phantom. What
+is retracted is the identification, and with it every EMBER conclusion here.
+Record: `data/findings/RETRACTION_2026-09-22_ember.md`.
+⛔ **Corrections 2 and 3, the `gone` audit, the curve-vs-label finding and the
+venue-blindness figures are unaffected** and still stand.
+
+---
+
+## ⛔ RETRACTED — Correction 1: EMBER was not dead this morning. It was rugged at 11:09:37Z.
 
 `FLCr9vGMTkbDcRCoirP5Hx8gB7TW1Azt3pkw3qp2HTsh`, PumpSwap pool
 `AVW2pYeHAWUgSGaz1F46pGVXVZ8d4DWerDfpa3NKWS43`.
@@ -50,7 +66,16 @@ also **not a pump.fun token**: Jupiter reports launchpad `met-dbc` (Meteora
 DBC), graduated 09-21 10:55:09Z, which is the same minute the PumpSwap pool was
 created.
 
-### ⛔ Correction added 2026-09-22 from the @CryptoGorilla archive: EMBER is not a memecoin
+### ⛔ RETRACTED — Correction added 2026-09-22 from the @CryptoGorilla archive
+
+⭐ **The half of this that survives:** EMBER really is a token-pairing launchpad
+on Meteora, and that is confirmed on chain now that the right mint is being read —
+19 of `5dvXTZ5q…`'s 30 pools are Meteora and its second-largest quote asset is
+**MET, Meteora's own token, at $522,677**.
+⛔ **The half that is wrong:** it was applied to `FLCr9vGM…`, so "EMBER is a
+Meteora DBC launch, not pump.fun" describes the phantom. The real one is SPL, not
+Token-2022, and spans meteora / orca / raydium / pumpswap / meteora-dbc.
+
 
 **It is a token-pairing LAUNCHPAD on Meteora**, and it had already round-tripped
 before our journal ever saw it. His two dated lines, verbatim:

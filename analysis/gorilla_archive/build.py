@@ -15,17 +15,29 @@ Evaluated in order, so they are mutually exclusive:
 
 ⛔⛔ **THE RULES ABOVE ARE BIASED AND THE BIAS IS NOT FIXABLE FROM A TICKER.**
 Measured 2026-09-22, after the fact and led with rather than buried: the search
-endpoints that turn a ticker into a contract **only return tokens that still have
-liquidity**. A token that died is not in their results at all, so the ticker
-resolves to whatever live namesake now carries that symbol.
+endpoints that turn a ticker into a contract **preferentially return tokens that
+still have liquidity**, so a token that died tends to be absent from the results
+and the ticker resolves to whatever live namesake now carries that symbol.
+Measured strength of that effect: of 44 cohort tokens absent from the search
+index, **86.4% [73.3, 93.6] failed a live $100 round trip**.
 
-Proof, on a contract we verified by hand the same day: EMBER. The real one is
-`FLCr9vGMNQMHQ6z9nQ4FbH3sABPn3ipEAyzJF68zHTsh`, whose operator withdrew 2,907.565
-SOL at 11:09:37Z leaving $20.36 of depth. It **does not appear anywhere** in the
-Dexscreener results for "EMBER". The resolver instead picked
-`5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6`, a different Solana token created
-one day before the mention, with $2.1m of liquidity, and graded it HIGH confidence
-and **alive**.
+⛔⛔ **RETRACTED 2026-09-23: the EMBER example that used to sit here was
+inverted, and it argued the opposite of what the data says.** It claimed
+`FLCr9vGM…HTsh` was the real EMBER and that the resolver wrongly picked
+`5dvXTZ5q…QEC6`. Measured: `5dvXTZ5q…` is the real one (**30 pairs,
+$2,331,895 of liquidity summed across all of them, $17.9M cap, $2,000 sells at
+1.30%**), and `FLCr9vGM…` is a phantom (**3 pairs, $1.39 of total liquidity,
+$1.31 BILLION of claimed cap**) whose first pool postdates Gorilla's mention by
+twelve days. ⭐ **The resolver's date rule rejected it correctly and I overrode a
+correct automated answer with a wrong hand-check.** Full record:
+`data/findings/RETRACTION_2026-09-22_ember.md`.
+
+⛔ **The conclusion below survives, but on different evidence.** It does NOT
+rest on EMBER. It rests on the age curve in `docs/GORILLA_ARCHIVE.md` §4b: the
+ticker-resolved arm is flat at 60-69% tradeable in every age bucket including
+tokens called 35+ days ago, while the address-keyed control decays 10.3% → 13.2%
+→ 3.2%. A flat survival curve is impossible for real memecoins, so the ticker arm
+is measuring "is some live token wearing this symbol today".
 
 ⭐ So `outcome` below is **not a survival statistic and must never be quoted as
 one**. "rugged: 4 of 482" is an artifact of the method: dead tokens are invisible

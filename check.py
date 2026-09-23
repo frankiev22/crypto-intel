@@ -67,6 +67,62 @@ def _f(x, d=None):
         return d
 
 
+PHANTOM_MCAP = 1_000_000
+PHANTOM_LIQ = 1_000
+# ⛔ Measured 2026-09-23: the Dexscreener token endpoint returns at most 30
+# pairs for ANY mint. SOL returns 30. At 30, every sum below is a floor.
+PAIR_CAP = 30
+
+
+def _all_pairs(pairs):
+    """The TOKEN, not one of its pools: every pair summed. Standing rule 18.
+
+    ⚠️ Sums the same payload `analyse` already fetched, so this stays offline in
+    the test suite and costs no extra call. `allpairs.token()` is the same
+    arithmetic for callers that have only a mint.
+
+    ⚠️ It is still a correct sum of an OVERSTATING field - Dexscreener's
+    liquidity overstates by a median 781x. It is for shape, venue spread and
+    phantom detection. The exit is `chainfields.round_trip()`, which already
+    routes across every pool.
+    """
+    liq = vol = 0.0
+    depths, mcaps, quotes = [], [], {}
+    for p in pairs or []:
+        if (p or {}).get("chainId") != "solana":
+            continue
+        liq += _f((p.get("liquidity") or {}).get("usd"), 0) or 0
+        vol += _f((p.get("volume") or {}).get("h24"), 0) or 0
+        d = resolve.exit_depth_usd(p)
+        if d is not None:
+            depths.append(d)
+        for k in ("marketCap", "fdv"):
+            v = _f(p.get(k))
+            if v:
+                mcaps.append(v)
+                break
+        q = (p.get("quoteToken") or {}).get("symbol") or "unknown"
+        quotes[q] = quotes.get(q, 0.0) + (_f((p.get("liquidity") or {}).get("usd"), 0) or 0)
+    n = sum(1 for p in (pairs or []) if (p or {}).get("chainId") == "solana")
+    mcap = max(mcaps) if mcaps else None
+    # ⛔ Dexscreener returns AT MOST 30 pairs per token, whatever the token: SOL
+    # returns 30. At the cap the sums are FLOORS, and the missing pairs cannot be
+    # bounded because the returned set is not ordered by size. The phantom rule
+    # therefore needs a COMPLETE sample - 30 arbitrary pools summing to nothing
+    # says nothing about a 31st. The mint that forced the rule had 3.
+    truncated = len(pairs or []) >= PAIR_CAP
+    return {"pair_count": n, "pairs_truncated": truncated,
+            "liq_all_pairs_is_floor": truncated,
+            "liq_usd_all_pairs": liq if n else None,
+            "vol24_all_pairs_usd": vol if n else None,
+            # unknown stays None, never 0 - rule 5
+            "exit_depth_all_pairs_usd": sum(depths) if depths else None,
+            "mcap_usd": mcap,
+            "quote_assets": dict(sorted(quotes.items(), key=lambda kv: -kv[1])),
+            "phantom": bool(mcap and mcap > PHANTOM_MCAP and liq < PHANTOM_LIQ
+                            and not truncated)}
+
+
 def _pick_pair(pairs):
     """The pool a real order would hit: the deepest AMM by measured quote side.
 
@@ -106,7 +162,17 @@ def analyse(contract):
            # trusted-field source and until now NOTHING in the production path
            # used it. Unknown stays None throughout - never 0.
            "realizable": None, "realizable_usd_back": None,
-           "realizable_cost_pct": None, "realizable_venues": None}
+           "realizable_cost_pct": None, "realizable_venues": None,
+           # ⛔⛔ ALL PAIRS, standing rule 18. Frank, 2026-09-22: "we have been
+           # reading one pool on tokens that trade across thirty." Everything
+           # above named `exit_depth_usd` / `liq_usd` describes the DEEPEST POOL
+           # ONLY. These describe the TOKEN. On the real EMBER the deepest pool
+           # holds $663,260 of $2,331,895 - a 3.52x understatement, and it is
+           # worst exactly on the pairing-launchpad assets that matter most.
+           "pair_count": 0, "liq_usd_all_pairs": None,
+           "exit_depth_all_pairs_usd": None, "vol24_all_pairs_usd": None,
+           "mcap_usd": None, "quote_assets": None, "phantom": None,
+           "pairs_truncated": None, "liq_all_pairs_is_floor": None}
 
     if not contract or len(contract) < 32:
         out["verdict"] = "REFUSED"
@@ -124,6 +190,23 @@ def analyse(contract):
         return out
 
     out["pools_seen"] = len(pairs or [])
+    out.update(_all_pairs(pairs))
+
+    # ⛔ THE PHANTOM RULE, pre-committed (standing rule 18). A market cap over
+    # $1,000,000 on under $1,000 of liquidity summed across EVERY pair is a
+    # ghost, not a token, and must never produce a finding. The case that forced
+    # it: a mint symbol'd EMBER claiming $1,314,046,208 on $1.39 of backing,
+    # which we analysed for a full day as though it were real.
+    if out["phantom"]:
+        out["verdict"] = "REFUSED"
+        out["refusals"].append(
+            f"PHANTOM: a claimed market cap of ${out['mcap_usd']:,.0f} on "
+            f"${out['liq_usd_all_pairs']:,.2f} of liquidity summed across all "
+            f"{out['pair_count']} pairs. There is nothing behind the cap. This is "
+            f"not a thin token, it is a number with no market under it - do not "
+            f"price it, do not compare it, do not report a multiple on it.")
+        return out
+
     scored = _pick_pair(pairs)
     if not scored:
         out["verdict"] = "REFUSED"
@@ -194,14 +277,20 @@ def analyse(contract):
     out["exit_depth_usd"] = depth
     out["liq_usd"] = _f((pair.get("liquidity") or {}).get("usd"))
     out["fdv_usd"] = _f(pair.get("fdv")) or _f(pair.get("marketCap"))
-    out["max_size_5pct"] = depth / SLIPPAGE_DIVISOR if depth else 0.0
+    # ⭐ SIZED OFF ALL PAIRS, not the deepest one. A router reaches every pool,
+    # so the depth a sell actually meets is the sum. Falls back to the deepest
+    # pool when the per-pair reads failed, and stays None when nothing is
+    # measurable - never 0 (rule 5).
+    sizing_depth = out["exit_depth_all_pairs_usd"] or depth
+    out["sizing_depth_usd"] = sizing_depth
+    out["max_size_5pct"] = sizing_depth / SLIPPAGE_DIVISOR if sizing_depth else 0.0
     # Round-trip cost at his actual clip. Only ever computed from a MEASURED
     # depth - if depth is unknown this stays None and renders as "cannot be
     # measured", never as a default number.
-    if depth and depth > 0:
+    if sizing_depth and sizing_depth > 0:
         x = DEFAULT_CLIP_USD
         out["clip_usd"] = x
-        out["round_trip_pct"] = 100.0 * ((x / (depth + x)) * 2 + 2 * POOL_FEE)
+        out["round_trip_pct"] = 100.0 * ((x / (sizing_depth + x)) * 2 + 2 * POOL_FEE)
     else:
         out["clip_usd"] = DEFAULT_CLIP_USD
         out["round_trip_pct"] = None
@@ -231,7 +320,30 @@ def analyse(contract):
             f"That is NOT a pass - the strongest detector had no inputs.")
     else:
         hit = detector.d1(row)
+        # ⛔⛔ D1 compares ONE POOL'S liquidity against the WHOLE TOKEN'S fdv,
+        # which is apples to oranges on a token with many pools and biases it
+        # toward flagging. On a 30-pool asset the numerator is understated ~3.5x.
+        # ⚠️ D1's recall was characterised on single-pair `liq`, so changing its
+        # input silently would relabel the whole record. It is NOT changed here.
+        # Instead the same detector is run on the all-pairs liquidity and the
+        # disagreement is reported, so a flag that exists only because we read
+        # one of N pools cannot reach Frank as a rug call. Pre-commit needed
+        # before the input itself moves - BACKLOG A57.
+        row_all = dict(row, liq=out["liq_usd_all_pairs"])
+        hit_all = detector.d1(row_all) if out["liq_usd_all_pairs"] is not None else hit
+        if hit and not hit_all:
+            out["warnings"].append(
+                f"⛔ D1's flag is an ARTIFACT OF READING ONE POOL. It fired on the "
+                f"deepest pool's ${row['liq']:,.0f} against a token-wide fdv, but "
+                f"this token has {out['pair_count']} Solana pools holding "
+                f"${out['liq_usd_all_pairs']:,.0f} between them, and D1 does NOT "
+                f"fire on that. Treat the flag as unproven.")
         out["d1"] = {"verdict": "FLAGGED" if hit else "clear",
+                     "verdict_all_pairs": "FLAGGED" if hit_all else "clear",
+                     "one_pool_artifact": bool(hit and not hit_all),
+                     "liq_over_fdv_all_pairs": ((out["liq_usd_all_pairs"] / row["fdv"])
+                                                if (row["fdv"] and out["liq_usd_all_pairs"]
+                                                    is not None) else None),
                      "liq_over_fdv": (row["liq"] / row["fdv"]) if row["fdv"] else None,
                      "sells_h1": row["sells_h1"], "buys_h1": row["buys_h1"]}
         if hit:
@@ -395,12 +507,33 @@ def render(r):
     for x in r["reasons"]:
         L.append(f"      - {x}")
     L.append("")
+    # ⭐ THE TOKEN FIRST, one pool second. Standing rule 18: reading one pool on
+    # a token that trades across thirty is a 3% sample presented as the whole,
+    # so the summed line is the one that answers "what is this token".
+    n = r.get("pair_count") or 0
+    da = r.get("exit_depth_all_pairs_usd")
+    L.append(f"  pools, this token     {n}"
+             + ("   <- AT THE API CAP: 30 means '30 or more', so every figure "
+                "below is a FLOOR" if r.get("pairs_truncated") else ""))
+    L.append(f"  exit depth, ALL pools ${da:,.0f}   (quote side only - what you"
+             f" could be paid in)" if da is not None else
+             "  exit depth, ALL pools UNAVAILABLE")
+    if r.get("liq_usd_all_pairs") is not None:
+        L.append(f"  reported liq, ALL     ${r['liq_usd_all_pairs']:,.0f}"
+                 + (f"   (claimed cap ${r['mcap_usd']:,.0f})"
+                    if r.get("mcap_usd") else ""))
+    qa = r.get("quote_assets") or {}
+    if len(qa) > 1:
+        L.append("  paired against        "
+                 + ", ".join(f"{_safe_sym(k)} ${v:,.0f}"
+                             for k, v in list(qa.items())[:5]))
     d = r.get("exit_depth_usd")
-    L.append(f"  measured exit depth   ${d:,.0f}   (quote side only - what you"
-             f" could be paid in)" if d is not None else
-             "  measured exit depth   UNAVAILABLE")
+    L.append(f"  ...deepest pool alone ${d:,.0f}"
+             + (f"   ({da/d:.2f}x less than the token)"
+                if (da and d and d > 0) else "") if d is not None else
+             "  ...deepest pool alone UNAVAILABLE")
     if r.get("liq_usd") is not None:
-        L.append(f"  reported liquidity    ${r['liq_usd']:,.0f}"
+        L.append(f"  ...its reported liq   ${r['liq_usd']:,.0f}"
                  + (f"   ({100*r['depth_over_liq']:.1f}% is really exitable)"
                     if (r.get("depth_over_liq") is not None
                         and (r.get("liq_usd") or 0) >= 1000) else ""))

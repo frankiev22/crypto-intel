@@ -1,0 +1,1831 @@
+[
+ {
+  "chain": "solana",
+  "address": "DyMyGP6XF1CH9jTwYek1J3A3BdkkBWpKNg5PCqPfgmSZ",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "DyMyGP6XF1CH9jTwYek1J3A3BdkkBWpKNg5PCqPfgmSZ",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 131225918.26,
+   "total_vol24_usd": 580.11,
+   "mcap_usd": 3280647955.0,
+   "price_usd": 0.00328,
+   "venues": {
+    "orca": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 131225918.26,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "FEVqMFNJpBPHi1zRUvK4WtLqi5jqHzfmyPU2vo6vEeNU",
+    "dex": "orca",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 131225918.26,
+    "vol24_usd": 580.11,
+    "created_ms": 1789880595000
+   },
+   "single_pair_would_have_said": 131225918.26,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1789880595000,
+   "pairs": [
+    {
+     "pair": "FEVqMFNJpBPHi1zRUvK4WtLqi5jqHzfmyPU2vo6vEeNU",
+     "dex": "orca",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 131225918.26,
+     "vol24_usd": 580.11,
+     "created_ms": 1789880595000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "HXAxgjKcja9uJ3irW9PYP5izjAjGB6HUkQqL69LWi7E2",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "HXAxgjKcja9uJ3irW9PYP5izjAjGB6HUkQqL69LWi7E2",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 1620776.77,
+   "total_vol24_usd": 3031.13,
+   "mcap_usd": 3307681.0,
+   "price_usd": 0.003307,
+   "venues": {
+    "orca": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 1620776.77,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "8ZS1i4w7R9Fqi4pW6NpH8Ur58fCmemQfWzV9gs3iSEbQ",
+    "dex": "orca",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 1620776.77,
+    "vol24_usd": 3031.13,
+    "created_ms": 1790096911000
+   },
+   "single_pair_would_have_said": 1620776.77,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1790096911000,
+   "pairs": [
+    {
+     "pair": "8ZS1i4w7R9Fqi4pW6NpH8Ur58fCmemQfWzV9gs3iSEbQ",
+     "dex": "orca",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 1620776.77,
+     "vol24_usd": 3031.13,
+     "created_ms": 1790096911000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "ethereum",
+  "address": "0x8Abc0d5535cD2E154c7ca1d30b14c8844dc4232C",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "0x8Abc0d5535cD2E154c7ca1d30b14c8844dc4232C",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 979912.69,
+   "total_vol24_usd": 0.0,
+   "mcap_usd": 1959808.0,
+   "price_usd": 0.001959,
+   "venues": {
+    "uniswap": 1
+   },
+   "quote_assets": {
+    "WETH": {
+     "pairs": 1,
+     "liq_usd": 979912.69,
+     "mint": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+    }
+   },
+   "deepest": {
+    "pair": "0x9Bd908c687Fb9aB338aA6cC2abb99457d5193593",
+    "dex": "uniswap",
+    "chain": "ethereum",
+    "quote": "WETH",
+    "liq_usd": 979912.69,
+    "vol24_usd": 0.0,
+    "created_ms": 1789919855000
+   },
+   "single_pair_would_have_said": 979912.69,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1789919855000,
+   "pairs": [
+    {
+     "pair": "0x9Bd908c687Fb9aB338aA6cC2abb99457d5193593",
+     "dex": "uniswap",
+     "chain": "ethereum",
+     "quote": "WETH",
+     "liq_usd": 979912.69,
+     "vol24_usd": 0.0,
+     "created_ms": 1789919855000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "ethereum"
+   ]
+  },
+  "match_score": null,
+  "match_why": "different chain",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+   "ok": true,
+   "pair_count": 30,
+   "total_liq_usd": 921149.2899999998,
+   "total_vol24_usd": 9161445.119999997,
+   "mcap_usd": 8278611.0,
+   "price_usd": 0.008439,
+   "venues": {
+    "meteora": 9,
+    "raydium": 8,
+    "pumpfun": 7,
+    "pumpswap": 5,
+    "orca": 1
+   },
+   "quote_assets": {
+    "SOL": {
+     "pairs": 10,
+     "liq_usd": 811014.95,
+     "mint": "So11111111111111111111111111111111111111112"
+    },
+    "JEANPHIL": {
+     "pairs": 17,
+     "liq_usd": 83771.13,
+     "mint": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump"
+    },
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 26309.37,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    },
+    "HQ": {
+     "pairs": 1,
+     "liq_usd": 53.84,
+     "mint": "EDTmJjr4VoV9S8ftCQFt4ZBvmDy9s1tBoiWVrmDApump"
+    },
+    "BP": {
+     "pairs": 1,
+     "liq_usd": 0.0,
+     "mint": "BPxxfRCXkUVhig4HS1Lh7kZqV6SPJhzfEk4x6fVBjPCy"
+    }
+   },
+   "deepest": {
+    "pair": "4R8CiMnJWDNoes3fQi1ccPFJygPXazaHaWpHrN3rZeNj",
+    "dex": "pumpswap",
+    "chain": "solana",
+    "quote": "SOL",
+    "liq_usd": 383890.3,
+    "vol24_usd": 7056080.84,
+    "created_ms": 1789844819000
+   },
+   "single_pair_would_have_said": 383890.3,
+   "single_pair_understates_by": 2.4,
+   "first_pair_ms": 1789844819000,
+   "pairs": [
+    {
+     "pair": "4R8CiMnJWDNoes3fQi1ccPFJygPXazaHaWpHrN3rZeNj",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 383890.3,
+     "vol24_usd": 7056080.84,
+     "created_ms": 1789844819000
+    },
+    {
+     "pair": "5u7PMsDxbaALbV9viti9Y4pEBVJqWSSp69uEsXGtiANq",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 356471.33,
+     "vol24_usd": 1525566.43,
+     "created_ms": 1789872144000
+    },
+    {
+     "pair": "CJab6RE2KNdhCLdY9sBxpijxpFegduaFg83UtEehLPh9",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 57333.4,
+     "vol24_usd": 154705.7,
+     "created_ms": 1789850671000
+    },
+    {
+     "pair": "Fhd2ZgVtebSL1z4Tw2HVEwh6xRY6oGB8LDeqteBQszib",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 27346.84,
+     "vol24_usd": 3091.85,
+     "created_ms": 1790097670000
+    },
+    {
+     "pair": "5zPSHDVj5ZBY9WS5XFY4GqDU3pX7xycKY4Tgbu8kN82d",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 26309.37,
+     "vol24_usd": 245746.05,
+     "created_ms": 1789911298000
+    },
+    {
+     "pair": "j4qvNWSZLPy18jSWfkCa5VbPnD9PqEGBC3LAjjzA1kG",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 17242.71,
+     "vol24_usd": 27142.31,
+     "created_ms": 1789918495000
+    },
+    {
+     "pair": "CzVhSwrx9VQmBJTP2BdHgWiRPEcbWBNEAmPCPH1BMJTS",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 12292.84,
+     "vol24_usd": 27611.0,
+     "created_ms": 1789848729000
+    },
+    {
+     "pair": "G8vZJGjoxKg9dTRKRvTnb212nwLTU8WSyREexGFkkQbM",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 11590.06,
+     "vol24_usd": 59.73,
+     "created_ms": 1789921164000
+    },
+    {
+     "pair": "9nYR1M9mL7HcHbSmm68ghTeXFaB1viBaM4Qfd47rBePb",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 5480.09,
+     "vol24_usd": 4785.04,
+     "created_ms": 1789920992000
+    },
+    {
+     "pair": "GVCy6CdXracTngptXKWUPXML7JQzSYYWTRyfx6jAJmtH",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 5227.6,
+     "vol24_usd": 6371.36,
+     "created_ms": 1789924373000
+    },
+    {
+     "pair": "3grC12GK7gbmAETcAtRbnNKCVRh2bjtsvnBkbsFjQeWk",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 4895.8,
+     "vol24_usd": 2583.87,
+     "created_ms": 1789919427000
+    },
+    {
+     "pair": "5NE2RpTNtC7FExrjpMhVFeYYZdQSzXau51D1U57PDR4g",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 4395.2,
+     "vol24_usd": 3390.97,
+     "created_ms": 1789922525000
+    },
+    {
+     "pair": "AxnoE7ZUS4aqrt653vAcLkGKhpDpAEHxwjkemCHJhLE2",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 3198.33,
+     "vol24_usd": 235.78,
+     "created_ms": 1789924388000
+    },
+    {
+     "pair": "CxdX7T7VD77XKWsK22UbX7gRbr85NkVdPeTQ9BXQcpt1",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 2202.52,
+     "vol24_usd": 906.66,
+     "created_ms": 1790026649000
+    },
+    {
+     "pair": "DHPtnW4ZdFEfb7ogUUHgoSfySEohPbzodTzex815Ptz8",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 2191.98,
+     "vol24_usd": 58289.41,
+     "created_ms": 1790070136000
+    },
+    {
+     "pair": "DfEEQWeua7KqrFxu9ueuzR1WqTdSDNNUvKh1cdSEW7mb",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 655.39,
+     "vol24_usd": 44038.92,
+     "created_ms": 1789858710000
+    },
+    {
+     "pair": "ANJCma3JZ1uxhYZEM2F4rrW4LQsePfMmFc96q2bFuTx9",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 217.35,
+     "vol24_usd": 296.34,
+     "created_ms": 1789853436000
+    },
+    {
+     "pair": "Cs9YZq5s28PztmUgjPeTjxWgNaNWfSsHZ9paiDzuVigB",
+     "dex": "orca",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 103.7,
+     "vol24_usd": 234.47,
+     "created_ms": 1789907240000
+    },
+    {
+     "pair": "FUuN297SQNoT5EfKeg56BESFmjNQxvdzJefXpSvfiTGJ",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "HQ",
+     "liq_usd": 53.84,
+     "vol24_usd": 76.67,
+     "created_ms": 1789857620000
+    },
+    {
+     "pair": "FZZowqbVU5AH1vwNpVVqPE1WgLJRjFDtJX4ugTSFQ8o4",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 48.36,
+     "vol24_usd": 221.29,
+     "created_ms": 1790115648000
+    },
+    {
+     "pair": "586D5yVqaFn9Dgt7yQcnL4bmfCsoxE1B28aPT7tbh5X",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 2.28,
+     "vol24_usd": 2.16,
+     "created_ms": 1789920366000
+    },
+    {
+     "pair": "Sk7wva2NLRmeajJ5ffn3oGBYxppVYmRJNTqrUFbz7Ap",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.0,
+     "vol24_usd": 0.02,
+     "created_ms": 1789856337000
+    },
+    {
+     "pair": "6HAdQgC6BCCZKZD34eVt4kL8sKuSqxwtZnN9aDpo627D",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "BP",
+     "liq_usd": 0.0,
+     "vol24_usd": 8.25,
+     "created_ms": 1789924498000
+    },
+    {
+     "pair": "2GMmwJJmVMW2xEAQVuXVzH8BNaxmgv19N5bZNAxvDp6Y",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 0.0,
+     "vol24_usd": 0.0,
+     "created_ms": 1790101089000
+    },
+    {
+     "pair": "DU3vTKNUAjNiNpu6EzsLTdRmWEfxL1ZuNec5BPbfBTnk",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 0.0,
+     "vol24_usd": 0.0,
+     "created_ms": 1789918694000
+    },
+    {
+     "pair": "CNbqLWhUCbBJzuLq6xj7Jo43VJh3KddRUb5SjoZ9Chhn",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 0.0,
+     "vol24_usd": 0.0,
+     "created_ms": 1790105279000
+    },
+    {
+     "pair": "6FUdUcHfBX1KnaCtXyaHkBb6b2x4NqryCYA72o9yAzNW",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 0.0,
+     "vol24_usd": 0.0,
+     "created_ms": 1790069972000
+    },
+    {
+     "pair": "5oqGRBQdbuNCyXo5uh6ojVBaNXyNPaeSk5XkxX22gy35",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 0.0,
+     "vol24_usd": 0.0,
+     "created_ms": 1790034289000
+    },
+    {
+     "pair": "5MQ4RdB5wVbMiCmP1CQrMsWJ2VqnbAU2t1hiR24R84fM",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 0.0,
+     "vol24_usd": 0.0,
+     "created_ms": 1790114964000
+    },
+    {
+     "pair": "2VQxLLchCWaEYpZhfEKYDv223QivNeZVuoxdgFFgKJ52",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "JEANPHIL",
+     "liq_usd": 0.0,
+     "vol24_usd": 0.0,
+     "created_ms": 1789919324000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "ethereum",
+  "address": "0x025Fcb25C26dCE08bfAaf697fBa8080E080A92AE",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "0x025Fcb25C26dCE08bfAaf697fBa8080E080A92AE",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 709005.08,
+   "total_vol24_usd": 24.96,
+   "mcap_usd": 1418010.0,
+   "price_usd": 0.001418,
+   "venues": {
+    "uniswap": 1
+   },
+   "quote_assets": {
+    "WETH": {
+     "pairs": 1,
+     "liq_usd": 709005.08,
+     "mint": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+    }
+   },
+   "deepest": {
+    "pair": "0x9142Ccc0728728737fE474ec08dEFE399263E511",
+    "dex": "uniswap",
+    "chain": "ethereum",
+    "quote": "WETH",
+    "liq_usd": 709005.08,
+    "vol24_usd": 24.96,
+    "created_ms": 1789929755000
+   },
+   "single_pair_would_have_said": 709005.08,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1789929755000,
+   "pairs": [
+    {
+     "pair": "0x9142Ccc0728728737fE474ec08dEFE399263E511",
+     "dex": "uniswap",
+     "chain": "ethereum",
+     "quote": "WETH",
+     "liq_usd": 709005.08,
+     "vol24_usd": 24.96,
+     "created_ms": 1789929755000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "ethereum"
+   ]
+  },
+  "match_score": null,
+  "match_why": "different chain",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "robinhood",
+  "address": "0x6679677375a2509B3eB63c227724b5c5d7c872Ae",
+  "name": "Next Fucking Trump",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "0x6679677375a2509B3eB63c227724b5c5d7c872Ae",
+   "ok": true,
+   "pair_count": 3,
+   "total_liq_usd": 83758.14,
+   "total_vol24_usd": 180970.37000000002,
+   "mcap_usd": 90530.0,
+   "price_usd": 9.053e-05,
+   "venues": {
+    "uniswap": 3
+   },
+   "quote_assets": {
+    "ETH": {
+     "pairs": 3,
+     "liq_usd": 83758.14,
+     "mint": "0x0000000000000000000000000000000000000000"
+    }
+   },
+   "deepest": {
+    "pair": "0x8b85526293e9039ead2d35df046401b322d6df0ab6d573acad16f1a7f13e57b7",
+    "dex": "uniswap",
+    "chain": "robinhood",
+    "quote": "ETH",
+    "liq_usd": 83668.81,
+    "vol24_usd": 180963.48,
+    "created_ms": 1790095969000
+   },
+   "single_pair_would_have_said": 83668.81,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1790095969000,
+   "pairs": [
+    {
+     "pair": "0x8b85526293e9039ead2d35df046401b322d6df0ab6d573acad16f1a7f13e57b7",
+     "dex": "uniswap",
+     "chain": "robinhood",
+     "quote": "ETH",
+     "liq_usd": 83668.81,
+     "vol24_usd": 180963.48,
+     "created_ms": 1790095969000
+    },
+    {
+     "pair": "0x13c755490220a5f7ece3c4d207574ccef7ce156c74a8b3e72ba24229f6c92c07",
+     "dex": "uniswap",
+     "chain": "robinhood",
+     "quote": "ETH",
+     "liq_usd": 52.74,
+     "vol24_usd": 0.1,
+     "created_ms": 1790123813000
+    },
+    {
+     "pair": "0x867490caef46ced4f5171827aaac8457a9da32c6dd81e867e340fbf04ff5b938",
+     "dex": "uniswap",
+     "chain": "robinhood",
+     "quote": "ETH",
+     "liq_usd": 36.59,
+     "vol24_usd": 6.79,
+     "created_ms": 1790101767000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "robinhood"
+   ]
+  },
+  "match_score": null,
+  "match_why": "different chain",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "AjTU95ojaYxM6v4XYLbhNSD8ZHWwu56r2H1xKXf7tJZ4",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "AjTU95ojaYxM6v4XYLbhNSD8ZHWwu56r2H1xKXf7tJZ4",
+   "ok": true,
+   "pair_count": 3,
+   "total_liq_usd": 76318.6,
+   "total_vol24_usd": 819264.0000000001,
+   "mcap_usd": 660173.0,
+   "price_usd": 0.0006601,
+   "venues": {
+    "pumpswap": 1,
+    "meteora": 1,
+    "meteoradbc": 1
+   },
+   "quote_assets": {
+    "SOL": {
+     "pairs": 3,
+     "liq_usd": 76318.6,
+     "mint": "So11111111111111111111111111111111111111112"
+    }
+   },
+   "deepest": {
+    "pair": "2FqeEAQtFNhPDu5TQpErrxpmETwmKDzTcTDsQ2whoKT6",
+    "dex": "pumpswap",
+    "chain": "solana",
+    "quote": "SOL",
+    "liq_usd": 76310.02,
+    "vol24_usd": 819179.42,
+    "created_ms": 1790122284000
+   },
+   "single_pair_would_have_said": 76310.02,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1790122271000,
+   "pairs": [
+    {
+     "pair": "2FqeEAQtFNhPDu5TQpErrxpmETwmKDzTcTDsQ2whoKT6",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 76310.02,
+     "vol24_usd": 819179.42,
+     "created_ms": 1790122284000
+    },
+    {
+     "pair": "F1J4XbL9vBLjpfN8JM8NEPpMdfYjP99APKRmzifwc3co",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 8.58,
+     "vol24_usd": 84.53,
+     "created_ms": 1790122271000
+    },
+    {
+     "pair": "HQkBvsR8tP2nFjAzkG6k492WMuyKLDuidbYT5U2ZUaAk",
+     "dex": "meteoradbc",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.0,
+     "vol24_usd": 0.05,
+     "created_ms": 1790122271000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "robinhood",
+  "address": "0x6F023Ab093CC35Dd74ccd6fABeCe24C0Aa8961b9",
+  "name": "Next Fuke Trump",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "0x6F023Ab093CC35Dd74ccd6fABeCe24C0Aa8961b9",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 55492.32,
+   "total_vol24_usd": 772.19,
+   "mcap_usd": 40156.0,
+   "price_usd": 4.015e-05,
+   "venues": {
+    "uniswap": 1
+   },
+   "quote_assets": {
+    "ETH": {
+     "pairs": 1,
+     "liq_usd": 55492.32,
+     "mint": "0x0000000000000000000000000000000000000000"
+    }
+   },
+   "deepest": {
+    "pair": "0xfc50ed3daea209f774d7a15739274c493d62605f9ae850ad68822e9a82b2aab3",
+    "dex": "uniswap",
+    "chain": "robinhood",
+    "quote": "ETH",
+    "liq_usd": 55492.32,
+    "vol24_usd": 772.19,
+    "created_ms": 1790095678000
+   },
+   "single_pair_would_have_said": 55492.32,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1790095678000,
+   "pairs": [
+    {
+     "pair": "0xfc50ed3daea209f774d7a15739274c493d62605f9ae850ad68822e9a82b2aab3",
+     "dex": "uniswap",
+     "chain": "robinhood",
+     "quote": "ETH",
+     "liq_usd": 55492.32,
+     "vol24_usd": 772.19,
+     "created_ms": 1790095678000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "robinhood"
+   ]
+  },
+  "match_score": null,
+  "match_why": "different chain",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "C3QYkeYv8Q9zgrxKxyn2DkXZgNCn66998MhVh9rxMaLG",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "C3QYkeYv8Q9zgrxKxyn2DkXZgNCn66998MhVh9rxMaLG",
+   "ok": true,
+   "pair_count": 3,
+   "total_liq_usd": 52422.869999999995,
+   "total_vol24_usd": 4314034.85,
+   "mcap_usd": 222193.0,
+   "price_usd": 0.0002221,
+   "venues": {
+    "pumpswap": 1,
+    "meteora": 1,
+    "meteoradbc": 1
+   },
+   "quote_assets": {
+    "SOL": {
+     "pairs": 3,
+     "liq_usd": 52422.869999999995,
+     "mint": "So11111111111111111111111111111111111111112"
+    }
+   },
+   "deepest": {
+    "pair": "21Kn5bTc7dNFDpAbGiJxxYNVjX73oonBct5hRZk3hF7x",
+    "dex": "pumpswap",
+    "chain": "solana",
+    "quote": "SOL",
+    "liq_usd": 52422.2,
+    "vol24_usd": 4314032.66,
+    "created_ms": 1790123499000
+   },
+   "single_pair_would_have_said": 52422.2,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1790123495000,
+   "pairs": [
+    {
+     "pair": "21Kn5bTc7dNFDpAbGiJxxYNVjX73oonBct5hRZk3hF7x",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 52422.2,
+     "vol24_usd": 4314032.66,
+     "created_ms": 1790123499000
+    },
+    {
+     "pair": "GMyDYV4WCscfxeD8MiJ5YAMwGWeqk3irVp82kPz453TH",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.67,
+     "vol24_usd": 2.18,
+     "created_ms": 1790123495000
+    },
+    {
+     "pair": "7fh6mDfzYcAgG78Yjs7y57tzEto5ZHDNbipdGkyjcG7k",
+     "dex": "meteoradbc",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.0,
+     "vol24_usd": 0.01,
+     "created_ms": 1790123495000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "arc",
+  "address": "0xb5cd06CE680Bff75485a62a4cA4Bb477FAb66777",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "0xb5cd06CE680Bff75485a62a4cA4Bb477FAb66777",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 51313.1,
+   "total_vol24_usd": 15201.95,
+   "mcap_usd": 31348.0,
+   "price_usd": 3.15e-05,
+   "venues": {
+    "uniswap": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 51313.1,
+     "mint": "0x0000000000000000000000000000000000000000"
+    }
+   },
+   "deepest": {
+    "pair": "0x5145d186d178972f224dff4b5d72defa69e4b9199614b73a8a76283e8f1869b3",
+    "dex": "uniswap",
+    "chain": "arc",
+    "quote": "USDC",
+    "liq_usd": 51313.1,
+    "vol24_usd": 15201.95,
+    "created_ms": 1790070294000
+   },
+   "single_pair_would_have_said": 51313.1,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1790070294000,
+   "pairs": [
+    {
+     "pair": "0x5145d186d178972f224dff4b5d72defa69e4b9199614b73a8a76283e8f1869b3",
+     "dex": "uniswap",
+     "chain": "arc",
+     "quote": "USDC",
+     "liq_usd": 51313.1,
+     "vol24_usd": 15201.95,
+     "created_ms": 1790070294000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "arc"
+   ]
+  },
+  "match_score": null,
+  "match_why": "different chain",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "robinhood",
+  "address": "0xB10f7f17588DB63e6bd1eEF1533d8716eC31053C",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "0xB10f7f17588DB63e6bd1eEF1533d8716eC31053C",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 28512.16,
+   "total_vol24_usd": 31034.26,
+   "mcap_usd": 25477.0,
+   "price_usd": 0.0001115,
+   "venues": {
+    "uniswap": 1
+   },
+   "quote_assets": {
+    "ETH": {
+     "pairs": 1,
+     "liq_usd": 28512.16,
+     "mint": "0x0000000000000000000000000000000000000000"
+    }
+   },
+   "deepest": {
+    "pair": "0xa3ea5b18230e39634bba7ad594765000b5ffcad03dfa97c35db6d8f9e05abd88",
+    "dex": "uniswap",
+    "chain": "robinhood",
+    "quote": "ETH",
+    "liq_usd": 28512.16,
+    "vol24_usd": 31034.26,
+    "created_ms": 1790070489000
+   },
+   "single_pair_would_have_said": 28512.16,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1790070489000,
+   "pairs": [
+    {
+     "pair": "0xa3ea5b18230e39634bba7ad594765000b5ffcad03dfa97c35db6d8f9e05abd88",
+     "dex": "uniswap",
+     "chain": "robinhood",
+     "quote": "ETH",
+     "liq_usd": 28512.16,
+     "vol24_usd": 31034.26,
+     "created_ms": 1790070489000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "robinhood"
+   ]
+  },
+  "match_score": null,
+  "match_why": "different chain",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "robinhood",
+  "address": "0x8e1a500C279eFD5Da8bEA3e0086A0a245e9FC98d",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "0x8e1a500C279eFD5Da8bEA3e0086A0a245e9FC98d",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 11002.06,
+   "total_vol24_usd": 5266.24,
+   "mcap_usd": 8370.0,
+   "price_usd": 8.37e-06,
+   "venues": {
+    "uniswap": 1
+   },
+   "quote_assets": {
+    "ETH": {
+     "pairs": 1,
+     "liq_usd": 11002.06,
+     "mint": "0x0000000000000000000000000000000000000000"
+    }
+   },
+   "deepest": {
+    "pair": "0x9586ac36f4325c741fd1baccc9bcd7d312eb45d6eb66154a2108d21a40340363",
+    "dex": "uniswap",
+    "chain": "robinhood",
+    "quote": "ETH",
+    "liq_usd": 11002.06,
+    "vol24_usd": 5266.24,
+    "created_ms": 1790061375000
+   },
+   "single_pair_would_have_said": 11002.06,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1790061375000,
+   "pairs": [
+    {
+     "pair": "0x9586ac36f4325c741fd1baccc9bcd7d312eb45d6eb66154a2108d21a40340363",
+     "dex": "uniswap",
+     "chain": "robinhood",
+     "quote": "ETH",
+     "liq_usd": 11002.06,
+     "vol24_usd": 5266.24,
+     "created_ms": 1790061375000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "robinhood"
+   ]
+  },
+  "match_score": null,
+  "match_why": "different chain",
+  "verdict": "THIN"
+ },
+ {
+  "chain": "robinhood",
+  "address": "0xf98810dc0585141927FC0c122942DabC5f2bCbA3",
+  "name": "Jeanphil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "0xf98810dc0585141927FC0c122942DabC5f2bCbA3",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 10205.45,
+   "total_vol24_usd": 0.83,
+   "mcap_usd": 10205.0,
+   "price_usd": 1.02e-07,
+   "venues": {
+    "uniswap": 1
+   },
+   "quote_assets": {
+    "WETH": {
+     "pairs": 1,
+     "liq_usd": 10205.45,
+     "mint": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73"
+    }
+   },
+   "deepest": {
+    "pair": "0x9036ca5e6a3b132aada6c3865850bc4eeb9a62a616961c9fa9cb8bbab3d46bfe",
+    "dex": "uniswap",
+    "chain": "robinhood",
+    "quote": "WETH",
+    "liq_usd": 10205.45,
+    "vol24_usd": 0.83,
+    "created_ms": 1790113349000
+   },
+   "single_pair_would_have_said": 10205.45,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1790113349000,
+   "pairs": [
+    {
+     "pair": "0x9036ca5e6a3b132aada6c3865850bc4eeb9a62a616961c9fa9cb8bbab3d46bfe",
+     "dex": "uniswap",
+     "chain": "robinhood",
+     "quote": "WETH",
+     "liq_usd": 10205.45,
+     "vol24_usd": 0.83,
+     "created_ms": 1790113349000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "robinhood"
+   ]
+  },
+  "match_score": null,
+  "match_why": "different chain",
+  "verdict": "THIN"
+ },
+ {
+  "chain": "robinhood",
+  "address": "0xcf64Eabad1F0548e8c384C9a1890ac3F4938bBa3",
+  "name": "JEANPHIL",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "0xcf64Eabad1F0548e8c384C9a1890ac3F4938bBa3",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 10191.09,
+   "total_vol24_usd": 0.02,
+   "mcap_usd": 10191.0,
+   "price_usd": 1.019e-07,
+   "venues": {
+    "uniswap": 1
+   },
+   "quote_assets": {
+    "WETH": {
+     "pairs": 1,
+     "liq_usd": 10191.09,
+     "mint": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73"
+    }
+   },
+   "deepest": {
+    "pair": "0xc3a01f340b16dada4d167ed769e7a9a8ff97e1ed3071a6498bcb1e3f6da96f13",
+    "dex": "uniswap",
+    "chain": "robinhood",
+    "quote": "WETH",
+    "liq_usd": 10191.09,
+    "vol24_usd": 0.02,
+    "created_ms": 1790110505000
+   },
+   "single_pair_would_have_said": 10191.09,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1790110505000,
+   "pairs": [
+    {
+     "pair": "0xc3a01f340b16dada4d167ed769e7a9a8ff97e1ed3071a6498bcb1e3f6da96f13",
+     "dex": "uniswap",
+     "chain": "robinhood",
+     "quote": "WETH",
+     "liq_usd": 10191.09,
+     "vol24_usd": 0.02,
+     "created_ms": 1790110505000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "robinhood"
+   ]
+  },
+  "match_score": null,
+  "match_why": "different chain",
+  "verdict": "THIN"
+ },
+ {
+  "chain": "robinhood",
+  "address": "0xE242e4bcab08903a6cd3007251Df1809e34DebA3",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "0xE242e4bcab08903a6cd3007251Df1809e34DebA3",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 10029.01,
+   "total_vol24_usd": 2.05,
+   "mcap_usd": 10029.0,
+   "price_usd": 1.002e-07,
+   "venues": {
+    "uniswap": 1
+   },
+   "quote_assets": {
+    "WETH": {
+     "pairs": 1,
+     "liq_usd": 10029.01,
+     "mint": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73"
+    }
+   },
+   "deepest": {
+    "pair": "0x6e84b009fdf34d9dc3e3d23c64574b0c1795cbd8bde71215bcb39ce95057531e",
+    "dex": "uniswap",
+    "chain": "robinhood",
+    "quote": "WETH",
+    "liq_usd": 10029.01,
+    "vol24_usd": 2.05,
+    "created_ms": 1790119688000
+   },
+   "single_pair_would_have_said": 10029.01,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1790119688000,
+   "pairs": [
+    {
+     "pair": "0x6e84b009fdf34d9dc3e3d23c64574b0c1795cbd8bde71215bcb39ce95057531e",
+     "dex": "uniswap",
+     "chain": "robinhood",
+     "quote": "WETH",
+     "liq_usd": 10029.01,
+     "vol24_usd": 2.05,
+     "created_ms": 1790119688000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "robinhood"
+   ]
+  },
+  "match_score": null,
+  "match_why": "different chain",
+  "verdict": "THIN"
+ },
+ {
+  "chain": "base",
+  "address": "0x5b913f5D27C22443335CA5BF74658DDB3DBdA7ed",
+  "name": "Jean Phil Base",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "0x5b913f5D27C22443335CA5BF74658DDB3DBdA7ed",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 6755.14,
+   "total_vol24_usd": 4.4,
+   "mcap_usd": 27021.0,
+   "price_usd": 2.702e-07,
+   "venues": {
+    "uniswap": 1
+   },
+   "quote_assets": {
+    "WETH": {
+     "pairs": 1,
+     "liq_usd": 6755.14,
+     "mint": "0x4200000000000000000000000000000000000006"
+    }
+   },
+   "deepest": {
+    "pair": "0x9cbff25a385026d31a6c8ade7d0e33086203a8820783e2b4215c2b52023d93c8",
+    "dex": "uniswap",
+    "chain": "base",
+    "quote": "WETH",
+    "liq_usd": 6755.14,
+    "vol24_usd": 4.4,
+    "created_ms": 1789940431000
+   },
+   "single_pair_would_have_said": 6755.14,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1789940431000,
+   "pairs": [
+    {
+     "pair": "0x9cbff25a385026d31a6c8ade7d0e33086203a8820783e2b4215c2b52023d93c8",
+     "dex": "uniswap",
+     "chain": "base",
+     "quote": "WETH",
+     "liq_usd": 6755.14,
+     "vol24_usd": 4.4,
+     "created_ms": 1789940431000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "base"
+   ]
+  },
+  "match_score": null,
+  "match_why": "different chain",
+  "verdict": "THIN"
+ },
+ {
+  "chain": "robinhood",
+  "address": "0xcfCEa55DFb31c9c8008B0618b76B50B24CFBFb03",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "0xcfCEa55DFb31c9c8008B0618b76B50B24CFBFb03",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 4262.59,
+   "total_vol24_usd": 3966.73,
+   "mcap_usd": 4230.0,
+   "price_usd": 4.229e-06,
+   "venues": {
+    "uniswap": 1
+   },
+   "quote_assets": {
+    "WETH": {
+     "pairs": 1,
+     "liq_usd": 4262.59,
+     "mint": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73"
+    }
+   },
+   "deepest": {
+    "pair": "0x5911692eD271A572ccD5b275Aa83485023D87413",
+    "dex": "uniswap",
+    "chain": "robinhood",
+    "quote": "WETH",
+    "liq_usd": 4262.59,
+    "vol24_usd": 3966.73,
+    "created_ms": 1790099993000
+   },
+   "single_pair_would_have_said": 4262.59,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1790099993000,
+   "pairs": [
+    {
+     "pair": "0x5911692eD271A572ccD5b275Aa83485023D87413",
+     "dex": "uniswap",
+     "chain": "robinhood",
+     "quote": "WETH",
+     "liq_usd": 4262.59,
+     "vol24_usd": 3966.73,
+     "created_ms": 1790099993000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "robinhood"
+   ]
+  },
+  "match_score": null,
+  "match_why": "different chain",
+  "verdict": "THIN"
+ },
+ {
+  "chain": "polygon",
+  "address": "0x6D34e13E52C05dAda400BF397366D2567295dA81",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "0x6D34e13E52C05dAda400BF397366D2567295dA81",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 3666.78,
+   "total_vol24_usd": 5390.68,
+   "mcap_usd": 5325.0,
+   "price_usd": 5.324e-06,
+   "venues": {
+    "quickswap": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 3666.78,
+     "mint": "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"
+    }
+   },
+   "deepest": {
+    "pair": "0xEb04A837AFb6edb25759c32A06F3092b00A5F591",
+    "dex": "quickswap",
+    "chain": "polygon",
+    "quote": "USDC",
+    "liq_usd": 3666.78,
+    "vol24_usd": 5390.68,
+    "created_ms": 1789933198000
+   },
+   "single_pair_would_have_said": 3666.78,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1789933198000,
+   "pairs": [
+    {
+     "pair": "0xEb04A837AFb6edb25759c32A06F3092b00A5F591",
+     "dex": "quickswap",
+     "chain": "polygon",
+     "quote": "USDC",
+     "liq_usd": 3666.78,
+     "vol24_usd": 5390.68,
+     "created_ms": 1789933198000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "polygon"
+   ]
+  },
+  "match_score": null,
+  "match_why": "different chain",
+  "verdict": "THIN"
+ },
+ {
+  "chain": "solana",
+  "address": "95RLCbRKZSD57R53spVSx9QnAiEC9zxuNNDaj3yhpump",
+  "name": "Jean Phil house",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "95RLCbRKZSD57R53spVSx9QnAiEC9zxuNNDaj3yhpump",
+   "ok": true,
+   "pair_count": 2,
+   "total_liq_usd": 2574.33,
+   "total_vol24_usd": 336121.36,
+   "mcap_usd": 47773.04,
+   "price_usd": 2.496e-06,
+   "venues": {
+    "pumpswap": 1,
+    "pumpfun": 1
+   },
+   "quote_assets": {
+    "SOL": {
+     "pairs": 2,
+     "liq_usd": 2574.33,
+     "mint": "So11111111111111111111111111111111111111112"
+    }
+   },
+   "deepest": {
+    "pair": "DYaPxZBjbdLh4pK64g4913Uiqd9x4GpuF2ec2mz6X11s",
+    "dex": "pumpswap",
+    "chain": "solana",
+    "quote": "SOL",
+    "liq_usd": 2574.33,
+    "vol24_usd": 326237.79,
+    "created_ms": 1790062580000
+   },
+   "single_pair_would_have_said": 2574.33,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1790062580000,
+   "pairs": [
+    {
+     "pair": "DYaPxZBjbdLh4pK64g4913Uiqd9x4GpuF2ec2mz6X11s",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 2574.33,
+     "vol24_usd": 326237.79,
+     "created_ms": 1790062580000
+    },
+    {
+     "pair": "7DdEAgSTovUvrf7KCQZMLKc4KGGDdUDQQiaFAGSALiRu",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.0,
+     "vol24_usd": 9883.57,
+     "created_ms": 1790062580000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "THIN"
+ },
+ {
+  "chain": "solana",
+  "address": "wkhQ5FnR5tajqfQLZ8XL8SAfhJkfTQdU5eoRrYupump",
+  "name": "BATON Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "wkhQ5FnR5tajqfQLZ8XL8SAfhJkfTQdU5eoRrYupump",
+   "ok": true,
+   "pair_count": 3,
+   "total_liq_usd": 2556.27,
+   "total_vol24_usd": 178900.97,
+   "mcap_usd": 48183.92,
+   "price_usd": 2.52e-06,
+   "venues": {
+    "pumpswap": 1,
+    "meteora": 1,
+    "pumpfun": 1
+   },
+   "quote_assets": {
+    "SOL": {
+     "pairs": 3,
+     "liq_usd": 2556.27,
+     "mint": "So11111111111111111111111111111111111111112"
+    }
+   },
+   "deepest": {
+    "pair": "Bi5oZdfbb51Nm6M5A5v2kTKCRsjNE6boaxY6AFb5FwQP",
+    "dex": "pumpswap",
+    "chain": "solana",
+    "quote": "SOL",
+    "liq_usd": 2556.07,
+    "vol24_usd": 168931.85,
+    "created_ms": 1790070828000
+   },
+   "single_pair_would_have_said": 2556.07,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1790070828000,
+   "pairs": [
+    {
+     "pair": "Bi5oZdfbb51Nm6M5A5v2kTKCRsjNE6boaxY6AFb5FwQP",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 2556.07,
+     "vol24_usd": 168931.85,
+     "created_ms": 1790070828000
+    },
+    {
+     "pair": "B9CnNhpi2Tjbm9aMGKT7XAjNkZppLHyiWPeXLaYRE9gz",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.2,
+     "vol24_usd": 0.55,
+     "created_ms": 1790070961000
+    },
+    {
+     "pair": "HMDcRFy6VrGXDSruJJi1wtRVgdA7uHczERmGSohTVk4q",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.0,
+     "vol24_usd": 9968.57,
+     "created_ms": 1790070828000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "THIN"
+ },
+ {
+  "chain": "solana",
+  "address": "DkzmRqH2zvS8KwmyMK8pQJmQqop85sHwrvYNfUtcpump",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "DkzmRqH2zvS8KwmyMK8pQJmQqop85sHwrvYNfUtcpump",
+   "ok": true,
+   "pair_count": 2,
+   "total_liq_usd": 2065.2,
+   "total_vol24_usd": 105397.13,
+   "mcap_usd": 47822.34,
+   "price_usd": 2.046e-06,
+   "venues": {
+    "pumpswap": 1,
+    "pumpfun": 1
+   },
+   "quote_assets": {
+    "SOL": {
+     "pairs": 2,
+     "liq_usd": 2065.2,
+     "mint": "So11111111111111111111111111111111111111112"
+    }
+   },
+   "deepest": {
+    "pair": "HmJTPm3F3Q5ux4AN9EvMaS64Gze65r4dnApH9wQSrjTq",
+    "dex": "pumpswap",
+    "chain": "solana",
+    "quote": "SOL",
+    "liq_usd": 2065.2,
+    "vol24_usd": 95503.36,
+    "created_ms": 1790053713000
+   },
+   "single_pair_would_have_said": 2065.2,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1790053713000,
+   "pairs": [
+    {
+     "pair": "HmJTPm3F3Q5ux4AN9EvMaS64Gze65r4dnApH9wQSrjTq",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 2065.2,
+     "vol24_usd": 95503.36,
+     "created_ms": 1790053713000
+    },
+    {
+     "pair": "7S5SVK678osV5jrrocULHwHieC2W5PA9tkmsQpZJ9Jrg",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.0,
+     "vol24_usd": 9893.77,
+     "created_ms": 1790053713000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "THIN"
+ },
+ {
+  "chain": "solana",
+  "address": "2dP53YsPhsfei5vk8wiQhT1hhFbZGYAXUJuTmMWHHKAu",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "2dP53YsPhsfei5vk8wiQhT1hhFbZGYAXUJuTmMWHHKAu",
+   "ok": true,
+   "pair_count": 2,
+   "total_liq_usd": 1.18,
+   "total_vol24_usd": 15403939.59,
+   "mcap_usd": 12399184.0,
+   "price_usd": 0.000674,
+   "venues": {
+    "pumpswap": 1,
+    "meteora": 1
+   },
+   "quote_assets": {
+    "SOL": {
+     "pairs": 2,
+     "liq_usd": 1.18,
+     "mint": "So11111111111111111111111111111111111111112"
+    }
+   },
+   "deepest": {
+    "pair": "8ryHxCJtztrKq7SPEdZVxTKfdhoZFiCPP6RsX6ezy8E1",
+    "dex": "meteora",
+    "chain": "solana",
+    "quote": "SOL",
+    "liq_usd": 1.18,
+    "vol24_usd": 1.2,
+    "created_ms": 1790035865000
+   },
+   "single_pair_would_have_said": 1.18,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1790035865000,
+   "pairs": [
+    {
+     "pair": "8ryHxCJtztrKq7SPEdZVxTKfdhoZFiCPP6RsX6ezy8E1",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 1.18,
+     "vol24_usd": 1.2,
+     "created_ms": 1790035865000
+    },
+    {
+     "pair": "Eh7fQFiPydAJxKgttswkbwi9R5xsNLhqyv3SWCQ2temY",
+     "dex": "pumpswap",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.0,
+     "vol24_usd": 15403938.39,
+     "created_ms": 1790035870000
+    }
+   ],
+   "phantom": true,
+   "phantom_why": "mcap $12,399,184 on $1.18 of total liquidity",
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "PHANTOM"
+ },
+ {
+  "chain": "solana",
+  "address": "BwmJSQYD55p1ZhjFJLm4HTCpz8TJFMwTyNFQCwG4pump",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "BwmJSQYD55p1ZhjFJLm4HTCpz8TJFMwTyNFQCwG4pump",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 0.0,
+   "total_vol24_usd": 553.76,
+   "mcap_usd": 4404.22,
+   "price_usd": 4.404e-06,
+   "venues": {
+    "pumpfun": 1
+   },
+   "quote_assets": {
+    "SOL": {
+     "pairs": 1,
+     "liq_usd": 0.0,
+     "mint": "So11111111111111111111111111111111111111112"
+    }
+   },
+   "deepest": {
+    "pair": "E9THG6bogrkvgNcCtqAEK49S5vwmDGXW1g8Pwe13UPVi",
+    "dex": "pumpfun",
+    "chain": "solana",
+    "quote": "SOL",
+    "liq_usd": 0.0,
+    "vol24_usd": 553.76,
+    "created_ms": 1789831110000
+   },
+   "single_pair_would_have_said": 0.0,
+   "single_pair_understates_by": null,
+   "first_pair_ms": 1789831110000,
+   "pairs": [
+    {
+     "pair": "E9THG6bogrkvgNcCtqAEK49S5vwmDGXW1g8Pwe13UPVi",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.0,
+     "vol24_usd": 553.76,
+     "created_ms": 1789831110000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "NO_LIQUIDITY"
+ },
+ {
+  "chain": "solana",
+  "address": "ExBYvi4B7Gq7ZJyDLSuv2aiKVdJ9aZpniuVS7P5Fpump",
+  "name": "jean gay",
+  "symbol": "jeanphil",
+  "measured": {
+   "mint": "ExBYvi4B7Gq7ZJyDLSuv2aiKVdJ9aZpniuVS7P5Fpump",
+   "ok": true,
+   "pair_count": 0,
+   "total_liq_usd": 0.0,
+   "total_vol24_usd": 0.0,
+   "mcap_usd": null,
+   "price_usd": null,
+   "venues": {},
+   "quote_assets": {},
+   "pairs": [],
+   "phantom": false,
+   "note": "indexer returned no pairs"
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "NO_LIQUIDITY"
+ },
+ {
+  "chain": "solana",
+  "address": "A5ycAN5AxWcdjSD9EXYtKuHhPY2Cx23euTGVMvn7pump",
+  "name": "JEAN PHIL",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "A5ycAN5AxWcdjSD9EXYtKuHhPY2Cx23euTGVMvn7pump",
+   "ok": true,
+   "pair_count": 0,
+   "total_liq_usd": 0.0,
+   "total_vol24_usd": 0.0,
+   "mcap_usd": null,
+   "price_usd": null,
+   "venues": {},
+   "quote_assets": {},
+   "pairs": [],
+   "phantom": false,
+   "note": "indexer returned no pairs"
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "NO_LIQUIDITY"
+ },
+ {
+  "chain": "solana",
+  "address": "3NikLbJkHdfE5m7ANcXuwRnpQH8FrsRC4c1PdJtvpump",
+  "name": "Jean Phillips",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "3NikLbJkHdfE5m7ANcXuwRnpQH8FrsRC4c1PdJtvpump",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 0.0,
+   "total_vol24_usd": 3556.37,
+   "mcap_usd": 3307.88,
+   "price_usd": 3.307e-06,
+   "venues": {
+    "pumpfun": 1
+   },
+   "quote_assets": {
+    "SOL": {
+     "pairs": 1,
+     "liq_usd": 0.0,
+     "mint": "So11111111111111111111111111111111111111112"
+    }
+   },
+   "deepest": {
+    "pair": "97rEGrR1Km23rye1gsxo1mwCGovYqq6QW9DkWgpAnsz4",
+    "dex": "pumpfun",
+    "chain": "solana",
+    "quote": "SOL",
+    "liq_usd": 0.0,
+    "vol24_usd": 3556.37,
+    "created_ms": 1790098337000
+   },
+   "single_pair_would_have_said": 0.0,
+   "single_pair_understates_by": null,
+   "first_pair_ms": 1790098337000,
+   "pairs": [
+    {
+     "pair": "97rEGrR1Km23rye1gsxo1mwCGovYqq6QW9DkWgpAnsz4",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.0,
+     "vol24_usd": 3556.37,
+     "created_ms": 1790098337000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "NO_LIQUIDITY"
+ },
+ {
+  "chain": "solana",
+  "address": "Cdm21UJXT6pke5dxn1HyZZkSrFsAQkR1ZLbk1zbmpump",
+  "name": "Jean Phil",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "Cdm21UJXT6pke5dxn1HyZZkSrFsAQkR1ZLbk1zbmpump",
+   "ok": true,
+   "pair_count": 0,
+   "total_liq_usd": 0.0,
+   "total_vol24_usd": 0.0,
+   "mcap_usd": null,
+   "price_usd": null,
+   "venues": {},
+   "quote_assets": {},
+   "pairs": [],
+   "phantom": false,
+   "note": "indexer returned no pairs"
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "NO_LIQUIDITY"
+ },
+ {
+  "chain": "solana",
+  "address": "bhqykFrf5fRJHywLXV3kvg466iPnpuMXb3zsawBpump",
+  "name": "JEANPHIL",
+  "symbol": "JEANPHIL",
+  "measured": {
+   "mint": "bhqykFrf5fRJHywLXV3kvg466iPnpuMXb3zsawBpump",
+   "ok": true,
+   "pair_count": 0,
+   "total_liq_usd": 0.0,
+   "total_vol24_usd": 0.0,
+   "mcap_usd": null,
+   "price_usd": null,
+   "venues": {},
+   "quote_assets": {},
+   "pairs": [],
+   "phantom": false,
+   "note": "indexer returned no pairs"
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "NO_LIQUIDITY"
+ }
+]

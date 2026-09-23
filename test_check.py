@@ -174,6 +174,101 @@ RESULTS.append(("the pair reported is the deepest one", ok,
                 "" if ok else f"picked {r['pair']}"))
 print(f"  {'PASS' if ok else 'FAIL'}  the pair reported is the deepest one")
 
+# ---------------------------------------------------------------------------
+# ⛔⛔ ALL PAIRS, standing rule 18. Frank, 2026-09-22: "we have been reading one
+# pool on tokens that trade across thirty." The real EMBER holds $2,331,895
+# across 30 pools and its deepest holds $663,260, so a one-pool read is a 3.52x
+# understatement - and a mint wearing the same ticker claimed $1.31 BILLION on
+# $1.39 of backing and was analysed for a day as a real token.
+# ---------------------------------------------------------------------------
+print()
+print("=" * 72)
+print("ALL PAIRS, and the phantom rule")
+print("=" * 72)
+
+
+def _t(name, ok, why=""):
+    RESULTS.append((name, ok, why))
+    print(f"  {'PASS' if ok else 'FAIL'}  {name}" + (f"   {why}" if not ok else ""))
+
+
+# ten pools, each $4,000 reported / $1,000 quote depth
+_ten = [_pair(depth_quote=1000.0, liq_usd=4000.0, fdv=500_000.0,
+              addr=f"P{i}") for i in range(10)]
+check.S.dexscreener_token = lambda c: _ten
+check.onchain = None
+check._round_trip = lambda c, usd: RT_OK
+r = check.analyse("So11111111111111111111111111111111111111112")
+txt = check.render(r)
+_t("⭐ liquidity is SUMMED across every pair, not taken from the deepest",
+   r["liq_usd_all_pairs"] == 40000.0 and r["pair_count"] == 10,
+   f"liq_all={r['liq_usd_all_pairs']} n={r['pair_count']}")
+_t("⭐ exit depth is summed too", abs((r["exit_depth_all_pairs_usd"] or 0) - 10000.0) < 1.0,
+   f"{r['exit_depth_all_pairs_usd']}")
+_t("⭐ sizing uses the summed depth, not one pool's",
+   abs((r["max_size_5pct"] or 0) - 10000.0 / check.SLIPPAGE_DIVISOR) < 1.0,
+   f"{r['max_size_5pct']}")
+_t("⭐ the render leads with the token, not with one pool",
+   "exit depth, ALL pools" in txt and "deepest pool alone" in txt)
+_t("⭐ below the 30-pair cap nothing is called a floor",
+   (r.get("pairs_truncated") is False) and ("FLOOR" not in txt))
+
+# ⛔ AT THE CAP. Measured 2026-09-23: the Dexscreener token endpoint returns at
+# most 30 pairs for ANY mint - SOL, which trades in thousands of pools, returns
+# exactly 30. So 30 means "30 or more" and every sum is a floor. This module
+# briefly claimed 30 was "the signature of a pairing-launchpad asset". It is not.
+_cap = [_pair(depth_quote=1000.0, liq_usd=4000.0, fdv=500_000.0, addr=f"C{i}")
+        for i in range(30)]
+check.S.dexscreener_token = lambda c: _cap
+r = check.analyse("So11111111111111111111111111111111111111112")
+txt = check.render(r)
+_t("⛔ at the 30-pair cap the totals are declared FLOORS",
+   r["pairs_truncated"] is True and r["liq_all_pairs_is_floor"] is True
+   and "FLOOR" in txt, f"trunc={r.get('pairs_truncated')}")
+
+# ⛔ and a truncated sample may NOT produce a phantom verdict: 30 arbitrary pools
+# summing to nothing says nothing about a 31st, and the returned set is not
+# ordered by size so the remainder cannot be bounded.
+_cap_thin = [_pair(depth_quote=1.0, liq_usd=1.0, fdv=1_300_000_000.0, addr=f"X{i}")
+             for i in range(30)]
+check.S.dexscreener_token = lambda c: _cap_thin
+r = check.analyse("So11111111111111111111111111111111111111112")
+_t("⛔ a TRUNCATED sample can never be called a phantom",
+   r["phantom"] is False, f"phantom={r['phantom']}")
+
+# ⛔ the phantom: a claimed cap with nothing under it
+_ph = [_pair(depth_quote=0.5, liq_usd=0.5, fdv=1_300_000_000.0, addr=f"PH{i}")
+       for i in range(3)]
+check.S.dexscreener_token = lambda c: _ph
+r = check.analyse("So11111111111111111111111111111111111111112")
+txt = check.render(r)
+_t("⛔ PHANTOM: mcap over $1m on under $1,000 of TOTAL liquidity is REFUSED",
+   r["verdict"] == "REFUSED" and r["phantom"] is True, f"{r['verdict']}")
+_t("⛔ ...and the refusal says there is nothing behind the cap",
+   "phantom" in txt.lower() and "nothing behind" in txt.lower())
+_t("⛔ ...and it never reaches a not-flagged verdict",
+   "not flagged" not in txt.lower())
+
+# ⚠️ a thin-but-real token must NOT be called a phantom
+_thin = [_pair(depth_quote=900.0, liq_usd=2000.0, fdv=1_300_000_000.0, addr="T1")]
+check.S.dexscreener_token = lambda c: _thin
+r = check.analyse("So11111111111111111111111111111111111111112")
+_t("⚠️ $2,000 of real liquidity is thin, NOT a phantom",
+   r["phantom"] is False and r["verdict"] != "REFUSED", f"{r['verdict']} phantom={r['phantom']}")
+
+# ⛔ a D1 flag that exists only because one of many pools was read
+_split = [_pair(depth_quote=1000.0, liq_usd=3000.0, fdv=300_000.0, buys=20, sells=1,
+                addr=f"S{i}") for i in range(20)]
+check.S.dexscreener_token = lambda c: _split
+r = check.analyse("So11111111111111111111111111111111111111112")
+_t("⭐ D1 is ALSO scored on all-pairs liquidity, so a one-pool artifact is visible",
+   r["d1"].get("verdict_all_pairs") is not None
+   and r["d1"].get("liq_over_fdv_all_pairs") is not None,
+   f"{r['d1']}")
+_t("⛔ and when they disagree the render says the flag is unproven",
+   (not r["d1"]["one_pool_artifact"])
+   or ("ARTIFACT OF READING ONE POOL" in check.render(r)))
+
 print()
 print("=" * 72)
 print("REFUSALS on bad input")

@@ -1,0 +1,1960 @@
+[
+ {
+  "chain": "solana",
+  "address": "4GU9TJ1EfXkqkTKG5tRk9SDiJ5PAuCiQHfxnnf1PPDja",
+  "name": "Hyperliquid",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "4GU9TJ1EfXkqkTKG5tRk9SDiJ5PAuCiQHfxnnf1PPDja",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 1756140957.36,
+   "total_vol24_usd": 8.36,
+   "mcap_usd": 1756539769.0,
+   "price_usd": 83.64,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 1756140957.36,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "7YpDDJGZD15gd8T1dF7r91KcFVJgjYhfgFoNZHR7McR",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 1756140957.36,
+    "vol24_usd": 8.36,
+    "created_ms": 1788271398000
+   },
+   "single_pair_would_have_said": 1756140957.36,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1788271398000,
+   "pairs": [
+    {
+     "pair": "7YpDDJGZD15gd8T1dF7r91KcFVJgjYhfgFoNZHR7McR",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 1756140957.36,
+     "vol24_usd": 8.36,
+     "created_ms": 1788271398000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "F7eL5pudRQBgF9RtCbv6sWBf2qmSVw2H517wmL6sSwki",
+  "name": "Hyperliquid",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "F7eL5pudRQBgF9RtCbv6sWBf2qmSVw2H517wmL6sSwki",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 1687635302.81,
+   "total_vol24_usd": 178289.46,
+   "mcap_usd": 1687668235.0,
+   "price_usd": 80.36,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 1687635302.81,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "3JJAa9uLY6a2JwnUk4ukxiF9GnW7dT7KUXT9emnZQxPq",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 1687635302.81,
+    "vol24_usd": 178289.46,
+    "created_ms": 1789056594000
+   },
+   "single_pair_would_have_said": 1687635302.81,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1789056594000,
+   "pairs": [
+    {
+     "pair": "3JJAa9uLY6a2JwnUk4ukxiF9GnW7dT7KUXT9emnZQxPq",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 1687635302.81,
+     "vol24_usd": 178289.46,
+     "created_ms": 1789056594000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "JAfR3psaceH4axvTXaBkenSeCeqwo14B2cgXBiVbPApo",
+  "name": "Hyperliquid",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "JAfR3psaceH4axvTXaBkenSeCeqwo14B2cgXBiVbPApo",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 1523839774.1,
+   "total_vol24_usd": 17.91,
+   "mcap_usd": 1524021845.0,
+   "price_usd": 72.57,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 1523839774.1,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "3GQ7Jd9Uon6L62BjmpuVRp9qWATRcDZB2STW6t9JzLhA",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 1523839774.1,
+    "vol24_usd": 17.91,
+    "created_ms": 1780302618000
+   },
+   "single_pair_would_have_said": 1523839774.1,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1780302618000,
+   "pairs": [
+    {
+     "pair": "3GQ7Jd9Uon6L62BjmpuVRp9qWATRcDZB2STW6t9JzLhA",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 1523839774.1,
+     "vol24_usd": 17.91,
+     "created_ms": 1780302618000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "HqPK7w3TYYHBjAkBN9BVZsLWzURhsE9APeCXhEko1CdT",
+  "name": "Hyperliquid",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "HqPK7w3TYYHBjAkBN9BVZsLWzURhsE9APeCXhEko1CdT",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 1498419277.83,
+   "total_vol24_usd": 230718.23,
+   "mcap_usd": 1498633336.0,
+   "price_usd": 71.36,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 1498419277.83,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "Ap1mS6NMEPcoCESjFhDpWNnttYtKt8SaCZKcoEzrn6RQ",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 1498419277.83,
+    "vol24_usd": 230718.23,
+    "created_ms": 1781778001000
+   },
+   "single_pair_would_have_said": 1498419277.83,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1781778001000,
+   "pairs": [
+    {
+     "pair": "Ap1mS6NMEPcoCESjFhDpWNnttYtKt8SaCZKcoEzrn6RQ",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 1498419277.83,
+     "vol24_usd": 230718.23,
+     "created_ms": 1781778001000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "3Nyb9myixpLgLYSFasbGTUEyEAN8aUA8SsF1LACeE6k9",
+  "name": "Hyperliquid",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "3Nyb9myixpLgLYSFasbGTUEyEAN8aUA8SsF1LACeE6k9",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 1469483807.52,
+   "total_vol24_usd": 58.94,
+   "mcap_usd": 1469694502.0,
+   "price_usd": 69.98,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 1469483807.52,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "8SuSGeUngf5QKHkZKXGyMKXdvnTLneTVxPPew2CivB9N",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 1469483807.52,
+    "vol24_usd": 58.94,
+    "created_ms": 1787168232000
+   },
+   "single_pair_would_have_said": 1469483807.52,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1787168232000,
+   "pairs": [
+    {
+     "pair": "8SuSGeUngf5QKHkZKXGyMKXdvnTLneTVxPPew2CivB9N",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 1469483807.52,
+     "vol24_usd": 58.94,
+     "created_ms": 1787168232000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "UakV2eeCAZPQSpDNufWmvXDKsvzqLuuYQR4GVHjay2F",
+  "name": "Hyperliquid",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "UakV2eeCAZPQSpDNufWmvXDKsvzqLuuYQR4GVHjay2F",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 1348118714.48,
+   "total_vol24_usd": 230860.55,
+   "mcap_usd": 1348319320.0,
+   "price_usd": 64.2,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 1348118714.48,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "2ZWvbLx1UVRE4xdpSmcGBjZ6vsJQnEXHHaAcgiqd6eTF",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 1348118714.48,
+    "vol24_usd": 230860.55,
+    "created_ms": 1782837278000
+   },
+   "single_pair_would_have_said": 1348118714.48,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1782837278000,
+   "pairs": [
+    {
+     "pair": "2ZWvbLx1UVRE4xdpSmcGBjZ6vsJQnEXHHaAcgiqd6eTF",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 1348118714.48,
+     "vol24_usd": 230860.55,
+     "created_ms": 1782837278000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "C7ULwzUfg8hgnMbSXk5tnjF3VaBr9gTEWXiPqacPASc1",
+  "name": "HYPE",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "C7ULwzUfg8hgnMbSXk5tnjF3VaBr9gTEWXiPqacPASc1",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 1334008850.02,
+   "total_vol24_usd": 17.91,
+   "mcap_usd": 1334236924.0,
+   "price_usd": 63.53,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 1334008850.02,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "DLda2N7o9u7edvtxnNyZwZ6XPevxtyyx8fVtwmkCuKBa",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 1334008850.02,
+    "vol24_usd": 17.91,
+    "created_ms": 1779699890000
+   },
+   "single_pair_would_have_said": 1334008850.02,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1779699890000,
+   "pairs": [
+    {
+     "pair": "DLda2N7o9u7edvtxnNyZwZ6XPevxtyyx8fVtwmkCuKBa",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 1334008850.02,
+     "vol24_usd": 17.91,
+     "created_ms": 1779699890000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "FrrPbeBcdhDpmLQsZGDpdumWkgLqwAUb7DCD5s9rWhvo",
+  "name": "HYPE",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "FrrPbeBcdhDpmLQsZGDpdumWkgLqwAUb7DCD5s9rWhvo",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 1327246919.88,
+   "total_vol24_usd": 20018.97,
+   "mcap_usd": 1327449913.0,
+   "price_usd": 63.21,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 1327246919.88,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "D2u9CdTy12q1yJqHS96dXMLXCBvzqyHEhbDVeVSNebKG",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 1327246919.88,
+    "vol24_usd": 20018.97,
+    "created_ms": 1779875455000
+   },
+   "single_pair_would_have_said": 1327246919.88,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1779875455000,
+   "pairs": [
+    {
+     "pair": "D2u9CdTy12q1yJqHS96dXMLXCBvzqyHEhbDVeVSNebKG",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 1327246919.88,
+     "vol24_usd": 20018.97,
+     "created_ms": 1779875455000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "BqRa8CNtgnuJZwHLabZLSZrFfnP2MCCMqzpjVExyLSy4",
+  "name": "HYPE",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "BqRa8CNtgnuJZwHLabZLSZrFfnP2MCCMqzpjVExyLSy4",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 1303048327.1,
+   "total_vol24_usd": 271578.47,
+   "mcap_usd": 1303249248.0,
+   "price_usd": 62.059,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 1303048327.1,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "6xVSYEwQvYZfatzSPhLRwXLCeqD8VJtaeNrDF2TQydCE",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 1303048327.1,
+    "vol24_usd": 271578.47,
+    "created_ms": 1784645422000
+   },
+   "single_pair_would_have_said": 1303048327.1,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1784645422000,
+   "pairs": [
+    {
+     "pair": "6xVSYEwQvYZfatzSPhLRwXLCeqD8VJtaeNrDF2TQydCE",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 1303048327.1,
+     "vol24_usd": 271578.47,
+     "created_ms": 1784645422000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "HZygRYGnF3zqtnqtiBncpj2UQGR1zGEJayyECUeinTYT",
+  "name": "HYPE",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "HZygRYGnF3zqtnqtiBncpj2UQGR1zGEJayyECUeinTYT",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 857528921.2,
+   "total_vol24_usd": 17.91,
+   "mcap_usd": 857685048.0,
+   "price_usd": 40.84,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 857528921.2,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "FGKHLPSxCDjAdsf5crvq3YHjDbtF9g2MorbNcZBnUcfW",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 857528921.2,
+    "vol24_usd": 17.91,
+    "created_ms": 1778593623000
+   },
+   "single_pair_would_have_said": 857528921.2,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1778593623000,
+   "pairs": [
+    {
+     "pair": "FGKHLPSxCDjAdsf5crvq3YHjDbtF9g2MorbNcZBnUcfW",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 857528921.2,
+     "vol24_usd": 17.91,
+     "created_ms": 1778593623000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "XJSCQJZVqKiUnU11jp6WpuVhzF9Lo7BiGccSpuBjevu",
+  "name": "Hyperliquid",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "XJSCQJZVqKiUnU11jp6WpuVhzF9Lo7BiGccSpuBjevu",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 55757194.34,
+   "total_vol24_usd": 142.63,
+   "mcap_usd": 55946663.0,
+   "price_usd": 55.94,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 55757194.34,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "3SNbtcsNeMC1BiZuTMVrDFWHB4TFkQq8scAPJbX9xMPk",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 55757194.34,
+    "vol24_usd": 142.63,
+    "created_ms": 1785902446000
+   },
+   "single_pair_would_have_said": 55757194.34,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1785902446000,
+   "pairs": [
+    {
+     "pair": "3SNbtcsNeMC1BiZuTMVrDFWHB4TFkQq8scAPJbX9xMPk",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 55757194.34,
+     "vol24_usd": 142.63,
+     "created_ms": 1785902446000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "HYPriqvcoxiKPkfvC64cmvGMmABRp8VYw2Dec7iPARse",
+  "name": "HYPE",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "HYPriqvcoxiKPkfvC64cmvGMmABRp8VYw2Dec7iPARse",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 14731900.24,
+   "total_vol24_usd": 18.21,
+   "mcap_usd": 29463775.0,
+   "price_usd": 24.55,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 14731900.24,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "CyQ2iiSuFRhUbAPJ7sbqtMq6p2qzcAjZ4hUk8iX5DTjW",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 14731900.24,
+    "vol24_usd": 18.21,
+    "created_ms": 1768320825000
+   },
+   "single_pair_would_have_said": 14731900.24,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1768320825000,
+   "pairs": [
+    {
+     "pair": "CyQ2iiSuFRhUbAPJ7sbqtMq6p2qzcAjZ4hUk8iX5DTjW",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 14731900.24,
+     "vol24_usd": 18.21,
+     "created_ms": 1768320825000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "98sMhvDwXj1RQi5c5Mndm3vPe9cBqPrbLaufMXFNMh5g",
+  "name": "HYPE",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "98sMhvDwXj1RQi5c5Mndm3vPe9cBqPrbLaufMXFNMh5g",
+   "ok": true,
+   "pair_count": 30,
+   "total_liq_usd": 10206601.439999998,
+   "total_vol24_usd": 16207297.719999997,
+   "mcap_usd": 80805182.0,
+   "price_usd": 97.84,
+   "venues": {
+    "meteora": 21,
+    "orca": 6,
+    "raydium": 3
+   },
+   "quote_assets": {
+    "SOL": {
+     "pairs": 11,
+     "liq_usd": 6464957.03,
+     "mint": "So11111111111111111111111111111111111111112"
+    },
+    "USDC": {
+     "pairs": 11,
+     "liq_usd": 3716342.0800000005,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    },
+    "cbBTC": {
+     "pairs": 2,
+     "liq_usd": 17226.63,
+     "mint": "cbbtcf3aa214zXHbiAZQwf4122FBYbraNdFqgw4iMij"
+    },
+    "TrumpBucks": {
+     "pairs": 2,
+     "liq_usd": 7444.27,
+     "mint": "BgCeigJo2iY3dJhqS2z9w4pjjufFd4F9oKS3FrkMbmbJ"
+    },
+    "CLANK": {
+     "pairs": 1,
+     "liq_usd": 222.19,
+     "mint": "8dfyMfAQKvM4ckRxNJV7Hy6EHMk2Jmjgm6VbRhWcpump"
+    },
+    "IME": {
+     "pairs": 1,
+     "liq_usd": 196.99,
+     "mint": "imE1nbjWM9QGUzxH2WHYNjcrUqgh9tT8RFYoj9UnMj3"
+    },
+    "CSR": {
+     "pairs": 1,
+     "liq_usd": 112.24,
+     "mint": "9xzmB67zWX8PJiGpQFbWuNBXTqyPpu2qV3mxQfhqUREV"
+    },
+    "CRYPTOK": {
+     "pairs": 1,
+     "liq_usd": 100.01,
+     "mint": "ESsCdmGyPK9sostFbWV5iM6owxcqsGNfBQaj3xkAkREV"
+    }
+   },
+   "deepest": {
+    "pair": "31KrYUDzgEQhEgr1JSNVfHAknWACcF97CtUaU8enKQsy",
+    "dex": "orca",
+    "chain": "solana",
+    "quote": "SOL",
+    "liq_usd": 3096631.89,
+    "vol24_usd": 1911137.84,
+    "created_ms": 1760753881000
+   },
+   "single_pair_would_have_said": 3096631.89,
+   "single_pair_understates_by": 3.3,
+   "first_pair_ms": 1760118623000,
+   "pairs": [
+    {
+     "pair": "31KrYUDzgEQhEgr1JSNVfHAknWACcF97CtUaU8enKQsy",
+     "dex": "orca",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 3096631.89,
+     "vol24_usd": 1911137.84,
+     "created_ms": 1760753881000
+    },
+    {
+     "pair": "ANCx141SujgVdbKz9NTEH8F38qWsnyyXsVju64aU3qLB",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 3063659.04,
+     "vol24_usd": 1461623.13,
+     "created_ms": 1761518917000
+    },
+    {
+     "pair": "81GpCm4d13y8TozYtThabuSCLQN2o3bbrvDogXFPn8sA",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 2592475.84,
+     "vol24_usd": 3685512.5,
+     "created_ms": 1760127636000
+    },
+    {
+     "pair": "6oQ9wVex4mKZti2GsGCfD8FWTMMC9PLQkztRU5cd6MK8",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 518689.18,
+     "vol24_usd": 7716670.5,
+     "created_ms": 1761488325000
+    },
+    {
+     "pair": "5azLWnTEGdETPwjiXb55x6MUuqpK9QQAazNqihCxtcgq",
+     "dex": "orca",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 307726.52,
+     "vol24_usd": 333009.32,
+     "created_ms": 1763083263000
+    },
+    {
+     "pair": "DXfnX2oCJAcfBC8A7MB1UamcrT9eeERxWP2RduHkrbN",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 202333.85,
+     "vol24_usd": 101631.32,
+     "created_ms": 1763123758000
+    },
+    {
+     "pair": "6F4rVnmVc1A2QDqpHn5cpQZfXugapFbGZTXEyaakpvVQ",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 113869.11,
+     "vol24_usd": 269222.67,
+     "created_ms": 1760162298000
+    },
+    {
+     "pair": "46CgAPEz8V2e9UL5PDa3JNWFW6sk7uFCj7TjdB3XbKD3",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 99726.52,
+     "vol24_usd": 288438.21,
+     "created_ms": 1760737217000
+    },
+    {
+     "pair": "CZkNKEwyeVJS2vHriYE3pG8CxRPL34PccTG88T6s5oAk",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 63454.11,
+     "vol24_usd": 166638.32,
+     "created_ms": 1779117109000
+    },
+    {
+     "pair": "AWzk69Me1QLZenMDJMBiNsJyK9SA4ZV4vd7Tvz2BSnz9",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 37195.11,
+     "vol24_usd": 1749.69,
+     "created_ms": 1761525312000
+    },
+    {
+     "pair": "R2wAWow4tP3mqCa3ifd8mk5j2HmN3xX2xdooJAirF5U",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 24126.31,
+     "vol24_usd": 4738.85,
+     "created_ms": 1770310885000
+    },
+    {
+     "pair": "4hukN186uuJdrrJK8eessSxsnuL2LGQrM2DtGzcRy1wz",
+     "dex": "orca",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 16655.26,
+     "vol24_usd": 5000.25,
+     "created_ms": 1781599777000
+    },
+    {
+     "pair": "FJXwta8NxkZDfeYL6DdkiKXbRs15FLwC4ZXpUPMy3eur",
+     "dex": "orca",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 14643.66,
+     "vol24_usd": 8162.6,
+     "created_ms": 1772397940000
+    },
+    {
+     "pair": "FV7Y42oBKfdm5BwszydeUmvsojzpnJ2hFrwxkTW4oDj4",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "cbBTC",
+     "liq_usd": 12486.16,
+     "vol24_usd": 7931.53,
+     "created_ms": 1770090073000
+    },
+    {
+     "pair": "F2BstVuVWqBntH439tz7UXRHDwfCUFsrDzniZ2qjKLRT",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 11617.52,
+     "vol24_usd": 239879.35,
+     "created_ms": 1773436479000
+    },
+    {
+     "pair": "4vQaxcqAyJFcHXZg8o8XhmibJAwSW3CWDgfuRJUoE7wr",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 9373.14,
+     "vol24_usd": 4586.8,
+     "created_ms": 1762538487000
+    },
+    {
+     "pair": "6ECxgWCBWdvqPNPguKxtX6e1zVZ8n4CepWxc3c6ovGTC",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "TrumpBucks",
+     "liq_usd": 7085.76,
+     "vol24_usd": 95.59,
+     "created_ms": 1772512330000
+    },
+    {
+     "pair": "DZN7rhBeiDz6XnXoa2vFRePaHYXxDrXjc7MinSigurbU",
+     "dex": "orca",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 6144.29,
+     "vol24_usd": 442.28,
+     "created_ms": 1765333325000
+    },
+    {
+     "pair": "ERQsKYqZpKQFH7Z6yGpnkWsvLCkrn5fdiwMfEoLU5hWb",
+     "dex": "orca",
+     "chain": "solana",
+     "quote": "cbBTC",
+     "liq_usd": 4740.47,
+     "vol24_usd": 325.02,
+     "created_ms": 1780943560000
+    },
+    {
+     "pair": "3yAmAsS1Rid6srxFpCPi43TPvV9TeXMbuiC9dhzH3Z82",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 830.42,
+     "vol24_usd": 125.5,
+     "created_ms": 1770582193000
+    },
+    {
+     "pair": "EqpxSkoQf4HuQbhCjYpx9cJTdQMHejGmoNiVFB8aUuiu",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 719.39,
+     "vol24_usd": 12.37,
+     "created_ms": 1781657528000
+    },
+    {
+     "pair": "51mGGrK7pYp3GjWRh7BboBa8iDYBsGns84LKA7VzSj6K",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 528.73,
+     "vol24_usd": 218.33,
+     "created_ms": 1767268567000
+    },
+    {
+     "pair": "Sm2A5vdaggSFeUyhP4oGq3iVT9uokrssa3x4zwxSHRJ",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 393.98,
+     "vol24_usd": 31.11,
+     "created_ms": 1760118623000
+    },
+    {
+     "pair": "Fs5Pfz8RnEYBGgWTiaxFTvic1TnUAn3arYcytUWaLin7",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "TrumpBucks",
+     "liq_usd": 358.51,
+     "vol24_usd": 0.9,
+     "created_ms": 1770084916000
+    },
+    {
+     "pair": "9RgJsCvNVPQ5qRtuy9oyuvaPBNaQXJ3v6xPW3Uno3Y9M",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 274.58,
+     "vol24_usd": 60.96,
+     "created_ms": 1779632208000
+    },
+    {
+     "pair": "GZte7cLAFPLVwS7qRFJ3bhGFpjrZYetZbF64kuou7u8b",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 230.66,
+     "vol24_usd": 20.11,
+     "created_ms": 1780943413000
+    },
+    {
+     "pair": "55EqfKrBdQXpYVWUw58G7LSbb8HeVNp8aNoMdR3EFWJg",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "CLANK",
+     "liq_usd": 222.19,
+     "vol24_usd": 2.15,
+     "created_ms": 1780832935000
+    },
+    {
+     "pair": "5U2JT74cYqmJGBFBizAbZq5wNNn9paPhF7Apbjs12qxU",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "IME",
+     "liq_usd": 196.99,
+     "vol24_usd": 10.6,
+     "created_ms": 1781311923000
+    },
+    {
+     "pair": "CMPX56MiHnieJdaN4jRsMj1RstGgWibLd2PqB3yqBLiZ",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "CSR",
+     "liq_usd": 112.24,
+     "vol24_usd": 1.01,
+     "created_ms": 1782787151000
+    },
+    {
+     "pair": "G5fXDR8SJjzc9Du46yzTXYrdC36dGJJi5eGNL2YdoCAX",
+     "dex": "meteora",
+     "chain": "solana",
+     "quote": "CRYPTOK",
+     "liq_usd": 100.01,
+     "vol24_usd": 18.91,
+     "created_ms": 1779651476000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "HvhPe8zF6TKrdaifZiKBqpsZm73z3ZCKjeZbTmiXH9jc",
+  "name": "Hyperliquid",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "HvhPe8zF6TKrdaifZiKBqpsZm73z3ZCKjeZbTmiXH9jc",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 5031246.15,
+   "total_vol24_usd": 17.91,
+   "mcap_usd": 5174529.0,
+   "price_usd": 43.12,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 5031246.15,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "CgDzjKkvA9yiVA69mvhXbi8XeQoD7U1edxzH3QCgoaW1",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 5031246.15,
+    "vol24_usd": 17.91,
+    "created_ms": 1778404500000
+   },
+   "single_pair_would_have_said": 5031246.15,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1778404500000,
+   "pairs": [
+    {
+     "pair": "CgDzjKkvA9yiVA69mvhXbi8XeQoD7U1edxzH3QCgoaW1",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 5031246.15,
+     "vol24_usd": 17.91,
+     "created_ms": 1778404500000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "7JyoYZC6DMFtCjx3CPKLwHTsGdRPvpM64YKqi7BpRtZK",
+  "name": "Hyperliquid",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "7JyoYZC6DMFtCjx3CPKLwHTsGdRPvpM64YKqi7BpRtZK",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 4963879.85,
+   "total_vol24_usd": 17.91,
+   "mcap_usd": 5086292.0,
+   "price_usd": 42.38,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 4963879.85,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "MyPzPaGsRxm1ndqsjrW9e4nKdeTqBZ7XdKr2toLwzur",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 4963879.85,
+    "vol24_usd": 17.91,
+    "created_ms": 1775901050000
+   },
+   "single_pair_would_have_said": 4963879.85,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1775901050000,
+   "pairs": [
+    {
+     "pair": "MyPzPaGsRxm1ndqsjrW9e4nKdeTqBZ7XdKr2toLwzur",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 4963879.85,
+     "vol24_usd": 17.91,
+     "created_ms": 1775901050000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "HBqopNiXyhEKbZ4JN6X4PB264hM1i9hgrfzNNYqBC3JB",
+  "name": "Hyperliquid",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "HBqopNiXyhEKbZ4JN6X4PB264hM1i9hgrfzNNYqBC3JB",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 4851207.41,
+   "total_vol24_usd": 17.91,
+   "mcap_usd": 4997063.0,
+   "price_usd": 41.64,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 4851207.41,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "2VuEyZNj1VxZ7A4RcdCb5qQZd6twU97XeQKwXi686k4t",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 4851207.41,
+    "vol24_usd": 17.91,
+    "created_ms": 1777883274000
+   },
+   "single_pair_would_have_said": 4851207.41,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1777883274000,
+   "pairs": [
+    {
+     "pair": "2VuEyZNj1VxZ7A4RcdCb5qQZd6twU97XeQKwXi686k4t",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 4851207.41,
+     "vol24_usd": 17.91,
+     "created_ms": 1777883274000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "FySwYJidqTeFMbn6LihQjgn3VuWNaAcX2fR1ijj1jWDv",
+  "name": "Hyperliquid",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "FySwYJidqTeFMbn6LihQjgn3VuWNaAcX2fR1ijj1jWDv",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 4059227.86,
+   "total_vol24_usd": 17.91,
+   "mcap_usd": 4510123.0,
+   "price_usd": 45.1,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 4059227.86,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "9q8wdWcuxYGV17DUJLgxPAruNc4KhmJkTSiQCWPsCgAv",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 4059227.86,
+    "vol24_usd": 17.91,
+    "created_ms": 1776314020000
+   },
+   "single_pair_would_have_said": 4059227.86,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1776314020000,
+   "pairs": [
+    {
+     "pair": "9q8wdWcuxYGV17DUJLgxPAruNc4KhmJkTSiQCWPsCgAv",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 4059227.86,
+     "vol24_usd": 17.91,
+     "created_ms": 1776314020000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "AjeNM6LRauM1Y5Q6epsqJBNV6Q4Dvx3EfZkjCRQS83M3",
+  "name": "Hyperliquid",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "AjeNM6LRauM1Y5Q6epsqJBNV6Q4Dvx3EfZkjCRQS83M3",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 3812080.08,
+   "total_vol24_usd": 17.91,
+   "mcap_usd": 3929968.0,
+   "price_usd": 39.29,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 3812080.08,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "Br1f3jfZzkD1BLV7ZAqQdujTjVmoA7uqhfkmwXQcpd86",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 3812080.08,
+    "vol24_usd": 17.91,
+    "created_ms": 1774517401000
+   },
+   "single_pair_would_have_said": 3812080.08,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1774517401000,
+   "pairs": [
+    {
+     "pair": "Br1f3jfZzkD1BLV7ZAqQdujTjVmoA7uqhfkmwXQcpd86",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 3812080.08,
+     "vol24_usd": 17.91,
+     "created_ms": 1774517401000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "55y9GfQ9dZYSJM9AJo1jnCrPDisoCgfhda9hbDbBVp3j",
+  "name": "Hyperliquid",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "55y9GfQ9dZYSJM9AJo1jnCrPDisoCgfhda9hbDbBVp3j",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 3773697.91,
+   "total_vol24_usd": 20018.97,
+   "mcap_usd": 4317717.0,
+   "price_usd": 43.17,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 3773697.91,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "5Mx3LygV1ChA6E2mumipS3SHP48XJG7522o91kTzNEZ7",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 3773697.91,
+    "vol24_usd": 20018.97,
+    "created_ms": 1776583703000
+   },
+   "single_pair_would_have_said": 3773697.91,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1776583703000,
+   "pairs": [
+    {
+     "pair": "5Mx3LygV1ChA6E2mumipS3SHP48XJG7522o91kTzNEZ7",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 3773697.91,
+     "vol24_usd": 20018.97,
+     "created_ms": 1776583703000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "GmNTDagRkckaDbu7kYfxtScpHKgE3UbyEFtv5fo7r8mY",
+  "name": "Hyperliquid",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "GmNTDagRkckaDbu7kYfxtScpHKgE3UbyEFtv5fo7r8mY",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 3760575.71,
+   "total_vol24_usd": 17.91,
+   "mcap_usd": 4178401.0,
+   "price_usd": 41.78,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 3760575.71,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "6bNrfn5EGTY4iEdjK8TNquVu7tdp4Wekz77xxb5CxWkB",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 3760575.71,
+    "vol24_usd": 17.91,
+    "created_ms": 1776082789000
+   },
+   "single_pair_would_have_said": 3760575.71,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1776082789000,
+   "pairs": [
+    {
+     "pair": "6bNrfn5EGTY4iEdjK8TNquVu7tdp4Wekz77xxb5CxWkB",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 3760575.71,
+     "vol24_usd": 17.91,
+     "created_ms": 1776082789000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "Gr79CPBCieugcyTfHRSHpX49t7J6cqkmE1NdudU2kYZ4",
+  "name": "Hyperliquid",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "Gr79CPBCieugcyTfHRSHpX49t7J6cqkmE1NdudU2kYZ4",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 2957664.97,
+   "total_vol24_usd": 17.91,
+   "mcap_usd": 3697049.0,
+   "price_usd": 36.97,
+   "venues": {
+    "raydium": 1
+   },
+   "quote_assets": {
+    "USDC": {
+     "pairs": 1,
+     "liq_usd": 2957664.97,
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    }
+   },
+   "deepest": {
+    "pair": "4tC4rD2RpEbTSCpQ5q869o4spziZcR6iyAA3QGwSjhqw",
+    "dex": "raydium",
+    "chain": "solana",
+    "quote": "USDC",
+    "liq_usd": 2957664.97,
+    "vol24_usd": 17.91,
+    "created_ms": 1775460295000
+   },
+   "single_pair_would_have_said": 2957664.97,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1775460295000,
+   "pairs": [
+    {
+     "pair": "4tC4rD2RpEbTSCpQ5q869o4spziZcR6iyAA3QGwSjhqw",
+     "dex": "raydium",
+     "chain": "solana",
+     "quote": "USDC",
+     "liq_usd": 2957664.97,
+     "vol24_usd": 17.91,
+     "created_ms": 1775460295000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "hyperevm",
+  "address": "0x9B530b0Ac8817f4B6C29cFf236df85ed33ecE660",
+  "name": "HarryPotterHyperMarioLiquidFentSpectrumJeff47i",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "0x9B530b0Ac8817f4B6C29cFf236df85ed33ecE660",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 58111.28,
+   "total_vol24_usd": 431.06,
+   "mcap_usd": 48299.0,
+   "price_usd": 5.345e-05,
+   "venues": {
+    "hyperswap": 1
+   },
+   "quote_assets": {
+    "WHYPE": {
+     "pairs": 1,
+     "liq_usd": 58111.28,
+     "mint": "0x5555555555555555555555555555555555555555"
+    }
+   },
+   "deepest": {
+    "pair": "0x9B6b10b4fBb426b92F7df52E911Ca188105101C2",
+    "dex": "hyperswap",
+    "chain": "hyperevm",
+    "quote": "WHYPE",
+    "liq_usd": 58111.28,
+    "vol24_usd": 431.06,
+    "created_ms": 1748349420000
+   },
+   "single_pair_would_have_said": 58111.28,
+   "single_pair_understates_by": 1.0,
+   "first_pair_ms": 1748349420000,
+   "pairs": [
+    {
+     "pair": "0x9B6b10b4fBb426b92F7df52E911Ca188105101C2",
+     "dex": "hyperswap",
+     "chain": "hyperevm",
+     "quote": "WHYPE",
+     "liq_usd": 58111.28,
+     "vol24_usd": 431.06,
+     "created_ms": 1748349420000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "hyperevm"
+   ]
+  },
+  "match_score": null,
+  "match_why": "different chain",
+  "verdict": "LIQUID"
+ },
+ {
+  "chain": "solana",
+  "address": "Ef9WB8Yv48D6Uax2HS18St5JRUS2tQUncgPpEFnxHype",
+  "name": "Hype.Fun",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "Ef9WB8Yv48D6Uax2HS18St5JRUS2tQUncgPpEFnxHype",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 0.0,
+   "total_vol24_usd": 13131.31,
+   "mcap_usd": 3436.27,
+   "price_usd": 3.436e-06,
+   "venues": {
+    "pumpfun": 1
+   },
+   "quote_assets": {
+    "SOL": {
+     "pairs": 1,
+     "liq_usd": 0.0,
+     "mint": "So11111111111111111111111111111111111111112"
+    }
+   },
+   "deepest": {
+    "pair": "3W4SuaWWXf9w1pj5Gy5sPSQyQE6nikMHR4rKiinz6r4r",
+    "dex": "pumpfun",
+    "chain": "solana",
+    "quote": "SOL",
+    "liq_usd": 0.0,
+    "vol24_usd": 13131.31,
+    "created_ms": 1790036772000
+   },
+   "single_pair_would_have_said": 0.0,
+   "single_pair_understates_by": null,
+   "first_pair_ms": 1790036772000,
+   "pairs": [
+    {
+     "pair": "3W4SuaWWXf9w1pj5Gy5sPSQyQE6nikMHR4rKiinz6r4r",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.0,
+     "vol24_usd": 13131.31,
+     "created_ms": 1790036772000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "NO_LIQUIDITY"
+ },
+ {
+  "chain": "solana",
+  "address": "7RHzKdsLbGd3uKe6LeLQwLbUAu2y9p6BsoK31cKHHype",
+  "name": "Hype.Fun",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "7RHzKdsLbGd3uKe6LeLQwLbUAu2y9p6BsoK31cKHHype",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 0.0,
+   "total_vol24_usd": 33415.54,
+   "mcap_usd": 3363.76,
+   "price_usd": 3.363e-06,
+   "venues": {
+    "pumpfun": 1
+   },
+   "quote_assets": {
+    "SOL": {
+     "pairs": 1,
+     "liq_usd": 0.0,
+     "mint": "So11111111111111111111111111111111111111112"
+    }
+   },
+   "deepest": {
+    "pair": "2kswiDf8SFGmdGmNX6jqiNjMpLJwmSDfytBZN2p84PGN",
+    "dex": "pumpfun",
+    "chain": "solana",
+    "quote": "SOL",
+    "liq_usd": 0.0,
+    "vol24_usd": 33415.54,
+    "created_ms": 1790045450000
+   },
+   "single_pair_would_have_said": 0.0,
+   "single_pair_understates_by": null,
+   "first_pair_ms": 1790045450000,
+   "pairs": [
+    {
+     "pair": "2kswiDf8SFGmdGmNX6jqiNjMpLJwmSDfytBZN2p84PGN",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.0,
+     "vol24_usd": 33415.54,
+     "created_ms": 1790045450000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "NO_LIQUIDITY"
+ },
+ {
+  "chain": "solana",
+  "address": "DjNrVa8fogyYthrsuacKKSygcumuuyqH5nzfeaPBhype",
+  "name": "Hype",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "DjNrVa8fogyYthrsuacKKSygcumuuyqH5nzfeaPBhype",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 0.0,
+   "total_vol24_usd": 19400.11,
+   "mcap_usd": 3302.18,
+   "price_usd": 3.302e-06,
+   "venues": {
+    "pumpfun": 1
+   },
+   "quote_assets": {
+    "SOL": {
+     "pairs": 1,
+     "liq_usd": 0.0,
+     "mint": "So11111111111111111111111111111111111111112"
+    }
+   },
+   "deepest": {
+    "pair": "Fyf8fR2Zavf3NXoot2GsRPXs1mXACrmRkQWBUeF4jpzA",
+    "dex": "pumpfun",
+    "chain": "solana",
+    "quote": "SOL",
+    "liq_usd": 0.0,
+    "vol24_usd": 19400.11,
+    "created_ms": 1790098874000
+   },
+   "single_pair_would_have_said": 0.0,
+   "single_pair_understates_by": null,
+   "first_pair_ms": 1790098874000,
+   "pairs": [
+    {
+     "pair": "Fyf8fR2Zavf3NXoot2GsRPXs1mXACrmRkQWBUeF4jpzA",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.0,
+     "vol24_usd": 19400.11,
+     "created_ms": 1790098874000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "NO_LIQUIDITY"
+ },
+ {
+  "chain": "solana",
+  "address": "9ML82GQPAuBLoTemEXdUrCThAGryVv35RJhmfgCoo5Xz",
+  "name": "Hype",
+  "symbol": "Hype",
+  "measured": {
+   "mint": "9ML82GQPAuBLoTemEXdUrCThAGryVv35RJhmfgCoo5Xz",
+   "ok": true,
+   "pair_count": 0,
+   "total_liq_usd": 0.0,
+   "total_vol24_usd": 0.0,
+   "mcap_usd": null,
+   "price_usd": null,
+   "venues": {},
+   "quote_assets": {},
+   "pairs": [],
+   "phantom": false,
+   "note": "indexer returned no pairs"
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "NO_LIQUIDITY"
+ },
+ {
+  "chain": "solana",
+  "address": "EdxPiBFeWnW8fEHcUuzM9ggJwMmdn3kJ8jMWtzcnHype",
+  "name": "Hype.Fun",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "EdxPiBFeWnW8fEHcUuzM9ggJwMmdn3kJ8jMWtzcnHype",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 0.0,
+   "total_vol24_usd": 13186.31,
+   "mcap_usd": 3294.98,
+   "price_usd": 3.294e-06,
+   "venues": {
+    "pumpfun": 1
+   },
+   "quote_assets": {
+    "SOL": {
+     "pairs": 1,
+     "liq_usd": 0.0,
+     "mint": "So11111111111111111111111111111111111111112"
+    }
+   },
+   "deepest": {
+    "pair": "GvVdVaiUN3SPAEDFGMEG7iaCMwmfVh2n3MMqyhR314iw",
+    "dex": "pumpfun",
+    "chain": "solana",
+    "quote": "SOL",
+    "liq_usd": 0.0,
+    "vol24_usd": 13186.31,
+    "created_ms": 1790113920000
+   },
+   "single_pair_would_have_said": 0.0,
+   "single_pair_understates_by": null,
+   "first_pair_ms": 1790113920000,
+   "pairs": [
+    {
+     "pair": "GvVdVaiUN3SPAEDFGMEG7iaCMwmfVh2n3MMqyhR314iw",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.0,
+     "vol24_usd": 13186.31,
+     "created_ms": 1790113920000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "NO_LIQUIDITY"
+ },
+ {
+  "chain": "solana",
+  "address": "8RZNssr6veSFKcMFMqJFg7umxcpW1AtoFwRYXjLNpump",
+  "name": "Hype.Fun",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "8RZNssr6veSFKcMFMqJFg7umxcpW1AtoFwRYXjLNpump",
+   "ok": true,
+   "pair_count": 0,
+   "total_liq_usd": 0.0,
+   "total_vol24_usd": 0.0,
+   "mcap_usd": null,
+   "price_usd": null,
+   "venues": {},
+   "quote_assets": {},
+   "pairs": [],
+   "phantom": false,
+   "note": "indexer returned no pairs"
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "NO_LIQUIDITY"
+ },
+ {
+  "chain": "solana",
+  "address": "6ezkPLrtqLguSdwabBs38xiuT3VfM1UzBCCryuWoHype",
+  "name": "HypeDotFun",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "6ezkPLrtqLguSdwabBs38xiuT3VfM1UzBCCryuWoHype",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 0.0,
+   "total_vol24_usd": 7345.56,
+   "mcap_usd": 3271.92,
+   "price_usd": 3.271e-06,
+   "venues": {
+    "pumpfun": 1
+   },
+   "quote_assets": {
+    "SOL": {
+     "pairs": 1,
+     "liq_usd": 0.0,
+     "mint": "So11111111111111111111111111111111111111112"
+    }
+   },
+   "deepest": {
+    "pair": "5KREbo22NCg9t8Ts5V2UCaZNQxe84uEyKDttAxQqbHLv",
+    "dex": "pumpfun",
+    "chain": "solana",
+    "quote": "SOL",
+    "liq_usd": 0.0,
+    "vol24_usd": 7345.56,
+    "created_ms": 1790077607000
+   },
+   "single_pair_would_have_said": 0.0,
+   "single_pair_understates_by": null,
+   "first_pair_ms": 1790077607000,
+   "pairs": [
+    {
+     "pair": "5KREbo22NCg9t8Ts5V2UCaZNQxe84uEyKDttAxQqbHLv",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.0,
+     "vol24_usd": 7345.56,
+     "created_ms": 1790077607000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "NO_LIQUIDITY"
+ },
+ {
+  "chain": "solana",
+  "address": "DPyNnAVWs4KHcUy7LByh4EiRK2rSjBxPE5RMByDjpump",
+  "name": "hype",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "DPyNnAVWs4KHcUy7LByh4EiRK2rSjBxPE5RMByDjpump",
+   "ok": true,
+   "pair_count": 1,
+   "total_liq_usd": 0.0,
+   "total_vol24_usd": 4953.6,
+   "mcap_usd": 3317.33,
+   "price_usd": 3.317e-06,
+   "venues": {
+    "pumpfun": 1
+   },
+   "quote_assets": {
+    "SOL": {
+     "pairs": 1,
+     "liq_usd": 0.0,
+     "mint": "So11111111111111111111111111111111111111112"
+    }
+   },
+   "deepest": {
+    "pair": "2cVxiU1ijduPxSXpH6EzGFEGP9zRVMcxTbk6cc7xvjcb",
+    "dex": "pumpfun",
+    "chain": "solana",
+    "quote": "SOL",
+    "liq_usd": 0.0,
+    "vol24_usd": 4953.6,
+    "created_ms": 1790117941000
+   },
+   "single_pair_would_have_said": 0.0,
+   "single_pair_understates_by": null,
+   "first_pair_ms": 1790117941000,
+   "pairs": [
+    {
+     "pair": "2cVxiU1ijduPxSXpH6EzGFEGP9zRVMcxTbk6cc7xvjcb",
+     "dex": "pumpfun",
+     "chain": "solana",
+     "quote": "SOL",
+     "liq_usd": 0.0,
+     "vol24_usd": 4953.6,
+     "created_ms": 1790117941000
+    }
+   ],
+   "phantom": false,
+   "phantom_why": null,
+   "chains": [
+    "solana"
+   ]
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "NO_LIQUIDITY"
+ },
+ {
+  "chain": "solana",
+  "address": "fydEnKQXRF8BSX1yuFaJif4F3nBRRwCrANBcXBMpump",
+  "name": "hype",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "fydEnKQXRF8BSX1yuFaJif4F3nBRRwCrANBcXBMpump",
+   "ok": true,
+   "pair_count": 0,
+   "total_liq_usd": 0.0,
+   "total_vol24_usd": 0.0,
+   "mcap_usd": null,
+   "price_usd": null,
+   "venues": {},
+   "quote_assets": {},
+   "pairs": [],
+   "phantom": false,
+   "note": "indexer returned no pairs"
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "NO_LIQUIDITY"
+ },
+ {
+  "chain": "solana",
+  "address": "7CB1GBsG2mtW2STF2aorybvTqcm6wnPvmsC6dwxpump",
+  "name": "Hype Fun",
+  "symbol": "HYPE",
+  "measured": {
+   "mint": "7CB1GBsG2mtW2STF2aorybvTqcm6wnPvmsC6dwxpump",
+   "ok": true,
+   "pair_count": 0,
+   "total_liq_usd": 0.0,
+   "total_vol24_usd": 0.0,
+   "mcap_usd": null,
+   "price_usd": null,
+   "venues": {},
+   "quote_assets": {},
+   "pairs": [],
+   "phantom": false,
+   "note": "indexer returned no pairs"
+  },
+  "match_score": 0,
+  "match_why": "price=unknown; mcap=unknown; vol24=unknown",
+  "verdict": "NO_LIQUIDITY"
+ }
+]

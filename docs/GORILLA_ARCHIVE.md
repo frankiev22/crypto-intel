@@ -39,7 +39,7 @@ Three obstacles worth recording, because the next person will hit them:
 - ⛔ **x.com's Content-Security-Policy blocks `fetch` to any other origin**, so
   the scraped text cannot be POSTed out of the page. A **URL fragment** is not
   governed by `connect-src` and is never sent to a server, so the payload rides a
-  navigation to a localhost sink instead (`sink.py`).
+  navigation to a localhost sink instead (`analysis/gorilla_archive/sink.py`).
 
 ⚠️ **Every post quotes the previous day's post in full.** Parsing the raw text
 without cutting at the quote marker double-counts about half the archive and
@@ -97,24 +97,44 @@ reports tokens that have *already* run, so the pool must exist by the day he
 mentions it. That single rule **rejected 2,805 candidate contracts** whose
 earliest pool postdates the first mention.
 
-⛔ **And it is still not enough. Here is the proof, on a contract we verified by
-hand the same day:**
+### ⛔⛔ RETRACTED 2026-09-23: the EMBER proof that stood here was inverted
 
-> **EMBER.** The real contract is `FLCr9vGMNQMHQ6z9nQ4FbH3sABPn3ipEAyzJF68zHTsh`.
-> Its operator withdrew **2,907.565 SOL** at 11:09:37Z on 2026-09-22 and burned
-> the LP, leaving **$20.36** of depth. **It appears nowhere in the search results
-> for "EMBER".** The resolver instead selected
-> `5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6`, a different Solana token with
-> $2.1m of liquidity, created one day before the mention, and graded it **HIGH
-> confidence** and **alive**.
+**What this section used to say, and it is wrong:** that
+`FLCr9vGMTkbDcRCoirP5Hx8gB7TW1Azt3pkw3qp2HTsh` was the real EMBER, that the
+resolver wrongly picked `5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6`, and that
+this proved the method cannot resolve a ticker. **Frank caught it. Measured
+2026-09-23 00:56Z with liquidity summed across every pair:**
 
-**The mechanism is simple and it is fatal to any survival statistic built this
-way: the listings stop returning a token once it has no liquidity. A token that
-died is invisible to them. So a ticker resolves to whatever living namesake
-carries that symbol now, and the dead ones silently become survivors.**
+| | ⭐ **real EMBER `5dvXTZ5q…`** | ⛔ the phantom `FLCr9vGM…` |
+|---|---|---|
+| pairs | **30**, which is the API cap - read "30 or more" | 3, complete |
+| liquidity, all pairs | **$2,331,895**, a FLOOR | ⛔ **$1.39** |
+| market cap | $17,932,579 | ⛔ claimed **$1,314,046,208** |
+| first pool | **09-09 22:25Z**, one day BEFORE the mention | 09-21 10:55Z, twelve days AFTER |
+| quote assets | SOL $1.13M, **MET $522,677**, USDC $398k | SOL $1.39 |
+| $2,000 round trip | ⭐ **TRADEABLE, $1,974.03 back, 1.30%** | TOTAL_LOSS, $0.33 back |
+
+⭐ **So the resolver was RIGHT and I overrode it by hand with a wrong answer.**
+The date rule did its job: the phantom's pool postdates the mention, and 19 of the
+real one's 30 pools are Meteora with MET as its second-largest quote asset, which
+is exactly what *"a token-pairing launchpad on Meteora"* looks like on chain.
+⛔ **The lesson is the reverse of the one published: a hand-check on chain is not
+automatically more trustworthy than a rule, because it can be on chain on the
+wrong account.** Full record, with every retracted sentence quoted:
+`data/findings/RETRACTION_2026-09-22_ember.md`.
+
+### ⚠️ The survivorship mechanism is real, but it is measured, not proved by an anecdote
+
+The listings **preferentially** drop a token once it has no liquidity, so the dead
+tend to be invisible and a ticker resolves to whatever living namesake carries the
+symbol now. ⭐ **Strength, measured on 44 cohort tokens absent from the search
+index: 86.4% [73.3, 93.6] failed a live $100 round trip.** So absence is strong
+evidence of death but not proof, and the phantom EMBER shows the converse too:
+a dead token can stay in the index for at least a day after it is drained.
 
 ⭐ **Therefore: there is no hit rate on Gorilla in this dataset, and producing one
-would be a fabrication.** Rows that cannot be resolved with confidence are
+would be a fabrication.** ⛔ **The evidence for that is §4b's flat age curve, not
+EMBER.** Rows that cannot be resolved with confidence are
 labelled **`unverifiable`** (202 of them) rather than scored. The alive and faded
 badges on the page describe **the token carrying that ticker today**, not the
 outcome of his call, and the page says so in its own header.
