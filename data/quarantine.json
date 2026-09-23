@@ -4982,5 +4982,13 @@
   "first_horizon_h": 24,
   "last_ts": 1790140753,
   "hits": 1
+ },
+ "8yaR6YaZ5oKL4dX7VLu6C5SCsUCN3RwVpJ4ioEWR1dEB": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "total reserve $0.2260 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1790155129,
+  "first_horizon_h": 24,
+  "last_ts": 1790155129,
+  "hits": 1
  }
 }

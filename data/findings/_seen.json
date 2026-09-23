@@ -187,9 +187,9 @@
  },
  "funnel-narrowing:scan": {
   "first_seen": "2026-09-20T15:07:49+00:00",
-  "count": 3,
+  "count": 9,
   "example": "funnel-narrowing: scan",
-  "last_seen": "2026-09-23T05:06:08+00:00",
+  "last_seen": "2026-09-23T11:05:50+00:00",
   "last_escalated": "2026-09-23T05:06:08+00:00",
   "keys": [
    "scan"
@@ -311,14 +311,14 @@
  },
  "liveness:selftest": {
   "first_seen": "2026-09-21T05:09:40+00:00",
-  "count": 481,
+  "count": 540,
   "example": "liveness: selftest",
-  "last_seen": "2026-09-23T06:54:40+00:00",
-  "last_escalated": "2026-09-23T05:17:33+00:00",
+  "last_seen": "2026-09-23T11:22:55+00:00",
+  "last_escalated": "2026-09-23T11:19:34+00:00",
   "keys": [
    "selftest"
   ],
-  "escalations": 1
+  "escalations": 2
  },
  "liveness:watchlist-sweep": {
   "first_seen": "2026-09-10T00:07:41+00:00",
@@ -13104,19 +13104,19 @@
   ]
  },
  "scanner-hit:hmwgdrkyrapfvabcfzcbizmobsjhhbbmxtrb": {
-  "first_seen": "2026-09-23T06:44:18+00:00",
+  "first_seen": "2026-09-23T07:05:40+00:00",
   "count": 1,
   "example": "scanner-hit: H5Mwg6dRKyRapfv8abcfZC8b91izmobS54jhhbbMxtrb",
   "keys": [
    "H5Mwg6dRKyRapfv8abcfZC8b91izmobS54jhhbbMxtrb"
   ]
  },
- "scanner-hit:jdvpbgjdedbyerikpdluwrmjfnfzxggaqceql": {
-  "first_seen": "2026-09-23T06:44:19+00:00",
+ "collector-error:horizonstall": {
+  "first_seen": "2026-09-23T07:23:25+00:00",
   "count": 1,
-  "example": "scanner-hit: JDvPbg9jdEdbyERikpDLUw4rmJf7NfZ5XGG3AQ3C1eQL",
+  "example": "collector-error: HorizonStall",
   "keys": [
-   "JDvPbg9jdEdbyERikpDLUw4rmJf7NfZ5XGG3AQ3C1eQL"
+   "HorizonStall"
   ]
  }
 }

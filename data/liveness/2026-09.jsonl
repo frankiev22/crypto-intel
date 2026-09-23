@@ -86836,3 +86836,349 @@
 {"name": "funnel.recorded", "ts": 1790146456, "n": 1, "detail": "no alarms", "origin": "scheduled"}
 {"name": "detector.drift", "ts": 1790146477, "n": 1, "detail": "stable", "origin": "scheduled"}
 {"name": "dashboard.build", "ts": 1790146480, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790143472, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790143494, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790143516, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790143538, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1790143539, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790143548, "n": 1, "detail": "scan coverage 20.3% below 80%: 197 pools seen, 40 reached, 157 carried forward", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790143571, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790143580, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1790143586, "n": 99, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790143607, "n": 1, "detail": "中国人 MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790143608, "n": 1, "detail": "Pygoscelis MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790143627, "n": 1, "detail": "LOOONGCA MAX_HOLD", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790143709, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790143732, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790143741, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1790143746, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790143764, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790143787, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790143797, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1790143896, "n": 406, "detail": "406 rows, universe 264, 16 round trips", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790143897, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790143919, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790143928, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790143964, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790143985, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790144005, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790144025, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790144045, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790144045, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790144068, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790144078, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790144115, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790144136, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790144156, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790144176, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790144196, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790144196, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790144218, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790144227, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790144265, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790144287, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790144308, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790144327, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790144347, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790144348, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790144370, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790144380, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790144398, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790144421, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790144431, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "graduations.ledger", "ts": 1790144444, "n": 60, "detail": "38 graduations of 60 processed, backlog 0", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790144444, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790144467, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790144477, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "universe.members", "ts": 1790144578, "n": 1122, "detail": "1122 members, 9 candidates, 6 quoted, 1235 deferred", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790144579, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790144601, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790144610, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790147073, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790147095, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790147117, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790147139, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1790147140, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790147164, "n": 1, "detail": "scan coverage 16.6% below 80%: 241 pools seen, 40 reached, 201 carried forward", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790147187, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790147196, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1790147202, "n": 96, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790147222, "n": 1, "detail": "McDonald's MAX_HOLD", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790147323, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790147346, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790147355, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1790147357, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1790147372, "n": 1, "detail": "graduated qKVvVUUSAsaBGCWH8kDP1EnTRmXym3vbKaVnK7v6zTj", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790147372, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790147395, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790147405, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1790147502, "n": 405, "detail": "405 rows, universe 272, 16 round trips", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790147502, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790147525, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790147533, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790147566, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790147587, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790147607, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790147627, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790147647, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790147647, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790147670, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790147679, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790147715, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790147736, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790147756, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790147776, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790147796, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790147796, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790147819, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790147828, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790147862, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790147883, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790147905, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790147926, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790147948, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790147949, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790147972, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790147981, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790147994, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790148016, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790148026, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "graduations.ledger", "ts": 1790148034, "n": 55, "detail": "38 graduations of 55 processed, backlog 0", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790148034, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790148057, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790148066, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "universe.members", "ts": 1790148139, "n": 1127, "detail": "1127 members, 8 candidates, 6 quoted, 1243 deferred", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790148140, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790148162, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790148171, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790150673, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790150694, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790150716, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790150738, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1790150738, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790150747, "n": 1, "detail": "scan coverage 13.9% below 80%: 296 pools seen, 41 reached, 255 carried forward", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790150770, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790150778, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1790150783, "n": 95, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790150804, "n": 1, "detail": "SPX MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790150805, "n": 1, "detail": "X7 MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790150824, "n": 1, "detail": "Spider-Man MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790150825, "n": 1, "detail": "PONZIPAD MAX_HOLD", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790150906, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790150929, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790150938, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1790150943, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790150959, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790150981, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790150991, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1790151094, "n": 408, "detail": "408 rows, universe 274, 16 round trips", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790151094, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790151117, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790151126, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790151163, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790151184, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790151204, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790151224, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790151243, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790151244, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790151266, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790151276, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790151314, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790151334, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790151354, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790151374, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790151394, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790151394, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790151417, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790151427, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790151463, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790151485, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790151507, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790151528, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790151548, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790151550, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790151572, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790151581, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790151597, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790151620, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790151629, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "graduations.ledger", "ts": 1790151643, "n": 73, "detail": "50 graduations of 73 processed, backlog 0", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790151643, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790151666, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790151676, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "universe.members", "ts": 1790151749, "n": 1132, "detail": "1132 members, 7 candidates, 6 quoted, 1247 deferred", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790151750, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790151772, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790151782, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790154274, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790154295, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790154317, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790154339, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1790154339, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790154348, "n": 1, "detail": "scan coverage 12.2% below 80%: 353 pools seen, 43 reached, 310 carried forward", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790154370, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790154379, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1790154384, "n": 91, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790154405, "n": 1, "detail": "中国人能飞 MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790154406, "n": 1, "detail": "JEEPPHIL MAX_HOLD", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790154505, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790154528, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790154538, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1790154543, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790154560, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790154584, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790154595, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1790154695, "n": 401, "detail": "401 rows, universe 269, 16 round trips", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790154696, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790154718, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790154727, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790154763, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790154784, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790154804, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790154824, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790154844, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790154844, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790154867, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790154876, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790154913, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790154934, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790154954, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790154974, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790154994, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790154994, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790155017, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790155026, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790155063, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790155085, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790155106, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790155127, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790155149, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790155151, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790155173, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790155182, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790155198, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790155220, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790155230, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "graduations.ledger", "ts": 1790155242, "n": 61, "detail": "44 graduations of 61 processed, backlog 0", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790155242, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790155265, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790155275, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "universe.members", "ts": 1790155350, "n": 1138, "detail": "1138 members, 8 candidates, 6 quoted, 1250 deferred", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790155351, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790155374, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790155383, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790157875, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790157896, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790157917, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790157939, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1790157940, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790157949, "n": 1, "detail": "scan coverage 10.2% below 80%: 401 pools seen, 41 reached, 360 carried forward", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790157972, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790157981, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1790157986, "n": 89, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790158006, "n": 1, "detail": "COSDET MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790158007, "n": 1, "detail": "WOW MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790158027, "n": 1, "detail": "VSOF MAX_HOLD", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790158107, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790158130, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790158139, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1790158142, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790158155, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790158178, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790158187, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1790158288, "n": 398, "detail": "398 rows, universe 273, 16 round trips", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790158289, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790158311, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790158320, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790158356, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790158377, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790158397, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790158417, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790158437, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790158437, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790158460, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790158469, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790158505, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790158526, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790158546, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790158565, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790158585, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790158586, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790158608, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790158618, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790158654, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790158675, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790158695, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790158717, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790158739, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790158740, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790158763, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790158772, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790158788, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790158810, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790158819, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "graduations.ledger", "ts": 1790158832, "n": 63, "detail": "41 graduations of 63 processed, backlog 0", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790158832, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790158856, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790158865, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "universe.members", "ts": 1790158941, "n": 1141, "detail": "1141 members, 5 candidates, 6 quoted, 1247 deferred", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790158941, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790158964, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790158974, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790161475, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790161496, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790161519, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790161540, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1790161541, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790161550, "n": 1, "detail": "scan coverage 9.9% below 80%: 425 pools seen, 42 reached, 383 carried forward", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790161572, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790161582, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1790161588, "n": 86, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790161608, "n": 1, "detail": "STARBUCKS MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790161609, "n": 1, "detail": "NTDA MAX_HOLD", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790161710, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790161733, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790161742, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1790161746, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790161760, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790161783, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790161793, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1790161892, "n": 398, "detail": "398 rows, universe 272, 16 round trips", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790161892, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790161914, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790161923, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790161959, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790161980, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790161999, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790162019, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790162039, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790162039, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790162062, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790162071, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790162108, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790162129, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790162149, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790162169, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790162189, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790162189, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790162212, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790162221, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790162257, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790162279, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790162300, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790162320, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790162341, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790162342, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790162365, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790162374, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790162390, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790162412, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790162421, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "graduations.ledger", "ts": 1790162431, "n": 53, "detail": "37 graduations of 53 processed, backlog 0", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790162431, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790162454, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790162464, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "universe.members", "ts": 1790162542, "n": 1146, "detail": "1146 members, 6 candidates, 6 quoted, 1252 deferred", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790162542, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790162565, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790162575, "n": 1, "detail": null, "origin": "scheduled"}
