@@ -465,13 +465,47 @@ clear()
 intel.allpairs.token = lambda m, **k: _two_leg_token({"SOL": intel.WSOL,
                                                       "SPYx": SPYX})
 intel.chainfields._rpc = _legs_rpc({intel.WSOL: (_CLEAN_LEG, None)})
+import legs as _legsmod  # noqa: E402
+_legsmod.lookup = lambda m: None          # nothing cached for this leg
 out = intel.pair_legs("6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx")
 d = out["data"]
 bad = [l for l in d["legs"] if l["symbol"] == "SPYx"][0]
-t("⛔⛔ an UNREADABLE leg is ok=False with a reason, never clean",
+t("⛔⛔ an UNREADABLE leg with nothing cached is ok=False with a reason, "
+  "never clean",
   bad["ok"] is False and bad.get("why") and bad["powers"] == [], str(bad)[:120])
-t("⛔ legs_read counts only the legs actually read from chain",
+t("⛔ legs_read counts only the legs read LIVE from chain",
   d["legs_read"] == 1, str(d["legs_read"]))
+
+# ⭐ And when the registry DOES hold it, the answer comes from there - labelled
+# as cached, with its read time, and NOT counted as a live read. An RPC blip must
+# not turn a known issuer-controlled asset into an unknown one.
+clear()
+_legsmod.lookup = lambda m: ({
+    "ok": True, "symbol": "SPYx", "mint": SPYX, "is_token_2022": True,
+    "freeze_authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+    "mint_authority": None, "extensions": ["permanentDelegate"],
+    "default_account_state": "initialized", "transfer_fee_bps": None,
+    "checked_at": "2026-09-23T13:00:00Z"} if m == SPYX else None)
+out = intel.pair_legs("6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx")
+d = out["data"]
+cached_leg = [l for l in d["legs"] if l["symbol"] == "SPYx"][0]
+t("⭐ a failed live read falls back to the PUBLISHED registry",
+  cached_leg.get("ok") is True and cached_leg.get("from_registry") is True,
+  str(cached_leg)[:140])
+t("⛔⛔ and it is still FLAGGED - a blip cannot launder an "
+  "issuer-controlled leg",
+  d["issuer_controlled_legs"] == ["SPYx"], str(d["issuer_controlled_legs"]))
+t("⚠️ the response SAYS it is cached, with the time it was read",
+  any("published registry" in w and "2026-09-23T13:00:00Z" in w
+      for w in out["warnings"]), str(out["warnings"]))
+t("⛔ a registry answer is NOT counted as a live chain read",
+  d["legs_read"] == 1 and d["legs_from_registry"] == 1,
+  f"live={d['legs_read']} registry={d['legs_from_registry']}")
+t("⚠️ and it records WHY the live read failed",
+  cached_leg.get("live_read_failed_why"),
+  str(cached_leg.get("live_read_failed_why")))
+
+_legsmod.lookup = lambda m: None           # leave the stub off for later sections
 
 # ⛔ Standing rule 2: a symbol is not an identity, so a leg with no mint
 # address is reported as unresolved rather than guessed at or dropped.

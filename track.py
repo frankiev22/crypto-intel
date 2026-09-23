@@ -15,7 +15,7 @@ Horizons: 1h catches the initial pump, 6h catches whether it held, 24h catches
 whether it was real, 168h catches whether anything survived a week.
 """
 import math, os, time, statistics as st
-import journal, pricecheck, resolve, sources as S
+import crossingalert, journal, pricecheck, resolve, sources as S
 
 # 168h IS RETIRED, AND RETIRED NOW MEANS RETIRED.
 #
@@ -210,6 +210,7 @@ def score_horizon(horizon_h, limit=None, verbose=True):
     """Re-check pairs first seen ~horizon_h ago and record what happened."""
     # Built once here, then reused by every pair in this pass.
     _win_index(force=True)
+    crossingalert.reset()
     queue = journal.pending(horizon_h)
     todo = queue[:limit]
     # ---------------------------------------------------------------------
@@ -433,7 +434,15 @@ def score_horizon(horizon_h, limit=None, verbose=True):
             price_verdict=verdict, exit_depth=depth,
             base_price_native=o.get("price_native"), price_native=_pn_exit,
             exit_pair=_exit_pair, sells_h24=_sells24, buys_h24=_buys24,
-            mcap=_mcap, authority_live=_auth_live, all_pairs=_all_pairs)
+            mcap=_mcap, authority_live=_auth_live, all_pairs=_all_pairs,
+            # ⭐ THE CROSSING LANE. Until 2026-09-23 nothing fired on a
+            # market-cap crossing at all: 61 crossings of $1M/$5M on 34 contracts
+            # in 24h and ZERO pings, so the 45 thin ones were silent by accident
+            # and the 15 that cleared $1,000 of depth were silent for the same
+            # reason. The rule is in PRECOMMIT_crossing_alert.md, written before
+            # any crossing was scored against it.
+            on_milestone=lambda tk, name, meta: crossingalert.on_milestone(
+                tk, name, meta, verbose=verbose))
         done += 1
         _elapsed = (time.time() - o["ts"]) / 3600.0
         elapsed_seen.append(_elapsed)
@@ -583,6 +592,23 @@ def score_horizon(horizon_h, limit=None, verbose=True):
             print(f"    (could not raise the outage finding: {e})")
     if stopped_early:
         LAST_STOP[horizon_h] = stopped_early
+
+    # ⛔ THE CROSSING LANE'S LIVENESS ROW FIRES HERE, not in score_all, and
+    # the difference is the whole bug class. `collect.py` runs the horizons as
+    # separate stages (`--stage 1`, `6`, `24`, `168`) and calls score_horizon
+    # directly; score_all is only reached by one_pass and by hand. A beat placed
+    # in score_all would therefore never fire under the actual scheduler, which
+    # is exactly "built but not wired".
+    #
+    # ⛔ And it counts crossings EVALUATED, silent ones included. A lane with
+    # nothing to announce must not look identical to a lane that is broken.
+    crossingalert.beat()
+    if verbose and crossingalert.LAST["evaluated"]:
+        L = crossingalert.LAST
+        print("    crossings evaluated %d: %d alerted, %d thin, %d unmeasured"
+              % (L["evaluated"], L[crossingalert.ALERT],
+                 L[crossingalert.SILENT_THIN],
+                 L[crossingalert.SILENT_UNMEASURED]))
     return done
 
 

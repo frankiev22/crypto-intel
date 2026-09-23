@@ -4990,5 +4990,13 @@
   "first_horizon_h": 24,
   "last_ts": 1790155129,
   "hits": 1
+ },
+ "HY5STh7tuR2opkjMpZqwuiwmadXwzP7E3HQNVP8Bhyp4": {
+  "confidence": "quarantined_no_liquidity",
+  "detail": "exit depth $0.0167 is below the $100 floor; no quote is meaningful",
+  "first_ts": 1790166967,
+  "first_horizon_h": 1,
+  "last_ts": 1790166967,
+  "hits": 1
  }
 }

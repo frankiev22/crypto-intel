@@ -1,0 +1,802 @@
+{
+ "assets": {
+  "21Dt6Ne2tQ8wQ5j6G2zahtF1tskJqRmtSaaSwXjyBJVz": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "21Dt6Ne2tQ8wQ5j6G2zahtF1tskJqRmtSaaSwXjyBJVz",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "PEPE",
+   "transfer_fee_bps": null
+  },
+  "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "RAY",
+   "transfer_fee_bps": null
+  },
+  "4ytizhz37BwwzSDgvRLrwaEUPbpA1Vmv1eAsFR3WCray": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "4ytizhz37BwwzSDgvRLrwaEUPbpA1Vmv1eAsFR3WCray",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "TYTR",
+   "transfer_fee_bps": null
+  },
+  "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "STONK",
+   "transfer_fee_bps": null
+  },
+  "8RNUw4N655VSrZKuhGdywhbSMDTrheguFPfxbpE2NZHQ": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [
+    "transferFeeConfig",
+    "metadataPointer",
+    "tokenMetadata"
+   ],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": true,
+   "issuer_controlled": false,
+   "mint": "8RNUw4N655VSrZKuhGdywhbSMDTrheguFPfxbpE2NZHQ",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [
+    "every transfer is taxed 300 bps"
+   ],
+   "source": "seed",
+   "symbol": "PURR",
+   "transfer_fee_bps": 300
+  },
+  "8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [
+    "metadataPointer",
+    "transferFeeConfig",
+    "tokenMetadata"
+   ],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": true,
+   "issuer_controlled": false,
+   "mint": "8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [
+    "every transfer is taxed 300 bps"
+   ],
+   "source": "seed",
+   "symbol": "KNOTS",
+   "transfer_fee_bps": 300
+  },
+  "8RWFpyz9VW7Wyv626v49f8ybzREcYhYDC19vaWedpump": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [
+    "metadataPointer",
+    "tokenMetadata"
+   ],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": true,
+   "issuer_controlled": false,
+   "mint": "8RWFpyz9VW7Wyv626v49f8ybzREcYhYDC19vaWedpump",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "DASH",
+   "transfer_fee_bps": null
+  },
+  "98sMhvDwXj1RQi5c5Mndm3vPe9cBqPrbLaufMXFNMh5g": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "98sMhvDwXj1RQi5c5Mndm3vPe9cBqPrbLaufMXFNMh5g",
+   "mint_authority": "3X46pk5u5gLfppNRyPF5PcKyuHYrA2pHnyJK5HRLPzfi",
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "HYPE",
+   "transfer_fee_bps": null
+  },
+  "9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [
+    "metadataPointer",
+    "tokenMetadata"
+   ],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": true,
+   "issuer_controlled": false,
+   "mint": "9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "ANSEM",
+   "transfer_fee_bps": null
+  },
+  "A7bdiYdS5GjqGFtxf17ppRHtDKPkkRqbKtR27dxvQXaS": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "A7bdiYdS5GjqGFtxf17ppRHtDKPkkRqbKtR27dxvQXaS",
+   "mint_authority": "FvULawNPGBbuwYus74ECaQoV1oH9Tk6XPN7VPN51NYds",
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "ZEC",
+   "transfer_fee_bps": null
+  },
+  "Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [
+    "metadataPointer",
+    "tokenMetadata"
+   ],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": true,
+   "issuer_controlled": false,
+   "mint": "Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "CATE",
+   "transfer_fee_bps": null
+  },
+  "BPxxfRCXkUVhig4HS1Lh7kZqV6SPJhzfEk4x6fVBjPCy": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": "GySFHFS5ZiN4Z5YnyPZcjjxpYcGvD7qHZYVjE9QzMHVH",
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "BPxxfRCXkUVhig4HS1Lh7kZqV6SPJhzfEk4x6fVBjPCy",
+   "mint_authority": "GySFHFS5ZiN4Z5YnyPZcjjxpYcGvD7qHZYVjE9QzMHVH",
+   "ok": true,
+   "powers": [
+    "the issuer can FREEZE your account"
+   ],
+   "source": "seed",
+   "symbol": "BP",
+   "transfer_fee_bps": null
+  },
+  "BgCeigJo2iY3dJhqS2z9w4pjjufFd4F9oKS3FrkMbmbJ": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "BgCeigJo2iY3dJhqS2z9w4pjjufFd4F9oKS3FrkMbmbJ",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "TrumpBucks",
+   "transfer_fee_bps": null
+  },
+  "CARDSccUMFKoPRZxt5vt3ksUbxEFEcnZ3H2pd3dKxYjp": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "CARDSccUMFKoPRZxt5vt3ksUbxEFEcnZ3H2pd3dKxYjp",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "CARDS",
+   "transfer_fee_bps": null
+  },
+  "CFNRDaxFcvRwRSNnA5cHrCCr6AHhk9dNkHWpRUjNupFL": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [
+    "transferFeeConfig",
+    "metadataPointer",
+    "tokenMetadata"
+   ],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": true,
+   "issuer_controlled": false,
+   "mint": "CFNRDaxFcvRwRSNnA5cHrCCr6AHhk9dNkHWpRUjNupFL",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [
+    "every transfer is taxed 300 bps"
+   ],
+   "source": "seed",
+   "symbol": "RAYCAT",
+   "transfer_fee_bps": 300
+  },
+  "CzLTZppPdZtTjyq3WGpHLstoc3GLhu7zH5Zg6xUa6Gv5": {
+   "checked_at": "2026-09-23T12:38:12Z",
+   "checked_ts": 1790167092.422588,
+   "default_account_state": "initialized",
+   "extensions": [
+    "metadataPointer",
+    "permanentDelegate",
+    "defaultAccountState",
+    "pausableConfig",
+    "confidentialTransferMint",
+    "transferHook",
+    "scaledUiAmountConfig",
+    "tokenMetadata"
+   ],
+   "first_seen_at": "2026-09-23T12:38:12Z",
+   "freeze_authority": "2cVYpagTt7ZGc3mmTXBa7fAznUtx5DUu6aCq8uVDaf4a",
+   "is_token_2022": true,
+   "issuer_controlled": true,
+   "mint": "CzLTZppPdZtTjyq3WGpHLstoc3GLhu7zH5Zg6xUa6Gv5",
+   "mint_authority": "4S7eNNQcLMHeZr8MCX7cPmMKbqnVVUZ1PRRLAopTTeQt",
+   "ok": true,
+   "powers": [
+    "the issuer can FREEZE your account",
+    "the issuer can MOVE your tokens without your signature",
+    "the issuer can halt every transfer of this asset",
+    "new accounts can be forced to start frozen",
+    "every transfer runs issuer code that can reject it",
+    "balances can be confidential, so holdings are not fully auditable"
+   ],
+   "source": "seed",
+   "symbol": "COPX",
+   "transfer_fee_bps": null
+  },
+  "Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "USELESS",
+   "transfer_fee_bps": null
+  },
+  "EDTmJjr4VoV9S8ftCQFt4ZBvmDy9s1tBoiWVrmDApump": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [
+    "metadataPointer",
+    "tokenMetadata"
+   ],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": true,
+   "issuer_controlled": false,
+   "mint": "EDTmJjr4VoV9S8ftCQFt4ZBvmDy9s1tBoiWVrmDApump",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "HQ",
+   "transfer_fee_bps": null
+  },
+  "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": "7dGbd2QZcCKcTndnHcTL8q7SMVXAkp688NTQYwrRCrar",
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+   "mint_authority": "BJE5MMbqXjVwjAF7oxwPYXnTXDyspzZyt4vwenNw5ruG",
+   "ok": true,
+   "powers": [
+    "the issuer can FREEZE your account"
+   ],
+   "source": "seed",
+   "symbol": "USDC",
+   "transfer_fee_bps": null
+  },
+  "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": "Q6XprfkF8RQQKoQVG33xT88H7wi8Uk1B1CC7YAs69Gi",
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+   "mint_authority": "Q6XprfkF8RQQKoQVG33xT88H7wi8Uk1B1CC7YAs69Gi",
+   "ok": true,
+   "powers": [
+    "the issuer can FREEZE your account"
+   ],
+   "source": "seed",
+   "symbol": "USDT",
+   "transfer_fee_bps": null
+  },
+  "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [
+    "metadataPointer",
+    "tokenMetadata"
+   ],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": true,
+   "issuer_controlled": false,
+   "mint": "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "JEANPHIL",
+   "transfer_fee_bps": null
+  },
+  "GaRph5BcLZZ4sRh6EXKS6V7dicVanhcwa5iWEE6AbEYR": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "GaRph5BcLZZ4sRh6EXKS6V7dicVanhcwa5iWEE6AbEYR",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "tradebot",
+   "transfer_fee_bps": null
+  },
+  "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [
+    "metadataPointer",
+    "tokenMetadata"
+   ],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": true,
+   "issuer_controlled": false,
+   "mint": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "Jimothy",
+   "transfer_fee_bps": null
+  },
+  "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [
+    "transferFeeConfig",
+    "metadataPointer",
+    "tokenMetadata"
+   ],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": true,
+   "issuer_controlled": false,
+   "mint": "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [
+    "every transfer is taxed 300 bps"
+   ],
+   "source": "seed",
+   "symbol": "ZCAT",
+   "transfer_fee_bps": 300
+  },
+  "HunmXDXMNQYVoDnUL6PNnSYEtFaTZA2WzGh1HJTW7aoV": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [
+    "metadataPointer",
+    "transferFeeConfig",
+    "tokenMetadata"
+   ],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": true,
+   "issuer_controlled": false,
+   "mint": "HunmXDXMNQYVoDnUL6PNnSYEtFaTZA2WzGh1HJTW7aoV",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [
+    "every transfer is taxed 300 bps"
+   ],
+   "source": "seed",
+   "symbol": "LOOP",
+   "transfer_fee_bps": 300
+  },
+  "HygNWegGFjQqNMCsQmXbFgr3ViybkEN6fQtmvLXVXJmd": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [
+    "transferFeeConfig"
+   ],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": true,
+   "issuer_controlled": false,
+   "mint": "HygNWegGFjQqNMCsQmXbFgr3ViybkEN6fQtmvLXVXJmd",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [
+    "every transfer is taxed 400 bps"
+   ],
+   "source": "seed",
+   "symbol": "Circuit",
+   "transfer_fee_bps": 400
+  },
+  "So11111111111111111111111111111111111111112": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "So11111111111111111111111111111111111111112",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "SOL",
+   "transfer_fee_bps": null
+  },
+  "USD1ttGY1N17NEEHLmELoaybftRBUSErhqYiQzvEmuB": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": "84ssq8Ud2WRzxVCuEmPa9xLPBUt4odmB8wuE8svZkh71",
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "USD1ttGY1N17NEEHLmELoaybftRBUSErhqYiQzvEmuB",
+   "mint_authority": "BQh68x9D7TDqgJUXiJX1BsD1eR7kkV978owqwBEftpwK",
+   "ok": true,
+   "powers": [
+    "the issuer can FREEZE your account"
+   ],
+   "source": "seed",
+   "symbol": "USD1",
+   "transfer_fee_bps": null
+  },
+  "VCFN4S4N2oK4FZvp2daHfhgWm7oWyAsthL1EakYDNDT": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [
+    "transferFeeConfig"
+   ],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": true,
+   "issuer_controlled": false,
+   "mint": "VCFN4S4N2oK4FZvp2daHfhgWm7oWyAsthL1EakYDNDT",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [
+    "every transfer is taxed 800 bps"
+   ],
+   "source": "seed",
+   "symbol": "VCF",
+   "transfer_fee_bps": 800
+  },
+  "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W": {
+   "checked_at": "2026-09-23T12:38:12Z",
+   "checked_ts": 1790167092.422588,
+   "default_account_state": "initialized",
+   "extensions": [
+    "metadataPointer",
+    "permanentDelegate",
+    "defaultAccountState",
+    "scaledUiAmountConfig",
+    "pausableConfig",
+    "confidentialTransferMint",
+    "transferHook",
+    "tokenMetadata"
+   ],
+   "first_seen_at": "2026-09-23T12:38:12Z",
+   "freeze_authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+   "is_token_2022": true,
+   "issuer_controlled": true,
+   "mint": "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W",
+   "mint_authority": "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
+   "ok": true,
+   "powers": [
+    "the issuer can FREEZE your account",
+    "the issuer can MOVE your tokens without your signature",
+    "the issuer can halt every transfer of this asset",
+    "new accounts can be forced to start frozen",
+    "every transfer runs issuer code that can reject it",
+    "balances can be confidential, so holdings are not fully auditable"
+   ],
+   "source": "seed",
+   "symbol": "SPYx",
+   "transfer_fee_bps": null
+  },
+  "cbbtcf3aa214zXHbiAZQwf4122FBYbraNdFqgw4iMij": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": "DSFAkPhfrSR95J9oq9Sh8rUetbj5vgFmwiSuHw6rAVnz",
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "cbbtcf3aa214zXHbiAZQwf4122FBYbraNdFqgw4iMij",
+   "mint_authority": "CTQE6PMesbH4szKR9Nk5moj9WWUr9MVGP734wYX9wy3p",
+   "ok": true,
+   "powers": [
+    "the issuer can FREEZE your account"
+   ],
+   "source": "seed",
+   "symbol": "cbBTC",
+   "transfer_fee_bps": null
+  },
+  "mGZypHvkdFFhN6vLDFBRXxXKZ6McEwaSHf3t6GfBULL": {
+   "checked_at": "2026-09-23T12:39:09Z",
+   "checked_ts": 1790167149.3137963,
+   "default_account_state": null,
+   "extensions": [],
+   "first_seen_at": "2026-09-23T12:39:09Z",
+   "freeze_authority": null,
+   "is_token_2022": false,
+   "issuer_controlled": false,
+   "mint": "mGZypHvkdFFhN6vLDFBRXxXKZ6McEwaSHf3t6GfBULL",
+   "mint_authority": null,
+   "ok": true,
+   "powers": [],
+   "source": "seed",
+   "symbol": "TBBB",
+   "transfer_fee_bps": null
+  }
+ },
+ "built_at": "2026-09-23T12:44:52Z",
+ "harvested_from": {
+  "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx": {
+   "pair_count": 30,
+   "quote_mints": [
+    "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
+    "4ytizhz37BwwzSDgvRLrwaEUPbpA1Vmv1eAsFR3WCray",
+    "Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk",
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "GaRph5BcLZZ4sRh6EXKS6V7dicVanhcwa5iWEE6AbEYR",
+    "HygNWegGFjQqNMCsQmXbFgr3ViybkEN6fQtmvLXVXJmd",
+    "So11111111111111111111111111111111111111112",
+    "VCFN4S4N2oK4FZvp2daHfhgWm7oWyAsthL1EakYDNDT",
+    "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W"
+   ],
+   "quote_set_is_floor": true,
+   "read_at": "2026-09-23T12:39:08Z",
+   "symbol": "STONK"
+  },
+  "8RNUw4N655VSrZKuhGdywhbSMDTrheguFPfxbpE2NZHQ": {
+   "pair_count": 30,
+   "quote_mints": [
+    "21Dt6Ne2tQ8wQ5j6G2zahtF1tskJqRmtSaaSwXjyBJVz",
+    "8RNUw4N655VSrZKuhGdywhbSMDTrheguFPfxbpE2NZHQ",
+    "98sMhvDwXj1RQi5c5Mndm3vPe9cBqPrbLaufMXFNMh5g",
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "So11111111111111111111111111111111111111112",
+    "VCFN4S4N2oK4FZvp2daHfhgWm7oWyAsthL1EakYDNDT"
+   ],
+   "quote_set_is_floor": true,
+   "read_at": "2026-09-23T12:39:08Z",
+   "symbol": "PURR"
+  },
+  "8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS": {
+   "pair_count": 30,
+   "quote_mints": [
+    "21Dt6Ne2tQ8wQ5j6G2zahtF1tskJqRmtSaaSwXjyBJVz",
+    "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+    "8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS",
+    "CFNRDaxFcvRwRSNnA5cHrCCr6AHhk9dNkHWpRUjNupFL",
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "So11111111111111111111111111111111111111112"
+   ],
+   "quote_set_is_floor": true,
+   "read_at": "2026-09-23T12:39:08Z",
+   "symbol": "KNOTS"
+  },
+  "98sMhvDwXj1RQi5c5Mndm3vPe9cBqPrbLaufMXFNMh5g": {
+   "pair_count": 30,
+   "quote_mints": [
+    "A7bdiYdS5GjqGFtxf17ppRHtDKPkkRqbKtR27dxvQXaS",
+    "BgCeigJo2iY3dJhqS2z9w4pjjufFd4F9oKS3FrkMbmbJ",
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "So11111111111111111111111111111111111111112",
+    "cbbtcf3aa214zXHbiAZQwf4122FBYbraNdFqgw4iMij"
+   ],
+   "quote_set_is_floor": true,
+   "read_at": "2026-09-23T12:39:09Z",
+   "symbol": "HYPE"
+  },
+  "9h5AzEQzYu9CV5K6uLtFRMD1KcbxZSFNxZEgBTNfw5Na": {
+   "pair_count": 2,
+   "quote_mints": [
+    "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+    "So11111111111111111111111111111111111111112"
+   ],
+   "quote_set_is_floor": false,
+   "read_at": "2026-09-23T12:39:08Z",
+   "symbol": "STONKCATS"
+  },
+  "Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump": {
+   "pair_count": 30,
+   "quote_mints": [
+    "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+    "8RWFpyz9VW7Wyv626v49f8ybzREcYhYDC19vaWedpump",
+    "9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump",
+    "Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump",
+    "CARDSccUMFKoPRZxt5vt3ksUbxEFEcnZ3H2pd3dKxYjp",
+    "EDTmJjr4VoV9S8ftCQFt4ZBvmDy9s1tBoiWVrmDApump",
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+    "So11111111111111111111111111111111111111112",
+    "mGZypHvkdFFhN6vLDFBRXxXKZ6McEwaSHf3t6GfBULL"
+   ],
+   "quote_set_is_floor": true,
+   "read_at": "2026-09-23T12:39:08Z",
+   "symbol": "CATE"
+  },
+  "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump": {
+   "pair_count": 30,
+   "quote_mints": [
+    "BPxxfRCXkUVhig4HS1Lh7kZqV6SPJhzfEk4x6fVBjPCy",
+    "EDTmJjr4VoV9S8ftCQFt4ZBvmDy9s1tBoiWVrmDApump",
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump",
+    "So11111111111111111111111111111111111111112"
+   ],
+   "quote_set_is_floor": true,
+   "read_at": "2026-09-23T12:39:09Z",
+   "symbol": "JEANPHIL"
+  },
+  "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR": {
+   "pair_count": 30,
+   "quote_mints": [
+    "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+    "A7bdiYdS5GjqGFtxf17ppRHtDKPkkRqbKtR27dxvQXaS",
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "HcRLc9VDgjLeK154xDawfb1dmVJ98DoSqcwTHGqiDeJR",
+    "So11111111111111111111111111111111111111112",
+    "USD1ttGY1N17NEEHLmELoaybftRBUSErhqYiQzvEmuB"
+   ],
+   "quote_set_is_floor": true,
+   "read_at": "2026-09-23T12:39:08Z",
+   "symbol": "ZCAT"
+  },
+  "HunmXDXMNQYVoDnUL6PNnSYEtFaTZA2WzGh1HJTW7aoV": {
+   "pair_count": 8,
+   "quote_mints": [
+    "8RVBk8vxLiUHueLUW1f4izFVqN3nWippLhkohKg6EGkS",
+    "HunmXDXMNQYVoDnUL6PNnSYEtFaTZA2WzGh1HJTW7aoV",
+    "So11111111111111111111111111111111111111112"
+   ],
+   "quote_set_is_floor": false,
+   "read_at": "2026-09-23T12:39:08Z",
+   "symbol": "LOOP"
+  },
+  "So11111111111111111111111111111111111111112": {
+   "pair_count": 30,
+   "quote_mints": [
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+    "USD1ttGY1N17NEEHLmELoaybftRBUSErhqYiQzvEmuB"
+   ],
+   "quote_set_is_floor": true,
+   "read_at": "2026-09-23T12:39:07Z",
+   "symbol": "SOL"
+  }
+ },
+ "not_checked": [
+  "authority_ever_used: presence of an authority is capability, not an event. Proving use needs the authority's own signature history.",
+  "completeness: this registry holds the quote assets of the tokens the pipeline read all pairs for (rows claiming >= 2x), plus a seed. It is forward-only and does not claim to be every quote asset on Solana.",
+  "defaultAccountState `initialized` is NOT `frozen`: the extension being present means the state can be changed, not that it has been."
+ ],
+ "summary": {
+  "freezable": 7,
+  "issuer_controlled": 2,
+  "issuer_controlled_symbols": [
+   "COPX",
+   "SPYx"
+  ],
+  "known": 32,
+  "read_ok": 32,
+  "read_this_pass": 0,
+  "stale_remaining": 0,
+  "taxed": 7
+ }
+}

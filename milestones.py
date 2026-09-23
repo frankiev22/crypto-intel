@@ -194,7 +194,8 @@ def is_first(milestone):
     return not crossings(milestone)
 
 
-def check_outcome(token, symbol, mult, realizable, mcap=None, **at_crossing):
+def check_outcome(token, symbol, mult, realizable, mcap=None,
+                  on_milestone=None, **at_crossing):
     """Evaluate every milestone this outcome crosses. Returns the NEW ones.
 
     `at_crossing` is what the SAME check measured - exit depth, whether the
@@ -202,20 +203,38 @@ def check_outcome(token, symbol, mult, realizable, mcap=None, **at_crossing):
     written onto every claim it makes. A crossing that cannot be verified from
     its own row sends the reader to a join, and the join found a depth read up
     to 16.7 hours stale (site/api/feed.mjs, 2026-09-18).
+
+    ⭐ `on_milestone(token, name, meta)` is called for each NEW claim, inside
+    this call, so an alert lane sees the crossing in the same breath as the depth
+    that was measured at it. It is where `crossingalert` hangs. The once-ever
+    guarantee is the `O_EXCL` create above, not the caller's memory, so a lane
+    hung here cannot double-announce. ⛔ A raising callback must never lose a
+    claim that is already on disk, so it is caught and reported.
     """
     new = []
+
+    def _fire(name, meta):
+        new.append(name)
+        if on_milestone is None:
+            return
+        try:
+            on_milestone(token, name, meta)
+        except Exception as e:
+            print("    milestone callback failed (non-fatal): %s: %s"
+                  % (type(e).__name__, str(e)[:120]))
+
     if realizable and mult:
         for name, level in MULT_LEVELS:
-            if mult >= level and claim(token, name, symbol=symbol,
-                                       value=round(mult, 4), kind="multiple",
-                                       **at_crossing):
-                new.append(name)
+            meta = dict(symbol=symbol, value=round(mult, 4), kind="multiple",
+                        **at_crossing)
+            if mult >= level and claim(token, name, **meta):
+                _fire(name, meta)
     if mcap:
         for name, level in MCAP_LEVELS:
-            if mcap >= level and claim(token, name, symbol=symbol,
-                                       value=round(mcap, 2), kind="mcap",
-                                       **at_crossing):
-                new.append(name)
+            meta = dict(symbol=symbol, value=round(mcap, 2), kind="mcap",
+                        **at_crossing)
+            if mcap >= level and claim(token, name, **meta):
+                _fire(name, meta)
     return new
 
 

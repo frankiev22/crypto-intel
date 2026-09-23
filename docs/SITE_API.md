@@ -1,4 +1,4 @@
-# The backend the site calls: eight read-only endpoints
+# The backend the site calls: nine read-only endpoints
 
 2026-09-23. **This is the contract between the pipeline session (which owns
 `intel.py`) and the site session (which owns `site/`).** Nothing here is
@@ -385,3 +385,72 @@ ever needs a model call to return a number, that is a design error.**
 `test_intel.py` also fails if a model client is imported into `intel.py`. A
 narrative layer may sit on top, cached per contract, but never between a
 question and its number.
+
+---
+
+## 9. ⭐⭐ `pair_legs(mint)` — both legs of every pair
+
+**Added 2026-09-23. This is the novel one.** Frank: *"our detector should run on
+BOTH legs of every pair... That would be a genuinely novel check."*
+
+A memecoin can have its own mint and freeze authorities cleanly revoked and still
+sit in a pool whose **quote asset** the issuer controls completely. Nobody checks
+the other leg.
+
+`GET /pair_legs?mint=<CA>` reads the quote leg of **every** pair for the mint and
+reports, per leg, in plain sentences:
+
+| field | what it means |
+|---|---|
+| `freeze_authority` | live, or null for revoked |
+| `permanentDelegate` | ⛔ **the issuer can MOVE your tokens with no signature from you** |
+| `pausableConfig` | the issuer can halt every transfer |
+| `defaultAccountState` | ⚠️ **reported verbatim.** `initialized` is NOT `frozen` |
+| `transferHook` | every transfer runs issuer code that can reject it |
+| `transfer_fee_bps` | your entry cost and your exit cost, both |
+
+**Observed live against STONK** (`6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx`),
+over HTTP, 2026-09-23:
+
+```
+VERDICT          : ISSUER CONTROLLED LEG
+flagged legs     : ['SPYx']
+pairs / floor    : 30 / True   legs read: 9
+WARN: This token is quoted in SPYx. The issuer of SPYx can move a holder's
+      tokens with no signature from the holder, so anything you are PAID in
+      that asset is not yours in the way the pool implies.
+```
+
+⚠️ **Frank's own STONK position is the worked example**, which is why this
+endpoint exists rather than a note in a doc.
+
+### What it refuses to say
+
+- ⛔ **`authority_ever_used` is explicitly NOT CHECKED**, on every response.
+  Presence of an authority is **capability, not an event**; proving use needs the
+  authority's own signature history.
+- ⚠️ **The quote-leg set is a FLOOR** whenever `pair_count == 30`, because that
+  is Dexscreener's hard cap for any mint and the 30 are not the biggest 30
+  (standing rule 18). `quote_legs_is_floor` says so.
+- ⛔ A quote symbol with **no mint address** is listed in `not_checked`, never
+  guessed at. Six different mints answer to COPX.
+- ⛔ A leg that could not be read is `ok: false` with a reason. ⭐ If the
+  published registry holds it, the answer comes from there **labelled
+  `from_registry` with its read time**, counted separately in
+  `legs_from_registry`, so one RPC blip cannot launder an issuer-controlled leg
+  into an unknown one.
+
+### The registry behind it
+
+`legs.py` publishes `data/legs/quote_assets.json` from the **market stage**: one
+RPC per quote mint, refreshed daily, capped per pass. The set of quote assets is
+small and slow-moving while the set of tokens quoted in them is large, so this is
+the cheap half.
+
+**Measured 2026-09-23: 32 quote assets, 32 read ok, 2 ISSUER CONTROLLED (COPX,
+SPYx), 7 freezable, 7 taxed.** The taxed ones are the ones that pay "yield":
+LOOP, KNOTS, PURR-sol and RAYCAT at 300 bps, Circuit at 400, VCF at 800.
+
+⚠️ **The registry is forward-only and incomplete by construction.** Its input is
+`quote_mints` on outcome rows, which landed on 2026-09-23, so no history carries
+it. The file states this in its own `not_checked` block.

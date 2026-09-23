@@ -169,13 +169,22 @@ STAGE_FIRES = {
              "paperv3.open"},
     "sweep": {"paper.sweep", "paper.close", "paperv3.sweep", "paperv3.close"},
     "watchlist": {"watchlist.sweep", "milestone.graduated"},
-    "market": {"market.snapshot", "chainevents.rows"},
+    "market": {"market.snapshot", "chainevents.rows", "legs.registry"},
     "graduations": {"graduations.ledger"},
     "universe": {"universe.members"},
-    "1": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
-    "6": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
-    "24": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
-    "168": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
+    # ⭐ `crossing.decisions` on every horizon: track.score_horizon evaluates
+    # each new mcap crossing against the pre-committed depth bar and beats the
+    # COUNT OF DECISIONS, alerts and silences alike. 61 crossings landed in the
+    # 24h to 2026-09-23 with nothing firing at all, so a horizon that evaluates
+    # none is the alarm.
+    "1": {"outcome.recorded", "milestone.mcap", "milestone.realizable",
+          "crossing.decisions"},
+    "6": {"outcome.recorded", "milestone.mcap", "milestone.realizable",
+          "crossing.decisions"},
+    "24": {"outcome.recorded", "milestone.mcap", "milestone.realizable",
+           "crossing.decisions"},
+    "168": {"outcome.recorded", "milestone.mcap", "milestone.realizable",
+            "crossing.decisions"},
 }
 EVERY_INVOCATION_FIRES = {"news.freshness", "detector.drift",
                           "dashboard.build",
@@ -461,6 +470,19 @@ def market_stage(verbose=True):
     # registering into a dead database is what caused that outage. It beats
     # liveness with the receiver's own row count, so a pass where it fires and
     # the count has not moved reads as producing nothing.
+    # ⭐⭐ BOTH LEGS OF EVERY PAIR. One RPC per quote asset that is stale or
+    # new, capped, so it cannot push the pass past its clock. The registry is the
+    # cheap half of the novel check: the set of quote assets is small and slow
+    # moving, while the set of tokens quoted in them is large.
+    try:
+        import legs
+        sm = legs.build(verbose=False)   # one summary line, printed below
+        print("  legs: %s known, %s read this pass, %s ISSUER CONTROLLED %s"
+              % (sm["known"], sm["read_this_pass"], sm["issuer_controlled"],
+                 sm["issuer_controlled_symbols"][:6]))
+    except Exception as e:
+        print(f"  legs registry failed (non-fatal): {type(e).__name__}: {e}")
+
     try:
         import heliushook
         r = heliushook.ensure(beat_fn=liveness.beat)

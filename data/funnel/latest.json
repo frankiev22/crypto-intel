@@ -1,7 +1,7 @@
 {
- "ts": 1790166080,
- "stage": "graduations",
- "origin": "scheduled",
+ "ts": 1790167300,
+ "stage": "market",
+ "origin": "manual",
  "scan": {
   "pools_seen": 0,
   "pools_reached": null,

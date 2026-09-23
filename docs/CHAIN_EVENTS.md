@@ -419,6 +419,13 @@ connection while everything that needs no connection answers instantly:
 | `/rest/v1/` root (never touches the DB) | 401 in 0.29s, as designed |
 | log tables (`postgres_logs`, `edge_logs`) | `Table does not exist` - not reachable either |
 
+⭐ **AND AT 13:05Z IT GOT MORE SPECIFIC, which narrows it further.** PostgREST
+stopped timing out and started answering **`503 PGRST002: Could not query the
+database for the schema cache. Retrying.`** That is PostgREST **up and healthy**,
+looping on a Postgres that will not answer it. **So the API layer has recovered
+and the database itself has not**, which rules out the gateway and leaves the
+Postgres instance.
+
 ⭐ **What that rules out.** It is not Helius retrying into a failing receiver,
 because there is no inbound traffic to retry. It is not the receiver holding
 connections, because the receiver is not being called. **A self-inflicted

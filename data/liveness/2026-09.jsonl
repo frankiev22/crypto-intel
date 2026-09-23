@@ -87291,3 +87291,30 @@
 {"name": "funnel.recorded", "ts": 1790166080, "n": 1, "detail": "no alarms", "origin": "scheduled"}
 {"name": "detector.drift", "ts": 1790166102, "n": 1, "detail": "stable", "origin": "scheduled"}
 {"name": "dashboard.build", "ts": 1790166112, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "universe.members", "ts": 1790166224, "n": 1151, "detail": "1151 members, 4 candidates, 6 quoted, 1257 deferred", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790166225, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790166248, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790166258, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790166867, "n": 1, "detail": null, "origin": "manual"}
+{"name": "outcome.recorded", "ts": 1790166888, "n": 1, "detail": null, "origin": "manual"}
+{"name": "outcome.recorded", "ts": 1790166907, "n": 1, "detail": null, "origin": "manual"}
+{"name": "outcome.recorded", "ts": 1790166927, "n": 1, "detail": null, "origin": "manual"}
+{"name": "outcome.recorded", "ts": 1790166947, "n": 1, "detail": null, "origin": "manual"}
+{"name": "outcome.recorded", "ts": 1790166966, "n": 1, "detail": null, "origin": "manual"}
+{"name": "outcome.recorded", "ts": 1790166987, "n": 1, "detail": null, "origin": "manual"}
+{"name": "milestone.mcap", "ts": 1790166987, "n": 1, "detail": "mcap_100k HY5STh7tuR2opkjMpZqwuiwmadXwzP7E3HQNVP8Bhyp4", "origin": "manual"}
+{"name": "milestone.mcap", "ts": 1790166987, "n": 1, "detail": "mcap_200k HY5STh7tuR2opkjMpZqwuiwmadXwzP7E3HQNVP8Bhyp4", "origin": "manual"}
+{"name": "milestone.mcap", "ts": 1790166987, "n": 1, "detail": "mcap_1m HY5STh7tuR2opkjMpZqwuiwmadXwzP7E3HQNVP8Bhyp4", "origin": "manual"}
+{"name": "milestone.mcap", "ts": 1790166987, "n": 1, "detail": "mcap_5m HY5STh7tuR2opkjMpZqwuiwmadXwzP7E3HQNVP8Bhyp4", "origin": "manual"}
+{"name": "crossing.decisions", "ts": 1790166988, "n": 4, "detail": "alert=0 thin=2 unmeasured=0", "origin": "manual"}
+{"name": "funnel.recorded", "ts": 1790166988, "n": 1, "detail": "no alarms", "origin": "manual"}
+{"name": "detector.drift", "ts": 1790167010, "n": 1, "detail": "stable", "origin": "manual"}
+{"name": "dashboard.build", "ts": 1790167016, "n": 1, "detail": null, "origin": "manual"}
+{"name": "legs.registry", "ts": 1790167092, "n": 2, "detail": "read=2 controlled=2 stale=0", "origin": "manual"}
+{"name": "legs.registry", "ts": 1790167153, "n": 32, "detail": "read=30 controlled=2 stale=0", "origin": "manual"}
+{"name": "market.snapshot", "ts": 1790167295, "n": 395, "detail": "395 rows, universe 271, 16 round trips", "origin": "manual"}
+{"name": "legs.registry", "ts": 1790167295, "n": 32, "detail": "read=0 controlled=2 stale=0", "origin": "manual"}
+{"name": "chainevents.rows", "ts": 1790167300, "n": 0, "detail": "gateway_blocking=False database=NOT ANSWERING", "origin": "manual"}
+{"name": "funnel.recorded", "ts": 1790167300, "n": 1, "detail": "no alarms", "origin": "manual"}
+{"name": "detector.drift", "ts": 1790167302, "n": 1, "detail": "stable", "origin": "manual"}
+{"name": "dashboard.build", "ts": 1790167308, "n": 1, "detail": null, "origin": "manual"}

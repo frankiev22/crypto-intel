@@ -252,11 +252,20 @@ LANES = {
     # moves, recall falls and nothing else would say so.
     "detector-drift": "health",
     "correction": "outcome",
+    # ⭐ A market-cap crossing that cleared the depth bar. Its OWN lane, so a
+    # crossing storm cannot exhaust the lane a confirmed outcome arrives in and a
+    # flood of scanner hits cannot silence a crossing. 61 crossings happened in
+    # the 24h to 2026-09-23 and nothing fired at all; 15 of them cleared $1,000
+    # of measured depth. See PRECOMMIT_crossing_alert.md.
+    "mcap-crossing": "crossing",
 }
 LANE_BUDGET = {
     "routine": int(os.environ.get("CRYPTO_BUDGET_ROUTINE", "4")),
     "outcome": int(os.environ.get("CRYPTO_BUDGET_OUTCOME", "12")),
     "health": int(os.environ.get("CRYPTO_BUDGET_HEALTH", "6")),
+    # 15 qualifying crossings in 24h is 0.6/hour, so 3 is 5x headroom and still
+    # bounds a burst. Pre-committed, not tuned.
+    "crossing": int(os.environ.get("CRYPTO_BUDGET_CROSSING", "3")),
 }
 
 # A finding carrying at least this much significance is never rationed. For an

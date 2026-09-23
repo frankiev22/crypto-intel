@@ -92,6 +92,57 @@ same way `outcome-win` had to stop saying "realizable" (2026-09-19).
   its action and its depth, including the silent ones. **A lane that only records
   what it announced cannot be audited.**
 
+---
+
+## 6. ⛔⛔ AMENDMENT, same day, BEFORE the rule ever fired
+
+**Section 3 above pre-committed `significance = depth / 1000` with no cap. That
+was wrong, and replaying the rule over the 24h of real crossings is what showed
+it.** Recorded here rather than quietly edited above, because a pre-commit that
+can be revised without leaving a mark is not a pre-commit.
+
+**The measurement.** 56 rows crossing `mcap_1m`/`mcap_5m` in the 24h to
+2026-09-23, on 33 distinct contracts, scored against the rule as written:
+
+| action | rows |
+|---|---|
+| ALERT | **11** |
+| SILENT_THIN | **44** |
+| SILENT_UNMEASURED | **1** |
+
+⚠️ **Those are LEDGER ROWS, not alerts.** The live lane fires from
+`claim()` returning True, which is once per `(contract, tier)` per filesystem, and
+the ledger holds repeats: `suit` appears twice on `mcap_1m` with two different
+depths ($26,845 and $24,642), which is the documented two-runner case in
+`milestones.py`. **VSOF and X7 each appear on both tiers, and that is by design** -
+crossing $5M is different news from crossing $1M, the same way a 6h win is
+different news from a 1h win.
+
+**What it exposed.** The deepest crossing carried **$711,654** of quote-side
+depth, which on an uncapped `depth/1000` is a significance of **711.7**.
+`findings._budget_spend` admits a finding past a spent budget whenever it is more
+significant than anything already sent that hour, so **an unbounded scale means
+the 3-an-hour budget never binds**: each next crossing deeper than the last always
+breaks through. The budget I pre-committed would have been decorative.
+
+⭐ **The amendment: `SIG_CAP = 10.0`.** Past $10,000 of quote-side depth, more
+depth is not more news at a $100 clip, and a cap restores the budget because a
+second 10.0 cannot exceed the first. Ordering still holds below the cap.
+
+⭐ **And the replay caught a second bug that no unit test would have.** The
+top row of the real 24h sample is symbolled with **U+202E**, a text-direction
+override - the attack in `docs/SYMBOL_ATTACKS.md`, 112 contracts in our own
+corpus. The alert put the raw symbol into its message, so it would have named a
+token it is not. `crossingalert.safe_symbol()` now strips the control character
+and **says out loud that it was there**, in plain text, because
+`dashboard.safe_sym()` returns HTML and an alert is not a web page.
+
+⛔ **Neither change touches the depth bar, the tiers or the three actions.**
+Those are as pre-committed, and the alert/silence split above was produced by
+them.
+
+---
+
 ## 5. What this lane does NOT claim
 
 It does not predict that a crossing will run further. Marino applies to anything

@@ -833,6 +833,30 @@ def _pair_legs(mint):
             unresolved.append(sym)
             continue
         a = _leg_authorities(leg_mint)
+        # ⭐ An RPC blip must not turn a known issuer-controlled asset into an
+        # unknown one. The published registry (`legs.py`, one RPC per quote mint,
+        # refreshed daily) answers when the live read cannot - LABELLED as a
+        # cached read with the time it was taken, never passed off as live.
+        if not a.get("ok"):
+            try:
+                # ⚠️ Aliased. `legs` is already the local list of legs in
+                # this function, and `import legs` rebinds it for the whole scope
+                # - the list then has no .append and the endpoint dies. Caught by
+                # running it, not by reading it.
+                import legs as legs_registry
+                cached = legs_registry.lookup(leg_mint)
+            except Exception:
+                cached = None
+            if cached and cached.get("ok"):
+                why_live = a.get("why")
+                a = dict(cached)
+                a["live_read_failed_why"] = why_live
+                a["from_registry"] = True
+                a["registry_checked_at"] = cached.get("checked_at")
+                r.warn("%s: the live authority read failed, so this leg is "
+                       "answered from the published registry as of %s. It is a "
+                       "cached fact, not a fresh one."
+                       % (sym, cached.get("checked_at")))
         powers = []
         if a.get("ok"):
             if a.get("freeze_authority"):
@@ -851,8 +875,13 @@ def _pair_legs(mint):
             flagged.append(sym)
 
     r.put("legs", legs, "solana getAccountInfo jsonParsed, per quote mint")
-    r.put("legs_read", sum(1 for l in legs if l.get("ok")),
-          "count of quote mints actually read from chain")
+    r.put("legs_read", sum(1 for l in legs
+                          if l.get("ok") and not l.get("from_registry")),
+          "count of quote mints read LIVE from chain")
+    r.put("legs_from_registry", sum(1 for l in legs if l.get("from_registry")),
+          "count answered from the published registry because the live read "
+          "failed",
+          "a cached fact with its read time attached, never presented as live")
     r.put("issuer_controlled_legs", flagged,
           "quote assets carrying permanentDelegate")
     r.put("verdict",

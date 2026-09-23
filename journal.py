@@ -972,12 +972,34 @@ def scored_pairs():
 DRIFT_TOLERANCE = float(os.environ.get("CRYPTO_DRIFT_TOLERANCE", "1.5"))
 
 
+def _quote_mints(all_pairs):
+    """[{symbol, mint, pairs, liq_usd}] for every quote asset on this mint.
+
+    ⛔ Returns None, not [], when the all-pairs read did not happen or failed.
+    An empty list would say "this token has no quote assets", which is never true
+    of a token that trades - standing rule 5.
+    """
+    if not all_pairs or not all_pairs.get("ok"):
+        return None
+    out = []
+    for sym, meta in (all_pairs.get("quote_assets") or {}).items():
+        if not isinstance(meta, dict):
+            continue
+        out.append({"symbol": sym, "mint": meta.get("mint"),
+                    "pairs": meta.get("pairs"),
+                    "liq_usd": meta.get("liq_usd")})
+    # Deepest first, so a truncated reader still sees what the token mostly
+    # trades against.
+    out.sort(key=lambda r: -(r.get("liq_usd") or 0))
+    return out or None
+
+
 def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
                    base_price, base_liq, symbol="", token="",
                    reasons=None, source=None, price_verdict=None,
                    exit_depth=None, base_price_native=None, price_native=None,
                    exit_pair=None, sells_h24=None, buys_h24=None, mcap=None,
-                   authority_live=None, all_pairs=None):
+                   authority_live=None, all_pairs=None, on_milestone=None):
     mult   = (price / base_price) if (base_price and price) else None
     liqchg = ((liq - base_liq) / base_liq * 100) if (base_liq and liq is not None) else None
     if liq is None:
@@ -1080,6 +1102,15 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
            "total_liq_is_floor": (None if not all_pairs
                                   else all_pairs.get("pair_count") == 30),
            "all_pairs_ok": (all_pairs or {}).get("ok"),
+           # ⭐⭐ THE QUOTE MINTS, which nothing in this repo has ever
+           # stored. BACKLOG A55: the 09-21 "copper narrative" was a venue adding
+           # a pairable quote asset (COPX, the Global X Copper Miners ETF), and it
+           # was invisible because our clustering reads NAMES - the object is the
+           # set of quote assets in new pools. Without the mint on a row that
+           # cannot be run on history at all.
+           # ⛔ The MINT, not just the symbol: six different mints answer to
+           # COPX, two of them pump.fun clones (standing rule 2).
+           "quote_mints": _quote_mints(all_pairs),
            "realizable": ok, "unrealizable_reason": why,
            # WHY the reading looks the way it does. "our index went quiet",
            # "the pool drained" and "the price went to zero" are three facts,
@@ -1111,6 +1142,12 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
         # the outcome row above - one measurement, recorded in both places.
         obj["new_milestones"] = milestones.check_outcome(
             token, symbol, mult, ok, mcap=mcap,
+            # ⭐ The crossing lane hangs HERE, not downstream, because this is
+            # the only place where the claim and the depth that was measured at
+            # it exist in the same scope. Forwarding a callback keeps the
+            # announcement out of the store: journal decides nothing about what
+            # is worth saying (see crossingalert.py).
+            on_milestone=on_milestone,
             exit_depth_at_crossing=obj["exit_depth_usd"],
             depth_unmeasured_at_crossing=obj["depth_unmeasured"],
             realizable_at_crossing=obj["realizable"],

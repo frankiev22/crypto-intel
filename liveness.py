@@ -148,6 +148,18 @@ COMPONENTS = {
     # nothing, which is exactly what it is doing. 12h matches the collector.
     "chainevents.rows":     (12, "2026-09-23T12:00:00Z", "provisional",
                              "the deployed receiver reported its stored row count"),
+    # ⛔ Counts crossings EVALUATED, silent ones included - not alerts sent.
+    # 61 crossings landed in the 24h to 2026-09-23, so a pass that evaluates none
+    # for 12 hours means the lane is dead, not that the market went quiet.
+    # ⛔ Counts quote assets KNOWN, not read this pass: a pass with nothing
+    # stale legitimately reads zero, and a registry that has stopped growing is
+    # not the same as one that has stopped running.
+    "legs.registry":       (12, "2026-09-23T13:00:00Z", "provisional",
+                             "the quote-asset registry published what each "
+                             "issuer can do to the asset you are paid in"),
+    "crossing.decisions":  (12, "2026-09-23T13:00:00Z", "provisional",
+                             "track.score_all evaluated every new mcap crossing "
+                             "against the pre-committed depth bar"),
     # ⛔ AND THESE TWO HAVE NO THRESHOLD, DELIBERATELY.
     #
     # An entry is a MARKET event, not a schedule event. RULE_V3 is strictly

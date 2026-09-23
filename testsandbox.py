@@ -46,6 +46,12 @@ _PATHS = {
     "universe":   ["OUT_DIR", "EVENTS_DIR", "HISTORY_DIR"],
     "graduations": ["DIR"],
     "live":       ["STATE_DIR"],
+    # ⛔ Added 2026-09-23. The market stage rebuilds the quote-asset registry,
+    # so `test_market.py` exercising that stage rewrote the REAL
+    # `data/legs/quote_assets.json`. Caught by run_tests.py hashing data/ before
+    # and after - the enforcement that does not depend on anyone remembering this
+    # list.
+    "legs":       ["DIR", "REGISTRY", "OUTCOMES"],
 }
 
 

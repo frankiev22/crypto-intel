@@ -1,0 +1,363 @@
+"""⭐⭐ THE QUOTE-ASSET REGISTRY: what the issuer of the thing you are PAID in can do.
+
+Frank, 2026-09-23: *"for the xStocks and PreStocks quote assets used as pairs on
+Stonk Fun, does the issuer retain freeze authority on chain? If yes, then a token
+whose yield is paid in a freezable, US-person-restricted instrument is not clean,
+and our detector should run on BOTH legs of every pair. That would be a genuinely
+novel check."*
+
+**It does. Measured on chain 2026-09-23: 14 of 14 of those quote mints carry a
+LIVE freeze authority, 14 of 14 carry a `permanentDelegate`, and 14 of 14 carry
+`pausableConfig`.** A `permanentDelegate` is the strong one: it lets the issuer
+move a holder's tokens with **no signature from the holder**.
+
+⚠️ Stated precisely, because the stronger reading is the tempting one:
+`defaultAccountState` on those mints reads `initialized`, **not** `frozen`, so
+they are not whitelist-only today. The extension being present means the state
+**can** be changed; it does not mean it has been. And presence of an authority is
+**capability, not an event** - proving use needs the authority's own signature
+history, which this module does not claim.
+
+## Why a published registry and not a live call
+
+`intel.pair_legs(mint)` answers on demand and is the thing a site or a bot calls.
+But the set of quote assets is **small and slow-moving** - dozens of mints, whose
+authorities change rarely - while the set of tokens quoted in them is large. So
+the registry is the cheap half: **one RPC per quote mint, once**, published as a
+file the site already knows how to read from git, with no new runtime and nothing
+to sign up for.
+
+## Where its input comes from
+
+⛔ **Not from a literal list of mints I typed.** `journal.record_outcome()` now
+persists `quote_mints` on every row that had an all-pairs read (BACKLOG A55 - the
+09-21 "copper narrative" was a venue adding a pairable quote asset, and it was
+invisible because nothing stored the quote mint), and this module harvests that.
+
+⚠️ **It is therefore FORWARD-ONLY and incomplete by construction.** It knows the
+quote assets of the tokens the pipeline happened to read all pairs for, which is
+rows claiming >= 2x. The registry says how many mints it has seen and when; it
+never implies it has seen them all.
+
+⚠️ **Two mints are seeded, not fourteen**, and the difference matters: the
+seed exists only to give the registry a non-empty first pass, so it holds the two
+addresses that matter most (SPYx, the leg behind Frank's own STONK position, and
+COPX, the leg behind the retracted copper finding). **The seed supplies addresses
+to LOOK AT, never answers** - every seeded mint is read from chain like any other,
+and every row carries `source` so a seeded entry is never mistaken for a
+harvested one.
+
+⭐ `seed_from_tokens(mints)` is the other way in: it reads all pairs for named
+mints and folds their quote mints in. That is a measurement, not a typed list.
+"""
+import glob
+import io
+import json
+import os
+import time
+
+import chainfields
+
+BASE = os.path.dirname(os.path.abspath(__file__))
+DIR = os.path.join(BASE, "data", "legs")
+REGISTRY = os.path.join(DIR, "quote_assets.json")
+OUTCOMES = os.path.join(BASE, "data", "outcomes")
+
+SPL = "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+TOKEN22 = "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+
+# How stale an entry may be before it is re-read. Mint authorities change rarely,
+# but "rarely" is not "never" and a revocation is exactly the news worth having.
+REFRESH_AFTER_S = 24 * 3600
+
+# ⛔ A budget, because this runs inside a pass with a clock. One RPC per mint.
+MAX_READS_PER_PASS = 40
+
+# Extensions that hand the issuer power over a holder's balance, worst first,
+# each with the plain sentence a fact card shows.
+POWERS = (
+    ("permanentDelegate",
+     "the issuer can MOVE your tokens without your signature"),
+    ("pausableConfig",
+     "the issuer can halt every transfer of this asset"),
+    ("defaultAccountState",
+     "new accounts can be forced to start frozen"),
+    ("transferHook",
+     "every transfer runs issuer code that can reject it"),
+    ("confidentialTransferMint",
+     "balances can be confidential, so holdings are not fully auditable"),
+)
+
+# ⭐ Seeded from the reads I made on chain 2026-09-23, so the registry is useful
+# on its first pass instead of empty. Each seeded mint is still RE-READ like any
+# other; the seed only supplies the addresses to look at, never the answers.
+SEED = {
+    # xStocks (Backed Finance), the tokenised-equity quote assets Stonk Fun uses
+    "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W": "SPYx",
+    # the copper ETF quote asset behind the retracted "copper narrative"
+    "CzLTZppPdZtTjyq3WGpHLstoc3GLhu7zH5Zg6xUa6Gv5": "COPX",
+}
+
+
+def seed_from_tokens(mints, verbose=True):
+    """Read all pairs for these mints and fold their QUOTE mints into the registry.
+
+    ⭐ One Dexscreener call per mint (never batched - 3 mints in one call
+    returned 30 pairs TOTAL, split 15/14/1, which is the original one-pool bug
+    reproduced silently; standing rule 18).
+
+    This exists because the harvest is forward-only: `quote_mints` landed on
+    outcome rows on 2026-09-23, so nothing older carries it. Pointing this at a
+    named set of mints is a real measurement of what those tokens are quoted in,
+    not a list of answers typed by hand.
+    """
+    import allpairs
+    d = _load()
+    seen = d.setdefault("harvested_from", {})
+    added = {}
+    for mint in mints:
+        try:
+            t = allpairs.token(mint)
+        except Exception as e:
+            if verbose:
+                print("  [legs] all-pairs failed for %s: %s" % (mint[:12], e))
+            continue
+        if not t.get("ok"):
+            if verbose:
+                print("  [legs] all-pairs not ok for %s: %s"
+                      % (mint[:12], t.get("error")))
+            continue
+        quotes = {}
+        for sym, meta in (t.get("quote_assets") or {}).items():
+            qm = meta.get("mint") if isinstance(meta, dict) else None
+            if isinstance(qm, str) and 32 <= len(qm) <= 44:
+                quotes[qm] = sym
+                added[qm] = sym
+        seen[mint] = {
+            "symbol": t.get("symbol_display"),
+            "pair_count": t.get("pair_count"),
+            # ⚠️ At 30 pairs Dexscreener has truncated and the 30 are not
+            # the biggest 30, so the quote-asset set for this token is a FLOOR.
+            "quote_set_is_floor": t.get("pair_count") == 30,
+            "quote_mints": sorted(quotes),
+            "read_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        }
+        if verbose:
+            print("  [legs] %-12s %2s pairs -> %d quote mints%s"
+                  % (str(t.get("symbol_display"))[:12], t.get("pair_count"),
+                     len(quotes), " (FLOOR)" if t.get("pair_count") == 30 else ""))
+    d["harvested_from"] = seen
+    _save(d)
+    # Fold them in as things to read, then let build() do the chain reads.
+    SEED.update(added)
+    return added
+
+
+def _load():
+    try:
+        with io.open(REGISTRY, encoding="utf-8") as f:
+            d = json.load(f)
+        if isinstance(d, dict) and isinstance(d.get("assets"), dict):
+            return d
+    except (OSError, json.JSONDecodeError):
+        pass
+    return {"built_at": None, "assets": {}}
+
+
+def _save(d):
+    os.makedirs(DIR, exist_ok=True)
+    tmp = REGISTRY + ".tmp"
+    with io.open(tmp, "w", encoding="utf-8") as f:
+        json.dump(d, f, indent=1, sort_keys=True)
+    os.replace(tmp, REGISTRY)
+
+
+def harvest(days=2):
+    """{mint: symbol} for every quote asset on recent outcome rows, plus the seed.
+
+    ⛔ Keyed on the MINT. Two mints answering to the same symbol are two entries,
+    because a symbol is not an identity (standing rule 2).
+    """
+    found = dict(SEED)
+    cutoff = time.time() - days * 86400
+    for path in sorted(glob.glob(os.path.join(OUTCOMES, "*.jsonl")))[-(days + 1):]:
+        try:
+            if os.path.getmtime(path) < cutoff - 86400:
+                continue
+            for ln in io.open(path, encoding="utf-8"):
+                ln = ln.strip()
+                if not ln or '"quote_mints"' not in ln:
+                    continue
+                try:
+                    row = json.loads(ln)
+                except ValueError:
+                    continue
+                for q in (row.get("quote_mints") or []):
+                    m = q.get("mint")
+                    if isinstance(m, str) and 32 <= len(m) <= 44:
+                        found.setdefault(m, q.get("symbol") or "unknown")
+        except OSError:
+            continue
+    return found
+
+
+def read_mint(mint, rpc=None):
+    """One quote mint's authorities from chain. ⛔ Unknown stays unknown."""
+    rpc = rpc or chainfields._rpc
+    try:
+        res, err = rpc("getAccountInfo", [mint, {"encoding": "jsonParsed"}])
+    except Exception as e:
+        return {"ok": False, "why": "%s: %s" % (type(e).__name__, str(e)[:120])}
+    if err:
+        return {"ok": False, "why": str(err)[:160]}
+    val = (res or {}).get("value")
+    if not val:
+        return {"ok": False, "why": "no account returned for this mint"}
+    info = (((val.get("data") or {}).get("parsed")) or {}).get("info") or {}
+    exts = info.get("extensions") or []
+    names = [e.get("extension") for e in exts]
+
+    fee_bps = None
+    default_state = None
+    for e in exts:
+        if e.get("extension") == "transferFeeConfig":
+            fee_bps = (((e.get("state") or {}).get("newerTransferFee") or {})
+                       .get("transferFeeBasisPoints"))
+        elif e.get("extension") == "defaultAccountState":
+            default_state = (e.get("state") or {}).get("accountState")
+
+    powers = []
+    if info.get("freezeAuthority"):
+        powers.append("the issuer can FREEZE your account")
+    for ext, sentence in POWERS:
+        if ext in names:
+            powers.append(sentence)
+    if fee_bps:
+        powers.append("every transfer is taxed %s bps" % fee_bps)
+
+    return {
+        "ok": True,
+        "freeze_authority": info.get("freezeAuthority"),
+        "mint_authority": info.get("mintAuthority"),
+        "is_token_2022": val.get("owner") == TOKEN22,
+        "extensions": names,
+        # ⚠️ `initialized` is NOT `frozen`. The extension being present means the
+        # state can be changed, not that it has been.
+        "default_account_state": default_state,
+        "transfer_fee_bps": fee_bps,
+        "powers": powers,
+        # ⭐ The loud one: the issuer can move a holder's balance unsigned.
+        "issuer_controlled": "permanentDelegate" in names,
+    }
+
+
+def build(verbose=True, max_reads=None, rpc=None, days=2):
+    """Refresh the registry and publish it. Returns the summary."""
+    max_reads = MAX_READS_PER_PASS if max_reads is None else max_reads
+    d = _load()
+    assets = d["assets"]
+    want = harvest(days=days)
+    now = time.time()
+
+    stale = []
+    for mint, sym in want.items():
+        cur = assets.get(mint)
+        if (not cur or not cur.get("ok")
+                or (now - (cur.get("checked_ts") or 0)) > REFRESH_AFTER_S):
+            stale.append((mint, sym))
+    # Never-read first, then oldest, so a budget cut never starves new mints.
+    stale.sort(key=lambda ms: (assets.get(ms[0], {}).get("checked_ts") or 0))
+
+    read = 0
+    for mint, sym in stale[:max_reads]:
+        a = read_mint(mint, rpc=rpc)
+        read += 1
+        prev = assets.get(mint) or {}
+        row = dict(a)
+        row["symbol"] = sym
+        row["mint"] = mint
+        row["checked_ts"] = now
+        row["checked_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(now))
+        row["first_seen_at"] = prev.get("first_seen_at") or row["checked_at"]
+        row["source"] = "seed" if mint in SEED else "harvested_from_outcome_rows"
+        # ⛔ Nothing is ever overwritten with LESS than we had. A failed read must
+        # not erase a good answer, or one RPC blip turns a known issuer-controlled
+        # asset into an unknown one - the same shape as journal.py:974 writing
+        # `gone` on a single failed lookup.
+        if not a.get("ok") and prev.get("ok"):
+            row = dict(prev)
+            row["last_read_failed_at"] = row["checked_at"] = time.strftime(
+                "%Y-%m-%dT%H:%M:%SZ", time.gmtime(now))
+            row["last_read_failed_why"] = a.get("why")
+        assets[mint] = row
+        if verbose:
+            flag = " ⛔ ISSUER CONTROLLED" if row.get("issuer_controlled") else ""
+            print("  [legs] %-10s %-44s ok=%s%s"
+                  % (str(sym)[:10], mint, row.get("ok"), flag))
+
+    ok = [a for a in assets.values() if a.get("ok")]
+    controlled = sorted(a["symbol"] for a in ok if a.get("issuer_controlled"))
+    d["assets"] = assets
+    d["built_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(now))
+    d["summary"] = {
+        "known": len(assets),
+        "read_ok": len(ok),
+        "issuer_controlled": len(controlled),
+        "issuer_controlled_symbols": controlled,
+        "freezable": sum(1 for a in ok if a.get("freeze_authority")),
+        "taxed": sum(1 for a in ok if a.get("transfer_fee_bps")),
+        "read_this_pass": read,
+        "stale_remaining": max(0, len(stale) - read),
+    }
+    # ⚠️ Said in the file itself, because a reader of the JSON will not have read
+    # this docstring.
+    d["not_checked"] = [
+        "authority_ever_used: presence of an authority is capability, not an "
+        "event. Proving use needs the authority's own signature history.",
+        "completeness: this registry holds the quote assets of the tokens the "
+        "pipeline read all pairs for (rows claiming >= 2x), plus a seed. It is "
+        "forward-only and does not claim to be every quote asset on Solana.",
+        "defaultAccountState `initialized` is NOT `frozen`: the extension being "
+        "present means the state can be changed, not that it has been.",
+    ]
+    _save(d)
+
+    try:
+        import liveness
+        liveness.beat("legs.registry", n=len(assets),
+                      detail="read=%d controlled=%d stale=%d"
+                             % (read, len(controlled),
+                                d["summary"]["stale_remaining"]))
+    except Exception:
+        pass
+
+    if verbose:
+        sm = d["summary"]
+        print("  legs: %d quote assets known, %d read ok, %d ISSUER CONTROLLED%s"
+              % (sm["known"], sm["read_ok"], sm["issuer_controlled"],
+                 (" (" + ", ".join(controlled[:8]) + ")") if controlled else ""))
+    return d["summary"]
+
+
+def lookup(mint):
+    """What is published about one quote mint, or None. No network."""
+    return _load()["assets"].get(mint)
+
+
+if __name__ == "__main__":
+    import sys
+    if "--from" in sys.argv:
+        i = sys.argv.index("--from")
+        mints = [a for a in sys.argv[i + 1:] if not a.startswith("-")]
+        print(json.dumps(seed_from_tokens(mints), indent=1))
+        print(json.dumps(build(max_reads=200), indent=1))
+    elif "--show" in sys.argv:
+        d = _load()
+        print(json.dumps(d.get("summary") or {}, indent=1))
+        for m, a in sorted(d["assets"].items(),
+                           key=lambda kv: (not kv[1].get("issuer_controlled"),
+                                           kv[1].get("symbol") or "")):
+            print("%-10s %-44s %s" % (str(a.get("symbol"))[:10], m,
+                                      "; ".join(a.get("powers") or []) or "no powers"))
+    else:
+        print(json.dumps(build(), indent=1))
