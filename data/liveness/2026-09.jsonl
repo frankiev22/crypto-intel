@@ -87233,3 +87233,61 @@
 {"name": "funnel.recorded", "ts": 1790167037, "n": 1, "detail": "scan coverage 54.2% below 80%: 465 pools seen, 252 reached, 213 carried forward", "origin": "scheduled"}
 {"name": "detector.drift", "ts": 1790167057, "n": 1, "detail": "stable", "origin": "scheduled"}
 {"name": "dashboard.build", "ts": 1790167061, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "chainevents.rows", "ts": 1790164903, "n": 0, "detail": "gateway_blocking=False database=NOT ANSWERING", "origin": "manual"}
+{"name": "outcome.recorded", "ts": 1790165075, "n": 1, "detail": null, "origin": "manual"}
+{"name": "scan.observations", "ts": 1790165075, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790165097, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790165109, "n": 1, "detail": null, "origin": "manual"}
+{"name": "scan.observations", "ts": 1790165118, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790165141, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1790165142, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790165151, "n": 1, "detail": "scan coverage 8.5% below 80%: 469 pools seen, 40 reached, 400 carried forward", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790165174, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790165184, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1790165189, "n": 82, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790165210, "n": 1, "detail": "ALLOX MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790165293, "n": 1, "detail": "X7 TARGET", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790165300, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790165323, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790165332, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1790165337, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790165359, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790165382, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790165392, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1790165493, "n": 400, "detail": "400 rows, universe 293, 16 round trips", "origin": "scheduled"}
+{"name": "chainevents.rows", "ts": 1790165524, "n": 0, "detail": "gateway_blocking=False database=NOT ANSWERING", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790165524, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790165547, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790165556, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790165594, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790165615, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.mcap", "ts": 1790165615, "n": 1, "detail": "mcap_100k eWi9B9hGTnt1yDZf9rV2uzFeytUtaRqfJ7WH1WNWfuH", "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790165635, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790165655, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790165675, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790165675, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790165698, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790165708, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790165746, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790165766, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790165786, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790165806, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790165826, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790165827, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790165849, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790165859, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790165896, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790165918, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790165939, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790165961, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "outcome.recorded", "ts": 1790165983, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790165984, "n": 1, "detail": "outcome queue 790 due across 1 horizon(s), at or above 750", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790166008, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790166018, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790166035, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790166058, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790166068, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "graduations.ledger", "ts": 1790166079, "n": 50, "detail": "38 graduations of 50 processed, backlog 0", "origin": "scheduled"}
+{"name": "funnel.recorded", "ts": 1790166080, "n": 1, "detail": "no alarms", "origin": "scheduled"}
+{"name": "detector.drift", "ts": 1790166102, "n": 1, "detail": "stable", "origin": "scheduled"}
+{"name": "dashboard.build", "ts": 1790166112, "n": 1, "detail": null, "origin": "scheduled"}

@@ -90,7 +90,10 @@ DUST_USD = 1.00                   # positions under this are counted, not priced
 # Public reads, so cache hard. Seconds.
 TTL = {"liquidity": 60, "resolve": 300, "phantom": 60, "exit_depth": 30,
        "safety": 180, "paired": 900, "wallet": 30, "mint": 900,
-       "concentration": 600}
+       "concentration": 600,
+       # Mint authorities change rarely and the read is one RPC call per quote
+       # leg, so this caches hard.
+       "pair_legs": 900}
 
 _CACHE = {}
 
@@ -710,6 +713,172 @@ def _concentration(mint, deep, max_walk):
 # --------------------------------------------------------------------------
 # 6. paired(mint)
 # --------------------------------------------------------------------------
+def pair_legs(mint):
+    """⭐⭐ BOTH LEGS. Who can freeze, seize or pause the thing you get PAID in.
+
+    Nobody performs this check, and it is a fact rather than a score, so Marino
+    does not touch it and it needs no hit rate to defend.
+
+    THE POINT. A memecoin can have its own mint and freeze authorities cleanly
+    revoked and still sit in a pool whose QUOTE asset is an instrument the issuer
+    controls completely. Verified on chain 2026-09-23 across the tokenised-equity
+    quote assets that Stonk Fun and its kind actually use: **14 of 14 carry a
+    LIVE freeze authority, 14 of 14 carry a permanentDelegate, and 14 of 14 carry
+    pausableConfig.** A permanentDelegate is the strong one - it lets the issuer
+    MOVE A HOLDER'S TOKENS WITH NO SIGNATURE FROM THE HOLDER.
+
+    ⚠️ Stated precisely, because the weaker reading is the tempting one:
+    `defaultAccountState` on those mints reads `initialized`, NOT `frozen`, so
+    they are not whitelist-only today. The extension being present means the
+    state can be changed; it does not mean it has been.
+
+    ⛔ AND THIS IS CAPABILITY, NOT AN EVENT. Presence of an authority is not
+    evidence it has ever been used. Establishing use needs the authority's own
+    signature history and this endpoint does not claim it.
+
+    ⚠️ The pair list is capped at 30 by Dexscreener for any mint, and the 30 are
+    not the biggest 30, so the set of quote assets is a FLOOR: there can be legs
+    this never saw. `quote_legs_is_floor` says so on the response.
+    """
+    if not _is_mint(mint):
+        return Report("pair_legs", mint).fail("that is not a contract address.")
+    return _cached("pair_legs", mint, lambda: _pair_legs(mint))
+
+
+# Extensions that hand the issuer power over a holder's balance, worst first.
+# Each maps to the plain sentence the fact card shows.
+_LEG_POWERS = (
+    ("permanentDelegate",
+     "the issuer can MOVE your tokens without your signature"),
+    ("pausableConfig",
+     "the issuer can halt every transfer of this asset"),
+    ("defaultAccountState",
+     "new accounts can be forced to start frozen"),
+    ("transferHook",
+     "every transfer runs issuer code that can reject it"),
+    ("confidentialTransferMint",
+     "balances can be confidential, so holdings are not fully auditable"),
+)
+
+
+def _leg_authorities(leg_mint):
+    """Read one quote mint's authorities from chain. Unknown stays unknown."""
+    try:
+        res, err = chainfields._rpc("getAccountInfo",
+                                    [leg_mint, {"encoding": "jsonParsed"}])
+    except Exception as e:
+        return {"ok": False, "why": "%s: %s" % (type(e).__name__, str(e)[:100])}
+    if err:
+        return {"ok": False, "why": str(err)[:140]}
+    val = (res or {}).get("value")
+    if not val:
+        return {"ok": False, "why": "no account returned for this mint"}
+    info = (((val.get("data") or {}).get("parsed")) or {}).get("info") or {}
+    exts = info.get("extensions") or []
+    names = [e.get("extension") for e in exts]
+    fee_bps = None
+    for e in exts:
+        if e.get("extension") == "transferFeeConfig":
+            st = e.get("state") or {}
+            fee_bps = ((st.get("newerTransferFee") or {})
+                       .get("transferFeeBasisPoints"))
+    default_state = None
+    for e in exts:
+        if e.get("extension") == "defaultAccountState":
+            default_state = (e.get("state") or {}).get("accountState")
+    return {
+        "ok": True,
+        "freeze_authority": info.get("freezeAuthority"),
+        "mint_authority": info.get("mintAuthority"),
+        "is_token_2022": val.get("owner") == TOKEN22,
+        "extensions": names,
+        "default_account_state": default_state,
+        "transfer_fee_bps": fee_bps,
+    }
+
+
+
+def _pair_legs(mint):
+    r = Report("pair_legs", mint)
+    # ⛔ allpairs directly, NOT liquidity(), and the reason matters. liquidity()
+    # flattens quote_assets to {symbol: usd} and throws the quote MINT away, and
+    # a symbol is not an identity (standing rule 2: six different mints answer to
+    # COPX, two of them pump.fun clones). allpairs keeps the address.
+    t = allpairs.token(mint)
+    if not t.get("ok"):
+        return r.fail(t.get("error") or "all-pairs lookup failed")
+    quotes = t.get("quote_assets") or {}
+    pair_count = t.get("pair_count")
+    r.put("pair_count", pair_count, "dexscreener token endpoint, all pairs")
+    r.put("total_liq_all_pairs", t.get("total_liq_usd"),
+          "dexscreener liquidity summed across every pair",
+          "shape only - this field overstates by a median 781x")
+    r.put("quote_legs_is_floor", pair_count == 30,
+          "dexscreener caps at 30 pairs for any mint",
+          "true means there may be quote legs this never saw")
+
+    legs, flagged = [], []
+    # quote_assets maps a display symbol to its mint where we have one. A symbol
+    # alone is not an identity (standing rule 2), so only entries carrying a real
+    # address are read, and the rest are reported as unresolved rather than
+    # silently dropped.
+    unresolved = []
+    for sym, meta in quotes.items():
+        leg_mint = None
+        if isinstance(meta, dict):
+            leg_mint = meta.get("mint") or meta.get("address")
+        elif isinstance(meta, str) and _is_mint(meta):
+            leg_mint = meta
+        if not leg_mint or not _is_mint(leg_mint):
+            unresolved.append(sym)
+            continue
+        a = _leg_authorities(leg_mint)
+        powers = []
+        if a.get("ok"):
+            if a.get("freeze_authority"):
+                powers.append("the issuer can FREEZE your account")
+            for ext, sentence in _LEG_POWERS:
+                if ext in (a.get("extensions") or []):
+                    powers.append(sentence)
+            if a.get("transfer_fee_bps"):
+                powers.append("every transfer is taxed %s bps"
+                              % a["transfer_fee_bps"])
+        leg = {"symbol": sym, "mint": leg_mint, "powers": powers, **a}
+        legs.append(leg)
+        # ⭐ The loud flag Frank asked for: yield paid in an asset the issuer can
+        # move without the holder. That is permanentDelegate, specifically.
+        if a.get("ok") and "permanentDelegate" in (a.get("extensions") or []):
+            flagged.append(sym)
+
+    r.put("legs", legs, "solana getAccountInfo jsonParsed, per quote mint")
+    r.put("legs_read", sum(1 for l in legs if l.get("ok")),
+          "count of quote mints actually read from chain")
+    r.put("issuer_controlled_legs", flagged,
+          "quote assets carrying permanentDelegate")
+    r.put("verdict",
+          "ISSUER CONTROLLED LEG" if flagged else
+          ("NO ISSUER-CONTROLLED LEG FOUND" if legs else "NO QUOTE LEG RESOLVED"),
+          "derived from the per-leg reads above")
+    if flagged:
+        joined = ", ".join(flagged)
+        r.warn("This token is quoted in %s. The issuer of %s can move a "
+               "holder's tokens with no signature from the holder, so anything "
+               "you are PAID in %s is not yours in the way the pool implies."
+               % (joined, joined, "that asset" if len(flagged) == 1
+                  else "those assets"))
+    if unresolved:
+        r.unchecked("unresolved_quote_symbols",
+                    "no mint address for %s, and a symbol is not an identity "
+                    "(standing rule 2), so they were not read" % ", ".join(unresolved[:8]))
+    if pair_count == 30:
+        r.warn("30 pairs is Dexscreener's hard cap for any mint and the 30 are "
+               "not the biggest 30, so this quote-asset set is a FLOOR.")
+    r.unchecked("authority_ever_used",
+                "presence of an authority is capability, not an event. Proving "
+                "use needs the authority's own signature history.")
+    return r.done()
+
+
 def paired(mint):
     """⭐ What is this token denominated in, and what does the tax actually do.
 

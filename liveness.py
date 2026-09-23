@@ -136,6 +136,18 @@ COMPONENTS = {
     # graduations an hour measured 2026-09-19, so a 12h pass with none is wrong.
     "graduations.ledger":   (12, "2026-09-19T01:00:00Z", "measured",
                              "migration-authority signatures paged and classified"),
+    # ⛔⛔ THE HELIUS POOL RECEIVER, AND IT IS HERE BECAUSE IT FAILED SILENTLY.
+    # It took real rows at 2026-09-23 03:53:13Z, 1,571 of them by 04:06:40Z, and
+    # by the time anyone looked it was watching ZERO addresses with the database
+    # refusing connections. Thirteen minutes to break, most of a day to notice,
+    # because nothing counted its rows.
+    #
+    # `n` is the receiver's own `rows_total`, read back over HTTP from the
+    # deployed function - not the fact that heliushook.ensure() ran. A pass where
+    # the reconciler fires and the row count has not moved reads as producing
+    # nothing, which is exactly what it is doing. 12h matches the collector.
+    "chainevents.rows":     (12, "2026-09-23T12:00:00Z", "provisional",
+                             "the deployed receiver reported its stored row count"),
     # ⛔ AND THESE TWO HAVE NO THRESHOLD, DELIBERATELY.
     #
     # An entry is a MARKET event, not a schedule event. RULE_V3 is strictly

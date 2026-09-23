@@ -21,6 +21,10 @@ Read only with respect to the chain. Nothing here can sign or send anything.
     python heliushook.py health               # ⛔ can Helius REACH us: exits 1 if the
                                               #   Supabase gateway is answering instead
                                               #   of the function (verify_jwt back on)
+    python heliushook.py ensure               # ⭐ THE CALLER: reconcile Helius with
+                                              #   data/chain_watch.json, beat liveness
+                                              #   with the ROW COUNT, and HOLD rather
+                                              #   than register into a dead database
 """
 
 from __future__ import annotations
@@ -196,8 +200,64 @@ def watch_sync(rows: list[dict] | None = None) -> dict:
         raise SystemExit(f"chain_watch_sync failed: {e.code} {e.read().decode()[:200]}")
 
 
+# ---------------------------------------------------------------------------
+# ⛔ THE WATCHLIST LIVES IN GIT. Supabase is a MIRROR, never the truth.
+#
+# It lived only in Supabase. When the database stopped answering at 2026-09-23
+# 04:06Z the list became unreadable AND unrecoverable in the same instant: the
+# webhook could not be restored because the only copy of what to watch was
+# behind the outage. CLAUDE.md had already settled this - "State store is git.
+# Supabase is a write-only mirror (no SELECT grant), so it cannot serve as
+# state" - and this module used it as state anyway.
+#
+# ⛔ And the old reader was `watch_sync().get("addresses") or []`, so an RPC that
+# answered without the key returned an EMPTY LIST. That is the authority_live=None
+# shape for the fourth time: not-read rendering as watch-nothing. It now raises.
+WATCH_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "data", "chain_watch.json")
+
+
+def watchlist_git() -> dict:
+    """The authoritative watchlist, from git. Raises rather than guessing."""
+    if not os.path.exists(WATCH_FILE):
+        raise SystemExit("no watchlist at %s - refusing to guess what to watch"
+                         % WATCH_FILE)
+    with open(WATCH_FILE, encoding="utf-8") as f:
+        d = json.load(f)
+    rows = d.get("addresses")
+    if not isinstance(rows, list) or not rows:
+        raise SystemExit("%s has no addresses - refusing to register nothing"
+                         % WATCH_FILE)
+    return d
+
+
 def watched_addresses() -> list[str]:
-    return sorted(watch_sync().get("addresses") or [])
+    """Active addresses from git. ⛔ Never returns [] quietly - it raises."""
+    rows = watchlist_git()["addresses"]
+    active = sorted(r["address"] for r in rows if r.get("active"))
+    if not active:
+        raise SystemExit("every address in %s is active=false - refusing to "
+                         "register an empty webhook, which is what made the "
+                         "wallet lane silent" % WATCH_FILE)
+    return active
+
+
+def mirror_to_supabase() -> tuple[bool, str]:
+    """Best effort. The mirror is never read as truth, so a failure is not fatal.
+
+    ⚠️ Returns (False, reason) instead of raising, deliberately: a mirror that
+    can break the thing it mirrors is worse than a stale mirror.
+    """
+    try:
+        rows = [{"address": r["address"], "active": bool(r.get("active")),
+                 "note": "%s %s" % (r.get("ticker"), r.get("dex"))}
+                for r in watchlist_git()["addresses"]]
+        out = watch_sync(rows)
+        return True, "mirrored %s rows, upserted %s" % (len(rows), out.get("upserted"))
+    except SystemExit as e:
+        return False, str(e)[:160]
+    except Exception as e:
+        return False, "%s: %s" % (type(e).__name__, str(e)[:140])
 
 
 def probe_rate(address: str, window_s: int = PROBE_WINDOW_S) -> dict:
@@ -395,6 +455,118 @@ def health() -> dict:
     return out
 
 
+def ensure(register_fn=None, health_fn=None, beat_fn=None) -> dict:
+    """⭐ THE CALLER. Reconcile Helius with the git watchlist, every pass.
+
+    This exists because "built but not wired" is the primary bug in this repo and
+    the receiver was its fifth instance: it took real rows at 03:53Z and sat at
+    ZERO addresses by 04:06Z, and nobody found out for most of a day. A module
+    that only runs when somebody types its name has not shipped.
+
+    ⛔ IT WILL NOT REGISTER INTO A DEAD DATABASE. When the database is not
+    answering, every insert fails, the receiver correctly answers 500 so the
+    event is not lost, Helius retries, and the retries are exactly what
+    saturated PostgREST and caused the outage in the first place. So a dead
+    database means HOLD, not sync. Fixing the symptom by re-registering would
+    have re-run the outage.
+
+    ⭐ It beats liveness with the ROW COUNT, not with the fact that it ran
+    (standing rule 16, and Frank's own words: the registry counts rows, not
+    beats). A pass where this fires and no rows exist reads as producing
+    nothing, which is what it is doing.
+
+    Returns what it did and why. Never raises: a reconciler that can break the
+    pass it runs inside is worse than a stale webhook.
+    """
+    register_fn = register_fn or register
+    health_fn = health_fn or health
+    out = {"acted": "none", "why": None, "rows_total": None, "watching": None}
+    try:
+        want = watched_addresses()
+    except SystemExit as e:
+        out["why"] = "watchlist unusable: %s" % str(e)[:140]
+        return out
+    out["want"] = len(want)
+
+    try:
+        h = health_fn()
+    except Exception as e:
+        out["why"] = "health probe threw: %s: %s" % (type(e).__name__, str(e)[:100])
+        return out
+    out["rows_total"] = h.get("rows_total")
+    out["gateway_blocking"] = h.get("gateway_blocking")
+    out["database"] = h.get("database")
+
+    # Beat FIRST, with whatever row count the receiver reports, so the liveness
+    # registry learns the truth even on a pass that then decides to hold.
+    #
+    # ⛔ The component name is a LITERAL here on purpose. test_stages.py walks the
+    # source for beat("<name>") and fails when a declared component is beaten by
+    # nothing, which is the static form of "built but not wired". Passing the name
+    # through a variable would defeat the one check that catches this bug class.
+    n = h.get("rows_total")
+    rows_n = int(n) if isinstance(n, (int, float)) else (
+        int(n) if isinstance(n, str) and n.isdigit() else 0)
+    detail = "gateway_blocking=%s database=%s" % (h.get("gateway_blocking"),
+                                                  h.get("database"))
+    if beat_fn is not None:
+        try:
+            beat_fn("chainevents.rows", n=rows_n, detail=detail)
+        except Exception:
+            pass
+    else:
+        try:
+            import liveness
+            liveness.beat("chainevents.rows", n=rows_n, detail=detail)
+        except Exception:
+            pass
+
+    if h.get("gateway_blocking"):
+        out["acted"] = "hold"
+        out["why"] = ("the Supabase gateway is answering instead of the receiver: "
+                      "redeploy the function with verify_jwt=false")
+        return out
+    if h.get("database") != "up":
+        out["acted"] = "hold"
+        # ⚠️ Worded as the likely cause, not the proven one. The retry
+        # storm is the best explanation for how the 04:06Z outage STARTED; it
+        # does not explain why it persisted 8h after the addresses went to zero
+        # and all inbound traffic stopped (docs/CHAIN_EVENTS.md section 4).
+        out["why"] = ("database not answering, so an insert would fail, the "
+                      "receiver would answer 500, and Helius would retry - the "
+                      "likely cause of the 04:06Z outage. Holding deliberately.")
+        return out
+
+    try:
+        hook = find_pool_hook()
+    except Exception as e:
+        out["why"] = "could not list webhooks: %s" % str(e)[:120]
+        return out
+    have = sorted((hook or {}).get("accountAddresses") or [])
+    out["watching"] = len(have)
+    if hook and have == sorted(want):
+        out["acted"] = "in_sync"
+        out["why"] = "%d addresses, unchanged" % len(want)
+        return out
+
+    # ⚠️ A webhook edit costs 100 credits, so this only fires on real drift.
+    try:
+        r = register_fn(want)
+    except SystemExit as e:
+        out["acted"] = "refused"
+        out["why"] = str(e)[:400]
+        return out
+    except Exception as e:
+        out["acted"] = "failed"
+        out["why"] = "%s: %s" % (type(e).__name__, str(e)[:140])
+        return out
+    out["acted"] = r.get("action", "registered")
+    out["why"] = "drift %d -> %d addresses" % (len(have), len(want))
+    ok, reason = mirror_to_supabase()
+    out["mirror"] = reason if ok else "MIRROR FAILED: %s" % reason
+    return out
+
+
 def main(argv: list[str]) -> int:
     cmd = argv[1] if len(argv) > 1 else "list"
     if cmd == "list":
@@ -442,6 +614,13 @@ def main(argv: list[str]) -> int:
         # check rather than only as something to read.
         if h.get("gateway_blocking"):
             return 1
+    elif cmd == "ensure":
+        try:
+            import liveness
+            bf = liveness.beat
+        except Exception:
+            bf = None
+        print(json.dumps(ensure(beat_fn=bf), indent=1))
     else:
         print(__doc__)
         return 2

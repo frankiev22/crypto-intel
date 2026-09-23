@@ -395,6 +395,56 @@ which PostgREST cannot reach without an RPC, so it stays **ESTIMATED at 2 KB and
 labelled as such** in the probe's own output. Every capacity figure in §3 rests
 on it. BACKLOG C36.
 
+### ⛔⛔ And my attribution for the outage is NOW CORRECTED, 2026-09-23 12:10Z
+
+**I said the receiver's own load took the database out and that it would come
+back once the load stopped. The first half is still the best explanation for the
+*start*. The second half is wrong, and I am leading with it.**
+
+The load stopped at **~04:06Z**, when both webhooks went to **0 addresses** -
+verified again at 12:09Z, `accountAddresses: "0 addresses"` on
+`75056f75-c129-4f43-b686-0f369f8fa669` and on
+`d8765cda-6cc4-443e-870b-a004df20af3e`. **So for eight hours nothing at all has
+been inserting**, and the database still refuses connections.
+
+Measured at 12:08-12:10Z, three independent paths, all timing out on a Postgres
+connection while everything that needs no connection answers instantly:
+
+| path | result |
+|---|---|
+| PostgREST `/rest/v1/chain_events` | no answer (watcher, every 5.5 min since 04:06Z) |
+| management API `execute_sql` | `Connection terminated due to connection timeout` |
+| management API `get_advisors` | `Failed to run project user check: connection timeout` |
+| management API `get_project` | **200 instantly**, `status: ACTIVE_HEALTHY` |
+| `/rest/v1/` root (never touches the DB) | 401 in 0.29s, as designed |
+| log tables (`postgres_logs`, `edge_logs`) | `Table does not exist` - not reachable either |
+
+⭐ **What that rules out.** It is not Helius retrying into a failing receiver,
+because there is no inbound traffic to retry. It is not the receiver holding
+connections, because the receiver is not being called. **A self-inflicted
+overload that ends when the load ends does not last eight hours after it.**
+
+⚠️ **What it leaves**, and neither is confirmed: connections leaked
+server-side that only a project restart clears, or a platform fault in us-west-2
+that `ACTIVE_HEALTHY` does not reflect. ⛔ **`ACTIVE_HEALTHY` is itself an
+`authority_live=None` shape** - it reports the control plane's view, not whether
+the database answers, so it may never be quoted as evidence that the database is
+up.
+
+⛔ **What I deliberately have NOT done, and why it is Frank's call.** The
+remedy for both remaining causes is a restart, and the management API exposes no
+restart - only **pause** and **restore**. Pausing a free-tier project is not
+instant to undo, the project holds pre-existing tables that have nothing to do
+with this work, and turning an eight-hour outage into a multi-hour restore
+unattended is not a call I should make. **The dashboard's own Restart button is
+the right tool and it is his to press.**
+
+⭐ **And the reconciler already behaves correctly through all of it.**
+`heliushook.ensure()` returns `acted: "hold"` with the reason spelled out, beats
+`chainevents.rows` with `n=0`, and refuses to register addresses into a database
+that cannot accept inserts - because registering them is what would restart the
+retry storm.
+
 ## 5. What is not done
 
 - ⛔ **No alert fires on anything.** `LIQUIDITY_REMOVE` reaching Discord or the

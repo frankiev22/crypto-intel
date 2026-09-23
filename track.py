@@ -30,6 +30,13 @@ import journal, pricecheck, resolve, sources as S
 # 168h outcome remains readable. It is simply no longer scheduled. Anything
 # still pending at 168h ages out of pending()'s window deliberately, which is
 # the explicit drop rather than the silent one.
+# ⛔ The multiple at which an outcome row is worth one all-pairs HTTP call.
+# 2x is the point a row becomes a win announcement and a `realizable` milestone,
+# so it is the point the DESCRIPTION becomes a claim. Measured over 24h to
+# 2026-09-23: 327 of 11,591 rows clear it, about 14 an hour against 480 an hour
+# of rows. Below it, total_liq_all_pairs stays None, which reads as not measured.
+ALLPAIRS_CLAIM_MULT = 2.0
+
 HORIZONS_ALL = [1, 6, 24, 168]
 HORIZONS_RETIRED = [168]
 HORIZONS = [h for h in HORIZONS_ALL if h not in HORIZONS_RETIRED]
@@ -388,6 +395,37 @@ def score_horizon(horizon_h, limit=None, verbose=True):
         _auth_live = None
         if o.get("authorities_checked"):
             _auth_live = any(o.get(k) is True for k in ("can_freeze", "can_mint"))
+        # ⛔⛔ ALL-PAIRS SUMMING, AT THE CLAIM POINT ONLY (standing rule 18).
+        #
+        # Every row above priced ONE pool, the recorded exit_pair. Rule 18 says
+        # never read one pool and call it the token, so the token endpoint is
+        # summed across every pair for the mint - but it is one HTTP call per
+        # mint and this loop ran 11,591 rows in 24 hours, about 480 an hour. At
+        # the 1.0s pacing that is unaffordable on every row, so it is taken where
+        # the description is about to become a CLAIM.
+        #
+        # THE GATE, and the arithmetic behind it: a multiple at or above 2x is
+        # what produces a win announcement and a `realizable` milestone. Measured
+        # over the same 24 hours that is 327 rows, about 14 an hour, which fits.
+        # Everything else keeps total_liq_all_pairs = None, which reads as NOT
+        # MEASURED and never as zero.
+        #
+        # ⚠️ It is deliberately NOT gated on the `gone` path even though that is
+        # where a one-pool read is most misleading, because `gone` was 3,274 rows
+        # in 24 hours - 136 an hour - and the measured payoff is 2 changed
+        # verdicts in 120. Not worth the calls; revisit if the rate changes.
+        _all_pairs = None
+        _mult_pre = (price / o["price_usd"]) if (o.get("price_usd") and price) else None
+        if _mult_pre is not None and _mult_pre >= ALLPAIRS_CLAIM_MULT and o.get("token"):
+            try:
+                import allpairs
+                _all_pairs = allpairs.token(o["token"])
+            except Exception as e:
+                # A failed read is not an answer. Leave it None so the row says
+                # "not measured" rather than inventing a total of zero.
+                _all_pairs = None
+                print(f"    all-pairs read failed for {o.get('token')}: "
+                      f"{type(e).__name__}: {e}")
         status, mult, gate_ok, gate_failed = journal.record_outcome(
             o["pair"], o["ts"], horizon_h, price, liq, vol24,
             o.get("price_usd"), o.get("liq"), o.get("symbol", ""),
@@ -395,7 +433,7 @@ def score_horizon(horizon_h, limit=None, verbose=True):
             price_verdict=verdict, exit_depth=depth,
             base_price_native=o.get("price_native"), price_native=_pn_exit,
             exit_pair=_exit_pair, sells_h24=_sells24, buys_h24=_buys24,
-            mcap=_mcap, authority_live=_auth_live)
+            mcap=_mcap, authority_live=_auth_live, all_pairs=_all_pairs)
         done += 1
         _elapsed = (time.time() - o["ts"]) / 3600.0
         elapsed_seen.append(_elapsed)

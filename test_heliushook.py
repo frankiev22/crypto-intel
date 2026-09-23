@@ -197,8 +197,19 @@ check("⛔ the Vercel wallet receiver is never written to by this module",
 # ---------------------------------------------------------------------------
 section("The receiver and the webhook read ONE list")
 
-check("watched_addresses() comes from chain_watch, not a literal in this file",
-      "watch_sync" in src.split("def watched_addresses")[1].split("def ")[0])
+# ⛔⛔ CHANGED 2026-09-23, and the old assertion was pointing at the wrong
+# source. It required `watch_sync`, the Supabase RPC. Supabase has no SELECT
+# grant and is a write-only mirror, so it cannot BE the state (CLAUDE.md), and on
+# 2026-09-23 it proved it by refusing connections for eight hours while the
+# reconciler still needed to know what to watch. The authoritative list is now
+# `data/chain_watch.json` in git, which is the same store as every other piece of
+# state in this repo, and Supabase is mirrored to on a best effort.
+_body = src.split("def watched_addresses")[1].split("\ndef ")[0]
+check("watched_addresses() comes from chain_watch IN GIT, not Supabase",
+      "watchlist_git" in _body and "watch_sync" not in _body)
+check("⛔ an empty or missing watchlist RAISES - it never registers nothing",
+      "SystemExit" in src.split("def watchlist_git")[1].split("\ndef ")[0]
+      and "SystemExit" in _body)
 check("⭐ usage() reports credits_used=None rather than inventing a number",
       heliushook.usage()["credits_used"] is None)
 

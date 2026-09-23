@@ -1,0 +1,130 @@
+{
+ "_what": "THE AUTHORITATIVE pool watchlist for the Helius POOL webhook.",
+ "_why_git": "It lived only in Supabase, and when the database stopped answering at 2026-09-23 04:06Z the list became unreadable AND unrecoverable: the webhook could not be restored because the only copy of what to watch was behind the outage. CLAUDE.md already settled this ('State store is git. Supabase is a write-only mirror') and the receiver violated it. Git is now the source; Supabase is a mirror written best-effort and never read as truth.",
+ "_generated_utc": "2026-09-23T12:10:00Z",
+ "_budget": {
+  "free_tier_credits_month": 1000000,
+  "reserved_for_rpc": 400000,
+  "webhook_budget_credits_month": 600000,
+  "budget_per_sec": 0.228,
+  "addr_max_per_sec": 0.05,
+  "delivery_multiplier_assumed": 5,
+  "_delivery_multiplier_note": "PRE-COMMITTED HEADROOM, and it is the honest handling of a thing we have NOT established. Delivered events per second were 1.4x to 297x the chain transaction rate across an 88 second window with single-digit per-pool counts, so the ratio is an observation and not a rate. Until a real measurement exists, the admitted set must satisfy chain_total * 5 <= budget_per_sec. That is why 6 of 11 budget-passing pools are held back rather than registered.",
+  "_probe_window_s": 600,
+  "_probe_caveat": "Standing rule 13: a 600 second window on a pool that fires a few times an hour is a weak estimate, and two pools measured exactly 0.0000/sec, which means no transaction in the window rather than a proven silent pool."
+ },
+ "_selection_rule": "Ascending measured chain rate, admitting pools until chain_total * delivery_multiplier_assumed would exceed budget_per_sec. Any pool above addr_max_per_sec is refused outright, and any pool whose rate could not be established is refused (unknown is not zero).",
+ "chain_total_per_sec_active": 0.0396,
+ "credits_month_at_1x": 104060,
+ "credits_month_at_assumed_5x": 520300,
+ "addresses": [
+  {
+   "address": "BUVzsLLLG7GWoyJVoU31pXiBveazA6GXTavZ9VD3CwS9",
+   "ticker": "KNOTS",
+   "dex": "raydium",
+   "measured_rate_per_sec": 0.0155,
+   "measured_utc": "2026-09-23T12:05:00Z",
+   "active": true,
+   "why": "fires often enough to finally measure the delivered-to-chain multiplier"
+  },
+  {
+   "address": "nBXytBBfKLhj6teXarAv8rk6WNgUFBMyybUFRkuK7ad",
+   "ticker": "KNOTS",
+   "dex": "meteora",
+   "measured_rate_per_sec": 0.0144,
+   "measured_utc": "2026-09-23T12:05:00Z",
+   "active": true,
+   "why": "a Meteora pool, where the liquidity operation we care about hides inside UNKNOWN"
+  },
+  {
+   "address": "BcAaxXZZ16t4emqCqsN81QvkvWNwSMhQUYcs5JoU5uRa",
+   "ticker": "KNOTS",
+   "dex": "meteora",
+   "measured_rate_per_sec": 0.0027,
+   "measured_utc": "2026-09-23T12:05:00Z",
+   "active": true,
+   "why": "second-deepest KNOTS Meteora pool, cheap"
+  },
+  {
+   "address": "8TNPC3TCLaKQsEkSWk2MzHLpD57rVc2uUMgVKJrytgbk",
+   "ticker": "LOOP",
+   "dex": "meteora",
+   "measured_rate_per_sec": 0.0014,
+   "measured_utc": "2026-09-23T12:05:00Z",
+   "active": true,
+   "why": "LOOP is the least exitable token we track at 34.16% round-trip cost, so a drain on it is the case worth catching"
+  },
+  {
+   "address": "6gQTdHry76sCzBAeCR8f2EkNYpgWrJjwb9352mF9ts5i",
+   "ticker": "LOOP",
+   "dex": "meteora",
+   "measured_rate_per_sec": 0.0028,
+   "measured_utc": "2026-09-23T12:05:00Z",
+   "active": true,
+   "why": "same token, second Meteora pool"
+  },
+  {
+   "address": "DKxdbMefYk5D2S2CkEUjQx25BaxDrppvktEEgDbrgBbV",
+   "ticker": "LOOP",
+   "dex": "raydium",
+   "measured_rate_per_sec": 0.0028,
+   "measured_utc": "2026-09-23T12:05:00Z",
+   "active": true,
+   "why": "same token on a different program, so a venue-specific parse gap shows up as a difference"
+  },
+  {
+   "address": "BTccxxTFi7a9xJTE1exKn38Jgie35s6gNeRxd8DM61Rc",
+   "ticker": "ZCAT",
+   "dex": "raydium",
+   "measured_rate_per_sec": 0.0466,
+   "measured_utc": "2026-09-23T12:05:00Z",
+   "active": false,
+   "why": "HELD BACK. Passes the per-address cap at 0.0466 but alone it is 122,383 credits a month at 1x and would blow the whole budget at the assumed 5x."
+  },
+  {
+   "address": "CZt61djgJ6ggjA1aCfYskFViBQxcprA9HT3nE7PZdE1X",
+   "ticker": "ZCAT",
+   "dex": "raydium",
+   "measured_rate_per_sec": 0.0419,
+   "measured_utc": "2026-09-23T12:05:00Z",
+   "active": false,
+   "why": "HELD BACK, same reason"
+  },
+  {
+   "address": "7t477j7S8SDcdg1pzCSvjRjYK3nPc14FmrbzPYTjfHYs",
+   "ticker": "ZCAT",
+   "dex": "meteora",
+   "measured_rate_per_sec": 0.0224,
+   "measured_utc": "2026-09-23T12:05:00Z",
+   "active": false,
+   "why": "HELD BACK until the delivered-to-chain multiplier is measured on the active six"
+  },
+  {
+   "address": "95NyuWzMDmWnPgLGBotT1XB2v1fQkqxhCrGLBDfxXfhn",
+   "ticker": "KNOTS",
+   "dex": "meteora",
+   "measured_rate_per_sec": 0.0,
+   "measured_utc": "2026-09-23T12:05:00Z",
+   "active": false,
+   "why": "HELD BACK. 0.0000/sec means no transaction in a 600 second window, not a proven silent pool, and a pool that delivers nothing teaches nothing."
+  },
+  {
+   "address": "HX6nX5hd143EuHnvb5n7iTSuEBsEx4k9Ne6zyCYBbRMi",
+   "ticker": "LOOP",
+   "dex": "raydium",
+   "measured_rate_per_sec": 0.0,
+   "measured_utc": "2026-09-23T12:05:00Z",
+   "active": false,
+   "why": "HELD BACK, same reason"
+  },
+  {
+   "address": "GuPbekwP9MqB23CghhiMQZTaigPdUJooovo1neCErhM8",
+   "ticker": "ZCAT",
+   "dex": "meteora",
+   "measured_rate_per_sec": 0.0659,
+   "measured_utc": "2026-09-23T12:05:00Z",
+   "active": false,
+   "why": "REFUSED by measurement: 0.0659/sec is above addr_max_per_sec 0.05, which is 172,994 credits a month on its own."
+  }
+ ]
+}

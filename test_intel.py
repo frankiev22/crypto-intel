@@ -388,6 +388,124 @@ t("⭐ an ordinary symbol is not flagged", intel._symbol_flags("BONK") is None)
 
 
 # ---------------------------------------------------------------------------
+head("⭐⭐ pair_legs: who can freeze, seize or pause the asset you are PAID in")
+
+# The real shape of a tokenised-equity quote mint, measured on chain 2026-09-23:
+# 14 of 14 carry a live freeze authority, a permanentDelegate and pausableConfig,
+# and defaultAccountState reads `initialized`, NOT `frozen`.
+_RWA_LEG = {"value": {"owner": intel.TOKEN22, "data": {"parsed": {"info": {
+    "freezeAuthority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+    "mintAuthority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+    "extensions": [
+        {"extension": "permanentDelegate"},
+        {"extension": "pausableConfig"},
+        {"extension": "defaultAccountState",
+         "state": {"accountState": "initialized"}},
+        {"extension": "transferFeeConfig",
+         "state": {"newerTransferFee": {"transferFeeBasisPoints": 100}}},
+    ]}}}}}
+# Wrapped SOL: no extensions, both authorities revoked.
+_CLEAN_LEG = {"value": {"owner": intel.SPL, "data": {"parsed": {"info": {
+    "freezeAuthority": None, "mintAuthority": None}}}}}
+
+
+def _legs_rpc(which):
+    def go(method, params, **k):
+        if method != "getAccountInfo":
+            return None, "stub: only getAccountInfo is used by pair_legs"
+        return which.get(params[0], (None, "no such mint in the stub"))
+    return go
+
+
+def _two_leg_token(quote_mints):
+    t_ = fake_token(pairs=4, liq_each=5000.0, quotes=tuple(quote_mints))
+    t_["quote_assets"] = {sym: {"pairs": 1, "liq_usd": 5000.0, "mint": m}
+                          for sym, m in quote_mints.items()}
+    return t_
+
+
+SPYX = "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W"
+clear()
+intel.allpairs.token = lambda m, **k: _two_leg_token({"SOL": intel.WSOL,
+                                                      "SPYx": SPYX})
+intel.chainfields._rpc = _legs_rpc({intel.WSOL: (_CLEAN_LEG, None),
+                                    SPYX: (_RWA_LEG, None)})
+d = intel.pair_legs("6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx")["data"]
+t("⭐⭐ a permanentDelegate quote leg is FLAGGED by symbol",
+  d["issuer_controlled_legs"] == ["SPYx"], str(d["issuer_controlled_legs"]))
+t("⭐ the verdict says ISSUER CONTROLLED LEG",
+  d["verdict"] == "ISSUER CONTROLLED LEG", d["verdict"])
+spyx = [l for l in d["legs"] if l["symbol"] == "SPYx"][0]
+t("⛔ the seizure power is stated in plain words, not an extension name",
+  any("without your signature" in p for p in spyx["powers"]), str(spyx["powers"]))
+t("⛔ a LIVE freeze authority on the leg is reported",
+  any("FREEZE" in p for p in spyx["powers"]))
+t("⚠️ defaultAccountState `initialized` is NOT reported as frozen",
+  spyx["default_account_state"] == "initialized"
+  and not any("start frozen" in p and "are forced" in p for p in spyx["powers"]),
+  spyx["default_account_state"])
+t("⭐ the leg's transfer fee is carried in bps",
+  spyx["transfer_fee_bps"] == 100, str(spyx["transfer_fee_bps"]))
+sol = [l for l in d["legs"] if l["symbol"] == "SOL"][0]
+t("⭐ a clean leg carries NO powers at all", sol["powers"] == [],
+  str(sol["powers"]))
+
+# The whole point of the endpoint: a token whose own authorities are revoked can
+# still be quoted in an asset its issuer controls. Cleanliness does not inherit.
+clear()
+intel.allpairs.token = lambda m, **k: _two_leg_token({"SOL": intel.WSOL})
+intel.chainfields._rpc = _legs_rpc({intel.WSOL: (_CLEAN_LEG, None)})
+d = intel.pair_legs("6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx")["data"]
+t("⭐ with every leg clean the verdict says so and flags nothing",
+  d["verdict"] == "NO ISSUER-CONTROLLED LEG FOUND"
+  and d["issuer_controlled_legs"] == [], d["verdict"])
+
+# ⛔ Honest nulls. A leg that could not be read is NOT a clean leg.
+clear()
+intel.allpairs.token = lambda m, **k: _two_leg_token({"SOL": intel.WSOL,
+                                                      "SPYx": SPYX})
+intel.chainfields._rpc = _legs_rpc({intel.WSOL: (_CLEAN_LEG, None)})
+out = intel.pair_legs("6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx")
+d = out["data"]
+bad = [l for l in d["legs"] if l["symbol"] == "SPYx"][0]
+t("⛔⛔ an UNREADABLE leg is ok=False with a reason, never clean",
+  bad["ok"] is False and bad.get("why") and bad["powers"] == [], str(bad)[:120])
+t("⛔ legs_read counts only the legs actually read from chain",
+  d["legs_read"] == 1, str(d["legs_read"]))
+
+# ⛔ Standing rule 2: a symbol is not an identity, so a leg with no mint
+# address is reported as unresolved rather than guessed at or dropped.
+clear()
+t_ = _two_leg_token({"SOL": intel.WSOL})
+t_["quote_assets"]["COPX"] = {"pairs": 1, "liq_usd": 10.0, "mint": None}
+intel.allpairs.token = lambda m, **k: t_
+intel.chainfields._rpc = _legs_rpc({intel.WSOL: (_CLEAN_LEG, None)})
+out = intel.pair_legs("6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx")
+t("⛔ a quote symbol with no mint address is NOT read and says so",
+  any(n["field"] == "unresolved_quote_symbols" for n in out["not_checked"])
+  and not any(l["symbol"] == "COPX" for l in out["data"]["legs"]))
+
+# ⚠️ Standing rule 18: 30 is Dexscreener's cap, so the leg set is a FLOOR.
+clear()
+t30 = _two_leg_token({"SOL": intel.WSOL})
+t30["pair_count"] = 30
+intel.allpairs.token = lambda m, **k: t30
+intel.chainfields._rpc = _legs_rpc({intel.WSOL: (_CLEAN_LEG, None)})
+out = intel.pair_legs("6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx")
+t("⚠️ at 30 pairs the quote-leg set is declared a FLOOR",
+  out["data"]["quote_legs_is_floor"] is True
+  and any("FLOOR" in w for w in out["warnings"]))
+
+# ⛔ Capability is not an event, and the response never lets that blur.
+t("⛔ `authority_ever_used` is explicitly NOT CHECKED on every response",
+  any(n["field"] == "authority_ever_used" for n in out["not_checked"]))
+
+t("⛔ a ticker is refused - key on the address",
+  intel.pair_legs("SPYx")["ok"] is False)
+
+
+
+# ---------------------------------------------------------------------------
 head("⛔⛔ THE STANDING GUARANTEE: this module can never gain a write path")
 
 SRC = io.open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -428,10 +546,24 @@ t("⛔ wallet() takes a PUBLIC key and nothing that could be a secret",
 
 # Every public endpoint must return provenance, or a number could arrive unsourced.
 ENDPOINTS = ("liquidity", "resolve", "phantom", "exit_depth", "safety",
-             "bundle_check", "paired", "wallet", "concentration")
+             "bundle_check", "paired", "pair_legs", "wallet", "concentration")
 missing = [e for e in ENDPOINTS if not hasattr(intel, e)]
-t("⭐ all seven endpoints plus safety exist and are importable", not missing,
+t("⭐ every declared endpoint exists and is importable", not missing,
   f"missing: {missing}")
+
+# ⛔⛔ BUILT BUT NOT WIRED is the primary bug class in this repo (Frank,
+# 2026-09-23: "a thing is not done until something CALLS it"). An endpoint that
+# exists in intel.py and is served by nothing is exactly that failure, so the
+# server's own route table is asserted against the list above rather than
+# trusted to have been updated by hand.
+import intelserve  # noqa: E402
+unserved = [e for e in ENDPOINTS if e not in intelserve.ROUTES]
+t("⛔⛔ every endpoint is WIRED INTO intelserve.ROUTES, not merely written",
+  not unserved, f"written but served by nothing: {unserved}")
+t("⛔ and every served route points at a real intel function",
+  all(getattr(intel, k, None) is v[0] for k, v in intelserve.ROUTES.items()),
+  str(sorted(k for k, v in intelserve.ROUTES.items()
+             if getattr(intel, k, None) is not v[0])))
 
 
 # ---------------------------------------------------------------------------

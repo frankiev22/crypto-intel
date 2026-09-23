@@ -37,6 +37,8 @@ ROUTES = {
     "safety":       (intel.safety,       "mint",   ()),
     "bundle_check": (intel.bundle_check, "mint",   ("n_buyers",)),
     "paired":       (intel.paired,       "mint",   ()),
+    # ⭐ both legs: who can freeze, seize or pause the asset you are PAID in.
+    "pair_legs":    (intel.pair_legs,    "mint",   ()),
     "concentration": (intel.concentration, "mint",  ("deep", "max_walk")),
     "wallet":       (intel.wallet,       "pubkey", ("price_all", "max_positions")),
 }

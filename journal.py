@@ -764,6 +764,16 @@ def record(rows, network, pass_score=70):
             "holders_truncated": r.get("holders_truncated"),
             "holders_checked": r.get("holders_checked"),
             "holders_error": r.get("holders_error"),
+            # ⛔ ALL-PAIRS, on the observation side (standing rule 18). Same
+            # whitelist that silently ate vol_to_liq, vol_burst, the news field,
+            # paper_v2_arm and info.socials, so these are declared HERE first and
+            # the test below proves a row carries them. None is NOT MEASURED.
+            # ⚠️ pair_count == 30 is Dexscreener's cap, so the total is a FLOOR
+            # and total_liq_is_floor says so on the row rather than in a comment.
+            "total_liq_all_pairs": r.get("total_liq_all_pairs"),
+            "total_vol24_all_pairs": r.get("total_vol24_all_pairs"),
+            "pair_count": r.get("pair_count"),
+            "total_liq_is_floor": r.get("total_liq_is_floor"),
             # What was SHOWN, beside what was scored. PRECOMMIT_surface_grade.md.
             "grade": r.get("grade"), "grade_label": r.get("grade_label"),
             # THE PARALLEL V2 ARM, computed every pass and dropped by this very
@@ -967,7 +977,7 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
                    reasons=None, source=None, price_verdict=None,
                    exit_depth=None, base_price_native=None, price_native=None,
                    exit_pair=None, sells_h24=None, buys_h24=None, mcap=None,
-                   authority_live=None):
+                   authority_live=None, all_pairs=None):
     mult   = (price / base_price) if (base_price and price) else None
     liqchg = ((liq - base_liq) / base_liq * 100) if (base_liq and liq is not None) else None
     if liq is None:
@@ -1041,6 +1051,35 @@ def record_outcome(pair, observed_ts, horizon_h, price, liq, vol24,
            # one-sided pool is FDV in disguise - measured 2026-09-04 at ~125x
            # the real depth. Nothing downstream should size an exit off `liq`.
            "exit_depth_usd": exit_depth,
+           # ⛔⛔ THE TOKEN, NOT ONE POOL (standing rule 18). `liq` above is the
+           # single `exit_pair` this row priced. A token that trades across
+           # thirty pools has thirty of those, and reading one of them is how a
+           # whole day went to a phantom wearing EMBER's ticker.
+           #
+           # ⚠️ WHAT THIS IS FOR, stated because the number invites misuse: SHAPE,
+           # venue spread and phantom detection. It is a correct sum of a field
+           # that overstates by a median 781x, so it is NEVER an exit price. The
+           # exit is exit_depth_usd and chainfields.round_trip(), which already
+           # route across every pool.
+           #
+           # ⚠️ AND IT CHANGES ALMOST NO VERDICTS. Measured 2026-09-23 with the
+           # rule pre-committed before querying: 2 of 120 `gone` contracts and 3
+           # of 178 at mult >= 2x, so 1.7% [0.5, 5.9]. This corrects our
+           # DESCRIPTION of tokens, not our labels. Do not re-quote it as a fix
+           # for the verdicts.
+           #
+           # None means NOT MEASURED on this row, never zero: the all-pairs read
+           # is one HTTP call per mint and is taken at the claim point only.
+           "total_liq_all_pairs": (all_pairs or {}).get("total_liq_usd"),
+           "total_vol24_all_pairs": (all_pairs or {}).get("total_vol24_usd"),
+           "pair_count": (all_pairs or {}).get("pair_count"),
+           # ⛔ Dexscreener caps the token endpoint at 30 pairs FOR ANY MINT, and
+           # the 30 are not the biggest 30, so a total at 30 is a FLOOR and the
+           # remainder cannot be bounded. A truncated sample may never be called
+           # a phantom.
+           "total_liq_is_floor": (None if not all_pairs
+                                  else all_pairs.get("pair_count") == 30),
+           "all_pairs_ok": (all_pairs or {}).get("ok"),
            "realizable": ok, "unrealizable_reason": why,
            # WHY the reading looks the way it does. "our index went quiet",
            # "the pool drained" and "the price went to zero" are three facts,

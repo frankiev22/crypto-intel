@@ -321,8 +321,15 @@ print("8. ⛔ wired into the collector, and it cannot push a pass past the timeo
 print("=" * 70)
 import inspect
 import collect
+# ⚠️ The stage fires TWO components from 2026-09-23: the snapshot, and the
+# chain-event reconciler that rides along with it. Asserted by containment rather
+# than equality so adding a third does not fail this, but each one is named.
 check("market is a stage and fires market.snapshot",
-      "market" in collect.STAGES and collect.STAGE_FIRES["market"] == {"market.snapshot"})
+      "market" in collect.STAGES
+      and "market.snapshot" in collect.STAGE_FIRES["market"])
+check("⛔ and it fires chainevents.rows - the receiver has a CALLER",
+      "chainevents.rows" in collect.STAGE_FIRES["market"],
+      str(sorted(collect.STAGE_FIRES["market"])))
 src = inspect.getsource(collect.one_pass)
 check("one_pass runs it BEFORE outcome scoring",
       0 < src.index("market_stage(") < src.index("track.score_all("))

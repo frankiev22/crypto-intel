@@ -169,7 +169,7 @@ STAGE_FIRES = {
              "paperv3.open"},
     "sweep": {"paper.sweep", "paper.close", "paperv3.sweep", "paperv3.close"},
     "watchlist": {"watchlist.sweep", "milestone.graduated"},
-    "market": {"market.snapshot"},
+    "market": {"market.snapshot", "chainevents.rows"},
     "graduations": {"graduations.ledger"},
     "universe": {"universe.members"},
     "1": {"outcome.recorded", "milestone.mcap", "milestone.realizable"},
@@ -449,6 +449,26 @@ def market_stage(verbose=True):
         # Non-fatal, like the dashboard: a broken snapshot must never cost a
         # pass of collection. It beats nothing, so liveness reports it stale.
         print(f"  market snapshot failed (non-fatal): {type(e).__name__}: {e}")
+
+    # ⛔⛔ THE HELIUS POOL RECEIVER, RECONCILED EVERY PASS. This is the fix for
+    # the primary bug in this repo: a thing is not done until something CALLS it.
+    # The receiver took 1,571 real rows on 2026-09-23 and was sitting at ZERO
+    # addresses thirteen minutes later, and nobody found out for most of a day,
+    # because nothing ran it and nothing counted its rows.
+    #
+    # ensure() is idempotent, costs one HTTP GET when nothing has drifted, and
+    # HOLDS rather than registering when the database is not answering - because
+    # registering into a dead database is what caused that outage. It beats
+    # liveness with the receiver's own row count, so a pass where it fires and
+    # the count has not moved reads as producing nothing.
+    try:
+        import heliushook
+        r = heliushook.ensure(beat_fn=liveness.beat)
+        print("  chain events: %s (%s) rows_total=%s watching=%s"
+              % (r.get("acted"), r.get("why"), r.get("rows_total"), r.get("watching")))
+    except Exception as e:
+        # Non-fatal by the same argument as the snapshot above.
+        print(f"  chain-event reconcile failed (non-fatal): {type(e).__name__}: {e}")
 
 
 # ⭐ THE TRACKED UNIVERSE AND THE GRADUATION LEDGER run LAST, on whatever the
