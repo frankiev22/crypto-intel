@@ -205,6 +205,59 @@ picks well.** It is the signature of measuring "is some live token using this
 ticker today", which is roughly constant in time, instead of "did his pick
 survive". ⛔ **Never quote the left-hand column as his hit rate.**
 
+## 4c. ⭐ Re-resolved with ALL-PAIRS liquidity, 2026-09-23
+
+Frank: *"the archive extraction now REQUIRES a verified contract address per
+ticker, resolved with all-pairs liquidity, with impersonators named. Write it to
+the repo and to Supabase, not just a report."* Done, on all 482 rows, one call
+per mint (**never batched** - three mints in one call return 30 pairs TOTAL,
+split 15/14/1, which would reproduce the exact bug).
+
+| verified_status | n | meaning |
+|---|---:|---|
+| **VERIFIED_LIQUID** | **253** | resolution HIGH/MEDIUM and >= $25,000 summed across every pool |
+| ⛔ **UNVERIFIED** | **223** | several live tokens wear this ticker; we refuse to score it |
+| **VERIFIED_DEAD** | 6 | BLAST, FORTUNE, LOTTO, MDUDAS, TWINE, XP - all at **$0** |
+| PHANTOM | 0 | none of the chosen contracts is a ghost cap |
+
+⚠️ **VERIFIED means "this address is the one he most likely meant, and these are
+its real numbers now". It does NOT mean the call was good.** No hit rate is
+computable - see §4b.
+
+### ⭐ How much the single-pool bug actually mattered, measured
+
+| | |
+|---|---|
+| median understatement | **1.01x** - i.e. **nothing**, for the typical row |
+| rows understated by >= 1.5x | ⛔ **75 of 435 (17.2%)** |
+| worst | **GP 4.60x**, PONS 4.27x, TSLA 3.79x, ORBIO 3.60x, **EMBER 3.55x**, DJT 3.52x, STONK 3.01x |
+| rows at the 30-pair cap, so a FLOOR | **45** |
+
+⭐ **This is the honest calibration and it cuts both ways.** For an ordinary
+one-pool memecoin, reading one pool was fine. The error is concentrated entirely
+in the multi-pool class - the pairing launchpads and the assets quoted in other
+assets - which is **exactly the class this project has just decided is the
+interesting one**. A bug that is harmless on the boring rows and 4.6x on the
+interesting ones is worse than a uniform bug, because it survives casual checking.
+
+### ⭐ Impersonators, named
+
+**1,874 other live tokens wear these 482 tickers, across 437 of them.**
+⚠️ That is a **floor**: the resolver stored at most 5 rival candidates per
+ticker, so the true count is higher. Every one is listed on its card in
+`gorilla_universe.html` and in `impersonators` in Supabase.
+
+### Where it lives
+
+| artefact | what it is |
+|---|---|
+| `analysis/gorilla_archive/dataset_allpairs.json` | the re-measured 482 rows |
+| `analysis/gorilla_archive/reresolve_allpairs.py` | the rebuild, rules pre-committed in its docstring |
+| Supabase `public.crypto_gorilla_archive` | 482 rows, 16 new all-pairs columns, verified by query |
+| `analysis/gorilla_archive/gorilla_universe.html` | 721 KB, per-card pools / floor / impersonators |
+
+---
+
 ## 5. How to use it
 
 - ⭐ **Read the `what_it_does` line first.** It is the reason this exists.

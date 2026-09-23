@@ -49,7 +49,7 @@ def redact(s, *secrets):
 
 def main():
     url, key, sec = env()
-    rows = json.load(io.open(os.path.join(HERE, "dataset.json"), encoding="utf-8"))
+    rows = json.load(io.open(os.path.join(HERE, "dataset_allpairs.json"), encoding="utf-8"))
     endpoint = url + "/rest/v1/rpc/gorilla_archive_publish"
     sent = 0
     for i in range(0, len(rows), BATCH):

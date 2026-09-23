@@ -48,7 +48,7 @@ def safe_sym(sym):
 
 
 def main():
-    rows = json.load(io.open(os.path.join(HERE, "dataset.json"), encoding="utf-8"))
+    rows = json.load(io.open(os.path.join(HERE, "dataset_allpairs.json"), encoding="utf-8"))
     try:
         stats = json.load(io.open(os.path.join(HERE, "hitrate.json"), encoding="utf-8"))
     except Exception:
@@ -68,8 +68,22 @@ def main():
             "f": r.get("first_reported_mcap"), "p": r.get("peak_reported_mcap"),
             "tr": r.get("reported_trajectory") or [],
             "m": r.get("all_mentions") or [],
-            "cm": r.get("current_mcap_usd"), "cl": r.get("current_liquidity_usd"),
-            "cv": r.get("current_vol24_usd"), "h": r.get("holders"),
+            # ⛔ ALL PAIRS from 2026-09-23 (standing rule 18). `cl` used to be one
+            # pool's liquidity; on 75 of 435 rows that understated by >= 1.5x and
+            # on GP by 4.60x. `fl_` is true when the 30-pair API cap was hit, in
+            # which case the figure is a FLOOR - SOL also returns 30.
+            "cm": r.get("mcap_all_pairs_usd") or r.get("current_mcap_usd"),
+            "cl": (r.get("liq_all_pairs_usd") if r.get("liq_all_pairs_usd") is not None
+                   else r.get("current_liquidity_usd")),
+            "clf": bool(r.get("liq_is_floor")),
+            "np": r.get("pair_count"),
+            "dp": r.get("deepest_pool_liq_usd"),
+            "ux": r.get("single_pair_understates_by"),
+            "qa": r.get("quote_assets") or {},
+            "vs": r.get("verified_status"), "vw": r.get("verified_why"),
+            "ni": r.get("n_impersonators"), "imp": r.get("impersonators") or [],
+            "cv": r.get("vol24_all_pairs_usd") or r.get("current_vol24_usd"),
+            "h": r.get("holders"),
             "o": r.get("outcome"), "ow": r.get("outcome_why"),
             "rc": r.get("resolution_confidence"), "rn": r.get("resolution_note"),
             "nc": r.get("n_candidates"), "lp": r.get("launchpad"),
@@ -180,12 +194,23 @@ svg.spark{vertical-align:middle}
   and checked nothing about the figures themselves.
   <br><br>
   <b>2. The contract may not be the one he meant.</b> He posts tickers, not
-  addresses. The services that turn a ticker into an address only list tokens that
-  still have liquidity, so a token that died is invisible to them and the ticker
-  resolves to whatever living namesake carries that symbol now. We proved this on
-  EMBER: the real one had its liquidity withdrawn on 22 Sept and does not appear in
-  any search result, so the lookup returned a different, living EMBER. Rows marked
-  <b>contract uncertain</b> are the ones we refuse to score at all.
+  addresses, and 437 of these tickers are worn by more than one live token &mdash;
+  <b>1,874 impersonators are named on the cards below</b>. The services that turn a
+  ticker into an address preferentially list tokens that still have liquidity, so a
+  token that died tends to be invisible to them and the ticker resolves to whatever
+  living namesake carries that symbol now. Measured strength of that effect:
+  <b>86.4% [73.3, 93.6] of 44 index-absent tokens failed a live $100 round trip</b>.
+  Rows marked <b>contract uncertain</b> are the ones we refuse to score at all.
+  <br><br>
+  <b>2b. Correction, 23 Sept: this page previously cited EMBER as proof that the
+  lookup picks the wrong contract. That was backwards and is withdrawn.</b> The
+  resolver was right. It chose <code>5dvXTZ5q&hellip;</code>, which holds
+  <b>$2.33m across 30 pools</b> and sells $2,000 at 1.30% &mdash; and its first pool
+  predates Gorilla's mention by a day. The contract analysed by hand instead,
+  <code>FLCr9vGM&hellip;</code>, is a <b>phantom</b>: 3 pools, <b>$1.39</b> of total
+  liquidity behind a <b>$1.31 billion</b> claimed cap, first pool twelve days
+  <i>after</i> the mention. A hand-check on chain is not automatically better than
+  a rule; it can be on chain on the wrong account.
   <br><br>
   <b>3. So the alive / faded badges describe the token carrying that ticker today,
   not the outcome of his call.</b> They are not a track record and there is no hit
@@ -194,6 +219,12 @@ svg.spark{vertical-align:middle}
   <b>4. Liquidity shown is the listings' reported field</b>, which we have measured
   overstating by a median 781x. It is a coarse alive-or-dead split and <b>not an
   exit price</b>. Nothing here is a recommendation to buy anything.
+  <br><br>
+  <b>5. Liquidity is now summed across EVERY pool for the mint, not read from one.</b>
+  Reading one pool on a token that trades across thirty is a 3% sample reported as
+  the whole; it understated 75 of 435 rows here by 1.5x or more, and GP by 4.60x.
+  <b>A figure marked &ldquo;floor&rdquo; hit the 30-pool API cap</b> &mdash; SOL
+  returns 30 too, so 30 means &ldquo;30 or more&rdquo; and the real total is higher.
 </div>
 
 <div class="stats" id="stats"></div>
@@ -261,12 +292,17 @@ function card(r){
     '<div class="arc">'+spark(r.tr)+' '+arc+'</div>'+
     '<div class="grid">'+
       '<div>mcap today<b>'+usd(r.cm)+'</b></div>'+
-      '<div>liquidity<b>'+usd(r.cl)+'</b></div>'+
+      '<div>liq, ALL pools<b>'+usd(r.cl)+(r.clf?' <span style="opacity:.65;font-weight:400">floor</span>':'')+'</b></div>'+
       '<div>24h volume<b>'+usd(r.cv)+'</b></div>'+
+      '<div>pools<b>'+(r.np==null?'?':r.np)+(r.clf?'+':'')+'</b></div>'+
       '<div>holders<b>'+num(r.h)+'</b></div>'+
       '<div>called<b>'+esc(r.fs)+'</b></div>'+
       '<div>mentions<b>'+r.n+'</b></div>'+
+      '<div>same ticker<b>'+((r.ni||0)?((r.ni)+' other'+(r.ni>1?'s':'')):'unique')+'</b></div>'+
     '</div>'+
+    (r.ux&&r.ux>=1.5?('<div class="d" style="margin-top:4px">&#9888; reading one pool would have shown '+usd(r.dp)+', '+r.ux+'x too low</div>'):'')+
+    (r.qa&&Object.keys(r.qa).length>1?('<div class="d" style="margin-top:4px">paired against '+Object.keys(r.qa).slice(0,5).map(k=>esc(k)+' '+usd(r.qa[k])).join(' &middot; ')+'</div>'):'')+
+    ((r.imp&&r.imp.length)?('<details><summary>'+r.imp.length+' other token'+(r.imp.length>1?'s':'')+' wearing $'+esc(r.t)+'</summary><div class="d">'+r.imp.map(x=>esc((x&&(x.chain||x.ch))||'?')+' '+esc((x&&(x.address||x.a))||JSON.stringify(x))).join('<br>')+'</div></details>'):'')+
     (r.a?'<div class="addr" onclick="navigator.clipboard&&navigator.clipboard.writeText(this.dataset.a)" data-a="'+esc(r.a)+'">'+esc(r.a)+' <span style="opacity:.6">(tap to copy)</span></div>':
          '<div class="addr"><i>no contract resolved</i></div>')+
     (hist?('<details><summary>every mention ('+(r.m||[]).length+')</summary>'+hist+'</details>'):'');
