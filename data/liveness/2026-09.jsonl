@@ -98187,3 +98187,51 @@
 {"name": "news.freshness", "ts": 1790248610, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
 {"name": "detector.drift", "ts": 1790248614, "n": 1, "detail": "stable", "origin": "scheduled"}
 {"name": "dashboard.build", "ts": 1790248626, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790252423, "n": 1, "detail": "8xhSYeD6CwWZgUBnvSvfSBmE", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790252424, "n": 1, "detail": "9bvapF8f5bn4xPAdkPATEm72", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790252426, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790252426, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790252428, "n": 1, "detail": "3cFqm75R9izaaaDHL3qARSTW", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790252429, "n": 1, "detail": "AbKaeNaS8FeyykruJ7sAT9pY", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790252431, "n": 1, "detail": "Gj5t9oSWLynCMcdfbhVGg3PM", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790252431, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790252433, "n": 1, "detail": "EFW3VwqYPzoc58reVMy2GxEj", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790252433, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790252435, "n": 1, "detail": "EhySvCDKG8mmiYokVaHRLBgi", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790252436, "n": 1, "detail": "DmXQmkhaSQtJV33Q8psCsRy9", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790252438, "n": 1, "detail": "5wMr2WVkibmvagy8sT7V4ZKE", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790252438, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790252439, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790252442, "n": 1, "detail": "5WT3nuiYY1oMiSPrWQTsrsiq", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790252442, "n": 5, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1790252443, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1790252448, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1790252465, "n": 140, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252466, "n": 1, "detail": "GROK MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252579, "n": 1, "detail": "玉兔 NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252580, "n": 1, "detail": "Hybrid cat NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252580, "n": 1, "detail": "本昌成佛 NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252581, "n": 1, "detail": "济公 NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252581, "n": 1, "detail": "Rufo NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252582, "n": 1, "detail": "Museify NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252583, "n": 1, "detail": "QUANTA NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252587, "n": 1, "detail": "NPC NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252658, "n": 1, "detail": "NPC NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252659, "n": 1, "detail": "BRX1600 NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252660, "n": 1, "detail": "FUNKOS NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252660, "n": 1, "detail": "Pokémon NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252661, "n": 1, "detail": "QVA NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252662, "n": 1, "detail": "济公 NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252663, "n": 1, "detail": "goon NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252663, "n": 1, "detail": "闽币 NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252664, "n": 1, "detail": "OTC NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252664, "n": 1, "detail": "pepebro NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252664, "n": 1, "detail": "CUMINU NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252668, "n": 1, "detail": "济公 NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252733, "n": 1, "detail": "TRUNGTHU NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252734, "n": 1, "detail": "进化 TARGET", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252734, "n": 1, "detail": "Meme NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252735, "n": 1, "detail": "PROM TARGET", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790252736, "n": 1, "detail": "PROM TARGET", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1790252837, "n": 397, "detail": "397 rows, universe 281, 13 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1790252837, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
