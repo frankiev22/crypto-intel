@@ -297,8 +297,15 @@ def scan_stage(networks=("solana",), verbose=True):
                   + (f" ({100.0 * _sc:.1f}%)" if _sc is not None else "")
                   + f" - {cov.get('truncate_reason') or 'reason not recorded'}")
             print(f"     {cov.get('carried_forward') or 0} carried to the next pass"
-                  + (f", {cov['carry_dropped']} DROPPED at the carry cap"
-                     if cov.get("carry_dropped") else ""))
+                  + (f", {cov['carry_spilled']} SPILLED to disk at the carry cap"
+                     if cov.get("carry_spilled") else "")
+                  + (f", {cov['carry_spill_depth']} still owed in the spill"
+                     if cov.get("carry_spill_depth") else ""))
+            # A non-zero `carry_dropped` can only come from a row written BEFORE
+            # 2026-09-24, when the cap deleted instead of spilling. Never silent.
+            if cov.get("carry_dropped"):
+                print(f"     {cov['carry_dropped']} DROPPED at the carry cap "
+                      f"- that is the pre-2026-09-24 delete path and it is a BUG")
         if verbose and cov.get("span_s") is not None:
             print(f"  [{net}] discovery window {cov['span_s']:.0f}s of launch "
                   f"stream from {cov['pools_returned']} pools")

@@ -1,1 +1,29 @@
-{"ts": 1790216241, "stage": "universe", "origin": "scheduled", "scan": {"pools_seen": 0, "pools_reached": null, "coverage": null, "enriched": 0, "failed": 0, "truncated": false, "truncate_reason": null, "carried_forward": null, "carried_in": null, "skipped_addresses": 0}, "outcomes": null, "graduations": {"backlog": 0, "lag_s": 47, "lag_h": 0.01, "processed_last_pass": 63, "failed_txs_skipped": 122, "retry_queue": 0, "accounted": true}, "lookups": null, "alarms": []}
+{
+ "ts": 1790248610,
+ "stage": "universe",
+ "origin": "scheduled",
+ "scan": {
+  "pools_seen": 0,
+  "pools_reached": null,
+  "coverage": null,
+  "enriched": 0,
+  "failed": 0,
+  "truncated": false,
+  "truncate_reason": null,
+  "carried_forward": null,
+  "carried_in": null,
+  "skipped_addresses": 0
+ },
+ "outcomes": null,
+ "graduations": {
+  "backlog": 0,
+  "lag_s": 127,
+  "lag_h": 0.04,
+  "processed_last_pass": 45,
+  "failed_txs_skipped": 27,
+  "retry_queue": 0,
+  "accounted": true
+ },
+ "lookups": null,
+ "alarms": []
+}

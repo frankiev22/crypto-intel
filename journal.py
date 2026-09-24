@@ -309,6 +309,10 @@ def record_coverage(network, window, scanned, pass_score=70, passed=0,
     obj["pools_carried_in"] = sc.get("pools_carried")
     obj["carried_forward"] = sc.get("carried_forward")
     obj["carry_dropped"] = sc.get("carry_dropped")
+    # ⭐ 2026-09-24: the cap SPILLS instead of dropping, so the debt is a
+    # measurement now and not a hole. Compute and persist are two steps.
+    obj["carry_spilled"] = sc.get("carry_spilled")
+    obj["carry_spill_depth"] = sc.get("carry_spill_depth")
     obj["truncated"] = bool(sc.get("budget_hit"))
     obj["truncate_reason"] = sc.get("truncate_reason")
     obj["scan_coverage"] = sc.get("coverage")

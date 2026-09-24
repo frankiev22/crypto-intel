@@ -45,6 +45,14 @@ GRAD_BACKLOG_ALARM = 250        # graduation signatures waiting
 # Any row at all about to age out unscored is an alarm: it is unrecoverable.
 EXPIRING_ALARM = 1
 
+# ⛔ THE SPILL. Pre-committed 2026-09-24, BEFORE the first spilled row exists.
+# Any owed pool at all means the scan is behind by more than one pass can
+# replay, which is exactly the condition that deleted 29 launches on 09-23 when
+# the cap still deleted. So the floor is ZERO and this alarms on the first row.
+# It will fire while arrivals (~57/pass) exceed what a 110s pass reaches (~40),
+# and that is correct: the debt is real and it should be loud, not absorbed.
+SPILL_DEPTH_ALARM = 0
+
 
 def _rows_path(now=None):
     n = dt.datetime.fromtimestamp(now or time.time(), dt.timezone.utc)
@@ -69,6 +77,8 @@ def _scan():
             "truncate_reason": ls.get("truncate_reason"),
             "carried_forward": ls.get("carried_forward"),
             "carried_in": ls.get("pools_carried"),
+            "carry_spilled": ls.get("carry_spilled"),
+            "carry_spill_depth": ls.get("carry_spill_depth"),
             "skipped_addresses": len(ls.get("skipped") or [])}
 
 
@@ -163,6 +173,14 @@ def alarms(row):
     """The list of reasons this funnel is losing data. Empty means healthy."""
     out = []
     sc = row.get("scan") or {}
+    if (sc.get("carry_spill_depth") or 0) > SPILL_DEPTH_ALARM:
+        out.append(f"scan carry spill {sc['carry_spill_depth']} pools owed"
+                   + (f", {sc['carry_spilled']} added this pass"
+                      if sc.get("carry_spilled") else "")
+                   + " - the backlog exceeds what one pass can replay")
+    if sc.get("carry_dropped"):
+        out.append(f"scan carry DROPPED {sc['carry_dropped']} pools, which is the "
+                   f"pre-2026-09-24 delete path and must not happen")
     if sc.get("coverage") is not None and sc["coverage"] < SCAN_COVERAGE_FLOOR:
         out.append(f"scan coverage {sc['coverage']:.1%} below {SCAN_COVERAGE_FLOOR:.0%}: "
                    f"{sc.get('pools_seen')} pools seen, {sc.get('pools_reached')} reached, "

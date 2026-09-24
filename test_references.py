@@ -45,6 +45,11 @@ PLANNED = {
     "docs/reviews/2026-08-22_teardown.md": "consolidation phase 0, not yet copied",
     # outside the repo by design (the retired desktop task)
     "SKILL.md": "lives in Documents/Claude/Scheduled/crypto-collect-hourly, outside the repo",
+    # ⭐ Created on FIRST SPILL, never scaffolded: an empty spill file would
+    # read as "the debt is zero" when the truth is "nothing has overflowed
+    # yet", and this repo has lost five things to exactly that shape.
+    # ⛔ When it starts to exist, the check below fails and this line goes.
+    "data/_scan_carry_spill.jsonl": "written on the first carry overflow, never scaffolded empty",
     # a plan-table row that shipped under another name (chainfields.round_trip)
     "jupiter.py": "docs/LIQUIDITY.md plan row; shipped as chainfields.round_trip()",
 }

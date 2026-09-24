@@ -192,18 +192,85 @@ check("⛔ a truncation at 10 reports 10 reached, not 11",
 check("...which is exactly what is NOT carried",
       scanner.LAST_SCAN["reached"] + len(rest) == len(pools))
 
-# ⚠️ the cap must DROP LOUDLY, never silently
+# ⛔⛔ THE CAP MUST DEGRADE, NEVER DELETE. 2026-09-23 12:05Z it deleted: the scan
+# skipped 429 pools, carried 400, and 29 were dropped with only their COUNT kept.
+# Those launches are unrecoverable, because the launch feed does not serve the
+# past. Every check below reads the result back OFF DISK rather than trusting the
+# in-memory counter, which is the whole point of rule 16.
 _cap = scanner.CARRY_MAX
+_spill = scanner.CARRY_SPILL_PATH
+_cursor = scanner.CARRY_SPILL_CURSOR
+_tmpdir = tempfile.mkdtemp()
 scanner.CARRY_MAX = 5
+scanner.CARRY_SPILL_PATH = os.path.join(_tmpdir, "spill.jsonl")
+scanner.CARRY_SPILL_CURSOR = os.path.join(_tmpdir, "spill.cursor.json")
 try:
     scanner.LAST_SCAN.clear()
     rest = scanner._truncate(pools, 10, "test", verbose=False)
-    check("⚠️ at the cap it keeps only CARRY_MAX", len(rest) == 5)
-    check("⛔ and RECORDS the drop rather than hiding it",
-          scanner.LAST_SCAN["carry_dropped"] == 35,
+    check("⚠️ at the cap ONE PASS still replays only CARRY_MAX", len(rest) == 5)
+    check("⛔ and NOTHING is dropped any more",
+          scanner.LAST_SCAN["carry_dropped"] == 0,
           str(scanner.LAST_SCAN.get("carry_dropped")))
+    check("⭐ the overflow is SPILLED, and the count is the overflow exactly",
+          scanner.LAST_SCAN["carry_spilled"] == 35,
+          str(scanner.LAST_SCAN.get("carry_spilled")))
+    # OFF DISK. A counter saying 35 is not evidence that 35 rows exist.
+    _rows, _bad = scanner._spill_rows()
+    check("⛔ 35 rows are ON DISK in the spill, read back", len(_rows) == 35,
+          "%d rows, %d unparseable" % (len(_rows), _bad))
+    _spilled_addrs = [(r.get("pool") or {}).get("attributes", {}).get("address")
+                      for r in _rows]
+    check("...and they are the 35 the pass could not replay, by address",
+          _spilled_addrs == ["POOL%03d" % i for i in range(15, 50)],
+          str(_spilled_addrs[:3]) + " ... " + str(_spilled_addrs[-1:]))
+    check("⭐ carried + spilled == everything the truncation skipped, so the "
+          "arithmetic cannot hide a loss",
+          len(rest) + scanner.LAST_SCAN["carry_spilled"] == 40,
+          "%d + %d" % (len(rest), scanner.LAST_SCAN["carry_spilled"]))
+    check("the depth is reported, not just the delta",
+          scanner.LAST_SCAN["carry_spill_depth"] == 35,
+          str(scanner.LAST_SCAN.get("carry_spill_depth")))
+
+    # ⭐ AND IT COMES BACK. A spill that never drains is a slower delete.
+    scanner._carry_save([], 0, spilled=0)
+    _back = scanner._carry_load()
+    check("⭐ a pass with room DRAINS the spill, oldest first",
+          len(_back) == 5 and scanner._addr(_back[0]) == "POOL015",
+          "%d recovered, first %s" % (len(_back), scanner._addr(_back[0]) if _back else None))
+    check("...and the drained rows are STILL on disk (rule 8: the cursor moves, "
+          "the log is never rewritten)",
+          len(scanner._spill_rows()[0]) == 35 and scanner._spill_cursor() == 5,
+          "%d rows, cursor %d" % (len(scanner._spill_rows()[0]), scanner._spill_cursor()))
+    check("...so the remaining debt is 30, measured not assumed",
+          scanner._spill_depth() == 30, str(scanner._spill_depth()))
+    # Drain the rest and prove every single one of the 35 came back.
+    _seen = list(_back)
+    for _ in range(12):
+        scanner._carry_save([], 0, spilled=0)
+        _more = scanner._carry_load()
+        if not _more:
+            break
+        _seen.extend(_more)
+    check("⛔⛔ ALL 35 spilled pools are recoverable, none lost",
+          sorted(scanner._addr(q) for q in _seen)
+          == sorted("POOL%03d" % i for i in range(15, 50)),
+          "%d recovered of 35" % len(_seen))
+    check("...and the spill is then empty, so it is a QUEUE and not a graveyard",
+          scanner._spill_depth() == 0, str(scanner._spill_depth()))
 finally:
     scanner.CARRY_MAX = _cap
+    scanner.CARRY_SPILL_PATH = _spill
+    scanner.CARRY_SPILL_CURSOR = _cursor
+
+# ⛔ The delete path must not be reachable from the source at all.
+_scansrc = io.open("scanner.py", encoding="utf-8").read()
+check("⛔ `rest = rest[:CARRY_MAX]` is never the last word: the overflow is "
+      "always appended to the spill first",
+      "_spill_append(over)" in _scansrc,
+      "the truncation no longer spills")
+check("⛔ and no branch assigns a non-zero carry_dropped any more",
+      'LAST_SCAN["carry_dropped"] = 0' in _scansrc
+      and 'LAST_SCAN["carry_dropped"] = dropped' not in _scansrc)
 
 scanner._carry_save([{"attributes": {"address": "LEFTOVER"}}], 0)
 check("a stale carry exists before a clean pass", len(scanner._carry_load()) == 1)

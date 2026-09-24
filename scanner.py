@@ -213,11 +213,32 @@ def scan_budget(budget_s=None):
 # made it unbiased and would still have lost it. Carrying loses nothing.
 #
 # Bounded on purpose: a carry that grows without limit turns one slow pass into
-# a permanent backlog that never drains. At the cap the OLDEST carried entries
-# are dropped, and that drop is recorded and alarmed rather than silent.
+# a permanent backlog that never drains.
+#
+# 2026-09-24: THE CAP USED TO DELETE, AND ON 2026-09-23 IT DID.
+# At 12:05Z the scan stage skipped 429 pools and carried 400. The other 29 were
+# dropped on the floor and only their COUNT survived. The rows were real and are
+# now unrecoverable: the launch feed does not serve the past.
+# The run-up was visible for seven hours in the funnel: coverage fell 27.7% ->
+# 20.3% -> 16.6% -> 13.9% -> 12.2% -> 10.2% -> 9.9% -> 8.5% while the carry grew
+# 107 -> 400 and then jammed at the cap.
+#
+# RULE NOW: A BACKLOG MAY DEGRADE, IT MAY NEVER DELETE.
+# The cap still bounds what ONE pass replays, because an unbounded head-of-line
+# carry is its own failure. The overflow goes to an APPEND-ONLY SPILL on disk and
+# is drained back whenever the carry has room. Nothing is deleted (rule 8) and the
+# depth of the spill is the honest measure of the debt.
+# WHAT THIS DOES NOT FIX: the arrival rate. A pass reaches ~40 pools inside its
+# 110s budget while ~57 arrive, so the debt GROWS by construction and the spill
+# grows with it. The spill makes the debt visible and recoverable. It is not
+# throughput, and it should not be mistaken for it.
 # ---------------------------------------------------------------------------
 CARRY_PATH = os.path.join("data", "_scan_carry.json")
 CARRY_MAX = int(os.environ.get("CRYPTO_SCAN_CARRY_MAX", "400"))
+# Append-only. One JSON row per overflowed pool. NEVER rewritten: the cursor
+# moves instead, so a drained row is still on disk and still auditable.
+CARRY_SPILL_PATH = os.path.join("data", "_scan_carry_spill.jsonl")
+CARRY_SPILL_CURSOR = os.path.join("data", "_scan_carry_spill.cursor.json")
 
 # ⭐ HOLDER COUNTS, AT THE DECISION POINT ONLY.
 #
@@ -241,22 +262,126 @@ V3_QUOTE_BUDGET = int(os.environ.get("CRYPTO_V3_QUOTE_BUDGET", "15"))
 
 
 def _carry_load():
+    """The carry, topped up from the spill when there is room under the cap.
+
+    What it drains is written straight back into the carry file, so a crash
+    between here and the next save cannot lose it.
+    """
     try:
         with open(CARRY_PATH, encoding="utf-8") as f:
             d = json.load(f)
-        return d.get("pools") or []
+        pools = d.get("pools") or []
     except Exception:
-        return []
+        pools = []
+    room = CARRY_MAX - len(pools)
+    if room > 0:
+        pulled = _spill_drain(room)
+        if pulled:
+            have = set(_addr(q) for q in pools if _addr(q))
+            pulled = [q for q in pulled if _addr(q) and _addr(q) not in have]
+            if pulled:
+                pools = pools + pulled
+                _carry_save(pools, 0, spilled=0)
+                print("  [spill] %d owed pools recovered, %d still owed"
+                      % (len(pulled), _spill_depth()))
+    return pools
 
 
-def _carry_save(pools, dropped=0):
+def _carry_save(pools, dropped=0, spilled=0):
     try:
         os.makedirs(os.path.dirname(CARRY_PATH), exist_ok=True)
         with open(CARRY_PATH, "w", encoding="utf-8") as f:
+            # `dropped_at_cap` is kept and is now ALWAYS 0 by construction: the
+            # overflow is spilled, not dropped. It stays in the schema so an old
+            # row carrying a non-zero value still reads as what it was.
             json.dump({"ts": int(time.time()), "n": len(pools),
-                       "dropped_at_cap": dropped, "pools": pools}, f)
+                       "dropped_at_cap": dropped,
+                       "spilled_at_cap": spilled,
+                       "spill_depth": _spill_depth(),
+                       "pools": pools}, f)
     except Exception as e:
         print(f"  [carry] could not persist {len(pools)} pools: {e}")
+
+
+def _spill_append(pools):
+    """Append overflowed pools to the spill. Returns how many landed.
+
+    A torn last line is skipped by the reader rather than crashing it: losing one
+    row to a partial write is still better than losing all of them by design,
+    which is what the old cap did.
+    """
+    if not pools:
+        return 0
+    try:
+        os.makedirs(os.path.dirname(CARRY_SPILL_PATH), exist_ok=True)
+        now = int(time.time())
+        with open(CARRY_SPILL_PATH, "a", encoding="utf-8") as f:
+            for q in pools:
+                f.write(json.dumps({"ts": now, "pool": q}) + chr(10))
+        return len(pools)
+    except Exception as e:
+        # Say it. A spill that could not be written IS the old data loss.
+        print("  [spill] COULD NOT PERSIST %d overflowed pools: %s" % (len(pools), e))
+        return 0
+
+
+def _spill_cursor():
+    try:
+        with open(CARRY_SPILL_CURSOR, encoding="utf-8") as f:
+            return int((json.load(f) or {}).get("consumed") or 0)
+    except Exception:
+        return 0
+
+
+def _spill_rows():
+    """Every spilled row on disk, oldest first. A bad line is skipped and counted."""
+    rows, bad = [], 0
+    try:
+        with open(CARRY_SPILL_PATH, encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    rows.append(json.loads(line))
+                except Exception:
+                    bad += 1
+    except IOError:
+        pass
+    return rows, bad
+
+
+def _spill_depth():
+    """How many spilled pools are still OWED."""
+    rows, _bad = _spill_rows()
+    return max(0, len(rows) - _spill_cursor())
+
+
+def _spill_drain(room):
+    """Take up to `room` of the oldest owed pools and advance the cursor.
+
+    The jsonl is never rewritten, so the record of what was owed survives the
+    draining of it (rule 8).
+    """
+    if room <= 0:
+        return []
+    rows, _bad = _spill_rows()
+    consumed = _spill_cursor()
+    take = rows[consumed:consumed + room]
+    if not take:
+        return []
+    try:
+        os.makedirs(os.path.dirname(CARRY_SPILL_CURSOR), exist_ok=True)
+        with open(CARRY_SPILL_CURSOR, "w", encoding="utf-8") as f:
+            json.dump({"consumed": consumed + len(take),
+                       "total_spilled": len(rows),
+                       "ts": int(time.time())}, f)
+    except Exception as e:
+        # Could not advance the cursor, so do NOT hand these out: replaying a
+        # pool is free, losing one is not.
+        print("  [spill] cursor not advanced, not draining: %s" % e)
+        return []
+    return [r.get("pool") for r in take if r.get("pool")]
 
 
 def _addr(p):
@@ -276,19 +401,25 @@ def _truncate(pools, i, why, verbose=True):
     LAST_SCAN["skipped"] = [_addr(q) for q in rest]
     LAST_SCAN["coverage"] = (i / len(pools)) if pools else 1.0
     LAST_SCAN["truncate_reason"] = why
-    dropped = 0
+    spilled = 0
     if len(rest) > CARRY_MAX:
-        # Drop the OLDEST (the tail), keep what we can still act on. Recorded,
-        # never silent - LAST_SCAN carries it and collect.py alarms on it.
-        dropped = len(rest) - CARRY_MAX
+        # NOT DROPPED. The head of the queue is what this pass replays; the tail
+        # goes to the append-only spill and comes back when there is room.
+        over = rest[CARRY_MAX:]
         rest = rest[:CARRY_MAX]
+        spilled = _spill_append(over)
+        if spilled != len(over):
+            # The write failed, so these really are lost. Say the number.
+            print("  LOST %d pools: the spill refused them" % (len(over) - spilled))
     LAST_SCAN["carried_forward"] = len(rest)
-    LAST_SCAN["carry_dropped"] = dropped
-    _carry_save(rest, dropped)
+    LAST_SCAN["carry_dropped"] = 0
+    LAST_SCAN["carry_spilled"] = spilled
+    LAST_SCAN["carry_spill_depth"] = _spill_depth()
+    _carry_save(rest, 0, spilled=spilled)
     if verbose:
         print(f"  ⛔ TRUNCATED at {i}/{len(pools)} ({100.0 * LAST_SCAN['coverage']:.1f}%): {why}")
         print(f"     {len(rest)} pools CARRIED to the next pass"
-              + (f", {dropped} dropped at the {CARRY_MAX} cap" if dropped else ""))
+              + ("" if not spilled else ", %d SPILLED to disk at the %d cap, depth %d" % (spilled, CARRY_MAX, LAST_SCAN["carry_spill_depth"])))
     return rest
 
 
@@ -367,6 +498,7 @@ def scan(network="solana", pages=None, verbose=True, on_row=None, budget_s=None)
     LAST_SCAN.update(pools=len(pools), pools_fresh=fresh_n, pools_carried=carry_n,
                      enriched=0, failed=0, reached=0, budget_hit=False,
                      skipped=[], coverage=1.0, carried_forward=0, carry_dropped=0,
+                     carry_spilled=0, carry_spill_depth=_spill_depth(),
                      holders_fetched=0, holders_deferred=0,
                      v3_quotes=0, v3_deferred=0, v3_refusals={})
     rows = []
