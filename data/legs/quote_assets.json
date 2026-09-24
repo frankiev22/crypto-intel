@@ -306,9 +306,48 @@
    "transfer_fee_bps": null
   },
   "CzLTZppPdZtTjyq3WGpHLstoc3GLhu7zH5Zg6xUa6Gv5": {
-   "checked_at": "2026-09-23T12:38:12Z",
-   "checked_ts": 1790167092.422588,
+   "checked_at": "2026-09-24T17:30:25Z",
+   "checked_ts": 1790271025.5970376,
    "default_account_state": "initialized",
+   "extension_state": {
+    "confidentialTransferMint": {
+     "auditorElgamalPubkey": null,
+     "authority": "2cVYpagTt7ZGc3mmTXBa7fAznUtx5DUu6aCq8uVDaf4a",
+     "autoApproveNewAccounts": false
+    },
+    "defaultAccountState": {
+     "accountState": "initialized"
+    },
+    "metadataPointer": {
+     "authority": "2cVYpagTt7ZGc3mmTXBa7fAznUtx5DUu6aCq8uVDaf4a",
+     "metadataAddress": "CzLTZppPdZtTjyq3WGpHLstoc3GLhu7zH5Zg6xUa6Gv5"
+    },
+    "pausableConfig": {
+     "authority": "2cVYpagTt7ZGc3mmTXBa7fAznUtx5DUu6aCq8uVDaf4a",
+     "paused": false
+    },
+    "permanentDelegate": {
+     "delegate": "2cVYpagTt7ZGc3mmTXBa7fAznUtx5DUu6aCq8uVDaf4a"
+    },
+    "scaledUiAmountConfig": {
+     "authority": "4S7eNNQcLMHeZr8MCX7cPmMKbqnVVUZ1PRRLAopTTeQt",
+     "multiplier": "1",
+     "newMultiplier": "1",
+     "newMultiplierEffectiveTimestamp": 0
+    },
+    "tokenMetadata": {
+     "additionalMetadata": [],
+     "mint": "CzLTZppPdZtTjyq3WGpHLstoc3GLhu7zH5Zg6xUa6Gv5",
+     "name": "Global X Copper Miners ETF - Backpack Securities",
+     "symbol": "COPX",
+     "updateAuthority": "2cVYpagTt7ZGc3mmTXBa7fAznUtx5DUu6aCq8uVDaf4a",
+     "uri": "https://metadata.backpack.exchange/stocks/copx.us.json"
+    },
+    "transferHook": {
+     "authority": "2cVYpagTt7ZGc3mmTXBa7fAznUtx5DUu6aCq8uVDaf4a",
+     "programId": null
+    }
+   },
    "extensions": [
     "metadataPointer",
     "permanentDelegate",
@@ -322,18 +361,49 @@
    "first_seen_at": "2026-09-23T12:38:12Z",
    "freeze_authority": "2cVYpagTt7ZGc3mmTXBa7fAznUtx5DUu6aCq8uVDaf4a",
    "is_token_2022": true,
+   "issuer_control_is_expected_for": "a regulated tokenised security, which must be able to comply with court orders and sanctions",
    "issuer_controlled": true,
+   "issuer_research": {
+    "dividends": "cash dividends and corporate actions, per Backpack's own page. \u2b50 Consistent with the chain: its scaled-UI multiplier is exactly 1, so it does NOT rebase",
+    "from_chain": [
+     "name_on_chain",
+     "metadata_uri",
+     "the multiplier of exactly 1",
+     "the authorities and extensions on this page"
+    ],
+    "from_issuer": [
+     "terms_url",
+     "instrument",
+     "dividends",
+     "learn.backpack.exchange: 'each Backpack tokenized security is redeemable 1:1 for the real underlying share through Backpack Securities' brokerage'"
+    ],
+    "from_press": [
+     "that the issuer retains mint, burn, freeze and forced transfer as tools to meet securities-law obligations"
+    ],
+    "instrument": "a tokenised share held by a broker-dealer, redeemable 1:1 for the real underlying share",
+    "issuer": "Backpack Securities",
+    "metadata_uri": "https://metadata.backpack.exchange/stocks/copx.us.json",
+    "name_on_chain": "Global X Copper Miners ETF - Backpack Securities",
+    "read_at": "2026-09-23",
+    "redeemable_for_the_real_share": true,
+    "symbol": "COPX",
+    "terms_url": "https://support.backpack.exchange/legal/general-legal/user-agreement",
+    "us_persons": "\u26a0\ufe0f NOT ESTABLISHED by this research. Backpack Securities is a US broker-dealer and its own page describes ACATS transfers to other brokerages, but the user agreement is distributed as PDFs that were not read",
+    "voting_rights": null,
+    "why_the_issuer_powers_exist": "same reason as any tokenised security, and here every power sits on ONE key (2cVYpagTt7ZG...): freeze, permanent delegate, pause, confidential transfers and the transfer-hook authority"
+   },
    "mint": "CzLTZppPdZtTjyq3WGpHLstoc3GLhu7zH5Zg6xUa6Gv5",
    "mint_authority": "4S7eNNQcLMHeZr8MCX7cPmMKbqnVVUZ1PRRLAopTTeQt",
    "ok": true,
    "powers": [
     "the issuer can FREEZE your account",
-    "the issuer can MOVE your tokens without your signature",
+    "the issuer can MOVE your tokens without your signature (delegate 2cVYpagTt7ZGc3mmTXBa7fAznUtx5DUu6aCq8uVDaf4a)",
     "the issuer can halt every transfer of this asset",
-    "new accounts can be forced to start frozen",
-    "every transfer runs issuer code that can reject it",
+    "new accounts can be forced to start frozen (it is `initialized` today, so they are not)",
+    "a transfer hook CAN be installed, but the slot is empty, so no issuer code runs on a transfer today",
     "balances can be confidential, so holdings are not fully auditable"
    ],
+   "scaled_ui_multiplier": "1",
    "source": "seed",
    "symbol": "COPX",
    "transfer_fee_bps": null
@@ -356,9 +426,23 @@
    "transfer_fee_bps": null
   },
   "EDTmJjr4VoV9S8ftCQFt4ZBvmDy9s1tBoiWVrmDApump": {
-   "checked_at": "2026-09-23T12:39:09Z",
-   "checked_ts": 1790167149.3137963,
+   "checked_at": "2026-09-24T17:30:25Z",
+   "checked_ts": 1790271025.5970376,
    "default_account_state": null,
+   "extension_state": {
+    "metadataPointer": {
+     "authority": null,
+     "metadataAddress": "EDTmJjr4VoV9S8ftCQFt4ZBvmDy9s1tBoiWVrmDApump"
+    },
+    "tokenMetadata": {
+     "additionalMetadata": [],
+     "mint": "EDTmJjr4VoV9S8ftCQFt4ZBvmDy9s1tBoiWVrmDApump",
+     "name": "HQ Solana ",
+     "symbol": "HQ",
+     "updateAuthority": null,
+     "uri": "https://ipfs.io/ipfs/QmdVhswKG7QNstsvXT72xmiY3QL88XKBqrgqzbqJroVg7i"
+    }
+   },
    "extensions": [
     "metadataPointer",
     "tokenMetadata"
@@ -366,50 +450,61 @@
    "first_seen_at": "2026-09-23T12:39:09Z",
    "freeze_authority": null,
    "is_token_2022": true,
+   "issuer_control_is_expected_for": "a regulated tokenised security, which must be able to comply with court orders and sanctions",
    "issuer_controlled": false,
+   "issuer_research": null,
    "mint": "EDTmJjr4VoV9S8ftCQFt4ZBvmDy9s1tBoiWVrmDApump",
    "mint_authority": null,
    "ok": true,
    "powers": [],
-   "source": "seed",
+   "scaled_ui_multiplier": null,
+   "source": "harvested_from_outcome_rows",
    "symbol": "HQ",
    "transfer_fee_bps": null
   },
   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": {
-   "checked_at": "2026-09-23T12:39:09Z",
-   "checked_ts": 1790167149.3137963,
+   "checked_at": "2026-09-24T17:30:25Z",
+   "checked_ts": 1790271025.5970376,
    "default_account_state": null,
+   "extension_state": {},
    "extensions": [],
    "first_seen_at": "2026-09-23T12:39:09Z",
    "freeze_authority": "7dGbd2QZcCKcTndnHcTL8q7SMVXAkp688NTQYwrRCrar",
    "is_token_2022": false,
+   "issuer_control_is_expected_for": "a regulated tokenised security, which must be able to comply with court orders and sanctions",
    "issuer_controlled": false,
+   "issuer_research": null,
    "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
    "mint_authority": "BJE5MMbqXjVwjAF7oxwPYXnTXDyspzZyt4vwenNw5ruG",
    "ok": true,
    "powers": [
     "the issuer can FREEZE your account"
    ],
-   "source": "seed",
+   "scaled_ui_multiplier": null,
+   "source": "harvested_from_outcome_rows",
    "symbol": "USDC",
    "transfer_fee_bps": null
   },
   "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB": {
-   "checked_at": "2026-09-23T12:39:09Z",
-   "checked_ts": 1790167149.3137963,
+   "checked_at": "2026-09-24T17:30:25Z",
+   "checked_ts": 1790271025.5970376,
    "default_account_state": null,
+   "extension_state": {},
    "extensions": [],
    "first_seen_at": "2026-09-23T12:39:09Z",
    "freeze_authority": "Q6XprfkF8RQQKoQVG33xT88H7wi8Uk1B1CC7YAs69Gi",
    "is_token_2022": false,
+   "issuer_control_is_expected_for": "a regulated tokenised security, which must be able to comply with court orders and sanctions",
    "issuer_controlled": false,
+   "issuer_research": null,
    "mint": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
    "mint_authority": "Q6XprfkF8RQQKoQVG33xT88H7wi8Uk1B1CC7YAs69Gi",
    "ok": true,
    "powers": [
     "the issuer can FREEZE your account"
    ],
-   "source": "seed",
+   "scaled_ui_multiplier": null,
+   "source": "harvested_from_outcome_rows",
    "symbol": "USDT",
    "transfer_fee_bps": null
   },
@@ -538,19 +633,23 @@
    "transfer_fee_bps": 400
   },
   "So11111111111111111111111111111111111111112": {
-   "checked_at": "2026-09-23T12:39:09Z",
-   "checked_ts": 1790167149.3137963,
+   "checked_at": "2026-09-24T17:30:25Z",
+   "checked_ts": 1790271025.5970376,
    "default_account_state": null,
+   "extension_state": {},
    "extensions": [],
    "first_seen_at": "2026-09-23T12:39:09Z",
    "freeze_authority": null,
    "is_token_2022": false,
+   "issuer_control_is_expected_for": "a regulated tokenised security, which must be able to comply with court orders and sanctions",
    "issuer_controlled": false,
+   "issuer_research": null,
    "mint": "So11111111111111111111111111111111111111112",
    "mint_authority": null,
    "ok": true,
    "powers": [],
-   "source": "seed",
+   "scaled_ui_multiplier": null,
+   "source": "harvested_from_outcome_rows",
    "symbol": "SOL",
    "transfer_fee_bps": null
   },
@@ -595,9 +694,48 @@
    "transfer_fee_bps": 800
   },
   "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W": {
-   "checked_at": "2026-09-23T12:38:12Z",
-   "checked_ts": 1790167092.422588,
+   "checked_at": "2026-09-24T17:30:25Z",
+   "checked_ts": 1790271025.5970376,
    "default_account_state": "initialized",
+   "extension_state": {
+    "confidentialTransferMint": {
+     "auditorElgamalPubkey": null,
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "autoApproveNewAccounts": false
+    },
+    "defaultAccountState": {
+     "accountState": "initialized"
+    },
+    "metadataPointer": {
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "metadataAddress": "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W"
+    },
+    "pausableConfig": {
+     "authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+     "paused": false
+    },
+    "permanentDelegate": {
+     "delegate": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq"
+    },
+    "scaledUiAmountConfig": {
+     "authority": "S7vYFFWH6BjJyEsdrPQpqpYTqLTrPRK6KW3VwsJuRaS",
+     "multiplier": "1.003909240011759",
+     "newMultiplier": "1.005714560286254",
+     "newMultiplierEffectiveTimestamp": 1781755200
+    },
+    "tokenMetadata": {
+     "additionalMetadata": [],
+     "mint": "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W",
+     "name": "SP500 xStock",
+     "symbol": "SPYx",
+     "updateAuthority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "uri": "https://xstocks-metadata.backed.fi/tokens/Solana/SPYx/metadata.json"
+    },
+    "transferHook": {
+     "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+     "programId": null
+    }
+   },
    "extensions": [
     "metadataPointer",
     "permanentDelegate",
@@ -611,18 +749,52 @@
    "first_seen_at": "2026-09-23T12:38:12Z",
    "freeze_authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
    "is_token_2022": true,
+   "issuer_control_is_expected_for": "a regulated tokenised security, which must be able to comply with court orders and sanctions",
    "issuer_controlled": true,
+   "issuer_research": {
+    "dividends": "reinvested by RAISING an on-chain multiplier (scaledUiAmountConfig), not paid as cash",
+    "from_chain": [
+     "name_on_chain",
+     "metadata_uri",
+     "dividends",
+     "the authorities and extensions on this page"
+    ],
+    "from_issuer": [
+     "terms_url",
+     "us_persons",
+     "docs.xstocks.fi: 'xStocks are not intended for distribution in the United States, to any US person, or in any other prohibited jurisdiction.'"
+    ],
+    "from_press": [
+     "instrument",
+     "voting_rights",
+     "redeemable_for_the_real_share",
+     "Kraken's xStocks FAQ: 'xStocks do not confer shareholder rights like voting or dividends paid as cash' and 'xStocks are onchain tokens - they cannot be transferred to a traditional brokerage account'"
+    ],
+    "instrument": "a tracker certificate, NOT the share. Holders get price and dividend economics, not ownership on the register",
+    "issuer": "Backed Assets (JE) Limited (xStocks)",
+    "metadata_uri": "https://xstocks-metadata.backed.fi/tokens/Solana/SPYx/metadata.json",
+    "name_on_chain": "SP500 xStock",
+    "read_at": "2026-09-23",
+    "redeemable_for_the_real_share": false,
+    "symbol": "SPYx",
+    "terms_url": "https://www.backedassets.fi/legal-documentation",
+    "us_persons": "\u26d4 EXCLUDED. Backed's own geoblock page says its products are prohibited for US citizens, US residents or anyone otherwise taxable in the United States, and that the securities are not registered under US law",
+    "voting_rights": false,
+    "why_the_issuer_powers_exist": "a regulated tokenised security must be able to freeze and move a holder's balance to comply with court orders, sanctions and securities law. \u2b50 An equity token WITHOUT these would be the anomaly"
+   },
    "mint": "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W",
    "mint_authority": "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
    "ok": true,
    "powers": [
     "the issuer can FREEZE your account",
-    "the issuer can MOVE your tokens without your signature",
+    "the issuer can MOVE your tokens without your signature (delegate 5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq)",
     "the issuer can halt every transfer of this asset",
-    "new accounts can be forced to start frozen",
-    "every transfer runs issuer code that can reject it",
-    "balances can be confidential, so holdings are not fully auditable"
+    "new accounts can be forced to start frozen (it is `initialized` today, so they are not)",
+    "a transfer hook CAN be installed, but the slot is empty, so no issuer code runs on a transfer today",
+    "balances can be confidential, so holdings are not fully auditable",
+    "your DISPLAYED balance is scaled by a multiplier the issuer sets (now 1.003909240011759, next 1.005714560286254): this is how a rebasing token pays a dividend without a transfer, and the raw token amount does not change"
    ],
+   "scaled_ui_multiplier": "1.003909240011759",
    "source": "seed",
    "symbol": "SPYx",
    "transfer_fee_bps": null
@@ -664,7 +836,7 @@
    "transfer_fee_bps": null
   }
  },
- "built_at": "2026-09-24T12:27:17Z",
+ "built_at": "2026-09-24T17:30:25Z",
  "harvested_from": {
   "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx": {
    "pair_count": 30,
@@ -816,7 +988,7 @@
   ],
   "known": 33,
   "read_ok": 33,
-  "read_this_pass": 0,
+  "read_this_pass": 6,
   "stale_remaining": 0,
   "taxed": 7
  }
