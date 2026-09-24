@@ -89,6 +89,23 @@ KNOWN_FIXTURES = [
      "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263"),   # raydium_cpmm
     ("54x5AxRsqdZc4cxKu6XmNFUZSMFVZ43CDXyrpXA9K2ht",
      "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6"),   # raydium_cpmm
+
+    # RAYDIUM LAUNCHLAB, 2026-09-24. Three earlier fixture routes came back
+    # empty for this venue, and the reason was in the routes, not the venue: a
+    # LaunchLab token MIGRATES, so a mature mint's pair list only ever shows
+    # where it went. USELESS (64,262 holders, letsbonk.fun) resolves 30 pairs
+    # and not one of them is LaunchLab.
+    # The route that works is the LAUNCH feed: GeckoTerminal labels new pools
+    # with dexId `raydium-launchlab`, 5 of 53 in one sample, and a pool minutes
+    # old has not migrated yet. Addresses read out of the feed's own rows.
+    ("AEMbbqb5XCP9xvVTy7pwm489mvEzKTtJDpTCsWdJb12S",
+     "3h7doGcoK47y8JqP4Kd2ESJZfsLZBJj5ojaP1HnDrBTJ"),   # launchlab, 1GORIL/SOL
+    ("6iqVFWeyTBpgfAkv1KP82BTT9hvL6n9HedHTmXTQTw2C",
+     "33iJTEFmyppgXEUHn1EBMcotKNncxzJiD2w5fNb4cLK1"),   # launchlab, VIBE/HOODx
+    ("H6uuPrnGi3XHaPCpAtDGeHMBC4xbAhb1bFcMgvX4rTzp",
+     "3B3DQkbDA3xns2JjteSafMmT3xtRoS1wqg5cNoi2WsuF"),   # launchlab, SINK/METAx
+    ("7sLuPhWMm6savSgkmNkbutYL1onGQ6Xr5gmW3xvo4BHV",
+     "DCJrT1HErcsnyVdDLJbUxNFh83pxGWsfWh8Vgj2KMidK"),   # launchlab, LTSI/METAx
 ]
 
 

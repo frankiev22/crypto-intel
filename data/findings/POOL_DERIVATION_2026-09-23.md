@@ -290,3 +290,101 @@ earlier today** and is not a cheap route.
 
 ⚠️ **This is a FLOOR statement, not a completeness claim**: three routes failing
 means we have no fixture, not that no pool exists.
+
+---
+
+## 9. ⭐⭐ LAUNCHLAB IS NOW QUERYABLE, and the fourth route also found a WRONG PROGRAM ID in our own map (2026-09-24)
+
+§8 above stands as written and is not edited: three routes came back empty. A
+fourth one works, and the reason the first three failed was in the routes.
+
+⛔⛔ **The route that cannot work, and now it is measured rather than argued:**
+a LaunchLab token **migrates**, so a mature mint's pair list only ever shows
+where it went. **USELESS** (`Dz9mQ9Nzk...bonk`, letsbonk.fun, **64,262 holders**,
+**$15.5M** 24h buy volume) resolves **30 pairs** and I resolved every one of them
+to its owning program on chain: **14 meteora_dlmm, 7 meteora_damm_v2, 6
+orca_whirlpool, 3 raydium_clmm, 2 raydium_cpmm, 1 raydium_v4, and ZERO
+LaunchLab.** Its ladder run finds three pools, none of them LaunchLab either.
+A liquid mint is the wrong fixture for a launchpad by construction.
+
+⭐⭐ **The route that works is the LAUNCH feed.** GeckoTerminal labels new pools
+with a dexId, and `raydium-launchlab` was **5 of 53** new Solana pools in one
+sample (pump-fun 29, pumpswap 8, meteora-damm-v2 5, meteora-dbc 3, bags-fm 2,
+raydium 1). A pool minutes old **has not migrated yet**. Four of them, created
+02:20Z to 02:22Z, are the fixtures - addresses read out of the feed's own rows,
+never typed.
+
+⛔⛔ **And reading them found that our program id for LaunchLab was WRONG.**
+`pooldiscovery.AMM_OWNERS` carried `5jnapfrAN47UYkLkEf7HnprPPBCQLvkYWGZDeKkaP5hv`.
+All four pools are owned by **`LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj`**, and
+⛔ **our own `analysis/coverage_expansion/RESEARCH.md` line 221 already recorded
+that id as VERIFIED.** The research was done and the wiring was not: the same
+shape as this repo losing five fields to computing a value and never persisting
+it. **So even a correct offset would have matched nothing**, and the venue would
+have kept reporting itself unqueryable for a reason that was not true.
+
+⚠️ The old id **is** an executable program (BPF upgradeable loader, 36-byte
+stub), so it is kept under a name that can never read as a LaunchLab pool rather
+than deleted. **What it actually is stays UNKNOWN**: `getProgramAccounts` on it
+hung past 70s, and a hang is unknown, not zero.
+
+### The measurement
+
+| what | value |
+|---|---|
+| pool account length | **429 bytes**, all 4 samples |
+| base mint offset | **205** |
+| quote mint offset | **237** |
+| samples / hits | **4 / 4**, two recurring slots, so **not** one-sided |
+| corroboration | `RESEARCH.md` §265 independently measured **429 B** for 1,402,712 of LaunchLab's 1,407,730 program accounts |
+
+⭐ **Verified as OUTPUT, not execution.** `poolstate.state()` on the 1GORIL mint,
+with the indexer switched off (`with_ladder=False`), derives
+`AEMbbqb5XCP9xvVTy7pwm489mvEzKTtJDpTCsWdJb12S` by `memcmp@205` - the same pool the
+feed listed, reached independently - reads **$184.12 of SOL** in its vault and
+returns `pool_state: pool_live`. **12 venues queried**, up from 11.
+
+⛔ **LaunchLab is the THIRD venue whose vaults the pool does not own.** Its vault
+authority is `WLHv2UAZm6z4KyaaELi5pjdbJh6RESMva1Rnn8pJVVh`, so
+`getTokenAccountsByOwner(pool)` returns nothing and the old reader would have
+published **$0** for a pool holding $184. `vaults_from_struct` found it (336
+candidate windows), which is why that fix was worth writing before this venue
+existed for us.
+
+### ⭐⭐ And the quote assets are TOKENISED EQUITIES
+
+Three of the four fresh LaunchLab pools are **not** quoted in SOL:
+
+| pool | quote asset | what it is |
+|---|---|---|
+| VIBE | `XsvNBAYkrDRNhA7wPHQfX3ZUXZyZLdnCQDfHZ56bzpg` | **HOODx**, Robinhood |
+| SINK, LTSI | `Xsa62P5mvPszXL1krVUnU5ar38bBSVcWAB6fmPCo5Zu` | **METAx**, Meta |
+
+Read from the mint accounts, not from a label: both are Token-2022 carrying the
+exact xStocks extension set (`permanentDelegate`, `defaultAccountState`,
+`scaledUiAmountConfig`, `pausableConfig`, `confidentialTransferMint`,
+`transferHook`, `metadataPointer`, `tokenMetadata`) and ⭐ **both share SPYx's
+freeze authority `JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs`**, so they are the
+same issuer as SPYx in `legs.ISSUERS` - not COPX's, which is a different authority
+and a different issuer, as already recorded. **METAx's rebase multiplier is
+1.002298265651938 and HOODx's is exactly 1**, so one has paid a dividend by rebase
+and the other has not.
+
+⭐ **Neither carries a transfer fee**, which keeps the RWA_LEGS finding intact:
+the alarming reading and the real round-trip cost sit on different legs.
+
+⛔ **The consequence for depth is the failure we have already documented once.**
+The pre-committed VALUED map prices SOL, USDC and USDT only, so a LaunchLab pool
+quoted in HOODx or METAx reads **UNVALUED** - exactly how `docs/ASSET_PAIRED_TOKENS.md`
+read STONK at $0.03 while Jupiter sold $100 of it for $94. ⚠️ **I am not widening
+that map here**: editing it after seeing which rows failed is post-hoc tuning, and
+it needs its own pre-commit.
+
+### What is still not queryable
+
+**4 venues**, down from 5: `moonshot`, `obric`, `openbook`, `solfi`. §8's
+structural argument covers all four (a CLOB has markets not vaults; PMMs carry
+market-maker inventory, not token coverage). ⭐ **Moonshot now has a route that is
+known to work** - the same launch feed, waiting for a `moonshot` dexId to appear;
+it did not in this sample. ⚠️ `pumpfun_curve` is not in this list and never was: it
+is derived as a PDA, so it needs no offset.

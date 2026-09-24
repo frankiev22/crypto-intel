@@ -146,3 +146,35 @@ of quote mints.
   **his claims, not verified by us.** Our own chain read today puts STONK at a
   **$258M market cap** with $88.2M of 24h volume, which is consistent in order of
   magnitude with his 09-20 "near 300M" but is not the same measurement.
+
+---
+
+## ⭐⭐ The mechanic is NOT StonkFun's alone: it is on Raydium LaunchLab too (2026-09-24)
+
+Found while measuring LaunchLab's struct offset, so this is a by-product of that
+work rather than a survey. Of **four** LaunchLab pools pulled fresh off the launch
+feed (created 02:20Z to 02:22Z), **three are quoted in a tokenised equity**:
+
+| pool | quote asset | mint |
+|---|---|---|
+| VIBE | **HOODx** (Robinhood) | `XsvNBAYkrDRNhA7wPHQfX3ZUXZyZLdnCQDfHZ56bzpg` |
+| SINK, LTSI | **METAx** (Meta) | `Xsa62P5mvPszXL1krVUnU5ar38bBSVcWAB6fmPCo5Zu` |
+| 1GORIL | SOL | - |
+
+⭐ **Read from the mint accounts, not from a name.** Both are Token-2022 with the
+full xStocks extension set and ⭐ **both share SPYx's freeze authority**
+`JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs`, so the issuer is the one
+`legs.ISSUERS` already records for SPYx, not COPX's (a different authority, a
+different issuer). **METAx's `scaledUiAmountConfig` multiplier is
+1.002298265651938 and HOODx's is exactly 1**, so METAx has paid a dividend by
+rebase and HOODx has not. ⭐ Neither carries a transfer fee.
+
+⛔ **The depth consequence is the failure this document already recorded once.**
+The pre-committed VALUED map prices SOL, USDC and USDT only, so a LaunchLab pool
+quoted in HOODx or METAx reads **UNVALUED** - the same way valuing only SOL/USDC/USDT
+read STONK at $0.03 while Jupiter sold $100 of it for $94. ⚠️ **The map was NOT
+widened after seeing this**: editing it once you know which rows failed is post-hoc
+tuning. It needs its own pre-commit.
+
+⚠️ **n=4 pools in one sample.** This says the mechanic exists on LaunchLab, not how
+common it is there. See `data/findings/POOL_DERIVATION_2026-09-23.md` §9.

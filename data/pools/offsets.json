@@ -1,5 +1,5 @@
 {
- "measured_at_utc": "2026-09-23T19:54:51Z",
+ "measured_at_utc": "2026-09-24T02:35:04Z",
  "note": "offsets are MEASURED by finding the mint's 32 raw bytes inside a pool account we already know belongs to it. A venue absent here is NOT queried.",
  "rule": "PRECOMMIT_pool_state.md section 2",
  "venues": {
@@ -50,6 +50,14 @@
      "pool": "8Pm2kZpnxD3hoMmt4bjStX2Pw2Z9abpbHzZxMPqxPmie"
     },
     {
+     "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+     "offsets": [
+      168,
+      200
+     ],
+     "pool": "BnztueWcXv93mgW7yJe8WYpnCxpz34nujPhfjQT6SLu1"
+    },
+    {
      "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
      "offsets": [
       168,
@@ -64,14 +72,6 @@
       200
      ],
      "pool": "23B6d3FvDu2eiZxyBLgWdm2W2vn1bdRwJTR6NCfQpxGE"
-    },
-    {
-     "mint": "5dvXTZ5qwgafnHtwu3Ls3QrWx1U4LQsFeCuJgkk4QEC6",
-     "offsets": [
-      168,
-      200
-     ],
-     "pool": "D4WXdMxperGBik53V2MUjmAUzVFP3bXoML7T77bSXYtp"
     }
    ],
    "mint_offsets": [
@@ -80,14 +80,14 @@
    ],
    "mints_held_but_not_stored_sample": [],
    "offset_counts": {
-    "168": 7,
-    "200": 7
+    "168": 8,
+    "200": 8
    },
    "one_sided_lookup": false,
    "one_sided_note": "fewer than two recurring mint slots: this venue can only be searched on the side it stores",
    "program": "cpamdpZCGKUy5JxQXB4dcpGPiikHawvSWAd6mEn1sGG",
-   "samples": 7,
-   "samples_with_a_hit": 7,
+   "samples": 8,
+   "samples_with_a_hit": 8,
    "verified": true
   },
   "meteora_dbc": {
@@ -183,18 +183,17 @@
     120
    ],
    "mints_held_but_not_stored_sample": [
-    "B3nU3QZNY1fPL4qUWdEGfzxG25eeqNWxCWaBe528pump",
     "METvsvVRapdj9cFLzq4Tr43xK4tAjQfwX76z3n6mWQL"
    ],
    "offset_counts": {
-    "120": 17,
-    "88": 17
+    "120": 16,
+    "88": 16
    },
    "one_sided_lookup": false,
    "one_sided_note": "fewer than two recurring mint slots: this venue can only be searched on the side it stores",
    "program": "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
-   "samples": 17,
-   "samples_with_a_hit": 17,
+   "samples": 16,
+   "samples_with_a_hit": 16,
    "verified": true
   },
   "meteora_dynamic": {
@@ -461,6 +460,60 @@
    "program": "CPMMoo8L3F4NbTegBCKVNunggL7H1ZpdTHKxQB5qKP1C",
    "samples": 3,
    "samples_with_a_hit": 3,
+   "verified": true
+  },
+  "raydium_launchlab": {
+   "account_lens": [
+    429
+   ],
+   "measured_on": [
+    {
+     "mint": "3h7doGcoK47y8JqP4Kd2ESJZfsLZBJj5ojaP1HnDrBTJ",
+     "offsets": [
+      205,
+      237
+     ],
+     "pool": "AEMbbqb5XCP9xvVTy7pwm489mvEzKTtJDpTCsWdJb12S"
+    },
+    {
+     "mint": "33iJTEFmyppgXEUHn1EBMcotKNncxzJiD2w5fNb4cLK1",
+     "offsets": [
+      205,
+      237
+     ],
+     "pool": "6iqVFWeyTBpgfAkv1KP82BTT9hvL6n9HedHTmXTQTw2C"
+    },
+    {
+     "mint": "3B3DQkbDA3xns2JjteSafMmT3xtRoS1wqg5cNoi2WsuF",
+     "offsets": [
+      205,
+      237
+     ],
+     "pool": "H6uuPrnGi3XHaPCpAtDGeHMBC4xbAhb1bFcMgvX4rTzp"
+    },
+    {
+     "mint": "DCJrT1HErcsnyVdDLJbUxNFh83pxGWsfWh8Vgj2KMidK",
+     "offsets": [
+      205,
+      237
+     ],
+     "pool": "7sLuPhWMm6savSgkmNkbutYL1onGQ6Xr5gmW3xvo4BHV"
+    }
+   ],
+   "mint_offsets": [
+    205,
+    237
+   ],
+   "mints_held_but_not_stored_sample": [],
+   "offset_counts": {
+    "205": 4,
+    "237": 4
+   },
+   "one_sided_lookup": false,
+   "one_sided_note": "fewer than two recurring mint slots: this venue can only be searched on the side it stores",
+   "program": "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj",
+   "samples": 4,
+   "samples_with_a_hit": 4,
    "verified": true
   },
   "raydium_v4": {

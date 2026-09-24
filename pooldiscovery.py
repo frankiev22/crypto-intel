@@ -76,7 +76,19 @@ AMM_OWNERS = {
     "SoLFiHG9TfgtdUXUjWAxi3LtvYuFyDLVhBWxdMZxyCe": "solfi",
     "obriQD1zbpyLz95G5n7nJe6a4DPjpFwa5XYPoNm113y": "obric",
     "MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG": "moonshot",
-    "5jnapfrAN47UYkLkEf7HnprPPBCQLvkYWGZDeKkaP5hv": "raydium_launchlab",
+    # RAYDIUM LAUNCHLAB, CORRECTED 2026-09-24. The id below was the one this
+    # map carried, and it does NOT own LaunchLab pools. Four LaunchLab pools
+    # pulled fresh off the launch feed are all owned by `LanMV9sAd...`, and
+    # our own analysis/coverage_expansion/RESEARCH.md line 221 already had
+    # that id recorded as VERIFIED. Research and wiring are two separate
+    # steps and only one of them had been done, which is the same shape as
+    # this repo losing five fields to compute-without-persist.
+    # The old id IS an executable program, so it is kept rather than deleted,
+    # under a name that can never be read as a LaunchLab pool. What it
+    # actually is stays UNKNOWN: getProgramAccounts on it hung past 70s, and
+    # a hang is unknown, not zero.
+    "5jnapfrAN47UYkLkEf7HnprPPBCQLvkYWGZDeKkaP5hv": "unconfirmed_id_once_named_raydium_launchlab",
+    "LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj": "raydium_launchlab",
     # ⭐⭐ FOUND BY MEASUREMENT 2026-09-23, and it was entirely missing.
     # The offset probe hit 7 of 48 sampled pools under this program and our
     # map had no name for it. The indexer labels its pools `DYN2` under
