@@ -388,3 +388,61 @@ market-maker inventory, not token coverage). ⭐ **Moonshot now has a route that
 known to work** - the same launch feed, waiting for a `moonshot` dexId to appear;
 it did not in this sample. ⚠️ `pumpfun_curve` is not in this list and never was: it
 is derived as a PDA, so it needs no offset.
+
+---
+
+## 10. ⭐⭐ MOONSHOT TOO, and the fixture route generalised: ask the indexer for pools BY VENUE (2026-09-24)
+
+§9 waited for a venue to appear in the launch feed. ⛔ **That does not scale:
+`moonshot` appeared in 0 of 113 new pools across two samples.** The better route
+needs no freshness at all:
+
+```
+api.geckoterminal.com/api/v2/networks/solana/dexes/<dexId>/pools
+```
+
+20 pools per page, any age, keyless. ⚠️ **It rate-limits at roughly one call every
+few seconds** (429 on the third back-to-back call), so it is paced.
+
+### ⛔⛔ A dexId is a BRAND, not a program, and this one proves it
+
+| dexId | pools returned | owner program on chain | what it really is |
+|---|---|---|---|
+| `moonshot` | 20 | `dbcij3LWUppWqq96dh6gJWwBifmcGfLSB5D4DuSMaqN` | **Meteora DBC**, 424 bytes, a venue we already measure |
+| `moonit` | 20 | `MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG` | the Moonshot program itself, 409 bytes |
+
+**20 of 20 pools under the `moonshot` label are Meteora DBC accounts.** So the
+brand launches on someone else's program now, and ⭐ **the venue behind a label is
+readable only from the pool account's OWNER, never from the label** - which is why
+every pool in this module is classified by its owner program.
+
+⭐ **And unlike LaunchLab, our program id for Moonshot was RIGHT.** `MoonCVVNZ...`
+is what `AMM_OWNERS` already carried and it owns all 20 `moonit` pools. One id
+wrong and one id right, both found the same way: by reading the pool.
+
+### The measurement
+
+| what | value |
+|---|---|
+| pool account length | **409 bytes**, all 4 samples |
+| base mint offset | **24** |
+| quote mint offset | **none: the quote mint's 32 bytes are NOWHERE in the struct** (4/4) |
+| samples / hits | **4 / 4** |
+| consequence | ⚠️ **ONE-SIDED**, carried in `venues_one_sided` beside `meteora_dbc` and `raydium_v4`: a pool where our mint sits on the other side is invisible to us |
+
+⭐ **Verified as output.** `poolstate.state()` on the `Find` mint
+(`EuhYh1mTCtaCGBv6NuWz3VC5AcMmTYxxDGJFLkdjkCGu`), indexer off, derives
+`H34oXzgqFQo7jSuEnSYi9qTK6gVBr7zbzxaorEbSoWZm` by **`memcmp@24`** - the same pool
+the dex listing named, reached independently - and reads **$0.00** in it, while the
+same pass finds the token's real money on **meteora_dynamic ($16.57)** and **two
+meteora_damm_v2 pools ($10.68, $6.29)**. That is a token that graduated off
+Moonshot, described correctly for the first time.
+
+### Where venue coverage now stands
+
+**13 venues queried.** ⛔ **3 remain unqueryable and §8's structural argument
+covers all three**: `openbook` (a CLOB has markets, not vaults), `obric` and
+`solfi` (PMMs, which carry market-maker inventory rather than token coverage, as
+BisonFi's 17 accounts and $446.8M/day already showed). ⚠️ A fourth name in that
+list is `unconfirmed_id_once_named_raydium_launchlab`, which is the retired wrong
+id from §9, kept rather than deleted.

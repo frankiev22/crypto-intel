@@ -1,5 +1,5 @@
 {
- "measured_at_utc": "2026-09-24T02:35:04Z",
+ "measured_at_utc": "2026-09-24T02:48:36Z",
  "note": "offsets are MEASURED by finding the mint's 32 raw bytes inside a pool account we already know belongs to it. A venue absent here is NOT queried.",
  "rule": "PRECOMMIT_pool_state.md section 2",
  "venues": {
@@ -233,6 +233,54 @@
    "program": "Eo7WjKq67rjJQSZxS6z3YkapzY3eMj6Xy8X5EQVn5UaB",
    "samples": 2,
    "samples_with_a_hit": 2,
+   "verified": true
+  },
+  "moonshot": {
+   "account_lens": [
+    409
+   ],
+   "measured_on": [
+    {
+     "mint": "EuhYh1mTCtaCGBv6NuWz3VC5AcMmTYxxDGJFLkdjkCGu",
+     "offsets": [
+      24
+     ],
+     "pool": "H34oXzgqFQo7jSuEnSYi9qTK6gVBr7zbzxaorEbSoWZm"
+    },
+    {
+     "mint": "5PMWr2Fajj9u4bsohGRdZvTSqKw5JJT6V828U59Fmoon",
+     "offsets": [
+      24
+     ],
+     "pool": "BiZAoicujGyhvWNmriDnGsNHqBtrkd4jRKikdD1Fi1e6"
+    },
+    {
+     "mint": "577UwRNyXCiPEZtujjnyAZJGv8DrnTKC3dRR2rxLmoon",
+     "offsets": [
+      24
+     ],
+     "pool": "83vkfAYU5KksrzrLgpXp1yWmee355ossXbtsbzAGNLgD"
+    },
+    {
+     "mint": "B9uCnVsbgEdwC1fqucTeM4uGuice9iXAsoc5UfB1moon",
+     "offsets": [
+      24
+     ],
+     "pool": "3tmfCM3FzgPB37oB85zAQmoEu5Yj89ZtYxNh1ECZQZLs"
+    }
+   ],
+   "mint_offsets": [
+    24
+   ],
+   "mints_held_but_not_stored_sample": [],
+   "offset_counts": {
+    "24": 4
+   },
+   "one_sided_lookup": true,
+   "one_sided_note": "fewer than two recurring mint slots: this venue can only be searched on the side it stores",
+   "program": "MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG",
+   "samples": 4,
+   "samples_with_a_hit": 4,
    "verified": true
   },
   "orca_whirlpool": {

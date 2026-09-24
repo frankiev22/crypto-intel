@@ -106,6 +106,25 @@ KNOWN_FIXTURES = [
      "3B3DQkbDA3xns2JjteSafMmT3xtRoS1wqg5cNoi2WsuF"),   # launchlab, SINK/METAx
     ("7sLuPhWMm6savSgkmNkbutYL1onGQ6Xr5gmW3xvo4BHV",
      "DCJrT1HErcsnyVdDLJbUxNFh83pxGWsfWh8Vgj2KMidK"),   # launchlab, LTSI/METAx
+    # MOONSHOT, 2026-09-24, and the route generalised. GeckoTerminal serves
+    # pools BY dexId at /networks/solana/dexes/<dexId>/pools, which does not
+    # depend on a pool being new, so it is a better fixture route than watching
+    # the launch feed for a venue to appear (moonshot showed up in 0 of 113 new
+    # pools across two samples).
+    # Two things fell out of it. Its `moonshot` dexId returns 20 pools that are
+    # all METEORA DBC accounts (424 B, owner dbcij3LW...), a venue we already
+    # measure, so that dexId is not this program. Its `moonit` dexId returns 20
+    # pools owned by MoonCVVNZ..., which is the id our own map already carried,
+    # so unlike LaunchLab this id was right. Addresses read out of
+    # scratchpad moonshot_measured.json, not typed.
+    ("H34oXzgqFQo7jSuEnSYi9qTK6gVBr7zbzxaorEbSoWZm",
+     "EuhYh1mTCtaCGBv6NuWz3VC5AcMmTYxxDGJFLkdjkCGu"),   # moonshot, Find
+    ("BiZAoicujGyhvWNmriDnGsNHqBtrkd4jRKikdD1Fi1e6",
+     "5PMWr2Fajj9u4bsohGRdZvTSqKw5JJT6V828U59Fmoon"),   # moonshot, JMP
+    ("83vkfAYU5KksrzrLgpXp1yWmee355ossXbtsbzAGNLgD",
+     "577UwRNyXCiPEZtujjnyAZJGv8DrnTKC3dRR2rxLmoon"),   # moonshot, $SVB
+    ("3tmfCM3FzgPB37oB85zAQmoEu5Yj89ZtYxNh1ECZQZLs",
+     "B9uCnVsbgEdwC1fqucTeM4uGuice9iXAsoc5UfB1moon"),   # moonshot, MHOG
 ]
 
 
