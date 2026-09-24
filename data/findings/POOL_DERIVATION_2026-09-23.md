@@ -256,3 +256,37 @@ be exited. **Reserves are not an exit price, measured again.**
   returned NO_SELL_ROUTE or TOTAL_LOSS on a live $100 round trip.
 - ⚠️ **`raydium_launchlab`, `moonshot`, `obric`, `openbook` and `solfi` were never
   asked.** Their absence from any result is our coverage gap.
+
+---
+
+## 8. ⛔ The five venues with no measured offset: THREE fixture routes tried, all empty
+
+An offset can only be measured on a pool we already know belongs to a mint, so
+these five need one fixture each. Three independent routes, all run today:
+
+| route | result |
+|---|---|
+| the indexer's pair list for **8 of the most liquid Solana mints** (240 pairs) | ⛔ **0 pairs** owned by any of the five. Every pair resolved to a venue we already measure |
+| **Jupiter's launch feed**, 37 distinct launches over 3 polls | ⛔ unusable: **`firstPool.id` is the MINT, not a pool** (31 of 37 resolved to a Token program). One `raydium-launchlab` launch appeared, and ⛔ **its mint has 52 holders and NOT ONE program-owned vault**, so it has no pool yet at all |
+| the indexer's own **dexId search** for launchlab / moonshot / solfi / obric / openbook | ⛔ launchlab, obric and openbook return **0 Solana pairs**; the moonshot and solfi text searches return pairs on other venues, which is a name match and not a venue match |
+
+⭐ **And the structural reason, which the measurement now supports:**
+
+- **`openbook`** is a central limit order book. Its accounts are **markets**, not
+  AMM pools with vaults, so a mint-offset memcmp is the wrong instrument for it.
+- **`obric` and `solfi`** are **PMM / market-maker** programs. We already measured
+  that class: BisonFi carries **$446.8M/day across 17 program accounts** and
+  **launches nothing**, and Jupiter already routes through them. Parsing one adds
+  market-maker inventory, not token coverage.
+- **`moonshot` and `raydium_launchlab`** are launchpads, so their pools are fresh
+  curves that can never rank inside a liquid mint's 30-pair cap. **1 of 37**
+  launches in a three-poll sample was launchlab.
+
+⛔ **So the five stay unqueryable, and every response keeps naming them.** What
+would produce a fixture: a LaunchLab or Moonshot token that has actually **traded**
+(the ladder finds its pool from the mint, as it did for FluxBeam), or enumerating
+the program's own accounts, which ⚠️ **hung past 120s on two large programs
+earlier today** and is not a cheap route.
+
+⚠️ **This is a FLOOR statement, not a completeness claim**: three routes failing
+means we have no fixture, not that no pool exists.
