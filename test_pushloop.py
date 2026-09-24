@@ -256,6 +256,77 @@ else:
         except TypeError:
             shutil.rmtree(tmp, onerror=_force)
 
+# ---------------------------------------------------------------------------
+section("3. the misleading message, MEASURED on the installed git")
+# ⛔ `git rebase --continue` answers UNSTAGED CHANGES with the wording of a
+# CONFLICT: builtin/rebase.c calls has_unstaged_changes() and prints "You must
+# edit all merge conflicts...". I hit this by hand on 2026-09-24 with an empty
+# `git ls-files -u`, which is the index saying there is no conflict at all.
+# ⭐ This section does not take that on trust: it reproduces the state and reads
+# what THIS git actually prints, then asserts the loop guards it.
+check("⭐ the loop stages unstaged paths before --continue",
+      "git diff --quiet" in code and "git add -A -- ." in code)
+check("...and names them rather than staging silently",
+      "unstaged path(s)" in code)
+check("⭐ and if it happens anyway, the log says the wording is misleading",
+      "wording is MISLEADING" in code and "NO unmerged paths" in code)
+
+if not BASH or not shutil.which("git"):
+    print("  SKIP  no bash/git; the measured half cannot run here")
+else:
+    tmp3 = tempfile.mkdtemp(prefix="pushloop_msg_")
+    try:
+        def sh3(cmd):
+            return subprocess.run([BASH, "-c", cmd], cwd=tmp3,
+                                  capture_output=True, text=True)
+        sh3("git init -q . && git config user.email t@x && git config user.name t")
+        io.open(os.path.join(tmp3, "conflicted.json"), "w").write('{"v":0}' + chr(10))
+        io.open(os.path.join(tmp3, "rows.jsonl"), "w").write('{"row":0}' + chr(10))
+        sh3("git add -A && git commit -qm base")
+        sh3("git checkout -q -b other")
+        io.open(os.path.join(tmp3, "conflicted.json"), "w").write('{"v":"other"}' + chr(10))
+        sh3("git commit -qam other")
+        sh3("git checkout -q master")
+        io.open(os.path.join(tmp3, "conflicted.json"), "w").write('{"v":"mine"}' + chr(10))
+        sh3("git commit -qam mine")
+        reb = sh3("git rebase other")
+        check("the reproduction really is mid-rebase",
+              os.path.isdir(os.path.join(tmp3, ".git", "rebase-merge"))
+              or os.path.isdir(os.path.join(tmp3, ".git", "rebase-apply")),
+              (reb.stdout + reb.stderr).strip()[-200:])
+        # resolve the conflict properly, THEN dirty an unrelated tracked file,
+        # which is what the hourly collector does to this repo continuously.
+        io.open(os.path.join(tmp3, "conflicted.json"), "w").write('{"v":"resolved"}' + chr(10))
+        sh3("git add conflicted.json")
+        io.open(os.path.join(tmp3, "rows.jsonl"), "a").write('{"row":"late"}' + chr(10))
+        unmerged = sh3("git ls-files -u").stdout.strip()
+        cont = sh3("GIT_EDITOR=true git rebase --continue")
+        msg = (cont.stdout + cont.stderr)
+        check("⛔ MEASURED: --continue fails with NO unmerged paths in the index",
+              cont.returncode != 0 and unmerged == "",
+              "rc=%s unmerged=%r" % (cont.returncode, unmerged))
+        check("⛔ ...and it blames merge conflicts, which is why the log lied",
+              "merge conflict" in msg.lower(), msg.strip()[:200])
+        # and the fix the loop now applies
+        sh3("git add -A")
+        cont2 = sh3("GIT_EDITOR=true git rebase --continue")
+        check("⭐ staging the unstaged rows is all it took",
+              cont2.returncode == 0,
+              (cont2.stdout + cont2.stderr).strip()[-200:])
+        check("...and the late row is in the commit, not lost (rule 8)",
+              '"late"' in io.open(os.path.join(tmp3, "rows.jsonl")).read())
+    finally:
+        def _f3(func, path, _exc):
+            try:
+                os.chmod(path, 0o700)
+                func(path)
+            except Exception:
+                pass
+        try:
+            shutil.rmtree(tmp3, onexc=_f3)
+        except TypeError:
+            shutil.rmtree(tmp3, onerror=_f3)
+
 ok = sum(1 for _, c, _ in R if c)
 print(f"\n{ok}/{len(R)} passed")
 sys.exit(0 if ok == len(R) else 1)

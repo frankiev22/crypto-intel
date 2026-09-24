@@ -233,6 +233,20 @@ jobs:
                 echo "round $round: resolving $(git ls-files -u | cut -f2 | sort -u | wc -l) conflicted paths"
                 resolve_conflicts
               fi
+              # THE THIRD FLAG-SHAPED TRAP IN THIS ONE STEP, hit by hand on
+              # 2026-09-24. `git rebase --continue` prints "You must edit all
+              # merge conflicts and then mark them as resolved using git add"
+              # when the real problem is UNSTAGED CHANGES: builtin/rebase.c calls
+              # has_unstaged_changes() and prints that text. On this repo a pass
+              # is writing rows the whole time, so that message sends whoever
+              # reads the log hunting for conflicts `git ls-files -u` says are
+              # not there. Stage them first and NAME them: they are this pass's
+              # own rows, which is what this commit is for.
+              if ! git diff --quiet; then
+                echo "round $round: staging $(git diff --name-only | wc -l) unstaged path(s) - this pass's own rows"
+                git diff --name-only | sed 's/^/    /' | head -20
+                git add -A -- . || true
+              fi
               # NO -q HERE. See above: it makes this a usage error.
               cont_out="$(GIT_EDITOR=true git rebase --continue 2>&1)"; cont_rc=$?
               if [ "$cont_rc" -ne 0 ]; then
@@ -243,6 +257,9 @@ jobs:
                   # ⛔ Never silent. This is the failure that cost 1,304 rows.
                   echo "::error::git rebase --continue failed (exit $cont_rc):"
                   printf '%s\n' "$cont_out" | sed 's/^/    /' | head -20
+                  if printf '%s' "$cont_out" | grep -q 'You must edit all merge conflicts' && ! git ls-files -u | grep -q .; then
+                    echo "::error::...and that wording is MISLEADING here: the index has NO unmerged paths, so the cause is unstaged changes in the worktree, not a conflict."
+                  fi
                   break
                 fi
               fi
