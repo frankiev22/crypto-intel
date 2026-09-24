@@ -2199,3 +2199,6 @@
 {"ts":1790215832,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
 {"ts":1790215901,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
 {"ts":1790216241,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
+{"ts":1790216001,"dexscreener_ok":1,"dexscreener_dropped":6,"geckoterminal_ok":4,"geckoterminal_fail":2,"onchain_ok":7,"onchain_fail":0,"unresolved":2}
+{"ts":1790216030,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}
+{"ts":1790216116,"dexscreener_ok":0,"dexscreener_dropped":0,"geckoterminal_ok":0,"geckoterminal_fail":0,"onchain_ok":0,"onchain_fail":0,"unresolved":0}

@@ -351,7 +351,7 @@
   "last_seen": null
  },
  "liveness:selftest": {
-  "count": 687,
+  "count": 690,
   "escalations": 2,
   "example": "liveness: selftest",
   "first_seen": "2026-09-21T05:09:40+00:00",
@@ -538,7 +538,9 @@
   "first_seen": "2026-09-24T02:10:24+00:00",
   "keys": [
    "2PENPmfgJfq6CG3k4byj4oWwHf8SerqakmYHMkUupump"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "mcap-crossing:skqzvdljzvpitjprosjmgubwnzapvfdsco": {
   "count": 1,
@@ -756,7 +758,9 @@
   "first_seen": "2026-09-24T01:11:08+00:00",
   "keys": [
    "CvUX4G2tzq7J3ECmNvWZLayZYV6KpgQp6SJ5K8Uvsu5g"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "outcome-win:dcfcftjzzugwvjtniemqpxynsecdqtpas": {
   "count": 1,
@@ -1114,7 +1118,9 @@
   "first_seen": "2026-09-23T21:10:12+00:00",
   "keys": [
    "HkjCexiXUFRyo7KiaTT3VxzrWpoJhTWA9DkwnBVtpump"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "outcome-win:hktndrsvdbsbiqarnglrfsxzcyfbuathfxdkznjdzu": {
   "count": 1,
@@ -3640,7 +3646,9 @@
   "first_seen": "2026-09-23T21:03:54+00:00",
   "keys": [
    "AfHvHW6Q22QoacbxAxXyPkGC9n8gCfiMUb1YBiwMSzEj"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:agents": {
   "count": 2,
@@ -5124,7 +5132,9 @@
   "first_seen": "2026-09-24T00:04:09+00:00",
   "keys": [
    "CERMYtxBb2ciA3JZPiHcMPwwCQckedQrLaYJP7qEm9v7"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:cfoeftrcwvgwrywkkocarhdnhuzpddpump": {
   "count": 1,
@@ -5696,7 +5706,9 @@
   "first_seen": "2026-09-24T00:04:08+00:00",
   "keys": [
    "CvUX4G2tzq7J3ECmNvWZLayZYV6KpgQp6SJ5K8Uvsu5g"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:cyaffftvbnxybjmjttunxdlavbcvqpdkgbvjqhhu": {
   "count": 1,
@@ -6296,7 +6308,9 @@
   "first_seen": "2026-09-24T01:04:35+00:00",
   "keys": [
    "DWz7Sf1GnoEvURopQFPGcq3EaVpGVxVSihqeehYopump"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:dztmxwqbjzgdcyyutnsfxesnoheiuhbeqmpump": {
   "count": 1,
@@ -6454,7 +6468,9 @@
   "first_seen": "2026-09-24T01:04:33+00:00",
   "keys": [
    "EpjokPCaft9je7NsaX2qsYRuaTtX8QtcYiY7Th6mi6Sq"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:ernqmrkytbozzhvucnwlobcyeytvjvvfthbpump": {
   "count": 1,
@@ -6676,7 +6692,9 @@
   "first_seen": "2026-09-23T22:04:04+00:00",
   "keys": [
    "9fdmRMrbqDdqynadnyR6qFjvhjnXRng6eVcPPbfLndRk"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:feather": {
   "count": 1,
@@ -7018,7 +7036,9 @@
   "first_seen": "2026-09-24T02:04:12+00:00",
   "keys": [
    "Fzw974WumgRcQGv43s3MUKrr2eEyYmrDLtZJCv8mUjGG"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:gaku": {
   "count": 1,
@@ -7474,7 +7494,9 @@
   "first_seen": "2026-09-23T22:04:02+00:00",
   "keys": [
    "G2w5WMggN9rtonkiBCrbeeDp6e36tcxbBn8YwtsrW4Vz"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:gxdnvtxegqychwqqgieuoidwbjoztrsbvexlky": {
   "count": 1,
@@ -7676,7 +7698,9 @@
   "first_seen": "2026-09-23T21:03:55+00:00",
   "keys": [
    "H2jAV8NJR9eRLQLysiLqfrC1aHW9cYV3n7A49vj9pump"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:hjwarqsufkqekumpigckjyvntsrqbbcsmapump": {
   "count": 1,
@@ -7872,7 +7896,9 @@
   "first_seen": "2026-09-23T23:03:58+00:00",
   "keys": [
    "HpWGRTs5x2pmWrGKpD5cXpZhja1uuXbPBqf7kYo2mz86"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:hrsddjewnulxkjesumhqxjjgdhsufhbte": {
   "count": 1,
@@ -8260,7 +8286,9 @@
   "first_seen": "2026-09-24T02:04:13+00:00",
   "keys": [
    "4JMix1unkoQxaVZgtqTWEWhkbzMj9dTy33SsXjuJw19a"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:jnmiptwcimiabitvelpuxsarpekcbrdzz": {
   "count": 1,
@@ -10754,7 +10782,9 @@
   "first_seen": "2026-09-24T00:04:10+00:00",
   "keys": [
    "14Qq4ftvSNv7iCzNzZU4vyWYrxHJwgqd3Cxmj9Rgpump"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:qryiysosdqvzvumpqamxxfvuhpbsgacewvofwet": {
   "count": 1,
@@ -12252,7 +12282,9 @@
   "first_seen": "2026-09-23T23:03:58+00:00",
   "keys": [
    "3T8qUfDVFGhcuaHdJDbs5VUzpstWYfa2v8xCG6nLjJ9v"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:transmeme": {
   "count": 1,
@@ -12418,7 +12450,9 @@
   "first_seen": "2026-09-23T22:04:03+00:00",
   "keys": [
    "7TZVT5od55hWgN6di6Vx5KtYZshFr6mnCXWjtHEHz7Z2"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:u-0285bb": {
   "count": 1,
@@ -13049,7 +13083,9 @@
   "first_seen": "2026-09-24T02:04:13+00:00",
   "keys": [
    "6W9A8LE9GUwYfrXZrpiRWCw4ngYK67BhuCcJyXUDE8aV"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:wallahi": {
   "count": 1,
@@ -13328,7 +13364,9 @@
   "first_seen": "2026-09-23T22:04:05+00:00",
   "keys": [
    "7WvJ86NkCamkeeN6uC2bJ6kSNmvwuq1e3TSX1G2AF4Tg"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:wwr": {
   "count": 5,
@@ -13426,7 +13464,9 @@
   "first_seen": "2026-09-24T00:04:10+00:00",
   "keys": [
    "9971Xfdr4p1YXbevdkrRcHQXR1k5KgspcXCGTXUB6KR"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:xiaopang": {
   "count": 1,
@@ -13502,7 +13542,9 @@
   "first_seen": "2026-09-24T01:04:34+00:00",
   "keys": [
    "2xX1Rt16bPjVVFS5Y28eKo9U3o7YZS8nmieKKWc6LQXd"
-  ]
+  ],
+  "last_escalated": null,
+  "last_seen": null
  },
  "scanner-hit:ydpuymlgwpqkgyvogsfphfpfqquhjen": {
   "count": 1,

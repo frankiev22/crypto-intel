@@ -27,8 +27,18 @@ Namecheap and came back:
 
 ```
 API Status: ERROR
-  ERROR 1011150: Invalid request IP: 184.152.217.111
+  ERROR 1011150: Invalid request IP: <redacted, see the note below>
 ```
+
+⛔⛔ **MY MISTAKE, AND IT IS A PRIVACY ONE.** The first version of this file printed
+Frank's **residential IP address in full**, and this repo is **public**, so it went
+to a public commit (`e435633`). It is redacted here going forward, but ⚠️ **it is
+still in that commit's history and a redaction now does not remove it.** It is a
+dynamic home IP and of low value to anyone, but it is his and I published it
+without thinking. **His call:** leave it, or rewrite that commit and force-push,
+which is destructive and needs his say-so. The raw API response is kept out of the
+repo entirely, in the session scratchpad. ⛔ **Standing rule going forward: an IP,
+like a key, is not ours to publish.**
 
 That is the IP whitelist on Frank's Namecheap account, not an auth failure. ⛔ **I
 did not add the IP**: changing an account setting is his call, and the address is
