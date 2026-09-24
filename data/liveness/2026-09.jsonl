@@ -95100,3 +95100,52 @@
 {"name": "news.freshness", "ts": 1790216117, "n": 1, "detail": "0 stale outlet(s)", "origin": "scheduled"}
 {"name": "detector.drift", "ts": 1790216120, "n": 1, "detail": "stable", "origin": "scheduled"}
 {"name": "dashboard.build", "ts": 1790216130, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790232182, "n": 1, "detail": "6zPXeS1DLuhj94DxbMT7itvM", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790232183, "n": 1, "detail": "Ufwjn7mtvgUfRG4nMSxRS84e", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790232184, "n": 1, "detail": "Emg6BbGwjQc4N4FQD9RLA8MP", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790232186, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790232187, "n": 1, "detail": "HszrA69fgpV5T6xD8YYXorUK", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790232187, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790232189, "n": 1, "detail": "HbgDEkgP5aQoMGKqUoAVUBUE", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790232190, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790232191, "n": 1, "detail": "67zyyuEAaX4AbPpHABqgvWS2", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790232191, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790232193, "n": 1, "detail": "Gz6xXboGxBZ3VRQa5SfZGhg6", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790232194, "n": 1, "detail": "G73AxkSqNij1P3cVrsiPrAAG", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790232195, "n": 1, "detail": "zQLA7LiEp3VRDVyZznySbsnH", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790232196, "n": 1, "detail": "eip41KXkqJEHtoZrZUVgRPhX", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790232197, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790232198, "n": 1, "detail": "4VEag3LFESEHP76vBkFUMFbM", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790232200, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790232200, "n": 3, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1790232200, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1790232205, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1790232214, "n": 1, "detail": "graduated EhQxoHWYx3WGg3GsvCbSdZ4pwEnfCpFEsjDQagd7aen9", "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1790232217, "n": 1, "detail": "graduated HNqWukNuZsKMvCd7THwAVgqPphQscgFSQcRuJbBjpump", "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1790232217, "n": 1, "detail": "graduated TsQRCUR26TUQrcCoNjVXHEJBDHuK5WCNZxkn5KM7777", "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1790232218, "n": 96, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232254, "n": 1, "detail": "MINECOIN MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232255, "n": 1, "detail": "CREDITS MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232255, "n": 1, "detail": "CNN MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232255, "n": 1, "detail": "CREDITS MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232256, "n": 1, "detail": "DIAMOND MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232256, "n": 1, "detail": "MINECOIN MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232256, "n": 1, "detail": "PIGGYBANK MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232257, "n": 1, "detail": "₽ MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232257, "n": 1, "detail": "Muserob MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232257, "n": 1, "detail": "Pawn MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232335, "n": 1, "detail": "MUSEINU NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232336, "n": 1, "detail": "up NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232336, "n": 1, "detail": "BUTT NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232336, "n": 1, "detail": "clausius NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232337, "n": 1, "detail": "clausius NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232337, "n": 1, "detail": "clausius NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232339, "n": 1, "detail": "parafactual TARGET", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232345, "n": 1, "detail": "GAYMF NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232408, "n": 1, "detail": "TICKER NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232409, "n": 1, "detail": "TICKER NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232409, "n": 1, "detail": "LILY NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232410, "n": 1, "detail": "familiars NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790232410, "n": 1, "detail": "SPX10 NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1790232507, "n": 404, "detail": "404 rows, universe 288, 10 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1790232507, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
