@@ -306,8 +306,8 @@
    "transfer_fee_bps": null
   },
   "CzLTZppPdZtTjyq3WGpHLstoc3GLhu7zH5Zg6xUa6Gv5": {
-   "checked_at": "2026-09-24T17:30:25Z",
-   "checked_ts": 1790271025.5970376,
+   "checked_at": "2026-09-25T17:58:51Z",
+   "checked_ts": 1790359131.8636823,
    "default_account_state": "initialized",
    "extension_state": {
     "confidentialTransferMint": {
@@ -426,8 +426,8 @@
    "transfer_fee_bps": null
   },
   "EDTmJjr4VoV9S8ftCQFt4ZBvmDy9s1tBoiWVrmDApump": {
-   "checked_at": "2026-09-24T17:30:25Z",
-   "checked_ts": 1790271025.5970376,
+   "checked_at": "2026-09-25T17:58:51Z",
+   "checked_ts": 1790359131.8636823,
    "default_account_state": null,
    "extension_state": {
     "metadataPointer": {
@@ -463,8 +463,8 @@
    "transfer_fee_bps": null
   },
   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": {
-   "checked_at": "2026-09-24T17:30:25Z",
-   "checked_ts": 1790271025.5970376,
+   "checked_at": "2026-09-25T17:58:51Z",
+   "checked_ts": 1790359131.8636823,
    "default_account_state": null,
    "extension_state": {},
    "extensions": [],
@@ -486,8 +486,8 @@
    "transfer_fee_bps": null
   },
   "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB": {
-   "checked_at": "2026-09-24T17:30:25Z",
-   "checked_ts": 1790271025.5970376,
+   "checked_at": "2026-09-25T17:58:51Z",
+   "checked_ts": 1790359131.8636823,
    "default_account_state": null,
    "extension_state": {},
    "extensions": [],
@@ -633,8 +633,8 @@
    "transfer_fee_bps": 400
   },
   "So11111111111111111111111111111111111111112": {
-   "checked_at": "2026-09-24T17:30:25Z",
-   "checked_ts": 1790271025.5970376,
+   "checked_at": "2026-09-25T17:58:51Z",
+   "checked_ts": 1790359131.8636823,
    "default_account_state": null,
    "extension_state": {},
    "extensions": [],
@@ -694,8 +694,8 @@
    "transfer_fee_bps": 800
   },
   "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W": {
-   "checked_at": "2026-09-24T17:30:25Z",
-   "checked_ts": 1790271025.5970376,
+   "checked_at": "2026-09-25T17:58:51Z",
+   "checked_ts": 1790359131.8636823,
    "default_account_state": "initialized",
    "extension_state": {
     "confidentialTransferMint": {
@@ -836,7 +836,7 @@
    "transfer_fee_bps": null
   }
  },
- "built_at": "2026-09-25T13:05:43Z",
+ "built_at": "2026-09-25T17:58:51Z",
  "harvested_from": {
   "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx": {
    "pair_count": 30,
@@ -988,7 +988,7 @@
   ],
   "known": 33,
   "read_ok": 33,
-  "read_this_pass": 0,
+  "read_this_pass": 6,
   "stale_remaining": 0,
   "taxed": 7
  }
