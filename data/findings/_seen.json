@@ -15244,5 +15244,21 @@
   "keys": [
    "2qUZMncoevnDifr1fnrsy4WRLXrbDDAaTZ75wuk9KCgj"
   ]
+ },
+ "scanner-hit:kvuyyirnlaaivzejscwdjqaczidltrolr": {
+  "first_seen": "2026-10-01T00:13:05+00:00",
+  "count": 1,
+  "example": "scanner-hit: 8kVuY7Yir9NLaai9V73ZejscWdJ9q7aczidLtr38oL4r",
+  "keys": [
+   "8kVuY7Yir9NLaai9V73ZejscWdJ9q7aczidLtr38oL4r"
+  ]
+ },
+ "scanner-hit:htnagetcwyffwuebmqyqbrtsccvijbwkbpump": {
+  "first_seen": "2026-10-01T00:13:05+00:00",
+  "count": 1,
+  "example": "scanner-hit: HTn3AGe6t2cwYfFW8UEbMqyqbRTsccv6ij3bwKb7pump",
+  "keys": [
+   "HTn3AGe6t2cwYfFW8UEbMqyqbRTsccv6ij3bwKb7pump"
+  ]
  }
 }
