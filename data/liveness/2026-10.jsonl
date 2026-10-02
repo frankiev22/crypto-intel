@@ -144,3 +144,24 @@
 {"name": "paperv3.close", "ts": 1790907634, "n": 1, "detail": "BOB NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1790907762, "n": 395, "detail": "395 rows, universe 266, 24 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1790907763, "n": 33, "detail": "read=6 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790930598, "n": 1, "detail": "CKJ7aBAkXfrHZqmWJmWtyFRg", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790930599, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790930601, "n": 1, "detail": "2dSVsFJfTvn7QQfmM3v3JudP", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790930604, "n": 1, "detail": "71CjdicTuzbRgTgakSV23XAF", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790930605, "n": 1, "detail": "33wVRMDT2BJexgD6SZB7LRgE", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790930605, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790930608, "n": 1, "detail": "2GGYVjmAj53ibWKXz4xHEN7u", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790930608, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790930609, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1790930611, "n": 1, "detail": "5fDCfp82eZN3bMBV7BKVAn8g", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790930611, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1790930612, "n": 9, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1790930612, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1790930620, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1790930622, "n": 1, "detail": "graduated 73tYjQTwfp9hvRFp5JMPsnCBt65wdwtjho7w5nZ6jFcj", "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1790930623, "n": 1, "detail": "graduated HscBRns8HHDxieejFX57EmbLsyPCeWS2rRE7sbTcpump", "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1790930623, "n": 21, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790930624, "n": 1, "detail": "无我 MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1790930625, "n": 1, "detail": "test NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1790930726, "n": 389, "detail": "389 rows, universe 268, 13 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1790930726, "n": 33, "detail": "read=1 controlled=2 stale=0", "origin": "scheduled"}
