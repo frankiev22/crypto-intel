@@ -15428,5 +15428,21 @@
   "keys": [
    "BVUuHpbfLm8iZ5bejnYUmLgZpqmcaTKTonM2ynDpump"
   ]
+ },
+ "scanner-hit:afwmtvpggmmegdurtgjrmdbfjkxybczorpump": {
+  "first_seen": "2026-10-03T08:32:33+00:00",
+  "count": 1,
+  "example": "scanner-hit: A1FW19MtVpGGMme1GDUrT2GjRmD2bFjkxy5bCZorpump",
+  "keys": [
+   "A1FW19MtVpGGMme1GDUrT2GjRmD2bFjkxy5bCZorpump"
+  ]
+ },
+ "scanner-hit:dnhwlqltstswhjsztqrtfrieedgckuwlhcvw": {
+  "first_seen": "2026-10-03T08:32:33+00:00",
+  "count": 1,
+  "example": "scanner-hit: 369D9nhWLQL8t3STs1whjSzTqRtFRiEeDgcKuwLHc5Vw",
+  "keys": [
+   "369D9nhWLQL8t3STs1whjSzTqRtFRiEeDgcKuwLHc5Vw"
+  ]
  }
 }
