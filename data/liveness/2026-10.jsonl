@@ -399,3 +399,35 @@
 {"name": "paperv3.close", "ts": 1791082084, "n": 1, "detail": "SOLMAS NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1791082128, "n": 403, "detail": "403 rows, universe 279, 22 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1791082129, "n": 33, "detail": "read=6 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1791103955, "n": 1, "detail": "5nsATLeLg7SPrFW4FuQ3HYuP", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1791103958, "n": 1, "detail": "hz9uqizexceP7Y3qnezAHvGx", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791103959, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1791103961, "n": 1, "detail": "4BXEXz5yXfjzRFRGGSpqgKvP", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1791103962, "n": 1, "detail": "DNy9VcvsTBDfPVojiKbrpE3P", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791103963, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1791103964, "n": 1, "detail": "92A9dZyrojCrN2qvDxqVKC9v", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1791103966, "n": 1, "detail": "BuDrJ9rHYMG5zJbQTtMLrZAU", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791103966, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791103967, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1791103968, "n": 1, "detail": "J7jwmjp4PcKwTKYwMwy5yk5E", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791103969, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1791103970, "n": 1, "detail": "BUu7AYqRLWUyZvxi8ZGLV2FT", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791103970, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1791103973, "n": 1, "detail": "G8CnUYWz9y4stJD3hR6YvdNK", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791103974, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1791103974, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1791103982, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1791103986, "n": 1, "detail": "graduated FPBuc1iPDgxMUjVd8t2PNEE3jVcXVn4VUnMfmM3Cpump", "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1791103986, "n": 1, "detail": "graduated C43Uh4iKKFTVnmXXrEGedm4jk9PcYy1QdvE4MgA5pump", "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1791103986, "n": 1, "detail": "graduated 4DBsQa8FRQo39bd2pu48QS488jRqc2UCiqRcobMFiDBa", "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1791103986, "n": 1, "detail": "graduated 2grH6RdwN6Vphn3pAfGufDJqLqR578r1r2GUQwtdBAGS", "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1791103986, "n": 34, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791103987, "n": 1, "detail": "Maggie MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791103987, "n": 1, "detail": "KIN MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791103987, "n": 1, "detail": "Maggie MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791103988, "n": 1, "detail": "PERCY NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791103994, "n": 1, "detail": "Catana NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791103997, "n": 1, "detail": "PERCY NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791104098, "n": 1, "detail": "Attention+ NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1791104133, "n": 401, "detail": "401 rows, universe 272, 25 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1791104133, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
