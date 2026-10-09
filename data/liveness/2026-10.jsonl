@@ -960,3 +960,22 @@
 {"name": "paperv3.close", "ts": 1791551436, "n": 1, "detail": "QUANTUM NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1791551540, "n": 399, "detail": "399 rows, universe 304, 20 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1791551540, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791571968, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791571968, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791571969, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1791571971, "n": 1, "detail": "B5cxeKq47M2dbLMocdmzapym", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791571972, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1791571973, "n": 1, "detail": "AKW4koMP6MqmzgPjXi8R3YGB", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791571973, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791571974, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791571975, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1791571975, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1791571982, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1791571984, "n": 22, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791571984, "n": 1, "detail": "OMARCHY MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791571985, "n": 1, "detail": "‮TDSU MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791571985, "n": 1, "detail": "uBTC MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791571985, "n": 1, "detail": "uBTC MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791571986, "n": 1, "detail": "HALWN NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1791572091, "n": 401, "detail": "401 rows, universe 289, 13 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1791572091, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
