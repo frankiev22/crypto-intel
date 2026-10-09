@@ -979,3 +979,18 @@
 {"name": "paperv3.close", "ts": 1791571986, "n": 1, "detail": "HALWN NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1791572091, "n": 401, "detail": "401 rows, universe 289, 13 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1791572091, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791587510, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791587511, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791587511, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791587513, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791587513, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791587514, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791587515, "n": 6, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1791587515, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1791587515, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1791587516, "n": 17, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791587516, "n": 1, "detail": "Quantum MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791587516, "n": 1, "detail": "PVE MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791587517, "n": 1, "detail": "MEGOON NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1791587625, "n": 407, "detail": "407 rows, universe 273, 22 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1791587626, "n": 33, "detail": "read=6 controlled=2 stale=0", "origin": "scheduled"}
