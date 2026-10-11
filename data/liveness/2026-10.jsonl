@@ -1122,3 +1122,25 @@
 {"name": "paperv3.close", "ts": 1791683374, "n": 1, "detail": "Cocoa NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1791683472, "n": 415, "detail": "415 rows, universe 296, 0 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1791683473, "n": 33, "detail": "read=6 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1791705347, "n": 1, "detail": "8nd2D14Us7S3XL3hLesnmP5y", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791705349, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1791705350, "n": 1, "detail": "ARK27PSVMejw7GEds1uksr4E", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791705351, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1791705352, "n": 1, "detail": "DnzxtM3RvBfPrKMyeFzrj9SN", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791705352, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791705353, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791705354, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1791705355, "n": 1, "detail": "7JYoS6ic3MQg9F3gHhsFVvL3", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791705355, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791705356, "n": 9, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1791705356, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1791705360, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1791705361, "n": 26, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791705361, "n": 1, "detail": "SIB MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791705362, "n": 1, "detail": "Mousie MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791705362, "n": 1, "detail": "whitepaper MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791705362, "n": 1, "detail": "SORACAT NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791705362, "n": 1, "detail": "Google AI NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1791705362, "n": 1, "detail": "Fuwa NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1791705465, "n": 411, "detail": "411 rows, universe 311, 3 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1791705465, "n": 33, "detail": "read=1 controlled=2 stale=0", "origin": "scheduled"}
