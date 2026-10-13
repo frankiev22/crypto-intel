@@ -1,34 +1,4 @@
 {
- "5xTwo5d7bKJHQ83o6ewDMZvMsMCSrkoxwE6RNy61qbLP": {
-  "contract": "5xTwo5d7bKJHQ83o6ewDMZvMsMCSrkoxwE6RNy61qbLP",
-  "pair": "9QdPYyR5zXvAMEKEAD9kG3KZckzoeEFg3KPBgZZmBerM",
-  "symbol": "POODLE✨",
-  "network": "solana",
-  "added_ts": 1791798188,
-  "added_fdv": 49743.56,
-  "added_vol_h1": 5546.08,
-  "added_liq": 0.0,
-  "added_venue": "bonding_curve",
-  "checks": 3,
-  "last_fdv": 51856.82,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 51856.82
- },
- "Dk93nBRrGqskCsx5Ars258TstFEHYTSqWooNv3mDaUin": {
-  "contract": "Dk93nBRrGqskCsx5Ars258TstFEHYTSqWooNv3mDaUin",
-  "pair": "8wkTUJS79Q3T2EBoeeK7gMCMLHZyHU9FHb8ZX6XwPJ31",
-  "symbol": "GOMO",
-  "network": "solana",
-  "added_ts": 1791798195,
-  "added_fdv": 54361.7,
-  "added_vol_h1": 8776.78,
-  "added_liq": 0.0,
-  "added_venue": "bonding_curve",
-  "checks": 3,
-  "last_fdv": 54361.7,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 54361.7
- },
  "kk4fvZ5keDvmdwh1exUTixThbjjW9ho1qMeXUQ4BHjh": {
   "contract": "kk4fvZ5keDvmdwh1exUTixThbjjW9ho1qMeXUQ4BHjh",
   "pair": "6vx98hBS8S8CutopStfPtQy3AH2zeS5L9CcpfM4C4gyH",
@@ -39,7 +9,7 @@
   "added_vol_h1": 326.86,
   "added_liq": 18942.13,
   "added_venue": "amm",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 53476.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 53476.0
@@ -54,7 +24,7 @@
   "added_vol_h1": 344.22,
   "added_liq": 19010.58,
   "added_venue": "amm",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 49280.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 49280.0
@@ -69,7 +39,7 @@
   "added_vol_h1": 2456.31,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 47024.66,
   "last_vol_h1": 0.0,
   "peak_fdv": 47024.66
@@ -84,7 +54,7 @@
   "added_vol_h1": 3777.31,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 51398.98,
   "last_vol_h1": 0.0,
   "peak_fdv": 51398.98
@@ -99,7 +69,7 @@
   "added_vol_h1": 1975.33,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 47110.41,
   "last_vol_h1": 0.0,
   "peak_fdv": 47110.41
@@ -114,9 +84,9 @@
   "added_vol_h1": 4518.61,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 54135.91,
-  "last_vol_h1": 4518.61,
+  "last_vol_h1": 0.0,
   "peak_fdv": 54135.91
  },
  "BNW9965o9XFopuaifGXaKZqihhnntFC4FscuUihTynYt": {
@@ -129,9 +99,9 @@
   "added_vol_h1": 3781.23,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 48877.66,
-  "last_vol_h1": 3781.23,
+  "last_vol_h1": 0.0,
   "peak_fdv": 48877.66
  },
  "73ATijAbcwuJFfK4sc3mo2N3SXDFLn1apJG72wogA8oi": {
@@ -144,9 +114,9 @@
   "added_vol_h1": 6998.92,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 48857.89,
-  "last_vol_h1": 6998.92,
+  "last_vol_h1": 0.0,
   "peak_fdv": 48857.89
  },
  "6UwVQTstoRVZ2q86daXHjnkX6k6EefgPCyPhmr2BExrV": {
@@ -159,9 +129,39 @@
   "added_vol_h1": 3957.21,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 47835.78,
-  "last_vol_h1": 3957.21,
+  "last_vol_h1": 0.0,
   "peak_fdv": 47835.78
+ },
+ "Hz8XaQinBpECJM5PkY4o6tVUGnYHS2pHfV2FytE3d2kC": {
+  "contract": "Hz8XaQinBpECJM5PkY4o6tVUGnYHS2pHfV2FytE3d2kC",
+  "pair": "4ACb2fxek9GUuqpRs9CinqtCmSkhvbotrWn8QtFdwHgX",
+  "symbol": "OSPREY",
+  "network": "solana",
+  "added_ts": 1791908666,
+  "added_fdv": 60916.0,
+  "added_vol_h1": 1.76,
+  "added_liq": 1.02,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 60916.0,
+  "last_vol_h1": 1.76,
+  "peak_fdv": 60916.0
+ },
+ "A2trZLn7SUSTAPeVJhkyMVCRj4zzy1nYx9FQLr1CBT3M": {
+  "contract": "A2trZLn7SUSTAPeVJhkyMVCRj4zzy1nYx9FQLr1CBT3M",
+  "pair": "8eUid1pEbQUVM15iQ5fR1ZdZPyhRU61GMZejbkie3Rah",
+  "symbol": "RUNNER",
+  "network": "solana",
+  "added_ts": 1791908670,
+  "added_fdv": 48132.0,
+  "added_vol_h1": 232.75,
+  "added_liq": 0.0,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 48132.0,
+  "last_vol_h1": 232.75,
+  "peak_fdv": 48132.0
  }
 }

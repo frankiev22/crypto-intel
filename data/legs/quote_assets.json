@@ -285,8 +285,8 @@
    "transfer_fee_bps": 300
   },
   "CdhZy8wrRxNxoV8HtoByXKN7mvS46avtuZ1b39tKfx7": {
-   "checked_at": "2026-10-12T09:44:00Z",
-   "checked_ts": 1791798240.4765487,
+   "checked_at": "2026-10-13T16:25:16Z",
+   "checked_ts": 1791908716.5138679,
    "default_account_state": null,
    "extension_state": {},
    "extensions": [],
@@ -836,7 +836,7 @@
    "transfer_fee_bps": null
   }
  },
- "built_at": "2026-10-13T08:26:54Z",
+ "built_at": "2026-10-13T16:25:16Z",
  "harvested_from": {
   "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx": {
    "pair_count": 30,
@@ -988,7 +988,7 @@
   ],
   "known": 33,
   "read_ok": 33,
-  "read_this_pass": 6,
+  "read_this_pass": 1,
   "stale_remaining": 0,
   "taxed": 7
  }
