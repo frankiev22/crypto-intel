@@ -1330,3 +1330,15 @@
 {"name": "paperv3.close", "ts": 1791927104, "n": 1, "detail": "CASHCAT NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1791927149, "n": 412, "detail": "412 rows, universe 325, 24 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1791927149, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1791938130, "n": 1, "detail": "8SwSqgAaDpWPR22MJ7uMrqPW", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791938131, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791938133, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791938134, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791938135, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791938136, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1791938136, "n": 6, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1791938136, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1791938136, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1791938138, "n": 4, "detail": null, "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1791938171, "n": 394, "detail": "394 rows, universe 271, 21 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1791938171, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
