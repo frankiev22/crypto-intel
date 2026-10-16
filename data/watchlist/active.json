@@ -1,19 +1,4 @@
 {
- "3PoKPbq5LbbnsyVfyafDpu4qUHWcVAwScDr5idr2WUjk": {
-  "contract": "3PoKPbq5LbbnsyVfyafDpu4qUHWcVAwScDr5idr2WUjk",
-  "pair": "B1dMNCxVKRHEwy4rmZDpoonjeinv3531qFUn1UEkteKe",
-  "symbol": "VRAX",
-  "network": "solana",
-  "added_ts": 1792043476,
-  "added_fdv": 50866.0,
-  "added_vol_h1": 2249.46,
-  "added_liq": 2225.52,
-  "added_venue": "amm",
-  "checks": 6,
-  "last_fdv": null,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 50866.0
- },
  "5NYi4KoM3gFapYEQSfCLAKdLjkq1XhoqFNRKpaskGBb4": {
   "contract": "5NYi4KoM3gFapYEQSfCLAKdLjkq1XhoqFNRKpaskGBb4",
   "pair": "2JZdjpC85o6ivrnrAJxXzNSNNsbKNJWRBEjxgZom3eHT",
@@ -24,7 +9,7 @@
   "added_vol_h1": 7280.47,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 5,
+  "checks": 6,
   "last_fdv": 50781.55,
   "last_vol_h1": 0.0,
   "peak_fdv": 50781.55
@@ -39,7 +24,7 @@
   "added_vol_h1": 4110.79,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 5,
+  "checks": 6,
   "last_fdv": 49685.93,
   "last_vol_h1": 0.0,
   "peak_fdv": 49685.93
@@ -54,7 +39,7 @@
   "added_vol_h1": 7896.49,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 5,
+  "checks": 6,
   "last_fdv": 51020.98,
   "last_vol_h1": 0.0,
   "peak_fdv": 51020.98
@@ -69,7 +54,7 @@
   "added_vol_h1": 4839.7,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 5,
+  "checks": 6,
   "last_fdv": 48805.91,
   "last_vol_h1": 0.0,
   "peak_fdv": 48805.91
@@ -84,7 +69,7 @@
   "added_vol_h1": 39240.67,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 45582.99,
   "last_vol_h1": 0.0,
   "peak_fdv": 45582.99
@@ -99,24 +84,24 @@
   "added_vol_h1": 2430.32,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 50797.1,
   "last_vol_h1": 0.0,
   "peak_fdv": 50797.1
  },
- "56uSeYA2RCyHgzSvopuZtAwcRzoRonDsWdzrFUEqbonk": {
-  "contract": "56uSeYA2RCyHgzSvopuZtAwcRzoRonDsWdzrFUEqbonk",
-  "pair": "5TSHLsDqK4tVtgw9ipnuNeZNV4zE7uMsGs9z8iSXWfNq",
-  "symbol": "GWARM",
+ "Av2tob8rhxorxchSJmhqjUynFvtdDubwki2iTkVK2Tv": {
+  "contract": "Av2tob8rhxorxchSJmhqjUynFvtdDubwki2iTkVK2Tv",
+  "pair": "5hRSbZfWzcdpY3tDAUKqqVurDKhC5qAWhZraHJmtKkxe",
+  "symbol": "ARK",
   "network": "solana",
-  "added_ts": 1792127438,
-  "added_fdv": 68024.0,
-  "added_vol_h1": 38577.78,
-  "added_liq": 119047.41,
-  "added_venue": "amm",
+  "added_ts": 1792144672,
+  "added_fdv": 52929.78,
+  "added_vol_h1": 4296.89,
+  "added_liq": 0.0,
+  "added_venue": "bonding_curve",
   "checks": 0,
-  "last_fdv": 68024.0,
-  "last_vol_h1": 38577.78,
-  "peak_fdv": 68024.0
+  "last_fdv": 52929.78,
+  "last_vol_h1": 4296.89,
+  "peak_fdv": 52929.78
  }
 }
