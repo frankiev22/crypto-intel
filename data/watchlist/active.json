@@ -1,19 +1,4 @@
 {
- "64Yd5FT4Mb8bzjk6REvqRUa7m7QddGz3gmCRvR1jE9HZ": {
-  "contract": "64Yd5FT4Mb8bzjk6REvqRUa7m7QddGz3gmCRvR1jE9HZ",
-  "pair": "EUH2TL14TskXBbjZBPiCAY6qV1L8QFzfLCnxvL12u6NJ",
-  "symbol": "BUBBLE",
-  "network": "solana",
-  "added_ts": 1792111382,
-  "added_fdv": 50797.1,
-  "added_vol_h1": 2430.32,
-  "added_liq": 0.0,
-  "added_venue": "bonding_curve",
-  "checks": 6,
-  "last_fdv": 50797.1,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 50797.1
- },
  "Av2tob8rhxorxchSJmhqjUynFvtdDubwki2iTkVK2Tv": {
   "contract": "Av2tob8rhxorxchSJmhqjUynFvtdDubwki2iTkVK2Tv",
   "pair": "5hRSbZfWzcdpY3tDAUKqqVurDKhC5qAWhZraHJmtKkxe",
@@ -24,7 +9,7 @@
   "added_vol_h1": 4296.89,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 52929.78,
   "last_vol_h1": 0.0,
   "peak_fdv": 52929.78
@@ -39,7 +24,7 @@
   "added_vol_h1": 2404.34,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 50300.46,
   "last_vol_h1": 0.0,
   "peak_fdv": 50300.46
@@ -54,7 +39,7 @@
   "added_vol_h1": 12935.32,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 50433.46,
   "last_vol_h1": 0.0,
   "peak_fdv": 50433.46
@@ -69,9 +54,54 @@
   "added_vol_h1": 2214.37,
   "added_liq": 0.0,
   "added_venue": "amm",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 46128.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 46128.0
+ },
+ "2LKivDT6moPAznR9WwhX23TkL3dVW9RwrBtt2uWkoBXK": {
+  "contract": "2LKivDT6moPAznR9WwhX23TkL3dVW9RwrBtt2uWkoBXK",
+  "pair": "H7YGo7ins9mvwKbp2cCNCgCUHUGb3tq1ApJDZ7aUaKZY",
+  "symbol": "躺平小猫",
+  "network": "solana",
+  "added_ts": 1792210594,
+  "added_fdv": 48760.24,
+  "added_vol_h1": 1406.29,
+  "added_liq": 0.0,
+  "added_venue": "bonding_curve",
+  "checks": 0,
+  "last_fdv": 48760.24,
+  "last_vol_h1": 1406.29,
+  "peak_fdv": 48760.24
+ },
+ "4i5PKbyQr15dFTTLenLqQgZ2msi2R25JJZhbPwGK7k2L": {
+  "contract": "4i5PKbyQr15dFTTLenLqQgZ2msi2R25JJZhbPwGK7k2L",
+  "pair": "GJKPMuMbG3PUvqxTFpBQFkAWYxjrxUHcJC18tUBAvUy",
+  "symbol": "WAFER",
+  "network": "solana",
+  "added_ts": 1792210596,
+  "added_fdv": 51707.0,
+  "added_vol_h1": 8376.55,
+  "added_liq": 20914.88,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 51707.0,
+  "last_vol_h1": 8376.55,
+  "peak_fdv": 51707.0
+ },
+ "D9c8tuGrxPLR6j9b7o7qauXnooiULUScXtHagYfDybxL": {
+  "contract": "D9c8tuGrxPLR6j9b7o7qauXnooiULUScXtHagYfDybxL",
+  "pair": "6UMtfxfkZy1okA8w3yaucFA4Rw5zGqdRT8KnT3BQMrke",
+  "symbol": "差一步美满",
+  "network": "solana",
+  "added_ts": 1792210670,
+  "added_fdv": 47853.82,
+  "added_vol_h1": 3108.71,
+  "added_liq": 0.0,
+  "added_venue": "bonding_curve",
+  "checks": 0,
+  "last_fdv": 47853.82,
+  "last_vol_h1": 3108.71,
+  "peak_fdv": 47853.82
  }
 }
