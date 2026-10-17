@@ -9,7 +9,7 @@
   "added_vol_h1": 2404.34,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 5,
+  "checks": 6,
   "last_fdv": 50300.46,
   "last_vol_h1": 0.0,
   "peak_fdv": 50300.46
@@ -24,7 +24,7 @@
   "added_vol_h1": 12935.32,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 5,
+  "checks": 6,
   "last_fdv": 50433.46,
   "last_vol_h1": 0.0,
   "peak_fdv": 50433.46
@@ -39,7 +39,7 @@
   "added_vol_h1": 2214.37,
   "added_liq": 0.0,
   "added_venue": "amm",
-  "checks": 5,
+  "checks": 6,
   "last_fdv": 46128.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 46128.0
@@ -54,7 +54,7 @@
   "added_vol_h1": 1406.29,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 51871.43,
   "last_vol_h1": 0.0,
   "peak_fdv": 51871.43
@@ -69,7 +69,7 @@
   "added_vol_h1": 3108.71,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 47853.82,
   "last_vol_h1": 0.0,
   "peak_fdv": 47853.82
@@ -84,7 +84,7 @@
   "added_vol_h1": 1576.36,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 47138.12,
   "last_vol_h1": 0.0,
   "peak_fdv": 47138.12
@@ -99,10 +99,10 @@
   "added_vol_h1": 10466.1,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
-  "last_fdv": 45732.21,
-  "last_vol_h1": 10466.1,
-  "peak_fdv": 45732.21
+  "checks": 1,
+  "last_fdv": 51695.08,
+  "last_vol_h1": 0.0,
+  "peak_fdv": 51695.08
  },
  "3Mid1HJxGmzix7pF42dNu9gMmyF9opjoRkw6HE8pWPUi": {
   "contract": "3Mid1HJxGmzix7pF42dNu9gMmyF9opjoRkw6HE8pWPUi",
@@ -114,9 +114,9 @@
   "added_vol_h1": 8298.64,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 51426.58,
-  "last_vol_h1": 8298.64,
+  "last_vol_h1": 0.0,
   "peak_fdv": 51426.58
  },
  "2uuxGuwVLKSaE2jMJ5VofZa6iuiawsyPzq4mJaC57tm2": {
@@ -129,9 +129,9 @@
   "added_vol_h1": 3914.34,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 51925.52,
-  "last_vol_h1": 3914.34,
+  "last_vol_h1": 0.0,
   "peak_fdv": 51925.52
  }
 }
