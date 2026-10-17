@@ -9,7 +9,7 @@
   "added_vol_h1": 4296.89,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 5,
+  "checks": 6,
   "last_fdv": 52929.78,
   "last_vol_h1": 0.0,
   "peak_fdv": 52929.78
@@ -24,7 +24,7 @@
   "added_vol_h1": 2404.34,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 50300.46,
   "last_vol_h1": 0.0,
   "peak_fdv": 50300.46
@@ -39,7 +39,7 @@
   "added_vol_h1": 12935.32,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 50433.46,
   "last_vol_h1": 0.0,
   "peak_fdv": 50433.46
@@ -54,7 +54,7 @@
   "added_vol_h1": 2214.37,
   "added_liq": 0.0,
   "added_venue": "amm",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 46128.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 46128.0
@@ -69,25 +69,10 @@
   "added_vol_h1": 1406.29,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
-  "last_fdv": 48760.24,
-  "last_vol_h1": 1406.29,
-  "peak_fdv": 48760.24
- },
- "4i5PKbyQr15dFTTLenLqQgZ2msi2R25JJZhbPwGK7k2L": {
-  "contract": "4i5PKbyQr15dFTTLenLqQgZ2msi2R25JJZhbPwGK7k2L",
-  "pair": "GJKPMuMbG3PUvqxTFpBQFkAWYxjrxUHcJC18tUBAvUy",
-  "symbol": "WAFER",
-  "network": "solana",
-  "added_ts": 1792210596,
-  "added_fdv": 51707.0,
-  "added_vol_h1": 8376.55,
-  "added_liq": 20914.88,
-  "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 51707.0,
-  "last_vol_h1": 8376.55,
-  "peak_fdv": 51707.0
+  "checks": 1,
+  "last_fdv": 51871.43,
+  "last_vol_h1": 0.0,
+  "peak_fdv": 51871.43
  },
  "D9c8tuGrxPLR6j9b7o7qauXnooiULUScXtHagYfDybxL": {
   "contract": "D9c8tuGrxPLR6j9b7o7qauXnooiULUScXtHagYfDybxL",
@@ -99,9 +84,24 @@
   "added_vol_h1": 3108.71,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 47853.82,
-  "last_vol_h1": 3108.71,
+  "last_vol_h1": 0.0,
   "peak_fdv": 47853.82
+ },
+ "FStqLqHwuTLpy2MAjdjJACYKsLmGuUTQuV9BUMYBPRe7": {
+  "contract": "FStqLqHwuTLpy2MAjdjJACYKsLmGuUTQuV9BUMYBPRe7",
+  "pair": "HGTuz8BFEDZQ1i3ct3zLNQnGrvqi13FtJxNEQZQCk8eo",
+  "symbol": "Artificial Elon",
+  "network": "solana",
+  "added_ts": 1792226483,
+  "added_fdv": 47138.12,
+  "added_vol_h1": 1576.36,
+  "added_liq": 0.0,
+  "added_venue": "bonding_curve",
+  "checks": 0,
+  "last_fdv": 47138.12,
+  "last_vol_h1": 1576.36,
+  "peak_fdv": 47138.12
  }
 }
