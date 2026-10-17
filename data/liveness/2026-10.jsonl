@@ -1827,3 +1827,21 @@
 {"name": "paperv3.close", "ts": 1792270668, "n": 1, "detail": "SIREN NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1792270747, "n": 349, "detail": "349 rows, universe 100, 10 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1792270747, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792278256, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792278258, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792278258, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792278260, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792278260, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1792278273, "n": 1, "detail": "DVfhgiQWrtpsJE8WuzvWaLVR", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792278274, "n": 9, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1792278274, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1792278278, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1792278279, "n": 1, "detail": "graduated 97433E5VFPn1Jn3BW1AMATMzFJKGEKSoC5FGmp3hWGf", "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1792278279, "n": 19, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792278285, "n": 1, "detail": "CLOAK MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792278298, "n": 1, "detail": "IRIS MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792278310, "n": 1, "detail": "IRIS MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792278354, "n": 1, "detail": "FCT NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792278366, "n": 1, "detail": "HYPURRT NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1792278443, "n": 388, "detail": "388 rows, universe 159, 9 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1792278443, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
