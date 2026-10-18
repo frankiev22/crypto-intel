@@ -17004,5 +17004,37 @@
   "keys": [
    "tGcQNfn3QueYt3WEhjQX6Xb2wSHRaGFjSd66bGecihm"
   ]
+ },
+ "scanner-hit:gvsxdmgqwwirvtskrraoqtwerozcpwqatxbk": {
+  "first_seen": "2026-10-18T13:59:58+00:00",
+  "count": 1,
+  "example": "scanner-hit: G4V8sxdM3GqWwi7rV19tSKRra5oqtwEroZCpWQ4aTXBK",
+  "keys": [
+   "G4V8sxdM3GqWwi7rV19tSKRra5oqtwEroZCpWQ4aTXBK"
+  ]
+ },
+ "scanner-hit:hcmrdwkhwftnuageqxuqrtnaphguwdytpzeuh": {
+  "first_seen": "2026-10-18T13:59:59+00:00",
+  "count": 1,
+  "example": "scanner-hit: HCmRDwKHw7F8TnuaGeQx8uQR7tNA9PHG6UWdyT9pzeUh",
+  "keys": [
+   "HCmRDwKHw7F8TnuaGeQx8uQR7tNA9PHG6UWdyT9pzeUh"
+  ]
+ },
+ "scanner-hit:fcybazebimgwovaajrukegkmuhcnldhvftvrk": {
+  "first_seen": "2026-10-18T13:59:59+00:00",
+  "count": 1,
+  "example": "scanner-hit: FCY3Baze4BimG36wovaAjruKeGKMuhcnLDHVFTVR4K19",
+  "keys": [
+   "FCY3Baze4BimG36wovaAjruKeGKMuhcnLDHVFTVR4K19"
+  ]
+ },
+ "scanner-hit:bnwafwothyzcrcirflsbohunyutwxdnnnccpump": {
+  "first_seen": "2026-10-18T14:00:00+00:00",
+  "count": 1,
+  "example": "scanner-hit: B3NwaFwoTHyZ7crcirFLsboH529UnYutWxDnNNccpump",
+  "keys": [
+   "B3NwaFwoTHyZ7crcirFLsboH529UnYutWxDnNNccpump"
+  ]
  }
 }
