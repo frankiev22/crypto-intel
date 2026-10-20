@@ -9,7 +9,7 @@
   "added_vol_h1": 5186.31,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 52082.09,
   "last_vol_h1": 0.0,
   "peak_fdv": 52082.09
@@ -24,7 +24,7 @@
   "added_vol_h1": 6464.21,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 51873.65,
   "last_vol_h1": 0.0,
   "peak_fdv": 51873.65
@@ -39,7 +39,7 @@
   "added_vol_h1": 4098.64,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 51944.29,
   "last_vol_h1": 0.0,
   "peak_fdv": 51944.29
@@ -54,7 +54,7 @@
   "added_vol_h1": 1512.29,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 47595.01,
   "last_vol_h1": 0.0,
   "peak_fdv": 47595.01
@@ -69,9 +69,24 @@
   "added_vol_h1": 8863.62,
   "added_liq": 2179.52,
   "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 47566.0,
-  "last_vol_h1": 8863.62,
+  "checks": 1,
+  "last_fdv": null,
+  "last_vol_h1": 0.0,
   "peak_fdv": 47566.0
+ },
+ "B6vBEULoxnnaEDRY5MZmBrHm4K6PHgYGyRyVE28sUDLe": {
+  "contract": "B6vBEULoxnnaEDRY5MZmBrHm4K6PHgYGyRyVE28sUDLe",
+  "pair": "Lxkk1yLz6kw2dkfgdWbD2Qifbv2VGyXNyciYVUBoGZS",
+  "symbol": "DAWG",
+  "network": "solana",
+  "added_ts": 1792454115,
+  "added_fdv": 67287.0,
+  "added_vol_h1": 5474.01,
+  "added_liq": 2598.56,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 67287.0,
+  "last_vol_h1": 5474.01,
+  "peak_fdv": 67287.0
  }
 }
