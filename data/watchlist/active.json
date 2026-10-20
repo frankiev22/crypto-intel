@@ -1,49 +1,4 @@
 {
- "Fm6R2eMyXGmskQw8TsxXEDYqBHJM3jtarWFLipRLeJzN": {
-  "contract": "Fm6R2eMyXGmskQw8TsxXEDYqBHJM3jtarWFLipRLeJzN",
-  "pair": "AyXaPm6Lyxfj17KjVUg5jAXs1PJ4n9SLLLngDjSnX5td",
-  "symbol": "PIERRE",
-  "network": "solana",
-  "added_ts": 1792374811,
-  "added_fdv": 52082.09,
-  "added_vol_h1": 5186.31,
-  "added_liq": 0.0,
-  "added_venue": "bonding_curve",
-  "checks": 4,
-  "last_fdv": 52082.09,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 52082.09
- },
- "CjxavSdz8FTBUD5nygZTdYSGaL1kfyDQSkPVdeKic8uh": {
-  "contract": "CjxavSdz8FTBUD5nygZTdYSGaL1kfyDQSkPVdeKic8uh",
-  "pair": "4wBTjmNodhzBo3jNU84D98qmsHFN3MbNbHMxhVoHgQNV",
-  "symbol": "$15",
-  "network": "solana",
-  "added_ts": 1792374845,
-  "added_fdv": 51873.65,
-  "added_vol_h1": 6464.21,
-  "added_liq": 0.0,
-  "added_venue": "bonding_curve",
-  "checks": 4,
-  "last_fdv": 51873.65,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 51873.65
- },
- "3AjF3S4EGbei3gsozHgGg2CGxUuhE7VN6J8cNDdMeqpo": {
-  "contract": "3AjF3S4EGbei3gsozHgGg2CGxUuhE7VN6J8cNDdMeqpo",
-  "pair": "EB1u4zLPw2JEM2CP5YhVeDJpnwdzS5P851cEmhAwRMte",
-  "symbol": "UHI",
-  "network": "solana",
-  "added_ts": 1792374847,
-  "added_fdv": 51944.29,
-  "added_vol_h1": 4098.64,
-  "added_liq": 0.0,
-  "added_venue": "bonding_curve",
-  "checks": 4,
-  "last_fdv": 51944.29,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 51944.29
- },
  "D6suW9XGyPpB12v2zuQMMSDarFBPTyvTymjN8uRnUmYi": {
   "contract": "D6suW9XGyPpB12v2zuQMMSDarFBPTyvTymjN8uRnUmYi",
   "pair": "DfMpJD9RS2rVFoGodY888fN2BgNFaGxWLg1mHK6usdev",
@@ -54,7 +9,7 @@
   "added_vol_h1": 1512.29,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 47595.01,
   "last_vol_h1": 0.0,
   "peak_fdv": 47595.01
@@ -69,24 +24,24 @@
   "added_vol_h1": 8863.62,
   "added_liq": 2179.52,
   "added_venue": "amm",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": null,
   "last_vol_h1": 0.0,
   "peak_fdv": 47566.0
  },
- "B6vBEULoxnnaEDRY5MZmBrHm4K6PHgYGyRyVE28sUDLe": {
-  "contract": "B6vBEULoxnnaEDRY5MZmBrHm4K6PHgYGyRyVE28sUDLe",
-  "pair": "Lxkk1yLz6kw2dkfgdWbD2Qifbv2VGyXNyciYVUBoGZS",
-  "symbol": "DAWG",
+ "FCntrQazv9rX8BoG272JWWBMQUThPSNT6UQyxHhxpump": {
+  "contract": "FCntrQazv9rX8BoG272JWWBMQUThPSNT6UQyxHhxpump",
+  "pair": "eGE59zso4Yj4BSHdBHRvg4ogNNQWveNeQMuqxmAd9uZ",
+  "symbol": "CRAWLPEPE",
   "network": "solana",
-  "added_ts": 1792454115,
-  "added_fdv": 67287.0,
-  "added_vol_h1": 5474.01,
-  "added_liq": 2598.56,
+  "added_ts": 1792471322,
+  "added_fdv": 60085.0,
+  "added_vol_h1": 51378.28,
+  "added_liq": 19342.82,
   "added_venue": "amm",
   "checks": 0,
-  "last_fdv": 67287.0,
-  "last_vol_h1": 5474.01,
-  "peak_fdv": 67287.0
+  "last_fdv": 60085.0,
+  "last_vol_h1": 51378.28,
+  "peak_fdv": 60085.0
  }
 }
