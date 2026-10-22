@@ -2437,3 +2437,23 @@
 {"name": "paperv3.close", "ts": 1792669579, "n": 1, "detail": "Waddles NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1792669663, "n": 355, "detail": "355 rows, universe 100, 10 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1792669663, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792685179, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792685179, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792685179, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1792685200, "n": 1, "detail": "BPY4AjWNDd1vFmQtR8bGZYF4", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1792685220, "n": 1, "detail": "6Woz5fbmbSWBjJmpNnoKky9e", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792685220, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792685221, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792685222, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1792685241, "n": 1, "detail": "D6hkBXBHM4CnsXRJgrNZGwYn", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792685242, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792685242, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792685242, "n": 3, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1792685242, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1792685253, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1792685253, "n": 16, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792685254, "n": 1, "detail": "SOLANA MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792685272, "n": 1, "detail": "HUMANOID MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792685291, "n": 1, "detail": "Kimchi MAX_HOLD", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1792685438, "n": 376, "detail": "376 rows, universe 152, 8 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1792685438, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
