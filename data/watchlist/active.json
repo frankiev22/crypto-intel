@@ -9,7 +9,7 @@
   "added_vol_h1": 3300.1,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 52021.71,
   "last_vol_h1": 0.0,
   "peak_fdv": 52021.71
@@ -24,7 +24,7 @@
   "added_vol_h1": 1305.96,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 52781.75,
   "last_vol_h1": 0.0,
   "peak_fdv": 52781.75
@@ -39,7 +39,7 @@
   "added_vol_h1": 17389.52,
   "added_liq": 2492.0,
   "added_venue": "amm",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": null,
   "last_vol_h1": 0.0,
   "peak_fdv": 61241.0
@@ -54,7 +54,7 @@
   "added_vol_h1": 5034.23,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 52818.95,
   "last_vol_h1": 0.0,
   "peak_fdv": 52818.95
@@ -69,7 +69,7 @@
   "added_vol_h1": 8549.28,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 52561.7,
   "last_vol_h1": 0.0,
   "peak_fdv": 52561.7
@@ -84,25 +84,10 @@
   "added_vol_h1": 3714.84,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 52324.24,
   "last_vol_h1": 0.0,
   "peak_fdv": 52324.24
- },
- "AyCogdFp27VYW7ZdNLFFykjhCaxo716SA9NzahKFpump": {
-  "contract": "AyCogdFp27VYW7ZdNLFFykjhCaxo716SA9NzahKFpump",
-  "pair": "A6YLbfck844X3sMr8mk7Lrfa3CU27GkauWT4ARqUPZj5",
-  "symbol": "4",
-  "network": "solana",
-  "added_ts": 1792611289,
-  "added_fdv": 50088.0,
-  "added_vol_h1": 47815.29,
-  "added_liq": 17928.52,
-  "added_venue": "amm",
-  "checks": 1,
-  "last_fdv": 23127.0,
-  "last_vol_h1": 21794.12,
-  "peak_fdv": 50088.0
  },
  "4jnLwc8r6YPmyC28WDwaLBTKqeYg4xNn1GDLsLrwbonk": {
   "contract": "4jnLwc8r6YPmyC28WDwaLBTKqeYg4xNn1GDLsLrwbonk",
@@ -114,9 +99,24 @@
   "added_vol_h1": 763.83,
   "added_liq": 114967.55,
   "added_venue": "amm",
+  "checks": 1,
+  "last_fdv": 67013.0,
+  "last_vol_h1": 0.0,
+  "peak_fdv": 67013.0
+ },
+ "CuTQKVt9zeucqfaERbKk8DhSo5pbDXTxJEuxYm2Kwj1i": {
+  "contract": "CuTQKVt9zeucqfaERbKk8DhSo5pbDXTxJEuxYm2Kwj1i",
+  "pair": "EKo48bsmFAB42mH3fsBqa3GAcbyxkbDQhLmoZhrw8YtA",
+  "symbol": "CYBER",
+  "network": "solana",
+  "added_ts": 1792630798,
+  "added_fdv": 53055.21,
+  "added_vol_h1": 4079.39,
+  "added_liq": 0.0,
+  "added_venue": "bonding_curve",
   "checks": 0,
-  "last_fdv": 57713.0,
-  "last_vol_h1": 763.83,
-  "peak_fdv": 57713.0
+  "last_fdv": 53055.21,
+  "last_vol_h1": 4079.39,
+  "peak_fdv": 53055.21
  }
 }
