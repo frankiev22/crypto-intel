@@ -1,19 +1,4 @@
 {
- "EGnncE4LyXbkhuUNLan7eWTVBemmvqp7bT6hrQbwj4dA": {
-  "contract": "EGnncE4LyXbkhuUNLan7eWTVBemmvqp7bT6hrQbwj4dA",
-  "pair": "8rJZa9TjyGh7PBnbbfwBx2TAgXUGi6H3GexWQozrevDS",
-  "symbol": "BAKDINU",
-  "network": "solana",
-  "added_ts": 1792577995,
-  "added_fdv": 61241.0,
-  "added_vol_h1": 17389.52,
-  "added_liq": 2492.0,
-  "added_venue": "amm",
-  "checks": 5,
-  "last_fdv": null,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 61241.0
- },
  "DMM9KdJWSR6aC3mcfZXfzdsMDdfg3NF6RzyToiszv9TR": {
   "contract": "DMM9KdJWSR6aC3mcfZXfzdsMDdfg3NF6RzyToiszv9TR",
   "pair": "3asTR5WyqKtiBs3MXvom8Gu4DNpdLSdQQBfMKPmJkJJx",
@@ -24,7 +9,7 @@
   "added_vol_h1": 5034.23,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 52818.95,
   "last_vol_h1": 0.0,
   "peak_fdv": 52818.95
@@ -39,7 +24,7 @@
   "added_vol_h1": 8549.28,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 52561.7,
   "last_vol_h1": 0.0,
   "peak_fdv": 52561.7
@@ -54,7 +39,7 @@
   "added_vol_h1": 3714.84,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 52324.24,
   "last_vol_h1": 0.0,
   "peak_fdv": 52324.24
@@ -69,24 +54,24 @@
   "added_vol_h1": 4079.39,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 53055.21,
   "last_vol_h1": 0.0,
   "peak_fdv": 53055.21
  },
- "7NE3tYtoW24QiHRjENQiGqdNtFghzzz4jhyW6HJkq83L": {
-  "contract": "7NE3tYtoW24QiHRjENQiGqdNtFghzzz4jhyW6HJkq83L",
-  "pair": "T6Yk21duv2B7771SQ7e8z6kUHptY7oxUtXBWFZTSkwG",
-  "symbol": "现金猫",
+ "Ga73wqCrxHZgmMSL7XkutpZFEfcVna9TDm6AFrPU4XK3": {
+  "contract": "Ga73wqCrxHZgmMSL7XkutpZFEfcVna9TDm6AFrPU4XK3",
+  "pair": "Bf38tLtBwtSU55YiL49ntnNhzokDDWDxU27v2NJYhRFq",
+  "symbol": "CCAT",
   "network": "solana",
-  "added_ts": 1792649068,
-  "added_fdv": 59938.0,
-  "added_vol_h1": 60387.77,
-  "added_liq": 20802.07,
+  "added_ts": 1792669469,
+  "added_fdv": 47127.0,
+  "added_vol_h1": 8427.96,
+  "added_liq": 2554.98,
   "added_venue": "amm",
   "checks": 0,
-  "last_fdv": 59938.0,
-  "last_vol_h1": 60387.77,
-  "peak_fdv": 59938.0
+  "last_fdv": 47127.0,
+  "last_vol_h1": 8427.96,
+  "peak_fdv": 47127.0
  }
 }
