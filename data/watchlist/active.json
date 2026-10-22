@@ -9,7 +9,7 @@
   "added_vol_h1": 4079.39,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 4,
+  "checks": 5,
   "last_fdv": 53055.21,
   "last_vol_h1": 0.0,
   "peak_fdv": 53055.21
@@ -24,7 +24,7 @@
   "added_vol_h1": 98711.64,
   "added_liq": 14302.08,
   "added_venue": "amm",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 24492.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 49843.0
@@ -39,7 +39,7 @@
   "added_vol_h1": 6138.64,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 52026.07,
   "last_vol_h1": 0.0,
   "peak_fdv": 52026.07
@@ -54,9 +54,9 @@
   "added_vol_h1": 11820.1,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 51431.66,
-  "last_vol_h1": 11820.1,
+  "last_vol_h1": 0.0,
   "peak_fdv": 51431.66
  },
  "8CSjeahxAMNDh2etX82sQFQp1QtEof4ZfuH9JA8UPz7u": {
@@ -69,9 +69,24 @@
   "added_vol_h1": 7527.23,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 51496.52,
-  "last_vol_h1": 7527.23,
+  "last_vol_h1": 0.0,
   "peak_fdv": 51496.52
+ },
+ "5ZRcQP3Cxuyz8bhk5EbjwRorAmVZjtGWsx75eNH3Yi9W": {
+  "contract": "5ZRcQP3Cxuyz8bhk5EbjwRorAmVZjtGWsx75eNH3Yi9W",
+  "pair": "2JVFHLGhZ4RibfMqCuojRvpQkv3xeNbnQmBRwKHqyByS",
+  "symbol": "Kimchi",
+  "network": "solana",
+  "added_ts": 1792711236,
+  "added_fdv": 51003.32,
+  "added_vol_h1": 5611.34,
+  "added_liq": 0.0,
+  "added_venue": "bonding_curve",
+  "checks": 0,
+  "last_fdv": 51003.32,
+  "last_vol_h1": 5611.34,
+  "peak_fdv": 51003.32
  }
 }
