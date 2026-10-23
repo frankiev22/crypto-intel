@@ -1,19 +1,4 @@
 {
- "CuTQKVt9zeucqfaERbKk8DhSo5pbDXTxJEuxYm2Kwj1i": {
-  "contract": "CuTQKVt9zeucqfaERbKk8DhSo5pbDXTxJEuxYm2Kwj1i",
-  "pair": "EKo48bsmFAB42mH3fsBqa3GAcbyxkbDQhLmoZhrw8YtA",
-  "symbol": "CYBER",
-  "network": "solana",
-  "added_ts": 1792630798,
-  "added_fdv": 53055.21,
-  "added_vol_h1": 4079.39,
-  "added_liq": 0.0,
-  "added_venue": "bonding_curve",
-  "checks": 5,
-  "last_fdv": 53055.21,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 53055.21
- },
  "6Woz5fbmbSWBjJmpNnoKky9eEB6FcTRuMwEoHBKwAT4s": {
   "contract": "6Woz5fbmbSWBjJmpNnoKky9eEB6FcTRuMwEoHBKwAT4s",
   "pair": "DicbxPkmqGKcL4Wb8pqFDK7WPKoa6U9go5J5PURmkcWg",
@@ -24,7 +9,7 @@
   "added_vol_h1": 98711.64,
   "added_liq": 14302.08,
   "added_venue": "amm",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 24492.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 49843.0
@@ -39,7 +24,7 @@
   "added_vol_h1": 6138.64,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 52026.07,
   "last_vol_h1": 0.0,
   "peak_fdv": 52026.07
@@ -54,7 +39,7 @@
   "added_vol_h1": 11820.1,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 51431.66,
   "last_vol_h1": 0.0,
   "peak_fdv": 51431.66
@@ -69,7 +54,7 @@
   "added_vol_h1": 7527.23,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 51496.52,
   "last_vol_h1": 0.0,
   "peak_fdv": 51496.52
@@ -84,9 +69,39 @@
   "added_vol_h1": 5611.34,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
+  "checks": 1,
+  "last_fdv": 51283.02,
+  "last_vol_h1": 0.0,
+  "peak_fdv": 51283.02
+ },
+ "EPgdYSkKoKYmkbZYgtfDdq61Q6hd5eWVDj79eeoxJxTq": {
+  "contract": "EPgdYSkKoKYmkbZYgtfDdq61Q6hd5eWVDj79eeoxJxTq",
+  "pair": "7sf5iUQ4R8F7GJibbt5w9PxrBdRwB7Vh7xNoa8kF2qqe",
+  "symbol": "McRib",
+  "network": "solana",
+  "added_ts": 1792719800,
+  "added_fdv": 51859.15,
+  "added_vol_h1": 3181.23,
+  "added_liq": 0.0,
+  "added_venue": "bonding_curve",
   "checks": 0,
-  "last_fdv": 51003.32,
-  "last_vol_h1": 5611.34,
-  "peak_fdv": 51003.32
+  "last_fdv": 51859.15,
+  "last_vol_h1": 3181.23,
+  "peak_fdv": 51859.15
+ },
+ "DstDKrZQqRGsECxQJYPiSzksXMokwdZdoMfRfwNX7uMp": {
+  "contract": "DstDKrZQqRGsECxQJYPiSzksXMokwdZdoMfRfwNX7uMp",
+  "pair": "EUnybL7FAke9K6LDjtmE9WXZaYBtG2Mw2cyiz1D5ACiC",
+  "symbol": "McRib",
+  "network": "solana",
+  "added_ts": 1792719802,
+  "added_fdv": 48834.31,
+  "added_vol_h1": 1384.25,
+  "added_liq": 0.0,
+  "added_venue": "bonding_curve",
+  "checks": 0,
+  "last_fdv": 48834.31,
+  "last_vol_h1": 1384.25,
+  "peak_fdv": 48834.31
  }
 }

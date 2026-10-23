@@ -2492,3 +2492,20 @@
 {"name": "paperv3.close", "ts": 1792711401, "n": 1, "detail": "McRib NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1792711478, "n": 383, "detail": "383 rows, universe 176, 10 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1792711479, "n": 33, "detail": "read=6 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1792719778, "n": 1, "detail": "BHKHxBw1KNhXuFZuwe64zF3u", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1792719798, "n": 1, "detail": "E1suwwXzpQNpvwx9SuL8rpdp", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792719800, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792719800, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792719801, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792719802, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792719803, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1792719818, "n": 1, "detail": "2tr16FEyrYgWEyysKnAqmN6X", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792719819, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792719819, "n": 2, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1792719819, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1792719826, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1792719827, "n": 16, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792719828, "n": 1, "detail": "fomo MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792719847, "n": 1, "detail": "Abalarm MAX_HOLD", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1792719995, "n": 340, "detail": "340 rows, universe 100, 8 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1792719995, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
