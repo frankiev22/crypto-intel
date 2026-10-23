@@ -2509,3 +2509,26 @@
 {"name": "paperv3.close", "ts": 1792719847, "n": 1, "detail": "Abalarm MAX_HOLD", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1792719995, "n": 340, "detail": "340 rows, universe 100, 8 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1792719995, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1792737401, "n": 1, "detail": "9mFguiEwkeaJLBxAXgJiaZcg", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792737403, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1792737422, "n": 1, "detail": "BPqrmHqi8XDKWP5zyQK3X11H", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1792737442, "n": 1, "detail": "9CF7dd321haMuJ446sCeezDY", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792737442, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792737442, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1792737458, "n": 1, "detail": "AQPvGr4hS3GcjVLgpgzk7oqP", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792737458, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792737458, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792737458, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792737460, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792737460, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792737460, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1792737460, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1792737468, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1792737469, "n": 18, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792737469, "n": 1, "detail": "现金猫 MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792737487, "n": 1, "detail": "Kimchi MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792737506, "n": 1, "detail": "TIB MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792737524, "n": 1, "detail": "Memphis MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792737543, "n": 1, "detail": "SIP MAX_HOLD", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1792737697, "n": 368, "detail": "368 rows, universe 160, 8 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1792737698, "n": 33, "detail": "read=1 controlled=2 stale=0", "origin": "scheduled"}
