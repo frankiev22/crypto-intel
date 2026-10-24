@@ -1,34 +1,4 @@
 {
- "Gi4YnsD3mZet1GK7uTLvMY6p2DzanpKkib7q1h9CGogb": {
-  "contract": "Gi4YnsD3mZet1GK7uTLvMY6p2DzanpKkib7q1h9CGogb",
-  "pair": "HagdKEzhipLiN3TDUxcgz64DZqhMQoGhff39hJPAy6wz",
-  "symbol": "Au",
-  "network": "solana",
-  "added_ts": 1792757217,
-  "added_fdv": 63295.0,
-  "added_vol_h1": 5641.66,
-  "added_liq": 2659.24,
-  "added_venue": "amm",
-  "checks": 5,
-  "last_fdv": null,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 63295.0
- },
- "8gcDQkUnDjHy4HtxhnmrwerN5pj8b5HfKiWkCr8A7mW8": {
-  "contract": "8gcDQkUnDjHy4HtxhnmrwerN5pj8b5HfKiWkCr8A7mW8",
-  "pair": "C27apg5Z2yw1ApkLUA7ReecMHWQbKu2vyzYUms4A6xR3",
-  "symbol": "zonki",
-  "network": "solana",
-  "added_ts": 1792757240,
-  "added_fdv": 52040.01,
-  "added_vol_h1": 12280.41,
-  "added_liq": 0.0,
-  "added_venue": "bonding_curve",
-  "checks": 5,
-  "last_fdv": 52040.01,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 52040.01
- },
  "6U9H1QQZiDNBK4riUxEG2Bw7xPBaEPjMyq2qaXyoZbDp": {
   "contract": "6U9H1QQZiDNBK4riUxEG2Bw7xPBaEPjMyq2qaXyoZbDp",
   "pair": "84Z55mRUWuYm9EqNcgWmqDtxmajx7pDZNR2d1dVXPxBv",
@@ -54,7 +24,7 @@
   "added_vol_h1": 7537.88,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 49154.13,
   "last_vol_h1": 0.0,
   "peak_fdv": 49154.13
@@ -69,7 +39,7 @@
   "added_vol_h1": 2497.4,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 51312.84,
   "last_vol_h1": 0.0,
   "peak_fdv": 51312.84
@@ -84,9 +54,24 @@
   "added_vol_h1": 2160.29,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 51193.52,
   "last_vol_h1": 0.0,
   "peak_fdv": 51193.52
+ },
+ "FaGREAupeZSBvPvjfHCzUy9Thr5PYzRApsTYQ3uYrdLv": {
+  "contract": "FaGREAupeZSBvPvjfHCzUy9Thr5PYzRApsTYQ3uYrdLv",
+  "pair": "BEen5J45y4wsvjJ6Gk92jVSMxfeHestsPHVqWoVHVLnN",
+  "symbol": "GATO",
+  "network": "solana",
+  "added_ts": 1792843580,
+  "added_fdv": 65946.0,
+  "added_vol_h1": 0.53,
+  "added_liq": 0.34,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 65946.0,
+  "last_vol_h1": 0.53,
+  "peak_fdv": 65946.0
  }
 }
