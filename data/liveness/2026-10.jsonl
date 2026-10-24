@@ -2591,3 +2591,23 @@
 {"name": "paperv3.close", "ts": 1792798196, "n": 1, "detail": "KURIBO NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1792798287, "n": 379, "detail": "379 rows, universe 175, 8 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1792798288, "n": 33, "detail": "read=6 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1792806996, "n": 1, "detail": "7WeCH5ysTP63YAZYb9dTgxTF", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792806998, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1792807017, "n": 1, "detail": "5tXKM8NYYqUfKpsBXJ2viF1v", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1792807036, "n": 1, "detail": "91jtL322bn1HuHGSvNGDsW3y", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792807038, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1792807075, "n": 1, "detail": "59QQe9CpYc3ysgpKUrpc4C2L", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1792807094, "n": 1, "detail": "oSt2EamRw1w1ttgDSVNkYxVd", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792807094, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792807095, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792807096, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792807096, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1792807097, "n": 4, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1792807097, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1792807107, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1792807108, "n": 15, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792807108, "n": 1, "detail": "NVIDIA MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792807127, "n": 1, "detail": "KTTY MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1792807145, "n": 1, "detail": "fomo MAX_HOLD", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1792807302, "n": 402, "detail": "402 rows, universe 210, 8 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1792807302, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
