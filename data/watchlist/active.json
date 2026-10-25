@@ -1,34 +1,4 @@
 {
- "AMbPbvTzgGVGkvPSk9JhjFhBhZ3LuANgJkZfkQxfG8wy": {
-  "contract": "AMbPbvTzgGVGkvPSk9JhjFhBhZ3LuANgJkZfkQxfG8wy",
-  "pair": "b7mx2BPsrD3Ty6QTnxsNHBvtKs8bYvGgr1mF7zVjurD",
-  "symbol": "WORM",
-  "network": "solana",
-  "added_ts": 1792876610,
-  "added_fdv": 45228.2,
-  "added_vol_h1": 834.55,
-  "added_liq": 0.0,
-  "added_venue": "bonding_curve",
-  "checks": 6,
-  "last_fdv": 49710.19,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 49710.19
- },
- "9osjWvVMf46k4LFg39UH5eMmavdKXojMoaQWcovqY2Ac": {
-  "contract": "9osjWvVMf46k4LFg39UH5eMmavdKXojMoaQWcovqY2Ac",
-  "pair": "4UFSXUq3Kb7fy57PpKX9ozREM1H8ntTL3zZtW6nU7e5f",
-  "symbol": "WORM",
-  "network": "solana",
-  "added_ts": 1792876631,
-  "added_fdv": 49633.96,
-  "added_vol_h1": 5378.22,
-  "added_liq": 0.0,
-  "added_venue": "bonding_curve",
-  "checks": 6,
-  "last_fdv": 49633.96,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 49633.96
- },
  "DAPEY3nYEmugxv5tYdV2B3BfjmZp4cWNhs8TYvZ7njPp": {
   "contract": "DAPEY3nYEmugxv5tYdV2B3BfjmZp4cWNhs8TYvZ7njPp",
   "pair": "GhcG3jFMcj9kEUuNorFqgoiUh3danQ8mHEErfNBEs4nU",
@@ -39,7 +9,7 @@
   "added_vol_h1": 1281.17,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 5,
+  "checks": 6,
   "last_fdv": 50039.27,
   "last_vol_h1": 0.0,
   "peak_fdv": 50039.27
@@ -54,7 +24,7 @@
   "added_vol_h1": 3786.34,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 50636.21,
   "last_vol_h1": 0.0,
   "peak_fdv": 50743.69
@@ -69,7 +39,7 @@
   "added_vol_h1": 235.92,
   "added_liq": 17741.78,
   "added_venue": "amm",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 66529.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 66529.0
@@ -84,7 +54,7 @@
   "added_vol_h1": 12483.3,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 49732.31,
   "last_vol_h1": 0.0,
   "peak_fdv": 49732.31
@@ -99,7 +69,7 @@
   "added_vol_h1": 3303.11,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 50557.97,
   "last_vol_h1": 0.0,
   "peak_fdv": 50557.97
@@ -114,7 +84,7 @@
   "added_vol_h1": 175.43,
   "added_liq": 17612.71,
   "added_venue": "amm",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 45270.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 45661.0
@@ -129,9 +99,9 @@
   "added_vol_h1": 4946.55,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 50820.99,
-  "last_vol_h1": 4946.55,
+  "last_vol_h1": 0.0,
   "peak_fdv": 50820.99
  },
  "F443ohukwtSBgZqsF4LXAF2z4HLVKEjw5tpfrmxopump": {
@@ -144,24 +114,9 @@
   "added_vol_h1": 742.69,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
-  "last_fdv": 61663.52,
-  "last_vol_h1": 742.69,
+  "checks": 1,
+  "last_fdv": 61636.4,
+  "last_vol_h1": 0.0,
   "peak_fdv": 61663.52
- },
- "8XbtJsyMVXXZLqz83viAxuQ89qJQUWur1H92wpQBKyz": {
-  "contract": "8XbtJsyMVXXZLqz83viAxuQ89qJQUWur1H92wpQBKyz",
-  "pair": "HXvsL65oH4qwgXoMxqNJc5XSk3ab1h94n9bpCKphAwmV",
-  "symbol": "Beaver",
-  "network": "solana",
-  "added_ts": 1792955733,
-  "added_fdv": 50806.0,
-  "added_vol_h1": 4390.56,
-  "added_liq": 2580.44,
-  "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 50806.0,
-  "last_vol_h1": 4390.56,
-  "peak_fdv": 50806.0
  }
 }
