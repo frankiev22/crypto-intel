@@ -2933,3 +2933,21 @@
 {"name": "paperv3.close", "ts": 1793035254, "n": 1, "detail": "BNC敲钟 NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1793035351, "n": 410, "detail": "410 rows, universe 176, 9 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1793035351, "n": 33, "detail": "read=1 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793050948, "n": 1, "detail": "CECnqWT6YVQCc4QDKvourCmf", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793050950, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793050950, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793050969, "n": 1, "detail": "GySfz6KgHgTn6MSsuGvtf4yG", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793050971, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793050971, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793050972, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793050973, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793050974, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793050975, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793050976, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793050976, "n": 4, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1793050976, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1793050994, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1793050995, "n": 14, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793050995, "n": 1, "detail": "PUMPLAUNCH MAX_HOLD", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1793051128, "n": 383, "detail": "383 rows, universe 167, 10 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1793051128, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
