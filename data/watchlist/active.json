@@ -1,19 +1,4 @@
 {
- "5CTMucxnhan3s8PbXLeRq9zC47zGsM8UqXhgQtt2rryJ": {
-  "contract": "5CTMucxnhan3s8PbXLeRq9zC47zGsM8UqXhgQtt2rryJ",
-  "pair": "5HLCJQSBDVh3C4LY7ZcbmXNqS5Aax6BW6NtYSFtPgmdT",
-  "symbol": "MEMESTOCK",
-  "network": "solana",
-  "added_ts": 1793197778,
-  "added_fdv": 49946.27,
-  "added_vol_h1": 3001.96,
-  "added_liq": 0.0,
-  "added_venue": "bonding_curve",
-  "checks": 4,
-  "last_fdv": 49946.27,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 49946.27
- },
  "25kNb1XjF2S8tcrVZxHDJmABjUoExCqf3KPTDuiJTEZj": {
   "contract": "25kNb1XjF2S8tcrVZxHDJmABjUoExCqf3KPTDuiJTEZj",
   "pair": "mXFnfHxK9SRdZUxZydMpy9B1p8NzHEEfPxSeS42Up7w",
@@ -24,7 +9,7 @@
   "added_vol_h1": 7678.46,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 50575.18,
   "last_vol_h1": 0.0,
   "peak_fdv": 50575.18
@@ -39,10 +24,10 @@
   "added_vol_h1": 2246.66,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
-  "last_fdv": 47951.47,
-  "last_vol_h1": 2246.66,
-  "peak_fdv": 47951.47
+  "checks": 1,
+  "last_fdv": 49825.04,
+  "last_vol_h1": 0.0,
+  "peak_fdv": 49825.04
  },
  "5c87tUktqsEMUT1t2F5L3n6yYvyMyFBBnEHSMPdFnzu3": {
   "contract": "5c87tUktqsEMUT1t2F5L3n6yYvyMyFBBnEHSMPdFnzu3",
@@ -54,9 +39,9 @@
   "added_vol_h1": 2187.81,
   "added_liq": 2388.64,
   "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 53249.0,
-  "last_vol_h1": 2187.81,
+  "checks": 1,
+  "last_fdv": null,
+  "last_vol_h1": 0.0,
   "peak_fdv": 53249.0
  },
  "D7JUxow8iocJqFnRZB1X8enB3gRTrRoNeLyBBq3PGtho": {
@@ -69,10 +54,10 @@
   "added_vol_h1": 4965.88,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
-  "last_fdv": 49357.5,
-  "last_vol_h1": 4965.88,
-  "peak_fdv": 49357.5
+  "checks": 1,
+  "last_fdv": 50013.7,
+  "last_vol_h1": 0.0,
+  "peak_fdv": 50013.7
  },
  "BBsViUo9dneByZYQkDcLDCvG55pwgtogDG6MzfUuDYY8": {
   "contract": "BBsViUo9dneByZYQkDcLDCvG55pwgtogDG6MzfUuDYY8",
@@ -84,9 +69,24 @@
   "added_vol_h1": 6238.39,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 49864.75,
-  "last_vol_h1": 6238.39,
+  "last_vol_h1": 0.0,
   "peak_fdv": 49864.75
+ },
+ "5Eof2p9cBKEGG1PuFoZ5hq4W5owneR579EpkCJrkbbED": {
+  "contract": "5Eof2p9cBKEGG1PuFoZ5hq4W5owneR579EpkCJrkbbED",
+  "pair": "982YvPJkNAAVjDHuQuakUNm4eFT8REAqcLjVQxMcfiQX",
+  "symbol": "BIAO",
+  "network": "solana",
+  "added_ts": 1793291530,
+  "added_fdv": 50829.16,
+  "added_vol_h1": 7542.03,
+  "added_liq": 0.0,
+  "added_venue": "bonding_curve",
+  "checks": 0,
+  "last_fdv": 50829.16,
+  "last_vol_h1": 7542.03,
+  "peak_fdv": 50829.16
  }
 }
