@@ -9,7 +9,7 @@
   "added_vol_h1": 7634.18,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 47085.46,
   "last_vol_h1": 0.0,
   "peak_fdv": 47085.46
@@ -24,7 +24,7 @@
   "added_vol_h1": 4431.32,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 47463.71,
   "last_vol_h1": 0.0,
   "peak_fdv": 47463.71
@@ -39,7 +39,7 @@
   "added_vol_h1": 4834.45,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 48740.39,
   "last_vol_h1": 0.0,
   "peak_fdv": 48740.39
@@ -54,9 +54,24 @@
   "added_vol_h1": 5993.33,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 47466.31,
   "last_vol_h1": 0.0,
   "peak_fdv": 47466.31
+ },
+ "8nKJpMcA4vmVpUY4FfoiGTwmpJpKxf8L5QXQah9UwNtN": {
+  "contract": "8nKJpMcA4vmVpUY4FfoiGTwmpJpKxf8L5QXQah9UwNtN",
+  "pair": "AdMfziQBhD5YoZZLWHBYa8JfjYRUv5CrqkqDawxgLK7y",
+  "symbol": "iCoin",
+  "network": "solana",
+  "added_ts": 1793402423,
+  "added_fdv": 45638.49,
+  "added_vol_h1": 2564.68,
+  "added_liq": 0.0,
+  "added_venue": "bonding_curve",
+  "checks": 0,
+  "last_fdv": 45638.49,
+  "last_vol_h1": 2564.68,
+  "peak_fdv": 45638.49
  }
 }
