@@ -3382,3 +3382,28 @@
 {"name": "paperv3.close", "ts": 1793402549, "n": 1, "detail": "ZACKTRADES NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1793402577, "n": 181, "detail": "181 rows, universe 0, 0 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1793402577, "n": 33, "detail": "read=1 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793413990, "n": 1, "detail": "BzD3s44WXL6EpShNgZTxd94n", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793413992, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793413993, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793413994, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793414009, "n": 1, "detail": "441XqfjtWv98cf4yPADD9bLJ", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793414022, "n": 1, "detail": "BCQvYQWDEDUdhWXmbbA7HffK", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793414023, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793414023, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793414044, "n": 1, "detail": "7wx7kV1XVswswSxom4RYBMM8", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793414045, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793414046, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793414066, "n": 1, "detail": "CZx7w88Yg9wAaHGuQBAdFPkJ", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793414066, "n": 8, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1793414066, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1793414079, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1793414080, "n": 22, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793414080, "n": 1, "detail": "SI MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793414099, "n": 1, "detail": "TESLA SI MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793414118, "n": 1, "detail": "WORM MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793414173, "n": 1, "detail": "FATCOIN NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793414192, "n": 1, "detail": "FATCOIN NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793414192, "n": 1, "detail": "Zazu NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793414229, "n": 1, "detail": "ZERO TARGET", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1793414339, "n": 413, "detail": "413 rows, universe 258, 8 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1793414339, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
