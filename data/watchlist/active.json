@@ -9,7 +9,7 @@
   "added_vol_h1": 2564.68,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 45638.49,
   "last_vol_h1": 0.0,
   "peak_fdv": 45638.49
@@ -24,9 +24,39 @@
   "added_vol_h1": 0.24,
   "added_liq": 38.4,
   "added_venue": "amm",
-  "checks": 1,
-  "last_fdv": 39677.0,
-  "last_vol_h1": 4.99,
+  "checks": 2,
+  "last_fdv": 49612.0,
+  "last_vol_h1": 46.89,
   "peak_fdv": 60561.0
+ },
+ "E6ykLfbyGthGTJF4H4BQu9okWYyktoKZ6Qt3gjzEpump": {
+  "contract": "E6ykLfbyGthGTJF4H4BQu9okWYyktoKZ6Qt3gjzEpump",
+  "pair": "AZWDKMui5Cwb3SbAdfdsovHzwT9Awuf2RYm557xr8Frz",
+  "symbol": "Pizzacity",
+  "network": "solana",
+  "added_ts": 1793458479,
+  "added_fdv": 45546.0,
+  "added_vol_h1": 4415.21,
+  "added_liq": 15833.42,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 45546.0,
+  "last_vol_h1": 4415.21,
+  "peak_fdv": 45546.0
+ },
+ "3pYa8ceUdsLtfRdRjupeaFtk91MiRsjESvz1JQzb39jy": {
+  "contract": "3pYa8ceUdsLtfRdRjupeaFtk91MiRsjESvz1JQzb39jy",
+  "pair": "6ajv2FeMhjU8PHdtuvrETgF5HvMRmimtdj1sViR8zx6u",
+  "symbol": "jeff",
+  "network": "solana",
+  "added_ts": 1793458524,
+  "added_fdv": 47817.39,
+  "added_vol_h1": 7923.99,
+  "added_liq": 0.0,
+  "added_venue": "bonding_curve",
+  "checks": 0,
+  "last_fdv": 47817.39,
+  "last_vol_h1": 7923.99,
+  "peak_fdv": 47817.39
  }
 }
