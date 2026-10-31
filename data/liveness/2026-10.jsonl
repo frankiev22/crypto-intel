@@ -3407,3 +3407,29 @@
 {"name": "paperv3.close", "ts": 1793414229, "n": 1, "detail": "ZERO TARGET", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1793414339, "n": 413, "detail": "413 rows, universe 258, 8 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1793414339, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793436654, "n": 1, "detail": "EUeCqw6CKL1zqFQgBFunoECm", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793436656, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793436675, "n": 1, "detail": "9vaJCvZRp6RfJcU7hW7hFHVc", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793436675, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793436695, "n": 1, "detail": "EKASJ6yNVrfzU54vwfyQdEvF", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793436695, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793436716, "n": 1, "detail": "7yDzzFPUMrCcSvWWJvFnnGEh", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793436717, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793436737, "n": 1, "detail": "Cnr8t8awNSsddaMuVrqJBQJ5", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793436737, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793436775, "n": 1, "detail": "6WZcD9RDgH3FdMk4ZPcKE1em", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793436775, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793436777, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793436796, "n": 1, "detail": "DY3uKmixbrts9iuf968UkmrS", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793436796, "n": 9, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1793436796, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1793436810, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1793436811, "n": 22, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793436811, "n": 1, "detail": "OpenAI MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793436830, "n": 1, "detail": "SAPLING MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793436848, "n": 1, "detail": "RARI MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793436904, "n": 1, "detail": "Toly NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793436922, "n": 1, "detail": "Halloween NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793436941, "n": 1, "detail": "LUMI NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1793437049, "n": 349, "detail": "349 rows, universe 100, 8 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1793437050, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
