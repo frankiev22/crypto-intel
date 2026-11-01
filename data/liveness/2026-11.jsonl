@@ -39,3 +39,26 @@
 {"name": "paperv3.close", "ts": 1793520509, "n": 1, "detail": "BTC NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1793520606, "n": 348, "detail": "348 rows, universe 100, 10 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1793520606, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793545457, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793545476, "n": 1, "detail": "DoPuTpyJnKEvZeQpDTr5cbZ1", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793545496, "n": 1, "detail": "HLzTFsX99uqzAP7uK36gJ2pP", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793545497, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793545516, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793545536, "n": 1, "detail": "5s9Qr4Q2zktGR7S9rwRKdg2b", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793545537, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1793545537, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1793545550, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1793545550, "n": 1, "detail": "graduated 7W9tVMusuQuVafv16qG8A5GzK4QjDVVSDFzwrhB5Vuv", "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1793545550, "n": 21, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793545551, "n": 1, "detail": "FĀFĀ MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793545569, "n": 1, "detail": "NEX Ai MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793545588, "n": 1, "detail": "V France MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793545606, "n": 1, "detail": "Grok MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793545624, "n": 1, "detail": "发发 MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793545642, "n": 1, "detail": "DeepSeek MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793545661, "n": 1, "detail": "FOREVER MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793545697, "n": 1, "detail": "DPRK NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793545716, "n": 1, "detail": "币安 NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793545734, "n": 1, "detail": "niketyson NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1793545842, "n": 319, "detail": "319 rows, universe 100, 8 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1793545843, "n": 33, "detail": "read=6 controlled=2 stale=0", "origin": "scheduled"}
