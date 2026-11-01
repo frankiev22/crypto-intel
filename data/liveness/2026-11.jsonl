@@ -62,3 +62,21 @@
 {"name": "paperv3.close", "ts": 1793545734, "n": 1, "detail": "niketyson NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1793545842, "n": 319, "detail": "319 rows, universe 100, 8 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1793545843, "n": 33, "detail": "read=6 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793561827, "n": 1, "detail": "2MJCy6qLHx2xWRttJhC3BxRx", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793561830, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793561831, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793561831, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793561833, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793561833, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793561859, "n": 1, "detail": "CLQdyoA6nGpXHNd48btidCoy", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793561859, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793561861, "n": 5, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1793561861, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1793561871, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1793561872, "n": 1, "detail": "graduated K2xuPXFxQCtEfNcRpKaCRowaG2PeRVPWxygXMt6j3vL", "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1793561872, "n": 13, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793561872, "n": 1, "detail": "NSTTAN MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793561891, "n": 1, "detail": "Anakin MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793561946, "n": 1, "detail": "bob NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1793562023, "n": 376, "detail": "376 rows, universe 171, 10 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1793562023, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}

@@ -1,19 +1,4 @@
 {
- "C4KmAgjyVrrGT7434zYwBJjdLCXLKwvF1cHzG6PrYBH4": {
-  "contract": "C4KmAgjyVrrGT7434zYwBJjdLCXLKwvF1cHzG6PrYBH4",
-  "pair": "FNoFRs1n3RYpLZg7K6LwryP8LVdQ7QMJ3ddVg61M58N3",
-  "symbol": "DODO",
-  "network": "solana",
-  "added_ts": 1793474170,
-  "added_fdv": 47805.76,
-  "added_vol_h1": 9307.06,
-  "added_liq": 0.0,
-  "added_venue": "bonding_curve",
-  "checks": 4,
-  "last_fdv": 47805.76,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 47805.76
- },
  "6Eib8H6ZuH63CQE4svzheAiFwvRU89TXvxWLL2adQkgw": {
   "contract": "6Eib8H6ZuH63CQE4svzheAiFwvRU89TXvxWLL2adQkgw",
   "pair": "5B5hsbrzzTSW5n8naLAPXBC9vpmzQnQRSuszc66uxYyN",
@@ -24,54 +9,9 @@
   "added_vol_h1": 1824.06,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 46512.24,
   "last_vol_h1": 0.0,
   "peak_fdv": 46512.24
- },
- "K2xuPXFxQCtEfNcRpKaCRowaG2PeRVPWxygXMt6j3vL": {
-  "contract": "K2xuPXFxQCtEfNcRpKaCRowaG2PeRVPWxygXMt6j3vL",
-  "pair": "BGqqrp3D7vRqrGL4frZPXXDXzJRtZNMwfkQxutxAnqnU",
-  "symbol": "REGRETAMIN",
-  "network": "solana",
-  "added_ts": 1793545455,
-  "added_fdv": 59570.0,
-  "added_vol_h1": 0.13,
-  "added_liq": 0.0,
-  "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 59570.0,
-  "last_vol_h1": 0.13,
-  "peak_fdv": 59570.0
- },
- "Bds2wXdaVso59tvVY5eTCXr1PxEVmPubC9ggymvzpump": {
-  "contract": "Bds2wXdaVso59tvVY5eTCXr1PxEVmPubC9ggymvzpump",
-  "pair": "6PBR7TgcTrnKHbx6NVaFzDyMRkXxpDC52ga2pJpuQVWa",
-  "symbol": "memestock",
-  "network": "solana",
-  "added_ts": 1793545497,
-  "added_fdv": 56801.0,
-  "added_vol_h1": 2.35,
-  "added_liq": 2.31,
-  "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 56801.0,
-  "last_vol_h1": 2.35,
-  "peak_fdv": 56801.0
- },
- "GdNXhuwnExf8fKY31vrXZmBFhqVKhp71MQ8syvqDu25d": {
-  "contract": "GdNXhuwnExf8fKY31vrXZmBFhqVKhp71MQ8syvqDu25d",
-  "pair": "BKDuKsvBuH98ShQmbon5pg4DNrB2fL8Jn1cPbbXNrrUs",
-  "symbol": "memestock",
-  "network": "solana",
-  "added_ts": 1793545497,
-  "added_fdv": 63082.0,
-  "added_vol_h1": 27723.32,
-  "added_liq": 2400.73,
-  "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 63082.0,
-  "last_vol_h1": 27723.32,
-  "peak_fdv": 63082.0
  }
 }
