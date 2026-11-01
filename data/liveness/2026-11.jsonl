@@ -1,0 +1,20 @@
+{"name": "scan.observations", "ts": 1793496525, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793496525, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793496546, "n": 1, "detail": "3DE9u6RXt7Kaz3XpNZofdLUq", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793496547, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793496547, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793496549, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793496562, "n": 1, "detail": "FRJgFqZT7HkpG59S5zQ44mZj", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793496564, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793496564, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793496578, "n": 1, "detail": "FGKi3kNw1ZwYKknDrUDUW56V", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793496592, "n": 1, "detail": "CGNb7qZTYVKTpit3CCz3xB5D", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793496592, "n": 5, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1793496592, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1793496607, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1793496607, "n": 21, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793496608, "n": 1, "detail": "SAFU MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793496627, "n": 1, "detail": "Rtxcraft MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793496645, "n": 1, "detail": "SanDicks MAX_HOLD", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1793496811, "n": 390, "detail": "390 rows, universe 155, 8 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1793496811, "n": 33, "detail": "read=1 controlled=2 stale=0", "origin": "scheduled"}
