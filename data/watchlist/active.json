@@ -9,7 +9,7 @@
   "added_vol_h1": 7923.99,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 47817.39,
   "last_vol_h1": 0.0,
   "peak_fdv": 47817.39
@@ -24,7 +24,7 @@
   "added_vol_h1": 9307.06,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 47805.76,
   "last_vol_h1": 0.0,
   "peak_fdv": 47805.76
@@ -39,9 +39,24 @@
   "added_vol_h1": 1824.06,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 46512.24,
   "last_vol_h1": 0.0,
   "peak_fdv": 46512.24
+ },
+ "7W9tVMusuQuVafv16qG8A5GzK4QjDVVSDFzwrhB5Vuv": {
+  "contract": "7W9tVMusuQuVafv16qG8A5GzK4QjDVVSDFzwrhB5Vuv",
+  "pair": "5kTKJKudXtxPBj39qcpBiVy1roFYsWuj4AbCEUFyMsA5",
+  "symbol": "niketyson",
+  "network": "solana",
+  "added_ts": 1793520383,
+  "added_fdv": 55607.0,
+  "added_vol_h1": 35555.81,
+  "added_liq": 96649.74,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 55607.0,
+  "last_vol_h1": 35555.81,
+  "peak_fdv": 55607.0
  }
 }
