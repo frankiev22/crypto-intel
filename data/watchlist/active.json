@@ -1,19 +1,4 @@
 {
- "HbHFshyniA9yLrooAZxefPcdwrugLaRQdwQqM7W8i2C1": {
-  "contract": "HbHFshyniA9yLrooAZxefPcdwrugLaRQdwQqM7W8i2C1",
-  "pair": "FqqQJgtsSs4kRGNhJ2Fu7qtrJfP48riaDbgYcGK9X5V1",
-  "symbol": "paws",
-  "network": "solana",
-  "added_ts": 1793613405,
-  "added_fdv": 50608.0,
-  "added_vol_h1": 16556.56,
-  "added_liq": 2137.35,
-  "added_venue": "amm",
-  "checks": 2,
-  "last_fdv": null,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 50608.0
- },
  "AXepDkx4pq1wz6G14DM9ZEo4CLMA7AJur9nCJJ6j1qh7": {
   "contract": "AXepDkx4pq1wz6G14DM9ZEo4CLMA7AJur9nCJJ6j1qh7",
   "pair": "CJKdYUibLtmbkBBn9HbkDAb8vVkq1CD1NTfBnXnXhtQU",
@@ -24,9 +9,54 @@
   "added_vol_h1": 5034.58,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
+  "checks": 1,
   "last_fdv": 45830.89,
-  "last_vol_h1": 5034.58,
+  "last_vol_h1": 0.0,
   "peak_fdv": 45830.89
+ },
+ "HZu42yZHFrj66dcrUdjYBJJ59CnNLdi8h5ib7ChnsXsJ": {
+  "contract": "HZu42yZHFrj66dcrUdjYBJJ59CnNLdi8h5ib7ChnsXsJ",
+  "pair": "AJ2s19QDtD2eTLNLHA4qLWAhzaxNWiT7BeBwpZYscmaW",
+  "symbol": "GENESIS",
+  "network": "solana",
+  "added_ts": 1793700078,
+  "added_fdv": 64812.0,
+  "added_vol_h1": 2509.23,
+  "added_liq": 2773.9,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 64812.0,
+  "last_vol_h1": 2509.23,
+  "peak_fdv": 64812.0
+ },
+ "VRz3EBcurzf2k6zDpGW11f98eJeDtqmN2TQWZBNsagt": {
+  "contract": "VRz3EBcurzf2k6zDpGW11f98eJeDtqmN2TQWZBNsagt",
+  "pair": "4ktGg2imFDEhiSNjUhH9wqXxWhW9KD65Zkb4Yh1s7MV9",
+  "symbol": "GENESIS",
+  "network": "solana",
+  "added_ts": 1793700100,
+  "added_fdv": 65940.0,
+  "added_vol_h1": 40433.22,
+  "added_liq": 20863.34,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 65940.0,
+  "last_vol_h1": 40433.22,
+  "peak_fdv": 65940.0
+ },
+ "3imKAhTuUakBCGK1aXxihc13Qe5prGzQb7eWMn1gpump": {
+  "contract": "3imKAhTuUakBCGK1aXxihc13Qe5prGzQb7eWMn1gpump",
+  "pair": "F6CGY3oCKofC8eq2jGe84rKbbjLjJ7crURc7ZBVG39Qx",
+  "symbol": "김여정",
+  "network": "solana",
+  "added_ts": 1793700163,
+  "added_fdv": 49510.0,
+  "added_vol_h1": 28357.53,
+  "added_liq": 16626.33,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 49510.0,
+  "last_vol_h1": 28357.53,
+  "peak_fdv": 49510.0
  }
 }
