@@ -1,19 +1,4 @@
 {
- "8QkrHZoLarUvhY4sbgtFugNWbczEC6TaA9rpeAmppump": {
-  "contract": "8QkrHZoLarUvhY4sbgtFugNWbczEC6TaA9rpeAmppump",
-  "pair": "FxHz33ESRMSNNrRCewXeHh7gd7fs23nL7RcBshhQwhMw",
-  "symbol": "Tedi",
-  "network": "solana",
-  "added_ts": 1793574344,
-  "added_fdv": 45007.95,
-  "added_vol_h1": 1098.97,
-  "added_liq": 0.0,
-  "added_venue": "bonding_curve",
-  "checks": 3,
-  "last_fdv": 45008.02,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 45008.02
- },
  "HbHFshyniA9yLrooAZxefPcdwrugLaRQdwQqM7W8i2C1": {
   "contract": "HbHFshyniA9yLrooAZxefPcdwrugLaRQdwQqM7W8i2C1",
   "pair": "FqqQJgtsSs4kRGNhJ2Fu7qtrJfP48riaDbgYcGK9X5V1",
@@ -24,9 +9,24 @@
   "added_vol_h1": 16556.56,
   "added_liq": 2137.35,
   "added_venue": "amm",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": null,
   "last_vol_h1": 0.0,
   "peak_fdv": 50608.0
+ },
+ "AXepDkx4pq1wz6G14DM9ZEo4CLMA7AJur9nCJJ6j1qh7": {
+  "contract": "AXepDkx4pq1wz6G14DM9ZEo4CLMA7AJur9nCJJ6j1qh7",
+  "pair": "CJKdYUibLtmbkBBn9HbkDAb8vVkq1CD1NTfBnXnXhtQU",
+  "symbol": "ascend",
+  "network": "solana",
+  "added_ts": 1793672974,
+  "added_fdv": 45830.89,
+  "added_vol_h1": 5034.58,
+  "added_liq": 0.0,
+  "added_venue": "bonding_curve",
+  "checks": 0,
+  "last_fdv": 45830.89,
+  "last_vol_h1": 5034.58,
+  "peak_fdv": 45830.89
  }
 }
