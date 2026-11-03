@@ -9,7 +9,7 @@
   "added_vol_h1": 5034.58,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 45830.89,
   "last_vol_h1": 0.0,
   "peak_fdv": 45830.89
@@ -24,24 +24,24 @@
   "added_vol_h1": 1973.64,
   "added_liq": 2035.63,
   "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 46488.0,
-  "last_vol_h1": 1973.64,
+  "checks": 1,
+  "last_fdv": null,
+  "last_vol_h1": 0.0,
   "peak_fdv": 46488.0
  },
- "2cHTzJT7NBkFjHA5v288UrTNNF8qZCaJWZbNQtvjfV33": {
-  "contract": "2cHTzJT7NBkFjHA5v288UrTNNF8qZCaJWZbNQtvjfV33",
-  "pair": "2Qe7xzdutrJyCvMuLrAQeczq7HnmMcem5iE9HTiAvqFX",
-  "symbol": "SLOPAGANDA",
+ "2kTFqSrZbd69w1ag3GAN9LmCvQnFYcCMEf7QD2bcA2uq": {
+  "contract": "2kTFqSrZbd69w1ag3GAN9LmCvQnFYcCMEf7QD2bcA2uq",
+  "pair": "E2N4yqe828MjNQKAquxWhNBT3LN7Xfq81BrPtau7Mr3W",
+  "symbol": "AMC",
   "network": "solana",
-  "added_ts": 1793728139,
-  "added_fdv": 56474.0,
-  "added_vol_h1": 144836.04,
-  "added_liq": 19663.91,
-  "added_venue": "amm",
+  "added_ts": 1793745384,
+  "added_fdv": 46652.5,
+  "added_vol_h1": 5943.7,
+  "added_liq": 0.0,
+  "added_venue": "bonding_curve",
   "checks": 0,
-  "last_fdv": 56474.0,
-  "last_vol_h1": 144836.04,
-  "peak_fdv": 56474.0
+  "last_fdv": 46652.5,
+  "last_vol_h1": 5943.7,
+  "peak_fdv": 46652.5
  }
 }
