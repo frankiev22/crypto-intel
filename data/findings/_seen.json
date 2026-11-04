@@ -19004,5 +19004,45 @@
   "keys": [
    "AAmigrZ5MZdJgyxadkpVetRC9tiEua8CQwVGJFDEtfAF"
   ]
+ },
+ "scanner-hit:gzpqkekfnpruntxjhffdzwrkxduedhlrzsadm": {
+  "first_seen": "2026-11-04T17:59:31+00:00",
+  "count": 1,
+  "example": "scanner-hit: GzpQKEk2Fnp4RU3n9TxjHFF8DZ5w4RKXdUedhLrzsaDm",
+  "keys": [
+   "GzpQKEk2Fnp4RU3n9TxjHFF8DZ5w4RKXdUedhLrzsaDm"
+  ]
+ },
+ "scanner-hit:hzbltqeztsgxgegnrnyxkvmxwnfkfnujrzx": {
+  "first_seen": "2026-11-04T17:59:32+00:00",
+  "count": 1,
+  "example": "scanner-hit: HZBL3Tq9Ez7tSgxGeGnRNyX8Kv98mXw1nF3kfnujr7zx",
+  "keys": [
+   "HZBL3Tq9Ez7tSgxGeGnRNyX8Kv98mXw1nF3kfnujr7zx"
+  ]
+ },
+ "scanner-hit:adqzczpwwmkryfnqszysfkmcfncckxxysmg": {
+  "first_seen": "2026-11-04T17:59:32+00:00",
+  "count": 1,
+  "example": "scanner-hit: AdqZczP69WWmK5rYFnqS9ZysF34k3mCfnC1CkXXySm2g",
+  "keys": [
+   "AdqZczP69WWmK5rYFnqS9ZysF34k3mCfnC1CkXXySm2g"
+  ]
+ },
+ "scanner-hit:efuffpejphjswautycnxkogxgdhgzvgkfpamf": {
+  "first_seen": "2026-11-04T17:59:32+00:00",
+  "count": 1,
+  "example": "scanner-hit: 9EFUfFpEJP7HJ2swaUt6yCn7X9koGXgDhgzVGkFPaMf9",
+  "keys": [
+   "9EFUfFpEJP7HJ2swaUt6yCn7X9koGXgDhgzVGkFPaMf9"
+  ]
+ },
+ "scanner-hit:fnzunmimtpyhaxzarwayyxsehyanvbkymacqqyo": {
+  "first_seen": "2026-11-04T17:59:33+00:00",
+  "count": 1,
+  "example": "scanner-hit: FnzUNm5imtPyHaxZArWaYYx88sehyan3vbKYmACQ5qYo",
+  "keys": [
+   "FnzUNm5imtPyHaxZArWaYYx88sehyan3vbKYmACQ5qYo"
+  ]
  }
 }
