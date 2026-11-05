@@ -9,7 +9,7 @@
   "added_vol_h1": 124.33,
   "added_liq": 2267.74,
   "added_venue": "amm",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": null,
   "last_vol_h1": 0.0,
   "peak_fdv": 47197.0
@@ -24,9 +24,39 @@
   "added_vol_h1": 4302.75,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 52181.46,
   "last_vol_h1": 0.0,
   "peak_fdv": 52181.46
+ },
+ "Ro5MDqef5rxKh419tvHerkyAG6g78tb49MW61UUgipc": {
+  "contract": "Ro5MDqef5rxKh419tvHerkyAG6g78tb49MW61UUgipc",
+  "pair": "G5LoqbQEWHoGZdPrZGJx17Rdrd49GsXa3TpqyXGhndEu",
+  "symbol": "LEEROY",
+  "network": "solana",
+  "added_ts": 1793850311,
+  "added_fdv": 62287.0,
+  "added_vol_h1": 63373.35,
+  "added_liq": 104298.58,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 62287.0,
+  "last_vol_h1": 63373.35,
+  "peak_fdv": 62287.0
+ },
+ "7xbP2HpQccN215hFdQAfnfVwjioND4vYpZDjS1Mxqmx5": {
+  "contract": "7xbP2HpQccN215hFdQAfnfVwjioND4vYpZDjS1Mxqmx5",
+  "pair": "H5VHE3F59Feb9z1TWRuLYdL8afwz68t9riU4fmt9AN6P",
+  "symbol": "Dumbcoin",
+  "network": "solana",
+  "added_ts": 1793850330,
+  "added_fdv": 51000.0,
+  "added_vol_h1": 36539.15,
+  "added_liq": 20481.44,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 51000.0,
+  "last_vol_h1": 36539.15,
+  "peak_fdv": 51000.0
  }
 }
