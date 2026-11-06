@@ -9,9 +9,9 @@
   "added_vol_h1": 128705.74,
   "added_liq": 18254.76,
   "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 50680.0,
-  "last_vol_h1": 128705.74,
-  "peak_fdv": 50680.0
+  "checks": 1,
+  "last_fdv": 55399.0,
+  "last_vol_h1": 0.0,
+  "peak_fdv": 55399.0
  }
 }
