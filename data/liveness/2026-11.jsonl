@@ -439,3 +439,25 @@
 {"name": "paperv3.close", "ts": 1793905701, "n": 1, "detail": "COGE NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1793905792, "n": 378, "detail": "378 rows, universe 177, 8 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1793905792, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793923892, "n": 1, "detail": "2Te1T35jimRHx1ymy78ufbEz", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793923912, "n": 1, "detail": "FtL4J9AH79YGcykq7FX2twgP", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793923915, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793923928, "n": 1, "detail": "EH1VxYi3CTSnaWKsRNSFLyBY", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793923928, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793923930, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793923931, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793923932, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1793923945, "n": 1, "detail": "9gZAYCexfcHbuT2kLVqtetoG", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793923945, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793923947, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793923947, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1793923947, "n": 2, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1793923947, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1793923960, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1793923960, "n": 14, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793923960, "n": 1, "detail": "LEEROY MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793923978, "n": 1, "detail": "Jerry MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793924015, "n": 1, "detail": "COGE🔥 NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1793924033, "n": 1, "detail": "Bear NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1793924129, "n": 394, "detail": "394 rows, universe 250, 9 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1793924136, "n": 33, "detail": "read=6 controlled=2 stale=0", "origin": "scheduled"}
