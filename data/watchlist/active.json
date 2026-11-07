@@ -1,19 +1,4 @@
 {
- "BK2JU1SUcLKGHPcQZotm9Q64BVhfku7yCinSuGroB376": {
-  "contract": "BK2JU1SUcLKGHPcQZotm9Q64BVhfku7yCinSuGroB376",
-  "pair": "35co9rZdnC3RQRPoMWtB4uuVVuTVEqz9WNd4Vk7rbbty",
-  "symbol": "MIMI",
-  "network": "solana",
-  "added_ts": 1793998351,
-  "added_fdv": 59160.0,
-  "added_vol_h1": 14685.5,
-  "added_liq": 1.63,
-  "added_venue": "amm",
-  "checks": 4,
-  "last_fdv": 59160.0,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 59160.0
- },
  "9rhk3YqLbMk3KpD4HP3Zr6NScFd2ey3Ar4iEAWqapump": {
   "contract": "9rhk3YqLbMk3KpD4HP3Zr6NScFd2ey3Ar4iEAWqapump",
   "pair": "GHivAV4WUbW3xfx3zs5rPrhtCx1wTePPpMnzGXwqfrc8",
@@ -24,54 +9,39 @@
   "added_vol_h1": 2163.33,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 63248.31,
   "last_vol_h1": 0.0,
   "peak_fdv": 63248.31
  },
- "Hzd8aipeiiB7txuG9yYnAw4SbDpn9dJbFX514WSrpump": {
-  "contract": "Hzd8aipeiiB7txuG9yYnAw4SbDpn9dJbFX514WSrpump",
-  "pair": "ATxQtkSBEFAkTP8SRNfsfqZTfAiyqc4C3ceQ9cK4KAe9",
-  "symbol": "HABIBI",
+ "7RqqJ9eBuuVsk6VbAQiSiE9wv8sJfNtC8YHAB5Fox8ku": {
+  "contract": "7RqqJ9eBuuVsk6VbAQiSiE9wv8sJfNtC8YHAB5Fox8ku",
+  "pair": "HbhaKbHLJzs96WqVP97ymMwiywVqyQcCrTGrMpFBTRzF",
+  "symbol": "GROKIE",
   "network": "solana",
-  "added_ts": 1794075451,
-  "added_fdv": 48342.0,
-  "added_vol_h1": 20516.84,
-  "added_liq": 16096.62,
+  "added_ts": 1794089116,
+  "added_fdv": 50025.0,
+  "added_vol_h1": 9976.29,
+  "added_liq": 2426.77,
   "added_venue": "amm",
   "checks": 0,
-  "last_fdv": 48342.0,
-  "last_vol_h1": 20516.84,
-  "peak_fdv": 48342.0
+  "last_fdv": 50025.0,
+  "last_vol_h1": 9976.29,
+  "peak_fdv": 50025.0
  },
- "G3wp9wFJmro7xeP67rqb44HgLzcnPB4pom8j84CzEJ8p": {
-  "contract": "G3wp9wFJmro7xeP67rqb44HgLzcnPB4pom8j84CzEJ8p",
-  "pair": "8jAXKSbMZxpJFvdgo3k6u3tVPDxNXAVv8hD2WtpfdWCu",
-  "symbol": "SEALHOOD",
+ "GdiE3id6x6VpVQ7GerhRUFVpEyjwNQQZU48pwZ4f7pRX": {
+  "contract": "GdiE3id6x6VpVQ7GerhRUFVpEyjwNQQZU48pwZ4f7pRX",
+  "pair": "9XqMcHgjmvoS7ZXu3So17yhnoG3vpUCQSgczfMLUT4X1",
+  "symbol": "HEROES",
   "network": "solana",
-  "added_ts": 1794075465,
-  "added_fdv": 53884.0,
-  "added_vol_h1": 3683.0,
-  "added_liq": 2785.07,
+  "added_ts": 1794089131,
+  "added_fdv": 65532.0,
+  "added_vol_h1": 0.54,
+  "added_liq": 0.32,
   "added_venue": "amm",
   "checks": 0,
-  "last_fdv": 53884.0,
-  "last_vol_h1": 3683.0,
-  "peak_fdv": 53884.0
- },
- "8Am5aLz5GPwqtxRkYPEsNC6E8jfsG9PVVNdESwcCDYdX": {
-  "contract": "8Am5aLz5GPwqtxRkYPEsNC6E8jfsG9PVVNdESwcCDYdX",
-  "pair": "FZqQ4DDx1omS4C2WnR47twuuLsTU3ZYAs4SWhNyCz1pF",
-  "symbol": "HABIBI",
-  "network": "solana",
-  "added_ts": 1794075502,
-  "added_fdv": 65107.0,
-  "added_vol_h1": 106961.5,
-  "added_liq": 20743.04,
-  "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 65107.0,
-  "last_vol_h1": 106961.5,
-  "peak_fdv": 65107.0
+  "last_fdv": 65532.0,
+  "last_vol_h1": 0.54,
+  "peak_fdv": 65532.0
  }
 }
