@@ -9,9 +9,39 @@
   "added_vol_h1": 14685.5,
   "added_liq": 1.63,
   "added_venue": "amm",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 59160.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 59160.0
+ },
+ "2coT7YUQuobVf1WgyNWdp9WxUC6mRAGdThY9qDs8pump": {
+  "contract": "2coT7YUQuobVf1WgyNWdp9WxUC6mRAGdThY9qDs8pump",
+  "pair": "89eBEG5Exh9seYeCMaKE9pPCk9hgbixVtKqCWXGxWkc3",
+  "symbol": "ELON",
+  "network": "solana",
+  "added_ts": 1794058340,
+  "added_fdv": 66478.0,
+  "added_vol_h1": 13780.64,
+  "added_liq": 18939.52,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 66478.0,
+  "last_vol_h1": 13780.64,
+  "peak_fdv": 66478.0
+ },
+ "9rhk3YqLbMk3KpD4HP3Zr6NScFd2ey3Ar4iEAWqapump": {
+  "contract": "9rhk3YqLbMk3KpD4HP3Zr6NScFd2ey3Ar4iEAWqapump",
+  "pair": "GHivAV4WUbW3xfx3zs5rPrhtCx1wTePPpMnzGXwqfrc8",
+  "symbol": "HANS",
+  "network": "solana",
+  "added_ts": 1794058405,
+  "added_fdv": 63044.35,
+  "added_vol_h1": 2163.33,
+  "added_liq": 0.0,
+  "added_venue": "bonding_curve",
+  "checks": 0,
+  "last_fdv": 63044.35,
+  "last_vol_h1": 2163.33,
+  "peak_fdv": 63044.35
  }
 }
