@@ -19452,5 +19452,29 @@
   "keys": [
    "BDkyza3oudZW774JU9kraUMJzb7g1JjfYSzCZwFF2y8u"
   ]
+ },
+ "scanner-hit:nwmzgosankvbdffzcxkmzkrnateozpsbzfid": {
+  "first_seen": "2026-11-08T15:05:59+00:00",
+  "count": 1,
+  "example": "scanner-hit: 9nW2Mzg27osA3NKVBdFfzCxkMZkRnaTE8ozPSBz3fi2D",
+  "keys": [
+   "9nW2Mzg27osA3NKVBdFfzCxkMZkRnaTE8ozPSBz3fi2D"
+  ]
+ },
+ "scanner-hit:kwsjrcrsumydqfnsmjwwzwgesammbeidez": {
+  "first_seen": "2026-11-08T15:05:59+00:00",
+  "count": 1,
+  "example": "scanner-hit: 57KWsjRCrs9uMyDqF5N1sMjWwzw22g3ESAmmbE3i2DeZ",
+  "keys": [
+   "57KWsjRCrs9uMyDqF5N1sMjWwzw22g3ESAmmbE3i2DeZ"
+  ]
+ },
+ "scanner-hit:bgogfwslbhlragfdxkahwrajjmnjsrsuvswcjep": {
+  "first_seen": "2026-11-08T15:05:59+00:00",
+  "count": 1,
+  "example": "scanner-hit: BgogfWS7LBHL1RA3Gf9dXkaHwRajJmNjSr7SUVsWcjep",
+  "keys": [
+   "BgogfWS7LBHL1RA3Gf9dXkaHwRajJmNjSr7SUVsWcjep"
+  ]
  }
 }
