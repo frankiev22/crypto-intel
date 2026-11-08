@@ -19476,5 +19476,13 @@
   "keys": [
    "BgogfWS7LBHL1RA3Gf9dXkaHwRajJmNjSr7SUVsWcjep"
   ]
+ },
+ "scanner-hit:bgvinveplgpnpqkvrwrpajbvggwccnjxbfazeey": {
+  "first_seen": "2026-11-08T19:39:42+00:00",
+  "count": 1,
+  "example": "scanner-hit: BG5vinveP3LgPnpQKVrwRPAJBvGgw9Ccnjx2bFazee5Y",
+  "keys": [
+   "BG5vinveP3LgPnpQKVrwRPAJBvGgw9Ccnjx2bFazee5Y"
+  ]
  }
 }
