@@ -671,3 +671,23 @@
 {"name": "paperv3.close", "ts": 1794101228, "n": 1, "detail": "Moohan NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1794101332, "n": 400, "detail": "400 rows, universe 210, 8 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1794101333, "n": 33, "detail": "read=6 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1794124569, "n": 1, "detail": "Fz4G2WtCQjfxX4cCnjoo1iHa", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794124571, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1794124585, "n": 1, "detail": "8SwMWCUyvbb9cmHrstHhXndU", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794124586, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1794124600, "n": 1, "detail": "BDkyza3oudZW774JU9kraUMJ", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794124600, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794124603, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794124603, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794124605, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794124605, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1794124605, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1794124616, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1794124616, "n": 1, "detail": "graduated FUmYFXnabTBvXHwqaCWwVtyeDibMPRdFnSG8brfMpump", "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1794124616, "n": 27, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1794124617, "n": 1, "detail": "SACHI MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1794124636, "n": 1, "detail": "CASHDOG MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1794124655, "n": 1, "detail": "BRUH MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1794124673, "n": 1, "detail": "Drexfun MAX_HOLD", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1794124859, "n": 376, "detail": "376 rows, universe 156, 8 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1794124859, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}

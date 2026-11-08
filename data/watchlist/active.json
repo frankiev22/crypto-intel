@@ -9,7 +9,7 @@
   "added_vol_h1": 2163.33,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 63248.31,
   "last_vol_h1": 0.0,
   "peak_fdv": 63248.31
@@ -24,7 +24,7 @@
   "added_vol_h1": 0.54,
   "added_liq": 0.32,
   "added_venue": "amm",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 32965.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 65532.0
@@ -39,24 +39,24 @@
   "added_vol_h1": 1868.92,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 0,
-  "last_fdv": 49869.5,
-  "last_vol_h1": 1868.92,
+  "checks": 1,
+  "last_fdv": 49853.42,
+  "last_vol_h1": 0.0,
   "peak_fdv": 49869.5
  },
- "FUmYFXnabTBvXHwqaCWwVtyeDibMPRdFnSG8brfMpump": {
-  "contract": "FUmYFXnabTBvXHwqaCWwVtyeDibMPRdFnSG8brfMpump",
-  "pair": "7adVeAuuxuD3UaptqJAuAgDc3U9GZuU5aoudew3t34R9",
-  "symbol": "Apexit",
+ "CdmzERuZnYQwqwa2rxtRjsMjDU6y6qrM5ez6n2mxpump": {
+  "contract": "CdmzERuZnYQwqwa2rxtRjsMjDU6y6qrM5ez6n2mxpump",
+  "pair": "9RFpjr3GE58Snhhj8WAG4J4Rys5RaC3Kv5q3ho7hUDRw",
+  "symbol": "GATOGLITCH",
   "network": "solana",
-  "added_ts": 1794101080,
-  "added_fdv": 65362.0,
-  "added_vol_h1": 12631.49,
-  "added_liq": 117318.76,
+  "added_ts": 1794124603,
+  "added_fdv": 53810.0,
+  "added_vol_h1": 3.12,
+  "added_liq": 0.35,
   "added_venue": "amm",
   "checks": 0,
-  "last_fdv": 65362.0,
-  "last_vol_h1": 12631.49,
-  "peak_fdv": 65362.0
+  "last_fdv": 53810.0,
+  "last_vol_h1": 3.12,
+  "peak_fdv": 53810.0
  }
 }
