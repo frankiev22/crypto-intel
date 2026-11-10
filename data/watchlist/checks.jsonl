@@ -23077,3 +23077,5 @@
 {"contract":"CdmzERuZnYQwqwa2rxtRjsMjDU6y6qrM5ez6n2mxpump","event":"check","resolved":false,"symbol":"GATOGLITCH","ts":1794220133}
 {"contract":"CdmzERuZnYQwqwa2rxtRjsMjDU6y6qrM5ez6n2mxpump","event":"check","resolved":false,"symbol":"GATOGLITCH","ts":1794258205}
 {"contract":"CdmzERuZnYQwqwa2rxtRjsMjDU6y6qrM5ez6n2mxpump","event":"check","resolved":false,"symbol":"GATOGLITCH","ts":1794281501}
+{"added_fdv":67159.0,"added_liq":19709.14,"added_ts":1794310982,"added_venue":"amm","added_vol_h1":37538.56,"checks":0,"contract":"2cqgTiTqP2q4bJ8KBTmozFFtnfGAbRjtwomoXUNHERvo","event":"added","last_fdv":67159.0,"last_vol_h1":37538.56,"network":"solana","pair":"CwkLMEGDumDa2qftwoWRLXMcQb1hFdQEzDiuPtUrE2H6","peak_fdv":67159.0,"symbol":"\uba38\uc2a4\ud06c","ts":1794310982}
+{"contract":"CdmzERuZnYQwqwa2rxtRjsMjDU6y6qrM5ez6n2mxpump","event":"check","resolved":false,"symbol":"GATOGLITCH","ts":1794311044}

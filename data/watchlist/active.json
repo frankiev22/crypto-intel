@@ -1,17 +1,17 @@
 {
- "CdmzERuZnYQwqwa2rxtRjsMjDU6y6qrM5ez6n2mxpump": {
-  "contract": "CdmzERuZnYQwqwa2rxtRjsMjDU6y6qrM5ez6n2mxpump",
-  "pair": "9RFpjr3GE58Snhhj8WAG4J4Rys5RaC3Kv5q3ho7hUDRw",
-  "symbol": "GATOGLITCH",
+ "2cqgTiTqP2q4bJ8KBTmozFFtnfGAbRjtwomoXUNHERvo": {
+  "contract": "2cqgTiTqP2q4bJ8KBTmozFFtnfGAbRjtwomoXUNHERvo",
+  "pair": "CwkLMEGDumDa2qftwoWRLXMcQb1hFdQEzDiuPtUrE2H6",
+  "symbol": "머스크",
   "network": "solana",
-  "added_ts": 1794124603,
-  "added_fdv": 53810.0,
-  "added_vol_h1": 3.12,
-  "added_liq": 0.35,
+  "added_ts": 1794310982,
+  "added_fdv": 67159.0,
+  "added_vol_h1": 37538.56,
+  "added_liq": 19709.14,
   "added_venue": "amm",
-  "checks": 4,
-  "last_fdv": 53810.0,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 53810.0
+  "checks": 0,
+  "last_fdv": 67159.0,
+  "last_vol_h1": 37538.56,
+  "peak_fdv": 67159.0
  }
 }
