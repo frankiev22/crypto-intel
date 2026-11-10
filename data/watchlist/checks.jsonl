@@ -23076,3 +23076,4 @@
 {"buys_h1":0,"check_n":1,"contract":"14CqPk3MVGL2PgXC2oSUvtT1H4Vqgx3zLvk1FbJcoeLs","dex_id":"pumpswap","elapsed_h":3.574,"event":"check","exit_depth_usd":8.710232158211523e-08,"fdv":101375.0,"fdv_change":0.630557,"liq":0.0,"liq_quote":1e-09,"resolved":true,"sells_h1":0,"symbol":"PUSSY","ts":1794192474,"venue_type":"amm","vol_change":-1.0,"vol_h1":0.0,"vol_to_liq":null}
 {"contract":"CdmzERuZnYQwqwa2rxtRjsMjDU6y6qrM5ez6n2mxpump","event":"check","resolved":false,"symbol":"GATOGLITCH","ts":1794220133}
 {"contract":"CdmzERuZnYQwqwa2rxtRjsMjDU6y6qrM5ez6n2mxpump","event":"check","resolved":false,"symbol":"GATOGLITCH","ts":1794258205}
+{"contract":"CdmzERuZnYQwqwa2rxtRjsMjDU6y6qrM5ez6n2mxpump","event":"check","resolved":false,"symbol":"GATOGLITCH","ts":1794281501}
