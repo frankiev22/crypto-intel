@@ -881,3 +881,19 @@
 {"name": "paperv3.close", "ts": 1794311174, "n": 1, "detail": "X TARGET", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1794311264, "n": 377, "detail": "377 rows, universe 159, 8 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1794311264, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1794336918, "n": 1, "detail": "2BxEbCmRD2Cm2YJAjfu9hAXR", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1794336938, "n": 1, "detail": "BaKr7Hv1ACT9VCAoEzd5hLqV", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794336940, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1794336954, "n": 1, "detail": "K1PDVmLdT312uTB7saatE3Z7", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794336954, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794336955, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1794336970, "n": 1, "detail": "7UP37stc3Hy6a1EGuEoANqfg", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794336978, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794336978, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794336979, "n": 7, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1794336979, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1794336994, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "milestone.graduated", "ts": 1794336994, "n": 1, "detail": "graduated 2cqgTiTqP2q4bJ8KBTmozFFtnfGAbRjtwomoXUNHERvo", "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1794336994, "n": 14, "detail": null, "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1794337122, "n": 337, "detail": "337 rows, universe 100, 8 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1794337123, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}

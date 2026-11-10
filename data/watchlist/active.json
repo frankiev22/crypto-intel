@@ -1,17 +1,17 @@
 {
- "2cqgTiTqP2q4bJ8KBTmozFFtnfGAbRjtwomoXUNHERvo": {
-  "contract": "2cqgTiTqP2q4bJ8KBTmozFFtnfGAbRjtwomoXUNHERvo",
-  "pair": "CwkLMEGDumDa2qftwoWRLXMcQb1hFdQEzDiuPtUrE2H6",
-  "symbol": "머스크",
+ "K1PDVmLdT312uTB7saatE3Z7FfJfjxTiDNxHxP4Kj5H": {
+  "contract": "K1PDVmLdT312uTB7saatE3Z7FfJfjxTiDNxHxP4Kj5H",
+  "pair": "DigX4vGzcWBTU6RrqjR359WStZVsnjA7QthJC1KZMuK",
+  "symbol": "FRONK",
   "network": "solana",
-  "added_ts": 1794310982,
-  "added_fdv": 67159.0,
-  "added_vol_h1": 37538.56,
-  "added_liq": 19709.14,
+  "added_ts": 1794336940,
+  "added_fdv": 60155.0,
+  "added_vol_h1": 38182.35,
+  "added_liq": 109383.64,
   "added_venue": "amm",
   "checks": 0,
-  "last_fdv": 67159.0,
-  "last_vol_h1": 37538.56,
-  "peak_fdv": 67159.0
+  "last_fdv": 60155.0,
+  "last_vol_h1": 38182.35,
+  "peak_fdv": 60155.0
  }
 }
