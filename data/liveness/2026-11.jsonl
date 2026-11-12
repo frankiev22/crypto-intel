@@ -1033,3 +1033,23 @@
 {"name": "paperv3.close", "ts": 1794478665, "n": 1, "detail": "BabyTrump NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1794478743, "n": 380, "detail": "380 rows, universe 160, 10 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1794478743, "n": 33, "detail": "read=6 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794507996, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1794508015, "n": 1, "detail": "5V8YdY9z8ZosmQWsWebSihUY", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794508016, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1794508035, "n": 1, "detail": "7pKfspznkqoZBapu87aSWuGM", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794508035, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1794508056, "n": 1, "detail": "9AdWb91LAEyAtsPyrF9UJJNg", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794508056, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794508056, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1794508075, "n": 1, "detail": "aY6Q6sRdDnUbTUHBNNJ5hFoE", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794508076, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1794508096, "n": 1, "detail": "GcxbeQ5msYkMsVbpBeL4kVDE", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794508097, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794508097, "n": 6, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1794508097, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1794508107, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1794508107, "n": 17, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1794508108, "n": 1, "detail": "DacityCoin MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1794508126, "n": 1, "detail": "CLAN MAX_HOLD", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1794508209, "n": 185, "detail": "185 rows, universe 0, 0 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1794508209, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
