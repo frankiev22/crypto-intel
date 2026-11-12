@@ -1,17 +1,32 @@
 {
- "BmscBkHwkmPuaZZ6JCw1XLJnPnhUEtkUVyWs2oPrBqY": {
-  "contract": "BmscBkHwkmPuaZZ6JCw1XLJnPnhUEtkUVyWs2oPrBqY",
-  "pair": "BaktmmejFhK9xbCvhmB6LkUN9Se58SHk3sQDJKaWsAvr",
-  "symbol": "CLAN",
+ "ESB1JqhPvJ2ZCYS1DPNoGKXXPw9QXAjs2tGMRKHKzzvg": {
+  "contract": "ESB1JqhPvJ2ZCYS1DPNoGKXXPw9QXAjs2tGMRKHKzzvg",
+  "pair": "Ai7A47UyQdUnppkSkLtthJvDf3yvyUY5Pt3yrRcUoGAe",
+  "symbol": "SCAT",
   "network": "solana",
-  "added_ts": 1794406104,
-  "added_fdv": 54944.0,
-  "added_vol_h1": 150675.09,
-  "added_liq": 14663.15,
+  "added_ts": 1794527475,
+  "added_fdv": 48191.0,
+  "added_vol_h1": 57702.59,
+  "added_liq": 16979.94,
   "added_venue": "amm",
   "checks": 0,
-  "last_fdv": 54944.0,
-  "last_vol_h1": 150675.09,
-  "peak_fdv": 54944.0
+  "last_fdv": 48191.0,
+  "last_vol_h1": 57702.59,
+  "peak_fdv": 48191.0
+ },
+ "AUudpcv3MdCGZt19QErHdKikqPb2AZRcMiZTWDwkrwGh": {
+  "contract": "AUudpcv3MdCGZt19QErHdKikqPb2AZRcMiZTWDwkrwGh",
+  "pair": "D6mEmfpbg2PmJEKZMG9EgTro7sjikq1ByLPY8enmbWPA",
+  "symbol": "Max",
+  "network": "solana",
+  "added_ts": 1794527494,
+  "added_fdv": 55813.0,
+  "added_vol_h1": 2688.72,
+  "added_liq": 2472.92,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 55813.0,
+  "last_vol_h1": 2688.72,
+  "peak_fdv": 55813.0
  }
 }

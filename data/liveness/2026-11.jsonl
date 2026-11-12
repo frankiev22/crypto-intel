@@ -1053,3 +1053,21 @@
 {"name": "paperv3.close", "ts": 1794508126, "n": 1, "detail": "CLAN MAX_HOLD", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1794508209, "n": 185, "detail": "185 rows, universe 0, 0 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1794508209, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794527472, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794527473, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794527473, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794527475, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1794527494, "n": 1, "detail": "ESB1JqhPvJ2ZCYS1DPNoGKXX", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794527495, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794527495, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794527496, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794527496, "n": 4, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1794527496, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1794527500, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1794527500, "n": 16, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1794527507, "n": 1, "detail": "CELON MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1794527519, "n": 1, "detail": "STINK MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1794527550, "n": 1, "detail": "IMG NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1794527562, "n": 1, "detail": "COLTON NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1794527645, "n": 385, "detail": "385 rows, universe 159, 9 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1794527646, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
