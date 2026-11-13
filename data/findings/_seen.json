@@ -19908,5 +19908,21 @@
   "keys": [
    "FJ6WPWe5ednVLwn3y1xqWfvWCT2WqoRVL4kG44gRaErm"
   ]
+ },
+ "scanner-hit:jrfaatfryezxyykrzismswtcefrprbwsbzfhwtmt": {
+  "first_seen": "2026-11-13T12:35:45+00:00",
+  "count": 1,
+  "example": "scanner-hit: 96JrFaaT4FryezxyykRziSmSwTCEFRpRbWsbZF9hwtmT",
+  "keys": [
+   "96JrFaaT4FryezxyykRziSmSwTCEFRpRbWsbZF9hwtmT"
+  ]
+ },
+ "scanner-hit:yrgxjeypvenymnigjmudepjuxefcqrunjzszwpump": {
+  "first_seen": "2026-11-13T12:35:46+00:00",
+  "count": 1,
+  "example": "scanner-hit: 5YrGXjEy7Pv6enymNiGjMUdepjuxeFcqrunjzSZWpump",
+  "keys": [
+   "5YrGXjEy7Pv6enymNiGjMUdepjuxeFcqrunjzSZWpump"
+  ]
  }
 }
