@@ -1,19 +1,4 @@
 {
- "ESB1JqhPvJ2ZCYS1DPNoGKXXPw9QXAjs2tGMRKHKzzvg": {
-  "contract": "ESB1JqhPvJ2ZCYS1DPNoGKXXPw9QXAjs2tGMRKHKzzvg",
-  "pair": "Ai7A47UyQdUnppkSkLtthJvDf3yvyUY5Pt3yrRcUoGAe",
-  "symbol": "SCAT",
-  "network": "solana",
-  "added_ts": 1794527475,
-  "added_fdv": 48191.0,
-  "added_vol_h1": 57702.59,
-  "added_liq": 16979.94,
-  "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 48191.0,
-  "last_vol_h1": 57702.59,
-  "peak_fdv": 48191.0
- },
  "AUudpcv3MdCGZt19QErHdKikqPb2AZRcMiZTWDwkrwGh": {
   "contract": "AUudpcv3MdCGZt19QErHdKikqPb2AZRcMiZTWDwkrwGh",
   "pair": "D6mEmfpbg2PmJEKZMG9EgTro7sjikq1ByLPY8enmbWPA",
@@ -24,9 +9,24 @@
   "added_vol_h1": 2688.72,
   "added_liq": 2472.92,
   "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 55813.0,
-  "last_vol_h1": 2688.72,
+  "checks": 1,
+  "last_fdv": null,
+  "last_vol_h1": 0.0,
   "peak_fdv": 55813.0
+ },
+ "FjYX5qhzBcNpJP3mcz7z4sTqKB5m4kMnYpAKjPdT5UGk": {
+  "contract": "FjYX5qhzBcNpJP3mcz7z4sTqKB5m4kMnYpAKjPdT5UGk",
+  "pair": "CBDmvvNdhp69QsCwG8foivMzwwKxF1rP7kCmKerzDrTr",
+  "symbol": "FOOD",
+  "network": "solana",
+  "added_ts": 1794544053,
+  "added_fdv": 52788.0,
+  "added_vol_h1": 1.28,
+  "added_liq": 2.02,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 52788.0,
+  "last_vol_h1": 1.28,
+  "peak_fdv": 52788.0
  }
 }
