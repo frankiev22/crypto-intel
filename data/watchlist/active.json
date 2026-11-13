@@ -9,9 +9,24 @@
   "added_vol_h1": 2688.72,
   "added_liq": 2472.92,
   "added_venue": "amm",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": null,
   "last_vol_h1": 0.0,
   "peak_fdv": 55813.0
+ },
+ "AEiq5qgDmHbbmCvoGYfrxkFLivcnst4BUsXhqbyepump": {
+  "contract": "AEiq5qgDmHbbmCvoGYfrxkFLivcnst4BUsXhqbyepump",
+  "pair": "3VZn4JsfCsyUCctiNjbWNhSMwHbe4pFE7VLyPdAejsyq",
+  "symbol": "GME",
+  "network": "solana",
+  "added_ts": 1794600065,
+  "added_fdv": 49522.0,
+  "added_vol_h1": 4829.06,
+  "added_liq": 18637.22,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 49522.0,
+  "last_vol_h1": 4829.06,
+  "peak_fdv": 49522.0
  }
 }
