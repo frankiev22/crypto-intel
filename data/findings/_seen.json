@@ -19972,5 +19972,13 @@
   "keys": [
    "9Dh9vDPz3ZynKqoBc7on53ScioYpwugAFY6PuLrZ8uLR"
   ]
+ },
+ "scanner-hit:gzrfbndkqbucrzwcfdgpdbpakdlhafmrnvxza": {
+  "first_seen": "2026-11-14T07:18:11+00:00",
+  "count": 1,
+  "example": "scanner-hit: gzrF1BNdKqb53UcrZWC1FDgpDbPAkDL7hAfmrNv1xZA",
+  "keys": [
+   "gzrF1BNdKqb53UcrZWC1FDgpDbPAkDL7hAfmrNv1xZA"
+  ]
  }
 }
