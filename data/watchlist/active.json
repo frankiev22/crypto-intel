@@ -9,9 +9,24 @@
   "added_vol_h1": 1327.19,
   "added_liq": 0.21,
   "added_venue": "amm",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 62267.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 62267.0
+ },
+ "8zuoiuo4FSPu6rnPaeiVdMB5NEZMyEG4XpThDfwVjNXw": {
+  "contract": "8zuoiuo4FSPu6rnPaeiVdMB5NEZMyEG4XpThDfwVjNXw",
+  "pair": "GLY9Kdd1p2XmkiLE3ZqYQUytshEtjWc9dwRJS3MD821t",
+  "symbol": "BLACKOUT",
+  "network": "solana",
+  "added_ts": 1794666040,
+  "added_fdv": 61654.0,
+  "added_vol_h1": 7639.5,
+  "added_liq": 2104.09,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 61654.0,
+  "last_vol_h1": 7639.5,
+  "peak_fdv": 61654.0
  }
 }

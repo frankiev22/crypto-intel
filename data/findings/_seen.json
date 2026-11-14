@@ -19980,5 +19980,21 @@
   "keys": [
    "gzrF1BNdKqb53UcrZWC1FDgpDbPAkDL7hAfmrNv1xZA"
   ]
+ },
+ "scanner-hit:hadpzpkbxeyvnxhybeejsrwmjftjrhvzdz": {
+  "first_seen": "2026-11-14T14:20:42+00:00",
+  "count": 1,
+  "example": "scanner-hit: 787hAD2Pz6PKbXEYvnXH6YBeE43jSrwMJFTjrhVz7D1z",
+  "keys": [
+   "787hAD2Pz6PKbXEYvnXH6YBeE43jSrwMJFTjrhVz7D1z"
+  ]
+ },
+ "scanner-hit:mnjyskktbynscbujsdgjdmzfufbvjdpuqs": {
+  "first_seen": "2026-11-14T14:20:42+00:00",
+  "count": 1,
+  "example": "scanner-hit: 2mN3JySKkTbYNscbujSdg9jdm5ZF8U7fBV4jD75pU3Qs",
+  "keys": [
+   "2mN3JySKkTbYNscbujSdg9jdm5ZF8U7fBV4jD75pU3Qs"
+  ]
  }
 }
