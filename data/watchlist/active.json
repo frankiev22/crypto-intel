@@ -9,7 +9,7 @@
   "added_vol_h1": 1327.19,
   "added_liq": 0.21,
   "added_venue": "amm",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 62267.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 62267.0
@@ -24,7 +24,7 @@
   "added_vol_h1": 7639.5,
   "added_liq": 2104.09,
   "added_venue": "amm",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": null,
   "last_vol_h1": 0.0,
   "peak_fdv": 61654.0
@@ -39,9 +39,39 @@
   "added_vol_h1": 5618.78,
   "added_liq": 2219.82,
   "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 53150.0,
-  "last_vol_h1": 5618.78,
+  "checks": 1,
+  "last_fdv": null,
+  "last_vol_h1": 0.0,
   "peak_fdv": 53150.0
+ },
+ "ANpNBCMzJY4LrYwZATHM7TTFP3YwPaxffqfvcHTPZYj1": {
+  "contract": "ANpNBCMzJY4LrYwZATHM7TTFP3YwPaxffqfvcHTPZYj1",
+  "pair": "GR3RVuhuTzZhdhTGgXiLUqXtxraTsRbdjWoQZjbEEzzP",
+  "symbol": "PILL",
+  "network": "solana",
+  "added_ts": 1794697894,
+  "added_fdv": 64512.0,
+  "added_vol_h1": 31687.65,
+  "added_liq": 17896.5,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 64512.0,
+  "last_vol_h1": 31687.65,
+  "peak_fdv": 64512.0
+ },
+ "4DKsEkPiWYEfE9a9pJPCBSkTHY859qzFkbhvhyaBCN8S": {
+  "contract": "4DKsEkPiWYEfE9a9pJPCBSkTHY859qzFkbhvhyaBCN8S",
+  "pair": "AV5tufxc2awyxfNr86YKBfNE38x4HiPqjK2nAh8Cq8A7",
+  "symbol": "TURDCOIN",
+  "network": "solana",
+  "added_ts": 1794697910,
+  "added_fdv": 49130.0,
+  "added_vol_h1": 10959.98,
+  "added_liq": 0.0,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 49130.0,
+  "last_vol_h1": 10959.98,
+  "peak_fdv": 49130.0
  }
 }
