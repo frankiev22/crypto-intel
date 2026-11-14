@@ -9,7 +9,7 @@
   "added_vol_h1": 1327.19,
   "added_liq": 0.21,
   "added_venue": "amm",
-  "checks": 2,
+  "checks": 3,
   "last_fdv": 62267.0,
   "last_vol_h1": 0.0,
   "peak_fdv": 62267.0
@@ -24,9 +24,24 @@
   "added_vol_h1": 7639.5,
   "added_liq": 2104.09,
   "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 61654.0,
-  "last_vol_h1": 7639.5,
+  "checks": 1,
+  "last_fdv": null,
+  "last_vol_h1": 0.0,
   "peak_fdv": 61654.0
+ },
+ "H7Zn5PcE58is5RYszGRXbrAf9Wt47s3KfLzGwkuafcLK": {
+  "contract": "H7Zn5PcE58is5RYszGRXbrAf9Wt47s3KfLzGwkuafcLK",
+  "pair": "HC2Wzr7v3AdWyWLDHdTyJMXGEDbqNsAcKH4KYE7YskmF",
+  "symbol": "GREGORY",
+  "network": "solana",
+  "added_ts": 1794683984,
+  "added_fdv": 53150.0,
+  "added_vol_h1": 5618.78,
+  "added_liq": 2219.82,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 53150.0,
+  "last_vol_h1": 5618.78,
+  "peak_fdv": 53150.0
  }
 }
