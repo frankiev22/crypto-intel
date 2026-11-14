@@ -1,32 +1,17 @@
 {
- "AUudpcv3MdCGZt19QErHdKikqPb2AZRcMiZTWDwkrwGh": {
-  "contract": "AUudpcv3MdCGZt19QErHdKikqPb2AZRcMiZTWDwkrwGh",
-  "pair": "D6mEmfpbg2PmJEKZMG9EgTro7sjikq1ByLPY8enmbWPA",
-  "symbol": "Max",
+ "BtT94iDELoFNxjcEVmMFE1deMLq9SgKYc7d9Z1WpNttm": {
+  "contract": "BtT94iDELoFNxjcEVmMFE1deMLq9SgKYc7d9Z1WpNttm",
+  "pair": "2qCwKquDwNUPnuwhNcG8XkkK6DwiAc43EetMXiNpipP5",
+  "symbol": "MIM",
   "network": "solana",
-  "added_ts": 1794527494,
-  "added_fdv": 55813.0,
-  "added_vol_h1": 2688.72,
-  "added_liq": 2472.92,
-  "added_venue": "amm",
-  "checks": 3,
-  "last_fdv": null,
-  "last_vol_h1": 0.0,
-  "peak_fdv": 55813.0
- },
- "AEiq5qgDmHbbmCvoGYfrxkFLivcnst4BUsXhqbyepump": {
-  "contract": "AEiq5qgDmHbbmCvoGYfrxkFLivcnst4BUsXhqbyepump",
-  "pair": "3VZn4JsfCsyUCctiNjbWNhSMwHbe4pFE7VLyPdAejsyq",
-  "symbol": "GME",
-  "network": "solana",
-  "added_ts": 1794600065,
-  "added_fdv": 49522.0,
-  "added_vol_h1": 4829.06,
-  "added_liq": 18637.22,
+  "added_ts": 1794617527,
+  "added_fdv": 62267.0,
+  "added_vol_h1": 1327.19,
+  "added_liq": 0.21,
   "added_venue": "amm",
   "checks": 0,
-  "last_fdv": 49522.0,
-  "last_vol_h1": 4829.06,
-  "peak_fdv": 49522.0
+  "last_fdv": 62267.0,
+  "last_vol_h1": 1327.19,
+  "peak_fdv": 62267.0
  }
 }
