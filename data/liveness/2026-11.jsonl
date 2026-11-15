@@ -1324,3 +1324,24 @@
 {"name": "paperv3.close", "ts": 1794763059, "n": 1, "detail": "OFFICIAL NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1794763132, "n": 411, "detail": "411 rows, universe 258, 19 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1794763133, "n": 33, "detail": "read=6 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794779659, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794779660, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1794779661, "n": 1, "detail": "QzgvXyJPZS2d9GVg79gWdje3", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1794779663, "n": 1, "detail": "G3C7n28DfxBcbAmCPsLmgiew", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794779663, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794779664, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1794779666, "n": 1, "detail": "A41Hp9XvoykwdpPFyRVQCXL8", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794779666, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794779666, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794779668, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1794779668, "n": 2, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1794779668, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1794779679, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1794779679, "n": 16, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1794779680, "n": 1, "detail": "Other MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1794779680, "n": 1, "detail": "GREGORY MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1794779680, "n": 1, "detail": "USDC NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1794779681, "n": 1, "detail": "meme NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1794779681, "n": 1, "detail": "meme NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1794779736, "n": 416, "detail": "416 rows, universe 245, 23 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1794779736, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
