@@ -9,9 +9,39 @@
   "added_vol_h1": 871.52,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 57444.49,
   "last_vol_h1": 0.0,
   "peak_fdv": 57444.49
+ },
+ "9hAAx3qgYufZQsVa5n5ABjRxG4WJVE11gwYEVFyavRR": {
+  "contract": "9hAAx3qgYufZQsVa5n5ABjRxG4WJVE11gwYEVFyavRR",
+  "pair": "69NEX5sjUz9es85sGK4V2Px3dxYgsBjdSVVc9QyFMayx",
+  "symbol": "butt",
+  "network": "solana",
+  "added_ts": 1794821474,
+  "added_fdv": 48149.0,
+  "added_vol_h1": 63372.34,
+  "added_liq": 84392.4,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 48149.0,
+  "last_vol_h1": 63372.34,
+  "peak_fdv": 48149.0
+ },
+ "4Qctd15sWGMPkjkGQo3U1VBN5QpNrYf6TJVBz63Upump": {
+  "contract": "4Qctd15sWGMPkjkGQo3U1VBN5QpNrYf6TJVBz63Upump",
+  "pair": "F5D92234Q1v9HXzUQPNkjhgjX19tCTjBBh7EBPhZ2fbE",
+  "symbol": "Marvin",
+  "network": "solana",
+  "added_ts": 1794821475,
+  "added_fdv": 61862.0,
+  "added_vol_h1": 80.57,
+  "added_liq": 24174.35,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 61862.0,
+  "last_vol_h1": 80.57,
+  "peak_fdv": 61862.0
  }
 }
