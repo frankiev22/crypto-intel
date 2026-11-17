@@ -9,9 +9,24 @@
   "added_vol_h1": 8982.1,
   "added_liq": 0.0,
   "added_venue": "amm",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 47616.0,
-  "last_vol_h1": 0.0,
+  "last_vol_h1": null,
   "peak_fdv": 47616.0
+ },
+ "J2N9dUTvfvoLx72e9Mgf8Q6Xn3bDxfCfTPLEtSCzqkN9": {
+  "contract": "J2N9dUTvfvoLx72e9Mgf8Q6Xn3bDxfCfTPLEtSCzqkN9",
+  "pair": "69yEiL8z8qSDSwqeeDTi3YoHY6oH544k1mQgvFRzJxgS",
+  "symbol": "KATIA",
+  "network": "solana",
+  "added_ts": 1794914131,
+  "added_fdv": 62901.0,
+  "added_vol_h1": 88.45,
+  "added_liq": 24755.81,
+  "added_venue": "amm",
+  "checks": 0,
+  "last_fdv": 62901.0,
+  "last_vol_h1": 88.45,
+  "peak_fdv": 62901.0
  }
 }
