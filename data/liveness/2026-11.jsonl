@@ -1618,3 +1618,21 @@
 {"name": "paperv3.close", "ts": 1795078033, "n": 1, "detail": "DTTY NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1795078111, "n": 401, "detail": "401 rows, universe 232, 21 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1795078111, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795110287, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795110289, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795110290, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1795110292, "n": 1, "detail": "oTHkVLAtTkALtf2jjP23agun", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795110292, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1795110293, "n": 1, "detail": "3amE9Dynzp6NkJ1VHpKYtGKw", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795110293, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1795110295, "n": 1, "detail": "BGoCpu6cgCA3X5hLWAfiBuoa", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795110296, "n": 8, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1795110296, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1795110310, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1795110310, "n": 16, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1795110311, "n": 1, "detail": "GTA6 MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1795110311, "n": 1, "detail": "GTA6 MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1795110311, "n": 1, "detail": "Fiona NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1795110312, "n": 1, "detail": "GTA NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1795110359, "n": 406, "detail": "406 rows, universe 268, 21 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1795110359, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
