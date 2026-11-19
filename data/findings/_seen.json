@@ -20612,5 +20612,21 @@
   "keys": [
    "BGoCpu6cgCA3X5hLWAfiBuoaPUaBrEELn312rR9Wrxym"
   ]
+ },
+ "scanner-hit:hzacdgjezicszvrofxutonmanvmjzdqhxhbta": {
+  "first_seen": "2026-11-19T23:55:31+00:00",
+  "count": 1,
+  "example": "scanner-hit: HZA8Cd5GJEziCSzvr2ofX59UtoNmANVMjzdQ8HX4hbtA",
+  "keys": [
+   "HZA8Cd5GJEziCSzvr2ofX59UtoNmANVMjzdQ8HX4hbtA"
+  ]
+ },
+ "scanner-hit:brmtsbgredbhcuagxdqsgazgxpefhjtzkxwdxw": {
+  "first_seen": "2026-11-19T23:55:32+00:00",
+  "count": 1,
+  "example": "scanner-hit: 2BRmTsBGReDBhcuAgXd2qSgaZ7GxpEfHJT9z1Kx3WDXW",
+  "keys": [
+   "2BRmTsBGReDBhcuAgXd2qSgaZ7GxpEfHJT9z1Kx3WDXW"
+  ]
  }
 }
