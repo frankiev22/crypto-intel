@@ -9,39 +9,9 @@
   "added_vol_h1": 0.19,
   "added_liq": 0.29,
   "added_venue": "amm",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 38894.0,
   "last_vol_h1": null,
   "peak_fdv": 65205.0
- },
- "HnoBiAqZybc11baYiJnSbKranmEzQfqhFssMadyYpump": {
-  "contract": "HnoBiAqZybc11baYiJnSbKranmEzQfqhFssMadyYpump",
-  "pair": "Hrsz88mUZobANWAkRmRM6MGjWoQpHBoK2WEAc6BxgqAM",
-  "symbol": "Pnut",
-  "network": "solana",
-  "added_ts": 1795190660,
-  "added_fdv": 49807.0,
-  "added_vol_h1": 26681.05,
-  "added_liq": 14401.11,
-  "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 49807.0,
-  "last_vol_h1": 26681.05,
-  "peak_fdv": 49807.0
- },
- "EtVAsF4UPWvEG62VhUfvHVaNXdGHHJ1crWm88SU7puY6": {
-  "contract": "EtVAsF4UPWvEG62VhUfvHVaNXdGHHJ1crWm88SU7puY6",
-  "pair": "5V91UEaxUv6oS9yXgRzKnMV8ruGQwUVHA2XtoZQ8AMfH",
-  "symbol": "STICKERS",
-  "network": "solana",
-  "added_ts": 1795190662,
-  "added_fdv": 58307.0,
-  "added_vol_h1": 0.22,
-  "added_liq": 0.26,
-  "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 58307.0,
-  "last_vol_h1": 0.22,
-  "peak_fdv": 58307.0
  }
 }
