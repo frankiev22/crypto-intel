@@ -1,19 +1,4 @@
 {
- "E9EMLUEX55Fd2wwtZCRvYc8nkrCnrznmHZCD6f6425ai": {
-  "contract": "E9EMLUEX55Fd2wwtZCRvYc8nkrCnrznmHZCD6f6425ai",
-  "pair": "7tNGvBr92FWVH5rB7V1svPpPeypx9rp5GTQxWB1TrFvZ",
-  "symbol": "PATRICK",
-  "network": "solana",
-  "added_ts": 1795158183,
-  "added_fdv": 65205.0,
-  "added_vol_h1": 0.19,
-  "added_liq": 0.29,
-  "added_venue": "amm",
-  "checks": 3,
-  "last_fdv": 38894.0,
-  "last_vol_h1": null,
-  "peak_fdv": 65205.0
- },
  "PKuxradXVjDQE7gwZa8ARKyysgQoBNXSsmgjGGBKdgU": {
   "contract": "PKuxradXVjDQE7gwZa8ARKyysgQoBNXSsmgjGGBKdgU",
   "pair": "GJJ46AsTgx2kTPjDYBHbVee7UuLkRU8T1MbXxGkaMEgJ",
@@ -24,9 +9,9 @@
   "added_vol_h1": 60580.64,
   "added_liq": 80799.17,
   "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 45204.0,
-  "last_vol_h1": 60580.64,
-  "peak_fdv": 45204.0
+  "checks": 1,
+  "last_fdv": 47158.0,
+  "last_vol_h1": null,
+  "peak_fdv": 47158.0
  }
 }
