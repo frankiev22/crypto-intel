@@ -1824,3 +1824,24 @@
 {"name": "paperv3.close", "ts": 1795303743, "n": 1, "detail": "HUSH NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1795303785, "n": 411, "detail": "411 rows, universe 234, 19 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1795303785, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1795318043, "n": 1, "detail": "8sAb6aEV1sh6axxx2fxKKZF7", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795318045, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795318045, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1795318047, "n": 1, "detail": "EhUoXAxaoXJPUmaXQFb8MVTC", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795318047, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795318048, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795318049, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795318049, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1795318052, "n": 1, "detail": "3CZC9EguTezHcrziwrEG2XVc", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1795318054, "n": 1, "detail": "CUujej8mHcFdtF23bCCDsYfE", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795318054, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1795318055, "n": 1, "detail": "AkCg4P8aGvzUwts65C5uQS9x", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795318055, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795318056, "n": 9, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1795318056, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1795318069, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1795318069, "n": 12, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1795318070, "n": 1, "detail": "INU NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1795318070, "n": 1, "detail": "lens NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1795318108, "n": 390, "detail": "390 rows, universe 259, 20 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1795318108, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}

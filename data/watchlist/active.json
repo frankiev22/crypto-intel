@@ -9,24 +9,9 @@
   "added_vol_h1": 60580.64,
   "added_liq": 80799.17,
   "added_venue": "amm",
-  "checks": 3,
+  "checks": 4,
   "last_fdv": 47158.0,
   "last_vol_h1": null,
   "peak_fdv": 47158.0
- },
- "HewZiT7JFWJetvpxVLYZ6wzQTtVNA5EWjb7mtA18aJKp": {
-  "contract": "HewZiT7JFWJetvpxVLYZ6wzQTtVNA5EWjb7mtA18aJKp",
-  "pair": "q23jxpcY358wNPBsKJMaFqtghFmz5G7RgCWVrZFujv5",
-  "symbol": "INU",
-  "network": "solana",
-  "added_ts": 1795303727,
-  "added_fdv": 47446.0,
-  "added_vol_h1": 0.18,
-  "added_liq": 0.24,
-  "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 47446.0,
-  "last_vol_h1": 0.18,
-  "peak_fdv": 47446.0
  }
 }
