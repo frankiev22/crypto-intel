@@ -21292,5 +21292,29 @@
   "keys": [
    "6nQCcuXypcAjncXK7gzvJcdwvqitgJRdG3k1no4Jpump"
   ]
+ },
+ "scanner-hit:dlweudypdbqjawabzhvhyhpdnczpgreakpump": {
+  "first_seen": "2026-11-25T00:10:57+00:00",
+  "count": 1,
+  "example": "scanner-hit: DLweuDypd3BQJAWaBZhVh8YhpdNCzpgr1EaK7794pump",
+  "keys": [
+   "DLweuDypd3BQJAWaBZhVh8YhpdNCzpgr1EaK7794pump"
+  ]
+ },
+ "scanner-hit:gpciqgawmlkrifrwdkfmvqsubrddkfqbpump": {
+  "first_seen": "2026-11-25T00:10:57+00:00",
+  "count": 1,
+  "example": "scanner-hit: GpCiqGaWm9Lk98r8iFr5W32dkFMVq8suBRDdkfqbpump",
+  "keys": [
+   "GpCiqGaWm9Lk98r8iFr5W32dkFMVq8suBRDdkfqbpump"
+  ]
+ },
+ "scanner-hit:mtsbbjaqfatmfnajzdezvxzffqnrfrhguphjbgjg": {
+  "first_seen": "2026-11-25T00:10:58+00:00",
+  "count": 1,
+  "example": "scanner-hit: 3MTSbBJaq7FaTMFnA8jzdEzvXzFfqNRfrhG9UphJbGJG",
+  "keys": [
+   "3MTSbBJaq7FaTMFnA8jzdEzvXzFfqNRfrhG9UphJbGJG"
+  ]
  }
 }
