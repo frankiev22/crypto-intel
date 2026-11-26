@@ -1,34 +1,4 @@
 {
- "3znsVKBg8GKYsweiRUjb1JFWhn72GpJUNb2etVxstg3W": {
-  "contract": "3znsVKBg8GKYsweiRUjb1JFWhn72GpJUNb2etVxstg3W",
-  "pair": "BH5hDoMZQraNrAm3DxJ8Fcg6Cz3WFag8NgpRcuqfp3SP",
-  "symbol": "JaoJiu",
-  "network": "solana",
-  "added_ts": 1795596789,
-  "added_fdv": 65234.0,
-  "added_vol_h1": 308784.12,
-  "added_liq": 117616.0,
-  "added_venue": "amm",
-  "checks": 2,
-  "last_fdv": 28079.0,
-  "last_vol_h1": null,
-  "peak_fdv": 65234.0
- },
- "QpXxTEFj67Gdnosud9yEmFLg6115GugYYQ6takLdQYR": {
-  "contract": "QpXxTEFj67Gdnosud9yEmFLg6115GugYYQ6takLdQYR",
-  "pair": "CsfzhiX8w1YPXioLR62mXQq3AWsBYXqRaW8UDnwzdMHA",
-  "symbol": "JaoJiu",
-  "network": "solana",
-  "added_ts": 1795596795,
-  "added_fdv": 46890.0,
-  "added_vol_h1": 231962.96,
-  "added_liq": 82813.67,
-  "added_venue": "amm",
-  "checks": 2,
-  "last_fdv": 55132.0,
-  "last_vol_h1": null,
-  "peak_fdv": 55132.0
- },
  "7AGYM1anbvWUChC6yYmfxHsLm6doD1WKJoJNEqNApump": {
   "contract": "7AGYM1anbvWUChC6yYmfxHsLm6doD1WKJoJNEqNApump",
   "pair": "DodHPxNfjA2Jw4cscibrBFWd8UmtNctWZ8yVUX7YqPGu",
@@ -39,10 +9,10 @@
   "added_vol_h1": 1196.09,
   "added_liq": 0.0,
   "added_venue": "bonding_curve",
-  "checks": 1,
-  "last_fdv": 46655.04,
+  "checks": 2,
+  "last_fdv": 46722.45,
   "last_vol_h1": null,
-  "peak_fdv": 46655.04
+  "peak_fdv": 46722.45
  },
  "CyQgBGRRqUzuPRwyCpzvXN7CtkGiVJr8GddtqjxQpump": {
   "contract": "CyQgBGRRqUzuPRwyCpzvXN7CtkGiVJr8GddtqjxQpump",
@@ -54,7 +24,7 @@
   "added_vol_h1": 17508.86,
   "added_liq": 104542.43,
   "added_venue": "amm",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 63824.0,
   "last_vol_h1": null,
   "peak_fdv": 63824.0
@@ -69,24 +39,9 @@
   "added_vol_h1": 648996.78,
   "added_liq": 27.3,
   "added_venue": "amm",
-  "checks": 1,
+  "checks": 2,
   "last_fdv": 62379.0,
   "last_vol_h1": null,
   "peak_fdv": 62379.0
- },
- "FK8jsVxDso94oMh6ywqgQkWvkhu5bXRFEZuhF5u5swEG": {
-  "contract": "FK8jsVxDso94oMh6ywqgQkWvkhu5bXRFEZuhF5u5swEG",
-  "pair": "3kphBLR1GjTBtAUpszRysLzqobveofSMdPfMr3J75FdV",
-  "symbol": "Grok Bot",
-  "network": "solana",
-  "added_ts": 1795659494,
-  "added_fdv": 59144.0,
-  "added_vol_h1": 212346.38,
-  "added_liq": 109154.48,
-  "added_venue": "amm",
-  "checks": 0,
-  "last_fdv": 59144.0,
-  "last_vol_h1": 212346.38,
-  "peak_fdv": 59144.0
  }
 }
