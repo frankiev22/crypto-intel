@@ -2151,3 +2151,22 @@
 {"name": "paperv3.close", "ts": 1795691335, "n": 1, "detail": "ANON NO_SELL_ROUTE", "origin": "scheduled"}
 {"name": "market.snapshot", "ts": 1795691385, "n": 391, "detail": "391 rows, universe 259, 23 round trips", "origin": "scheduled"}
 {"name": "legs.registry", "ts": 1795691385, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}
+{"name": "paperv3.open", "ts": 1795724317, "n": 1, "detail": "B7xsDBnwugZkUEVtwWzNSQ2D", "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795724318, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795724319, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795724319, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795724321, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795724322, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795724323, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795724323, "n": 10, "detail": null, "origin": "scheduled"}
+{"name": "scan.observations", "ts": 1795724323, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "fieldguard.check", "ts": 1795724323, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "watchlist.sweep", "ts": 1795724330, "n": 1, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.sweep", "ts": 1795724331, "n": 7, "detail": null, "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1795724331, "n": 1, "detail": "穗穗与羊 MAX_HOLD", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1795724332, "n": 1, "detail": "konnichiwa NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1795724332, "n": 1, "detail": "Yaranaika NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1795724332, "n": 1, "detail": "Elonmas NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "paperv3.close", "ts": 1795724333, "n": 1, "detail": "Yaranaika NO_SELL_ROUTE", "origin": "scheduled"}
+{"name": "market.snapshot", "ts": 1795724367, "n": 376, "detail": "376 rows, universe 246, 19 round trips", "origin": "scheduled"}
+{"name": "legs.registry", "ts": 1795724367, "n": 33, "detail": "read=0 controlled=2 stale=0", "origin": "scheduled"}

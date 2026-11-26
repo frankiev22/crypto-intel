@@ -1,47 +1,17 @@
 {
- "7AGYM1anbvWUChC6yYmfxHsLm6doD1WKJoJNEqNApump": {
-  "contract": "7AGYM1anbvWUChC6yYmfxHsLm6doD1WKJoJNEqNApump",
-  "pair": "DodHPxNfjA2Jw4cscibrBFWd8UmtNctWZ8yVUX7YqPGu",
-  "symbol": "iaUFGV",
+ "HCJ8uneKDK97WFMHVguX9vpK5yrehnQNq5Wh6YqCmoon": {
+  "contract": "HCJ8uneKDK97WFMHVguX9vpK5yrehnQNq5Wh6YqCmoon",
+  "pair": "7z1NKqedZ99zuAgriv9KdXv844XXk9JXkEXXAbZCTUB2",
+  "symbol": "Spacufo",
   "network": "solana",
-  "added_ts": 1795633795,
-  "added_fdv": 46166.88,
-  "added_vol_h1": 1196.09,
-  "added_liq": 0.0,
-  "added_venue": "bonding_curve",
-  "checks": 2,
-  "last_fdv": 46722.45,
-  "last_vol_h1": null,
-  "peak_fdv": 46722.45
- },
- "CyQgBGRRqUzuPRwyCpzvXN7CtkGiVJr8GddtqjxQpump": {
-  "contract": "CyQgBGRRqUzuPRwyCpzvXN7CtkGiVJr8GddtqjxQpump",
-  "pair": "9rfjFf1d2fqdfyzf2iACiRHcM5R8Gqtss1sLWguBLAcW",
-  "symbol": "WULF",
-  "network": "solana",
-  "added_ts": 1795633798,
-  "added_fdv": 63824.0,
-  "added_vol_h1": 17508.86,
-  "added_liq": 104542.43,
+  "added_ts": 1795724320,
+  "added_fdv": 51631.0,
+  "added_vol_h1": 8759.77,
+  "added_liq": 93558.85,
   "added_venue": "amm",
-  "checks": 2,
-  "last_fdv": 63824.0,
-  "last_vol_h1": null,
-  "peak_fdv": 63824.0
- },
- "Aj65QBGgibhbAAq9PJMDDVNDFPtp731ZC4e5bHR2twDW": {
-  "contract": "Aj65QBGgibhbAAq9PJMDDVNDFPtp731ZC4e5bHR2twDW",
-  "pair": "FKbBNb7AkUvq9KgRvrFHMrR6xBEgxsCXTMmomywn9WVF",
-  "symbol": "FCAT",
-  "network": "solana",
-  "added_ts": 1795633806,
-  "added_fdv": 62379.0,
-  "added_vol_h1": 648996.78,
-  "added_liq": 27.3,
-  "added_venue": "amm",
-  "checks": 2,
-  "last_fdv": 62379.0,
-  "last_vol_h1": null,
-  "peak_fdv": 62379.0
+  "checks": 0,
+  "last_fdv": 51631.0,
+  "last_vol_h1": 8759.77,
+  "peak_fdv": 51631.0
  }
 }
